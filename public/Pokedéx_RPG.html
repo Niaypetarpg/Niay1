@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Pokémon RPG</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      padding: 15px; 
+      background: #f4f4f4 url('https://images.cara.app/production/posts/00e1c309-3f5c-4f3f-afbd-f9ff89f70b76/moonfellpixelart-VXvUarqvYAggtgxI3pdMJ-Lagoon_Pond_WIP.gif?width=1920') center/cover no-repeat; 
+      color: #333; 
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+    
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+    
+    h2 { 
+      text-align: center; 
+      color: #fff; 
+      text-shadow: 1px 1px 2px #000; 
+      margin-top: 0;
+    }
+
+    .container {
+  position: relative;
+  max-width: 1200px; /* Aumentei a largura máxima */
+  width: 95%; /* Agora ocupa 95% da tela */
+  margin: auto;
+  background: linear-gradient(to bottom, rgba(255, 0, 0, 0.85), rgba(0, 0, 0, 0.85));
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.4);
+  color: white;
+  border: 2px solid #222;
+  overflow: hidden;
+  transition: all 0.3s;
+  z-index: 1;
+}
+
+    .shiny {
+      border: 3px solid gold;
+      background: linear-gradient(to bottom, rgba(255, 215, 0, 0.85), rgba(17, 17, 17, 0.85));
+      color: black;
+      box-shadow: 0px 0px 25px 6px gold;
+    }
+    .shiny::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.7) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+      transform: skewX(-25deg);
+      animation: shine 3s infinite;
+    }
+    @keyframes shine {
+      0% { left: -100%; }
+      50% { left: 120%; }
+      100% { left: 120%; }
+    }
+    .stars {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 22px;
+      animation: sparkle 1s ease-in-out infinite alternate;
+    }
+    @keyframes sparkle {
+      from { opacity: 0.2; transform: scale(0.8) rotate(0deg); }
+      to { opacity: 1; transform: scale(1.3) rotate(20deg); }
+    }
+
+    .migracao {
+      border: 3px solid deepskyblue;
+      background: linear-gradient(to bottom, rgba(30, 144, 255, 0.85), rgba(17, 17, 17, 0.85));
+      color: black;
+      box-shadow: 0px 0px 25px 6px deepskyblue;
+    }
+    .migracao .stars {
+      color: deepskyblue;
+    }
+
+    .diamante {
+      border: 3px solid cyan;
+      background: linear-gradient(to bottom, rgba(0, 206, 209, 0.85), rgba(17, 17, 17, 0.85));
+      color: black;
+      box-shadow: 0px 0px 30px 8px cyan;
+      text-shadow: 2px 2px 4px #000;
+    }
+    .diamante .stars {
+      color: cyan;
+    }
+
+    label { 
+      font-weight: bold; 
+      margin-top: 15px; 
+      color: #fff; 
+      display: block;
+    }
+    .grupo { 
+      margin: 15px 0; 
+    }
+    .check-grid {
+      display: grid;
+      gap: 7px;
+    }
+    .regioes { grid-template-columns: repeat(5, 1fr); }
+    .habitats { grid-template-columns: repeat(3, 1fr); }
+    .catch-rates { grid-template-columns: repeat(3, 1fr); }
+    .niveis { grid-template-columns: repeat(3, 1fr); }
+    .gostos { grid-template-columns: repeat(3, 1fr); }
+    .tipos { grid-template-columns: repeat(3, 1fr); }
+
+    .check-grid label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.1);
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 0.9em;
+    }
+    .check-grid label:hover { background: rgba(255,255,255,0.2); }
+
+    select, button {
+  width: 100%; 
+  padding: 10px; 
+  margin-top: 6px;
+  border: 1px solid #444 !important; 
+  border-radius: 8px;
+  font-size: 1em;
+  background: rgba(0, 0, 0, 0.7) !important;
+  color: white !important;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+select:focus {
+  border-color: #007bff !important;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+select option {
+  background: #333;
+  color: white;
+  padding: 8px;
+}
+
+    button {
+      margin-top: 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 12px;
+      transition: background 0.3s;
+    }
+    button:hover { 
+      background: #0056b3; 
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    #resultado {
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      border-radius: 10px;
+      text-align: left;
+      font-weight: normal;
+      white-space: pre-line;
+      line-height: 1.6;
+      font-size: 1.05em;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .result-line {
+      margin-bottom: 8px;
+      width: 100%;
+    }
+
+    .pokemon-name {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #FFCC00;
+      text-align: center;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    /* Novos estilos para a tabela de atributos */
+    .atributos-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 0.9em;
+    }
+    
+    .atributos-table th, .atributos-table td {
+      padding: 6px 8px;
+      text-align: center;
+      border: 1px solid #444;
+    }
+    
+    .atributos-table th {
+      background-color: rgba(255, 0, 0, 0.5);
+    }
+    
+    .atributos-table tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .atributo-nome {
+      text-align: left;
+      font-weight: bold;
+    }
+    
+    .atributo-destaque {
+      background-color: rgba(255, 215, 0, 0.2) !important;
+    }
+    
+    .atributo-reduzido {
+      color: #ff6b6b;
+    }
+    
+    .atributo-aumentado {
+      color: #51cf66;
+    }
+    
+    .pv-info {
+      margin-top: 15px;
+      background: rgba(255, 0, 0, 0.3);
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    /* Estilos para os menus retráteis */
+    details {
+      margin-bottom: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    summary {
+      padding: 12px 15px;
+      font-weight: bold;
+      cursor: pointer;
+      background: rgba(255, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    
+    summary::after {
+      content: "▼";
+      font-size: 0.8em;
+      transition: transform 0.3s;
+    }
+    
+    details[open] summary::after {
+      transform: rotate(180deg);
+    }
+    
+    .details-content {
+      padding: 15px;
+    }
+
+    /* Estilos para a imagem do Pokémon */
+    .pokemon-image-container {
+      text-align: center;
+      margin: 15px 0;
+    }
+    
+    .pokemon-image {
+      max-width: 200px;
+      max-height: 200px;
+      filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+      transition: all 0.3s ease;
+    }
+    
+    .shiny-img {
+      filter: drop-shadow(0 0 10px gold) brightness(1.1) saturate(1.5);
+    }
+    
+    .migracao-img {
+      filter: drop-shadow(0 0 10px deepskyblue);
+    }
+    
+    .diamante-img {
+      filter: drop-shadow(0 0 12px cyan);
+    }
+    
+    .loading-image {
+      filter: blur(5px);
+      opacity: 0.7;
+    }
+
+    /* Layout para os selects lado a lado */
+.selects-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.grupo-select label {
+  font-weight: bold; 
+  margin-top: 15px; 
+  color: #fff; 
+  display: block;
+  text-shadow: 1px 1px 2px #000;
+}
+
+/* Ajustes responsivos para a centralização */
+@media (max-width: 768px) {
+  .pokemon-grid.quantidade-1,
+  .pokemon-grid.quantidade-2 {
+    max-width: 100%;
+    grid-template-columns: 1fr;
+  }
+  
+  .pokemon-grid.quantidade-4,
+  .pokemon-grid.quantidade-5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-grid.quantidade-4,
+  .pokemon-grid.quantidade-5 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ajustes para mobile */
+@media (max-width: 480px) {
+  .selects-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+    @media (max-width: 650px) {
+      .container {
+        padding: 15px;
+        margin: 10px;
+      }
+      
+      .check-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      #resultado {
+        padding: 15px;
+        font-size: 0.95em;
+      }
+      
+      .atributos-table {
+        font-size: 0.8em;
+      }
+      
+      summary {
+        padding: 10px 12px;
+        font-size: 0.95em;
+      }
+      
+      .pokemon-image {
+        max-width: 150px;
+        max-height: 150px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .check-grid {
+        grid-template-columns: 1fr !important;
+      }
+      
+      .pokemon-image {
+        max-width: 120px;
+        max-height: 120px;
+      }
+    }
+    .pokemon-list {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.pokemon-list label {
+  font-size: 0.8em;
+  padding: 5px;
+}
+
+@media (max-width: 650px) {
+  .pokemon-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-list {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Estilos para efeitos individuais dos Pokémon */
+.pokemon-result.shiny-effect {
+    border: 2px solid gold;
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.1), rgba(17, 17, 17, 0.3));
+    box-shadow: 0px 0px 15px 3px gold;
+}
+
+.pokemon-result.migracao-effect {
+    border: 2px solid deepskyblue;
+    background: linear-gradient(to bottom, rgba(30, 144, 255, 0.1), rgba(17, 17, 17, 0.3));
+    box-shadow: 0px 0px 15px 3px deepskyblue;
+}
+
+.pokemon-result.diamante-effect {
+    border: 2px solid cyan;
+    background: linear-gradient(to bottom, rgba(0, 206, 209, 0.1), rgba(17, 17, 17, 0.3));
+    box-shadow: 0px 0px 20px 5px cyan;
+}
+
+.individual-stars {
+    animation: sparkle 1s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle {
+    from { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+    to { opacity: 1; transform: scale(1.2) rotate(10deg); }
+}
+
+/* Estilos para a grade de Pokémon */
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  width: 100%;
+}
+
+/* Centralização para quantidades que não preenchem a linha */
+.pokemon-grid.quantidade-1 {
+  grid-template-columns: 1fr;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.pokemon-grid.quantidade-2 {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pokemon-grid.quantidade-4 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* LAYOUT PARA 5 POKÉMONS - 3 em cima, 2 embaixo centralizados */
+.pokemon-grid.quantidade-5 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Pokémon 1, 2, 3 - primeira linha (colunas 1, 3, 5) */
+.pokemon-grid.quantidade-5 .pokemon-result:nth-child(1) { 
+  grid-column: 1 / span 2; 
+}
+.pokemon-grid.quantidade-5 .pokemon-result:nth-child(2) { 
+  grid-column: 3 / span 2; 
+}
+.pokemon-grid.quantidade-5 .pokemon-result:nth-child(3) { 
+  grid-column: 5 / span 2; 
+}
+
+/* Pokémon 4 e 5 - segunda linha (colunas 2-3 e 4-5 - CENTRALIZADOS) */
+.pokemon-grid.quantidade-5 .pokemon-result:nth-child(4) { 
+  grid-column: 2 / span 2; 
+}
+.pokemon-grid.quantidade-5 .pokemon-result:nth-child(5) { 
+  grid-column: 4 / span 2; 
+}
+
+/* Ajustar tamanho dos cards para 5 Pokémon */
+.pokemon-grid.quantidade-5 .pokemon-result {
+  min-height: 550px;
+  width: 100%;
+}
+
+/* Ajustar tabelas para caber melhor */
+.pokemon-grid.quantidade-5 .atributos-table {
+  font-size: 0.7em;
+}
+
+.pokemon-grid.quantidade-5 .atributos-table th,
+.pokemon-grid.quantidade-5 .atributos-table td {
+  padding: 3px 4px;
+}
+
+.pokemon-grid.quantidade-5 .result-line {
+  font-size: 0.8em;
+  margin-bottom: 3px;
+}
+
+.pokemon-grid.quantidade-5 .pokemon-name {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.pokemon-grid.quantidade-5 .pokemon-image {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.pokemon-grid.quantidade-5 .pv-info {
+  margin-top: 8px;
+  padding: 6px;
+  font-size: 0.8em;
+}
+
+/* Aumentar a altura mínima dos cards para 5 Pokémon */
+.pokemon-grid.quantidade-5 .pokemon-result {
+  min-height: 550px;
+  width: 100%;
+  max-width: 350px;
+}
+
+/* Ajustar tabelas para caber melhor */
+.pokemon-grid.quantidade-5 .atributos-table {
+  font-size: 0.7em;
+}
+
+.pokemon-grid.quantidade-5 .atributos-table th,
+.pokemon-grid.quantidade-5 .atributos-table td {
+  padding: 2px 3px;
+}
+
+.pokemon-grid.quantidade-5 .result-line {
+  font-size: 0.8em;
+  margin-bottom: 3px;
+}
+
+.pokemon-grid.quantidade-5 .pokemon-name {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.pokemon-grid.quantidade-5 .pokemon-image {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+/* Ajuste para telas médias - 2 colunas */
+@media (max-width: 1024px) {
+  .pokemon-grid.quantidade-5 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+  }
+
+  .pokemon-grid.quantidade-5 .pokemon-result:nth-child(1),
+  .pokemon-grid.quantidade-5 .pokemon-result:nth-child(2),
+  .pokemon-grid.quantidade-5 .pokemon-result:nth-child(3),
+  .pokemon-grid.quantidade-5 .pokemon-result:nth-child(4),
+  .pokemon-grid.quantidade-5 .pokemon-result:nth-child(5) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .pokemon-grid.quantidade-5 {
+    grid-template-columns: 1fr;
+  }
+  
+  .pokemon-grid.quantidade-5 .pokemon-result {
+    min-height: 450px;
+  }
+}
+
+/* Ajustes específicos para 5 Pokémon em telas menores */
+@media (max-width: 1024px) {
+  .pokemon-grid.quantidade-5 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+  }
+
+  .pokemon-grid.quantidade-5 .pokemon-result:nth-child(1),
+  .pokemon-grid.quantidade-5 .pokemon-result:nth-child(2),
+  .pokemon-grid.quantidade-5 .pokemon-result:nth-child(3),
+  .pokemon-grid.quantidade-5 .pokemon-result:nth-child(4),
+  .pokemon-grid.quantidade-5 .pokemon-result:nth-child(5) {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: center;
+  }
+  
+  .pokemon-grid.quantidade-5 .pokemon-result {
+    min-height: 500px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .pokemon-grid.quantidade-5 {
+    grid-template-columns: 1fr;
+  }
+  
+  .pokemon-grid.quantidade-5 .pokemon-result {
+    min-height: 450px;
+  }
+}
+
+.pokemon-result {
+  margin-bottom: 0;
+  padding: 12px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  min-height: 500px;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 95%;
+    padding: 20px;
+  }
+  
+  .pokemon-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }  
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 98%;
+    padding: 15px;
+  }
+  
+  .pokemon-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .pokemon-result {
+    padding: 10px;
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pokemon-result {
+    min-height: 400px;
+  } 
+}
+
+/* Ajuste para a tabela de atributos em cards menores */
+.pokemon-result .atributos-table {
+  font-size: 0.75em;
+  margin: 8px 0;
+}
+
+.pokemon-result .atributos-table th,
+.pokemon-result .atributos-table td {
+  padding: 3px 4px;
+}
+
+.pokemon-result .atributos-table th {
+  font-size: 0.8em;
+}
+
+/* Ajustes para elementos dentro dos cards */
+.pokemon-result .pokemon-name {
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.pokemon-result .result-line {
+  font-size: 0.85em;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.pokemon-result .pokemon-image {
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.pokemon-result .pv-info {
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 0.9em;
+}
+
+/* Ajustes específicos para quando há muitos Pokémon */
+.pokemon-grid.compact-view .pokemon-result {
+  min-height: 400px;
+}
+
+.pokemon-grid.compact-view .atributos-table {
+  font-size: 0.7em;
+}
+
+.pokemon-grid.compact-view .result-line {
+  font-size: 0.8em;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Pokédex RPG</h2>
+
+     <!-- Menu de Regiões (agora retrátil) -->
+    <details>
+      <summary>Regiões</summary>
+      <div class="details-content">
+        <div class="check-grid regioes">
+          <label><input type="checkbox" name="regiao" value="Todas" id="todas-regioes"> Todas</label>
+          <label><input type="checkbox" name="regiao" value="Kanto" class="regiao-cb"> Kanto</label>
+          <label><input type="checkbox" name="regiao" value="Johto" class="regiao-cb"> Johto</label>
+          <label><input type="checkbox" name="regiao" value="Hoenn" class="regiao-cb"> Hoenn</label>
+          <label><input type="checkbox" name="regiao" value="Sinnoh" class="regiao-cb"> Sinnoh</label>
+          <label><input type="checkbox" name="regiao" value="Unova" class="regiao-cb"> Unova</label>
+          <label><input type="checkbox" name="regiao" value="Kalos" class="regiao-cb"> Kalos</label>
+          <label><input type="checkbox" name="regiao" value="Alola" class="regiao-cb"> Alola</label>
+          <label><input type="checkbox" name="regiao" value="Galar" class="regiao-cb"> Galar</label>
+          <label><input type="checkbox" name="regiao" value="Paldea" class="regiao-cb"> Paldea</label>
+        </div>
+      </div>
+    </details>
+
+    <!-- Menu de Habitats (agora retrátil) -->
+    <details>
+      <summary>Habitats</summary>
+      <div class="details-content">
+        <div class="check-grid habitats">
+          <label><input type="checkbox" name="localidade" value="Todos" id="todos-habitats"> 🌎 Todos</label>
+          <label><input type="checkbox" name="localidade" value="floresta" class="habitat-cb"> 🌳 Floresta</label>
+          <label><input type="checkbox" name="localidade" value="caverna" class="habitat-cb"> 🪨 Caverna</label>
+          <label><input type="checkbox" name="localidade" value="montanha" class="habitat-cb"> ⛰️ Montanha</label>
+          <label><input type="checkbox" name="localidade" value="agua_doce" class="habitat-cb"> <span style="font-size: 0.9em;">💧</span> Água Doce</label>
+          <label><input type="checkbox" name="localidade" value="pradaria" class="habitat-cb"> 🌾 Pradarias</label>
+          <label><input type="checkbox" name="localidade" value="oceano" class="habitat-cb"> 🌊 Oceanos</label>
+          <label><input type="checkbox" name="localidade" value="deserto" class="habitat-cb"> 🏜️ Deserto</label>
+          <label><input type="checkbox" name="localidade" value="pantano" class="habitat-cb"> 🐸 Pântano</label>
+          <label><input type="checkbox" name="localidade" value="praia" class="habitat-cb"> 🏖️ Praia</label>
+          <label><input type="checkbox" name="localidade" value="selva" class="habitat-cb"> 🌴 Selva</label>
+          <label><input type="checkbox" name="localidade" value="taiga" class="habitat-cb"> 🌲 Taiga</label>
+          <label><input type="checkbox" name="localidade" value="tundra" class="habitat-cb"> ❄️ Tundra</label>
+          <label><input type="checkbox" name="localidade" value="artico" class="habitat-cb"> 🧊 Ártico</label>
+          <label><input type="checkbox" name="localidade" value="extradimensional" class="habitat-cb"> <span style="font-size: 0.9em;">🌀</span> Extradimensional</label>
+          <label><input type="checkbox" name="localidade" value="cidade" class="habitat-cb"> 🏙️ Cidade</label>
+          <label><input type="checkbox" name="localidade" value="ruina" class="habitat-cb"> 🏺 Ruínas</label>
+        </div>
+      </div>
+    </details>
+
+    <!-- Menu de Catch Rate (agora retrátil) -->
+    <details>
+      <summary>Dificuldade de Captura (Catch Rate)</summary>
+      <div class="details-content">
+        <div class="check-grid catch-rates">
+          <label><input type="checkbox" name="catchRate" value="Todos" id="todos-catch"> Todos</label>
+          <label><input type="checkbox" name="catchRate" value="75" class="catch-cb"> 75</label>
+          <label><input type="checkbox" name="catchRate" value="60" class="catch-cb"> 60</label>
+          <label><input type="checkbox" name="catchRate" value="55" class="catch-cb"> 55</label>
+          <label><input type="checkbox" name="catchRate" value="50" class="catch-cb"> 50</label>
+          <label><input type="checkbox" name="catchRate" value="45" class="catch-cb"> 45</label>
+          <label><input type="checkbox" name="catchRate" value="40" class="catch-cb"> 40</label>
+          <label><input type="checkbox" name="catchRate" value="35" class="catch-cb"> 35</label>
+          <label><input type="checkbox" name="catchRate" value="30" class="catch-cb"> 30</label>
+          <label><input type="checkbox" name="catchRate" value="25" class="catch-cb"> 25</label>
+          <label><input type="checkbox" name="catchRate" value="20" class="catch-cb"> 20</label>
+          <label><input type="checkbox" name="catchRate" value="15" class="catch-cb"> 15</label>
+          <label><input type="checkbox" name="catchRate" value="10" class="catch-cb"> 10</label>
+          <label><input type="checkbox" name="catchRate" value="5" class="catch-cb">  05</label>
+          <label><input type="checkbox" name="catchRate" value="0" class="catch-cb">  00</label>
+        </div>
+      </div>
+    </details>
+
+    <!-- Menu de Níveis (agora retrátil) -->
+    <details>
+      <summary>Níveis</summary>
+      <div class="details-content">
+        <div class="check-grid niveis">
+          <label><input type="checkbox" name="nivel" value="Todos" id="todos-niveis"> Todos</label>
+          <label><input type="checkbox" name="nivel" value="1-5" class="nivel-cb"> 1 – 5</label>
+          <label><input type="checkbox" name="nivel" value="6-10" class="nivel-cb"> 6 – 10</label>
+          <label><input type="checkbox" name="nivel" value="11-15" class="nivel-cb"> 11 – 15</label>
+          <label><input type="checkbox" name="nivel" value="16-20" class="nivel-cb"> 16 – 20</label>
+          <label><input type="checkbox" name="nivel" value="21-25" class="nivel-cb"> 21 – 25</label>
+          <label><input type="checkbox" name="nivel" value="26-30" class="nivel-cb"> 26 – 30</label>
+          <label><input type="checkbox" name="nivel" value="31-35" class="nivel-cb"> 31 – 35</label>
+          <label><input type="checkbox" name="nivel" value="36-40" class="nivel-cb"> 36 – 40</label>
+          <label><input type="checkbox" name="nivel" value="41-45" class="nivel-cb"> 41 – 45</label>
+          <label><input type="checkbox" name="nivel" value="46-50" class="nivel-cb"> 46 – 50</label>
+          <label><input type="checkbox" name="nivel" value="51-55" class="nivel-cb"> 51 – 55</label>
+          <label><input type="checkbox" name="nivel" value="56-60" class="nivel-cb"> 56 – 60</label>
+          <label><input type="checkbox" name="nivel" value="61-65" class="nivel-cb"> 61 – 65</label>
+          <label><input type="checkbox" name="nivel" value="66-70" class="nivel-cb"> 66 – 70</label>
+          <label><input type="checkbox" name="nivel" value="71-75" class="nivel-cb"> 71 – 75</label>
+          <label><input type="checkbox" name="nivel" value="76-80" class="nivel-cb"> 76 – 80</label>
+          <label><input type="checkbox" name="nivel" value="81-85" class="nivel-cb"> 81 – 85</label>
+          <label><input type="checkbox" name="nivel" value="86-90" class="nivel-cb"> 86 – 90</label>
+          <label><input type="checkbox" name="nivel" value="91-95" class="nivel-cb"> 91 – 95</label>
+          <label><input type="checkbox" name="nivel" value="96-100" class="nivel-cb"> 96 – 100</label>
+        </div>
+        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ccc;">
+          <label for="nivelEspecifico" style="display: block; margin-bottom: 8px; font-weight: bold;">Definir Nível Específico:</label>
+          <input type="number" id="nivelEspecifico" min="1" max="100" placeholder="Ex: 50" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #999; font-size: 14px;">
+          <small style="display: block; margin-top: 5px; color: #666;">Se preenchido, o gerador usará este nível. Deixe vazio para usar os intervalos acima.</small>
+        </div>
+      </div>
+    </details>
+
+<!-- Menu de Gostos (novo) -->
+<details>
+  <summary>Gostos Preferidos</summary>
+  <div class="details-content">
+    <div class="check-grid gostos">
+      <label><input type="checkbox" name="gosto" value="Todos" id="todos-gostos"> 🎯 Todos</label>
+      <label><input type="checkbox" name="gosto" value="Picante" class="gosto-cb"> 🌶️ Picante</label>
+      <label><input type="checkbox" name="gosto" value="Seco" class="gosto-cb"> 🥖 Seco</label>
+      <label><input type="checkbox" name="gosto" value="Doce" class="gosto-cb"> 🍭 Doce</label>
+      <label><input type="checkbox" name="gosto" value="Amargo" class="gosto-cb"> ☕ Amargo</label>
+      <label><input type="checkbox" name="gosto" value="Azedo" class="gosto-cb"> 🍋 Azedo</label>
+       <!-- Checkbox oculto para "Nenhum" que sempre fica marcado -->
+    <input type="checkbox" name="gosto" value="Nenhum" id="nenhum-gosto" checked style="display: none;">
+    </div>
+  </div>
+</details>
+
+<!-- Menu de Tipos (novo) -->
+<details>
+  <summary>Tipos</summary>
+  <div class="details-content">
+    <div class="check-grid tipos">
+      <label><input type="checkbox" name="tipo" value="Todos" id="todos-tipos"> 🎯 Todos</label>
+      <label><input type="checkbox" name="tipo" value="Normal" class="tipo-cb"> ⚪ Normal</label>
+      <label><input type="checkbox" name="tipo" value="Fogo" class="tipo-cb"> 🔥 Fogo</label>
+      <label><input type="checkbox" name="tipo" value="Água" class="tipo-cb"> 💧 Água</label>
+      <label><input type="checkbox" name="tipo" value="Elétrico" class="tipo-cb"> ⚡ Elétrico</label>
+      <label><input type="checkbox" name="tipo" value="Planta" class="tipo-cb"> 🌿 Planta</label>
+      <label><input type="checkbox" name="tipo" value="Gelo" class="tipo-cb"> ❄️ Gelo</label>
+      <label><input type="checkbox" name="tipo" value="Lutador" class="tipo-cb"> 🥊 Lutador</label>
+      <label><input type="checkbox" name="tipo" value="Veneno" class="tipo-cb"> ☠️ Veneno</label>
+      <label><input type="checkbox" name="tipo" value="Terra" class="tipo-cb"> ⛰️ Terra</label>
+      <label><input type="checkbox" name="tipo" value="Voador" class="tipo-cb"> 🕊️ Voador</label>
+      <label><input type="checkbox" name="tipo" value="Psíquico" class="tipo-cb"> 🔮 Psíquico</label>
+      <label><input type="checkbox" name="tipo" value="Inseto" class="tipo-cb"> 🐞 Inseto</label>
+      <label><input type="checkbox" name="tipo" value="Pedra" class="tipo-cb"> 🗿 Pedra</label>
+      <label><input type="checkbox" name="tipo" value="Fantasma" class="tipo-cb"> 👻 Fantasma</label>
+      <label><input type="checkbox" name="tipo" value="Dragão" class="tipo-cb"> 🐲 Dragão</label>
+      <label><input type="checkbox" name="tipo" value="Noturno" class="tipo-cb"> 🌙 Noturno</label>
+      <label><input type="checkbox" name="tipo" value="Aço" class="tipo-cb"> 🛡️ Aço</label>
+      <label><input type="checkbox" name="tipo" value="Fada" class="tipo-cb"> ✨ Fada</label>
+    </div>
+  </div>
+  
+  <!-- Campo para tipo preferido + porcentagem -->
+  <div style="margin-top:12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius:6px; display:flex; gap:12px; align-items:center;">
+    <label style="margin:0; color: #fff; font-weight: bold;">Tipo preferido:</label>
+    <select id="tipoPreferido" style="min-width:160px; padding:6px; border-radius:6px;">
+      <option value="Nenhum">Nenhum</option>
+      <option value="Normal">Normal</option>
+      <option value="Fogo">Fogo</option>
+      <option value="Água">Água</option>
+      <option value="Elétrico">Elétrico</option>
+      <option value="Planta">Planta</option>
+      <option value="Gelo">Gelo</option>
+      <option value="Lutador">Lutador</option>
+      <option value="Veneno">Veneno</option>
+      <option value="Terra">Terra</option>
+      <option value="Voador">Voador</option>
+      <option value="Psíquico">Psíquico</option>
+      <option value="Inseto">Inseto</option>
+      <option value="Pedra">Pedra</option>
+      <option value="Fantasma">Fantasma</option>
+      <option value="Dragão">Dragão</option>
+      <option value="Noturno">Noturno</option>
+      <option value="Aço">Aço</option>
+      <option value="Fada">Fada</option>
+    </select>
+
+    <label style="margin:0; color: #fff; font-weight: bold;">Porcentagem (tipo):</label>
+    <input type="number" id="tipoPorcentagem" value="60" min="0" max="100" style="width:84px; padding:6px; border-radius:6px;">
+
+    <label style="margin:0; color: #fff; font-weight: bold;">Porcentagem (shiny):</label>
+    <input type="number" id="shinyPorcentagem" value="0" min="0" max="100" style="width:84px; padding:6px; border-radius:6px;">
+
+    <label style="margin:0; color: #fff; font-weight: bold;">Porcentagem (migrar tipo preferido):</label>
+    <input type="number" id="tipoMigracaoPorcentagem" value="0" min="0" max="100" style="width:84px; padding:6px; border-radius:6px;">
+
+    <div style="color:#ddd; font-size:0.9em;"><strong>Comportamento:</strong> (1) Marque <strong>Voador 60</strong> → 60% chance de escolher Voador, 40% qualquer outro; (2) <strong>shiny 2</strong> → 2% override na chance de shiny; (3) <strong>migrar 30</strong> → Se um Voador for escolhido E migração ocorrer, ele virá de outra região fora dos filtros</div>
+  </div>
+
+</details>
+
+   <!-- Menu de Seleção de Pokémon Específicos -->
+<details>
+  <summary>Pokémon Específicos</summary>
+  <div class="details-content">
+    <input type="text" id="pokemon-search" placeholder="Buscar Pokémon..." style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ccc; background: rgba(255,255,255,0.9); font-size: 1em; box-sizing: border-box;">
+    <div class="check-grid pokemon-list" style="max-height: 300px; overflow-y: auto;">
+      <!-- Os Pokémon serão carregados aqui via JavaScript -->
+    </div>
+    <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: center;">
+      <button onclick="selecionarTodosPokemon()" style="width: auto; padding: 8px 15px; margin-right: 0; font-size: 0.9em;">Selecionar Todos</button>
+      <button onclick="desselecionarTodosPokemon()" style="width: auto; padding: 8px 15px; font-size: 0.9em;">Desselecionar Todos</button>
+    </div>
+  </div>
+</details>
+
+       <div class="selects-row">
+      <div class="grupo-select">
+        <label>Dias de procura:</label>
+        <select id="dias">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 ou mais</option>
+        </select>
+      </div>
+
+      <div class="grupo-select">
+        <label>Quantidade de Pokémon:</label>
+        <select id="quantidade">
+          <option value="1">1 Pokémon</option>
+          <option value="2">2 Pokémon</option>
+          <option value="3">3 Pokémon</option>
+          <option value="4">4 Pokémon</option>
+          <option value="5">5 Pokémon</option>
+          <option value="6">6 Pokémon</option>
+        </select>
+      </div>
+    </div>
+
+    <button onclick="gerarPokemon()">🎲 Gerar Pokémon</button>
+    
+    <div id="resultado">
+      <div class="pokemon-name">Seu Pokémon aparecerá aqui</div>
+      <div class="result-line">Selecione os filtros e clique em "Gerar Pokémon"</div>
+    </div>
+  </div>
+
+  <audio id="shinySound" src="shiny_pokemon.mp3" preload="auto"></audio>
+
+  <!-- Importar a pokedex do arquivo externo -->
+  <script src="pokemon.js"></script>
+
+  <script>
+    // Mapeamento dos habitats para nomes exibidos
+    const habitatNomes = {
+      "floresta": "🌳 Floresta",
+      "caverna": "🪨 Caverna",
+      "montanha": "⛰️ Montanha",
+      "agua_doce": "💧 Água Doce",
+      "pradaria": "🌾 Pradarias",
+      "oceano": "🌊 Oceanos",
+      "deserto": "🏜️ Deserto",
+      "pantano": "🐸 Pântano",
+      "praia": "🏖️ Praia",
+      "selva": "🌴 Selva",
+      "taiga": "🌲 Taiga",
+      "tundra": "❄️ Tundra",
+      "artico": "🧊 Ártico",
+      "extradimensional": "🌀 Extradimensional",
+      "cidade": "🏙️ Cidade",
+      "ruina": "🏺 Ruínas"
+    };
+
+    // Adicionar função para obter emojis dos tipos
+    function obterEmojiTipo(tipo) {
+      const emojis = {
+        "Normal": "🔘", "Fogo": "🔥", "Água": "💧", "Elétrico": "⚡", 
+        "Planta": "🌿", "Gelo": "❄️", "Lutador": "🥊", "Veneno": "☠️", 
+        "Terra": "🏜️", "Voador": "🕊️", "Psíquico": "🔮", "Inseto": "🐛", 
+        "Pedra": "🪨", "Fantasma": "👻", "Dragão": "🐉", "Noturno": "🌑", 
+        "Aço": "⚙️", "Fada": "🧚"
+      };
+      return emojis[tipo] || "❓";
+    }
+
+    // Adicionar eventos para os checkboxes "Todos"
+    document.addEventListener('DOMContentLoaded', function() {
+      // Para regiões
+      document.getElementById('todas-regioes').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.regiao-cb');
+        checkboxes.forEach(cb => {
+          cb.checked = this.checked;
+        });
+      });
+      
+      // Para habitats
+      document.getElementById('todos-habitats').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.habitat-cb');
+        checkboxes.forEach(cb => {
+          cb.checked = this.checked;
+        });
+      });
+      
+      // Para catch rates
+      document.getElementById('todos-catch').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.catch-cb');
+        checkboxes.forEach(cb => {
+          cb.checked = this.checked;
+        });
+      });
+      
+      // Para níveis
+      document.getElementById('todos-niveis').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.nivel-cb');
+        checkboxes.forEach(cb => {
+          cb.checked = this.checked;
+        });
+      });
+      // Para gostos
+document.getElementById('todos-gostos').addEventListener('change', function() {
+  const checkboxes = document.querySelectorAll('.gosto-cb');
+  checkboxes.forEach(cb => {
+    cb.checked = this.checked;
+  });
+});
+// Para tipos
+document.getElementById('todos-tipos').addEventListener('change', function() {
+  const checkboxes = document.querySelectorAll('.tipo-cb');
+  checkboxes.forEach(cb => {
+    cb.checked = this.checked;
+  });
+});
+    });
+
+    function pegarRegiao(pokemon){
+  if (pokemon.nome.includes("Alola")) return "Alola";
+  if (pokemon.nome.includes("Galar")) return "Galar";
+  if (pokemon.nome.includes("Hisui")) return "Sinnoh";
+  if (pokemon.nome.includes("Paldea")) return "Paldea";
+  
+  const dexNumber = pokemon.dexNumber;
+  
+  // Verificar se é uma forma especial do Arceus
+  if (pokemon.nome.includes("Arceus")) return "Sinnoh";
+  
+  if (dexNumber <= 151) return "Kanto";
+  if (dexNumber <= 251) return "Johto";
+  if (dexNumber <= 386 || 
+      [10001,10002,10003].includes(dexNumber)) return "Hoenn";
+  
+  // Formas de Sinnoh (corrigindo a sintaxe)
+  if (dexNumber <= 493 || 
+      [10004,10005,10006,10007,10008,10009,10010,10011,10012,10229,10230,10231,10232,10233,10234,10235,10236,10237,10238,
+       10239,10240,10241,10242,10243,10244].includes(dexNumber)) return "Sinnoh";
+  
+  if (dexNumber <= 649) return "Unova";
+  
+  // Formas de Kalos (corrigindo a sintaxe)
+  if (dexNumber <= 721 || 
+      [10118,10120,10086].includes(dexNumber)) return "Kalos";
+  
+  // Formas de Alola (corrigindo a sintaxe)
+  if (dexNumber <= 809 || 
+      [10091,10092,10100,10101,10102,10103,10104,10105,10106,10107,
+       10108,10109,10110,10111,10112,10113,10114,10115].includes(dexNumber)) return "Alola";
+  
+  // Formas de Galar (corrigindo a sintaxe)
+  if (dexNumber <= 905 || 
+      [10161,10162,10163,10164,10165,10166,10167,10168,10169,10170,
+       10171,10172,10173,10174,10175,10176,10177,10178,10179,10180].includes(dexNumber)) return "Galar";
+  
+  // Formas de Paldea (corrigindo a sintaxe)
+  if (dexNumber <= 1025 || 
+      [10273,10274,10275,10250,10251,10252,10253,10276,10277].includes(dexNumber)) return "Paldea";
+  
+  return "Desconhecida";
+}
+    
+    pokedex.forEach(p => p.regiao = pegarRegiao(p));
+
+    const natures = [
+      {nome:"Ousada", up:"Saúde", down:"Ataque", gosto:"Nenhum", desgosto:"Picante"},
+      {nome:"Dócil", up:"Saúde", down:"Defesa", gosto:"Nenhum", desgosto:"Azedo"},
+      {nome:"Orgulhosa", up:"Saúde", down:"Ataque Especial", gosto:"Nenhum", desgosto:"Seco"},
+      {nome:"Excêcentrica", up:"Saúde", down:"Defesa Especial", gosto:"Nenhum", desgosto:"Amargo"},
+      {nome:"Preguiçosa", up:"Saúde", down:"Velocidade", gosto:"Nenhum", desgosto:"Doce"},
+      {nome:"Desesperada", up:"Ataque", down:"Saúde", gosto:"Picante", desgosto:"Nenhum"},
+      {nome:"Solitária", up:"Ataque", down:"Defesa", gosto:"Picante", desgosto:"Azedo"},
+      {nome:"Firme", up:"Ataque", down:"Ataque Especial", gosto:"Picante", desgosto:"Seco"},
+      {nome:"Travessa", up:"Ataque", down:"Defesa Especial", gosto:"Picante", desgosto:"Amargo"},
+      {nome:"Brava", up:"Ataque", down:"Velocidade", gosto:"Picante", desgosto:"Doce"},
+      {nome:"Rígida", up:"Defesa", down:"Saúde", gosto:"Azedo", desgosto:"Nenhum"},
+      {nome:"Arrojada", up:"Defesa", down:"Ataque", gosto:"Azedo", desgosto:"Picante"},
+      {nome:"Endiabrada", up:"Defesa", down:"Ataque Especial", gosto:"Azedo", desgosto:"Seco"},
+      {nome:"Negligente", up:"Defesa", down:"Defesa Especial", gosto:"Azedo", desgosto:"Amargo"},
+      {nome:"Relaxada", up:"Defesa", down:"Velocidade", gosto:"Azedo", desgosto:"Doce"},
+      {nome:"Tímida", up:"Ataque Especial", down:"Saúde", gosto:"Seco", desgosto:"Nenhum"},
+      {nome:"Modesta", up:"Ataque Especial", down:"Ataque", gosto:"Seco", desgosto:"Picante"},
+      {nome:"Amável", up:"Ataque Especial", down:"Defesa", gosto:"Seco", desgosto:"Azedo"},
+      {nome:"Imprudente", up:"Ataque Especial", down:"Defesa Especial", gosto:"Seco", desgosto:"Amargo"},
+      {nome:"Quieta", up:"Ataque Especial", down:"Velocidade", gosto:"Seco", desgosto:"Doce"},
+      {nome:"Enjoada", up:"Defesa Especial", down:"Saúde", gosto:"Amargo", desgosto:"Nenhum"},
+      {nome:"Calma", up:"Defesa Especial", down:"Ataque", gosto:"Amargo", desgosto:"Picante"},
+      {nome:"Gentil", up:"Defesa Especial", down:"Defesa", gosto:"Amargo", desgosto:"Azedo"},
+      {nome:"Meticulosa", up:"Defesa Especial", down:"Ataque Especial", gosto:"Amargo", desgosto:"Seco"},
+      {nome:"Atrevida", up:"Defesa Especial", down:"Velocidade", gosto:"Amargo", desgosto:"Doce"},
+      {nome:"Séria", up:"Velocidade", down:"Saúde", gosto:"Doce", desgosto:"Nenhum"},
+      {nome:"Medrosa", up:"Velocidade", down:"Ataque", gosto:"Doce", desgosto:"Picante"},
+      {nome:"Apressada", up:"Velocidade", down:"Defesa", gosto:"Doce", desgosto:"Azedo"},
+      {nome:"Alegre", up:"Velocidade", down:"Ataque Especial", gosto:"Doce", desgosto:"Seco"},
+      {nome:"Ingênua", up:"Velocidade", down:"Defesa Especial", gosto:"Doce", desgosto:"Amargo"},
+      {nome:"Comedida", up:"Nenhum", down:"Nenhum", gosto:"Nenhum", desgosto:"Nenhum"},
+      {nome:"Chata", up:"Nenhum", down:"Nenhum", gosto:"Nenhum", desgosto:"Nenhum"},
+      {nome:"Paciente", up:"Nenhum", down:"Nenhum", gosto:"Nenhum", desgosto:"Nenhum"},
+      {nome:"Sensata", up:"Nenhum", down:"Nenhum", gosto:"Nenhum", desgosto:"Nenhum"},
+      {nome:"Estoica", up:"Nenhum", down:"Nenhum", gosto:"Nenhum", desgosto:"Nenhum"}
+    ];
+
+    // Função para aplicar modificadores de natureza aos atributos basais
+    function aplicarNatureza(statusBasais, natureza) {
+      const modificados = {...statusBasais};
+      const atributosMap = {
+        "Saúde": "saude",
+        "Ataque": "ataque",
+        "Defesa": "defesa",
+        "Ataque Especial": "ataqueEspecial",
+        "Defesa Especial": "defesaEspecial",
+        "Velocidade": "velocidade"
+      };
+      
+      // Aplicar bônus
+      if (natureza.up !== "Nenhum") {
+        const atributoUp = atributosMap[natureza.up];
+        // Saúde aumenta apenas 1 ponto, outros aumentam 2
+        modificados[atributoUp] += (natureza.up === "Saúde") ? 1 : 2;
+      }
+      
+      // Aplicar penalidade
+      if (natureza.down !== "Nenhum") {
+        const atributoDown = atributosMap[natureza.down];
+        // Saúde reduz apenas 1 ponto, outros reduzem 2
+        modificados[atributoDown] = Math.max(1, modificados[atributoDown] - ((natureza.down === "Saúde") ? 1 : 2));
+      }
+      
+      return modificados;
+    }
+
+    // Função para determinar a ordem basal (relação entre os atributos)
+    function determinarOrdemBasal(status) {
+      const atributos = [
+        {nome: "Saúde", valor: status.saude, key: "saude"},
+        {nome: "Ataque", valor: status.ataque, key: "ataque"},
+        {nome: "Defesa", valor: status.defesa, key: "defesa"},
+        {nome: "Ataque Especial", valor: status.ataqueEspecial, key: "ataqueEspecial"},
+        {nome: "Defesa Especial", valor: status.defesaEspecial, key: "defesaEspecial"},
+        {nome: "Velocidade", valor: status.velocidade, key: "velocidade"}
+      ];
+      
+      // Ordenar por valor (maior para menor)
+      return atributos.sort((a, b) => b.valor - a.valor);
+    }
+
+    // VERSÃO SIMPLIFICADA: Mais fácil de debuggar
+    function distribuirPontosAleatorios(statusBasais, ordemBasal, nivel) {
+      const pontosPorNivel = nivel - 1;
+      const statusAtual = {...statusBasais};
+      
+      if (pontosPorNivel <= 0) return statusAtual;
+      
+      const ordemHierarquica = ordemBasal.map(a => a.key);
+      const valores = {...statusAtual};
+      
+      // Distribuir pontos em rodadas
+      for (let ponto = 0; ponto < pontosPorNivel; ponto++) {
+        // Lista de atributos que podem receber pontos sem quebrar a hierarquia
+        const opcoesValidas = [];
+        
+        for (let i = 0; i < ordemHierarquica.length; i++) {
+          const key = ordemHierarquica[i];
+          const novoValor = valores[key] + 1;
+          
+          let valido = true;
+          
+          // Verificar vizinho superior
+          if (i > 0) {
+            const vizinhoSuperior = valores[ordemHierarquica[i - 1]];
+            if (novoValor >= vizinhoSuperior) {
+              valido = false;
+            }
+          }
+          
+          // Verificar vizinho inferior
+          if (i < ordemHierarquica.length - 1) {
+            const vizinhoInferior = valores[ordemHierarquica[i + 1]];
+            if (novoValor <= vizinhoInferior) {
+              valido = false;
+            }
+          }
+          
+          if (valido) {
+            opcoesValidas.push(key);
+          }
+        }
+        
+        // Escolher aleatoriamente entre opções válidas
+        if (opcoesValidas.length > 0) {
+          const escolha = opcoesValidas[Math.floor(Math.random() * opcoesValidas.length)];
+          valores[escolha] += 1;
+          statusAtual[escolha] += 1;
+        } else {
+          // Fallback: distribuir para o primeiro atributo and ajustar hierarquia
+          valores[ordemHierarquica[0]] += 1;
+          statusAtual[ordemHierarquica[0]] += 1;
+          
+          // Ajustar hierarquia se necessário
+          for (let i = 1; i < ordemHierarquica.length; i++) {
+            if (valores[ordemHierarquica[i]] >= valores[ordemHierarquica[i - 1]]) {
+              valores[ordemHierarquica[i]] = valores[ordemHierarquica[i - 1]] - 1;
+              statusAtual[ordemHierarquica[i]] = valores[ordemHierarquica[i - 1]] - 1;
+            }
+          }
+        }
+      }
+      
+      return statusAtual;
+    }
+
+    // Função para converter habitats em nomes exibidos
+    function converterHabitatsParaNomes(habitats) {
+      return habitats.map(habitat => habitatNomes[habitat] || habitat);
+    }
+
+   async function obterImagemPokemon(nomePokemon, shiny = false, dexNumber = null) {
+  try {
+    // Mapeamento para formas do Arceus - CORRIGIDO
+    const arceusForms = {
+  "Arceus (Placa Inseto)": "10041",      // arceus-bug
+  "Arceus (Placa Noturna)": "10042",     // arceus-dark
+  "Arceus (Placa Dragão)": "10043",      // arceus-dragon
+  "Arceus (Placa Trovão)": "10044",      // arceus-electric
+  "Arceus (Placa Punho)": "10045",       // arceus-fighting
+  "Arceus (Placa Chama)": "10046",       // arceus-fire
+  "Arceus (Placa Céu)": "10047",         // arceus-flying
+  "Arceus (Placa Fantasma)": "10048",    // arceus-ghost
+  "Arceus (Placa Folha)": "10049",       // arceus-grass
+  "Arceus (Placa Terra)": "10050",       // arceus-ground
+  "Arceus (Placa Geada)": "10051",       // arceus-ice
+  "Arceus (Placa Veneno)": "10052",      // arceus-poison
+  "Arceus (Placa Mente)": "10053",       // arceus-psychic
+  "Arceus (Placa Rocha)": "10054",       // arceus-rock
+  "Arceus (Placa Ferro)": "10055",       // arceus-steel
+  "Arceus (Placa Espelho)": "10056",      // arceus-water
+   "Arceus (Placa Fada)": "10085"         // arceus-fairy
+};
+
+    // Verificar se é uma forma do Arceus
+    if (arceusForms[nomePokemon]) {
+      const formId = arceusForms[nomePokemon];
+      
+      // Usar a endpoint POKEMON-FORM (não pokemon)
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon-form/${formId}/`);
+      
+      if (response.ok) {
+        const formData = await response.json();
+        
+        // Obter URL da imagem da forma específica
+        const imageUrl = shiny 
+          ? formData.sprites.front_shiny || 
+            formData.sprites.other?.home?.front_shiny ||
+            formData.sprites.other?.['official-artwork']?.front_shiny
+          : formData.sprites.front_default || 
+            formData.sprites.other?.home?.front_default ||
+            formData.sprites.other?.['official-artwork']?.front_default;
+        
+        if (imageUrl) return imageUrl;
+      }
+    }
+
+    // Para Pokémon normais, usar a lógica original
+    let id = dexNumber ? dexNumber.toString() : nomePokemon.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+    // Fallback para nomes com parênteses
+    if (typeof id === 'string' && id.includes('(')) {
+      id = id.split(' (')[0];
+    }
+
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    
+    if (!response.ok) {
+      // Fallback: tentar buscar pelo nome base
+      const nomeBase = nomePokemon.split(' (')[0].toLowerCase();
+      const responseFallback = await fetch(`https://pokeapi.co/api/v2/pokemon/${nomeBase}`);
+      
+      if (!responseFallback.ok) {
+        throw new Error('Pokémon não encontrado na API');
+      }
+      
+      const dataFallback = await responseFallback.json();
+      const imageUrl = shiny 
+        ? dataFallback.sprites.other['official-artwork'].front_shiny || 
+          dataFallback.sprites.other['home'].front_shiny ||
+          dataFallback.sprites.front_shiny
+        : dataFallback.sprites.other['official-artwork'].front_default || 
+          dataFallback.sprites.other['home'].front_default ||
+          dataFallback.sprites.front_default;
+      
+      return imageUrl;
+    }
+    
+    const data = await response.json();
+    const imageUrl = shiny 
+      ? data.sprites.other['official-artwork'].front_shiny || 
+        data.sprites.other['home'].front_shiny ||
+        data.sprites.front_shiny
+      : data.sprites.other['official-artwork'].front_default || 
+        data.sprites.other['home'].front_default ||
+        data.sprites.front_default;
+    
+    return imageUrl;
+  } catch (error) {
+    console.error('Erro ao buscar imagem do Pokémon:', error);
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png';
+  }
+}
+
+    function nivelMinimoLinha(pokemon, pokedex) {
+      // Se o Pokémon não evolui, nível mínimo é 1
+      if (!pokemon.evolucoes || pokemon.evolucoes.length === 0) {
+        return 1;
+      }
+      
+      // Encontrar o Pokémon base na linha evolutiva
+      let pokemonBase = pokemon;
+      let encontrouPreEvolucao = true;
+      
+      while (encontrouPreEvolucao) {
+        encontrouPreEvolucao = false;
+        
+        // Procurar por Pokémon que evoluem para o atual
+        for (const p of pokedex) {
+          if (p.evolucoes) {
+            for (const evolucao of p.evolucoes) {
+              if (evolucao.nome === pokemonBase.nome) {
+                pokemonBase = p;
+                encontrouPreEvolucao = true;
+                break;
+              }
+            }
+            if (encontrouPreEvolucao) break;
+          }
+        }
+      }
+      
+      // Se o Pokémon base é the same, nível mínimo é 1
+      if (pokemonBase.nome === pokemon.nome) {
+        return 1;
+      }
+      
+      // Calcular nível mínimo baseado nas evoluções
+      let nivelMinimo = 1;
+      let atual = pokemonBase;
+      
+      while (atual.nome !== pokemon.nome) {
+        if (atual.evolucoes) {
+          for (const evolucao of atual.evolucoes) {
+            if (evolucao.nivel) {
+              nivelMinimo = Math.max(nivelMinimo, evolucao.nivel);
+              // Encontrar o próximo Pokémon na linha evolutiva
+              const proximo = pokedex.find(p => p.nome === evolucao.nome);
+              if (proximo) {
+                atual = proximo;
+                break;
+              }
+            }
+          }
+        }
+      }
+      
+      return nivelMinimo;
+    }
+    
+    // Variável global para armazenar Pokémon selecionados
+let pokemonSelecionados = [];
+
+// Carregar lista de Pokémon quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+  carregarListaPokemon();
+});
+
+// Função para carregar a lista de Pokémon
+function carregarListaPokemon() {
+  const container = document.querySelector('.pokemon-list');
+  container.innerHTML = '';
+  
+  // Ordenar Pokémon por número na dex (convertendo para número para ordenar corretamente)
+  const pokemonOrdenados = [...pokedex].sort((a, b) => {
+    // Garantir que estamos comparando números, não strings
+    return parseInt(a.dexNumber) - parseInt(b.dexNumber);
+  });
+  
+  pokemonOrdenados.forEach(pokemon => {
+    const label = document.createElement('label');
+    label.innerHTML = `<input type="checkbox" name="pokemonEspecifico" value="${pokemon.nome}" class="pokemon-cb"> 
+                      #${pokemon.dexNumber.toString().padStart(3, '0')} - ${pokemon.nome}`;
+    container.appendChild(label);
+  });
+  
+  // Adicionar evento de busca
+  document.getElementById('pokemon-search').addEventListener('input', function(e) {
+    const termo = e.target.value.toLowerCase();
+    const checkboxes = container.querySelectorAll('label');
+    
+    checkboxes.forEach(label => {
+      const texto = label.textContent.toLowerCase();
+      label.style.display = texto.includes(termo) ? 'flex' : 'none';
+    });
+  });
+  
+  // Adicionar eventos aos checkboxes de Pokémon
+  const checkboxes = document.querySelectorAll('.pokemon-cb');
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', function() {
+      atualizarPokemonSelecionados();
+    });
+  });
+}
+
+// Funções para selecionar/desselecionar todos
+function selecionarTodosPokemon() {
+  const checkboxes = document.querySelectorAll('.pokemon-cb');
+  checkboxes.forEach(cb => {
+    cb.checked = true;
+  });
+  atualizarPokemonSelecionados();
+}
+
+function desselecionarTodosPokemon() {
+  const checkboxes = document.querySelectorAll('.pokemon-cb');
+  checkboxes.forEach(cb => {
+    cb.checked = false;
+  });
+  atualizarPokemonSelecionados();
+}
+
+// Atualizar lista de Pokémon selecionados
+function atualizarPokemonSelecionados() {
+  pokemonSelecionados = Array.from(document.querySelectorAll("input[name='pokemonEspecifico']:checked")).map(o => o.value);
+  console.log('Pokémon selecionados:', pokemonSelecionados);
+}
+    
+    async function gerarPokemon() {
+    const quantidade = parseInt(document.getElementById("quantidade").value);
+    const resultados = [];
+    
+    // Gerar a quantidade especificada de Pokémon
+    for (let i = 0; i < quantidade; i++) {
+        const resultado = await gerarPokemonIndividual(i);
+        if (resultado) {
+            resultados.push(resultado);
+        }
+    }
+    
+    // Exibir todos os resultados
+    if (resultados.length > 0) {
+        exibirMultiplosPokemon(resultados);
+    }
+}
+
+async function gerarPokemonIndividual(i = 0) {
+    const regioes = Array.from(document.querySelectorAll("input[name='regiao']:checked")).map(o => o.value);
+    const locais = Array.from(document.querySelectorAll("input[name='localidade']:checked")).map(o => o.value);
+
+    const tiposSelecionados = Array.from(document.querySelectorAll("input[name='tipo']:checked")).map(o => o.value);
+    
+    const catchRatesSelecionados = Array.from(document.querySelectorAll("input[name='catchRate']:checked")).map(o => o.value);
+    const niveisSelecionados = Array.from(document.querySelectorAll("input[name='nivel']:checked")).map(o => o.value);
+
+    const gostosSelecionados = Array.from(document.querySelectorAll("input[name='gosto']:checked")).map(o => o.value);
+
+    // Verificar se há Pokémon específicos selecionados
+    const temPokemonEspecificos = pokemonSelecionados.length > 0;
+
+    // Verificar filtros obrigatórios
+    const mensagens = [];
+
+    // Nível é sempre obrigatório
+    const nivelCheckbox = document.querySelector('input[name="nivel"]:checked');
+    const temNivelValido = nivelCheckbox && nivelCheckbox.value !== "";
+
+    if (!temNivelValido) {
+        mensagens.push("• Selecione um Nível");
+    }
+
+        // Se NÃO há Pokémon específicos selecionados, os outros filtros são obrigatórios
+    if (!temPokemonEspecificos) {
+        const temRegiaoValida = regioes.length > 0 && !(regioes.length === 1 && regioes.includes("Todas"));
+        const temHabitatValido = locais.length > 0 && !(locais.length === 1 && locais.includes("Todos"));
+        const temCatchRateValido = catchRatesSelecionados.length > 0 && !(catchRatesSelecionados.length === 1 && catchRatesSelecionados.includes("Todos"));
+        const temGostoValido = gostosSelecionados.length > 0 && !(gostosSelecionados.length === 1 && gostosSelecionados.includes("Todos"));
+        const temTipoValido = tiposSelecionados.length > 0 && !(tiposSelecionados.length === 1 && tiposSelecionados.includes("Todos"));
+
+        if (!temRegiaoValida) {
+            mensagens.push("• Selecione pelo menos uma Região");
+        }
+        if (!temHabitatValido) {
+            mensagens.push("• Selecione pelo menos um Habitat");
+        }
+        if (!temCatchRateValido) {
+            mensagens.push("• Selecione pelo menos um Catch Rate");
+        }
+        if (!temGostoValido) {
+            mensagens.push("• Selecione pelo menos um Gosto");
+        }
+        if (!temTipoValido) {
+            mensagens.push("• Selecione pelo menos um Tipo");
+        }
+    }
+
+        if (mensagens.length > 0) {
+        if (i === 0) { // Só mostra o erro na primeira iteração
+            document.getElementById('resultado').innerHTML = `
+                <div class="pokemon-name">⚠️ Filtros Incompletos</div>
+                <div class="result-line">Por favor, selecione pelo menos um de cada:</div>
+                ${mensagens.map(msg => `<div class="result-line">${msg}</div>`).join('')}
+            `;
+        }
+        return null;
+    }
+
+    // [TODO: Resto do código de filtragem permanece igual...]
+    // Corrigir a lógica de filtro por Catch Rate
+    let catchRatesFiltro = [];
+    let filtrarPorCatchRate = false;
+
+    if (catchRatesSelecionados.includes("Todos") || catchRatesSelecionados.length === 0) {
+        filtrarPorCatchRate = false;
+    } else {
+        filtrarPorCatchRate = true;
+        catchRatesFiltro = catchRatesSelecionados.map(rate => parseInt(rate));
+    }
+
+    // Se "Todos" estiver selecionado ou nenhum específico, usar o range completo
+    let nivelMin, nivelMax;
+    if (niveisSelecionados.includes("Todos") || niveisSelecionados.length === 0) {
+        nivelMin = 1;
+        nivelMax = 100;
+    } else {
+        nivelMin = 100;
+        nivelMax = 1;
+        
+        niveisSelecionados.forEach(nivelRange => {
+            if (nivelRange !== "Todos") {
+                let partes = nivelRange.split("-");
+                let min = parseInt(partes[0]);
+                let max = parseInt(partes[1]);
+                
+                nivelMin = Math.min(nivelMin, min);
+                nivelMax = Math.max(nivelMax, max);
+            }
+        });
+    }
+
+    const dias = parseInt(document.getElementById("dias").value);
+
+    let disponiveis = pokedex.filter(p => {
+        if (regioes.length > 0 && !regioes.includes(p.regiao)) return false;
+        
+        if (locais.length > 0 && !p.habitats.some(h => locais.includes(h))) return false;
+
+        // NOVO FILTRO: Tipos
+        if (tiposSelecionados.length > 0 && !tiposSelecionados.includes("Todos") && 
+            !p.tipos.some(tipo => tiposSelecionados.includes(tipo))) return false;
+
+        try {
+            const nivelNecessario = nivelMinimoLinha(p, pokedex);
+            if (nivelMin < nivelNecessario) return false;
+        } catch (e) {
+            console.error("Erro ao calcular nível mínimo:", e);
+            return false;
+        }
+
+        if (filtrarPorCatchRate) {
+            if (!catchRatesFiltro.includes(p.catchRate)) return false;
+        }
+
+        if (pokemonSelecionados.length > 0 && !pokemonSelecionados.includes(p.nome)) return false;
+
+        return true;
+    });
+
+    if (disponiveis.length === 0) {
+        if (i === 0) {
+            document.getElementById('resultado').innerHTML = '<div class="pokemon-name">Nenhum Pokémon encontrado!</div><div class="result-line">Tente ajustar os filtros de seleção</div>';
+        }
+        return null;
+    }
+
+    // Seleção com peso por tipo preferido (se configurado)
+    let pkm = null;
+    let migracaoAssigned = false; // flag para evitar re-migração posterior
+    try {
+        const tipoPreferidoElem = document.getElementById('tipoPreferido');
+        const tipoPorcentagemElem = document.getElementById('tipoPorcentagem');
+        const tipoMigracaoElem = document.getElementById('tipoMigracaoPorcentagem');
+        const tipoPreferido = tipoPreferidoElem ? tipoPreferidoElem.value : 'Nenhum';
+        let tipoPorcentagem = tipoPorcentagemElem ? parseInt(tipoPorcentagemElem.value, 10) || 0 : 0;
+        tipoPorcentagem = Math.max(0, Math.min(100, tipoPorcentagem));
+        let tipoMigracaoPct = tipoMigracaoElem ? parseInt(tipoMigracaoElem.value, 10) || 0 : 0;
+        tipoMigracaoPct = Math.max(0, Math.min(100, tipoMigracaoPct));
+
+        if (tipoPreferido && tipoPreferido !== 'Nenhum' && tipoPorcentagem > 0) {
+            const preferidos = disponiveis.filter(p => p.tipos && p.tipos.includes(tipoPreferido));
+            const outros = disponiveis.filter(p => !(p.tipos && p.tipos.includes(tipoPreferido)));
+
+            if (preferidos.length === 0) {
+                // nenhum disponível do tipo preferido → fallback aleatório
+                pkm = disponiveis[Math.floor(Math.random() * disponiveis.length)];
+            } else if (outros.length === 0) {
+                // todos são do tipo preferido
+                pkm = preferidos[Math.floor(Math.random() * preferidos.length)];
+            } else {
+                const rTipo = Math.random() * 100;
+                if (rTipo < tipoPorcentagem) {
+                    // Escolhido entre preferidos — aplicar possível migração por tipo preferido
+                    if (tipoMigracaoPct > 0) {
+                        const rMig = Math.random() * 100;
+                        if (rMig < tipoMigracaoPct) {
+                            // Tentar escolher um Pokémon do mesmo tipo, mas de outra região
+                            const todasRegioes = ["Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar","Paldea"];
+                            const regioesPossiveis = todasRegioes.filter(r => !regioes.includes(r));
+                            // Tentar encontrar candidato em regiões diferentes
+                            if (regioesPossiveis.length > 0) {
+                                let encontrou = false;
+                                for (let attempt = 0; attempt < regioesPossiveis.length && !encontrou; attempt++) {
+                                    const rIndex = Math.floor(Math.random() * regioesPossiveis.length);
+                                    const regEscolhida = regioesPossiveis[rIndex];
+                                    // Filtrar por tipo e região escolhida; respeitar habitats se existirem
+                                    const candidatos = pokedex.filter(p => p.tipos && p.tipos.includes(tipoPreferido) && p.regiao === regEscolhida && (locais.length === 0 || p.habitats.some(h => locais.includes(h))));
+                                    if (candidatos.length > 0) {
+                                        pkm = candidatos[Math.floor(Math.random() * candidatos.length)];
+                                        migracaoAssigned = true;
+                                        var prefMigRegiao = regEscolhida;
+                                        encontrou = true;
+                                        break;
+                                    } else {
+                                        regioesPossiveis.splice(rIndex, 1);
+                                    }
+                                }
+                                // Se não encontrou com habitats, tenta sem
+                                if (!encontrou && regioesPossiveis.length > 0) {
+                                    const regEscolhida = regioesPossiveis[Math.floor(Math.random() * regioesPossiveis.length)];
+                                    const candidatos = pokedex.filter(p => p.tipos && p.tipos.includes(tipoPreferido) && p.regiao === regEscolhida);
+                                    if (candidatos.length > 0) {
+                                        pkm = candidatos[Math.floor(Math.random() * candidatos.length)];
+                                        migracaoAssigned = true;
+                                        var prefMigRegiao = regEscolhida;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (!pkm) {
+                        pkm = preferidos[Math.floor(Math.random() * preferidos.length)];
+                    }
+                } else {
+                    pkm = outros[Math.floor(Math.random() * outros.length)];
+                }
+            }
+        } else {
+            // Sem preferência definida → escolha totalmente aleatória
+            pkm = disponiveis[Math.floor(Math.random() * disponiveis.length)];
+        }
+    } catch (e) {
+        console.error('Erro ao aplicar preferência de tipo:', e);
+        pkm = disponiveis[Math.floor(Math.random() * disponiveis.length)];
+    }
+    
+    let nivel;
+    
+    // Verificar se foi definido um nível específico
+    const nivelEspecificoElem = document.getElementById('nivelEspecifico');
+    const nivelEspecifico = nivelEspecificoElem ? parseInt(nivelEspecificoElem.value) : null;
+    
+    if (nivelEspecifico && nivelEspecifico >= 1 && nivelEspecifico <= 100) {
+        // Usar o nível específico definido pelo usuário
+        nivel = nivelEspecifico;
+    } else if (niveisSelecionados.length === 1 && niveisSelecionados[0] !== "Todos") {
+        let partes = niveisSelecionados[0].split("-");
+        let min = parseInt(partes[0]);
+        let max = parseInt(partes[1]);
+        nivel = Math.floor(Math.random()*(max - min + 1)) + min;
+    } else if (niveisSelecionados.includes("Todos") || niveisSelecionados.length === 0) {
+        nivel = Math.floor(Math.random() * 100) + 1;
+    } else {
+        let intervalosValidos = niveisSelecionados.filter(range => range !== "Todos");
+        let intervaloEscolhido = intervalosValidos[Math.floor(Math.random() * intervalosValidos.length)];
+        
+        let partes = intervaloEscolhido.split("-");
+        let min = parseInt(partes[0]);
+        let max = parseInt(partes[1]);
+        nivel = Math.floor(Math.random()*(max - min + 1)) + min;
+    }
+
+    let baseExp = pkm.baseExp || 50;
+    let xpTotal = baseExp * nivel;
+    
+    let natureza;
+    if (gostosSelecionados.length > 0 && !gostosSelecionados.includes("Todos")) {
+        const naturesFiltradas = natures.filter(n => gostosSelecionados.includes(n.gosto));
+        
+        if (naturesFiltradas.length > 0) {
+            natureza = naturesFiltradas[Math.floor(Math.random() * naturesFiltradas.length)];
+        } else {
+            natureza = natures[Math.floor(Math.random()*natures.length)];
+        }
+    } else {
+        natureza = natures[Math.floor(Math.random()*natures.length)];
+    }
+
+    let sexo = "assexuado";
+    if (pkm.genero === "50_50") sexo = Math.random() < 0.5 ? "Macho" : "Fêmea";
+    if (pkm.genero === "87_12") sexo = Math.random() < 0.875 ? "Macho" : "Fêmea";
+    if (pkm.genero === "75_25") sexo = Math.random() < 0.75 ? "Macho" : "Fêmea";
+    if (pkm.genero === "25_75") sexo = Math.random() < 0.25 ? "Macho" : "Fêmea";
+    if (pkm.genero === "100_0") sexo = "Macho";
+    if (pkm.genero === "0_100") sexo = "Fêmea";
+
+    let r = Math.random() * 100;
+    let categoria = "Normal (N)";
+    let mult = 1.0;
+
+    if (r < 1) { 
+        categoria = "Muito Pequeno (XXS)"; mult = 0.75 + Math.random() * 0.10; 
+    } else if (r < 8) { 
+        categoria = "Pequeno (XS)"; mult = 0.85 + Math.random() * 0.10; 
+    } else if (r < 92) { 
+        categoria = "Normal (N)"; mult = 0.95 + Math.random() * 0.10; 
+    } else if (r < 99) { 
+        categoria = "Grande (XL)"; mult = 1.05 + Math.random() * 0.10; 
+    } else { 
+        categoria = "Muito Grande (XXL)"; mult = 1.15 + Math.random() * 0.10; 
+    }
+
+    let altura = (pkm.altura * mult).toFixed(2);
+    let peso = (pkm.peso * mult).toFixed(2);
+
+    let incrementoMax = 0.5;
+    let incrementoDia = Math.min(dias, 5) * (incrementoMax / 5);
+
+    // Verifica se o usuário definiu uma porcentagem customizada para shiny
+    const shinyPorcentagemElem = document.getElementById('shinyPorcentagem');
+    let customShinyPct = shinyPorcentagemElem ? parseFloat(shinyPorcentagemElem.value) : 0;
+    if (isNaN(customShinyPct)) customShinyPct = 0;
+    customShinyPct = Math.max(0, Math.min(100, customShinyPct));
+
+    // Se customShinyPct > 0, usamos esse valor como porcentagem direta.
+    // Caso contrário, usamos a taxa padrão (1/4096) acrescida do incremento por dias.
+    let chanceShiny;
+    if (customShinyPct > 0) {
+      chanceShiny = customShinyPct;
+    } else {
+      chanceShiny = (1 / 4096 * 100) + incrementoDia;
+    }
+
+    let shiny = (Math.random() * 100) <= chanceShiny;
+
+    let chanceMigracao = 2;
+    // Se já aplicamos uma migração específica para tipo preferido, não re-aplicar a migração aleatória
+    let migracao = false;
+    let regiaoMigracao = null;
+    if (typeof migracaoAssigned !== 'undefined' && migracaoAssigned && typeof prefMigRegiao !== 'undefined') {
+        migracao = true;
+        regiaoMigracao = prefMigRegiao;
+    } else {
+        migracao = (Math.random() * 100) <= chanceMigracao;
+    }    if (migracao) {
+        let todasRegioes = ["Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar","Paldea"];
+        let regioesPossiveis = todasRegioes.filter(r => !regioes.includes(r));
+        
+        if (regioesPossiveis.length > 0) {
+            regiaoMigracao = regioesPossiveis[Math.floor(Math.random() * regioesPossiveis.length)];
+            
+            let disponiveisMig = pokedex.filter(p => p.regiao === regiaoMigracao && p.habitats.some(h => locais.includes(h)));
+            
+            if(disponiveisMig.length > 0){
+                pkm = disponiveisMig[Math.floor(Math.random() * disponiveisMig.length)];
+            } else {
+                migracao = false;
+                regiaoMigracao = null;
+            }
+        } else {
+            migracao = false;
+        }
+    }
+
+    const imageUrl = await obterImagemPokemon(pkm.nome, shiny, pkm.dexNumber);
+    
+    let imageHTML = `
+      <div class="pokemon-image-container">
+        <img src="${imageUrl}" alt="${pkm.nome}" class="pokemon-image loading-image" 
+             onload="this.classList.remove('loading-image')"
+             onerror="this.classList.remove('loading-image'); this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png'">
+      </div>
+    `;
+    
+    if (shiny && migracao) {
+      imageHTML = imageHTML.replace('class="pokemon-image', 'class="pokemon-image diamante-img');
+    } else if (shiny) {
+      imageHTML = imageHTML.replace('class="pokemon-image', 'class="pokemon-image shiny-img');
+    } else if (migracao) {
+      imageHTML = imageHTML.replace('class="pokemon-image', 'class="pokemon-image migracao-img');
+    }
+
+    
+    const statusComNatureza = aplicarNatureza(pkm.statusBasais, natureza);
+    const ordemBasal = determinarOrdemBasal(statusComNatureza);
+    const statusFinais = distribuirPontosAleatorios(statusComNatureza, ordemBasal, nivel);
+    const pontosDeVida = nivel + (statusFinais.saude * 3);
+    
+    const habitatsFormatados = converterHabitatsParaNomes(pkm.habitats).join(", ");
+    
+    return {
+    pkm,
+    nivel,
+    sexo,
+    categoria,
+    shiny,
+    migracao,
+    regiaoMigracao,
+    natureza,
+    altura,
+    peso,
+    xpTotal,
+    baseExp,
+    imageHTML,
+    habitatsFormatados,
+    statusFinais,
+    statusComNatureza,
+    pontosDeVida
+};
+
+}
+
+function exibirMultiplosPokemon(resultados) {
+    let resultadoHTML = '';
+    
+    // Limpar efeitos do container principal
+    let container = document.querySelector(".container");
+    container.querySelectorAll(".stars").forEach(e => e.remove());
+    container.classList.remove("shiny","migracao","diamante");
+    
+    // Tocar som se algum Pokémon for shiny
+    const algumShiny = resultados.some(p => p.shiny);
+    if (algumShiny) {
+        let sound = document.getElementById("shinySound");
+        if (sound) sound.play().catch(e => console.warn("Som bloqueado:", e));
+    }
+    
+    // Determinar a classe da grade baseada na quantidade
+let classeGrade = 'pokemon-grid';
+const quantidade = resultados.length;
+
+if (quantidade === 1) {
+    classeGrade = 'pokemon-grid quantidade-1';
+} else if (quantidade === 2) {
+    classeGrade = 'pokemon-grid quantidade-2';
+} else if (quantidade === 3) {
+    classeGrade = 'pokemon-grid'; // 3 colunas normais
+} else if (quantidade === 4) {
+    classeGrade = 'pokemon-grid quantidade-4';
+} else if (quantidade === 5) {
+    classeGrade = 'pokemon-grid quantidade-5'; // ← ESTA LINHA É IMPORTANTE
+} else if (quantidade >= 6) {
+    classeGrade = 'pokemon-grid compact-view';
+}
+    
+    // Iniciar a grade
+    resultadoHTML = `<div class="${classeGrade}">`;
+    
+    resultados.forEach((pokemon, index) => {
+        const { pkm, nivel, sexo, categoria, shiny, migracao, regiaoMigracao, natureza, 
+                altura, peso, xpTotal, baseExp, imageHTML, habitatsFormatados, 
+                statusFinais, statusComNatureza, pontosDeVida } = pokemon;
+        
+        // Aplicar classes de efeito para cada Pokémon individualmente
+        let pokemonContainerClass = '';
+        let effectIcon = '';
+        
+        if (shiny && migracao) {
+            pokemonContainerClass = 'diamante-effect';
+            effectIcon = '💎';
+        } else if (shiny) {
+            pokemonContainerClass = 'shiny-effect';
+            effectIcon = '✨';
+        } else if (migracao) {
+            pokemonContainerClass = 'migracao-effect';
+            effectIcon = '✈️';
+        }
+        
+        resultadoHTML += `
+            <div class="pokemon-result ${pokemonContainerClass}">
+                ${shiny || migracao ? `<div class="individual-stars" style="position: absolute; top: 8px; right: 8px; font-size: 16px; animation: sparkle 1s ease-in-out infinite alternate;">${effectIcon}</div>` : ''}
+                ${imageHTML}
+                <div class="pokemon-name">${pkm.nome} ${shiny ? "✨" : ""} ${migracao ? "✈️" : ""}</div>
+                <div class="result-line">Nível: ${nivel} | ${sexo} | ${categoria}</div>
+                <div class="result-line">Região: ${pkm.regiao} ${migracao ? `(Migração de ${regiaoMigracao})` : ""}</div>
+                <div class="result-line">Habitats: ${habitatsFormatados}</div>
+                <div class="result-line">Tipos: ${pkm.tipos.map(tipo => obterEmojiTipo(tipo) + ' ' + tipo).join(' | ')}</div>
+                
+                <div class="result-line">Natureza: ${natureza.nome} (${natureza.up}↑ ${natureza.down}↓)</div>
+                <div class="result-line">Gosta de: ${natureza.gosto} | Desgosta de: ${natureza.desgosto}</div>
+                <div class="result-line">Altura: ${altura}m | Peso: ${peso}kg</div>
+                <div class="result-line">Catch Rate: ${pkm.catchRate}</div>
+                <div class="result-line">Experiência: ${xpTotal} (${baseExp} × ${nivel})</div>
+                
+                <table class="atributos-table">
+                <tr>
+                    <th>Atributo</th>
+                    <th>Base</th>
+                    <th>Natureza</th>
+                    <th>Base+Nat</th>
+                    <th>Nível</th>
+                    <th>Total</th>
+                </tr>
+        `;
+        
+        const atributos = [
+            {nome: "Saúde", key: "saude", base: pkm.statusBasais.saude, final: statusFinais.saude},
+            {nome: "Ataque", key: "ataque", base: pkm.statusBasais.ataque, final: statusFinais.ataque},
+            {nome: "Defesa", key: "defesa", base: pkm.statusBasais.defesa, final: statusFinais.defesa},
+            {nome: "Ataque Especial", key: "ataqueEspecial", base: pkm.statusBasais.ataqueEspecial, final: statusFinais.ataqueEspecial},
+            {nome: "Defesa Especial", key: "defesaEspecial", base: pkm.statusBasais.defesaEspecial, final: statusFinais.defesaEspecial},
+            {nome: "Velocidade", key: "velocidade", base: pkm.statusBasais.velocidade, final: statusFinais.velocidade}
+        ];
+        
+        atributos.forEach(atributo => {
+            const modificadorNatureza = statusComNatureza[atributo.key] - atributo.base;
+            const baseMaisNatureza = statusComNatureza[atributo.key];
+            const pontosNivel = statusFinais[atributo.key] - statusComNatureza[atributo.key];
+            
+            let classeLinha = "";
+            let simboloNatureza = "";
+            
+            if (natureza.up === atributo.nome) {
+                classeLinha = "atributo-aumentado";
+                simboloNatureza = "↑";
+            } else if (natureza.down === atributo.nome) {
+                classeLinha = "atributo-reduzido";
+                simboloNatureza = "↓";
+            }
+            
+            resultadoHTML += `
+            <tr class="${classeLinha}">
+                <td class="atributo-nome">${atributo.nome}${simboloNatureza}</td>
+                <td>${atributo.base}</td>
+                <td>${modificadorNatureza >= 0 ? '+' : ''}${modificadorNatureza}</td>
+                <td>${baseMaisNatureza}</td>
+                <td>+${pontosNivel}</td>
+                <td><strong>${atributo.final}</strong></td>
+            </tr>
+            `;
+        });
+        
+        resultadoHTML += `</table><div class="pv-info"><strong>Pontos de Vida (PV): ${pontosDeVida}</strong></div></div>`;
+    });
+    
+    // Fechar a grade
+    resultadoHTML += '</div>';
+    
+    document.getElementById('resultado').innerHTML = resultadoHTML;
+}
+    
+  </script>
+</body>
+</html>

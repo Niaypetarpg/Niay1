@@ -51,7 +51,7 @@ function App() {
     { username: 'Pedro', type: 'treinador', gradient: 'linear-gradient(135deg, #0000CD, #4169E1, #00CED1, #32CD32)' }
   ]
 
-  const mestreAreas = ['Treinador NPC', 'Pokémon NPC', 'Enciclopédia M', 'Treinadores']
+  const mestreAreas = ['Gerador Pokémon', 'Treinador NPC', 'Pokémon NPC', 'Enciclopédia M', 'Treinadores']
   const treinadorAreas = ['Treinador', 'PC', 'Pokédex', 'Mochila', 'Características & Talentos', 'Pokéloja', 'Enciclopédia']
 
   const allClasses = [
@@ -205,7 +205,38 @@ function App() {
     )
   }
 
-  // ÁREA DO TREINADOR - RECONSTRUÍDA DO ZERO
+  // GERADOR POKÉMON (MESTRE)
+  if (currentUser.type === 'mestre' && currentArea === 'Gerador Pokémon') {
+    return (
+      <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Gerador Pokémon 👑</h2>
+              <div className="flex gap-2">
+                <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
+                <button onClick={() => setCurrentArea('')} className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Voltar</button>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Gerador Pokémon' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+            </div>
+          </div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <iframe 
+            src="/Pokedéx_RPG.html" 
+            className="w-full rounded-2xl shadow-2xl border-0"
+            style={{ height: 'calc(100vh - 200px)', minHeight: '800px' }}
+            title="Gerador Pokémon"
+          />
+        </div>
+      </div>
+    )
+  }
+
+  // ÁREA DO TREINADOR
   if (currentUser.type === 'treinador' && currentArea === 'Treinador') {
     const maxHP = getMaxHP()
     const displacement = getDisplacement()
