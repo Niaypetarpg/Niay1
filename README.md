@@ -1,110 +1,162 @@
 # Niaypeta Corp™ - Sistema de Gerenciamento RPG Pokémon
 
-## 📋 Sobre o Projeto
+## 🎮 Sobre o Projeto
 
-Sistema completo de gerenciamento para RPG Pokémon com múltiplas contas de usuário, persistência de dados e interface responsiva.
+Sistema profissional de gerenciamento para RPG Pokémon desenvolvido com React + Vite + Tailwind CSS.
 
-## 🔐 Login
+## 📋 Funcionalidades
 
-**Usuários disponíveis:**
-- Mestre (conta master)
-- Alocin (treinador)
-- Lila (treinador)
-- Ludovic (treinador)
-- Noryat (treinador)
-- Pedro (treinador)
+### 🔐 Sistema de Login
+- **6 contas** com cores personalizadas:
+  - **Mestre** - Dourado
+  - **Alocin** - Azul Marinho & Preto
+  - **Lila** - Roxo & Vermelho
+  - **Ludovic** - Vermelho & Preto
+  - **Noryat** - Preto & Branco
+  - **Pedro** - Azul & Verde
 
-**Senha para todas as contas:** `DnD7MarPkm`
+### 👤 Área do Treinador
+- Upload de imagem (computador ou URL)
+- Sistema de níveis (0-50) com botões +/-
+- 4 slots de Classes & Subclasses coloridas
+- Contadores de Time Principal (0/6), PC (0/1000) e Pokédex
+- Navegação por abas no topo
 
-## 🚀 Como Usar
+### 📚 Classes & Subclasses
+Todas as 80+ classes organizadas por cores com coroas para classes mestras:
+- Artista (Azul Claro)
+- Captor (Laranja)
+- Criador (Rosa)
+- Guerreiro (Amarelo Escuro)
+- Místico (Roxo)
+- Pesquisador (Azul Escuro)
+- Psíquico (Marrom)
+- Ranger (Verde)
+- Treinador (Vermelho)
 
-### Opção 1: Netlify (Recomendado)
+## 🚀 Como Rodar Localmente
 
-1. Faça login no [Netlify](https://netlify.com)
-2. Arraste e solte a pasta do projeto no Netlify
-3. Aguarde o deploy finalizar
-4. Acesse o link gerado!
+### Pré-requisitos
+- Node.js 16+ instalado
+- npm ou yarn
 
-### Opção 2: GitHub + Netlify
+### Instalação
 
-1. Crie um novo repositório no GitHub
-2. Adicione os arquivos do projeto ao repositório
-3. No Netlify, conecte o repositório
-4. Configure o build:
-   - Build command: (deixe em branco)
-   - Publish directory: `/`
-5. Deploy!
+1. **Extraia o projeto**
+```bash
+cd niaypeta-vite-project
+```
 
-### Opção 3: Local
+2. **Instale as dependências**
+```bash
+npm install
+```
 
-1. Abra o arquivo `index.html` diretamente no navegador
-2. Pronto! O sistema funcionará localmente
+3. **Rode o servidor de desenvolvimento**
+```bash
+npm run dev
+```
 
-## ✨ Funcionalidades
+4. **Abra no navegador**
+```
+http://localhost:5173
+```
 
-### Conta Mestre
-- Treinador NPC
-- Pokémon NPC
-- Enciclopédia M
-- Treinadores
+## 📦 Deploy no Netlify
 
-### Conta Treinador
-- **Treinador**: Gestão completa do personagem
-  - Upload de foto
-  - Sistema de níveis (1-50)
-  - HP com dano/cura
-  - Classes e subclasses coloridas
-  - Atributos e modificadores
-  - Deslocamentos automáticos
-  - Evasão calculada
-  - Time principal (6 Pokémon)
-  - PC e Pokédex
-- **PC**: Armazenamento de Pokémon
-- **Pokédex**: Enciclopédia de Pokémon
-- **Mochila**: Inventário de itens
-- **Características & Talentos**: Skills do treinador
-- **Pokéloja**: Loja de itens
-- **Enciclopédia**: Informações do mundo
+### Opção 1: Via GitHub Desktop + Netlify
+
+1. **GitHub Desktop**
+   - File → Add Local Repository
+   - Selecione a pasta `niaypeta-vite-project`
+   - Publish repository
+
+2. **Netlify**
+   - Login em [netlify.com](https://netlify.com)
+   - "Add new site" → "Import from Git"
+   - Selecione o repositório
+   - Build settings:
+     - Build command: `npm run build`
+     - Publish directory: `dist`
+   - Deploy!
+
+### Opção 2: Arrastar e Soltar
+
+1. **Build local**
+```bash
+npm run build
+```
+
+2. **Upload no Netlify**
+   - Arraste a pasta `dist` para o Netlify
+   - Pronto!
+
+## 📁 Estrutura do Projeto
+
+```
+niaypeta-vite-project/
+├── public/              # Arquivos estáticos
+├── src/
+│   ├── components/      # Componentes React (futuro)
+│   ├── styles/          # Estilos adicionais (futuro)
+│   ├── App.jsx          # Componente principal
+│   ├── main.jsx         # Entry point
+│   └── index.css        # Estilos globais + Tailwind
+├── index.html           # HTML base
+├── package.json         # Dependências
+├── vite.config.js       # Configuração Vite
+├── tailwind.config.js   # Configuração Tailwind
+└── README.md            # Este arquivo
+```
+
+## 🛠️ Tecnologias
+
+- **React 18** - Framework UI
+- **Vite** - Build tool super rápido
+- **Tailwind CSS** - Estilos utilitários
+- **Lucide React** - Ícones modernos
+- **LocalStorage** - Persistência de dados
 
 ## 💾 Persistência de Dados
 
-Todos os dados do treinador são salvos automaticamente no navegador usando LocalStorage. Seus dados não serão perdidos ao fechar o navegador!
+Todos os dados são salvos automaticamente no navegador usando LocalStorage. Cada treinador tem seu próprio espaço de armazenamento.
 
-## 🎨 Temas
+## 🎨 Customizações
 
-- Modo Claro
-- Modo Escuro
-
-## 📱 Responsivo
-
-O sistema funciona perfeitamente em:
-- Desktop
-- Tablet
-- Mobile
-
-## 🛠️ Tecnologias Utilizadas
-
-- React 18
-- Tailwind CSS
-- Lucide Icons
-- LocalStorage API
-
-## 📝 Estrutura de Arquivos
-
-```
-niaypeta-corp-v75/
-├── index.html          # Página principal
-├── app.jsx            # Lógica React
-└── README.md          # Este arquivo
+### Adicionar novas cores
+Edite `tailwind.config.js`:
+```js
+theme: {
+  extend: {
+    colors: {
+      'custom-blue': '#123456'
+    }
+  }
+}
 ```
 
-## 🔄 Atualizações Futuras
+### Adicionar novas classes
+Edite o array `classes` em `src/App.jsx`
 
-- [ ] Integração com Pokédex completa
-- [ ] Sistema de PC expandido
-- [ ] Mochila funcional
-- [ ] Sistema de batalha
-- [ ] Multiplayer
+## 📝 Scripts Disponíveis
+
+```bash
+npm run dev      # Servidor de desenvolvimento
+npm run build    # Build de produção
+npm run preview  # Preview do build
+```
+
+## 🐛 Troubleshooting
+
+**Página em branco?**
+- Verifique se rodou `npm install`
+- Limpe o cache: `npm run build -- --force`
+
+**Erros de dependências?**
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
 
 ## 📞 Suporte
 
@@ -112,4 +164,4 @@ Para dúvidas ou problemas, abra uma issue no repositório.
 
 ---
 
-**Niaypeta Corp™** - Todos os direitos reservados
+**Niaypeta Corp™** © 2024 - Todos os direitos reservados

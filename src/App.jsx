@@ -1,0 +1,593 @@
+import { useState, useEffect } from 'react'
+import { Camera, Plus, Minus, Crown, X } from 'lucide-react'
+
+function App() {
+  const [currentUser, setCurrentUser] = useState(null)
+  const [currentArea, setCurrentArea] = useState('')
+  const [darkMode, setDarkMode] = useState(false)
+  
+  // Estados do treinador
+  const [trainerData, setTrainerData] = useState({
+    image: '',
+    level: 1,
+    classes: ['', '', '', ''],
+    mainTeam: [],
+    pcPokemon: 0,
+    pokedexCount: 0
+  })
+
+  // Modais
+  const [showLevelModal, setShowLevelModal] = useState(false)
+  const [showClassModal, setShowClassModal] = useState(false)
+  const [showImageModal, setShowImageModal] = useState(false)
+  const [currentSlot, setCurrentSlot] = useState(null)
+  const [tempLevel, setTempLevel] = useState('')
+  const [imageUrl, setImageUrl] = useState('')
+
+  const users = [
+    { 
+      username: 'Mestre', 
+      type: 'mestre',
+      gradient: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)'
+    },
+    { 
+      username: 'Alocin', 
+      type: 'treinador',
+      gradient: 'linear-gradient(90deg, #000080 0%, #000080 50%, #000000 50%, #000000 100%)'
+    },
+    { 
+      username: 'Lila', 
+      type: 'treinador',
+      gradient: 'linear-gradient(90deg, #800080 0%, #800080 50%, #FF0000 50%, #FF0000 100%)'
+    },
+    { 
+      username: 'Ludovic', 
+      type: 'treinador',
+      gradient: 'linear-gradient(90deg, #FF0000 0%, #FF0000 50%, #000000 50%, #000000 100%)'
+    },
+    { 
+      username: 'Noryat', 
+      type: 'treinador',
+      gradient: 'linear-gradient(90deg, #000000 0%, #000000 50%, #FFFFFF 50%, #FFFFFF 100%)'
+    },
+    { 
+      username: 'Pedro', 
+      type: 'treinador',
+      gradient: 'linear-gradient(90deg, #0000FF 0%, #0000FF 50%, #00FF00 50%, #00FF00 100%)'
+    }
+  ]
+
+  const mestreAreas = ['Treinador NPC', 'Pokémon NPC', 'Enciclopédia M', 'Treinadores']
+  const treinadorAreas = ['Treinador', 'PC', 'Pokédex', 'Mochila', 'Características & Talentos', 'Pokéloja', 'Enciclopédia']
+
+  const classes = [
+    // Artista
+    { name: 'Artista', color: '#87CEEB', isMaster: true },
+    { name: 'Beldade', color: '#87CEEB', isMaster: false },
+    { name: 'Cativante', color: '#87CEEB', isMaster: false },
+    { name: 'Coreógrafo', color: '#87CEEB', isMaster: false },
+    { name: 'Descolado', color: '#87CEEB', isMaster: false },
+    { name: 'Estilista', color: '#87CEEB', isMaster: false },
+    { name: 'Nerd', color: '#87CEEB', isMaster: false },
+    { name: 'Parrudo', color: '#87CEEB', isMaster: false },
+    // Captor
+    { name: 'Captor', color: '#FFA500', isMaster: true },
+    { name: 'Artífice', color: '#FFA500', isMaster: false },
+    { name: 'Colecionador', color: '#FFA500', isMaster: false },
+    { name: 'Domador', color: '#FFA500', isMaster: false },
+    { name: 'Engenheiro', color: '#FFA500', isMaster: false },
+    { name: 'Ladrão', color: '#FFA500', isMaster: false },
+    { name: 'Malabarista', color: '#FFA500', isMaster: false },
+    { name: 'Pokébolista', color: '#FFA500', isMaster: false },
+    // Criador
+    { name: 'Criador', color: '#FFC0CB', isMaster: true },
+    { name: 'Botânico', color: '#FFC0CB', isMaster: false },
+    { name: 'Cozinheiro', color: '#FFC0CB', isMaster: false },
+    { name: 'Cuidador', color: '#FFC0CB', isMaster: false },
+    { name: 'Evolucionista', color: '#FFC0CB', isMaster: false },
+    { name: 'Incubador', color: '#FFC0CB', isMaster: false },
+    { name: 'Médico', color: '#FFC0CB', isMaster: false },
+    { name: 'Tutor', color: '#FFC0CB', isMaster: false },
+    // Guerreiro
+    { name: 'Guerreiro', color: '#B8860B', isMaster: true },
+    { name: 'Artista Marcial', color: '#F5F5DC', isMaster: false },
+    { name: 'Atleta', color: '#B8860B', isMaster: false },
+    { name: 'Áugure', color: '#B8860B', isMaster: false },
+    { name: 'Bandido', color: '#B8860B', isMaster: false },
+    { name: 'Monge', color: '#B8860B', isMaster: false },
+    { name: 'Ninja', color: '#B8860B', isMaster: false },
+    { name: 'Soldado', color: '#B8860B', isMaster: false },
+    // Místico
+    { name: 'Místico', color: '#800080', isMaster: true },
+    { name: 'Bardo', color: '#800080', isMaster: false },
+    { name: 'Guardião', color: '#800080', isMaster: false },
+    { name: 'Ilusionista', color: '#800080', isMaster: false },
+    { name: 'Médium', color: '#800080', isMaster: false },
+    { name: 'Orador', color: '#800080', isMaster: false },
+    { name: 'Rúnico', color: '#800080', isMaster: false },
+    { name: 'Xamã', color: '#800080', isMaster: false },
+    // Pesquisador
+    { name: 'Pesquisador', color: '#00008B', isMaster: true },
+    { name: 'Cientista', color: '#00008B', isMaster: false },
+    { name: 'Fotógrafo', color: '#00008B', isMaster: false },
+    { name: 'Hipnólogo', color: '#00008B', isMaster: false },
+    { name: 'Observador', color: '#00008B', isMaster: false },
+    { name: 'Ocultista', color: '#00008B', isMaster: false },
+    { name: 'Petrologista', color: '#00008B', isMaster: false },
+    { name: 'Professor', color: '#00008B', isMaster: false },
+    // Psíquico
+    { name: 'Psíquico', color: '#8B4513', isMaster: true },
+    { name: 'Ardente', color: '#8B4513', isMaster: false },
+    { name: 'Bruxo', color: '#8B4513', isMaster: false },
+    { name: 'Célio', color: '#8B4513', isMaster: false },
+    { name: 'Empático', color: '#8B4513', isMaster: false },
+    { name: 'Nebuloso', color: '#8B4513', isMaster: false },
+    { name: 'Terrulento', color: '#8B4513', isMaster: false },
+    { name: 'Vidente', color: '#8B4513', isMaster: false },
+    // Ranger
+    { name: 'Ranger', color: '#228B22', isMaster: true },
+    { name: 'Aventureiro', color: '#228B22', isMaster: false },
+    { name: 'Cavaleiro', color: '#228B22', isMaster: false },
+    { name: 'Detetive', color: '#228B22', isMaster: false },
+    { name: 'Guia', color: '#228B22', isMaster: false },
+    { name: 'Oficial', color: '#228B22', isMaster: false },
+    { name: 'Pactuário', color: '#228B22', isMaster: false },
+    { name: 'Policial', color: '#228B22', isMaster: false },
+    // Treinador
+    { name: 'Treinador', color: '#DC143C', isMaster: true },
+    { name: 'Azarão', color: '#DC143C', isMaster: false },
+    { name: 'Caçador', color: '#DC143C', isMaster: false },
+    { name: 'Elementalista', color: '#DC143C', isMaster: false },
+    { name: 'Especialista', color: '#DC143C', isMaster: false },
+    { name: 'Estrategista', color: '#DC143C', isMaster: false },
+    { name: 'Inquebrável', color: '#DC143C', isMaster: false },
+    { name: 'Síncrono', color: '#DC143C', isMaster: false }
+  ]
+
+  // Carregar dados
+  useEffect(() => {
+    if (currentUser?.type === 'treinador') {
+      const saved = localStorage.getItem(`trainer_${currentUser.username}`)
+      if (saved) {
+        setTrainerData(JSON.parse(saved))
+      }
+    }
+  }, [currentUser])
+
+  // Salvar dados
+  useEffect(() => {
+    if (currentUser?.type === 'treinador') {
+      localStorage.setItem(`trainer_${currentUser.username}`, JSON.stringify(trainerData))
+    }
+  }, [trainerData, currentUser])
+
+  const handleLogin = (user) => {
+    setCurrentUser(user)
+  }
+
+  const handleLogout = () => {
+    setCurrentUser(null)
+    setCurrentArea('')
+  }
+
+  const updateLevel = (change) => {
+    setTrainerData(prev => ({
+      ...prev,
+      level: Math.max(0, Math.min(50, prev.level + change))
+    }))
+  }
+
+  const setLevel = () => {
+    const newLevel = parseInt(tempLevel)
+    if (newLevel >= 0 && newLevel <= 50) {
+      setTrainerData(prev => ({ ...prev, level: newLevel }))
+      setShowLevelModal(false)
+      setTempLevel('')
+    }
+  }
+
+  const selectClass = (className) => {
+    setTrainerData(prev => {
+      const newClasses = [...prev.classes]
+      newClasses[currentSlot] = className
+      return { ...prev, classes: newClasses }
+    })
+    setShowClassModal(false)
+  }
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setTrainerData(prev => ({ ...prev, image: reader.result }))
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleImageUrl = () => {
+    if (imageUrl) {
+      setTrainerData(prev => ({ ...prev, image: imageUrl }))
+      setShowImageModal(false)
+      setImageUrl('')
+    }
+  }
+
+  // Tela de Login
+  if (!currentUser) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-red-900 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-4xl">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-gray-800 mb-2">Niaypeta Corp™</h1>
+            <p className="text-gray-600 text-lg">Sistema de Gerenciamento RPG Pokémon</p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {users.map((user) => (
+              <button
+                key={user.username}
+                onClick={() => handleLogin(user)}
+                className="p-6 rounded-xl text-white font-bold text-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all"
+                style={{ background: user.gradient }}
+              >
+                {user.username}
+                {user.type === 'mestre' && ' 👑'}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Tela de seleção de área
+  if (!currentArea) {
+    const areas = currentUser.type === 'mestre' ? mestreAreas : treinadorAreas
+    
+    return (
+      <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
+        {/* Header com botões de área no topo */}
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                {currentUser.username} {currentUser.type === 'mestre' && '👑'}
+              </h2>
+              <button
+                onClick={handleLogout}
+                className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600"
+              >
+                Sair
+              </button>
+            </div>
+            
+            {/* Botões de área menores no topo */}
+            <div className="flex flex-wrap gap-2">
+              {areas.map((area) => (
+                <button
+                  key={area}
+                  onClick={() => setCurrentArea(area)}
+                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 text-sm font-semibold shadow-md"
+                >
+                  {area}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Conteúdo principal */}
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+            <p className={`text-center text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+              Selecione uma área acima para começar
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Área do Treinador
+  if (currentUser.type === 'treinador' && currentArea === 'Treinador') {
+    return (
+      <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
+        {/* Header com botões no topo */}
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                {currentUser.username}
+              </h2>
+              <button
+                onClick={() => setCurrentArea('')}
+                className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
+              >
+                Voltar
+              </button>
+            </div>
+            
+            <div className="flex flex-wrap gap-2">
+              {treinadorAreas.map((area) => (
+                <button
+                  key={area}
+                  onClick={() => setCurrentArea(area)}
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold ${
+                    area === 'Treinador'
+                      ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  {area}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Conteúdo */}
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+            
+            {/* Imagem e Nome */}
+            <div className="flex items-start gap-6 mb-8">
+              {/* Imagem com botão de câmera */}
+              <div className="relative">
+                {trainerData.image ? (
+                  <img 
+                    src={trainerData.image} 
+                    alt="Treinador" 
+                    className="w-32 h-32 object-cover rounded-lg border-4 border-blue-500"
+                  />
+                ) : (
+                  <div className="w-32 h-32 bg-gray-300 rounded-lg flex items-center justify-center border-4 border-gray-400">
+                    <Camera size={48} className="text-gray-500" />
+                  </div>
+                )}
+                <button
+                  onClick={() => setShowImageModal(true)}
+                  className="absolute -bottom-2 -right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600"
+                >
+                  <Camera size={20} />
+                </button>
+              </div>
+
+              {/* Nome e Nível */}
+              <div>
+                <h3 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>
+                  {currentUser.username}
+                </h3>
+                
+                <div className="flex items-center gap-2 mb-4">
+                  <span className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Nível: {trainerData.level}
+                  </span>
+                  <button
+                    onClick={() => updateLevel(-1)}
+                    className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
+                  >
+                    <Minus size={16} />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setTempLevel(trainerData.level.toString())
+                      setShowLevelModal(true)
+                    }}
+                    className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm font-semibold"
+                  >
+                    Lvl
+                  </button>
+                  <button
+                    onClick={() => updateLevel(1)}
+                    className="p-1 bg-green-500 text-white rounded hover:bg-green-600"
+                  >
+                    <Plus size={16} />
+                  </button>
+                </div>
+
+                {/* Contadores */}
+                <div className="flex gap-4">
+                  <div className="bg-blue-100 px-4 py-2 rounded-lg">
+                    <div className="text-xs text-blue-600">Time Principal</div>
+                    <div className="text-lg font-bold text-blue-800">{trainerData.mainTeam.length}/6</div>
+                  </div>
+                  <div className="bg-green-100 px-4 py-2 rounded-lg">
+                    <div className="text-xs text-green-600">PC</div>
+                    <div className="text-lg font-bold text-green-800">{trainerData.pcPokemon}/1000</div>
+                  </div>
+                  <div className="bg-yellow-100 px-4 py-2 rounded-lg">
+                    <div className="text-xs text-yellow-600">Pokédex</div>
+                    <div className="text-lg font-bold text-yellow-800">{trainerData.pokedexCount}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Classes */}
+            <div className="mb-8">
+              <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>
+                Classes & Subclasses
+              </h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {trainerData.classes.map((cls, index) => {
+                  const classInfo = classes.find(c => c.name === cls)
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        setCurrentSlot(index)
+                        setShowClassModal(true)
+                      }}
+                      className="p-4 rounded-lg border-2 hover:shadow-lg transition-all text-center font-semibold"
+                      style={{
+                        backgroundColor: cls ? classInfo?.color + '40' : '#f3f4f6',
+                        color: cls ? classInfo?.color : '#6b7280',
+                        borderColor: cls ? classInfo?.color : '#d1d5db'
+                      }}
+                    >
+                      {cls || 'Classe & Subclasse'}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Modal de Nível */}
+        {showLevelModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-2xl font-bold text-gray-800">Definir Nível</h3>
+                <button onClick={() => setShowLevelModal(false)} className="text-gray-500 hover:text-gray-700">
+                  <X size={24} />
+                </button>
+              </div>
+              <input
+                type="number"
+                min="0"
+                max="50"
+                value={tempLevel}
+                onChange={(e) => setTempLevel(e.target.value)}
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg mb-4 text-center text-2xl font-bold"
+              />
+              <button
+                onClick={setLevel}
+                className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold"
+              >
+                Confirmar
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Modal de Imagem */}
+        {showImageModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-2xl font-bold text-gray-800">Adicionar Imagem</h3>
+                <button onClick={() => setShowImageModal(false)} className="text-gray-500 hover:text-gray-700">
+                  <X size={24} />
+                </button>
+              </div>
+              
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Do Computador</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg"
+                  />
+                </div>
+
+                <div className="text-center text-gray-500">OU</div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">URL da Imagem</label>
+                  <input
+                    type="url"
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    placeholder="https://exemplo.com/imagem.jpg"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg mb-2"
+                  />
+                  <button
+                    onClick={handleImageUrl}
+                    className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+                  >
+                    Usar URL
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal de Classes */}
+        {showClassModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-2xl font-bold text-gray-800">Selecionar Classe/Subclasse</h3>
+                <button onClick={() => setShowClassModal(false)} className="text-gray-500 hover:text-gray-700">
+                  <X size={24} />
+                </button>
+              </div>
+              <div className="space-y-2">
+                {classes.map((cls) => (
+                  <button
+                    key={cls.name}
+                    onClick={() => selectClass(cls.name)}
+                    className="w-full p-3 rounded-lg text-left font-semibold hover:opacity-80 transition-opacity flex items-center gap-2"
+                    style={{ 
+                      backgroundColor: cls.color + '60', 
+                      color: cls.color,
+                      border: `2px solid ${cls.color}`
+                    }}
+                  >
+                    {cls.isMaster && <Crown size={20} />}
+                    {cls.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  // Outras áreas
+  return (
+    <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
+      <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              {currentArea}
+            </h2>
+            <button
+              onClick={() => setCurrentArea('')}
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
+            >
+              Voltar
+            </button>
+          </div>
+          
+          <div className="flex flex-wrap gap-2">
+            {(currentUser.type === 'mestre' ? mestreAreas : treinadorAreas).map((area) => (
+              <button
+                key={area}
+                onClick={() => setCurrentArea(area)}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold ${
+                  area === currentArea
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                {area}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+          <p className={`text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            Esta área está em desenvolvimento...
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default App
