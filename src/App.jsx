@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
-import { Camera, Plus, Minus, Crown, X } from 'lucide-react'
+import { Camera, Plus, Minus, Crown, X, Moon, Sun, User } from 'lucide-react'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [currentArea, setCurrentArea] = useState('')
   const [darkMode, setDarkMode] = useState(false)
+  const [selectedUser, setSelectedUser] = useState(null)
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
   
   const [trainerData, setTrainerData] = useState({
     image: '',
@@ -22,9 +25,11 @@ function App() {
   const [tempLevel, setTempLevel] = useState('')
   const [imageUrl, setImageUrl] = useState('')
 
+  const correctPassword = 'euquefizok'
+
   const users = [
     { username: 'Mestre', type: 'mestre', gradient: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)' },
-    { username: 'Alocin', type: 'treinador', gradient: 'linear-gradient(90deg, #000080 0%, #000080 50%, #000000 50%, #000000 100%)' },
+    { username: 'Alocin', type: 'treinador', gradient: 'linear-gradient(90deg, #000080 0%, #000080 50%, #FFFFFF 50%, #FFFFFF 100%)' },
     { username: 'Lila', type: 'treinador', gradient: 'linear-gradient(90deg, #800080 0%, #800080 50%, #FF0000 50%, #FF0000 100%)' },
     { username: 'Ludovic', type: 'treinador', gradient: 'linear-gradient(90deg, #FF0000 0%, #FF0000 50%, #000000 50%, #000000 100%)' },
     { username: 'Noryat', type: 'treinador', gradient: 'linear-gradient(90deg, #000000 0%, #000000 50%, #FFFFFF 50%, #FFFFFF 100%)' },
@@ -122,9 +127,32 @@ function App() {
     }
   }, [trainerData, currentUser])
 
-  const handleLogin = (user) => setCurrentUser(user)
-  const handleLogout = () => { setCurrentUser(null); setCurrentArea('') }
+  const handleUserSelect = (user) => {
+    setSelectedUser(user)
+    setPassword('')
+    setError('')
+  }
+
+  const handleLogin = () => {
+    if (password === correctPassword) {
+      setCurrentUser(selectedUser)
+      setSelectedUser(null)
+      setPassword('')
+      setError('')
+    } else {
+      setError('Senha incorreta!')
+    }
+  }
+
+  const handleLogout = () => { 
+    setCurrentUser(null)
+    setCurrentArea('')
+    setSelectedUser(null)
+    setPassword('')
+  }
+
   const updateLevel = (change) => setTrainerData(prev => ({ ...prev, level: Math.max(0, Math.min(50, prev.level + change)) }))
+  
   const setLevel = () => {
     const newLevel = parseInt(tempLevel)
     if (newLevel >= 0 && newLevel <= 50) {
@@ -163,21 +191,86 @@ function App() {
     }
   }
 
+  // TELA DE LOGIN - 2 COLUNAS, SENHA APÓS CLICAR
   if (!currentUser) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-red-900 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-4xl">
+      <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'} flex items-center justify-center p-4`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 w-full max-w-2xl`}>
+          {/* Botão de tema no canto */}
+          <div className="flex justify-end mb-4">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}
+            >
+              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          </div>
+
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">Niaypeta Corp™</h1>
-            <p className="text-gray-600 text-lg">Sistema de Gerenciamento RPG Pokémon</p>
+            <h1 className={`text-4xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-2`}>Niaypeta Corp™</h1>
+            <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} text-lg`}>O Professor Carvalho quer saber seu nome.</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {users.map((user) => (
-              <button key={user.username} onClick={() => handleLogin(user)} className="p-6 rounded-xl text-white font-bold text-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all" style={{ background: user.gradient }}>
-                {user.username}{user.type === 'mestre' && ' 👑'}
+
+          {!selectedUser ? (
+            <>
+              <h2 className={`text-center text-lg font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>Selecione o Usuário</h2>
+              {/* 2 COLUNAS, 3 LINHAS */}
+              <div className="grid grid-cols-2 gap-4">
+                {users.map((user) => (
+                  <button
+                    key={user.username}
+                    onClick={() => handleUserSelect(user)}
+                    className="p-6 rounded-xl text-white font-bold text-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all flex items-center justify-center gap-2"
+                    style={{ background: user.gradient }}
+                  >
+                    <User size={24} />
+                    {user.username}
+                  </button>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <h2 className={`text-center text-lg font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-6`}>Senha</h2>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
+                placeholder="Digite a senha"
+                className={`w-full px-4 py-3 rounded-lg border-2 mb-4 text-lg ${
+                  darkMode 
+                    ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
+                    : 'bg-white border-gray-300 text-gray-800'
+                }`}
+                autoFocus
+              />
+              
+              {error && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-center">
+                  {error}
+                </div>
+              )}
+
+              <button
+                onClick={handleLogin}
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold text-lg hover:from-blue-600 hover:to-purple-700 transition-all mb-2"
+              >
+                Entrar
               </button>
-            ))}
-          </div>
+
+              <button
+                onClick={() => setSelectedUser(null)}
+                className={`w-full py-3 rounded-lg font-semibold text-lg ${
+                  darkMode 
+                    ? 'bg-gray-700 text-white hover:bg-gray-600' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                Voltar
+              </button>
+            </>
+          )}
         </div>
       </div>
     )
@@ -191,7 +284,12 @@ function App() {
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username} {currentUser.type === 'mestre' && '👑'}</h2>
-              <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+              <div className="flex gap-2">
+                <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
+                  {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+              </div>
             </div>
             <div className="flex flex-wrap gap-2">
               {areas.map((area) => (
@@ -216,11 +314,16 @@ function App() {
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username}</h2>
-              <button onClick={() => setCurrentArea('')} className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Voltar</button>
+              <div className="flex gap-2">
+                <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
+                  {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
+                <button onClick={() => setCurrentArea('')} className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Voltar</button>
+              </div>
             </div>
             <div className="flex flex-wrap gap-2">
               {treinadorAreas.map((area) => (
-                <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Treinador' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>
+                <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Treinador' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>
               ))}
             </div>
           </div>
@@ -261,7 +364,7 @@ function App() {
                 {trainerData.classes.map((cls, index) => {
                   const classInfo = classes.find(c => c.name === cls)
                   return (
-                    <button key={index} onClick={() => { setCurrentSlot(index); setShowClassModal(true) }} className="p-4 rounded-lg border-2 hover:shadow-lg transition-all text-center font-semibold" style={{ backgroundColor: cls ? classInfo?.color + '40' : '#f3f4f6', color: cls ? classInfo?.color : '#6b7280', borderColor: cls ? classInfo?.color : '#d1d5db' }}>
+                    <button key={index} onClick={() => { setCurrentSlot(index); setShowClassModal(true) }} className="p-4 rounded-lg border-2 hover:shadow-lg transition-all text-center font-semibold" style={{ backgroundColor: cls ? classInfo?.color + '40' : darkMode ? '#374151' : '#f3f4f6', color: cls ? classInfo?.color : darkMode ? '#9ca3af' : '#6b7280', borderColor: cls ? classInfo?.color : darkMode ? '#4b5563' : '#d1d5db' }}>
                       {cls || 'Classe & Subclasse'}
                     </button>
                   )
@@ -272,37 +375,37 @@ function App() {
         </div>
         {showLevelModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-bold text-gray-800">Definir Nível (0-50)</h3>
-                <button onClick={() => setShowLevelModal(false)} className="text-gray-500 hover:text-gray-700"><X size={24} /></button>
+                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Definir Nível (0-50)</h3>
+                <button onClick={() => setShowLevelModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
               </div>
-              <input type="number" min="0" max="50" value={tempLevel} onChange={(e) => setTempLevel(e.target.value)} className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg mb-4 text-center text-2xl font-bold" />
+              <input type="number" min="0" max="50" value={tempLevel} onChange={(e) => setTempLevel(e.target.value)} className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-2xl font-bold ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
               <button onClick={setLevel} className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold">Confirmar</button>
             </div>
           </div>
         )}
         {showImageModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-bold text-gray-800">Adicionar Imagem</h3>
-                <button onClick={() => setShowImageModal(false)} className="text-gray-500 hover:text-gray-700"><X size={24} /></button>
+                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Adicionar Imagem</h3>
+                <button onClick={() => setShowImageModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
               </div>
               <div className="space-y-4">
-                <div><label className="block text-sm font-medium text-gray-700 mb-2">Do Computador</label><input type="file" accept="image/*" onChange={handleImageUpload} className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg" /></div>
-                <div className="text-center text-gray-500">OU</div>
-                <div><label className="block text-sm font-medium text-gray-700 mb-2">URL da Imagem</label><input type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://exemplo.com/imagem.jpg" className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg mb-2" /><button onClick={handleImageUrl} className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Usar URL</button></div>
+                <div><label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Do Computador</label><input type="file" accept="image/*" onChange={handleImageUpload} className={`w-full px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} /></div>
+                <div className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>OU</div>
+                <div><label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>URL da Imagem</label><input type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://exemplo.com/imagem.jpg" className={`w-full px-4 py-2 border-2 rounded-lg mb-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'border-gray-300'}`} /><button onClick={handleImageUrl} className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Usar URL</button></div>
               </div>
             </div>
           </div>
         )}
         {showClassModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto`}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-bold text-gray-800">Selecionar Classe/Subclasse</h3>
-                <button onClick={() => setShowClassModal(false)} className="text-gray-500 hover:text-gray-700"><X size={24} /></button>
+                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Selecionar Classe/Subclasse</h3>
+                <button onClick={() => setShowClassModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
               </div>
               <div className="space-y-2">
                 {classes.map((cls) => (
@@ -325,11 +428,16 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center mb-4">
             <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentArea}</h2>
-            <button onClick={() => setCurrentArea('')} className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Voltar</button>
+            <div className="flex gap-2">
+              <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
+                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+              <button onClick={() => setCurrentArea('')} className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Voltar</button>
+            </div>
           </div>
           <div className="flex flex-wrap gap-2">
             {areas.map((area) => (
-              <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === currentArea ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>
+              <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === currentArea ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>
             ))}
           </div>
         </div>
