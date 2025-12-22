@@ -28,12 +28,12 @@ function App() {
   const correctPassword = 'DnD7MarPkm'
 
   const users = [
-    { username: 'Mestre', type: 'mestre', gradient: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)' },
-    { username: 'Alocin', type: 'treinador', gradient: 'linear-gradient(90deg, #000080 0%, #000080 50%, #FFFFFF 50%, #FFFFFF 100%)' },
-    { username: 'Lila', type: 'treinador', gradient: 'linear-gradient(90deg, #800080 0%, #800080 50%, #FF0000 50%, #FF0000 100%)' },
-    { username: 'Ludovic', type: 'treinador', gradient: 'linear-gradient(90deg, #FF0000 0%, #FF0000 50%, #000000 50%, #000000 100%)' },
-    { username: 'Noryat', type: 'treinador', gradient: 'linear-gradient(90deg, #000000 0%, #000000 50%, #FFFFFF 50%, #FFFFFF 100%)' },
-    { username: 'Pedro', type: 'treinador', gradient: 'linear-gradient(90deg, #0000FF 0%, #0000FF 50%, #00FF00 50%, #00FF00 100%)' }
+    { username: 'Mestre', type: 'mestre', gradient: 'linear-gradient(135deg, #FFD700, #FFA500, #FF8C00)' },
+    { username: 'Alocin', type: 'treinador', gradient: 'linear-gradient(135deg, #000080, #4169E1, #87CEEB, #FFFFFF)' },
+    { username: 'Lila', type: 'treinador', gradient: 'linear-gradient(135deg, #800080, #9370DB, #FF1493, #FF69B4)' },
+    { username: 'Ludovic', type: 'treinador', gradient: 'linear-gradient(135deg, #8B0000, #DC143C, #FF6347, #2F4F4F)' },
+    { username: 'Noryat', type: 'treinador', gradient: 'linear-gradient(135deg, #000000, #404040, #808080, #FFFFFF)' },
+    { username: 'Pedro', type: 'treinador', gradient: 'linear-gradient(135deg, #0000CD, #4169E1, #00CED1, #32CD32)' }
   ]
 
   const mestreAreas = ['Treinador NPC', 'Pokémon NPC', 'Enciclopédia M', 'Treinadores']
@@ -190,7 +190,7 @@ function App() {
     }
   }
 
-  // TELA DE LOGIN - BOTÕES MENORES, ANIMADOS, SENHA EMBAIXO
+  // TELA DE LOGIN - BOTÕES AINDA MENORES, CORES MESCLADAS, COM LOGO
   if (!currentUser) {
     return (
       <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'} flex items-center justify-center p-4`}>
@@ -201,12 +201,12 @@ function App() {
             100% { background-position: 0% 50%; }
           }
           .animated-gradient {
-            background-size: 200% 200%;
-            animation: gradient-shift 3s ease infinite;
+            background-size: 300% 300%;
+            animation: gradient-shift 4s ease infinite;
           }
         `}</style>
         
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 w-full max-w-2xl`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 w-full max-w-xl`}>
           <div className="flex justify-end mb-4">
             <button
               onClick={() => setDarkMode(!darkMode)}
@@ -216,33 +216,42 @@ function App() {
             </button>
           </div>
 
-          <div className="text-center mb-8">
-            <h1 className={`text-4xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-2`}>Niaypeta Corp™</h1>
-            <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} text-lg`}>O Professor Carvalho quer saber seu nome.</p>
+          {/* LOGO DO POKÉMON RPG */}
+          <div className="flex justify-center mb-6">
+            <img 
+              src="/logo.png" 
+              alt="Pokémon RPG" 
+              className="w-48 h-48 object-contain"
+            />
           </div>
 
-          <h2 className={`text-center text-lg font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>Selecione o Usuário</h2>
+          <div className="text-center mb-6">
+            <h1 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-2`}>Niaypeta Corp™</h1>
+            <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>O Professor Carvalho quer saber seu nome.</p>
+          </div>
+
+          <h2 className={`text-center font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-3`}>Selecione o Usuário</h2>
           
-          {/* BOTÕES MENORES E ANIMADOS - 2 COLUNAS */}
+          {/* BOTÕES MENORES E CORES MESCLADAS - 2 COLUNAS */}
           <div className="grid grid-cols-2 gap-3 mb-6">
             {users.map((user) => (
               <button
                 key={user.username}
                 onClick={() => handleUserSelect(user)}
-                className={`animated-gradient p-4 rounded-xl text-white font-bold text-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all flex items-center justify-center gap-2 ${
+                className={`animated-gradient p-3 rounded-lg text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center justify-center gap-2 ${
                   selectedUser?.username === user.username ? 'ring-4 ring-blue-400' : ''
                 }`}
                 style={{ background: user.gradient }}
               >
-                <User size={20} />
-                {user.username}
+                <User size={18} />
+                <span className="text-base">{user.username}</span>
               </button>
             ))}
           </div>
 
           {/* SENHA EMBAIXO DOS BOTÕES */}
           <div>
-            <h2 className={`text-center text-lg font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-4`}>Senha</h2>
+            <h2 className={`text-center font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-3`}>Senha</h2>
             <div className="relative mb-4">
               <Lock className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} size={20} />
               <input
@@ -252,7 +261,7 @@ function App() {
                 onKeyPress={(e) => e.key === 'Enter' && selectedUser && handleLogin()}
                 placeholder="Digite a senha"
                 disabled={!selectedUser}
-                className={`w-full pl-12 pr-4 py-3 rounded-lg border-2 text-lg ${
+                className={`w-full pl-12 pr-4 py-3 rounded-lg border-2 ${
                   darkMode 
                     ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
                     : 'bg-white border-gray-300 text-gray-800'
@@ -269,7 +278,7 @@ function App() {
             <button
               onClick={handleLogin}
               disabled={!selectedUser || !password}
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold text-lg hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Entrar
             </button>
