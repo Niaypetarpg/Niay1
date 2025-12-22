@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search } from 'lucide-react'
+import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2 } from 'lucide-react'
 
 // Tabela XP por nível (1-100)
 const XP_TABLE = {
@@ -15,7 +15,7 @@ const XP_TABLE = {
   91: 48650, 92: 49750, 93: 50875, 94: 52000, 95: 53150, 96: 54300, 97: 55475, 98: 56650, 99: 57850, 100: 59050
 }
 
-// Lista de espécies Pokémon (simplificada - você pode expandir)
+// Lista de espécies Pokémon
 const POKEMON_SPECIES = [
   'Bulbassauro', 'Ivyssauro', 'Venussauro', 'Charmander', 'Charmeleon', 'Charizard',
   'Squirtle', 'Wartortle', 'Blastoise', 'Caterpie', 'Metapod', 'Butterfree',
@@ -265,6 +265,14 @@ function App() {
     setShowAddPokemonModal(false)
   }
 
+  // Excluir Pokémon
+  const handleDeletePokemon = (index) => {
+    if (confirm('Deseja realmente excluir este Pokémon do time?')) {
+      const newTeam = mainTeam.filter((_, i) => i !== index)
+      setMainTeam(newTeam)
+    }
+  }
+
   // Adicionar XP
   const handleAddXP = () => {
     const xp = parseInt(xpToAdd) || 0
@@ -278,7 +286,6 @@ function App() {
     
     // Resetar XP ao upar de nível
     const xpForCurrentLevel = XP_TABLE[newLevel]
-    const xpForNextLevel = XP_TABLE[newLevel + 1] || XP_TABLE[100]
     
     pokemon.level = newLevel
     pokemon.currentXP = totalXP - xpForCurrentLevel
@@ -549,38 +556,44 @@ function App() {
               </div>
             </div>
 
-            {/* TIME PRINCIPAL */}
+            {/* TIME PRINCIPAL - COLUNA ÚNICA */}
             <div className="mb-8">
               <div className="flex justify-between items-center mb-4">
                 <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Time Principal ({mainTeam.length}/6)</h4>
-                <button onClick={() => setShowAddPokemonModal(true)} className="flex items-center gap-2 px-4 py-2 rounded-lg text-white font-semibold hover:opacity-90" style={{ background: 'linear-gradient(180deg, #DC143C 50%, #FFFFFF 50%)' }}>
-                  <Plus size={20} />Adicionar Pkm
+                <button onClick={() => setShowAddPokemonModal(true)} className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg font-semibold hover:opacity-90 shadow-lg border-2 border-gray-300">
+                  <img src="/pokeball-icon.png" alt="Pokébola" className="w-6 h-6" />
+                  <span className="text-gray-800">Adicionar Pkm</span>
                 </button>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="space-y-4">
                 {[...Array(6)].map((_, idx) => {
                   const pokemon = mainTeam[idx]
                   return (
                     <div key={idx} className={`p-4 rounded-lg border-2 ${pokemon ? darkMode ? 'bg-gray-700 border-blue-500' : 'bg-blue-50 border-blue-300' : darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-100 border-gray-300'}`}>
                       {pokemon ? (
-                        <>
-                          <div className="flex justify-between items-start mb-2">
-                            <div>
-                              <h5 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{pokemon.nickname}</h5>
-                              <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{pokemon.species}</p>
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <h5 className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>{pokemon.nickname}</h5>
+                              <span className={`px-2 py-1 rounded text-xs font-bold ${darkMode ? 'bg-blue-600 text-white' : 'bg-blue-200 text-blue-800'}`}>Lv.{pokemon.level}</span>
                             </div>
-                            <span className={`px-2 py-1 rounded text-xs font-bold ${darkMode ? 'bg-blue-600 text-white' : 'bg-blue-200 text-blue-800'}`}>Lv.{pokemon.level}</span>
+                            <p className={`text-sm mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{pokemon.species}</p>
+                            <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                              XP: {pokemon.currentXP}/{XP_TABLE[pokemon.level + 1] - XP_TABLE[pokemon.level]}
+                            </div>
                           </div>
-                          <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                            XP: {pokemon.currentXP}/{XP_TABLE[pokemon.level + 1] - XP_TABLE[pokemon.level]}
+                          <div className="flex gap-2">
+                            <button onClick={() => { setSelectedPokemonIndex(idx); setShowXPModal(true) }} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 text-sm font-semibold">
+                              + XP
+                            </button>
+                            <button onClick={() => handleDeletePokemon(idx)} className="bg-red-500 text-white p-2 rounded hover:bg-red-600">
+                              <Trash2 size={18} />
+                            </button>
                           </div>
-                          <button onClick={() => { setSelectedPokemonIndex(idx); setShowXPModal(true) }} className="mt-2 w-full bg-green-500 text-white py-1 rounded hover:bg-green-600 text-sm font-semibold">
-                            + XP
-                          </button>
-                        </>
+                        </div>
                       ) : (
-                        <div className={`text-center py-8 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-                          <span className="text-4xl">○</span>
+                        <div className={`text-center py-6 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                          <span className="text-3xl">○</span>
                           <p className="text-sm mt-2">Slot {idx + 1}</p>
                         </div>
                       )}
@@ -592,7 +605,7 @@ function App() {
           </div>
         </div>
 
-        {/* MODAIS */}
+        {/* MODAIS (mantidos iguais) */}
         {showLevelModal && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`}>
             <div className="flex justify-between items-center mb-4">
