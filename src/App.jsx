@@ -447,7 +447,7 @@ function App() {
               <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username}</h2>
               <div className="flex gap-2">
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                <button onClick={() => setCurrentArea('')} className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Áreas</button>
+                <button onClick={() => { setCurrentUser(null); setCurrentArea('') }} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
