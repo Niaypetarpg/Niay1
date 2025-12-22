@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock } from 'lucide-react'
+import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search } from 'lucide-react'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -15,15 +15,36 @@ function App() {
     classes: ['', '', '', ''],
     mainTeam: [],
     pcPokemon: 0,
-    pokedexCount: 0
+    pokedexCount: 0,
+    attributes: {
+      saude: 10,
+      ataque: 10,
+      defesa: 10,
+      ataqueEspecial: 10,
+      defesaEspecial: 10,
+      velocidade: 10
+    },
+    skills: {
+      saude: [],
+      ataque: [],
+      defesa: [],
+      ataqueEspecial: [],
+      defesaEspecial: [],
+      velocidade: []
+    },
+    currentHP: 0,
+    maxHP: 0
   })
 
   const [showLevelModal, setShowLevelModal] = useState(false)
   const [showClassModal, setShowClassModal] = useState(false)
   const [showImageModal, setShowImageModal] = useState(false)
+  const [showHPModal, setShowHPModal] = useState(false)
   const [currentSlot, setCurrentSlot] = useState(null)
   const [tempLevel, setTempLevel] = useState('')
   const [imageUrl, setImageUrl] = useState('')
+  const [classSearch, setClassSearch] = useState('')
+  const [hpValue, setHpValue] = useState('')
 
   const correctPassword = 'DnD7MarPkm'
 
@@ -114,12 +135,70 @@ function App() {
     { name: 'Síncrono', color: '#DC143C', isMaster: false }
   ]
 
+  const skillsByAttribute = {
+    saude: ['Apneia', 'Imunidade', 'Jejum', 'Resiliência'],
+    ataque: ['Corrida', 'Força', 'Intimidação', 'Salto'],
+    defesa: ['Concentração', 'Deflexão', 'Incansável', 'Regeneração'],
+    ataqueEspecial: ['Engenharia', 'História', 'Investigação', 'Programação'],
+    defesaEspecial: ['Empatia', 'Manha', 'Manipulação', 'Percepção'],
+    velocidade: ['Acrobacia', 'Furtividade', 'Performance', 'Prestidigitação']
+  }
+
+  const getModifier = (value) => {
+    const modMap = {1:-9,2:-8,3:-7,4:-6,5:-5,6:-4,7:-3,8:-2,9:-1,10:0,11:0,12:1,13:1,14:2,15:2,16:3,17:3,18:4,19:4,20:5,21:5,22:6,23:6,24:7,25:7,26:8,27:8,28:9,29:9,30:10,31:10,32:11,33:11,34:12,35:12,36:13,37:13,38:14,39:14,40:15}
+    return modMap[value] || 0
+  }
+
+  const calculateMaxHP = () => {
+    return (trainerData.level + trainerData.attributes.saude) * 4
+  }
+
+  const calculateDisplacement = () => {
+    const modAtk = getModifier(trainerData.attributes.ataque)
+    const modDef = getModifier(trainerData.attributes.defesa)
+    const modSpd = getModifier(trainerData.attributes.velocidade)
+    
+    const terrestre = Math.max(5, 3 + Math.floor(Math.max(modAtk, modSpd) / 2))
+    const natacao = Math.max(4, 2 + Math.floor(modDef / 2))
+    const subaquatico = (modAtk >= 3 || modDef >= 3) ? 4 : 3
+    
+    return { terrestre, natacao, subaquatico }
+  }
+
+  const calculateEvasion = () => {
+    const fisica = Math.floor(trainerData.attributes.defesa / 5)
+    const especial = Math.floor(trainerData.attributes.defesaEspecial / 5)
+    const veloz = Math.floor(trainerData.attributes.velocidade / 5)
+    
+    return { fisica, especial, veloz }
+  }
+
   useEffect(() => {
     if (currentUser?.type === 'treinador') {
       const saved = localStorage.getItem(`trainer_${currentUser.username}`)
-      if (saved) setTrainerData(JSON.parse(saved))
+      if (saved) {
+        const data = JSON.parse(saved)
+        setTrainerData(data)
+      } else {
+        const maxHP = calculateMaxHP()
+        setTrainerData(prev => ({ ...prev, maxHP, currentHP: maxHP }))
+      }
     }
   }, [currentUser])
+
+  useEffect(() => {
+    if (currentUser?.type === 'treinador') {
+      const maxHP = calculateMaxHP()
+      setTrainerData(prev => {
+        const newData = { ...prev, maxHP }
+        if (prev.currentHP === 0 || prev.currentHP === prev.maxHP) {
+          newData.currentHP = maxHP
+        }
+        localStorage.setItem(`trainer_${currentUser.username}`, JSON.stringify(newData))
+        return newData
+      })
+    }
+  }, [trainerData.level, trainerData.attributes.saude])
 
   useEffect(() => {
     if (currentUser?.type === 'treinador') {
@@ -150,7 +229,9 @@ function App() {
     setPassword('')
   }
 
-  const updateLevel = (change) => setTrainerData(prev => ({ ...prev, level: Math.max(0, Math.min(50, prev.level + change)) }))
+  const updateLevel = (change) => {
+    setTrainerData(prev => ({ ...prev, level: Math.max(0, Math.min(50, prev.level + change)) }))
+  }
   
   const setLevel = () => {
     const newLevel = parseInt(tempLevel)
@@ -161,6 +242,50 @@ function App() {
     }
   }
 
+  const updateAttribute = (attr, value) => {
+    const numValue = Math.max(1, Math.min(40, parseInt(value) || 1))
+    setTrainerData(prev => ({
+      ...prev,
+      attributes: { ...prev.attributes, [attr]: numValue }
+    }))
+  }
+
+  const toggleSkill = (attr, skill) => {
+    setTrainerData(prev => {
+      const currentSkills = prev.skills[attr] || []
+      const skillCount = currentSkills.filter(s => s === skill).length
+      
+      let newSkills
+      if (skillCount === 0) {
+        newSkills = [...currentSkills, skill]
+      } else if (skillCount === 1) {
+        newSkills = [...currentSkills, skill]
+      } else {
+        newSkills = currentSkills.filter(s => s !== skill)
+      }
+      
+      return {
+        ...prev,
+        skills: { ...prev.skills, [attr]: newSkills }
+      }
+    })
+  }
+
+  const getSkillCount = (attr, skill) => {
+    return (trainerData.skills[attr] || []).filter(s => s === skill).length
+  }
+
+  const handleHPChange = (isDamage) => {
+    const value = parseInt(hpValue) || 0
+    setTrainerData(prev => {
+      let newHP = isDamage ? prev.currentHP - value : prev.currentHP + value
+      if (!isDamage) newHP = Math.min(newHP, prev.maxHP)
+      return { ...prev, currentHP: newHP }
+    })
+    setHpValue('')
+    setShowHPModal(false)
+  }
+
   const selectClass = (className) => {
     setTrainerData(prev => {
       const newClasses = [...prev.classes]
@@ -168,6 +293,7 @@ function App() {
       return { ...prev, classes: newClasses }
     })
     setShowClassModal(false)
+    setClassSearch('')
   }
 
   const handleImageUpload = (e) => {
@@ -190,7 +316,10 @@ function App() {
     }
   }
 
-  // TELA DE LOGIN - BOTÕES AINDA MENORES, CORES MESCLADAS, COM LOGO
+  const filteredClasses = classes.filter(cls => 
+    cls.name.toLowerCase().includes(classSearch.toLowerCase())
+  )
+
   if (!currentUser) {
     return (
       <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'} flex items-center justify-center p-4`}>
@@ -208,80 +337,34 @@ function App() {
         
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 w-full max-w-xl`}>
           <div className="flex justify-end mb-4">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}
-            >
+            <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
           </div>
-
-          {/* LOGO DO POKÉMON RPG */}
           <div className="flex justify-center mb-6">
-            <img 
-              src="/logo.png" 
-              alt="Pokémon RPG" 
-              className="w-48 h-48 object-contain"
-            />
+            <img src="/logo.png" alt="Pokémon RPG" className="w-48 h-48 object-contain" />
           </div>
-
           <div className="text-center mb-6">
             <h1 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-2`}>Niaypeta Corp™</h1>
             <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>O Professor Carvalho quer saber seu nome.</p>
           </div>
-
           <h2 className={`text-center font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-3`}>Selecione o Usuário</h2>
-          
-          {/* BOTÕES MENORES E CORES MESCLADAS - 2 COLUNAS */}
           <div className="grid grid-cols-2 gap-3 mb-6">
             {users.map((user) => (
-              <button
-                key={user.username}
-                onClick={() => handleUserSelect(user)}
-                className={`animated-gradient p-3 rounded-lg text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center justify-center gap-2 ${
-                  selectedUser?.username === user.username ? 'ring-4 ring-blue-400' : ''
-                }`}
-                style={{ background: user.gradient }}
-              >
+              <button key={user.username} onClick={() => handleUserSelect(user)} className={`animated-gradient p-3 rounded-lg text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center justify-center gap-2 ${selectedUser?.username === user.username ? 'ring-4 ring-blue-400' : ''}`} style={{ background: user.gradient }}>
                 <User size={18} />
                 <span className="text-base">{user.username}</span>
               </button>
             ))}
           </div>
-
-          {/* SENHA EMBAIXO DOS BOTÕES */}
           <div>
             <h2 className={`text-center font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-3`}>Senha</h2>
             <div className="relative mb-4">
               <Lock className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} size={20} />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && selectedUser && handleLogin()}
-                placeholder="Digite a senha"
-                disabled={!selectedUser}
-                className={`w-full pl-12 pr-4 py-3 rounded-lg border-2 ${
-                  darkMode 
-                    ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
-                    : 'bg-white border-gray-300 text-gray-800'
-                } ${!selectedUser ? 'opacity-50 cursor-not-allowed' : ''}`}
-              />
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && selectedUser && handleLogin()} placeholder="Digite a senha" disabled={!selectedUser} className={`w-full pl-12 pr-4 py-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-800'} ${!selectedUser ? 'opacity-50 cursor-not-allowed' : ''}`} />
             </div>
-            
-            {error && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-center">
-                {error}
-              </div>
-            )}
-
-            <button
-              onClick={handleLogin}
-              disabled={!selectedUser || !password}
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Entrar
-            </button>
+            {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-center">{error}</div>}
+            <button onClick={handleLogin} disabled={!selectedUser || !password} className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">Entrar</button>
           </div>
         </div>
       </div>
@@ -297,9 +380,7 @@ function App() {
             <div className="flex justify-between items-center mb-4">
               <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username} {currentUser.type === 'mestre' && '👑'}</h2>
               <div className="flex gap-2">
-                <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
-                  {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-                </button>
+                <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
                 <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
@@ -320,6 +401,10 @@ function App() {
   }
 
   if (currentUser.type === 'treinador' && currentArea === 'Treinador') {
+    const displacement = calculateDisplacement()
+    const evasion = calculateEvasion()
+    const hpPercentage = (trainerData.currentHP / trainerData.maxHP) * 100
+
     return (
       <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
@@ -327,9 +412,7 @@ function App() {
             <div className="flex justify-between items-center mb-4">
               <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username}</h2>
               <div className="flex gap-2">
-                <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
-                  {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-                </button>
+                <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
                 <button onClick={() => setCurrentArea('')} className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Voltar</button>
               </div>
             </div>
@@ -347,13 +430,9 @@ function App() {
                 {trainerData.image ? (
                   <img src={trainerData.image} alt="Treinador" className="w-32 h-32 object-cover rounded-lg border-4 border-blue-500" />
                 ) : (
-                  <div className="w-32 h-32 bg-gray-300 rounded-lg flex items-center justify-center border-4 border-gray-400">
-                    <Camera size={48} className="text-gray-500" />
-                  </div>
+                  <div className="w-32 h-32 bg-gray-300 rounded-lg flex items-center justify-center border-4 border-gray-400"><Camera size={48} className="text-gray-500" /></div>
                 )}
-                <button onClick={() => setShowImageModal(true)} className="absolute -bottom-2 -right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600">
-                  <Camera size={20} />
-                </button>
+                <button onClick={() => setShowImageModal(true)} className="absolute -bottom-2 -right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600"><Camera size={20} /></button>
               </div>
               <div className="flex-1">
                 <h3 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>{currentUser.username}</h3>
@@ -363,6 +442,24 @@ function App() {
                   <button onClick={() => { setTempLevel(trainerData.level.toString()); setShowLevelModal(true) }} className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm font-semibold">Lvl</button>
                   <button onClick={() => updateLevel(1)} className="p-1 bg-green-500 text-white rounded hover:bg-green-600"><Plus size={16} /></button>
                 </div>
+                
+                {/* VIDA COM BARRA */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className={`text-sm font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                      HP: {trainerData.currentHP}/{trainerData.maxHP}
+                    </span>
+                    <button onClick={() => setShowHPModal(true)} className="flex items-center gap-1 px-3 py-1 bg-purple-500 text-white rounded hover:bg-purple-600 text-sm">
+                      <Sword size={14} />
+                      <Heart size={14} />
+                      Dano/Cura
+                    </button>
+                  </div>
+                  <div className="w-full bg-gray-300 rounded-full h-6">
+                    <div className={`h-6 rounded-full transition-all ${trainerData.currentHP < 0 ? 'bg-red-700' : 'bg-green-500'}`} style={{ width: `${Math.min(100, Math.max(0, hpPercentage))}%` }}></div>
+                  </div>
+                </div>
+
                 <div className="flex gap-4">
                   <div className="bg-blue-100 px-4 py-2 rounded-lg"><div className="text-xs text-blue-600">Time Principal</div><div className="text-lg font-bold text-blue-800">{trainerData.mainTeam.length}/6</div></div>
                   <div className="bg-green-100 px-4 py-2 rounded-lg"><div className="text-xs text-green-600">PC</div><div className="text-lg font-bold text-green-800">{trainerData.pcPokemon}/1000</div></div>
@@ -370,7 +467,9 @@ function App() {
                 </div>
               </div>
             </div>
-            <div>
+
+            {/* CLASSES */}
+            <div className="mb-8">
               <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Classes & Subclasses</h4>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {trainerData.classes.map((cls, index) => {
@@ -383,8 +482,74 @@ function App() {
                 })}
               </div>
             </div>
+
+            {/* TABELA DE ATRIBUTOS */}
+            <div className="mb-8">
+              <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Atributos</h4>
+              <div className="overflow-x-auto">
+                <table className={`w-full border-collapse ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
+                  <thead>
+                    <tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
+                      <th className={`border p-2 ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Atributo</th>
+                      <th className={`border p-2 ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Valor</th>
+                      <th className={`border p-2 ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Modificador</th>
+                      <th className={`border p-2 ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Perícias</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.entries(trainerData.attributes).map(([key, value]) => {
+                      const modifier = getModifier(value)
+                      const attrNames = { saude: 'Saúde', ataque: 'Ataque', defesa: 'Defesa', ataqueEspecial: 'Ataque Especial', defesaEspecial: 'Defesa Especial', velocidade: 'Velocidade' }
+                      return (
+                        <tr key={key}>
+                          <td className={`border p-2 font-semibold ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>{attrNames[key]}</td>
+                          <td className={`border p-2 ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
+                            <input type="number" min="1" max="40" value={value} onChange={(e) => updateAttribute(key, e.target.value)} className={`w-20 px-2 py-1 text-center border rounded ${darkMode ? 'bg-gray-600 text-white border-gray-500' : 'border-gray-300'}`} />
+                          </td>
+                          <td className={`border p-2 text-center font-bold ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>{modifier >= 0 ? '+' : ''}{modifier}</td>
+                          <td className={`border p-2 ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
+                            <div className="flex flex-wrap gap-1">
+                              {skillsByAttribute[key].map(skill => {
+                                const count = getSkillCount(key, skill)
+                                return (
+                                  <button key={skill} onClick={() => toggleSkill(key, skill)} className={`px-2 py-1 text-xs rounded ${count > 0 ? 'bg-blue-500 text-white' : darkMode ? 'bg-gray-600 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
+                                    {skill} {count === 2 && 'x2'}
+                                  </button>
+                                )
+                              })}
+                            </div>
+                          </td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* DESLOCAMENTOS E EVASÃO */}
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Deslocamentos</h4>
+                <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <div className="mb-2"><span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Terrestre:</span> <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{displacement.terrestre}</span></div>
+                  <div className="mb-2"><span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Natação:</span> <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{displacement.natacao}</span></div>
+                  <div><span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Subaquático:</span> <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{displacement.subaquatico}</span></div>
+                </div>
+              </div>
+              <div>
+                <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Evasão</h4>
+                <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <div className="mb-2"><span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Física:</span> <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{evasion.fisica}</span></div>
+                  <div className="mb-2"><span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Especial:</span> <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{evasion.especial}</span></div>
+                  <div><span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Veloz:</span> <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{evasion.veloz}</span></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* MODAIS */}
         {showLevelModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`}>
@@ -397,6 +562,23 @@ function App() {
             </div>
           </div>
         )}
+
+        {showHPModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`}>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Dano/Cura Treinador</h3>
+                <button onClick={() => setShowHPModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
+              </div>
+              <input type="number" min="1" max="1000" value={hpValue} onChange={(e) => setHpValue(e.target.value)} placeholder="Valor (1-1000)" className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
+              <div className="grid grid-cols-2 gap-4">
+                <button onClick={() => handleHPChange(false)} className="bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 font-semibold flex items-center justify-center gap-2"><Heart size={20} />Curar Trainer</button>
+                <button onClick={() => handleHPChange(true)} className="bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 font-semibold flex items-center justify-center gap-2"><Sword size={20} />Dano Trainer</button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {showImageModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`}>
@@ -412,6 +594,7 @@ function App() {
             </div>
           </div>
         )}
+
         {showClassModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto`}>
@@ -419,13 +602,23 @@ function App() {
                 <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Selecionar Classe/Subclasse</h3>
                 <button onClick={() => setShowClassModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
               </div>
+              
+              {/* BARRA DE PESQUISA */}
+              <div className="relative mb-4">
+                <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} size={20} />
+                <input type="text" value={classSearch} onChange={(e) => setClassSearch(e.target.value)} placeholder="Pesquisar classe..." className={`w-full pl-10 pr-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300'}`} />
+              </div>
+
               <div className="space-y-2">
-                {classes.map((cls) => (
+                {filteredClasses.map((cls) => (
                   <button key={cls.name} onClick={() => selectClass(cls.name)} className="w-full p-3 rounded-lg text-left font-semibold hover:opacity-80 transition-opacity flex items-center gap-2" style={{ backgroundColor: cls.color + '60', color: cls.color, border: `2px solid ${cls.color}` }}>
                     {cls.isMaster && <Crown size={20} />}{cls.name}
                   </button>
                 ))}
               </div>
+              {filteredClasses.length === 0 && (
+                <p className={`text-center py-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Nenhuma classe encontrada</p>
+              )}
             </div>
           </div>
         )}
@@ -441,9 +634,7 @@ function App() {
           <div className="flex justify-between items-center mb-4">
             <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentArea}</h2>
             <div className="flex gap-2">
-              <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
-                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
+              <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
               <button onClick={() => setCurrentArea('')} className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Voltar</button>
             </div>
           </div>
