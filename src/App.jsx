@@ -9,7 +9,7 @@ function App() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   
-  const [trainerData, setTrainerData] = useState({
+  const initialTrainerData = {
     image: '',
     level: 1,
     classes: ['', '', '', ''],
@@ -32,9 +32,11 @@ function App() {
       defesaEspecial: [],
       velocidade: []
     },
-    currentHP: 0,
-    maxHP: 0
-  })
+    currentHP: 44,
+    maxHP: 44
+  }
+
+  const [trainerData, setTrainerData] = useState(initialTrainerData)
 
   const [showLevelModal, setShowLevelModal] = useState(false)
   const [showClassModal, setShowClassModal] = useState(false)
@@ -146,17 +148,17 @@ function App() {
 
   const getModifier = (value) => {
     const modMap = {1:-9,2:-8,3:-7,4:-6,5:-5,6:-4,7:-3,8:-2,9:-1,10:0,11:0,12:1,13:1,14:2,15:2,16:3,17:3,18:4,19:4,20:5,21:5,22:6,23:6,24:7,25:7,26:8,27:8,28:9,29:9,30:10,31:10,32:11,33:11,34:12,35:12,36:13,37:13,38:14,39:14,40:15}
-    return modMap[value] || 0
+    return modMap[value] !== undefined ? modMap[value] : 0
   }
 
-  const calculateMaxHP = () => {
-    return (trainerData.level + trainerData.attributes.saude) * 4
+  const calculateMaxHP = (level, saude) => {
+    return (level + saude) * 4
   }
 
-  const calculateDisplacement = () => {
-    const modAtk = getModifier(trainerData.attributes.ataque)
-    const modDef = getModifier(trainerData.attributes.defesa)
-    const modSpd = getModifier(trainerData.attributes.velocidade)
+  const calculateDisplacement = (attributes) => {
+    const modAtk = getModifier(attributes.ataque)
+    const modDef = getModifier(attributes.defesa)
+    const modSpd = getModifier(attributes.velocidade)
     
     const terrestre = Math.max(5, 3 + Math.floor(Math.max(modAtk, modSpd) / 2))
     const natacao = Math.max(4, 2 + Math.floor(modDef / 2))
@@ -165,10 +167,10 @@ function App() {
     return { terrestre, natacao, subaquatico }
   }
 
-  const calculateEvasion = () => {
-    const fisica = Math.floor(trainerData.attributes.defesa / 5)
-    const especial = Math.floor(trainerData.attributes.defesaEspecial / 5)
-    const veloz = Math.floor(trainerData.attributes.velocidade / 5)
+  const calculateEvasion = (attributes) => {
+    const fisica = Math.floor(attributes.defesa / 5)
+    const especial = Math.floor(attributes.defesaEspecial / 5)
+    const veloz = Math.floor(attributes.velocidade / 5)
     
     return { fisica, especial, veloz }
   }
@@ -177,28 +179,38 @@ function App() {
     if (currentUser?.type === 'treinador') {
       const saved = localStorage.getItem(`trainer_${currentUser.username}`)
       if (saved) {
-        const data = JSON.parse(saved)
-        setTrainerData(data)
+        try {
+          const data = JSON.parse(saved)
+          setTrainerData(data)
+        } catch (e) {
+          console.error('Erro ao carregar dados:', e)
+          const maxHP = calculateMaxHP(1, 10)
+          setTrainerData({ ...initialTrainerData, maxHP, currentHP: maxHP })
+        }
       } else {
-        const maxHP = calculateMaxHP()
-        setTrainerData(prev => ({ ...prev, maxHP, currentHP: maxHP }))
+        const maxHP = calculateMaxHP(1, 10)
+        setTrainerData({ ...initialTrainerData, maxHP, currentHP: maxHP })
       }
     }
   }, [currentUser])
 
   useEffect(() => {
     if (currentUser?.type === 'treinador') {
-      const maxHP = calculateMaxHP()
+      const maxHP = calculateMaxHP(trainerData.level, trainerData.attributes.saude)
       setTrainerData(prev => {
-        const newData = { ...prev, maxHP }
-        if (prev.currentHP === 0 || prev.currentHP === prev.maxHP) {
-          newData.currentHP = maxHP
+        const needsUpdate = prev.maxHP !== maxHP
+        if (needsUpdate) {
+          const newData = { ...prev, maxHP }
+          if (prev.currentHP === prev.maxHP || prev.currentHP === 0) {
+            newData.currentHP = maxHP
+          }
+          localStorage.setItem(`trainer_${currentUser.username}`, JSON.stringify(newData))
+          return newData
         }
-        localStorage.setItem(`trainer_${currentUser.username}`, JSON.stringify(newData))
-        return newData
+        return prev
       })
     }
-  }, [trainerData.level, trainerData.attributes.saude])
+  }, [trainerData.level, trainerData.attributes?.saude, currentUser])
 
   useEffect(() => {
     if (currentUser?.type === 'treinador') {
@@ -401,9 +413,9 @@ function App() {
   }
 
   if (currentUser.type === 'treinador' && currentArea === 'Treinador') {
-    const displacement = calculateDisplacement()
-    const evasion = calculateEvasion()
-    const hpPercentage = (trainerData.currentHP / trainerData.maxHP) * 100
+    const displacement = calculateDisplacement(trainerData.attributes)
+    const evasion = calculateEvasion(trainerData.attributes)
+    const hpPercentage = trainerData.maxHP > 0 ? (trainerData.currentHP / trainerData.maxHP) * 100 : 0
 
     return (
       <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
@@ -443,7 +455,6 @@ function App() {
                   <button onClick={() => updateLevel(1)} className="p-1 bg-green-500 text-white rounded hover:bg-green-600"><Plus size={16} /></button>
                 </div>
                 
-                {/* VIDA COM BARRA */}
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
                     <span className={`text-sm font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -468,7 +479,6 @@ function App() {
               </div>
             </div>
 
-            {/* CLASSES */}
             <div className="mb-8">
               <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Classes & Subclasses</h4>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -483,7 +493,6 @@ function App() {
               </div>
             </div>
 
-            {/* TABELA DE ATRIBUTOS */}
             <div className="mb-8">
               <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Atributos</h4>
               <div className="overflow-x-auto">
@@ -527,7 +536,6 @@ function App() {
               </div>
             </div>
 
-            {/* DESLOCAMENTOS E EVASÃO */}
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Deslocamentos</h4>
@@ -549,7 +557,6 @@ function App() {
           </div>
         </div>
 
-        {/* MODAIS */}
         {showLevelModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`}>
@@ -602,13 +609,10 @@ function App() {
                 <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Selecionar Classe/Subclasse</h3>
                 <button onClick={() => setShowClassModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
               </div>
-              
-              {/* BARRA DE PESQUISA */}
               <div className="relative mb-4">
                 <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} size={20} />
                 <input type="text" value={classSearch} onChange={(e) => setClassSearch(e.target.value)} placeholder="Pesquisar classe..." className={`w-full pl-10 pr-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300'}`} />
               </div>
-
               <div className="space-y-2">
                 {filteredClasses.map((cls) => (
                   <button key={cls.name} onClick={() => selectClass(cls.name)} className="w-full p-3 rounded-lg text-left font-semibold hover:opacity-80 transition-opacity flex items-center gap-2" style={{ backgroundColor: cls.color + '60', color: cls.color, border: `2px solid ${cls.color}` }}>
