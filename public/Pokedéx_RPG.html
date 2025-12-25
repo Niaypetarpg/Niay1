@@ -2016,10 +2016,173 @@ if (quantidade === 1) {
     
     // Fechar a grade
     resultadoHTML += '</div>';
-    
+
     document.getElementById('resultado').innerHTML = resultadoHTML;
+
+    // Enviar dados dos Pokémon gerados para o aplicativo React principal
+    resultados.forEach((pokemon, index) => {
+        // Extrair URL da imagem do imageHTML
+        const imgMatch = pokemon.imageHTML.match(/src="([^"]+)"/);
+        const imageUrl = imgMatch ? imgMatch[1] : '';
+
+        const pokemonData = {
+            id: `npc-${Date.now()}-${index}`,
+            species: pokemon.pkm.especie,
+            name: pokemon.pkm.nome,
+            dexNumber: pokemon.pkm.dexNumber,
+            types: pokemon.pkm.tipos,
+            catchRate: pokemon.pkm.catchRate,
+            experience: pokemon.xpTotal,
+            baseExp: pokemon.baseExp,
+            level: pokemon.nivel,
+            gender: pokemon.sexo,
+            nature: pokemon.natureza,
+            shiny: pokemon.shiny,
+            migration: pokemon.migracao,
+            migrationRegion: pokemon.regiaoMigracao,
+            height: pokemon.altura,
+            weight: pokemon.peso,
+            habitats: pokemon.pkm.habitats,
+            imageUrl: imageUrl,
+            attributes: {
+                saude: pokemon.statusFinais.saude,
+                ataque: pokemon.statusFinais.ataque,
+                defesa: pokemon.statusFinais.defesa,
+                ataqueEspecial: pokemon.statusFinais.ataqueEspecial,
+                defesaEspecial: pokemon.statusFinais.defesaEspecial,
+                velocidade: pokemon.statusFinais.velocidade
+            },
+            baseAttributes: {
+                saude: pokemon.pkm.statusBasais.saude,
+                ataque: pokemon.pkm.statusBasais.ataque,
+                defesa: pokemon.pkm.statusBasais.defesa,
+                ataqueEspecial: pokemon.pkm.statusBasais.ataqueEspecial,
+                defesaEspecial: pokemon.pkm.statusBasais.defesaEspecial,
+                velocidade: pokemon.pkm.statusBasais.velocidade
+            },
+            hp: pokemon.pontosDeVida
+        };
+
+        window.parent.postMessage({
+            type: 'POKEMON_GENERATED',
+            pokemon: pokemonData
+        }, '*');
+    });
 }
-    
+
+// Função para salvar o estado do formulário
+function saveFormState() {
+    const formState = {
+        // Checkboxes de região
+        regioes: Array.from(document.querySelectorAll('input[name="regiao"]:checked')).map(cb => cb.value),
+        // Checkboxes de habitats
+        habitats: Array.from(document.querySelectorAll('input[name="localidade"]:checked')).map(cb => cb.value),
+        // Checkboxes de catch rate
+        catchRates: Array.from(document.querySelectorAll('input[name="catchRate"]:checked')).map(cb => cb.value),
+        // Checkboxes de níveis
+        niveis: Array.from(document.querySelectorAll('input[name="nivel"]:checked')).map(cb => cb.value),
+        // Checkboxes de gostos
+        gostos: Array.from(document.querySelectorAll('input[name="gosto"]:checked')).map(cb => cb.value),
+        // Checkboxes de tipos
+        tipos: Array.from(document.querySelectorAll('input[name="tipo"]:checked')).map(cb => cb.value),
+        // Selects
+        tipoPreferido: document.getElementById('tipoPreferido')?.value || '',
+        dias: document.getElementById('dias')?.value || '1',
+        quantidade: document.getElementById('quantidade')?.value || '1',
+        // Inputs de porcentagem
+        tipoPorcentagem: document.getElementById('tipoPorcentagem')?.value || '',
+        tipoMigracaoPorcentagem: document.getElementById('tipoMigracaoPorcentagem')?.value || '',
+        nivelEspecifico: document.getElementById('nivelEspecifico')?.value || '',
+        shinyPorcentagem: document.getElementById('shinyPorcentagem')?.value || ''
+    };
+
+    localStorage.setItem('pokemon_generator_state', JSON.stringify(formState));
+}
+
+// Função para restaurar o estado do formulário
+function restoreFormState() {
+    const savedState = localStorage.getItem('pokemon_generator_state');
+    if (!savedState) return;
+
+    try {
+        const formState = JSON.parse(savedState);
+
+        // Restaurar checkboxes de região
+        document.querySelectorAll('input[name="regiao"]').forEach(cb => {
+            cb.checked = formState.regioes?.includes(cb.value) || false;
+        });
+
+        // Restaurar checkboxes de habitats
+        document.querySelectorAll('input[name="localidade"]').forEach(cb => {
+            cb.checked = formState.habitats?.includes(cb.value) || false;
+        });
+
+        // Restaurar checkboxes de catch rate
+        document.querySelectorAll('input[name="catchRate"]').forEach(cb => {
+            cb.checked = formState.catchRates?.includes(cb.value) || false;
+        });
+
+        // Restaurar checkboxes de níveis
+        document.querySelectorAll('input[name="nivel"]').forEach(cb => {
+            cb.checked = formState.niveis?.includes(cb.value) || false;
+        });
+
+        // Restaurar checkboxes de gostos
+        document.querySelectorAll('input[name="gosto"]').forEach(cb => {
+            cb.checked = formState.gostos?.includes(cb.value) || false;
+        });
+
+        // Restaurar checkboxes de tipos
+        document.querySelectorAll('input[name="tipo"]').forEach(cb => {
+            cb.checked = formState.tipos?.includes(cb.value) || false;
+        });
+
+        // Restaurar selects
+        if (document.getElementById('tipoPreferido')) {
+            document.getElementById('tipoPreferido').value = formState.tipoPreferido || '';
+        }
+        if (document.getElementById('dias')) {
+            document.getElementById('dias').value = formState.dias || '1';
+        }
+        if (document.getElementById('quantidade')) {
+            document.getElementById('quantidade').value = formState.quantidade || '1';
+        }
+
+        // Restaurar inputs de porcentagem
+        if (document.getElementById('tipoPorcentagem')) {
+            document.getElementById('tipoPorcentagem').value = formState.tipoPorcentagem || '';
+        }
+        if (document.getElementById('tipoMigracaoPorcentagem')) {
+            document.getElementById('tipoMigracaoPorcentagem').value = formState.tipoMigracaoPorcentagem || '';
+        }
+        if (document.getElementById('nivelEspecifico')) {
+            document.getElementById('nivelEspecifico').value = formState.nivelEspecifico || '';
+        }
+        if (document.getElementById('shinyPorcentagem')) {
+            document.getElementById('shinyPorcentagem').value = formState.shinyPorcentagem || '';
+        }
+    } catch (e) {
+        console.error('Erro ao restaurar estado do formulário:', e);
+    }
+}
+
+// Restaurar estado quando a página carregar
+window.addEventListener('load', function() {
+    restoreFormState();
+});
+
+// Salvar estado quando qualquer campo mudar
+document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type="checkbox"], select, input[type="number"], input[type="text"]')) {
+        saveFormState();
+    }
+});
+
+// Salvar estado quando a página for descarregada
+window.addEventListener('beforeunload', function() {
+    saveFormState();
+});
+
   </script>
 </body>
 </html>
