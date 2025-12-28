@@ -32,3 +32,14 @@ body {
   background-size: 200% 100%;
   animation: rainbow 3s ease-in-out infinite;
 }
+
+@keyframes colorCycle {
+  0% { background-color: #ef4444; } /* red */
+  14.28% { background-color: #3b82f6; } /* blue */
+  28.56% { background-color: #1f2937; } /* black */
+  42.84% { background-color: #9333ea; } /* purple */
+  57.12% { background-color: #eab308; } /* yellow */
+  71.4% { background-color: #ffffff; color: #000000; } /* white */
+  85.68% { background-color: #22c55e; } /* green */
+  100% { background-color: #ec4899; } /* pink */
+}

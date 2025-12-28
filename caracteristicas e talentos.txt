@@ -1,0 +1,1772 @@
+Característica Artista
+Fama 
+Frequência: Constante. 
+Referência: C, V
+Efeito: seus pokémons recebem 20% de pontos de 
+experiência adicionais a cada vez que receberem pontos de 
+experiência por Concursos. Se você ganhar um Concurso, 
+receba 15% a mais do prêmio financeiro que receberia.
+
+Postura 
+Frequência: Constante. 
+Referência: C, V
+Efeito: seus pokémons podem possuir uma soma 
+de Aptidões igual a 24. Além disso, eles podem receber os 
+efeitos de quaisquer Temperos até atingirem este máximo. 
+Se um pokémon beneficiado por Postura alcança mais do 
+que 20 pontos somando todas as suas Aptidões e é 
+posteriormente trocado com alguém que não é um Artista, 
+o pokémon mantém suas Aptidões melhoradas, mas o novo 
+dono não poderá acessar mais do que 20 pontos de 
+Aptidões por Concurso, a menos que possua outra 
+característica que permita elevar as Aptidões de seus 
+pokémons.
+
+Talento Artista 
+
+Acha Isso Impressionante? 
+Requisitos: Defesa Especial 17. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: o alvo ganha um dos seguintes efeitos, 
+conforme o Golpe que usará na rodada atual. Se o Golpe 
+possui o Descritor Explosão, aumente em 2 o tamanho da 
+Explosão. Se o Golpe não possui este Descritor e é À 
+Distância, aumente o alcance em 4. Finalmente, se o Golpe 
+não possui este Descritor e é Corpo a Corpo, aumente em 4 
+os Deslocamentos do alvo por esta rodada. 
+Em Concursos, o efeito deste Talento é outro: role 
+1d20 + MDE. Se o resultado for 13 ou mais, adicione o 
+Descritor Perspectiva a um Golpe usado pelo alvo nesta 
+rodada. Este Talento não afeta a Pontuação Basal do Golpe. 
+
+Aplausos
+Requisitos: Defesa Especial 16.  
+Referência: P, V
+Frequência: Diária. 
+Efeito: usa o Golpe Bis. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Originalidade. Enquanto em 
+batalhas, este Talento é ilegal, em Concursos, ele é legal. 
+Este Talento não afeta a Pontuação Basal do Golpe. 
+
+Clímax 
+Requisitos: Defesa Especial 15, 2 prêmios em 
+Concursos. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: o próximo Golpe cuja Frequência seja 
+Batalha usado pelo alvo não terá seu uso consumido. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Abstração ou pelo Descritor 
+Conquista. Só é possível usar este Talento uma vez por 
+Concurso e ele não afeta a Pontuação Basal do Golpe. 
+
+Clímax + 
+Requisitos: Clímax.
+Referência:  P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: o próximo Golpe cuja Frequência seja Diária 
+ou Por Encontro usado pelo alvo não terá seu uso 
+consumido. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Abstração, pelo Descritor 
+Conquista ou por ambos os Descritores Abstração e 
+Conquista. Só é possível usar este Talento uma vez por 
+Concurso e ele não afeta a Pontuação Basal do Golpe. 
+Este Talento substitui Clímax. 
+
+Conquistando o Júri 
+Requisitos: 2 prêmios em Concursos. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: o alvo usa imediatamente o Golpe Isca 
+consumindo a Ação de Golpe dele. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Dedicatória. Só é possível usar 
+este Talento uma vez por Concurso e ele não afeta a 
+Pontuação Basal do Golpe. 
+
+Não Fique pra Trás! 
+Frequência: À Vontade. 
+Referência: P, X
+Efeito: usa o Golpe Mão Amiga. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Reviravolta. Enquanto em 
+batalhas, este Talento é ilegal, em Concursos, ele é legal. Só 
+é possível usar este Talento uma vez por Concurso e ele não 
+afeta a Pontuação Basal do Golpe. 
+
+Paciência 
+Requisitos: Defesa Especial 16. 
+Referência: P, X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: usa o Golpe Revogação. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Pausa. Enquanto em batalhas, 
+este Talento é ilegal, em Concursos, ele é legal. Só é possível 
+usar este Talento uma vez por Concurso e ele não afeta a 
+Pontuação Basal do Golpe. 
+
+Perfeccionismo 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: P, V
+Alvo: um pokémon seu. 
+Efeito: o alvo ganha 30% de experiência extra pelo 
+Concurso se obtiver o Segundo Lugar ou 80% de experiência 
+extra se obtiver o Primeiro Lugar. 
+
+Performance Eletrizante 
+Requisitos: 3 prêmios em Concursos. 
+Referência: P, V
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Alvo: um pokémon seu. 
+Efeito: o alvo imediatamente usa o Golpe Mira sem 
+consumir qualquer Ação. Ele não pode usar Mira para 
+beneficiar um dos seguintes Golpes: Chifre Broca, Fissura, 
+Guilhotina, Zero Absoluto. Você ainda pode fazer o Teste de 
+Acurácia apenas para determinar se é um Crítico. Este 
+Talento deve ser declarado antes que um Teste de Acurácia 
+seja feito. 
+Em Concursos, o efeito deste Talento é outro: 
+adicione o Descritor Extravagância a um Golpe usado pelo 
+alvo nesta rodada. Este Talento não afeta a Pontuação Basal 
+do Golpe 
+
+Protagonismo 
+Requisitos: Velocidade 16. 
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: o alvo usa imediatamente o Golpe Isca 
+consumindo a Ação de Golpe dele. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Dedicatória. Só é possível usar 
+este Talento uma vez por Concurso e ele não afeta a 
+Pontuação Basal do Golpe
+
+-------
+
+Características Coreógrafa
+
+Autor 
+Frequência: Diária. 
+Referência: P, V
+Alvo: um pokémon seu ou aliado. 
+Efeito: esta Característica de Classe 
+envolve escrever e planejar performances 
+artísticas. Escolha um Golpe conhecido pelo 
+pokémon alvo e adicione o Descritor Som ou 
+o Descritor Dança aos Descritores daquele 
+Golpe, mas apenas para o pokémon alvo. 
+Um pokémon não pode, ao longo de sua 
+lista de Golpes, possuir mais do que três 
+Golpes com Descritores adicionados por 
+esta Característica de Classe. 
+Quando o alvo aprender um novo Golpe, você 
+pode escolher remover o Descritor Som ou o Descritor 
+Dança de um Golpe que ele já possuía para adicionar o 
+Descritor Som ou o Descritor Dança ao novo Golpe 
+aprendido. Isso só pode ser feito se o Descritor Som ou o 
+Descritor Dança foram introduzidos no Golpe mediante esta 
+Característica de Classe, de modo que o pokémon continue 
+com no máximo três Golpes com Descritores adicionados 
+por esta Característica de Classe. 
+Finalmente, um mesmo Golpe pode receber tanto 
+o Descritor Som quanto o Descritor Dança, contudo ele 
+contará duas vezes para o máximo de três adições de 
+Descritores permitido por esta Característica de Classe.
+
+Nota de Palco 
+Frequência: Constante. 
+Referência: C, V
+Efeito: uma vez por concurso, quando seu 
+pokémon executar uma Canção (ou seja, um Golpe com o 
+Descritor Som), role 1d6 extra durante a Apelação. Uma vez 
+por concurso, quando seu pokémon executar uma Dança 
+(ou seja, um Golpe com o Descritor Dança), role 1d6 extra 
+durante a Apelação.
+
+
+Talentos Coreógrafa
+
+Acompanhamento 
+Frequência: Diária. 
+Referência: P, V
+Gatilho: um pokémon seu está executando um 
+Golpe não causador de dano o Descritor Som. 
+Efeito: o Golpe usado pode ser usado por qualquer 
+pokémon aliado que queira copiá-lo no lugar da Ação de 
+Golpe daquele pokémon desde que isso ocorra ainda na 
+rodada atual e se eles tiverem sucesso em rolar pelo menos 
+8 em 1d20. Se um pokémon falhar na rolagem, ele poderá 
+executar sua Ação de Golpe normalmente. O pokémon a se 
+beneficiar por este Talento deve conhecer o Golpe a ser 
+reproduzido e isso consome usos deste Golpe. 
+
+Coro Coordenado 
+Requisitos: seis Talentos de Coreógrafo (desconte 
+as Características de Classe para este cálculo). 
+Referência: P, V
+Frequência: Diária. 
+Efeito: na próxima rodada do combate, todos os 
+aliados (humanos e pokémons) a até 10 metros de você 
+causam dano extra quando fizerem rolagens de dano e 
+reduzem dano sofrido quando forem sofrer danos. A 
+quantidade de dano extra e a quantidade de redução de 
+dano é a mesma: o maior entre seu MDE ou seu MV, mas 
+não mais do que 5.
+
+Deslumbrante 
+Requisitos: Nível 15. 
+Referência: P, V
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Gatilho: um pokémon seu está executando um 
+Golpe o Descritor Dança ou com o Descritor Som. 
+Efeito: escolha outro Golpe com o Descritor Som 
+ou com o Descritor Dança. O Golpe escolhido deve ser 
+conhecido pelo pokémon que ativou o Gatilho deste 
+Talento e não pode ser causador de dano. Os efeitos do 
+Golpe escolhido são adicionados aos efeitos do Golpe 
+executado pelo pokémon. Contudo, também adicione o 
+Descritor Exaustão ao Golpe. Efeitos que reduziriam um 
+alvo a u podem ser usados com Deslumbrante. Também não podem ma quantidade específica de Pontos de Vida não 
+ser usados efeitos que criam Ameaças ou Barreiras. 
+Um Golpe modificado por Deslumbrante não pode 
+ser combinado mediante os Talentos do Síncrono. 
+
+Destacado 
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional. 
+Referência: P, V
+Gatilho: um pokémon seu está executando um 
+Golpe o Descritor Som com pelo menos um alvo. 
+Efeito: aqueles que forem atingidos pelo Golpe do 
+seu pokémon devem atacar o seu pokémon na rodada 
+seguinte. Se eles acertarem ataques contra o seu pokémon 
+na rodada seguinte, reduza o dano que o seu pokémon 
+sofreria por seu MDE + seu MV. 
+
+Fortíssimo 
+Requisitos: Nível 15. 
+Referência: P, V
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Gatilho: um pokémon seu está executando um 
+Golpe o Descritor Dança ou com o Descritor Som. 
+Efeito: o pokémon usa o Golpe duas vezes em uma 
+só Ação de Golpe. Contudo, o pokémon ficará Exausto por 
+duas rodadas. Ele não pode ser retornado à pokébola 
+enquanto estiver Exausto a menos que fique inconsciente 
+(com 0 PV ou menos). Se o próprio Golpe beneficiado por 
+este Talento já possuía o Descritor Exaustão, o pokémon 
+sofre os efeitos da Exaustão por duas rodadas extras. 
+
+Nas Pontas dos Pés 
+Frequência: Constante. 
+Referência: C, V
+Efeito: quando um pokémon seu usa um Golpe 
+com o Descritor Dança, ele não pode ser Empurrado nem 
+Atordoado durante aquela rodada. 
+Uma vez por encontro, quando seu pokémon está 
+Paralisado, ele ainda pode executar um Golpe com o 
+Descritor Dança como se não estivesse Paralisado. 
+
+Passos Acrobáticos 
+Requisitos: Velocidade 16. 
+Referência: P, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Efeito: pelo resto do encontro, receba +3 à Evasão. 
+Este Talento não pode ser usado novamente até o fim do 
+encontro. 
+
+Roteiro Reproduzível 
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional. 
+Referência: P, V
+Gatilho: um pokémon seu está executando um 
+Golpe Corpo a Corpo com o Descritor Dança dentro do 
+alcance de visão de um pokémon aliado (seu ou não). 
+Efeito: role 1d20 + MV. Se o resultado for 13 ou 
+mais, o pokémon aliado pode, na rodada seguinte, executar 
+o mesmo Golpe que o seu pokémon usou. O pokémon que 
+copiou os passos pode escolher seu(s) próprio(s) alvo(s) do 
+Golpe. 
+
+Toque Selvagem 
+Frequência: Constante. 
+Referência: L, V
+Alvo: um pokémon seu. 
+Efeito: uma vez por encontro, quando seu 
+pokémon perderia uma Fase como resultado de um Golpe 
+de um oponente, ignore a perda de Fase. 
+Em Concursos, o efeito deste Talento é outro: 
+quando seu pokémon usar um Golpe com o Descritor 
+Dança, você pode elevar a Expectativa de um jurado 
+específico em 1. Isso só pode ser feito se o seu pokémon 
+receberia o Bônus Elemental por aquele Golpe se estivesse 
+em combate comum. 
+
+Vibrato 
+Frequência: Constante. 
+Referência: C, V
+Efeito: quando um pokémon seu perderia uma ou 
+mais Fases devido a um Golpe causador de dano usado por 
+um oponente, o oponente deve ter rolado 19 ou 20 no 
+Teste de Acurácia dele para ter sucesso em fazer seu 
+pokémon perder Fases. 
+Uma vez por encontro, quando seu pokémon usou 
+um Golpe com o Descritor Som, todos os que o tiverem 
+como alvo na mesma rodada do combate terão as 
+Dificuldades de Acurácia aumentadas em 1.
+
+---------
+
+Características Captor
+
+No Ponto Fraco! 
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Referência: P, X
+Gatilho: você arremessa uma pokébola. 
+Efeito: você causa ao alvo da pokébola uma 
+quantidade de dano igual a seu MV que não pode ser 
+reduzido pela Defesa ou Defesa Especial. Este Talento pode 
+ser usado quando fizer uma rolagem para Captura ou 
+quando arremessar uma pokébola para causar dano ao alvo 
+usando-a como uma arma de arremesso conforme Armas.
+
+Ponto de Captura 
+Frequência: Constante. 
+Referência: C, X
+Gatilho: você arremessa uma pokébola. 
+Efeito: subtraia metade de seu MV das rolagens de 
+d100 feitas quando jogar uma pokébola.
+
+Talentos Captor
+
+Captura Adiantada 
+Requisitos: Velocidade 16. 
+Referência: P, X
+Frequência: Por Encontro. 
+Gatilho: um pokémon ou humano obtém um 
+resultado de 17 a 20 em um Teste de Acurácia contra um 
+pokémon selvagem. 
+Efeito: você pode imediatamente arremessar uma 
+pokébola contra o pokémon selvagem após o ataque ser 
+resolvido.
+
+Captura Chocante 
+Requisitos: Velocidade 18. 
+Referência: C, X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Gatilho: você usa No Ponto Fraco! 
+Efeito: caso o pokémon não seja capturado, role 
+1d20 + MV. Se o resultado for 15 ou mais, o pokémon está 
+Atordoado ao sair da pokébola. 
+
+Cartão com Descontos 
+Frequência: Constante. 
+Referência: E, X
+Efeito: você recebe 20% de desconto em produtos 
+regulares de pokélojas. Quando você gasta 2000 créditos ou 
+mais em uma só compra, você recebe uma Pokébola 
+Premiada de brinde. 
+
+Criar Pokébola 
+Requisitos: Reparar Pokébola. 
+Referência: E, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Efeito: após uma hora de trabalho mecânico, role 
+1d20 + MV. Você cria uma pokébola de acordo com o 
+resultado: ultado okébola Criada 
+Até 14 ; Pokébola Básica 
+15 a 19; Superbola 
+20 ou mais; Ultrabola 
+
+Jogar Rede 
+Frequência: À Vontade. 
+Referência: P, X
+Alvo: um pokémon ou um humano. 
+Efeito: você faz um Teste de Acurácia com 
+Dificuldade 4 contra o alvo, que deve estar a até 4 metros. 
+Se acertar, você arremessa uma rede de captura sobre ele 
+para diminuir em 6 todos os Deslocamentos dele. O alvo 
+pode gastar um turno para rolar 1d20 + Força (se for um 
+pokémon) ou 1d20 + metade de seu Ataque (se for 
+humano). Se o resultado for 12 ou mais, ele se liberta da 
+rede. 
+
+Ponto de Captura + 
+Requisitos: Velocidade 16. 
+Referência: C, X
+Frequência: Constante. 
+Gatilho: você arremessa uma pokébola. 
+Efeito: subtraia seu MV das rolagens de d100 feitas 
+quando jogar uma pokébola. Este Talento substitui Ponto 
+de Captura. 
+
+Ponto de Captura ++ 
+Requisitos: Velocidade 18, Ponto de Captura +. 
+Referência: C, X
+Frequência: Constante. 
+Gatilho: você arremessa uma pokébola. 
+Efeito: subtraia o dobro de seu MV das rolagens de 
+d100 feitas quando jogar uma pokébola. Este Talento 
+substitui Ponto de Captura +. 
+
+Professor de Cortes Falsos i 
+Requisitos: um pokémon com Corte Falso. 
+Referência: P, X
+Frequência: Diária. 
+Gatilho: um pokémon sobe de Nível para um Nível 
+múltiplo de 5. 
+Efeito: role 1d20 + MV. Se o resultado for 16 ou 
+mais, o pokémon que está subindo de Nível para o Nível 
+múltiplo de cinco aprende o Golpe Corte Falso
+. 
+Rastreador Informado 
+Frequência: Diária. 
+Referência: P, X
+Alvo: um local não urbano. 
+Efeito: você identifica os habitantes da área, 
+sabendo quais pokémons comumente habitam a região e 
+quais Abricós crescem nela. 
+Rastreador Informado + 
+Requisitos: Rastreador Informado. 
+Referência: P, X
+Frequência: Diária. 
+Alvo: um local não urbano. 
+Efeito: você identifica os habitantes da área, 
+sabendo quais pokémons comumente habitam a região e 
+quais Abricós crescem nela. Se você tiver capturado pelo 
+menos três pokémons na área, você sabe sobre qualquer 
+pokémon raro que se diz habitar o local e subtrai 10 de 
+quaisquer rolagens de Captura feitas na área pelo resto do 
+dia. Este Talento substitui Rastreador Informado. 
+
+Reparar Pokébola 
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Referência: E, X
+Alvo: uma pokébola que falhou em capturar um 
+pokémon e quebrou. 
+Efeito: após quinze minutos de trabalho, role 1d20 
++ MV. Se o resultado for 16 ou mais, a pokébola é 
+consertada e pode ser usada. 
+
+Trabalho Manual 
+Requisitos: Reparar Pokébola.
+Referência: E, X 
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Alvo: um Abricó. 
+Efeito: após trinta minutos de trabalho mecânico 
+cansativo (consumindo 20 PV), você transforma o Abricó 
+alvo em uma Pokébola Básica.
+
+----------------------------
+
+Características Pokébolista
+
+Design Avançado 
+Frequência: Semanal. A cada 5 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Efeito: após quinze minutos de trabalho cansativo 
+(consumindo 20 PV), você cria uma pokébola de um dos ti
+pos a seguir: Curativa, Ligeira, Luxuosa, de Mergulho, de NInho, de Penumbra, de Repetição, de Teia ou Temporizada. 
+
+Vantagem Condicional 
+Frequência: Constante. 
+Referência: C, X
+Gatilho: você arremessa uma pokébola. 
+Efeito: se você estiver usando uma pokébola que 
+condiciona a subtração de um número da rolagem de 
+captura dentro de determinadas condições e estiver 
+satisfazendo as condições adequadas (por exemplo, se usar 
+uma Pokébola de Penumbra durante a noite), você subtrai 
+também seu MV da rolagem de captura.
+
+Talentos Pokébolista
+
+A Pokébola do Salvador 
+Requisitos: Trabalho Manual.
+Referência:E, X
+Frequência: Semanal. 
+Alvo: sete Abricós sendo um de cada cor. 
+Efeito: após três horas de trabalho mecânico 
+cansativo (consumindo 25 PV), você combina um Abricó de 
+cada cor (um branco, um rosado, um vermelho, um 
+amarelo, um verde, um azul e um preto) para fazer uma 
+pokébola chamada Pokébola do Salvador. Uma Pokébola do 
+Salvador pode capturar um pokémon que foi deixado 
+inconsciente na rodada anterior. Ela não possui bônus ou 
+penalidades para captura. 
+
+Ferreiro de Abricós 
+Requisitos: Ferreiro de Pokébolas. 
+Referência: E, X
+Frequência: Diária. 
+Alvo: dois Abricós. 
+Efeito: combine os dois Abricós alvos em outro 
+Abricó de sua escolha. 
+
+Ferreiro de Pokébolas 
+Requisitos: Trabalho Manual. 
+Referência: E, X
+Frequência: À Vontade. 
+Alvo: um Abricó. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), role 1d20 +MV. Se o 
+resultado for 13 ou mais, você converte um Abricó em uma 
+pokébola de um tipo específico, conforme o Abricó: 
+Amarelo; Lunar 
+Azul; Atrativa 
+Branco; Rápida 
+Preto; Pesada 
+Rosa; Do Amor 
+Verde; Amigável 
+Vermelho; De Nível 
+
+Mais Poder para o Pokémon i 
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Alvo: uma Pokébola de Ninho. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), role 1d20 + MV. Se o 
+resultado for 15 ou mais, quando a Pokébola de Ninho alvo 
+for usada para capturar um pokémon, o pokémon sobe 1d4 
+Níveis ao ser capturado. Se o resultado for 25 ou mais, o 
+pokémon recebe 2d4 Níveis, em vez de apenas 1d4.
+
+Melhoria de Aptidão 
+Frequência: À Vontade. 
+Referência: E, X
+Alvo: qualquer pokébola. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV) e custoso (consumindo 500 
+créditos), você aplica uma Melhoria em uma pokébola. 
+Escolha uma Aptidão. Um pokémon capturado em uma 
+pokébola com Melhoria de Competência recebe +1d2 de 
+bônus à Aptidão escolhida. 
+Uma pokébola só pode possuir uma Melhoria, a 
+menos que você possua o Talento Quebrar Cela, que 
+permite fazer amplas alterações na mecânica de uma 
+pokébola até que ela permita três Modificações. Neste 
+caso, é possível aplicar Melhoria de Competência mais de 
+uma vez na mesma pokébola, para a mesma Aptidão ou não. 
+
+Melhoria de Capacidade 
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Alvo: qualquer pokébola. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), você aplica uma Melhoria 
+em uma pokébola. Escolha uma Capacidade Pokémon ou 
+um Deslocamento Pokémon. Se escolher um Deslocamento, 
+o pokémon mantido dentro da pokébola com Melhoria de 
+Capacidade recebe +2 àquele Deslocamento. Se escolher 
+uma Capacidade (como Inteligência, Força ou Salto), o 
+pokémon mantido dentro da pokébola com Melhoria de 
+Capacidade recebe +1 àquela Capacidade. 
+Uma pokébola só pode possuir uma Melhoria, a 
+menos que você possua o Talento Quebrar Cela, que 
+permite fazer amplas alterações na mecânica de uma 
+pokébola até que ela permita três Melhorias. Neste caso, é 
+possível aplicar Melhoria de Capacidade mais de uma vez na 
+mesma pokébola, mas não para a mesma Capacidade nem 
+para o mesmo Deslocamento. 
+
+Melhoria de Combate 
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Alvo: qualquer pokébola. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), você aplica uma Melhoria 
+em uma pokébola. Escolha um Atributo. Sempre que o 
+pokémon mantido dentro da pokébola com Melhoria de 
+Atributo sai de sua pokébola, ele eleva uma Fase do 
+Atributo selecionado. 
+Uma pokébola só pode possuir uma Melhoria de 
+Batalha, mesmo que você possua Quebrar Cela. 
+
+Pokébola para cada Habitat i 
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Alvo: uma Pokébola de Mergulho. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), você altera o ambiente 
+dentro do qual a Pokébola de Mergulho facilita a captura 
+para um dos biomas a seguir à sua escolha (no lugar de 
+funcionar enquanto em ambiente subaquático e 
+subterrâneo): Água Doce, Ártico, Caverna, Cidade, Deserto, 
+Floresta, Montanha, Pântano, Planície, Praia, Selva, Taiga ou 
+Tundra. Altere o nome da pokébola em conformidade com 
+sua nova função. 
+
+Pokébola para cada Tipo 
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Alvo: uma Pokébola de Teia. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), você altera a Pokébola de 
+Teia para trocar quais Tipos de pokémons ela facilita a 
+captura. O novo nome da pokébola e os tipos cuja captura 
+ela facilita estão listados na tabela abaixo: okébola 
+Aérea; Gelo e Voador 
+Assombrosa; Fantasma e Trevas 
+Encantadora; Fada e Normal 
+Limosa; Lutador e Venenoso 
+Mística; Dragão e Psíquico 
+Quente; Elétrico e Fogo 
+Sólida; Metal e Pedra 
+Terrena; Planta e Terra 
+
+Quebrar Cela 
+Frequência: Diária. 
+Referência: E, X
+Alvo: qualquer pokébola. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), você faz amplas alterações 
+em uma pokébola. Uma pokébola comum pode receber 
+uma Melhoria. Após este Talento ser usado, uma pokébola 
+poderá receber uma Melhoria adicional. Ainda é possível 
+usá-lo novamente para possibilitar uma terceira Melhoria 
+na mesma pokébola. Três Modificações são o máximo que 
+se pode ter. Também é possível usar este Talento para 
+desativar uma Melhoria anteriormente vigente em uma 
+determinada pokébola para abrir espaço para outra 
+Melhoria em seu lugar.
+
+---------------
+
+Características Professor
+
+Estudo Comportamental 
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Referência: -
+Alvo: um pokémon. 
+Efeito: role 1d20 + MAE + MDE. Se o resultado for 
+16 ou mais, você descobre o Nível do alvo. Se o resultado 
+for 21 ou mais, você identifica quantos Pontos de Vida ele 
+possui no momento. 
+
+Enciclopédia 
+Frequência: Constante.
+Referência: C, V 
+Efeito: você sabe qualquer informação sobre 
+pokémons registrados em sua pokéagenda. Isso inclui Tipo, 
+lista de Golpes, métodos de evolução, Habilidades, altura, 
+peso e habitats. Pode Criar uma verdade sobre um pokémon, uma vez por dia sem ter que rolar, ganha 1 uso a cada 10 níveis.
+
+
+Talentos Professor
+
+Coordenação 
+Requisitos: Ataque Especial 16 ou Defesa Especial 
+16. 
+Frequência: Constante. 
+Alvo: um pokémon de um aliado. 
+Efeito: você pode dar comandos ao alvo desde que 
+ele ainda não tenha agido naquela rodada. Deve haver 
+consentimento explícito por parte do dono dele, a menos 
+que este esteja inconsciente. Você ainda só pode dar um 
+comando por rodada, a menos que possua Você Isso e Você Aquilo! Um pokémon não pode agir mais de uma vez por rodada em virtude deste Talento.
+
+Estudo Comportamental + 
+Requisitos: Ataque Especial 16 ou Defesa Especial 16. 
+Referência: P, V
+Frequência: Diária. A cada 3 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon. 
+Efeito: role 1d20 + MAE + MDE. Se o resultado for 
+16 ou mais, você descobre o Nível do alvo e pelo menos seis 
+Golpes que um espécime padrão daquele pokémon saberia 
+naquele Nível (se o pokémon conhece menos que seis 
+Golpes, você sabe todos os Golpes que ele conhece). Se o 
+resultado for 21 ou mais, você identifica quantos Pontos de Vida ele possui no momento. Este Talento substitui Estudo 
+Comportamental. 
+
+Hipótese dos Atributos 
+Frequência: À Vontade.
+Referência: P, V 
+Alvo: um pokémon. 
+Efeito: role 1d20 + MAE + MDE. Se o resultado for 
+11 ou mais, você identifica a Natureza do alvo. Se o 
+resultado for 16 ou mais, você também identifica qual(is) 
+Habilidade(s) o alvo possui. 
+Este Talento pode ser usado até duas vezes por 
+encontro, mas não duas vezes no mesmo alvo durante um 
+encontro. 
+
+Hipótese dos Atributos + 
+Requisitos: Defesa Especial 16, Hipótese dos 
+Atributos. 
+Referência: P, V
+Frequência: À Vontade. 
+Alvo: um pokémon. 
+Efeito: role 1d20 + MAE + MDE. Se o resultado for 
+11 ou mais, você identifica a Natureza do alvo. Se o 
+resultado for 16 ou mais, você também identifica qual(is) 
+Habilidade(s) o alvo possui. Se o resultado for 21 ou mais e 
+o alvo é um pokémon selvagem, você pode escolher a 
+Natureza dele. Este Talento substitui Hipótese dos 
+Atributos. 
+Este Talento pode ser usado até duas vezes por 
+encontro, mas não duas vezes no mesmo alvo durante um 
+encontro. 
+
+Manual do Usuário 
+Frequência: Constante. 
+Referência: C, V
+Efeito: você sabe o funcionamento de qualquer 
+máquina. Adicionalmente, você sabe o funcionamento de 
+um item se for um item com um efeito descrito neste livro. 
+Você sabe quais defeitos podem influenciar o 
+funcionamento de um item. 
+
+Mira Estratégica 
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional. 
+Referência: P, V
+Alvo: um pokémon aliado. 
+Efeito: adicione metade de seu MDE ao próximo 
+Teste de Acurácia que o alvo fizer ainda nesta rodada.
+
+Pesquisa 
+Requisitos: Ataque Especial 14 ou Defesa Especial 
+14. 
+Referência: E, V
+Frequência: Diária. A cada 12 Níveis, receba um 
+uso diário adicional. 
+Alvo: um local, um pokémon, um humano ou um 
+objeto. 
+Efeito: após uma hora de pesquisa sobre o alvo, 
+você recebe um número de Pontos de Pesquisa para aquele 
+alvo igual a seu MAE ou a seu MDE. Até o dia seguinte, 
+enquanto próximo ao alvo e executando ações relacionadas 
+a ele, você pode gastar um Ponto de Pesquisa como uma 
+Ação Livre para considerar seu MAE ou seu MDE 
+aumentado em 3 por uma rodada. Não é possível gastar 
+mais de um Ponto de Pesquisa por rodada. A cada vez que gastar um Ponto de Pesquisa, o Narrador dá a você uma 
+informação sobre o alvo. 
+Você pode gastar mais de um uso diário deste 
+Talento simultaneamente para pesquisar sobre mais de um 
+alvo sem aumentar o tempo de pesquisa de uma hora. 
+
+Planejamento 
+Requisitos: Ataque Especial 16. 
+Referência: P, V
+Frequência: Diária. A cada 6 Níveis, receba um uso 
+diário adicional. 
+Alvo: um aliado (pokémon ou humano). 
+Efeito: desloque o alvo um número de metros igual 
+a seu MAE ou seu MDE. 
+
+Planejamento Perfeito 
+Requisitos: Planejamento. 
+Referência: P, V
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional. 
+Alvo: seus aliados pokémons e humanos. 
+Efeito: desloque os alvos um número de metros 
+igual a seu MAE ou seu MDE. 
+
+Química 
+Frequência: Diária. 
+Referência: E, X
+Efeito: após uma hora de trabalho, você cria um 
+Repelente. 
+
+Resposta Tática 
+Requisitos: Coordenação. 
+Referência: P, V
+Frequência: Diária. 
+Alvo: um pokémon seu. 
+Efeito: escolha um Golpe dentre todos os Golpes 
+para ser o Golpe Gatilho. Depois escolha um Golpe não 
+causador de dano conhecido pelo alvo para ser o Golpe de 
+Escolha. Pelo resto do dia, se um inimigo usar o Golpe 
+Gatilho contra o alvo, este pode imediatamente usar o 
+Golpe de Escolha como uma Ação de Interrupção. 
+Enquanto ativar o Talento consome sua Ação 
+Padrão, uma vez que o Golpe Gatilho for usado, nenhum 
+comando seu é necessário.
+Características Observador
+
+Busca pela Família 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: P, X 
+Alvo: um pokémon selvagem. 
+Efeito: role 1d20 + MAE + MDE. Se o resultado for 
+16 ou mais, você rastreia onde aquele pokémon vive 
+naquela região. Se há outros da mesma espécie ou da 
+mesma família evolutiva, você os encontrará ou achará 
+pistas de onde possam estar. Se o resultado for 21 ou mais, 
+você localiza fontes de comida e outros recursos que 
+pokémons da família do pokémon selvagem precisam, 
+incluindo frutas, vegetação, fontes de água e outras coisas 
+semelhantes. 
+
+Ver de Perto 
+Frequência: Diária. A cada 3 Níveis, receba um uso 
+diário adicional. 
+Referência: P, X
+Alvo: um pokémon selvagem. 
+Efeito: o alvo não percebe você a menos que se 
+aproxime mais do que o triplo de seu MDE. Se você 
+anunciar sua presença, ele não será provocado.
+
+------------------
+
+Talentos Observador
+
+Busca pelo Brilho 
+Frequência: Diária. A cada 20 Níveis, receba um 
+uso diário adicional. 
+Referência: P, X
+Alvo: um local não urbano. 
+Efeito: role 1d100. Se o resultado for menor que o 
+triplo de seu MDE, um pokémon shiny aparece no próximo 
+encontro com pokémons selvagens. 
+
+Busca pelo Tipo 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: P, X
+Alvo: um pokémon selvagem. 
+Efeito: role 1d20 + MDE. Se o resultado for 14 ou 
+mais, você acha pistas que indicam que outros pokémons 
+do mesmo Tipo vivem na área. Você ainda deve usar outros 
+meios para achá-los. Se o resultado for 21 ou mais, você 
+localiza fontes de comida e outros recursos que pokémons 
+do Tipo do pokémon selvagem precisam, incluindo frutas, 
+vegetação, fontes de água e outras coisas semelhantes. 
+
+
+Conhecedor de Frutos 
+Frequência: Constante. 
+Referência: C, V
+Efeito: você pode identificar qualquer Fruta, suas 
+propriedades e seus sabores (portanto como ela influencia 
+Aptidões). Receba +2 às rolagens para produzir Sucos ou 
+Temperos. Quando seu pokémon come uma Fruta cujo 
+sabor ele gosta, quaisquer ganhos de lealdade são 
+dobrados. 
+
+De Antemão! 
+Requisitos: Planejamento. 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: C, V
+Gatilho: você começa um encontro com um 
+pokémon selvagem. 
+Efeito: você pode, como uma Ação Livre, usar 
+Planejamento, Planejamento Perfeito ou Sabotagem no 
+início do encontro antes de quaisquer ações serem feitas 
+por quaisquer criaturas (pokémons ou humanos). Usar este 
+Talento consome tanto um uso diário de De Antemão! 
+quanto um uso diário do Talento escolhido. 
+
+De Antemão! + 
+Requisitos: Planejamento. 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: L, X
+Gatilho: você começa um encontro. 
+Efeito: você pode, como uma Ação Livre, usar 
+Planejamento, Planejamento Perfeito ou Sabotagem no 
+início do encontro antes de quaisquer ações serem feitas 
+por quaisquer criaturas (pokémons ou humanos). Usar este 
+Talento consome tanto um uso diário de De Antemão! 
+quanto um uso diário do Talento escolhido. Este Talento 
+substitui De Antemão! 
+
+Encontre Isso! 
+Requisitos: Rastreador. 
+Referência: P, V
+Frequência: Diária. 
+Alvo: um pokémon que está subindo de Nível. 
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, o alvo aprende o Golpe Farejar.
+ 
+Escrutínio 
+Requisitos: Defesa Especial 16. 
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon. 
+Efeito: role 1d20 + MDE. Se o resultado for 11 ou 
+mais, você identifica se o alvo possui algum Tipo, 
+Habilidade, Capacidade ou Golpe que não é típico de sua 
+espécie. Se o resultado for 21 ou mais, você sabe especificar 
+cada característica dessas que o alvo tenha. 
+
+Estudo Silencioso 
+Requisitos: Defesa Especial 18. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: se você está usando Ver de Perto, você 
+pode se aproximar a até 3 metros do pokémon selvagem 
+sem alertá-lo, a menos que queira.
+
+Pinceladas 
+Requisitos: Defesa Especial 16. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: você é um pintor e desenhista veloz. É 
+necessário para você menor de um minuto para fazer um 
+esboço de qualquer coisa que veja. Você pode adicionar os 
+detalhes em 30 minutos. 
+Após uma hora de trabalho, você desenha 
+qualquer coisa que tenha visto nas últimas 24 horas com 
+detalhes maravilhosos. 
+
+Psicologia 
+Frequência: À Vontade. 
+Referência: P, V
+Gatilho: você ouve algo que você suspeita ser uma 
+mentira. 
+Efeito: especifique qual sentença dita pela pessoa 
+você quer avaliar. Você saberá se aquela sentença é uma 
+inteiramente verdade ou não. Apenas mentiras contadas 
+deliberadamente são reconhecíveis como mentiras. 
+Este Talento pode ser usado tanto ouvindo alguém 
+diretamente quanto em gravações de áudios ou vídeos. 
+
+Rastreador 
+Requisitos: um pokémon com a Capacidade Faro. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: quando um pokémon seu faz um teste para 
+usar a Capacidade Faro, adicione +5 à rolagem.
+
+--------------
+
+Características Ranger
+
+Contenção 
+Frequência: À Vontade.
+Referência: P, X 
+Alvo: um pokémon. 
+Efeito: Usando seu próprio Estilizador, um Ranger 
+pode fazer um teste de Contenção, para o qual ele rola 
+1d100 -20. Se o resultado for igual ou inferior à Chance de 
+Captura do pokémon alvo, este se torna Prestativo (como 
+pelas regras descritas na Capacidade Hierarquia). Um 
+pokémon selvagem deixa de ser Prestativo se acontecer 
+uma das seguintes coisas: se for retirado de seu ambiente 
+padrão, se for acertado por um ataque, se for fortemente 
+distraído, se ajudar o Ranger de alguma forma significativa 
+(incluindo atacar). Um pokémon de alguém deixa de ser 
+Prestativo se atacar com sucesso, se for convocado de volta 
+para a pokébola. Se ele possuir Lealdade 2 ou mais, ele 
+também deixa de ser Prestativo se for o Ranger tentar 
+forçá-lo a atacar o dono ou qualquer aliado do dono. 
+O Ranger não pode possuir mais de um pokémon 
+Prestativo mediante este Talento. O uso deste Talento 
+consome uma Carga da bateria de seu Estilizador. 
+
+Parceria 
+Frequência: À Vontade. 
+Referência: P, X
+Alvo: um pokémon Prestativo que é selvagem. 
+Efeito: O alvo perde a Condição Prestativo e passa 
+a ser considerado Parceiro. O Parceiro começa com 
+Lealdade 2 e será obediente e amistoso ao Ranger, 
+independente de quaisquer condições que antecediam à 
+Parceria. Ele ganha pontos de experiência e Níveis 
+exatamente da mesma maneira que qualquer pokémon 
+capturado, e conta como um pokémon possuído para 
+quaisquer finalidades, mesmo que nunca tenha sido 
+colocado dentro de uma pokébola. Um Parceiro não pode 
+participar de Concursos, pois seria fraude. Você não pode 
+possuir mais de um Parceiro. Apesar de não ter sido 
+exatamente capturado, o Parceiro agirá em combate 
+conforme as ordens do Ranger, como se fosse dele.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Talentos Ranger
+
+Ajuda 
+Requisitos: Nível 10, uma das Classes a seguir: 
+Aventureiro, Cavaleiro, Detetive, Espião, Guia, Oficial, 
+Pactuário. 
+Referência: P, X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon Parceiro ou Prestativo. 
+Efeito: por um número de rodadas igual à metade 
+de seu MA ou de seu MV, o alvo age de maneira 
+independente em combate. Como Prestativo ou Parceiro, 
+ele agirá nos melhores interesses do Ranger, mas não segue 
+as ordens do Ranger. Ele não foge ou recua enquanto este 
+Talento durar. 
+O Ranger não pode possuir mais de um pokémon 
+sob os efeitos deste Talento. Este Talento não pode ser 
+usado se o Talento Você Isso e Você Aquilo! estiver em uso.
+
+Ambientalista 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: P, X
+Gatilho: você tem sucesso em usar Contenção em 
+um pokémon selvagem. 
+Efeito: o pokémon selvagem tem sucesso 
+automático em fugir. Role 1d20 + MA + MV. Se o resultado 
+for 20 ou mais, todos os pokémons selvagens aliados do 
+pokémon selvagem original e de Nível menor que ele 
+também tem sucesso automático em fugir. 
+
+Amigos 
+Requisitos: ter usado Contenção em um pokémon 
+com a Capacidade de Escolha. 
+Referência: P, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um local. 
+Efeito: Ao usar este Talento, role 1d20 + MA ou 
+MV. Se o resultado for 15 ou mais, um pokémon com a 
+Capacidade de Escolha aparece. Qualquer tentativa de 
+atacar ou capturar este pokémon o faz ter sucesso 
+automático em fugir. 
+Quando obtiver este Talento, você deve selecionar 
+uma Capacidade da lista a seguir: Afundamento, Amorfia, 
+Calor, Combustão, Congelação, Encolhimento, Fiação, Frio, 
+Geleira, Guelras, Luminar, Magnetismo, Manancial, 
+Rebento, Sedução, Térreo, Tumefação, Vento. A Capacidade 
+é selecionada não pode ser alterada. Ela é chamada de 
+Capacidade de Escolha. 
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos não se acumulam. A cada vez que é 
+escolhido, ele se aplica a uma Capacidade diferente. 
+
+
+
+
+
+
+
+
+
+Arma de Choque 
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Referência: P, X
+Alvo: um pokémon ou um humano. 
+Efeito: role 1d20 + MV. Se o resultado for 15 ou 
+mais, o alvo está Confuso. 
+O uso deste Talento consome uma Carga da bateria 
+de seu Estilizador. 
+
+Autoridade 
+Requisitos: reconhecido pela execução de um 
+serviço distintivo. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: você assume as responsabilidades como um 
+Ranger de alta patente. Você pode dar ordens a Rangers 
+sem este Talento e possui maior poder decisório e 
+encontros com outros indivíduos de alta patente 
+governamental, particularmente policial e militar. Quando 
+requisitar auxílio de uma Estação Ranger em um assunto 
+importante, ela é obrigada a dar algum tipo de auxílio, salvo 
+nas circunstâncias mais extraordinárias. Se você é Policial, 
+este Talento também se aplica a Policiais e Postos Policiais. 
+
+Contenção Aprimorada 
+Frequência: Constante. 
+Referência: C, X
+Efeito: quando usar Contenção, o teste é feito 
+usando 1d100 -30 (em vez de apenas -20). 
+Você agora pode possuir dois pokémons 
+Prestativos mediante Contenção. 
+
+Contenção Aprimorada + 
+Requisitos: Contenção Aprimorada. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: quando usar Contenção, o teste é feito 
+usando 1d100 -40 (em vez de apenas -30). 
+Você agora pode possuir cinco pokémons 
+Prestativos mediante Contenção. 
+Este Talento substitui Contenção Aprimorada. 
+
+Prática Perfeita 
+Requisitos: Velocidade 15. 
+Referência: I, X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Alvo: uma rolagem de Contenção. 
+Efeito: subtraia o triplo de seu MA ou o triplo de 
+seu MV da rolagem de Contenção. Este Talento só pode ser 
+usado uma vez por rolagem de Contenção. Se tiver sucesso 
+em usar Contenção aplicando este Talento, você recebe 
+uma lista parcial dos Golpes conhecidos pelo pokémon e 
+sabe todas as Capacidades dele. 
+
+
+Recursos 
+Requisitos: Autoridade. 
+Referência: P, X
+Frequência: Semanal. 
+Alvo: si. 
+Efeito: você convoca apoio de pelo menos um 
+Ranger na área. Este Ranger irá até você diretamente para 
+encontrá-lo pessoalmente assim que possível e auxiliará 
+você em assuntos urgentes, mas não abandonará 
+completamente as atividades dele a menos que ordenado 
+por uma Autoridade superior (um Oficial). 
+
+Santuário 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: P, X
+Alvo: um local não urbano. 
+Efeito: role 1d20 + MA + MV. Se o resultado for 21 
+ou mais, você pode atravessar o local alvo sem encontros 
+hostis de quaisquer pokémons selvagens normais. Isso dura 
+para o local alvo por um dia. 
+
+Time de Resgate 
+Requisitos: ter um Parceiro consigo há pelo menos 
+dois meses. 
+Referência: E, X
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional. 
+Alvo: um Parceiro que está com você há pelo 
+menos um mês. 
+Efeito: você passa uma hora conversando e 
+negociando com o alvo. Depois disso, ele concorda em ser 
+capturado por você. Após capturá-lo, ele ainda será 
+considerado seu Parceiro para fins de quaisquer Talentos, 
+mas não conta para seu número máximo de Parceiros.
+
+-------------
+
+Talentos Gerais 
+Acredito em Você! 
+Requisitos: Defesa Especial 15. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: pelo resto do combate atual, seu pokémon 
+causa dano extra a cada vez que usar um Golpe. O dano 
+extra é igual a um número de d6 igual a seu MDE. 
+
+Aguento Outra! 
+Requisitos: Saúde 13. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: quando sofrer dano, reduza em 5 o dano 
+sofrido. Isso não reduz o custo de ativar Talentos. 
+
+Aguento Outra! + 
+Requisitos: Saúde 17. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: Quando sofrer dano por qualquer razão, 
+reduza em 10 o dano sofrido. Isso não reduz o custo de 
+ativar Talentos. Este Talento substitui Aguento Outra!. 
+
+Ainda Não! 
+Requisitos: Defesa 17. 
+Referência: L, V
+Frequência: Diária. 
+Gatilho: um pokémon seu cai a 0 Pontos de Vida 
+ou menos, mas não a menos que uma quantidade de 
+Pontos de Vida negativos igual a 100% de seus Pontos de 
+Vida máximos. 
+Efeito: antes de desmaiar, o pokémon alvo pode 
+executar uma única ação, que pode ser usada para um 
+Golpe ou para se mover, e então ele desmaia. Os seguintes 
+Golpes não são permitidos para tanto: Autodestruição, 
+Esforço, Explosão, Mangual, Reversão, Sofrimento Mútuo. 
+
+Arma de Escolha 
+Referência: P, X
+Frequência: Constante. 
+Efeito: Escolha um tipo de arma específico (como 
+ataque desarmado, espada longa, besta, etc.). Quando usar 
+a Arma de Escolha, sua Dificuldade de Acurácia é de apenas 
+4 e sua tabela de dano de Armas não é aquela apresentada 
+no Talento Armas, sendo substituída pela seguinte:Dano 
+* ; 1; 1d10 +4 Físico 
+1 a 6 ; 2; 1d12+6 Físico 
+*; 3; 2d8+6 Físico 
+7 a 14; 4; 2d10+8 Físico 
+*; 5; 3d8+10 Físico 
+15 ou mai; 6; 3d10+12 Físico 
+*; 7; 3d12+14 Físico 
+*; 8; 4d12+16 Físico 
+* Talentos, Características e outros podem alterar seu Dano Basal.
+
+Cuidado! 
+Requisitos: Velocidade 14. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: Durante esta rodada, se seu pokémon alvo 
+for atacado, jogue uma moeda várias vezes, até sair cara, e 
+não coroa. Quando o inimigo for fazer o Teste de Acurácia, 
+ele deve obter um resultado maior que o número de vezes 
+que a moeda foi jogada ou ele errará. 
+
+Dê Tudo de Si! 
+Referência: L, V
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional. 
+Alvo: um Golpe de um dos seus pokémons. 
+Efeito: Este Golpe acerta e é Crítico. 
+
+Deixa Ajudar com Isso! 
+Referência: P, X
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional. 
+Gatilho: um humano aliado está fazendo um teste. 
+Efeito: o aliado recebe +2 ao teste. 
+
+Deixa Ajudar Agora! 
+Requisitos: Nível 10, Deixa Ajudar com Isso! 
+Referência: P, X
+Frequência: Diária. A cada 7 Níveis, receba um uso 
+diário adicional. 
+Gatilho: um humano aliado está fazendo um teste. 
+Efeito: o aliado recebe +5 ao teste. 
+
+Dê-Me Espaço! 
+Referência: L, V
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional. 
+Gatilho: um pokémon seu foi alvo de um ataque. 
+Efeito: seu pokémon imediatamente se desloca. Se 
+ele se mover para fora da área do ataque original, ele não 
+sofre os efeitos daquele ataque. 
+
+Filiação à Liga Oficial 
+Requisitos: 12 insígnias ou equivalentes, Nível 20, 
+um Ginásio ou equivalente no valor de pelo menos 380000 
+créditos. 
+Referência: C, V
+Frequência: Constante. 
+Efeito: Receba +2 à sua Defesa Especial. Você assu
+me as responsabilidades de um Líder de Ginásio ou equiva
+lente (como Cérebro da Fronteira, por exemplo) e deve 
+aceitar desafios pelo menos semanais. Se você perder, você 
+deve dar ao vencedor uma insígnia (ou equivalente, como 
+uma Medalha de Fronteira dada pelos Cérebros de Frontei
+ra). Você não precisa estar fisicamente presente em seu 
+Ginásio para aceitar desafios o tempo todo, mas precisar 
+deixar claro à população geral que está disponível para ser 
+desafiado e dedicar um tempo para as batalhas oficiais dos 
+desafiantes. Semanalmente, desde que você aceite pelo 
+menos três desafios, você receberá 2000 créditos por seus 
+serviços como membro da Liga. Você deve criar insígnias em 
+seu próprio Ginásio (elas só podem ser criadas oficialmente 
+lá) para dá-las aos possíveis treinadores que vencerem você 
+(você não deve ficar sem insígnias) e criar cada uma custa 
+1050 créditos. Você só pode ocupar um cargo oficial na Liga, 
+mesmo que se qualifique para mais de um. 
+
+Já Ouvi Falar! 
+Requisitos: Ataque Especial 14 ou Defesa Especia 14. 
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: qualquer coisa que você esteja percebendo, 
+até mesmo uma ideia ou frase. 
+Efeito: role 1d20 + MAE e MDE. Se o resultado for 
+14 ou mais, você sabe algo sobre o alvo, contudo, se o alvo 
+for um pokémon, você já deve tê-lo tido como alvo de sua 
+pokéagenda antes para poder usar este Talento nele. 
+
+Karma do Ash 
+Requisitos: ter libertado três pokémons leais 
+totalmente evoluídos. 
+Referência: L, V
+Frequência: Diária. 
+Alvo: uma rolagem. 
+Efeito: você rola novamente um dado da rolagem. 
+
+Meditação 
+Requisitos: um entre Saúde 12, Ataque Especial 12 
+ou Defesa Especial 12 
+Referência: L, V
+Frequência: À Vontade. 
+Gatilho: um humano ou pokémon tenta ler sua 
+mente. 
+Efeito: Role 1d20 + MAE ou MDE. Se o resultado 
+for 13 ou mais, você mantém sua mente se concentrando 
+em um tópico único à sua escolha (ou em nada). A criatura 
+que tentar ler sua mente não obterá nenhuma informação 
+sobre seus pensamentos ou seus conhecimentos. Ao ativar 
+este Talento sua mente está segura contra tentativas de ler 
+mentes por uma hora. 
+
+Mega! 
+Requisitos: todos os Atributos 10, uma Pedra
+Chave. 
+Referência: P, V
+Frequência: Diária. 
+Alvo: um pokémon com uma Megapedra. 
+Efeito: o pokémon alvo megaevolui por 10 minutos 
+ou até atingir 0 Pontos de Vida.
+
+Mire no Chifre! 
+Requisitos: Ataque Especial 13.
+Referência: P, V
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional. 
+Gatilho: seu pokémon está executando um Golpe. 
+Efeito: se o resultado do Teste de Acurácia for 19 
+ou 20, o ataque do seu pokémon causará dano neutro, 
+ignorando todas as resistências e imunidades.
+
+Mire no Chifre! + 
+Requisitos: Ataque Especial 16, Mire no Chifre. 
+Referência: P, V
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional. 
+Gatilho: seu pokémon está executando um Golpe. 
+Efeito: Se o resultado do Teste de Acurácia for 16 
+ou mais, o ataque do seu pokémon causará dano neutro, 
+ignorando todas as resistências e imunidades. Este Talento substitui Mire no Chifre.  
+
+Multitarefa 
+Requisitos: todos os Atributos 12, Nível 10.
+Referência: C, V 
+Frequência: Constante. 
+Efeito: você pode executar duas Ações Padrões por 
+rodada. Você ainda não poderá usar ativar mais de uma vez 
+por rodada Talentos (mesmo diferentes) que requerem 
+Ações Padrões. 
+
+Não se Meta Comigo! 
+Requisitos: Defesa Especial 13. 
+Referência: P, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Gatilho: um humano desafia você para uma 
+batalha não oficial. 
+Efeito: role 1d20 + MDE. Se o resultado for maior 
+que 10, o humano é intimidado e recua de seu desafio. 
+
+O Escolhido 
+Requisitos: Nível 20. 
+Referência: L, V
+Frequência: Diária. 
+Gatilho: você falha em um teste que não é de um 
+pokémon. 
+Efeito: você tem sucesso no teste. 
+
+Rotina de Estudos 
+Requisitos: ter comprado um livro pelo menos uma 
+vez. 
+Referência: C, V
+Frequência: Constante. 
+Efeito: você deve comprar um livro em uma loja a 
+cada cidade que visite. Se você não tiver pelo menos 70 
+créditos para comprar um livro quando chegar numa 
+cidade, você perde os benefícios deste Talento até ser capaz 
+de comprar o livro. Este Talento aumenta em um seu 
+Ataque Especial ou sua Defesa Especial. 
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos se acumulam. Você precisa comprar 
+apenas um livro para manter funcional este Talento mesmo 
+que o possua várias vezes. 
+
+Rotina de Exercícios 
+Requisitos: ter se exercitado pelo menos uma vez.
+Referência: C, V 
+Frequência: Constante. 
+Efeito: você deve se exercitar pelo menos uma vez 
+a cada três dias. Uma prática de exercícios deve consumir 
+pelo menos 30 minutos e ela lhe faz perder 10 PV. Se você 
+não se exercitar pelo menos a cada três dias, você perde os 
+benefícios deste Talento até ser capaz de retomar sua 
+rotina de exercícios, fazendo exercício – neste caso – por 
+dois dias consecutivos. Este Talento aumenta em um sua 
+Saúde, seu Ataque, sua Defesa ou sua Velocidade. 
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos se acumulam. Você não precisa 
+aumentar sua quantidade de exercícios para manter 
+funcional este Talento mesmo que o possua várias vezes. 
+
+Socorrista 
+Requisitos: um entre Ataque Especial 13 ou Defesa Especial 13.
+Referência: P, X 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um humano. 
+Efeito: role 1d20 + MAE ou MDE. Cure um número 
+de Pontos de Vida do alvo igual ao resultado da rolagem. 
+
+Sorte do Ash 
+Requisitos: ter libertado um pokémon leal 
+totalmente evoluído. 
+Referência: L, V
+Frequência: Diária. 
+Alvo: uma rolagem. 
+Efeito: ao custo de 15 Pontos de Vida (este 
+sacrifício não pode ser ignorado de forma alguma), você 
+pode rolar novamente um dado da rolagem. 
+
+Vai Abrir! 
+Requisitos: Ataque Especial 15. 
+Referência: P, X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: 
+uma fechadura ou trava não 
+computadorizada. 
+Efeito: role 1d20 + MAE. Se o resultado for maior 
+que 15, a fechadura ou a trava são arrombadas, e não 
+haverá sinais de arrombamento. 
+
+Você Isso e Você Aquilo! 
+Requisitos: Nível 10, todos os Atributos 12. 
+Referência: C, V
+Frequência: Constante. 
+Efeito: você pode controlar dois pokémons 
+simultaneamente. Ambos os pokémons entram na ordem 
+da iniciativa. Você ainda possui apenas uma Ação Padrão 
+por rodada, mas pode usá-la para dar ordens a dois 
+pokémons ao mesmo tempo. Este Talento não pode ser 
+usado se o Talento Multitarefa estiver em uso.
+
+--------------
+
+Características Treinador
+
+Ataques Aprimorados 
+Frequência: Constante.
+Referência: C, V  
+Gatilho: seu pokémon acerta um ataque causador 
+de dano em um oponente. 
+Efeito: quando calcular o dano causado ao inimigo, 
+adicione metade de seu MA ou de seu MAE antes que o 
+alvo subtraia o valor de Defesa dele. 
+
+Treinamento Aprimorado 
+Frequência: Constante. 
+Referência: C, V
+Efeito: seus pokémons recebem 20% de pontos de 
+experiência adicionais a cada vez que receberem pontos de 
+experiência.
+
+Talentos Treinador
+
+Afirmação 
+Requisitos: Ataque 14. 
+Referência: C, V
+Frequência: Constante. 
+Gatilho: seu pokémon vence um inimigo ou obtém 
+um Crítico. 
+Efeito: seu pokémon ganha Pontos de Vida 
+temporários igual ao dobro do seu MA. Pontos de Vida 
+temporários desaparecem após um encontro ou ao serem 
+consumidos (eles são consumidos antes dos Pontos de Vida 
+normais quando se sofre dano). 
+
+Ataques Aprimorados + 
+Requisitos: Ataque 16, Ataque Especial 16. 
+Referência: C, V
+Frequência: Constante. 
+Gatilho: seu pokémon acerta um ataque causador 
+de dano em um oponente. 
+Efeito: quando calcular o dano causado ao inimigo, 
+adicione seu MA ou seu MAE antes que o alvo subtraia o 
+valor de Defesa dele. Este Talento substitui Ataques 
+Aprimorados.
+
+Ataques Aprimorados ++ 
+Requisitos: Ataque 18, Ataque Especial 18, Ataques 
+Aprimorados +. 
+Referência: C, V
+Frequência: Constante. 
+Gatilho: seu pokémon acerta um ataque causador 
+de dano em um oponente. 
+Efeito: quando calcular o dano causado ao inimigo, 
+adicione seu MA e seu MAE antes que o alvo subtraia o 
+valor de Defesa dele. Este Talento substitui Ataques 
+Aprimorados +. 
+
+Capataz 
+Requisitos: Pressão +.
+Referência: C, X 
+Frequência: Constante. 
+Efeito: quando você usa Pressão, Pressão + ou 
+Pressão Positiva em um alvo, remova as Condições 
+Confusão e Atordoamento do alvo se aplicável. Além disso, 
+neutralize qualquer Fase prejudicial que estava sob efeito 
+no alvo. 
+
+Crítica Construtiva 
+Requisitos: Ataque Especial 15. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu, cujo ataque na ação 
+anterior não acertou nenhum inimigo. 
+Efeito: reduza em três todas as Dificuldades de 
+Acurácia do alvo até o fim do encontro. 
+
+Exercício Brutal 
+Requisitos: Ataque 15. 
+Referência: L, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu que acabou de derrotar um 
+oponente. 
+Efeito: o pokémon perde metade de seus Pontos 
+de Vida atuais, mas ganha o dobro do número de pontos de 
+experiência que ganharia. 
+
+Foco 
+Requisitos: Crítica Construtiva. 
+Referência: P, V
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: na próxima vez que seu pokémon usar um 
+Golpe que não causa dano, reduza pela metade de seu MAE 
+a Dificuldade de Acurácia. Este Talento não pode ser usado 
+para Golpes que automaticamente derrubam os Pontos de 
+Vida do inimigo a zero. 
+
+Intimidar 
+Requisitos: Ataque 16, Ataque Especial 14. 
+Referência: P, X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon. 
+Efeito: você usa a Habilidade Intimidar no alvo. 
+
+Mestre das Feras 
+Requisitos: 8 insígnias. 
+Referência: C, V
+Frequência: Constante. 
+Alvo: seu pokémon. 
+Efeito: seus pokémons não contestam seus 
+comandos. A menos que sejam Lendários, eles não podem 
+desobedecer você. Este Talento não afeta a lealdade de 
+pokémons. 
+
+Pressão 
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Referência: P, X
+Alvo: um pokémon seu adjacente. 
+Efeito: cause dano ao seu pokémon igual a um 
+quinto dos Pontos de Vida máximos dele. Eleve uma Fase de 
+um Atributo dele à sua escolha. Se você usar Pressão mais 
+de uma vez diária no mesmo pokémon, isso afetará a 
+lealdade dele. 
+
+Pressão + 
+Requisito: Pressão. 
+Referência: P, X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon seu adjacente. 
+Efeito: cause dano ao seu pokémon igual a um 
+quarto dos Pontos de Vida máximos dele empregando uma 
+arma para feri-lo. Eleve duas Fases de um Atributo dele à 
+sua escolha. Se você usar Pressão + mais de uma vez diária 
+no mesmo pokémon, isso afetará a lealdade dele. 
+
+Transpassar 
+Requisitos: Ataque Especial 16. 
+Referência: L, V
+Frequência: Diária. 
+Gatilho: seu pokémon acerta um ataque causador 
+de dano em um oponente. 
+Efeito: o ataque causa o dano neutro, ignorando 
+imunidades, resistências e vulnerabilidades.
+
+
+--------------------
+
+Característica Elementalista
+
+Aprimorar Golpes Elementais
+Frequência: Constante. 
+Referência:  C, V
+Gatilho: um pokémon seu acerta um Golpe do Tipo 
+de Escolha. 
+Efeito: adicione metade de seu MA ao dano 
+causado. 
+
+Treinamento Elemental 
+Frequência: Constante. 
+Referência: C, V
+Efeito: seus pokémons do Tipo de Escolha recebem 
+30% de pontos de experiência adicionais a cada vez que 
+receberem pontos de experiência.
+
+Talentos Elementalista
+
+Alma Elemental 
+Frequência: Constante. 
+Referência: C, V
+Efeito: você se sente continuamente obrigado a 
+estar na presença do Tipo de Escolha, devendo possuir pelo 
+menos quatro pokémons do seu Tipo de Escolha seus 
+consigo em sua equipe. Você pode sentir pokémons do Tipo 
+de Escolha a até um número de metros igual ao quíntuplo 
+de seu MAE. Além disso, nesta mesma área, você pode 
+sentir se um pokémon conhece algum Golpe de seu Tipo de 
+Escolha. 
+
+Aprimorar Golpes Elementais +
+Requisitos: Ataque Especial 16. 
+Referência: C, V
+Frequência: Constante. 
+Gatilho: um pokémon seu acerta um Golpe do Tipo 
+de Escolha. 
+Efeito: adicione seu MA ao dano causado. Este 
+Talento substitui Aprimorar Golpes Elementais. 
+
+Com os Elementos 
+Frequência: Diária. 
+Referência: P, X
+Gatilho: você decide batalhar pokémons selvagens. 
+Efeito: role 1d20 + MAE. Se o resultado for 15 ou 
+mais e a área contiver pelo menos um pokémon de seu Tipo 
+de Escolha, você encontrará pelo menos um pokémon de 
+uma espécie de seu Tipo de Escolha. 
+
+Conexão com Tipo 
+Requisitos: Alma Elemental. 
+Referência: P, X
+Frequência: À Vontade. 
+Alvo: um pokémon selvagem hostil ou indiferente 
+de seu Tipo de Escolha. 
+Efeito: Role 1d20 + MA. Se o resultado for 15 ou 
+mais, este pokémon se torna mais amistoso. Se ele era 
+indiferente, ele agora demonstra interesse por você. Se for 
+hostil, ele decidirá não atacar, mas ainda pode decidir fugir 
+ou permanecer cauteloso. A atitude permanecerá até que 
+algo a mude. Um mesmo pokémon não pode ser alo deste 
+Talento mais de uma vez diária. 
+
+Conversão 
+Requisitos: Mudança de Tipo. 
+Referência: E, X
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional. 
+Alvo: um pokémon seu. 
+Efeito: este Talento requer levar o pokémon alvo a 
+um ambiente com profundas características associadas ao 
+seu Tipo de Escolha e passar pelo menos 10 horas em 
+treinamento neste lugar. O pokémon alvo recebe 
+permanentemente o Tipo de Escolha. Se ele já possuía dois 
+Tipos, substitua permanentemente um de seus Tipos. A 
+aparência do pokémon é alterada de acordo com seu novo 
+Tipo (como acontece com Vulpix adaptado às condições 
+árticas ou um Geodude que vive cercado por campos 
+elétricos, por exemplo). 
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos se acumulam. 
+
+Elementalismo 
+Requisitos: Mudança Elemental. 
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Gatilho: um pokémon seu usa um Golpe. 
+Efeito: o Golpe é considerado de seu Tipo de 
+Escolha. 
+
+Golpe Elemental 
+Requisitos: Elementalismo.
+Referência: E, X 
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional. 
+Alvo: um pokémon seu. 
+Efeito: este Talento requer levar o pokémon alvo a 
+um ambiente com profundas características associadas ao 
+seu Tipo de Escolha e passar pelo menos 5 horas em 
+treinamento neste lugar. Um Golpe do pokémon alvo se 
+torna permanentemente do Tipo de Escolha. 
+
+Mudança de Tipo 
+Requisitos: Ataque Especial 15. 
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon. 
+Efeito: o alvo recebe seu Tipo de Escolha por um 
+número de rodadas igual a seu MA (cada rodada equivale a 
+seis segundos). Se ele já possuía dois Tipos, substitua 
+temporariamente um de seus Tipos. Ao fim do combate, 
+como ele foi (mesmo que temporariamente) do Tipo de 
+Escolha, seu Treinamento Elemental é aplicado. 
+
+Sou Superior no Meu Tipo! 
+Requisitos: Alma Elemental. 
+Referência: C, V
+Frequência: Constante. 
+Gatilho: um inimigo usa um Golpe do Tipo de 
+Escolha contra um ou mais pokémons seus também do Tipo 
+de Escolha. 
+Efeito: o inimigo não adiciona Bônus Elemental e 
+não pode obter Críticos nem causar Testes de Morte contra 
+seus pokémons do Tipo de Escolha. 
+
+Treinamento de Resistência 
+Requisitos: Alma Elemental. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: você é resistente ao dano do Tipo de 
+Escolha.
+

@@ -1,0 +1,6 @@
+Total de habilidades a serem adicionadas: 257
+
+O arquivo habilidadesData.js foi criado com estrutura base.
+Devido ao volume, as demais habilidades serão adicionadas gradualmente.
+
+Estrutura: {nome: {ativacao: string, efeito: string}}

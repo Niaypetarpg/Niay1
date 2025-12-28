@@ -77,6 +77,60 @@ A pasta `dist/` será criada com os arquivos otimizados.
 - Tailwind CSS
 - Lucide React
 
+## 📚 Controle de Versão com Git
+
+O projeto agora está sob controle de versão Git! Aqui estão os comandos mais úteis:
+
+### Ver status dos arquivos
+```bash
+git status
+```
+
+### Ver histórico de commits
+```bash
+git log --oneline
+```
+
+### Adicionar mudanças
+```bash
+git add .                 # Adiciona todos os arquivos modificados
+git add src/App.jsx       # Adiciona apenas um arquivo específico
+```
+
+### Fazer commit das mudanças
+```bash
+git commit -m "Descrição da mudança"
+```
+
+### Ver diferenças
+```bash
+git diff                  # Ver mudanças não commitadas
+git diff HEAD~1           # Comparar com commit anterior
+```
+
+### Voltar para versão anterior
+```bash
+git checkout <commit-id> src/App.jsx    # Voltar arquivo específico
+git reset --hard <commit-id>             # Voltar todo projeto (CUIDADO!)
+```
+
+### Criar branch para experimentar
+```bash
+git branch nova-feature              # Criar nova branch
+git checkout nova-feature            # Mudar para a branch
+git checkout -b nova-feature         # Criar e mudar em um comando
+```
+
+### Ver todas as branches
+```bash
+git branch
+```
+
+### Voltar para branch principal
+```bash
+git checkout master
+```
+
 ---
 
 **Niaypeta Corp™** © 2024
