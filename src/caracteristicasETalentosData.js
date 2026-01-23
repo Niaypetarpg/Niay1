@@ -1481,7 +1481,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, V',
       frequencia: 'Diária. A cada 12 Níveis, receba um uso diário adicional',
       alvo: 'um local, um pokémon, um humano ou um objeto',
-      efeito: 'após uma hora de pesquisa sobre o alvo, você recebe um número de Pontos de Pesquisa para aquele alvo igual a seu MAE ou a seu MDE. Até o dia seguinte, enquanto próximo ao alvo e executando ações relacionadas a ele, você pode gastar um Ponto de Pesquisa como uma Ação Livre para considerar seu MAE ou seu MDE aumentado em 3 por uma rodada.'
+      efeito: 'após uma hora de pesquisa sobre o alvo, você recebe um número de Pontos de Pesquisa para aquele alvo igual a seu MAE ou a seu MDE. Até o dia seguinte, enquanto próximo ao alvo e executando ações relacionadas a ele, você pode gastar um Ponto de Pesquisa como uma Ação Livre para considerar seu MAE ou seu MDE aumentado em 3 por uma rodada. Não é possível gastar mais de um Ponto de Pesquisa por rodada. A cada vez que gastar um Ponto de Pesquisa, o Narrador dá a você uma informação sobre o alvo. Você pode gastar mais de um uso diário deste Talento simultaneamente para pesquisar sobre mais de um alvo sem aumentar o tempo de pesquisa de uma hora.'
     },
     {
       nome: 'Planejamento',
@@ -1910,8 +1910,8 @@ export const TALENTOS_DATA = {
       requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante.',
-      gatilho: 'um ovo está chocando.',
-      efeito: 'se um ovo que você (ou um humano aliado) possui está chocando, você pode atrasar o nascimento por 48 horas. Se você não é o dono do ovo, você precisará de permissão deste para usar este Talento.'
+      gatilho: 'um pokémon seu cai a 0 Pontos de Vida ou menos, mas não a menos que uma quantidade de Pontos de Vida negativos igual a 100% de seus Pontos',
+      efeito: 'antes de desmaiar, o pokémon alvo pode executar uma única ação, que pode ser usada para um Golpe ou para se mover, e então ele desmaia. Os seguintes Golpes não são permitidos para tanto: Autodestruição, Esforço, Explosão, Mangual, Reversão, Sofrimento Mútuo.'
     },
     {
       nome: 'Arma de Escolha',
@@ -1939,24 +1939,25 @@ export const TALENTOS_DATA = {
     {
       nome: 'Deixa Ajudar com Isso!',
       requisitos: 'N/A',
-      referencia: 'C, V, X',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
-      alvo: 'um aliado a até 3m',
-      efeito: 'você e o alvo usam a mesma Ação que vocês estiverem executando cooperativamente. Os efeitos são os mesmos de quando você usa Ajudar Outro.'
+      referencia: 'P, X',
+      frequencia: 'Diária. A cada 4 Níveis, receba um uso diário adicional.',
+      gatilho: 'um humano aliado está fazendo um teste.',
+      efeito: 'o aliado recebe +2 ao teste.'
     },
     {
       nome: 'Deixa Ajudar Agora!',
       requisitos: 'Nível 10, Deixa Ajudar com Isso!',
-      referencia: 'C, V, X',
-      frequencia: 'Constante',
-      efeito: 'você pode Ajudar Outro usando uma Ação Rápida em vez de Padrão.'
+      referencia: 'P, X',
+      frequencia: 'Diária. A cada 7 Níveis, receba um uso diário adicional.',
+      gatilho: 'um humano aliado está fazendo um teste.',
+      efeito: 'o aliado recebe +5 ao teste.'
     },
     {
       nome: 'Dê-Me Espaço!',
       requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Uso Único. A cada 10 Níveis, receba um uso adicional.',
-      alvogatilho: 'um pokémon seu foi alvo de um ataque.',
+      gatilho: 'um pokémon seu foi alvo de um ataque.',
       efeito: 'seu pokémon imediatamente se desloca. Se ele se mover para fora da área do ataque original, ele não sofre os efeitos daquele ataque.'
     },
     {
@@ -1964,14 +1965,15 @@ export const TALENTOS_DATA = {
       requisitos: '12 insígnias ou equivalentes, Nível 20, um Ginásio ou equivalente no valor de pelo menos 380000 créditos.',
       referencia: 'C, V',
       frequencia: 'Constante',
-      efeito: 'você é um membro oficial da Liga da região. Você tem acesso a informações sobre torneios, instalações, hospedagem e itens especiais, além de contatos importantes. Você pode embarcar em trens e em veículos da Liga como passageiro sem pagar (e sem precisar rolar Carisma!).'
+      efeito: 'Receba +2 à sua Defesa Especial. Você assume as responsabilidades de um Líder de Ginásio ou equivalente (como Cérebro da Fronteira, por exemplo) e deve aceitar desafios pelo menos semanais. Se você perder, você deve dar ao vencedor uma insígnia (ou equivalente, como uma Medalha de Fronteira dada pelos Cérebros de Fronteira). Você não precisa estar fisicamente presente em seu Ginásio para aceitar desafios o tempo todo, mas precisar deixar claro à população geral que está disponível para ser desafiado e dedicar um tempo para as batalhas oficiais dos desafiantes. Semanalmente, desde que você aceite pelo menos três desafios, você receberá 2000 créditos por seus serviços como membro da Liga. Você deve criar insígnias em seu próprio Ginásio (elas só podem ser criadas oficialmente lá) para dá-las aos possíveis treinadores que vencerem você (você não deve ficar sem insígnias) e criar cada uma custa 1050 créditos. Você só pode ocupar um cargo oficial na Liga, mesmo que se qualifique para mais de um.'
     },
     {
       nome: 'Já Ouvi Falar!',
       requisitos: 'Ataque Especial 14 ou Defesa Especia 14.',
-      referencia: 'C, V',
+      referencia: 'P, V',
       frequencia: 'Diária',
-      efeito: 'durante uma cena, você pode declarar que já ouviu ou leu algo sobre determinado tópico, independentemente das circunstâncias. Por exemplo, se o grupo estiver investigando o desaparecimento de pokémons, você pode declarar que leu algo relacionado a isso em um livro há 1 ano atrás. Fale ao Mestre o que você sabe. Se esse conhecimento já tiver sido estabelecido anteriormente, você o relembra; se não, o Mestre pode ou não aceitar sua declaração. Se aceitar, você pode Criar uma verdade sem rolar.'
+      alvo: 'qualquer coisa que você esteja percebendo, até mesmo uma ideia ou frase.',
+      efeito: 'role 1d20 + MAE e MDE. Se o resultado for 14 ou mais, você sabe algo sobre o alvo, contudo, se o alvo for um pokémon, você já deve tê-lo tido como alvo de sua pokéagenda antes para poder usar este Talento nele.'
     },
     {
       nome: 'Karma do Ash',
@@ -1984,9 +1986,10 @@ export const TALENTOS_DATA = {
     {
       nome: 'Meditação',
       requisitos: 'um entre Saúde 12, Ataque Especial 12 ou Defesa Especial 12',
-      referencia: 'C, V',
-      frequencia: 'Diária',
-      efeito: 'se você tiver ao menos uma hora de descanso, recupere todos os usos de Talentos ou Golpes que possuam Frequência Diária. Depois de usar este Talento, você não pode usá-lo novamente até descansar por ao menos uma noite.'
+      referencia: 'L, V',
+      frequencia: 'À Vontade',
+      gatilho: ': um humano ou pokémon tenta ler sua mente.',
+      efeito: 'Role 1d20 + MAE ou MDE. Se o resultado for 13 ou mais, você mantém sua mente se concentrando em um tópico único à sua escolha (ou em nada). A criatura que tentar ler sua mente não obterá nenhuma informação sobre seus pensamentos ou seus conhecimentos. Ao ativar este Talento sua mente está segura contra tentativas de ler mentes por uma hora.'
     },
     {
       nome: 'Mega!',
@@ -1999,18 +2002,18 @@ export const TALENTOS_DATA = {
     {
       nome: 'Mire no Chifre!',
       requisitos: 'Ataque Especial 13.',
-      referencia: 'C, V',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
-      alvo: 'um pokémon seu',
-      efeito: 'o próximo Golpe que o alvo lançar acerta em Critical Hit se o resultado do acerto for 18 ou mais.'
+      referencia: 'P, V',
+      frequencia: 'Diária. A cada 4 Níveis, receba um uso diário adicional',
+      gatilho: 'seu pokémon está executando um Golpe.',
+      efeito: 'se o resultado do Teste de Acurácia for 19 ou 20, o ataque do seu pokémon causará dano neutro, ignorando todas as resistências e imunidades.'
     },
     {
       nome: 'Mire no Chifre! +',
       requisitos: 'Ataque Especial 16, Mire no Chifre.',
-      referencia: 'C, V',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
-      alvo: 'um pokémon seu',
-      efeito: 'o próximo Golpe que o alvo lançar acerta em Critical Hit se o resultado do acerto for 16 ou mais.'
+      referencia: 'P, V',
+      frequencia: 'Diária. A cada 4 Níveis, receba um uso diário adicional',
+      gatilho: 'seu pokémon está executando um Golpe.',
+      efeito: 'seu pokémon está executando um Golpe. Efeito: Se o resultado do Teste de Acurácia for 16 ou mais, o ataque do seu pokémon causará dano neutro, ignorando todas as resistências e imunidades. Este Talento substitui Mire no Chifre.'
     },
     {
       nome: 'Não se Meta Comigo!',
@@ -2023,23 +2026,24 @@ export const TALENTOS_DATA = {
     {
       nome: 'O Escolhido',
       requisitos: 'Nível 20.',
-      referencia: 'C, X',
-      frequencia: 'Constante',
-      efeito: 'você e todos os seus pokémons em combate recebem +1 em todos os Atributos.'
+      referencia: 'L, X',
+      frequencia: 'Diária',
+      gatilho: 'você falha em um teste que não é de um pokémon.',
+      efeito: 'você tem sucesso no teste.'
     },
     {
       nome: 'Rotina de Estudos',
       requisitos: 'ter comprado um livro pelo menos uma vez.',
       referencia: 'C, V',
       frequencia: 'Constante',
-      efeito: 'sempre que atingir um novo Nível, você recebe 2 Pontos de Experiência extras além dos regulares. Esses pontos não o farão atingir um novo Nível imediatamente.'
+      efeito: 'você deve comprar um livro em uma loja a cada cidade que visite. Se você não tiver pelo menos 70 créditos para comprar um livro quando chegar numa cidade, você perde os benefícios deste Talento até ser capaz de comprar o livro. Este Talento aumenta em um seu Ataque Especial ou sua Defesa Especial.'
     },
     {
       nome: 'Rotina de Exercícios',
       requisitos: 'ter se exercitado pelo menos uma vez.',
       referencia: 'C, V',
       frequencia: 'Constante',
-      efeito: 'sempre que atingir um novo Nível, você recebe 2 Pontos de Experiência extras além dos regulares. Esses pontos não o farão atingir um novo Nível imediatamente.'
+      efeito: 'você deve se exercitar pelo menos uma vez a cada três dias. Uma prática de exercícios deve consumir pelo menos 30 minutos e ela lhe faz perder 10 PV. Se você não se exercitar pelo menos a cada três dias, você perde os benefícios deste Talento até ser capaz de retomar sua rotina de exercícios, fazendo exercício (neste caso)  por dois dias consecutivos. Este Talento aumenta em um sua Saúde, seu Ataque, sua Defesa ou sua Velocidade.'
     },
     {
       nome: 'Socorrista',
@@ -2069,9 +2073,9 @@ export const TALENTOS_DATA = {
       nome: 'Você Isso e Você Aquilo!',
       requisitos: 'Nível 10, todos os Atributos 12.',
       referencia: 'C, V',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
+      frequencia: 'Constante',
       alvo: 'um pokémon adversário',
-      efeito: 'role 1d20 + CAR + SAB. Se o resultado for 16 ou mais, o alvo ficará Confuso por 3 rodadas.'
+      efeito: 'você pode controlar dois pokémons simultaneamente. Ambos os pokémons entram na ordem da iniciativa. Você ainda possui apenas uma Ação Padrão por rodada, mas pode usá-la para dar ordens a dois pokémons ao mesmo tempo. Este Talento não pode ser usado se o Talento Multitarefa estiver em uso.'
     }
   ],
 
