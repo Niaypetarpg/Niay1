@@ -1,0 +1,109 @@
+================================================================================
+LISTA DE TALENTOS CORRIGIDOS
+================================================================================
+
+Total: 15 talentos
+
+1. Cuidado!
+   Linha no arquivo antigo: 1926
+   Requisito INVÁLIDO (REMOVIDO): SAB 12
+   Atributo inventado: SAB 12
+
+2. Deixa Ajudar Agora!
+   Linha no arquivo antigo: 1951
+   Requisito INVÁLIDO (REMOVIDO): SAB 16, Nível 10
+   Atributo inventado: SAB 16
+
+3. Deixa Ajudar com Isso!
+   Linha no arquivo antigo: 1943
+   Requisito INVÁLIDO (REMOVIDO): SAB 16
+   Atributo inventado: SAB 16
+
+4. Dê Tudo de Si!
+   Linha no arquivo antigo: 1935
+   Requisito INVÁLIDO (REMOVIDO): SAB 14
+   Atributo inventado: SAB 14
+
+5. Dê-Me Espaço!
+   Linha no arquivo antigo: 1958
+   Requisito INVÁLIDO (REMOVIDO): FOR 15, Nível 5
+   Atributo inventado: FOR 15
+
+6. Já Ouvi Falar!
+   Linha no arquivo antigo: 1973
+   Requisito INVÁLIDO (REMOVIDO): INT 14
+   Atributo inventado: INT 14
+
+7. Karma do Ash
+   Linha no arquivo antigo: 1980
+   Requisito INVÁLIDO (REMOVIDO): CAR 15
+   Atributo inventado: CAR 15
+
+8. Meditação
+   Linha no arquivo antigo: 1987
+   Requisito INVÁLIDO (REMOVIDO): SAB 12
+   Atributo inventado: SAB 12
+
+9. Mire no Chifre!
+   Linha no arquivo antigo: 2002
+   Requisito INVÁLIDO (REMOVIDO): SAB 14
+   Atributo inventado: SAB 14
+
+10. Mire no Chifre! +
+   Linha no arquivo antigo: 2010
+   Requisito INVÁLIDO (REMOVIDO): SAB 20, Mire no Chifre!, Nível 20
+   Atributo inventado: SAB 20
+
+11. Rotina de Estudos
+   Linha no arquivo antigo: 2033
+   Requisito INVÁLIDO (REMOVIDO): INT 12
+   Atributo inventado: INT 12
+
+12. Rotina de Exercícios
+   Linha no arquivo antigo: 2040
+   Requisito INVÁLIDO (REMOVIDO): FOR 12
+   Atributo inventado: FOR 12
+
+13. Socorrista
+   Linha no arquivo antigo: 2047
+   Requisito INVÁLIDO (REMOVIDO): SAB 12
+   Atributo inventado: SAB 12
+
+14. Sorte do Ash
+   Linha no arquivo antigo: 2055
+   Requisito INVÁLIDO (REMOVIDO): CAR 12
+   Atributo inventado: CAR 12
+
+15. Você Isso e Você Aquilo!
+   Linha no arquivo antigo: 2070
+   Requisito INVÁLIDO (REMOVIDO): CAR 14
+   Atributo inventado: CAR 14
+
+
+================================================================================
+ERROS POR TIPO DE ATRIBUTO INVÁLIDO
+================================================================================
+
+CAR: 3 talentos
+  - Karma do Ash
+  - Sorte do Ash
+  - Você Isso e Você Aquilo!
+
+FOR: 2 talentos
+  - Dê-Me Espaço!
+  - Rotina de Exercícios
+
+INT: 2 talentos
+  - Já Ouvi Falar!
+  - Rotina de Estudos
+
+SAB: 8 talentos
+  - Cuidado!
+  - Deixa Ajudar Agora!
+  - Deixa Ajudar com Isso!
+  - Dê Tudo de Si!
+  - Meditação
+  - Mire no Chifre!
+  - Mire no Chifre! +
+  - Socorrista
+

@@ -1,0 +1,9 @@
+================================================================================
+RELATÓRIO DE CORREÇÃO DE CARACTERÍSTICAS E TALENTOS
+================================================================================
+
+Total de classes/subclasses processadas: 72
+Total de características extraídas: 342
+Total de talentos extraídos: 1209
+
+Nenhum requisito inválido encontrado nos arquivos txt originais

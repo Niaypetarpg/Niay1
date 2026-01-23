@@ -1,0 +1,24 @@
+================================================================================
+RELATÓRIO DE COMPARAÇÃO - REQUISITOS INVÁLIDOS
+================================================================================
+
+Total de requisitos inválidos encontrados no arquivo ANTIGO: 24
+
+Tipos de atributos inválidos encontrados:
+  - FOR: 5 ocorrências
+  - SAB: 5 ocorrências
+  - CAR: 4 ocorrências
+  - INT: 3 ocorrências
+  - CONS: 4 ocorrências
+
+================================================================================
+CONCLUSÃO
+================================================================================
+
+Os arquivos TXT originais NÃO contêm requisitos de FOR, SAB, CAR, INT, DEX ou CONS.
+Esses requisitos inválidos foram ADICIONADOS INCORRETAMENTE ao arquivo .js.
+
+O arquivo corrigido foi gerado com base EXCLUSIVAMENTE nos dados dos arquivos TXT.
+Todos os requisitos inválidos foram removidos.
+
+Arquivo corrigido: caracteristicasETalentosData_CORRIGIDO.js

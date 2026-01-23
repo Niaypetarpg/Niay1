@@ -1,0 +1,233 @@
+{
+  "Acupuntura": {
+    "tipo": "Normal",
+    "aptidao": "Estilo",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "",
+    "alcance": "Corpo a Corpo",
+    "frequencia": "Rodada Sim Rodada Não",
+    "tagConcurso": "Clímax",
+    "efeito": "Role 1d6 e então confira o efeito: 1-Eleva duas Fases de Ataque do alvo. 2-Eleva duas Fases de Defesa do alvo. 3-Eleva duas Fases de Ataque Especial do alvo. 4-Eleva duas Fases de Defesa Especial do alvo. 5-Eleva duas Fases de Velocidade do alvo. 6-Reduz em 2 as Dificuldades de Acurácia do alvo até o fim do encontro."
+  },
+  "Choque do Trovão": {
+    "tipo": "Elétrico",
+    "aptidao": "Segurança",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "1d12+6 Especial",
+    "alcance": "À Distância 10",
+    "frequencia": "À Vontade",
+    "tagConcurso": "Segurança (2d4)",
+    "efeito": "Se o resultado do Teste de Acurácia for 17 ou mais, Paralisa o alvo."
+  },
+  "Ataque Triplo": {
+    "tipo": "Normal",
+    "aptidao": "Beleza",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "3d10+12 Especial",
+    "alcance": "À Distância 8",
+    "frequencia": "Por Encontro",
+    "tagConcurso": "Segurança",
+    "efeito": "Se o resultado do Teste de Acurácia for 17 ou mais, o alvo recebe uma Condição, definida por uma rolagem de 1d4: 1-Paralisia, 2-Queimadura, 3-Congelamento, 4-Role Novamente."
+  },
+  "Magnitude": {
+    "tipo": "Terra",
+    "aptidao": "Vigor",
+    "descritores": "Explosão 2",
+    "acuracia": "2",
+    "danoBasal": "Ver Efeito",
+    "alcance": "Si",
+    "frequencia": "Rodada Sim Rodada Não",
+    "tagConcurso": "Encerramento",
+    "efeito": "Role 1d6 para definir o Dano Basal da Magnitude: Resultado 1: 1d4 Físico; 2: 1d8 Físico; 3: 2d8 Físico; 4: 2d10 Físico; 5: 3d10 Físico; 6: 4d10 Físico. A Magnitude pode acertar alvos que estão no subsolo em virtude do Golpe Cavar ou de Deslocamento de Escavação."
+  },
+  "Onda Psíquica": {
+    "tipo": "Psíquico",
+    "aptidao": "Perspicácia",
+    "descritores": "Coluna 2",
+    "acuracia": "5",
+    "danoBasal": "",
+    "alcance": "À Distância 4",
+    "frequencia": "Por Encontro",
+    "tagConcurso": "Segurança",
+    "efeito": "Role 1d4 para definir quantos PV os alvos perdem: Resultado da Rolagem 1 ou 2: Metade do Nível do Usuário; 3: Nível do Usuário; 4: 1,5 multiplicado pelo Nível do Usuário"
+  },
+  "Presente": {
+    "tipo": "Normal",
+    "aptidao": "Ternura",
+    "descritores": "",
+    "acuracia": "3",
+    "danoBasal": "Ver Efeito",
+    "alcance": "À Distância 8",
+    "frequencia": "Rodada Sim Rodada Não",
+    "tagConcurso": "Excentricidade",
+    "efeito": "Role 1d4 e então confira o Dano Basal do Presente: Resultado 1: 1d10+10 Físico; 2: 2d10+10 Físico; 3: 3d10+10 Físico; 4: Não há nenhum Dano Basal, e o alvo é curado em 65 Pontos de Vida"
+  },
+  "Poder Oculto": {
+    "tipo": "Normal",
+    "aptidao": "Perspicácia",
+    "descritores": "Explosão 3",
+    "acuracia": "2",
+    "danoBasal": "Ver Efeito",
+    "alcance": "Si",
+    "frequencia": "Rodada Sim Rodada Não",
+    "tagConcurso": "Reviravolta",
+    "efeito": "Quando um pokémon aprende seu Poder Oculto, role 1d4 para definir o Dano Basal do Poder Oculto: Resultado da Rolagem de 1d4 1: 1d12+6 Especial; 2: 2d8+6 Especial; 3: 2d10+8 Especial; 4: 3d8+10 Especial. Além disso, quando um pokémon aprende seu Poder Oculto, role 1d20 para definir o Tipo do Poder Oculto. O Tipo definido será o Tipo do Golpe no lugar do Tipo Normal, de modo que o dano causado será do Tipo definido. Resultado da Rolagem de 1d20 1: Água; 2: Dragão; 3: Elétrico; 4: Fada; 5: Fantasma; 6: Fogo; 7: Gelo; 8: Inseto; 9: Lutador; 10: Metal; 11: Normal; 12: Pedra; 13: Planta; 14: Psíquico; 15: Terra; 16: Trevas; 17: Venenoso; 18: Voador; 19 ou 20: Role Novamente"
+  },
+  "Colisão Quente": {
+    "tipo": "Fogo",
+    "aptidao": "Vigor",
+    "descritores": "Impacto",
+    "acuracia": "2",
+    "danoBasal": "Ver Efeito",
+    "alcance": "À Distância 10",
+    "frequencia": "Por Encontro",
+    "tagConcurso": "Incentivo",
+    "efeito": "O alvo revela a Categoria de Peso dele. O Dano Basal da Colisão Quente varia conforme a diferença entre as Categorias de Peso do alvo e do usuário- Iguais: 1d10 Físico / Usuário mais pesado que o alvo em uma Categoria de Peso: 1d10+10 Físico / Usuário mais pesado que o alvo em duas Categorias de Peso: 2d12+12 Físico / Usuário mais pesado que o alvo em três Categorias de Peso: 3d10+14 Físico / Usuário mais pesado que o alvo em quatro ou mais Categorias de Peso: 5d10+16 Físico"
+  },
+  "Corte Furioso": {
+    "tipo": "Inseto",
+    "aptidao": "Estilo",
+    "descritores": "",
+    "acuracia": "3",
+    "danoBasal": "1d4 Físico",
+    "alcance": "Corpo a Corpo",
+    "frequencia": "À Vontade",
+    "tagConcurso": "Modéstia",
+    "efeito": "Se Corte Furioso for usado consecutivamente com sucesso contra o mesmo alvo, seu Dano Basal aumenta conforme a tabela abaixo: Segunda Rodada: 1d12+6 Físico / Terceira Rodada: 2d12+12 Físico / Quarta Rodada: 3d12+18 Físico / Além da Quarta Rodada: 4d12+24 Físico"
+  },
+  "Curinga": {
+    "tipo": "Normal",
+    "aptidao": "Estilo",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "Ver Efeito",
+    "alcance": "À Distância 10",
+    "frequencia": "Rodada Sim Rodada Não",
+    "tagConcurso": "Abertura (0)",
+    "efeito": "O Dano Basal deste Golpe varia conforme o número de vezes que o usuário usou o Curinga neste encontro: N° Usos Curinga Usuário Encotr. Atual: 1 ou 2 Dano Basal:1d10+4 Especial / N° Usos Curinga Usuário Encotr. Atual: 3 Dano Basal: 1d12+6 Especial / N° Usos Curinga Usuário Encotr. Atual: 4 Dano Basal: 2d10+8 Especial / N° Usos Curinga Usuário Encotr. Atual: 5 Dano Basal: 7d10+28 Especial - Se o Dano Basal do Curinga atingir o máximo em determinado encontro, a Frequência do Curinga se tornará Diária, de forma que não será possível usá-lo novamente naquele mesmo encontro."
+  },
+  "Engolir": {
+    "tipo": "Normal",
+    "aptidao": "Vigor",
+    "descritores": "",
+    "acuracia": "Automática",
+    "danoBasal": "",
+    "alcance": "Si",
+    "frequencia": "Diária",
+    "tagConcurso": "Modelo",
+    "efeito": "O número de Fases de Defesa e de Defesa Especial que o usuário recebeu por Estocagem determinará a quantidade de PV recuperados por Engolir. Fases Def. e Def. Esp. recebidas por Estocagem: Uma Fase de cada Atributo / PV Recuperados:25% dos PV máximos & Fases Def. e Def. Esp. recebidas por Estocagem: Duas Fases de cada Atributo / PV Recuperados:Metade dos PV máximos & Fases Def. e Def. Esp. recebidas por Estocagem: Três Fases de cada Atributo/ PV Recuperados:Todos os PV // Depois de usar Engolir, as Fases recebidas por Estocagem são perdidas. Se o usuário não tiver usado Estocagem, a Engolir não faz nada."
+  },
+  "Esfera Elétrica": {
+    "tipo": "Elétrico",
+    "aptidao": "Beleza",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "Ver Efeito",
+    "alcance": "À Distância 10",
+    "frequencia": "Por Encontro",
+    "tagConcurso": "Despedida",
+    "efeito": "O alvo revela a Velocidade atual dele (com Fases, bônus e penalidades aplicados). O Dano Basal da Esfera Elétrica varia conforme a divisão entre a Velocidade atual do usuário e a Velocidade atual do alvo- Velo. Usu. comparada à Velo Alvo:4x+ Dano Basal:5d10+16 Especial / Velo. Usu. comparada à Velo Alvo:3x Dano Basal:3d10+14 Especial / Velo. Usu. comparada à Velo Alvo:2x Dano Basal:2d10+12 Especial / Velo. Usu. comparada à Velo Alvo: Maior Dano Basal:1d10+10 Especial"
+  },
+  "Liberação": {
+    "tipo": "Normal",
+    "aptidao": "Vigor",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "Ver Efeito",
+    "alcance": "À Distância 8",
+    "frequencia": "Por Encontro",
+    "tagConcurso": "Encerramento",
+    "efeito": "O número de Fases de Defesa e de Defesa Especial que o usuário recebeu por Estocagem determinará o Dano Basal da Liberação. Fases de Defesa e de Defesa Especial recebidas por Estocagem: Uma Fase de cada Atributo: 3d10+12 Especial; Duas Fases de cada Atributo: 4d12+16 Especial; Três Fases de cada Atributo: 5d12+18 Especial. Depois de usar Liberação, as Fases recebidas por Estocagem são perdidas. Se o usuário não tiver usado Estocagem, a Liberação não faz nada."
+  },
+  "Mangual": {
+    "tipo": "Normal",
+    "aptidao": "Ternura",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "Ver Efeito",
+    "alcance": "Corpo a Corpo",
+    "frequencia": "Rodada Sim Rodada Não",
+    "tagConcurso": "Despedida",
+    "efeito": "O Dano Basal do Mangual depende dos Pontos de Vida do usuário: PV Atuais 70% ou mais dos PV máximos: 1d10+5 Físico; De 36% a 69% dos PV máximos: 2d10+10 Físico; De 21% a 35% dos PV máximos: 3d10+10 Físico; De 6% a 20% dos PV máximos: 4d10+10 Físico; De 1 PV até 5% dos PV máximos: 5d10+20 Físico"
+  },
+  "Peso Pesado": {
+    "tipo": "Metal",
+    "aptidao": "Vigor",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "Ver Efeito",
+    "alcance": "Corpo a Corpo",
+    "frequencia": "Por Encontro",
+    "tagConcurso": "Incentivo",
+    "efeito": "O alvo revela a Categoria de Peso dele. O Dano Basal do Peso Pesado varia conforme a diferença entre as Categorias de Peso do alvo e do usuário: Categorias de Peso Iguais: 1d10 Físico; Usuário mais pesado que o alvo em uma Categoria de Peso: 1d10+10 Físico; Usuário mais pesado que o alvo em duas Categorias de Peso: 2d12+12 Físico; Usuário mais pesado que o alvo em três Categorias de Peso: 3d10+14 Físico; Usuário mais pesado que o alvo em quatro ou mais Categorias de Peso: 5d10+16 Físico"
+  },
+  "Pular": {
+    "tipo": "Voador",
+    "aptidao": "Ternura",
+    "descritores": "Explosão (ver texto), Preparo",
+    "acuracia": "4",
+    "danoBasal": "3d12+14 Físico",
+    "alcance": "Si",
+    "frequencia": "Por Encontro",
+    "tagConcurso": "Dedicatória",
+    "efeito": "No momento que declarar o uso deste Golpe, o usuário vai Pular a 10 metros no ar e seu turno acaba. Isso é considerado um efeito de Preparo. Na rodada seguinte, o usuário atinge o solo criando uma Explosão com valor conforme sua Categoria de Peso: 1 para Muito Leve, 2 para Leve, 3 para Médio, 4 para Pesado, 5 para Muito Pesado e 6 para Extremamente Pesado. Se o resultado do Teste de Acurácia for 17 ou mais, os alvos estão Paralisados."
+  },
+  "Rasteira": {
+    "tipo": "Lutador",
+    "aptidao": "Vigor",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "Ver Efeito",
+    "alcance": "Corpo a Corpo",
+    "frequencia": "Por Encontro",
+    "tagConcurso": "Segurança",
+    "efeito": "O alvo revela a Categoria de Peso dele. O Dano Basal da Rasteira varia conforme a Categoria de Peso do alvo: Categoria de Peso do Alvo Muito Leve: 1d10 Físico; Leve: 1d10+5 Físico; Médio: 1d10+10 Físico; Pesado: 2d10+12 Físico; Muito Pesado: 3d10+14 Físico; Extremamente Pesado: 5d10+16 Físico"
+  },
+  "Reversão": {
+    "tipo": "Lutador",
+    "aptidao": "Estilo",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "Ver Efeito",
+    "alcance": "Corpo a Corpo",
+    "frequencia": "Rodada Sim Rodada Não",
+    "tagConcurso": "Despedida",
+    "efeito": "O Dano Basal da Reversão varia conforme a quantidade de PV que o usuário possui atualmente comparada a seus Pontos de Vida máximos: PV Atuais Mais de 70% dos PV Máximos: 1d10+5 Físico; De 36% a 70% dos PV Máximos: 2d10+10 Físico; De 21% a 35% dos PV Máximos: 3d10+10 Físico; De 6% a 20% dos PV Máximos: 4d10+10 Físico; De 1% a 5% dos PV Máximos: 5d10+20 Físico"
+  },
+  "Rolagem": {
+    "tipo": "Pedra",
+    "aptidao": "Vigor",
+    "descritores": "Investida",
+    "acuracia": "4",
+    "danoBasal": "Ver Efeito",
+    "alcance": "Corpo a Corpo",
+    "frequencia": "Rodada Sim Rodada Não",
+    "tagConcurso": "Modéstia",
+    "efeito": "O usuário deve continuar atacando todas as rodadas usando a Rolagem pelas próximas quatro rodadas (totalizando cinco ataques), até que ele falhe em acertar o alvo ou até que seu deslocamento não seja o suficiente para alcançar o alvo. O Dano Basal aumenta conforme o número de rodadas consecutivas de Rolagem: Rodada Primeira: 1d10+4 Físico; Segunda: 2d10+8 Físico; Terceira: 2d10+12 Físico; Quarta: 3d10+16 Físico; Quinta: 4d10+20 Físico"
+  },
+  "Poder da Natureza": {
+    "tipo": "Normal",
+    "aptidao": "Beleza",
+    "descritores": "",
+    "acuracia": "Ver Efeito",
+    "danoBasal": "Ver Efeito",
+    "alcance": "Ver Efeito",
+    "frequencia": "Rodada Sim Rodada Não",
+    "tagConcurso": "Sorteio",
+    "efeito": "O usuário usa um Golpe de acordo com o ambiente em que se encontra. Se a Frequência do Golpe usado for Por Encontro ou Diária, não será possível usar o Poder da Natureza de novo durante o encontro. Ambiente: Água Doce - Surfe; Ártico, Taiga e Tundra - Nevasca; Caverna - Esfera de Sombras; Céu - Rajada de Vento; Cidade - Estrela Cadente; Deserto - Ataque de Areia; Floresta - Folhas Mágicas; Montanha - Deslizamento de Rochas; Oceano - Hidrobomba; Pradaria - Esporos Paralisantes; Praia - Água Barrenta; Selva - Folha Navalha; Vulcão - Onda de Calor"
+  },
+  "Poder Secreto": {
+    "tipo": "Normal",
+    "aptidao": "Perspicácia",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "3d8+10 Especial",
+    "alcance": "À Distância 8",
+    "frequencia": "Rodada Sim Rodada Não",
+    "tagConcurso": "Sorteio",
+    "efeito": "Se o resultado do Teste de Acurácia for 17 ou mais, o Poder Secreto causa no alvo um efeito de acordo com o ambiente: Água Doce: perde uma Fase de Velocidade; Ártico, Taiga e Tundra: está Congelado; Caverna: está Atordoado; Céu: perde uma Fase de Ataque Especial; Cidade: está Paralisado; Deserto: recebe +2 às Dificuldades de Acurácia; Floresta: perde uma Fase de Defesa; Montanha: está Confuso; Oceano: perde uma Fase de Ataque; Pradaria: está Envenenado; Praia: perde uma Fase de Defesa Especial; Selva: está Adormecido; Vulcão: está Queimado"
+  }
+}

@@ -108,7 +108,35 @@ const GOLPES_DATA = {
     "alcance": "Corpo a Corpo",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Clímax",
-    "efeito": "Role 1d6 e então confira o efeito: 1-Eleva duas Fases de Ataque do alvo. 2-Eleva duas Fases de Defesa do alvo. 3-Eleva duas Fases de Ataque Especial do alvo. 4-Eleva duas Fases de Defesa Especial do alvo. 5-Eleva duas Fases de Velocidade do alvo. 6-Reduz em 2 as Dificuldades de Acurácia do alvo até o fim do encontro."
+    "efeito": {
+      "descricao": "Role 1d6 e então confira o efeito:",
+      "tabela": [
+        {
+          "resultado": "1",
+          "efeito": "Eleva duas Fases de Ataque do alvo"
+        },
+        {
+          "resultado": "2",
+          "efeito": "Eleva duas Fases de Defesa do alvo"
+        },
+        {
+          "resultado": "3",
+          "efeito": "Eleva duas Fases de Ataque Especial do alvo"
+        },
+        {
+          "resultado": "4",
+          "efeito": "Eleva duas Fases de Defesa Especial do alvo"
+        },
+        {
+          "resultado": "5",
+          "efeito": "Eleva duas Fases de Velocidade do alvo"
+        },
+        {
+          "resultado": "6",
+          "efeito": "Reduz em 2 as Dificuldades de Acurácia do alvo até o fim do encontro"
+        }
+      ]
+    }
   },
   "Adaptação": {
     "tipo": "Normal",
@@ -306,7 +334,31 @@ const GOLPES_DATA = {
     "alcance": "Corpo a Corpo",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Modéstia",
-    "efeito": "O usuário deve continuar atacando todas as rodadas usando o Anel de Gelo pelas próximas quatro rodadas (totalizando cinco ataques), até que ele falhe em acertar o alvo ou até que seu deslocamento não seja o suficiente para alcançar o alvo. O Dano Basal aumenta conforme o número de rodadas consecutivas de Anel de Gelo."
+    "efeito": {
+      "descricao": "O usuário deve continuar atacando todas as rodadas usando o Anel de Gelo pelas próximas quatro rodadas (totalizando cinco ataques), até que ele falhe em acertar o alvo ou até que seu deslocamento não seja o suficiente para alcançar o alvo. O Dano Basal aumenta conforme o número de rodadas consecutivas de Anel de Gelo:",
+      "tabela": [
+        {
+          "rodada": "Primeira",
+          "danoBasal": "1d10+4 Físico"
+        },
+        {
+          "rodada": "Segunda",
+          "danoBasal": "2d10+8 Físico"
+        },
+        {
+          "rodada": "Terceira",
+          "danoBasal": "2d10+12 Físico"
+        },
+        {
+          "rodada": "Quarta",
+          "danoBasal": "3d10+16 Físico"
+        },
+        {
+          "rodada": "Quinta",
+          "danoBasal": "4d10+20 Físico"
+        }
+      ]
+    }
   },
   "Armadura Ácida": {
     "tipo": "Elétrico",
@@ -592,7 +644,27 @@ const GOLPES_DATA = {
     "alcance": "À Distância 8",
     "frequencia": "Por Encontro",
     "tagConcurso": "Segurança",
-    "efeito": "Se o resultado do Teste de Acurácia for 17 ou mais, o alvo recebe uma Condição, definida por uma rolagem de 1d4: 1-Paralisia, 2-Queimadura, 3-Congelamento, 4-Role Novamente."
+    "efeito": {
+      "descricao": "Se o resultado do Teste de Acurácia for 17 ou mais, o alvo recebe uma Condição, definida por uma rolagem de 1d4:",
+      "tabela": [
+        {
+          "resultado": "1",
+          "condicao": "Paralisia"
+        },
+        {
+          "resultado": "2",
+          "condicao": "Queimadura"
+        },
+        {
+          "resultado": "3",
+          "condicao": "Congelamento"
+        },
+        {
+          "resultado": "4",
+          "condicao": "Role Novamente"
+        }
+      ]
+    }
   },
   "Atração": {
     "tipo": "Normal",
@@ -1142,7 +1214,79 @@ const GOLPES_DATA = {
     "alcance": "Si",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Abstração",
-    "efeito": "O usuário muda seu Tipo de acordo com o ambiente e com o Clima:"
+    "efeito": {
+      "descricao": "O usuário muda seu Tipo de acordo com o ambiente e com o Clima:",
+      "tabela": [
+        {
+          "ambiente": "Água Doce",
+          "tipo": "Água"
+        },
+        {
+          "ambiente": "Ártico / Taiga / Tundra",
+          "tipo": "Gelo"
+        },
+        {
+          "ambiente": "Caverna",
+          "tipo": "Pedra"
+        },
+        {
+          "ambiente": "Céu",
+          "tipo": "Voador"
+        },
+        {
+          "ambiente": "Cidade",
+          "tipo": "Normal"
+        },
+        {
+          "ambiente": "Deserto",
+          "tipo": "Terra"
+        },
+        {
+          "ambiente": "Floresta",
+          "tipo": "Planta"
+        },
+        {
+          "ambiente": "Montanha",
+          "tipo": "Pedra"
+        },
+        {
+          "ambiente": "Oceano",
+          "tipo": "Água"
+        },
+        {
+          "ambiente": "Pradaria",
+          "tipo": "Planta"
+        },
+        {
+          "ambiente": "Praia",
+          "tipo": "Terra"
+        },
+        {
+          "ambiente": "Selva",
+          "tipo": "Inseto"
+        },
+        {
+          "ambiente": "Vulcão",
+          "tipo": "Fogo"
+        },
+        {
+          "clima": "Ensolarado",
+          "tipo": "Fogo"
+        },
+        {
+          "clima": "Chuva",
+          "tipo": "Água"
+        },
+        {
+          "clima": "Granizo",
+          "tipo": "Gelo"
+        },
+        {
+          "clima": "Tempestade de Areia",
+          "tipo": "Terra"
+        }
+      ]
+    }
   },
   "": {
     "tipo": "",
@@ -1496,6 +1640,17 @@ const GOLPES_DATA = {
     "tagConcurso": "Incentivo",
     "efeito": "O alvo perde uma Fase de Ataque."
   },
+  "Choque do Trovão": {
+    "tipo": "Elétrico",
+    "aptidao": "Segurança",
+    "descritores": "",
+    "acuracia": "2",
+    "danoBasal": "1d12+6 Especial",
+    "alcance": "À Distância 10",
+    "frequencia": "À Vontade",
+    "tagConcurso": "Segurança (2d4)",
+    "efeito": "Se o resultado do Teste de Acurácia for 17 ou mais, Paralisa o alvo."
+  },
   "Ciclone": {
     "tipo": "Dragão",
     "aptidao": "Estilo",
@@ -1615,7 +1770,31 @@ const GOLPES_DATA = {
     "alcance": "À Distância 10",
     "frequencia": "Por Encontro",
     "tagConcurso": "Incentivo",
-    "efeito": "O alvo revela a Categoria de Peso dele. O Dano Basal da Colisão Quente varia conforme a diferença entre as Categorias de Peso do alvo e do usuário- Iguais: 1d10 Físico / Usuário mais pesado que o alvo em uma Categoria de Peso: 1d10+10 Físico / Usuário mais pesado que o alvo em duas Categorias de Peso: 2d12+12 Físico / Usuário mais pesado que o alvo em três Categorias de Peso: 3d10+14 Físico / Usuário mais pesado que o alvo em quatro ou mais Categorias de Peso: 5d10+16 Físico"
+    "efeito": {
+      "descricao": "O alvo revela a Categoria de Peso dele. O Dano Basal da Colisão Quente varia conforme a diferença entre as Categorias de Peso do alvo e do usuário:",
+      "tabela": [
+        {
+          "diferenca": "Iguais",
+          "danoBasal": "1d10 Físico"
+        },
+        {
+          "diferenca": "Usuário mais pesado em 1 Categoria",
+          "danoBasal": "1d10+10 Físico"
+        },
+        {
+          "diferenca": "Usuário mais pesado em 2 Categorias",
+          "danoBasal": "2d12+12 Físico"
+        },
+        {
+          "diferenca": "Usuário mais pesado em 3 Categorias",
+          "danoBasal": "3d10+14 Físico"
+        },
+        {
+          "diferenca": "Usuário mais pesado em 4+ Categorias",
+          "danoBasal": "5d10+16 Físico"
+        }
+      ]
+    }
   },
   "Combate Aéreo": {
     "tipo": "Lutador",
@@ -1824,7 +2003,27 @@ const GOLPES_DATA = {
     "alcance": "Corpo a Corpo",
     "frequencia": "À Vontade",
     "tagConcurso": "Modéstia",
-    "efeito": "Se Corte Furioso for usado consecutivamente com sucesso contra o mesmo alvo, seu Dano Basal aumenta conforme a tabela abaixo: Segunda Rodada: 1d12+6 Físico / Terceira Rodada: 2d12+12 Físico / Quarta Rodada: 3d12+18 Físico / Além da Quarta Rodada: 4d12+24 Físico"
+    "efeito": {
+      "descricao": "Se Corte Furioso for usado consecutivamente com sucesso contra o mesmo alvo, seu Dano Basal aumenta conforme a tabela abaixo:",
+      "tabela": [
+        {
+          "rodada": "Segunda",
+          "danoBasal": "1d12+6 Físico"
+        },
+        {
+          "rodada": "Terceira",
+          "danoBasal": "2d12+12 Físico"
+        },
+        {
+          "rodada": "Quarta",
+          "danoBasal": "3d12+18 Físico"
+        },
+        {
+          "rodada": "Além da Quarta",
+          "danoBasal": "4d12+24 Físico"
+        }
+      ]
+    }
   },
   "Corte Psíquico": {
     "tipo": "Psíquico",
@@ -1912,7 +2111,27 @@ const GOLPES_DATA = {
     "alcance": "À Distância 10",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Abertura (0)",
-    "efeito": "O Dano Basal deste Golpe varia conforme o número de vezes que o usuário usou o Curinga neste encontro: N° Usos Curinga Usuário Encotr. Atual: 1 ou 2 Dano Basal:1d10+4 Especial / N° Usos Curinga Usuário Encotr. Atual: 3 Dano Basal: 1d12+6 Especial / N° Usos Curinga Usuário Encotr. Atual: 4 Dano Basal: 2d10+8 Especial / N° Usos Curinga Usuário Encotr. Atual: 5 Dano Basal: 7d10+28 Especial - Se o Dano Basal do Curinga atingir o máximo em determinado encontro, a Frequência do Curinga se tornará Diária, de forma que não será possível usá-lo novamente naquele mesmo encontro."
+    "efeito": {
+      "descricao": "O Dano Basal deste Golpe varia conforme o número de vezes que o usuário usou o Curinga neste encontro. Se o Dano Basal atingir o máximo em determinado encontro, a Frequência se tornará Diária, de forma que não será possível usá-lo novamente naquele mesmo encontro.",
+      "tabela": [
+        {
+          "usos": "1 ou 2",
+          "danoBasal": "1d10+4 Especial"
+        },
+        {
+          "usos": "3",
+          "danoBasal": "1d12+6 Especial"
+        },
+        {
+          "usos": "4",
+          "danoBasal": "2d10+8 Especial"
+        },
+        {
+          "usos": "5",
+          "danoBasal": "7d10+28 Especial"
+        }
+      ]
+    }
   },
   "Dádiva da Natureza": {
     "tipo": "Normal",
@@ -1923,7 +2142,413 @@ const GOLPES_DATA = {
     "alcance": "À Distância 10",
     "frequencia": "Por Encontro",
     "tagConcurso": "Encerramento",
-    "efeito": "A Dádiva da Natureza tem Dano Basal e Tipo de dano de acordo com a fruta que é o item Mantido do usuário, que terá sua energia usada sendo destruída sem ser consumida: VER TABELA NO LIVRO"
+    "efeito": {
+      "descricao": "A Dádiva da Natureza tem Dano Basal e Tipo de dano de acordo com a fruta que é o item Mantido do usuário, que terá sua energia usada sendo destruída sem ser consumida:",
+      "tabela": [
+        {
+          "fruto": "Aguav",
+          "frutaReal": "Goiaba",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Dragão"
+        },
+        {
+          "fruto": "Apicot",
+          "frutaReal": "Damasco",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Terra"
+        },
+        {
+          "fruto": "Aspear",
+          "frutaReal": "Pera",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Gelo"
+        },
+        {
+          "fruto": "Babiri",
+          "frutaReal": "Biribá",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Metal"
+        },
+        {
+          "fruto": "Belue",
+          "frutaReal": "Mirtilo",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Elétrico"
+        },
+        {
+          "fruto": "Bluk",
+          "frutaReal": "Amora",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Fogo"
+        },
+        {
+          "fruto": "Charti",
+          "frutaReal": "Alcachofra",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Pedra"
+        },
+        {
+          "fruto": "Cheri",
+          "frutaReal": "Cereja",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Fogo"
+        },
+        {
+          "fruto": "Chesto",
+          "frutaReal": "Castanha",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Água"
+        },
+        {
+          "fruto": "Chilan",
+          "frutaReal": "Sininho",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Normal"
+        },
+        {
+          "fruto": "Chople",
+          "frutaReal": "Chipotle",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Lutador"
+        },
+        {
+          "fruto": "Coba",
+          "frutaReal": "Babaco",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Voador"
+        },
+        {
+          "fruto": "Cornn",
+          "frutaReal": "Cardo",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Inseto"
+        },
+        {
+          "fruto": "Coulbur",
+          "frutaReal": "Milho",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Trevas"
+        },
+        {
+          "fruto": "Cutsap",
+          "frutaReal": "Pinha",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Fantasma"
+        },
+        {
+          "fruto": "Durin",
+          "frutaReal": "Durião",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Água"
+        },
+        {
+          "fruto": "Enigma",
+          "frutaReal": "Enigma",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Inseto"
+        },
+        {
+          "fruto": "Figy",
+          "frutaReal": "Figo",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Inseto"
+        },
+        {
+          "fruto": "Ganlon",
+          "frutaReal": "Longana",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Gelo"
+        },
+        {
+          "fruto": "Grepa",
+          "frutaReal": "Uva",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Voador"
+        },
+        {
+          "fruto": "Haban",
+          "frutaReal": "Araçá",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Dragão"
+        },
+        {
+          "fruto": "Hondew",
+          "frutaReal": "Cantalupo",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Terra"
+        },
+        {
+          "fruto": "Iapapa",
+          "frutaReal": "Mamão",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Trevas"
+        },
+        {
+          "fruto": "Jaboca",
+          "frutaReal": "Jabuticaba",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Dragão"
+        },
+        {
+          "fruto": "Kasib",
+          "frutaReal": "Mandioca",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Fantasma"
+        },
+        {
+          "fruto": "Kebia",
+          "frutaReal": "Akebia",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Venenoso"
+        },
+        {
+          "fruto": "Kee",
+          "frutaReal": "Guaraná",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Fada"
+        },
+        {
+          "fruto": "Kelpsy",
+          "frutaReal": "Alga",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Lutador"
+        },
+        {
+          "fruto": "Lansat",
+          "frutaReal": "Langsat",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Voador"
+        },
+        {
+          "fruto": "Leppa",
+          "frutaReal": "Maçã",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Lutador"
+        },
+        {
+          "fruto": "Liechi",
+          "frutaReal": "Lichia",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Planta"
+        },
+        {
+          "fruto": "Lum",
+          "frutaReal": "Ameixa",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Voador"
+        },
+        {
+          "fruto": "Mago",
+          "frutaReal": "Manga",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Fantasma"
+        },
+        {
+          "fruto": "Magost",
+          "frutaReal": "Mangostão",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Pedra"
+        },
+        {
+          "fruto": "Maranga",
+          "frutaReal": "Jaca",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Normal"
+        },
+        {
+          "fruto": "Micle",
+          "frutaReal": "Fruta Milagrosa",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Pedra"
+        },
+        {
+          "fruto": "Nanab",
+          "frutaReal": "Banana",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Água"
+        },
+        {
+          "fruto": "Nomel",
+          "frutaReal": "Limão",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Dragão"
+        },
+        {
+          "fruto": "Occa",
+          "frutaReal": "Cacau",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Fogo"
+        },
+        {
+          "fruto": "Oran",
+          "frutaReal": "Laranja",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Venenoso"
+        },
+        {
+          "fruto": "Pamtre",
+          "frutaReal": "Açaí",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Metal"
+        },
+        {
+          "fruto": "Passho",
+          "frutaReal": "Maracujá",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Água"
+        },
+        {
+          "fruto": "Payapa",
+          "frutaReal": "Papaia",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Psíquico"
+        },
+        {
+          "fruto": "Pecha",
+          "frutaReal": "Pêssego",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Elétrico"
+        },
+        {
+          "fruto": "Persim",
+          "frutaReal": "Caqui",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Terra"
+        },
+        {
+          "fruto": "Petaya",
+          "frutaReal": "Pitaia",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Venenoso"
+        },
+        {
+          "fruto": "Pinap",
+          "frutaReal": "Abacaxi",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Planta"
+        },
+        {
+          "fruto": "Pomeg",
+          "frutaReal": "Romã",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Gelo"
+        },
+        {
+          "fruto": "Qualot",
+          "frutaReal": "Nêspera",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Venenoso"
+        },
+        {
+          "fruto": "Rabuta",
+          "frutaReal": "Rambutão",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Fantasma"
+        },
+        {
+          "fruto": "Rawst",
+          "frutaReal": "Morango",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Planta"
+        },
+        {
+          "fruto": "Razz",
+          "frutaReal": "Framboesa",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Metal"
+        },
+        {
+          "fruto": "Rindo",
+          "frutaReal": "Tamarindo",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Planta"
+        },
+        {
+          "fruto": "Roseli",
+          "frutaReal": "Rosélia",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Fada"
+        },
+        {
+          "fruto": "Rowap",
+          "frutaReal": "Jambo",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Trevas"
+        },
+        {
+          "fruto": "Salac",
+          "frutaReal": "Salak",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Lutador"
+        },
+        {
+          "fruto": "Shuca",
+          "frutaReal": "Caju",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Terra"
+        },
+        {
+          "fruto": "Sitrus",
+          "frutaReal": "Toranja",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Psíquico"
+        },
+        {
+          "fruto": "Spelon",
+          "frutaReal": "Melão",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Trevas"
+        },
+        {
+          "fruto": "Starf",
+          "frutaReal": "Carambola",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Psíquico"
+        },
+        {
+          "fruto": "Tamato",
+          "frutaReal": "Tomate",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Psíquico"
+        },
+        {
+          "fruto": "Tanga",
+          "frutaReal": "Pitanga",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Inseto"
+        },
+        {
+          "fruto": "Wacan",
+          "frutaReal": "Guajilote",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Elétrico"
+        },
+        {
+          "fruto": "Watmel",
+          "frutaReal": "Melancia",
+          "danoBasal": "2d12+15 Especial",
+          "tipo": "Fogo"
+        },
+        {
+          "fruto": "Wepear",
+          "frutaReal": "Abacate",
+          "danoBasal": "1d12+15 Especial",
+          "tipo": "Elétrico"
+        },
+        {
+          "fruto": "Wiki",
+          "frutaReal": "Kiwi",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Pedra"
+        },
+        {
+          "fruto": "Yache",
+          "frutaReal": "Chirimoia",
+          "danoBasal": "1d10+10 Especial",
+          "tipo": "Gelo"
+        }
+      ]
+    }
   },
   "Dança Ardente": {
     "tipo": "Fogo",
@@ -2407,7 +3032,23 @@ const GOLPES_DATA = {
     "alcance": "Si",
     "frequencia": "Diária",
     "tagConcurso": "Modelo",
-    "efeito": "O número de Fases de Defesa e de Defesa Especial que o usuário recebeu por Estocagem determinará a quantidade de PV recuperados por Engolir. Fases Def. e Def. Esp. recebidas por Estocagem: Uma Fase de cada Atributo / PV Recuperados:25% dos PV máximos & Fases Def. e Def. Esp. recebidas por Estocagem: Duas Fases de cada Atributo / PV Recuperados:Metade dos PV máximos & Fases Def. e Def. Esp. recebidas por Estocagem: Três Fases de cada Atributo/ PV Recuperados:Todos os PV // Depois de usar Engolir, as Fases recebidas por Estocagem são perdidas. Se o usuário não tiver usado Estocagem, a Engolir não faz nada."
+    "efeito": {
+      "descricao": "O número de Fases de Defesa e de Defesa Especial que o usuário recebeu por Estocagem determinará a quantidade de PV recuperados por Engolir. Depois de usar Engolir, as Fases recebidas por Estocagem são perdidas. Se o usuário não tiver usado Estocagem, a Engolir não faz nada.",
+      "tabela": [
+        {
+          "fases": "Uma Fase de cada Atributo",
+          "pvRecuperados": "25% dos PV máximos"
+        },
+        {
+          "fases": "Duas Fases de cada Atributo",
+          "pvRecuperados": "Metade dos PV máximos"
+        },
+        {
+          "fases": "Três Fases de cada Atributo",
+          "pvRecuperados": "Todos os PV"
+        }
+      ]
+    }
   },
   "Engrenagens": {
     "tipo": "Metal",
@@ -2583,7 +3224,36 @@ const GOLPES_DATA = {
     "alcance": "À Distância 10",
     "frequencia": "Por Encontro",
     "tagConcurso": "Incentivo",
-    "efeito": "Se o Clima não estiver Ameno, o Dano Basal da Esfera Climática aumenta para 4d12+16 Especial e o Tipo dele muda variando conforme o Clima-Clima:Ensolarado Tipo da Esfera Climática:Fogo / Clima:Tempestade de Areia Tipo da Esfera Climática:Pedra / Clima:Granizo Tipo da Esfera Climática:Gelo / Clima:Chuva Tipo da Esfera Climática:Água //Se houver mais de um Clima em vigência, é possível escolher qual será o Tipo (e o dano consequentemente) da Esfera Climática."
+    "efeito": {
+      "descricao": "Se o Clima não estiver Ameno, o Dano Basal da Esfera Climática aumenta para 4d12+16 Especial e o Tipo dele muda variando conforme o Clima. Se houver mais de um Clima em vigência, é possível escolher qual será o Tipo (e o dano consequentemente) da Esfera Climática.",
+      "tabela": [
+        {
+          "clima": "Ensolarado",
+          "tipo": "Fogo",
+          "danoBasal": "4d12+16 Especial"
+        },
+        {
+          "clima": "Tempestade de Areia",
+          "tipo": "Pedra",
+          "danoBasal": "4d12+16 Especial"
+        },
+        {
+          "clima": "Granizo",
+          "tipo": "Gelo",
+          "danoBasal": "4d12+16 Especial"
+        },
+        {
+          "clima": "Chuva",
+          "tipo": "Água",
+          "danoBasal": "4d12+16 Especial"
+        },
+        {
+          "clima": "Ameno",
+          "tipo": "Normal",
+          "danoBasal": "2d8+6 Especial"
+        }
+      ]
+    }
   },
   "Esfera de Aura": {
     "tipo": "Lutador",
@@ -2638,7 +3308,27 @@ const GOLPES_DATA = {
     "alcance": "À Distância 10",
     "frequencia": "Por Encontro",
     "tagConcurso": "Despedida",
-    "efeito": "O alvo revela a Velocidade atual dele (com Fases, bônus e penalidades aplicados). O Dano Basal da Esfera Elétrica varia conforme a divisão entre a Velocidade atual do usuário e a Velocidade atual do alvo- Velo. Usu. comparada à Velo Alvo:4x+ Dano Basal:5d10+16 Especial / Velo. Usu. comparada à Velo Alvo:3x Dano Basal:3d10+14 Especial / Velo. Usu. comparada à Velo Alvo:2x Dano Basal:2d10+12 Especial / Velo. Usu. comparada à Velo Alvo: Maior Dano Basal:1d10+10 Especial"
+    "efeito": {
+      "descricao": "O alvo revela a Velocidade atual dele (com Fases, bônus e penalidades aplicados). O Dano Basal da Esfera Elétrica varia conforme a divisão entre a Velocidade atual do usuário e a Velocidade atual do alvo:",
+      "tabela": [
+        {
+          "velocidade": "Usuário 4x+ mais rápido",
+          "danoBasal": "5d10+16 Especial"
+        },
+        {
+          "velocidade": "Usuário 3x mais rápido",
+          "danoBasal": "3d10+14 Especial"
+        },
+        {
+          "velocidade": "Usuário 2x mais rápido",
+          "danoBasal": "2d10+12 Especial"
+        },
+        {
+          "velocidade": "Usuário mais rápido",
+          "danoBasal": "1d10+10 Especial"
+        }
+      ]
+    }
   },
   "Esforço": {
     "tipo": "Normal",
@@ -4200,7 +4890,23 @@ const GOLPES_DATA = {
     "alcance": "À Distância 8",
     "frequencia": "Por Encontro",
     "tagConcurso": "Encerramento",
-    "efeito": "O número de Fases de Defesa e de Defesa Especial que o usuário recebeu por Estocagem determinará o Dano Basal da Liberação. Fases de Defesa e de Defesa Especial recebidas por Estocagem: Uma Fase de cada Atributo: 3d10+12 Especial; Duas Fases de cada Atributo: 4d12+16 Especial; Três Fases de cada Atributo: 5d12+18 Especial. Depois de usar Liberação, as Fases recebidas por Estocagem são perdidas. Se o usuário não tiver usado Estocagem, a Liberação não faz nada."
+    "efeito": {
+      "descricao": "O número de Fases de Defesa e de Defesa Especial que o usuário recebeu por Estocagem determinará o Dano Basal da Liberação. Depois de usar Liberação, as Fases recebidas por Estocagem são perdidas. Se o usuário não tiver usado Estocagem, a Liberação não faz nada.",
+      "tabela": [
+        {
+          "fases": "Uma Fase de cada Atributo",
+          "danoBasal": "3d10+12 Especial"
+        },
+        {
+          "fases": "Duas Fases de cada Atributo",
+          "danoBasal": "4d12+16 Especial"
+        },
+        {
+          "fases": "Três Fases de cada Atributo",
+          "danoBasal": "5d12+18 Especial"
+        }
+      ]
+    }
   },
   "Liofilização": {
     "tipo": "Gelo",
@@ -4266,7 +4972,35 @@ const GOLPES_DATA = {
     "alcance": "Si",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Encerramento",
-    "efeito": "Role 1d6 para definir o Dano Basal da Magnitude: Resultado 1: 1d4 Físico; 2: 1d8 Físico; 3: 2d8 Físico; 4: 2d10 Físico; 5: 3d10 Físico; 6: 4d10 Físico. A Magnitude pode acertar alvos que estão no subsolo em virtude do Golpe Cavar ou de Deslocamento de Escavação."
+    "efeito": {
+      "descricao": "Role 1d6 para definir o Dano Basal da Magnitude. A Magnitude pode acertar alvos que estão no subsolo em virtude do Golpe Cavar ou de Deslocamento de Escavação.",
+      "tabela": [
+        {
+          "resultado": "1",
+          "danoBasal": "1d4 Físico"
+        },
+        {
+          "resultado": "2",
+          "danoBasal": "1d8 Físico"
+        },
+        {
+          "resultado": "3",
+          "danoBasal": "2d8 Físico"
+        },
+        {
+          "resultado": "4",
+          "danoBasal": "2d10 Físico"
+        },
+        {
+          "resultado": "5",
+          "danoBasal": "3d10 Físico"
+        },
+        {
+          "resultado": "6",
+          "danoBasal": "4d10 Físico"
+        }
+      ]
+    }
   },
   "Maldição": {
     "tipo": "Fantasma",
@@ -4299,7 +5033,31 @@ const GOLPES_DATA = {
     "alcance": "Corpo a Corpo",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Despedida",
-    "efeito": "O Dano Basal do Mangual depende dos Pontos de Vida do usuário: PV Atuais 70% ou mais dos PV máximos: 1d10+5 Físico; De 36% a 69% dos PV máximos: 2d10+10 Físico; De 21% a 35% dos PV máximos: 3d10+10 Físico; De 6% a 20% dos PV máximos: 4d10+10 Físico; De 1 PV até 5% dos PV máximos: 5d10+20 Físico"
+    "efeito": {
+      "descricao": "O Dano Basal do Mangual depende dos Pontos de Vida do usuário:",
+      "tabela": [
+        {
+          "pvAtuais": "70% ou mais dos PV máximos",
+          "danoBasal": "1d10+5 Físico"
+        },
+        {
+          "pvAtuais": "36% a 69% dos PV máximos",
+          "danoBasal": "2d10+10 Físico"
+        },
+        {
+          "pvAtuais": "21% a 35% dos PV máximos",
+          "danoBasal": "3d10+10 Físico"
+        },
+        {
+          "pvAtuais": "6% a 20% dos PV máximos",
+          "danoBasal": "4d10+10 Físico"
+        },
+        {
+          "pvAtuais": "1 a 5% dos PV máximos",
+          "danoBasal": "5d10+20 Físico"
+        }
+      ]
+    }
   },
   "Manto Mágico": {
     "tipo": "Psíquico",
@@ -4640,7 +5398,35 @@ const GOLPES_DATA = {
     "alcance": "À Distância 5",
     "frequencia": "Por Encontro",
     "tagConcurso": "Segurança",
-    "efeito": "O alvo revela a Categoria de Peso dele. O Dano Basal da Rasteira varia conforme a Categoria de Peso do alvo: Categoria de Peso do Alvo Dano Basal da Rasteira: Muito Leve 1d10 Especial; Leve 1d10+5 Especial; Médio 1d10+10 Especial; Pesado 2d10+12 Especial; Muito Pesado 3d10+14 Especial; Extremamente Pesado 5d10+16 Especial"
+    "efeito": {
+      "descricao": "O alvo revela a Categoria de Peso dele. O Dano Basal do Nó de Grama varia conforme a Categoria de Peso do alvo:",
+      "tabela": [
+        {
+          "categoria": "Muito Leve",
+          "danoBasal": "1d10 Especial"
+        },
+        {
+          "categoria": "Leve",
+          "danoBasal": "1d10+5 Especial"
+        },
+        {
+          "categoria": "Médio",
+          "danoBasal": "1d10+10 Especial"
+        },
+        {
+          "categoria": "Pesado",
+          "danoBasal": "2d10+12 Especial"
+        },
+        {
+          "categoria": "Muito Pesado",
+          "danoBasal": "3d10+14 Especial"
+        },
+        {
+          "categoria": "Extremamente Pesado",
+          "danoBasal": "5d10+16 Especial"
+        }
+      ]
+    }
   },
   "Nocaute": {
     "tipo": "Noturno",
@@ -4794,7 +5580,23 @@ const GOLPES_DATA = {
     "alcance": "À Distância 4",
     "frequencia": "Por Encontro",
     "tagConcurso": "Segurança",
-    "efeito": "Role 1d4 para definir quantos PV os alvos perdem: Resultado da Rolagem 1 ou 2: Metade do Nível do Usuário; 3: Nível do Usuário; 4: 1,5 multiplicado pelo Nível do Usuário"
+    "efeito": {
+      "descricao": "Role 1d4 para definir quantos PV os alvos perdem:",
+      "tabela": [
+        {
+          "resultado": "1 ou 2",
+          "pvPerdidos": "Metade do Nível do Usuário"
+        },
+        {
+          "resultado": "3",
+          "pvPerdidos": "Nível do Usuário"
+        },
+        {
+          "resultado": "4",
+          "pvPerdidos": "1,5 multiplicado pelo Nível do Usuário"
+        }
+      ]
+    }
   },
   "Onda Trovão": {
     "tipo": "Elétrico",
@@ -5014,7 +5816,31 @@ const GOLPES_DATA = {
     "alcance": "Corpo a Corpo",
     "frequencia": "Por Encontro",
     "tagConcurso": "Incentivo",
-    "efeito": "O alvo revela a Categoria de Peso dele. O Dano Basal do Peso Pesado varia conforme a diferença entre as Categorias de Peso do alvo e do usuário: Categorias de Peso Iguais: 1d10 Físico; Usuário mais pesado que o alvo em uma Categoria de Peso: 1d10+10 Físico; Usuário mais pesado que o alvo em duas Categorias de Peso: 2d12+12 Físico; Usuário mais pesado que o alvo em três Categorias de Peso: 3d10+14 Físico; Usuário mais pesado que o alvo em quatro ou mais Categorias de Peso: 5d10+16 Físico"
+    "efeito": {
+      "descricao": "O alvo revela a Categoria de Peso dele. O Dano Basal do Peso Pesado varia conforme a diferença entre as Categorias de Peso do alvo e do usuário:",
+      "tabela": [
+        {
+          "diferenca": "Iguais",
+          "danoBasal": "1d10 Físico"
+        },
+        {
+          "diferenca": "Usuário mais pesado em 1 Categoria",
+          "danoBasal": "1d10+10 Físico"
+        },
+        {
+          "diferenca": "Usuário mais pesado em 2 Categorias",
+          "danoBasal": "2d12+12 Físico"
+        },
+        {
+          "diferenca": "Usuário mais pesado em 3 Categorias",
+          "danoBasal": "3d10+14 Físico"
+        },
+        {
+          "diferenca": "Usuário mais pesado em 4+ Categorias",
+          "danoBasal": "5d10+16 Físico"
+        }
+      ]
+    }
   },
   "Picada": {
     "tipo": "Inseto",
@@ -5168,7 +5994,63 @@ const GOLPES_DATA = {
     "alcance": "Ver Efeito",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Sorteio",
-    "efeito": "O usuário usa um Golpe de acordo com o ambiente em que se encontra. Se a Frequência do Golpe usado for Por Encontro ou Diária, não será possível usar o Poder da Natureza de novo durante o encontro. Ambiente: Água Doce - Surfe; Ártico, Taiga e Tundra - Nevasca; Caverna - Esfera de Sombras; Céu - Rajada de Vento; Cidade - Estrela Cadente; Deserto - Ataque de Areia; Floresta - Folhas Mágicas; Montanha - Deslizamento de Rochas; Oceano - Hidrobomba; Pradaria - Esporos Paralisantes; Praia - Água Barrenta; Selva - Folha Navalha; Vulcão - Onda de Calor"
+    "efeito": {
+      "descricao": "O usuário usa um Golpe de acordo com o ambiente em que se encontra. Se a Frequência do Golpe usado for Por Encontro ou Diária, não será possível usar o Poder da Natureza de novo durante o encontro.",
+      "tabela": [
+        {
+          "ambiente": "Água Doce",
+          "golpe": "Surfe"
+        },
+        {
+          "ambiente": "Ártico, Taiga e Tundra",
+          "golpe": "Nevasca"
+        },
+        {
+          "ambiente": "Caverna",
+          "golpe": "Esfera de Sombras"
+        },
+        {
+          "ambiente": "Céu",
+          "golpe": "Rajada de Vento"
+        },
+        {
+          "ambiente": "Cidade",
+          "golpe": "Estrela Cadente"
+        },
+        {
+          "ambiente": "Deserto",
+          "golpe": "Ataque de Areia"
+        },
+        {
+          "ambiente": "Floresta",
+          "golpe": "Folhas Mágicas"
+        },
+        {
+          "ambiente": "Montanha",
+          "golpe": "Deslizamento de Rochas"
+        },
+        {
+          "ambiente": "Oceano",
+          "golpe": "Hidrobomba"
+        },
+        {
+          "ambiente": "Pradaria",
+          "golpe": "Esporos Paralisantes"
+        },
+        {
+          "ambiente": "Praia",
+          "golpe": "Água Barrenta"
+        },
+        {
+          "ambiente": "Selva",
+          "golpe": "Folha Navalha"
+        },
+        {
+          "ambiente": "Vulcão",
+          "golpe": "Onda de Calor"
+        }
+      ]
+    }
   },
   "Poder Oculto": {
     "tipo": "Normal",
@@ -5179,7 +6061,105 @@ const GOLPES_DATA = {
     "alcance": "Si",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Reviravolta",
-    "efeito": "Quando um pokémon aprende seu Poder Oculto, role 1d4 para definir o Dano Basal do Poder Oculto: Resultado da Rolagem de 1d4 1: 1d12+6 Especial; 2: 2d8+6 Especial; 3: 2d10+8 Especial; 4: 3d8+10 Especial. Além disso, quando um pokémon aprende seu Poder Oculto, role 1d20 para definir o Tipo do Poder Oculto. O Tipo definido será o Tipo do Golpe no lugar do Tipo Normal, de modo que o dano causado será do Tipo definido. Resultado da Rolagem de 1d20 1: Água; 2: Dragão; 3: Elétrico; 4: Fada; 5: Fantasma; 6: Fogo; 7: Gelo; 8: Inseto; 9: Lutador; 10: Metal; 11: Normal; 12: Pedra; 13: Planta; 14: Psíquico; 15: Terra; 16: Trevas; 17: Venenoso; 18: Voador; 19 ou 20: Role Novamente"
+    "efeito": {
+      "descricao": "Quando um pokémon aprende seu Poder Oculto, role 1d4 para definir o Dano Basal do Poder Oculto. Além disso, role 1d20 para definir o Tipo do Poder Oculto. O Tipo definido será o Tipo do Golpe no lugar do Tipo Normal, de modo que o dano causado será do Tipo definido.",
+      "tabelaDano": [
+        {
+          "resultado": "1",
+          "danoBasal": "1d12+6 Especial"
+        },
+        {
+          "resultado": "2",
+          "danoBasal": "2d8+6 Especial"
+        },
+        {
+          "resultado": "3",
+          "danoBasal": "2d10+8 Especial"
+        },
+        {
+          "resultado": "4",
+          "danoBasal": "3d8+10 Especial"
+        }
+      ],
+      "tabelaTipo": [
+        {
+          "resultado": "1",
+          "tipo": "Água"
+        },
+        {
+          "resultado": "2",
+          "tipo": "Dragão"
+        },
+        {
+          "resultado": "3",
+          "tipo": "Elétrico"
+        },
+        {
+          "resultado": "4",
+          "tipo": "Fada"
+        },
+        {
+          "resultado": "5",
+          "tipo": "Fantasma"
+        },
+        {
+          "resultado": "6",
+          "tipo": "Fogo"
+        },
+        {
+          "resultado": "7",
+          "tipo": "Gelo"
+        },
+        {
+          "resultado": "8",
+          "tipo": "Inseto"
+        },
+        {
+          "resultado": "9",
+          "tipo": "Lutador"
+        },
+        {
+          "resultado": "10",
+          "tipo": "Metal"
+        },
+        {
+          "resultado": "11",
+          "tipo": "Normal"
+        },
+        {
+          "resultado": "12",
+          "tipo": "Pedra"
+        },
+        {
+          "resultado": "13",
+          "tipo": "Planta"
+        },
+        {
+          "resultado": "14",
+          "tipo": "Psíquico"
+        },
+        {
+          "resultado": "15",
+          "tipo": "Terra"
+        },
+        {
+          "resultado": "16",
+          "tipo": "Trevas"
+        },
+        {
+          "resultado": "17",
+          "tipo": "Venenoso"
+        },
+        {
+          "resultado": "18",
+          "tipo": "Voador"
+        },
+        {
+          "resultado": "19 ou 20",
+          "tipo": "Role Novamente"
+        }
+      ]
+    }
   },
   "Poder Secreto": {
     "tipo": "Normal",
@@ -5190,7 +6170,63 @@ const GOLPES_DATA = {
     "alcance": "À Distância 8",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Sorteio",
-    "efeito": "Se o resultado do Teste de Acurácia for 17 ou mais, o Poder Secreto causa no alvo um efeito de acordo com o ambiente: Água Doce: perde uma Fase de Velocidade; Ártico, Taiga e Tundra: está Congelado; Caverna: está Atordoado; Céu: perde uma Fase de Ataque Especial; Cidade: está Paralisado; Deserto: recebe +2 às Dificuldades de Acurácia; Floresta: perde uma Fase de Defesa; Montanha: está Confuso; Oceano: perde uma Fase de Ataque; Pradaria: está Envenenado; Praia: perde uma Fase de Defesa Especial; Selva: está Adormecido; Vulcão: está Queimado"
+    "efeito": {
+      "descricao": "Se o resultado do Teste de Acurácia for 17 ou mais, o Poder Secreto causa no alvo um efeito de acordo com o ambiente:",
+      "tabela": [
+        {
+          "ambiente": "Água Doce",
+          "efeito": "Perde uma Fase de Velocidade"
+        },
+        {
+          "ambiente": "Ártico, Taiga e Tundra",
+          "efeito": "Está Congelado"
+        },
+        {
+          "ambiente": "Caverna",
+          "efeito": "Está Atordoado"
+        },
+        {
+          "ambiente": "Céu",
+          "efeito": "Perde uma Fase de Ataque Especial"
+        },
+        {
+          "ambiente": "Cidade",
+          "efeito": "Está Paralisado"
+        },
+        {
+          "ambiente": "Deserto",
+          "efeito": "Recebe +2 às Dificuldades de Acurácia"
+        },
+        {
+          "ambiente": "Floresta",
+          "efeito": "Perde uma Fase de Defesa"
+        },
+        {
+          "ambiente": "Montanha",
+          "efeito": "Está Confuso"
+        },
+        {
+          "ambiente": "Oceano",
+          "efeito": "Perde uma Fase de Ataque"
+        },
+        {
+          "ambiente": "Pradaria",
+          "efeito": "Está Envenenado"
+        },
+        {
+          "ambiente": "Praia",
+          "efeito": "Perde uma Fase de Defesa Especial"
+        },
+        {
+          "ambiente": "Selva",
+          "efeito": "Está Adormecido"
+        },
+        {
+          "ambiente": "Vulcão",
+          "efeito": "Está Queimado"
+        }
+      ]
+    }
   },
   "Poder Terreno": {
     "tipo": "Terra",
@@ -5355,7 +6391,27 @@ const GOLPES_DATA = {
     "alcance": "À Distância 8",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Excentricidade",
-    "efeito": "Role 1d4 e então confira o Dano Basal do Presente: Resultado 1: 1d10+10 Físico; 2: 2d10+10 Físico; 3: 3d10+10 Físico; 4: Não há nenhum Dano Basal, e o alvo é curado em 65 Pontos de Vida"
+    "efeito": {
+      "descricao": "Role 1d4 e então confira o Dano Basal do Presente:",
+      "tabela": [
+        {
+          "resultado": "1",
+          "danoBasal": "1d10+10 Físico"
+        },
+        {
+          "resultado": "2",
+          "danoBasal": "2d10+10 Físico"
+        },
+        {
+          "resultado": "3",
+          "danoBasal": "3d10+10 Físico"
+        },
+        {
+          "resultado": "4",
+          "danoBasal": "Não há nenhum Dano Basal, e o alvo é curado em 65 Pontos de Vida"
+        }
+      ]
+    }
   },
   "Prevenção": {
     "tipo": "Lutador",
@@ -5454,7 +6510,35 @@ const GOLPES_DATA = {
     "alcance": "Si",
     "frequencia": "Por Encontro",
     "tagConcurso": "Dedicatória",
-    "efeito": "No momento que declarar o uso deste Golpe, o usuário vai Pular a 10 metros no ar e seu turno acaba. Isso é considerado um efeito de Preparo. Na rodada seguinte, o usuário atinge o solo criando uma Explosão com valor conforme sua Categoria de Peso: 1 para Muito Leve, 2 para Leve, 3 para Médio, 4 para Pesado, 5 para Muito Pesado e 6 para Extremamente Pesado. Se o resultado do Teste de Acurácia for 17 ou mais, os alvos estão Paralisados."
+    "efeito": {
+      "descricao": "No momento que declarar o uso deste Golpe, o usuário vai Pular a 10 metros no ar e seu turno acaba. Isso é considerado um efeito de Preparo. Na rodada seguinte, o usuário atinge o solo criando uma Explosão com valor conforme sua Categoria de Peso. Se o resultado do Teste de Acurácia for 17 ou mais, os alvos estão Paralisados.",
+      "tabela": [
+        {
+          "categoria": "Muito Leve",
+          "explosao": "1"
+        },
+        {
+          "categoria": "Leve",
+          "explosao": "2"
+        },
+        {
+          "categoria": "Médio",
+          "explosao": "3"
+        },
+        {
+          "categoria": "Pesado",
+          "explosao": "4"
+        },
+        {
+          "categoria": "Muito Pesado",
+          "explosao": "5"
+        },
+        {
+          "categoria": "Extremamente Pesado",
+          "explosao": "6"
+        }
+      ]
+    }
   },
   "Pulso d’Água": {
     "tipo": "Água",
@@ -5696,7 +6780,35 @@ const GOLPES_DATA = {
     "alcance": "Corpo a Corpo",
     "frequencia": "Por Encontro",
     "tagConcurso": "Segurança",
-    "efeito": "O alvo revela a Categoria de Peso dele. O Dano Basal da Rasteira varia conforme a Categoria de Peso do alvo: Categoria de Peso do Alvo Muito Leve: 1d10 Físico; Leve: 1d10+5 Físico; Médio: 1d10+10 Físico; Pesado: 2d10+12 Físico; Muito Pesado: 3d10+14 Físico; Extremamente Pesado: 5d10+16 Físico"
+    "efeito": {
+      "descricao": "O alvo revela a Categoria de Peso dele. O Dano Basal da Rasteira varia conforme a Categoria de Peso do alvo:",
+      "tabela": [
+        {
+          "categoria": "Muito Leve",
+          "danoBasal": "1d10 Físico"
+        },
+        {
+          "categoria": "Leve",
+          "danoBasal": "1d10+5 Físico"
+        },
+        {
+          "categoria": "Médio",
+          "danoBasal": "1d10+10 Físico"
+        },
+        {
+          "categoria": "Pesado",
+          "danoBasal": "2d10+12 Físico"
+        },
+        {
+          "categoria": "Muito Pesado",
+          "danoBasal": "3d10+14 Físico"
+        },
+        {
+          "categoria": "Extremamente Pesado",
+          "danoBasal": "5d10+16 Físico"
+        }
+      ]
+    }
   },
   "Reciclagem": {
     "tipo": "Normal",
@@ -5883,7 +6995,31 @@ const GOLPES_DATA = {
     "alcance": "Corpo a Corpo",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Despedida",
-    "efeito": "O Dano Basal da Reversão varia conforme a quantidade de PV que o usuário possui atualmente comparada a seus Pontos de Vida máximos: PV Atuais Mais de 70% dos PV Máximos: 1d10+5 Físico; De 36% a 70% dos PV Máximos: 2d10+10 Físico; De 21% a 35% dos PV Máximos: 3d10+10 Físico; De 6% a 20% dos PV Máximos: 4d10+10 Físico; De 1% a 5% dos PV Máximos: 5d10+20 Físico"
+    "efeito": {
+      "descricao": "O Dano Basal da Reversão varia conforme a quantidade de PV que o usuário possui atualmente comparada a seus Pontos de Vida máximos:",
+      "tabela": [
+        {
+          "pvAtuais": "Mais de 70% dos PV Máximos",
+          "danoBasal": "1d10+5 Físico"
+        },
+        {
+          "pvAtuais": "36% a 70% dos PV Máximos",
+          "danoBasal": "2d10+10 Físico"
+        },
+        {
+          "pvAtuais": "21% a 35% dos PV Máximos",
+          "danoBasal": "3d10+10 Físico"
+        },
+        {
+          "pvAtuais": "6% a 20% dos PV Máximos",
+          "danoBasal": "4d10+10 Físico"
+        },
+        {
+          "pvAtuais": "1% a 5% dos PV Máximos",
+          "danoBasal": "5d10+20 Físico"
+        }
+      ]
+    }
   },
   "Revogação": {
     "tipo": "Noturno",
@@ -5916,7 +7052,31 @@ const GOLPES_DATA = {
     "alcance": "Corpo a Corpo",
     "frequencia": "Rodada Sim Rodada Não",
     "tagConcurso": "Modéstia",
-    "efeito": "O usuário deve continuar atacando todas as rodadas usando a Rolagem pelas próximas quatro rodadas (totalizando cinco ataques), até que ele falhe em acertar o alvo ou até que seu deslocamento não seja o suficiente para alcançar o alvo. O Dano Basal aumenta conforme o número de rodadas consecutivas de Rolagem: Rodada Primeira: 1d10+4 Físico; Segunda: 2d10+8 Físico; Terceira: 2d10+12 Físico; Quarta: 3d10+16 Físico; Quinta: 4d10+20 Físico"
+    "efeito": {
+      "descricao": "O usuário deve continuar atacando todas as rodadas usando a Rolagem pelas próximas quatro rodadas (totalizando cinco ataques), até que ele falhe em acertar o alvo ou até que seu deslocamento não seja o suficiente para alcançar o alvo. O Dano Basal aumenta conforme o número de rodadas consecutivas de Rolagem:",
+      "tabela": [
+        {
+          "rodada": "Primeira",
+          "danoBasal": "1d10+4 Físico"
+        },
+        {
+          "rodada": "Segunda",
+          "danoBasal": "2d10+8 Físico"
+        },
+        {
+          "rodada": "Terceira",
+          "danoBasal": "2d10+12 Físico"
+        },
+        {
+          "rodada": "Quarta",
+          "danoBasal": "3d10+16 Físico"
+        },
+        {
+          "rodada": "Quinta",
+          "danoBasal": "4d10+20 Físico"
+        }
+      ]
+    }
   },
   "Rolo Compressor": {
     "tipo": "Inseto",

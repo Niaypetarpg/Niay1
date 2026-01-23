@@ -70,7 +70,12 @@ const HABILIDADES_DATA = {
   },
   "Antecipação": {
     ativacao: "Ativação Horária",
-    efeito: "durante um encontro, você pode usar esta Habilidade em um oponente, que revelará se possui algum Golpe superefetivo contra você. Além disso, role 1d20. Se o resultado for 11 ou mais, o alvo revelará até 3 Golpes dele que são superefetivos contra você. Se o resultado for 16 ou mais, ele revelará até 5 Golpes dele que são superefetivos contra você e a Dificuldade de Acurácia destes cinco Golpes é aumentada em 1 quando são usados contra você."
+    efeito: "durante um encontro, você pode usar esta Habilidade em um oponente, que revelará se possui algum Golpe superefetivo contra você. Além disso, role 1d20.",
+    tabela: [
+      { resultado: "1-10", efeito: "Revela apenas se possui golpes superefetivos" },
+      { resultado: "11-15", efeito: "Revela até 3 Golpes superefetivos" },
+      { resultado: "16-20", efeito: "Revela até 5 Golpes superefetivos e aumenta Dificuldade de Acurácia em 1" }
+    ]
   },
   "Arena de Areia": {
     ativacao: "Ativação Diária",
@@ -158,11 +163,28 @@ const HABILIDADES_DATA = {
   },
   "Catagem": {
     ativacao: "Gatilho Horário: um encontro acaba",
-    efeito: "role 1d20 e consulte a Tabela a seguir para determinar o que você encontra: 1 a 5: Nenhum; 6 a 8: Um dos seguintes itens determinado aleatoriamente: X-Ataque, X-Defesa, X-Ataque Especial, X-Defesa Especial, X-Velocidade, X-Acurácia, Golpe Atroz, Guarda Especial; 9 ou 10: Uma fruta determinada aleatoriamente; 11 ou 12: Uma pokébola determinada aleatoriamente; 13 a 16: Um item que restaura Pontos de Vida ou Condições determinado aleatoriamente; 17: Uma Pedra Elemental determinada aleatoriamente; 18: Uma Vitamina determinada aleatoriamente; 19: Um Item Mantido determinado aleatoriamente; 20: Um Registro determinado aleatoriamente."
+    efeito: "role 1d20 e consulte a Tabela a seguir para determinar o que você encontra:",
+    tabela: [
+      { resultado: "1-5", item: "Nenhum" },
+      { resultado: "6-8", item: "X-Ataque, X-Defesa, X-Ataque Especial, X-Defesa Especial, X-Velocidade, X-Acurácia, Golpe Atroz ou Guarda Especial (aleatório)" },
+      { resultado: "9-10", item: "Uma fruta (aleatória)" },
+      { resultado: "11-12", item: "Uma pokébola (aleatória)" },
+      { resultado: "13-16", item: "Item que restaura PV ou Condições (aleatório)" },
+      { resultado: "17", item: "Uma Pedra Elemental (aleatória)" },
+      { resultado: "18", item: "Uma Vitamina (aleatória)" },
+      { resultado: "19", item: "Um Item Mantido (aleatório)" },
+      { resultado: "20", item: "Um Registro (aleatório)" }
+    ]
   },
   "Climatologia": {
     ativacao: "Gatilho Constante: o clima mudar",
-    efeito: "o Tipo e a aparência do pokémon mudam de acordo com o Clima: Ameno = Normal, Chuvoso = Água, Ensolarado = Fogo, Granizo/Neve = Gelo."
+    efeito: "o Tipo e a aparência do pokémon mudam de acordo com o Clima:",
+    tabela: [
+      { clima: "Ameno", tipo: "Normal" },
+      { clima: "Chuvoso", tipo: "Água" },
+      { clima: "Ensolarado", tipo: "Fogo" },
+      { clima: "Granizo/Neve", tipo: "Gelo" }
+    ]
   },
   "Clorofila": {
     ativacao: "Ativação Horária",
@@ -170,7 +192,12 @@ const HABILIDADES_DATA = {
   },
   "Colheita": {
     ativacao: "Gatilho Constante: ao se alimentar de uma fruta",
-    efeito: "jogue um dado. Se o resultado for par, o pokémon produz outra fruta exatamente da mesma variedade do item Mantido, que ele poderá usar a partir da próxima rodada. Se for ímpar nada acontece. Se o clima for Ensolarado, não haverá necessidade de jogar o dado, pois a fruta sempre será produzida com sucesso."
+    efeito: "jogue um dado para determinar se produz outra fruta da mesma variedade (utilizável a partir da próxima rodada). Se o clima for Ensolarado, não é necessário jogar o dado - sempre produz com sucesso.",
+    tabela: [
+      { resultado: "Par", efeito: "Produz outra fruta da mesma variedade" },
+      { resultado: "Ímpar", efeito: "Nada acontece" },
+      { resultado: "Clima Ensolarado", efeito: "Sempre produz (sem dado)" }
+    ]
   },
   "Coloração": {
     ativacao: "Gatilho Constante: sofrer dano",
@@ -318,7 +345,13 @@ const HABILIDADES_DATA = {
   },
   "Esporulação": {
     ativacao: "Gatilho Constante: ser acertado por um Golpe Corpo a Corpo",
-    efeito: "role 1d20. Se o resultado for 15 ou 16, o atacante está Envenenado. Se o resultado for 17 ou 18, ele está Paralisado. Se o resultado for 19 ou 20, ele sofre Sono."
+    efeito: "role 1d20 para determinar o efeito no atacante:",
+    tabela: [
+      { resultado: "1-14", efeito: "Nenhum efeito" },
+      { resultado: "15-16", efeito: "Atacante está Envenenado" },
+      { resultado: "17-18", efeito: "Atacante está Paralisado" },
+      { resultado: "19-20", efeito: "Atacante sofre Sono" }
+    ]
   },
   "Estrela da Vitória": {
     ativacao: "Constante",
@@ -438,7 +471,19 @@ const HABILIDADES_DATA = {
   },
   "Humor Variável": {
     ativacao: "Gatilho Constante: um encontro começa",
-    efeito: "após 1d4+1 rodadas do início do encontro, role 1d10 e depois outro 1d10 separadamente, e então consulte as tabelas adiante: Primeiro 1d10: 1 ou 2 = Eleve duas Fases de Ataque; 3 ou 4 = Eleve duas Fases de Defesa; 5 ou 6 = Eleve duas Fases de Ataque Especial; 7 ou 8 = Eleve duas Fases de Defesa Especial; 9 ou 10 = Eleve duas Fases de Velocidade. Segundo 1d10: 1 ou 2 = Perca uma Fase de Ataque; 3 ou 4 = Perca uma Fase de Defesa; 5 ou 6 = Perca uma Fase de Ataque Especial; 7 ou 8 = Perca uma Fase de Defesa Especial; 9 ou 10 = Perca uma Fase de Velocidade."
+    efeito: "após 1d4+1 rodadas do início do encontro, role dois 1d10 separadamente e consulte as tabelas:",
+    tabela: [
+      { dado: "Primeiro 1d10", resultado: "1-2", efeito: "Eleva duas Fases de Ataque" },
+      { dado: "Primeiro 1d10", resultado: "3-4", efeito: "Eleva duas Fases de Defesa" },
+      { dado: "Primeiro 1d10", resultado: "5-6", efeito: "Eleva duas Fases de Ataque Especial" },
+      { dado: "Primeiro 1d10", resultado: "7-8", efeito: "Eleva duas Fases de Defesa Especial" },
+      { dado: "Primeiro 1d10", resultado: "9-10", efeito: "Eleva duas Fases de Velocidade" },
+      { dado: "Segundo 1d10", resultado: "1-2", efeito: "Perca uma Fase de Ataque" },
+      { dado: "Segundo 1d10", resultado: "3-4", efeito: "Perca uma Fase de Defesa" },
+      { dado: "Segundo 1d10", resultado: "5-6", efeito: "Perca uma Fase de Ataque Especial" },
+      { dado: "Segundo 1d10", resultado: "7-8", efeito: "Perca uma Fase de Defesa Especial" },
+      { dado: "Segundo 1d10", resultado: "9-10", efeito: "Perca uma Fase de Velocidade" }
+    ]
   },
   "Identificação": {
     ativacao: "Ativação Diária",
@@ -472,7 +517,7 @@ const HABILIDADES_DATA = {
     ativacao: "Gatilho Constante: ser Atordoado",
     efeito: "eleva uma Fase de Velocidade."
   },
-  "Infiltração": {
+  "Infiltrador": {
     ativacao: "Constante",
     efeito: "o pokémon ignora Ameaças, Barreiras e Coberturas."
   },
@@ -634,7 +679,11 @@ const HABILIDADES_DATA = {
   },
   "Pele Perfeita": {
     ativacao: "Gatilho Constante: ser acertado por um Golpe À Distância que inflige uma Condição ou algo semelhante (incluindo Desabilitar)",
-    efeito: "jogue um dado. Se o resultado for par, o pokémon ignora aquilo que seria infligido a ele."
+    efeito: "jogue um dado para determinar se ignora a Condição/efeito:",
+    tabela: [
+      { resultado: "Par", efeito: "Ignora a Condição/efeito" },
+      { resultado: "Ímpar", efeito: "Sofre a Condição/efeito normalmente" }
+    ]
   },
   "Peludo": {
     ativacao: "Constante",
@@ -651,6 +700,10 @@ const HABILIDADES_DATA = {
   "Poder Gigantesco": {
     ativacao: "Constante",
     efeito: "o Atributo Basal de Ataque do pokémon é dobrado. Caso a Natureza do pokémon afete seu Ataque, Poder Gigantesco será calculado após definir o Atributo Basal conforme a Natureza. Se o Ataque do pokémon for modificado por Vitaminas, recalcule o benefício de Poder Gigantesco. Não recalcule em outras modificações."
+  },
+  "Poder do Vento": {
+    ativacao: "Constante",
+    efeito: "eleva uma fase de ataque ou ataque especial dependendo do ataque usado."
   },
   "Poder Puro": {
     ativacao: "Constante",
@@ -678,7 +731,11 @@ const HABILIDADES_DATA = {
   },
   "Preguiça": {
     ativacao: "Gatilho Constante: tentar usar um Golpe ou tentar se deslocar",
-    efeito: "role 1d20. Se o resultado for menor que 9, o pokémon não fará absolutamente nada durante toda a rodada. Se o resultado for maior que 8, o pokémon agirá normalmente durante aquela rodada."
+    efeito: "role 1d20 para determinar se o pokémon age:",
+    tabela: [
+      { resultado: "1-8", efeito: "Não faz absolutamente nada durante toda a rodada" },
+      { resultado: "9-20", efeito: "Age normalmente durante a rodada" }
+    ]
   },
   "Premonição": {
     ativacao: "Ativação Horária",

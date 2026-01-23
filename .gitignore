@@ -1,6 +1,6 @@
 # Dependencies
 node_modules/
-package-lock.json
+# package-lock.json deve ser commitado!
 yarn.lock
 pnpm-lock.yaml
 
@@ -36,3 +36,8 @@ yarn-error.log*
 *.bak
 *_backup.*
 App_backup.jsx
+
+# Temporary scripts
+add_modal_features.sh
+fix_modals.py
+src/fix_modals.py

@@ -1,0 +1,109 @@
+================================================================================
+RELATÓRIO DETALHADO DE REQUISITOS INVÁLIDOS
+================================================================================
+
+Total de requisitos inválidos: 15
+Total de talentos afetados: 15
+
+
+CAR: 3 talentos
+--------------------------------------------------------------------------------
+Talento: Desconhecido
+Linha: 1980
+Requisitos: CAR 15
+Matches: ['CAR 15']
+
+Talento: Desconhecido
+Linha: 2055
+Requisitos: CAR 12
+Matches: ['CAR 12']
+
+Talento: Desconhecido
+Linha: 2070
+Requisitos: CAR 14
+Matches: ['CAR 14']
+
+
+FOR: 2 talentos
+--------------------------------------------------------------------------------
+Talento: Desconhecido
+Linha: 1958
+Requisitos: FOR 15, Nível 5
+Matches: ['FOR 15']
+
+Talento: Desconhecido
+Linha: 2040
+Requisitos: FOR 12
+Matches: ['FOR 12']
+
+
+INT: 2 talentos
+--------------------------------------------------------------------------------
+Talento: Desconhecido
+Linha: 1973
+Requisitos: INT 14
+Matches: ['INT 14']
+
+Talento: Desconhecido
+Linha: 2033
+Requisitos: INT 12
+Matches: ['INT 12']
+
+
+SAB: 8 talentos
+--------------------------------------------------------------------------------
+Talento: Desconhecido
+Linha: 1926
+Requisitos: SAB 12
+Matches: ['SAB 12']
+
+Talento: Desconhecido
+Linha: 1935
+Requisitos: SAB 14
+Matches: ['SAB 14']
+
+Talento: Desconhecido
+Linha: 1943
+Requisitos: SAB 16
+Matches: ['SAB 16']
+
+Talento: Desconhecido
+Linha: 1951
+Requisitos: SAB 16, Nível 10
+Matches: ['SAB 16']
+
+Talento: Desconhecido
+Linha: 1987
+Requisitos: SAB 12
+Matches: ['SAB 12']
+
+Talento: Desconhecido
+Linha: 2002
+Requisitos: SAB 14
+Matches: ['SAB 14']
+
+Talento: Desconhecido
+Linha: 2010
+Requisitos: SAB 20, Mire no Chifre!, Nível 20
+Matches: ['SAB 20']
+
+Talento: Desconhecido
+Linha: 2047
+Requisitos: SAB 12
+Matches: ['SAB 12']
+
+
+================================================================================
+CONCLUSÃO
+================================================================================
+
+TODOS os requisitos com FOR, SAB, CAR, INT, DEX e CONS são INVÁLIDOS.
+Estes atributos NÃO EXISTEM nos arquivos TXT originais.
+
+Os requisitos corretos usam apenas:
+  - Ataque, Defesa, Velocidade, Saúde
+  - Ataque Especial, Defesa Especial
+  - Nível
+  - Outros requisitos específicos (pokémons, itens, etc.)
+
+O arquivo caracteristicasETalentosData_CORRIGIDO.js foi gerado com os dados corretos.

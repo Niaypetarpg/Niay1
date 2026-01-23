@@ -1,0 +1,829 @@
+Número;Pokémon;Habilidade A;Habilidade B;Altas Habilidades A;Altas Habilidades B;Altas Habilidades C
+1;Bulbassauro;Clorofila;-;Presente das Flores;-;-
+2;Ivyssauro;Clorofila;-;Presente das Flores;-;-
+3;Venussauro;Clorofila;-;Presente das Flores;-;-
+4;Charmander;Poder Solar;-;Intimidar;-;-
+5;Charmeleon;Poder Solar;-;Intimidar;-;-
+6;Charizard;Poder Solar;-;Intimidar;-;-
+7;Squirtle;Prato de Chuva;-;Franco-Atirador;-;-
+8;Wartortle;Prato de Chuva;-;Franco-Atirador;-;-
+9;Blastoise;Prato de Chuva;-;Franco-Atirador;-;-
+10;Caterpie;Polvilhar;-;Fuga;-;-
+11;Metapod;Polvilhar;-;Troca de Pele;-;-
+12;Butterfree;Polvilhar;-;Olhos Compostos;Olhos Cromados;-
+13;Weedle;Polvilhar;-;Fuga;-;-
+14;Kakuna;Polvilhar;-;Troca de Pele;-;-
+15;Beedrill;Polvilhar;-;Franco-Atirador;Hipercorte;-
+16;Pidgey;Pés Lançados;Visão Aguçada;Bicudo;-;-
+17;Pidgeotto;Pés Lançados;Visão Aguçada;Bicudo;-;-
+18;Pidgeot;Pés Lançados;Visão Aguçada;Bicudo;-;-
+19;Rattata;Fuga;Tenacidade;Entusiasmo;-;-
+19;Rattata de Alola;Gula;Tenacidade;Gordura;-;-
+20;Raticate;Fuga;Tenacidade;Entusiasmo;-;-
+20;Raticate de Alola;Gula;Tenacidade;Gordura;-;-
+21;Spearow;Visão Aguçada;-;Franco-Atirador;-;-
+22;Fearow;Visão Aguçada;-;Franco-Atirador;-;-
+23;Ekans;Intimidar;Troca de Pele;Tensão;-;-
+24;Arbok;Intimidar;Troca de Pele;Tensão;-;-
+25;Pikachu;Eletricidade Estática;-;Pararraios;-;-
+26;Raichu;Eletricidade Estática;-;Pararraios;-;-
+26;Raichu de Alola;Eletricidade Estática;-;Surfista;-;-
+27;Sandshrew;Manto de Areia;-;Velocidade na Areia;-;-
+27;Sandshrew de Alola;Manto de Neve;-;Velocidade na Neve;-;-
+28;Sandslash;Manto de Areia;-;Velocidade na Areia;-;-
+28;Sandslash de Alola;Manto de Neve;-;Velocidade na Neve;-;-
+29;Nidoran♀;Espículas Venenosas;Rivalidade;Entusiasmo;-;-
+30;Nidorina;Espículas Venenosas;Rivalidade;Entusiasmo;-;-
+31;Nidoqueen;Espículas Venenosas;Rivalidade;Força Bruta;-;-
+32;Nidoran♂;Espículas Venenosas;Rivalidade;Entusiasmo;-;-
+33;Nidorino;Espículas Venenosas;Rivalidade;Entusiasmo;-;-
+34;Nidoking;Espículas Venenosas;Rivalidade;Força Bruta;-;-
+35;Clefairy;Proteção Mágica;Tentação;Companheirismo;-;-
+36;Clefable;Proteção Mágica;Tentação;Desatenção;-;-
+37;Vulpix;Absorção de Chamas;-;Seca;-;-
+37;Vulpix de Alola;Manto de Neve;-;Convocar Neve;-;-
+38;Ninetales;Absorção de Chamas;-;Seca;-;-
+38;Ninetales de Alola;Manto de Neve;-;Convocar Neve;-;-
+39;Jigglypuff;Competição;Tentação;Companheirismo;-;-
+40;Wigglytuff;Competição;Tentação;Bisbilhoteiro;-;-
+41;Zubat;Foco Interior;-;Infiltrador;-;-
+42;Golbat;Foco Interior;-;Infiltrador;-;-
+43;Oddish;Clorofila;-;Fuga;-;-
+44;Gloom;Clorofila;-;Fedor;-;-
+45;Vileplume;Clorofila;-;Esporulação;-;-
+46;Paras;Esporulação;Ressecado;Umidade;-;-
+47;Parasect;Esporulação;Ressecado;Umidade;-;-
+48;Venonat;Olhos Compostos;Olhos Cromados;Fuga;-;-
+49;Venomoth;Olhos Compostos;Olhos Cromados;Pele Perfeita;Polvilhar;-
+50;Diglett;Arena de Areia;Manto de Areia;Arenoso;-;-
+50;Diglett de Alola;Desgrenhado;Manto de Areia;Arenoso;-;-
+51;Dugtrio;Arena de Areia;Manto de Areia;Arenoso;-;-
+51;Dugtrio de Alola;Desgrenhado;Manto de Areia;Arenoso;-;-
+52;Meowth;Catagem;Técnica;Tensão;-;-
+52;Meowth de Alola;Catagem;Técnica;Covardia;-;-
+53;Persian;Catagem;Técnica;Elasticidade;Tensão;-
+53;Persian de Alola;Catagem;Técnica;Covardia;Peludo;-
+54;Psyduck;Aclimatação;Umidade;Velocidade na Água;-;-
+55;Golduck;Aclimatação;Umidade;Velocidade na Água;-;-
+56;Mankey;Espírito Vigoroso;Frenesi;Agonista;-;-
+57;Primeape;Espírito Vigoroso;Frenesi;Agonista;-;-
+58;Growlithe;Absorção de Chamas;Intimidar;Justiceiro;-;-
+59;Arcanine;Absorção de Chamas;Intimidar;Justiceiro;-;-
+60;Poliwag;Absorção de Água;Umidade;Velocidade na Água;-;-
+61;Poliwhirl;Absorção de Água;Umidade;Velocidade na Água;-;-
+62;Poliwrath;Absorção de Água;Umidade;Velocidade na Água;-;-
+63;Abra;Foco Interior;Sincronizar;Proteção Mágica;-;-
+64;Kadabra;Foco Interior;Sincronizar;Proteção Mágica;-;-
+65;Alakazam;Foco Interior;Sincronizar;Proteção Mágica;-;-
+66;Machop;Guarda Baixa;Tenacidade;Inabalável;-;-
+67;Machoke;Guarda Baixa;Tenacidade;Inabalável;-;-
+68;Machamp;Guarda Baixa;Tenacidade;Inabalável;-;-
+69;Bellsprout;Clorofila;-;Gula;-;-
+70;Weepinbell;Clorofila;-;Gula;-;-
+71;Victreebel;Clorofila;-;Gula;-;-
+72;Tentacool;Lodo;Transparência;Prato de Chuva;-;-
+73;Tentacruel;Lodo;Transparência;Prato de Chuva;-;-
+74;Geodude;Cabeça Dura;Robustez;Manto de Areia;-;-
+74;Geodude de Alola;Ímã;Robustez;Galvanização;-;-
+75;Graveler;Cabeça Dura;Robustez;Manto de Areia;-;-
+75;Graveler de Alola;Ímã;Robustez;Galvanização;-;-
+76;Golem;Cabeça Dura;Robustez;Manto de Areia;-;-
+76;Golem de Alola;Ímã;Robustez;Galvanização;-;-
+77;Ponyta;Absorção de Chamas;Fuga;Flamejante;-;-
+78;Rapidash;Absorção de Chamas;Fuga;Flamejante;-;-
+79;Slowpoke;Obtusidade;Ritmo Próprio;Regeneração;-;-
+80;Slowbro;Obtusidade;Ritmo Próprio;Regeneração;-;-
+81;Magnemite;Imã;Robustez;Análise;-;-
+82;Magneton;Imã;Robustez;Análise;-;-
+83;Farfetch'd;Foco Interior;Visão Aguçada;Agonista;-;-
+84;Doduo;Fuga;Madrugar;Pés Laçados;-;-
+85;Dodrio;Fuga;Madrugar;Pés Laçados;-;-
+86;Seel;Gordura;Hidratação;Friorento;-;-
+87;Dewgong;Gordura;Hidratação;Friorento;-;-
+88;Grimer;Fedor;Viscosidade;Toque Tóxico;-;-
+88;Grimer de Alola;Gula;Toque Tóxico;Alquimia;-;-
+89;Muk;Fedor;Viscosidade;Toque Tóxico;-;-
+89;Muk de Alola;Gula;Toque Tóxico;Alquimia;-;-
+90;Shellder;Concha;Ligação;Carapaça;-;-
+91;Cloyster;Concha;Ligação;Carapaça;-;-
+92;Gastly;Levitação;-;-;-;-
+93;Haunter;Levitação;-;-;-;-
+94;Gengar;Levitação;-;Anátema;-;-
+95;Onix;Cabeça Dura;Robustez;Fraqueza;-;-
+96;Drowzee;Insônia;Premonição;Foco Interior;-;-
+97;Hypno;Insônia;Premonição;Foco Interior;-;-
+98;Krabby;Concha;Hipercorte;Força Bruta;-;-
+99;Kingler;Concha;Hipercorte;Força Bruta;-;-
+100;Voltorb;Cacofonia;Eletricidade Estática;Resquício;-;-
+101;Electrode;Cacofonia;Eletricidade Estática;Resquício;-;-
+102;Exeggcute;Clorofila;-;Colheita;-;-
+103;Exeggutor;Clorofila;-;Colheita;-;-
+103;Exeggutor de Alola;Clorofila;-;Bisbilhoteiro;Colheita;-
+104;Cubone;Cabeça Dura;Pararraios;Armadura;-;-
+105;Marowak;Cabeça Dura;Pararraios;Armadura;-;-
+105;Marowak de Alola;Cabeça Dura;Pararraios;Anátema;-;-
+106;Hitmonlee;Inabalável;Tenacidade;Leveza;Imprudência;-
+107;Hitmonchan;Inabalável;Tenacidade;Foco Interior;Punho de Ferro;Visão Aguçada
+108;Lickitung;Obtusidade;Ritmo Próprio;Aclimatação;-;-
+109;Koffing;Levitação;-;-;-;-
+110;Weezing;Levitação;-;-;-;-
+111;Rhyhorn;Cabeça Dura;Pararraios;Imprudência;-;-
+112;Rhydon;Cabeça Dura;Pararraios;Imprudência;-;-
+113;Chansey;Graça Serena;Recuperação;Cura;-;-
+114;Tangela;Clorofila;Proteção Vegetal;Regeneração;-;-
+115;Kangaskhan;Fragmentado;Madrugar;Foco Interior;-;-
+116;Horsea;Franco-Atirador;Velocidade na Água;Umidade;-;-
+117;Seadra;Franco-Atirador;Velocidade na Água;Espículas Venenosas;Umidade;-
+118;Goldeen;Revestimento Aquoso;Velocidade na Água;Pararraios;-;-
+119;Seaking;Revestimento Aquoso;Velocidade na Água;Pararraios;-;-
+120;Staryu;Iluminação;Recuperação;Análise;-;-
+121;Starmie;Iluminação;Recuperação;Análise;-;-
+122;Mr. Mime;Cacofonia;Filtro;Técnica;-;-
+123;Scyther;Inabalável;Técnica;Hipercorte;-;-
+124;Jynx;Obtusidade;Premonição;Ressocado;-;-
+125;Electabuzz;Eletricidade Estática;-;Espírito Vigoroso;-;-
+126;Magmar;Flamejante;-;Espírito Vigoroso;-;-
+127;Pinsir;Hipercorte;Quebra Moldes;Arrogância;-;-
+128;Tauros;Frenesi;Intimidar;Força Bruta;-;-
+129;Magikarp;Velocidade na Água;-;Covardia;-;-
+130;Gyarados;Velocidade na Água;-;Arrogância;Intimidar;-
+131;Lapras;Absorção de Água;Concha;Hidratação;-;-
+132;Ditto;Elasticidade;-;Impostor;-;-
+133;Eevee;Adaptabilidade;Fuga;Antecipação;-;-
+134;Vaporeon;Adaptabilidade;Fuga;Absorção de Água;Hidratação;-
+135;Jolteon;Adaptabilidade;Fuga;Absorção de Voltagem;Ligeiro;-
+136;Flareon;Adaptabilidade;Fuga;Absorção de Chamas;Tenacidade;-
+137;Porygon;Download;Vestígio;Análise;-;-
+138;Omanyte;Concha;Velocidade na Água;Fraqueza;-;-
+139;Omastar;Concha;Velocidade na Água;Fraqueza;-;-
+140;Kabuto;Armadura;Velocidade na Água;Fraqueza;-;-
+141;Kabutops;Armadura;Velocidade na Água;Fraqueza;-;-
+142;Aerodactyl;Cabeça Dura;Pressão;Tensão;-;-
+143;Snorlax;Catagem;Gordura;Gula;Metabolização;-
+144;Articuno;Pressão;-;Manto de Neve;-;-
+145;Zapdos;Pressão;-;Eletricidade Elétrica;-;-
+146;Moltres;Pressão;-;Flamejante;-;-
+147;Dratini;-;-;Troca de Pele;Escama Maravilhosa;-
+148;Dragonair;Troca de Pele;-;Escama Maravilhosa;-;-
+149;Dragonite;Troca de Pele;-;Foco Interior;Múltiplas Escamas;-
+150;Mewtwo;Pressão;-;Tensão;-;-
+151;Mew;Sincronizar;-;-;-;-
+152;Chikorita;Proteção Vegetal;-;Absorção de Seiva;-;-
+153;Bayleef;Proteção Vegetal;-;Absorção de Seiva;-;-
+154;Meganium;Proteção Vegetal;-;Absorção de Seiva;-;-
+155;Cyndaquil;Absorção de Chamas;-;Flamejante;-;-
+156;Quilava;Absorção de Chamas;-;Flamejante;-;-
+157;Typhlosion;Absorção de Chamas;-;Flamejante;-;-
+158;Totodile;Força Bruta;-;Hipercorte;-;-
+159;Croconaw;Força Bruta;-;Hipercorte;-;-
+160;Feraligatr;Força Bruta;-;Hipercorte;-;-
+161;Sentret;Fuga;Visão Aguçada;Bisbilhoteiro;-;-
+162;Furret;Fuga;Visão Aguçada;Bisbilhoteiro;-;-
+163;Hoothoot;Insônia;Visão Aguçada;Olhos Cromados;-;-
+164;Noctowl;Insônia;Visão Aguçada;Olhos Cromados;-;-
+165;Ledyba;Covardia;Madrugar;Bisbilhoteiro;-;-
+166;Ledian;Covardia;Madrugar;Bisbilhoteiro;Punho de Ferro;-
+167;Spinarak;Franco-Atirador;Insônia;Intimidar;-;-
+168;Ariados;Franco-Atirador;Insônia;Intimidar;-;-
+169;Crobat;Foco Interior;-;Infiltrador;-;-
+170;Chinchou;Absorção de Voltagem;Iluminação;Absorção de Água;-;-
+171;Lanturn;Absorção de Voltagem;Iluminação;Absorção de Água;-;-
+172;Pichu;Eletricidade Estática;-;Pararraios;-;-
+173;Cleffa;Proteção Mágica;Tentação;Companheirismo;-;-
+174;Igglybuff;Competição;Tentação;Companheirismo;-;-
+175;Togepi;Entusiasmo;Graça Serena;Sorte;-;-
+176;Togetic;Entusiasmo;Graça Serena;Sorte;-;-
+177;Natu;Madrugar;Sincronizar;Espelho Mágico;-;-
+178;Xatu;Madrugar;Sincronizar;Espelho Mágico;-;-
+179;Mareep;Eletricidade Estática;-;Mais;-;-
+180;Flaaffy;Eletricidade Estática;-;Mais;-;-
+181;Ampharos;Eletricidade Estática;-;Mais;-;-
+182;Bellossom;Clorofila;-;Cura;-;-
+183;Marill;Gordura;Poder Gigantesco;Absorção de Selva;-;-
+184;Azumarill;Gordura;Poder Gigantesco;Absorção de Selva;-;-
+185;Sudowoodo;Cabeça Dura;Robustez;Covardia;-;-
+186;Politoed;Absorção de Água;Umidade;Garoa;-;-
+187;Hoppip;Clorofila;Proteção Vegetal;Infiltrador;-;-
+188;Skiploom;Clorofila;Proteção Vegetal;Infiltrador;-;-
+189;Jumpluff;Clorofila;Proteção Vegetal;Infiltrador;-;-
+190;Aipom;Catagem;Fuga;Ligação;-;-
+191;Sunkern;Clorofila;Poder Solar;Madrugar;-;-
+192;Sunflora;Clorofila;Poder Solar;Madrugar;-;-
+193;Yanma;Explosão de Velocidade;Olhos Compostos;Bisbilhoteiro;-;-
+194;Wooper;Absorção de Água;Umidade;Desatenção;-;-
+195;Quagsire;Absorção de Água;Umidade;Desatenção;-;-
+196;Espeon;Adaptabilidade;Fuga;Espelho Mágico;Sincronizar;-
+197;Umbreon;Adaptabilidade;Fuga;Foco Interior;Sincronizar;-
+198;Murkrow;Insônia;Sorte;Travessura;-;-
+199;Slowking;Obtusidade;Ritmo Próprio;Regeneração;-;-
+200;Misdreavus;Levitação;-;-;-;-
+201;Unown;Levitação;-;Escrita;-;-
+202;Wobbuffet;Identificação;-;Telepatia;-;-
+203;Girafarig;Foco Interior;Madrugar;Absorção de Selva;-;-
+204;Pineco;Robustez;-;Carapaça;-;-
+205;Forretress;Robustez;-;Carapaça;-;-
+206;Dunsparce;Fuga;Graça Serena;Covardia;-;-
+207;Gligar;Hipercorte;Manto de Areia;Metabolização;-;-
+208;Steelix;Cabeça Dura;Robustez;Força Bruta;-;-
+209;Snubbull;Fuga;Intimidar;Covardia;-;-
+210;Granbull;Fuga;Intimidar;Covardia;Ligeiro;-
+211;Qwilfish;Espículas Venenosas;Velocidade na Água;Intimidar;-;-
+212;Scizor;Inabalável;Técnica;Hipercorte;Metal Leve;-
+213;Shuckle;Gula;Robustez;Contrário;-;-
+214;Heracross;Arrogância;Tenacidade;Fraqueza;-;-
+215;Sneasel;Foco Interior;Visão Aguçada;Gatuno;-;-
+216;Teddiursa;Catagem;Ligeiro;Mel;-;-
+217;Ursaring;Catagem;Ligeiro;Tenacidade;Tensão;-
+218;Slugma;Flamejante;Revestimento Magmático;Fraqueza;-;-
+219;Magcargo;Flamejante;Revestimento Magmático;Fraqueza;-;-
+220;Swinub;Manto de Neve;Obtusidade;Gordura;-;-
+221;Piloswine;Manto de Neve;Obtusidade;Gordura;-;-
+222;Corsola;Entusiasmo;Recuperação;Regeneração;-;-
+223;Remoraid;Entusiasmo;Franco-Atirador;Humor Variável;-;-
+224;Octillery;Entusiasmo;Franco-Atirador;Humor Variável;Ventosas;-
+225;Delibird;Entusiasmo;Espírito Vigoroso;Insônia;-;-
+226;Mantine;Absorção de Água;Velocidade na Água;Revestimento Aquoso;-;-
+227;Skarmory;Robustez;Visão Açucada;Fraqueza;-;-
+228;Houndour;Absorção de Chamas;Madrugar;Tensão;-;-
+229;Houndoom;Absorção de Chamas;Madrugar;Tensão;-;-
+230;Kingdra;Franco-Atirador;Velocidade na Água;Umidade;-;-
+231;Phanpy;Catagem;-;-;Manto de Areia;-
+232;Donphan;Catagem;-;-;Manto de Areia;Robustez
+233;Porygon 2;Download;Vestígio;Análise;-;-
+234;Stantler;Bisbilhoteiro;Intimidar;Absorção de Seiva;-;-
+235;Smeargle;Ritmo Próprio;Técnica;Humor Variável;-;-
+236;Tyrogue;Inabalável;Tenacidade;Espírito Vigoroso;-;-
+237;Hitmontop;Inabalável;Tenacidade;Intimidar;Técnica;-
+238;Smoochum;Obtusidade;Premonição;Hidratação;-;-
+239;Elekid;Eletricidade Estática;-;-;Espírito Vigoroso;-
+240;Magby;Flamejante;-;-;Espírito Vigoroso;-
+241;Miltank;Fragmentado;Gordura;Absorção de Seiva;-;-
+242;Blissey;Graça Serena;Recuperação;Cura;-;-
+243;Raikou;Pressão;-;-;Foco Interior;-
+244;Entei;Pressão;-;-;Foco Interior;-
+245;Suicune;Pressão;-;-;Foco Interior;-
+246;Lavritar;Tenacidade;-;-;Manto de Areia;-
+247;Pupitar;Tenacidade;-;-;Manto de Areia;-
+248;Tyranitar;Tenacidade;-;Convocar Areia;Tensão;-
+249;Lugia;Pressão;-;-;Múltiplas Escamas;-
+250;Ho-oh;Pressão;-;-;Regeneração;-
+251;Celebi;Recuperação;-;-;-;-
+252;Treecko;Leveza;-;-;Escama Maravilhosa;-
+253;Grovyle;Leveza;-;-;Escama Maravilhosa;-
+254;Sceptile;Leveza;-;-;Escama Maravilhosa;-
+255;Torchic;Explosão de Velocidade;-;-;Arrogância;-
+256;Combusken;Explosão de Velocidade;-;-;Arrogância;-
+257;Blaziken;Explosão de Velocidade;-;-;Arrogância;-
+258;Mudkip;Umidade;-;-;Hidratação;-
+259;Marshtomp;Umidade;-;-;Hidratação;-
+260;Swampert;Umidade;-;-;Hidratação;-
+261;Poochyena;Fuga;Ligeiro;Covardia;-;-
+262;Mightyena;Fuga;Ligeiro;Arrogância;Intimidar;-
+263;Zigzagoon;Catagem;Gula;Ligeiro;-;-
+264;Linoone;Catagem;Gula;Ligeiro;-;-
+265;Wurmple;Polvilhar;-;-;-;-
+266;Silcoon;Polvilhar;-;Troca de Pele;-;-
+267;Beautifuly;Polvilhar;-;Olhos Compostos;Rivalidade;-
+268;Cascoon;Polvilhar;-;Troca de Pele;-;-
+269;Dustox;Polvilhar;-;Olhos Compostos;Rivalidade;-
+270;Lotad;Prato de Chuva;Velocidade na Água;Ritmo Próprio;-;-
+271;Lombre;Prato de Chuva;Velocidade na Água;Ritmo Próprio;-;-
+272;Ludicolo;Prato de Chuva;Velocidade na Água;Ritmo Próprio;-;-
+273;Seedot;Clorofila;Madrugar;Gatuno;-;-
+274;Nuzleaf;Clorofila;Madrugar;Gatuno;-;-
+275;Shiftry;Clorofila;Madrugar;Gatuno;-;-
+276;Taillow;Tenacidade;-;Fragmentado;-;-
+277;Swellow;Tenacidade;-;Fragmentado;-;-
+278;Wingull;Hidratação;Visão Aguçada;Prato de Chuva;-;-
+279;Pelipper;Hidratação;Visão Aguçada;Garoa;Prato de Chuva;-
+280;Ralts;Sincronizar;Vestígio;Telepatia;-;-
+281;Kirlia;Sincronizar;Vestígio;Telepatia;-;-
+282;Gardevoir;Sincronizar;Vestígio;Telepatia;-;-
+283;Surskit;Velocidade na Água;-;Prato de Chuva;-;-
+284;Masquerain;Velocidade na Água;-;Intimidar;Prato de Chuva;Tensão
+285;Shroomish;Esporulação;Veneno Curador;Ligeiro;-;-
+286;Breloom;Esporulação;Veneno Curador;Ligeiro;Técnica;-
+287;Slakoth;Preguiça;-;-;-;-
+288;Vigoroth;Preguiça;-;Espírito Vigoroso;-;-
+289;Slaking;Preguiça;-;Espírito Vigoroso;-;-
+290;Nincada;Olhos Compostos;-;-;-;-
+291;Ninjask;Olhos Compostos;-;Explosão de Velocidade;Infiltrador;-
+292;Shedinja;Sem Alma;-;-;-;-
+293;Whismur;Cacofonia;-;Covardia;-;-
+294;Loudred;Cacofonia;-;Fragmentado;-;-
+295;Exploud;Cacofonia;-;Fragmentado;-;-
+296;Makuhita;Gordura;Tenacidade;Força Bruta;-;-
+297;Hariyama;Gordura;Tenacidade;Força Bruta;-;-
+298;Azurill;Gordura;Poder Gigantesco;Absorção de Selva;-;-
+299;Nosepass;Ímã;Robustez;Arenoso;-;-
+300;Skitty;Normalização;Tentação;Pele Perfeita;-;-
+301;Delcaty;Normalização;Tentação;Pele Perfeita;-;-
+302;Sableye;Adiamento;Visão Aguçada;Travessura;-;-
+303;Mawile;Hipercorte;Intimidar;Força Bruta;-;-
+304;Aron;Cabeça Dura;Robustez;Metal Pesado;-;-
+305;Lairon;Cabeça Dura;Robustez;Metal Pesado;-;-
+306;Aggron;Cabeça Dura;Robustez;Metal Pesado;-;-
+307;Meditite;Poder Puro;-;Telepatia;-;-
+308;Medicham;Poder Puro;-;Telepatia;-;-
+309;Electrike;Eletricidade Estática;Pararraios;Menos;-;-
+310;Manectric;Eletricidade Estática;Pararralos;Menos;-;-
+311;Plusle;Mais;-;Pararraios;-;-
+312;Minun;Menos;-;Absorção de Voltagem;-;-
+313;Volbeat;Iluminação;Travessura;Obtusidade;-;-
+314;Ilhumise;Obtusidade;Olhos Cromados;Travessura;-;-
+315;Roselia;Espículas Venenosas;Recuperação;Proteção Vegetal;-;-
+316;Gulpin;Lodo;Viscosidade;Gula;-;-
+317;Swalot;Lodo;Viscosidade;Gula;-;-
+318;Carvanha;Aspereza;-;Expiosão de Velocidade;-;-
+319;Sharpedo;Aspereza;-;Explosão de Velocidade;-;-
+320;Wailmer;Obtusidade;Revestimento Aquoso;Pressão;-;-
+321;Wailord;Obtusidade;Revestimento Aquoso;Pressão;-;-
+322;Numel;Mediocridade;Obtusidade;Ritmo Próprio;-;-
+323;Camerupt;Mediocridade;Obtusidade;Frenesi;Revestimento Magnático;Solidez
+324;Torkoal;Fumaça;Seca;Concha;-;-
+325;Spoink;Gordura;Ritmo Próprio;Gula;-;-
+326;Grumpig;Gordura;Ritmo Próprio;Gula;-;-
+327;Spinda;Pés Laçados;Ritmo Próprio;Contrário;-;-
+328;Trapinch;Áreas de Areia;Hipercorte;Força Bruta;-;-
+329;Vibrava;Arena de Areia;Hipercorte;Levitação;-;-
+330;Flygon;Arena de Areia;Hipercorte;Levitação;-;-
+331;Cacnea;Manto de Areia;-;Absorção de Água;-;-
+332;Cacturne;Manto de Areia;-;Absorção de Água;-;-
+333;Swablu;Recuperação;-;Aclimatação;-;-
+334;Altaria;Recuperação;-;Aclimatação;-;-
+335;Zangoose;Metabolização;-;Alucinógeno;-;-
+336;Seviper;Troca de Pele;-;Infiltrador;-;-
+337;Lunatone;Levitação;-;-;-;-
+338;Solrock;Levitação;-;-;-;-
+339;Barboach;Antecipação;Obtusidade;Hidratação;-;-
+340;Whiscash;Antecipação;Obtusidade;Hidratação;-;-
+341;Corphish;Concha;Hipercorte;Adaptabilidade;-;-
+342;Crawdaunt;Concha;Hipercorte;Adaptabilidade;-;-
+343;Baltoy;Levitação;-;-;-;-
+344;Claydol;Levitação;-;-;-;-
+345;Lileep;Ventosas;-;Drenagem;-;-
+346;Cradily;Ventosas;-;Drenagem;-;-
+347;Anorith;Armadura;-;Velocidade na Água;-;-
+348;Armaldo;Armadura;-;Velocidade na Água;-;-
+349;Feebas;Obtusidade;Velocidade na Água;Adaptabilidade;-;-
+350;Milotic;Obtusidade;Velocidade na Água;Competição;Escama Maravilhosa;Tentação
+351;Castform;Climatologia;-;-;-;-
+352;Kecleon;Coloração;-;Metamorfose;-;-
+353;Shuppet;Bisbilhoteiro;Insônia;Anátema;-;-
+354;Banette;Bisbilhoteiro;Insônia;Anátema;-;-
+355;Duskull;Levitação;-;Bisbilhoteiro;-;-
+356;Dusclops;Levitação;-;Bisbilhoteiro;Pressão;-
+357;Tropius;Clorofila;Poder Solar;Colheita;-;-
+358;Chimecho;Levitação;-;-;-;-
+359;Absol;Presão;Sorte;Justiceiro;-;-
+360;Wynaut;Identificação;-;Telepatia;-;-
+361;Snorunt;Foco Interior;Friorento;Humor Variável;-;-
+362;Glaile;-;-;-;-;-
+363;Spheal;Friorento;Gordura;Obtusidade;-;-
+364;Sealeo;Friorento;Gordura;Obtusidade;-;-
+365;Walrein;Friorento;Gordura;Obtusidade;-;-
+366;Clamperl;Concha;-;Covardia;-;-
+367;Huntail;Concha;-;Revestimento Aquoso;Velocidade na Água;-
+368;Gorebyss;Concha;-;Hidratação;Velocidade na Água;-
+369;Relicanth;Cabeça Dura;Velocidade na Água;Robustez;-;-
+370;Luvdisc;Velocidade na Água;-;Hidratação;-;-
+371;Bagon;Cabeça Dura;-;Força Bruta;-;-
+372;Shelgon;Cabeça Dura;-;Carapaca;-;-
+373;Salamence;Arrogância;Intimidar;-;-;-
+374;Beldum;Metal Precioso;-;Metal Leve;-;-
+375;Metang;Metal Precioso;-;Metal Leve;-;-
+376;Metagross;Metal Precioso;-;Metal Leve;-;-
+377;Regirock;Transparência;-;Robustez;-;-
+378;Regice;Transparência;-;Friorento;-;-
+379;Registeel;Metal Precioso;-;Metal Leve;-;-
+380;Latias;Levitação;-;-;-;-
+381;Latios;Levitação;-;-;-;-
+382;Kyogre;Garoa;-;-;-;-
+383;Groudon;Seca;-;-;-;-
+384;Rayquaza;Bloqueio Celeste;-;-;-;-
+385;Jirachi;Graça Serena;-;-;-;-
+386;Deoxys;Pressão;-;-;-;-
+387;Turtwig;Concha;-;Foco Interior;-;-
+388;Grotle;Concha;-;Foco Interior;-;-
+389;Torterra;Concha;-;Foco Interior;-;-
+390;Chimchar;Punho de Ferro;-;Gula;-;-
+391;Monferno;Punho de Ferro;-;Gula;-;-
+392;Infernape;Punho de Ferro;-;Gula;-;-
+393;Piplup;Agonista;-;Rivalidade;-;-
+394;Prinplup;Agonista;-;Rivalidade;-;-
+395;Empoleon;Agonista;-;Rivalidade;-;-
+396;Starly;Visão Aguçada;-;Imprudência;-;-
+397;Staravia;Visão Aguçada;-;Imprudência;Intimidar;-
+398;Staraptor;Visão Aguçada;-;Imprudência;Intimidar;-
+399;Bidoof;Desatenção;Mediocridade;Humor Variável;-;-
+400;Bibarel;Desatenção;Mediocridade;Humor Variável;-;-
+401;Kricketot;Troca de Pele;-;Fuga;-;-
+402;Kricketune;Troca de Pele;-;Cacofonia;Técnica;-
+403;Shinx;Intimidar;Rivalidade;Tenacidade;-;-
+404;Luxio;Intimidar;Rivalidade;Tenacidade;-;-
+405;Luxray;Intimidar;Rivalidade;Tenacidade;-;-
+406;Budew;Espículas Venenosas;Recuperação;Proteção Vegetal;-;-
+407;Roserade;Espículas Venenosas;Recuperação;Proteção Vegetal;Técnica;-
+408;Cranidos;Quebra Moldes;-;Força Bruta;-;-
+409;Rampardos;Quebra Moldes;-;Força Bruta;-;-
+410;Shieldon;Robustez;-;Cacofonia;-;-
+411;Bastiodon;Robustez;-;Cacofonia;-;-
+412;Burmy;Troca de Pele;-;Carapaça;-;-
+413;Wormadam;Troca de Pele;-;Antecipação;Carapaça;-
+414;Mothim;Troca de Pele;-;Olhos Compostos;Olhos Cromados;-
+415;Combee;Mel;-;Entusiasmo;-;-
+416;Vespiquen;Mel;-;Pressão;Tensão;-
+417;Pachirisu;Catagem;Fuga;Absorção de Voltagem;-;-
+418;Buizel;Velocidade na Água;-;Revestimento Aquoso;-;-
+419;Floatzel;Velocidade na Água;-;Revestimento Aquoso;-;-
+420;Cherubi;Clorofila;-;-;-;-
+421;Cherrim;Clorofila;-;Presente das Flores;-;-
+422;Shellos;Drenagem;Viscosidade;Arenoso;-;-
+423;Gastrodon;Drenagem;Viscosidade;Arenoso;-;-
+424;Ambipom;Catagem;Fuga;Ligação;Técnica;-
+425;Drifloon;Leveza;Resquício;Inflamável;-;-
+426;Drifblim;Leveza;Resquício;Inflamável;-;-
+427;Buneary;Desastrado;Fuga;Elasticidade;-;-
+428;Lopunny;Desastrado;Fuga;Elasticidade;Tentação;-
+429;Mismagius;Levitação;-;-;-;-
+430;Honchkrow;Insônia;Sorte;Arrogância;-;-
+431;Glameow;Elasticidade;Ritmo Próprio;Visão Aguçada;-;-
+432;Purugly;Elasticidade;Ritmo Próprio;Agonista;Gordura;-
+433;Chingling;Levitação;-;-;-;-
+434;Stunky;Fedor;Resquício;Visão Aguçada;-;-
+435;Skuntank;Fedor;Resquício;Visão Aguçada;-;-
+436;Bronzor;Isolamento Térmico;Levitação;Metal Pesado;-;-
+437;Bronzong;Isolamento Térmico;Levitação;Metal Pesado;-;-
+438;Bonsly;Cabeça Dura;Robustez;Covardia;-;-
+439;Mime Jr.;Cacofonia;Filtro;Técnica;-;-
+440;Happiny;Graça Serena;Recuperação;Companheirismo;-;-
+441;Chatot;Pés Laçados;Visão Aguçada;Bicudo;-;-
+442;Spiritomb;Pressão;-;Infiltrador;-;-
+443;Gible;Manto de Areia;-;Aspereza;-;-
+444;Gabite;Manto de Areia;-;Aspereza;-;-
+445;Garchomp;Manto de Areia;-;Aspereza;-;-
+446;Munchlax;Catagem;Gordura;Gula;-;-
+447;Riolu;Foco Interior;Inabalável;Travessura;-;-
+448;Lucario;Foco Interior;Inabalável;Justiceiro;-;-
+449;Hippopotas;Convocar Areia;-;Arenoso;-;-
+450;Hippowdon;Convocar Areia;-;Arenoso;-;-
+451;Skorupi;Armadura;Franco-Atirador;Visão Aguçada;-;-
+452;Drapion;Armadura;Franco-Atirador;Visão Aguçada;-;-
+453;Croagunk;Antecipação;Ressecado;Toque Tóxico;-;-
+454;Toxicroak;Antecipação;Ressecado;Toque Tóxico;-;-
+455;Carnivine;Levitação;-;-;-;-
+456;Finneon;Drenagem;Velocidade na Água;Revestimento Aquoso;-;-
+457;Lumineon;Drenagem;Velocidade na Água;Revestimento Aquoso;-;-
+458;Mantyke;Absorção de Água;Velocidade na Água;Revestimento Aquoso;-;-
+459;Snover;Convocar Neve;-;Cacofonia;-;-
+460;Abomasnow;Convocar Neve;-;Cacofonia;-;-
+461;Weavile;Foco Interior;Visão Aguçada;Gatuno;Pressão;-
+462;Magnezone;Ímã;Robustez;Análise;-;-
+463;Lickilicky;Obtusidade;Ritmo Próprio;Aclimatação;-;-
+464;Rhyperior;Cabeça Dura;Pararraios;Imprudência;Solidez;-
+465;Tangrowth;Clorofila;Proteção Vegetal;Regeneração;-;-
+466;Electivire;Eletricidade Estática;-;Espírito Vigoroso;Motorização;-
+467;Magmortar;Flamejante;-;Espírito Vigoroso;-;-
+468;Togekiss;Entusiasmo;Graça Serena;Sorte;-;-
+469;Yanmega;Explosão de Velocidade;Olhos Compostos;Bisbilhoteiro;Olhos Cromados;-
+470;Leafeon;Adaptabilidade;Fuga;Clorofila;Proteção Vegetal;-
+471;Glaceon;Adaptabilidade;Fuga;Friorento;Manto de Neve;-
+472;Gliscor;Hipercorte;Manto de Areia;Veneno Curador;-;-
+473;Mamoswine;Manto de Neve;Obtusidade;Gordura;-;-
+474;Porygon-Z;Download;Vestígio;Adaptabilidade;Análise;-
+475;Gallade;Sincronizar;Vestígio;Inabalável;Justiceiro;-
+476;Probopass;Ímã;Robustez;Arenoso;-;-
+477;Dusknoir;Levitação;-;Bisbilhoteiro;Pressão;-
+478;Froslass;Foco Interior;Friorento;Anátema;Manto de Neve;-
+479;Rotom;Levitação;-;-;-;-
+480;Uxie;Levitação;-;-;-;-
+481;Mesprit;Levitação;-;-;-;-
+482;Azelf;Levitação;-;-;-;-
+483;Dialga;Pressão;-;Telepatia;-;-
+484;Palkia;Pressão;-;Telepatia;-;-
+485;Heatran;Absorção de Chamas;-;Flamejante;-;-
+486;Regigigas;Lentidão;-;-;-;-
+487;Giratina;Pressão;-;Telepatia;-;-
+488;Cresselia;Levitação;-;-;-;-
+489;Phione;Hidratação;-;-;-;-
+490;Manaphy;Hidratação;-;-;-;-
+491;Darkrai;Pesadelos;-;-;-;-
+492;Shaymin;Recuperação;-;-;-;-
+493;Arceus;Multitipo;-;-;-;-
+494;Victini;Estrela da Vitória;-;-;-;-
+495;Snivy;Contrário;-;Rivalidade;-;-
+496;Servine;Contrário;-;Rivalidade;-;-
+497;Serperior;Contrário;-;Rivalidade;-;-
+498;Tepig;Gordura;-;Isolamento Térmico;-;-
+499;Pignite;Gordura;-;Isolamento Térmico;-;-
+500;Emboar;Gordura;-;Imprudência;Isolamento Térmico;-
+501;Oshawott;Concha;-;Foco Interior;-;-
+502;Dewott;Concha;-;Foco Interior;-;-
+503;Samurott;Concha;-;Foco Interior;-;-
+504;Patrat;Fuga;Visão Aguçada;Análise;-;-
+505;Watchog;Fuga;Visão Aguçada;Análise;Iluminação;-
+506;Lillipup;Catagem;Espírito Vigoroso;Fuga;-;-
+507;Herdier;Catagem;Espírito Vigoroso;Fragmentado;Intimidar;Velocidade na Areia
+508;Stoutland;Catagem;Espírito Vigoroso;Fragmentado;Intimidar;Velocidade na Areia
+509;Purrloin;Elasticidade;Leveza;Travessura;-;-
+510;Liepard;Elasticidade;Leveza;Travessura;-;-
+511;Pansage;Gula;-;Travessura;-;-
+512;Simisage;Gula;-;Travessura;-;-
+513;Pansear;Gula;-;Travessura;-;-
+514;Simiscar;Gula;-;Travessura;-;-
+515;Panpour;Gula;-;Travessura;-;-
+516;Simipour;Gula;-;Travessura;-;-
+517;Munna;Premonição;Sincronizar;Telepatia;-;-
+518;Musharna;Premonição;Sincronizar;Telepatia;-;-
+519;Pidove;Bicudo;Sorte;Rivalidade;-;-
+520;Tranquil;Bicudo;Sorte;Rivalidade;-;-
+521;Unfezant;Bicudo;Sorte;Rivalidade;-;-
+522;Blitzle;Motorização;Pararraios;Absorção de Seiva;-;-
+523;Zebstrika;Motorização;Pararraios;Absorção de Seiva;-;-
+524;Roggenrola;Fragueza;Robustez;Arenoso;-;-
+525;Boldore;Fraqueza;Robustez;Arenoso;-;-
+526;Gigalith;Fraqueza;Robustez;Arenoso;Convocar Areia;-
+527;Woobat;Desastrado;Desatenção;Mediocridade;-;-
+528;Swoobat;Desastrado;Desatenção;Mediocridade;-;-
+529;Drilbur;Arenoso;Velocidade na Areia;Quebra Moldes;-;-
+530;Excadrill;Arenoso;Velocidade na Areia;Quebra Moldes;-;-
+531;Audino;Cura;Regeneração;Desastrado;-;-
+532;Timburr;Força Bruta;Tenacidade;Punho de Ferro;-;-
+533;Gurdurr;Força Bruta;Tenacidade;Punho de Ferro;-;-
+534;Conkeldurr;Força Bruta;Tenacidade;Punho de Ferro;-;-
+535;Tympole;Hidratação;Velocidade na Água;Absorção de Água;-;-
+536;Palpitoad;Hidratação;Velocidade na Água;Absorção de Água;-;-
+537;Seismicoad;Hidratação;Velocidade na Água;Absorção de Água;Toque Tóxico;-
+538;Throh;Foco Interior;Tenacidade;Quebra Moldes;-;-
+539;Sawk;Foco Interior;Robustez;Quebra Moldes;-;-
+540;Sewaddle;Carapaça;Clorofila;Polvilhar;-;-
+541;Swadloon;Carapaça;Clorofila;Polvilhar;-;-
+542;Leavanny;Carapaça;Clorofila;Protecção Vegetal;-;-
+543;Venipede;Espículas Venenosas;Explosão de Velocidade;Polvilhar;-;-
+544;Whirlipede;Espículas Venenosas;Explosão de Velocidade;Armadura;-;-
+545;Scolipede;Espículas Venenosas;Explosão de Velocidade;Intimidar;-;-
+546;Cottonee;Infiltrador;Travessura;Clorofila;-;-
+547;Whimsicott;Infiltrador;Travessura;Clorofila;-;-
+548;Petilli;Clorofila;Ritmo Próprio;Proteção Vegetal;-;-
+549;Lilligant;Clorofila;Ritmo Próprio;Proteção Vegetal;-;-
+550;Basculin;Adaptabilidade;Imprudência;Quebra Moldes;-;-
+551;Sandile;Arrogância;Intimidar;Frenesi;-;-
+552;Krokorok;Arrogância;Intimidar;Frenesi;-;-
+553;Krookodile;Arrogância;Intimidar;Frenesi;-;-
+554;Darumaka;Entusiasmo;-;Foco Interior;-;-
+555;Darmanitan;Entusiasmo;-;Força Bruta;Zen;-
+556;Maractus;Absorção de Água;Clorofila;Drenagem;-;-
+557;Dwebble;Concha;Robustez;Fraqueza;-;-
+558;Crustie;Concha;Robustez;Fraqueza;-;-
+559;Scraggy;Arrogância;Troca de Pele;Intimidar;-;-
+560;Scrafty;Arrogância;Troca de Pele;Intimidar;-;-
+561;Sigilyph;Pele Perfeita;Proteção Mágica;Olhos Compostos;-;-
+562;Yamask;Múmia;-;-;-;-
+563;Cofagrigus;Múmia;-;-;-;-
+564;Tirtouga;Robustez;Solidez;Velocidade na Água;-;-
+565;Carracosta;Robustez;Solidez;Velocidade na Água;-;-
+566;Archen;Derrotável;-;-;-;-
+567;Archeops;Derrotável;-;-;-;-
+568;Trubbish;Fedor;Viscosidade;Resquício;-;-
+569;Garbodor;Fedor;Viscosidade;Fraqueza;Resquício;-
+570;Zorua;Ilusão;-;-;-;-
+571;Zoroark;Ilusão;-;-;-;-
+572;Minccino;Técnica;Tentação;Ligação;-;-
+573;Cinccino;Técnica;Tentação;Ligação;-;-
+574;Gothita;Bisbilhoteiro;Competição;Identificação;-;-
+575;Gothorita;Bisbilhoteiro;Competição;Identificação;-;-
+576;Gothitelle;Bisbilhoteiro;Competição;Identificação;-;-
+577;Solosis;Carapaça;Proteção Mágica;Regeneração;-;-
+578;Duosion;Carapaça;Proteção Mágica;Regeneração;-;-
+579;Reuníclus;Carapaça;Proteção Mágica;Regeneração;-;-
+580;Duckett;Bicudo;Visão Aguçada;Hidratação;-;-
+581;Swanna;Bicudo;Visão Açucada;Hidratação;-;-
+582;Vanillite;Friorento;Manto de Neve;Fraqueza;-;-
+583;Vanillish;Friorento;Manto de Neve;Fraqueza;-;-
+584;Vanilluxe;Friorento;Manto de Neve;Fraqueza;-;-
+585;Deerling;Absorção de Selva;Clorofila;Graça Serena;-;-
+586;Sawsbuck;Absorção de Selva;Clorofila;Graça Serena;-;-
+587;Emolga;Eletricidade Estática;-;Motorização;-;-
+588;Karrablast;Guarda Baixa;Troca de Pele;Armadura;-;-
+589;Escavalier;Guarda Baixa;Troca de Pele;Armadura;Carapaça;Concha
+590;Foongus;Esporulação;-;Regeneração;-;-
+591;Amoonguss;Esporulação;-;Regeneração;-;-
+592;Frillish;Absorção de Água;Anátema;Umidade;-;-
+593;Jellicent;Absorção de Água;Anátema;Umidade;-;-
+594;Alomomola;Cura;Hidratação;Regeneração;-;-
+595;Joltik;Olhos Compostos;Tensão;Eletricidade Estática;-;-
+596;Galvantula;Olhos Compostos;Tensão;Intimidar;-;-
+597;Ferroseed;Espículas Metálicas;-;-;-;-
+598;Ferrothorn;Espículas Metálicas;-;Antecipação;-;-
+599;Klink;Mais;Menos;Metal Precioso;-;-
+600;Klang;Mais;Menos;Metal Precioso;-;-
+601;Klinklang;Mais;Menos;Metal Precioso;-;-
+602;Tynamo;Levitação;-;-;-;-
+603;Eelektrik;Levitação;-;-;-;-
+604;Eelektross;Levitação;-;-;-;-
+605;Elgyem;Sincronizar;Telepatia;Análise;-;-
+606;Beheeyem;Sincronizar;Telepatia;Análise;-;-
+607;Litwick;Absorção de Chamas;Flamejante;Infiltrador;-;-
+608;Lampent;Absorção de Chamas;Flamejante;Infiltrador;-;-
+609;Chandelure;Absorção de Chamas;Flamejante;Infiltrador;-;-
+610;Axew;Quebra Moldes;Rivalidade;Tensão;-;-
+611;Frazure;Quebra Moldes;Rivalidade;Tensão;-;-
+612;Haxorus;Quebra Moldes;Rivalidade;Tensão;-;-
+613;Cubchoo;Manto de Neve;Velocidade na Água;Covardia;-;-
+614;Beatric;Manto de Neve;Velocidade na Água;Covardia;-;-
+615;Cryogonal;Levitação;-;-;-;-
+616;Shelmet;Concha;Hidratação;Carapaça;-;-
+617;Acceigor;Concha;Hidratação;Leveza;Viscosidade;-
+618;Stunfisk;Elasticidade;Eletricidade Estática;Manto de Areia;-;-
+619;Mienfoo;Foco Interior;Regeneração;Imprudência;-;-
+620;Mienshao;Foco Interior;Regeneração;Imprudência;-;-
+621;Druddigon;Aspereza;Força Bruta;Quebra Moldes;-;-
+622;Golett;Desastrado;Punho de Ferro;Guarda Baixa;-;-
+623;Golurk;Desastrado;Punho de Ferro;Guarda Baixa;-;-
+624;Pawniard;Agonista;Foco Interior;Pressão;-;-
+625;Bisharp;Agonista;Foco Interior;Pressão;-;-
+626;Bouffalant;Absorção de Seiva;Imprudência;Cacofonia;-;-
+627;Rufflet;Força Bruta;Visão Aguçada;Entusiasmo;-;-
+628;Braviary;Força Bruta;Visão Aguçada;Agonista;-;-
+629;Vullaby;Bicudo;Carapaca;Fraqueza;-;-
+630;Mandibuzz;Bicudo;Carapaça;Fraqueza;-;-
+631;Heatmor;Absorção de Chamas;Gula;Fumaça;-;-
+632;Durant;Entusiasmo;Preguiça;Catagem;-;-
+633;Deino;Entusiasmo;-;-;-;-
+634;Zweilous;Entusiasmo;-;-;-;-
+635;Hydreigon;Entusiasmo;-;Levitação;-;-
+636;Larvesta;Flamejante;-;Carapaça;-;-
+637;Volcarona;Flamejante;-;Olhos Cromados;-;-
+638;Cobalion;Justiceiro;-;-;-;-
+639;Terrakion;Justiceiro;-;-;-;-
+640;Virizion;Justiceiro;-;-;-;-
+641;Tornadus;Travessura;-;Agonista;-;-
+642;Thundurus;Travessura;-;Agonista;-;-
+643;Reshiram;Turbochama;-;-;-;-
+644;Zekrom;Teravoltagem;-;-;-;-
+645;Landorus;Arenoso;-;Força Bruta;-;-
+646;Kyurem;Pressão;-;-;-;-
+647;Keldeo;Justiceiro;-;-;-;-
+648;Meloetta;Graça Serena;-;-;-;-
+649;Genesect;Download;-;-;-;-
+650;Chespin;Bilindagem;-;Armadura;-;-
+651;Quilladin;Bilindagem;-;Armadura;-;-
+652;Chesnaught;Bilindagem;-;Armadura;-;-
+653;Fennekin;Mágica;-;Travessura;-;-
+654;Braixen;Mágica;-;Travessura;-;-
+655;Delphox;Mágica;-;Travessura;-;-
+656;Froakie;Metamorfose;-;Infiltrador;-;-
+657;Frogadier;Metamorfose;-;Infiltrador;-;-
+658;Greninja;Metamorfose;-;Infiltrador;Vínculo Profundo;-
+659;Bunnelby;Bochechudo;Catagem;Força Gigantesca;-;-
+660;Diggersby;Bochechudo;Catagem;Força Gigantesca;-;-
+661;Fletchling;Bicudo;-;Asas de Vendavais;-;-
+662;Fletchinder;Bicudo;-;Asas de Vendavais;Flamejante;-
+663;Talonflame;Bicudo;-;Asas de Vendavais;Flamejante;-
+664;Scatterbug;Olhos Compostos;Polvilhar;Companheirismo;-;-
+665;Spewpa;Olhos Compostos;Polvilhar;Companheirismo;Troca de Pele;-
+666;Vivillon;Olhos Compostos;Polvilhar;Companheirismo;-;-
+667;Litleo;Rivalidade;Tensão;Arrogância;-;-
+668;Pyroar;Rivalidade;Tensão;Arrogância;-;-
+669;Flabébé;Véu Florido;-;Simbiose;-;-
+670;Floette;Véu Florido;-;Simbiose;-;-
+671;Florges;Véu Florido;-;Simbiose;-;-
+672;Skiddo;Absorção de Seiva;-;Frondoso;-;-
+673;Gogoat;Absorção de Seiva;-;Frondoso;-;-
+674;Pancham;Punho de Ferro;Quebra Moldes;Fragmentado;-;-
+675;Pangoro;Punho de Ferro;Quebra Moldes;Fragmentado;-;-
+676;Furfrou;Peludo;-;-;-;-
+677;Espurr;Infiltrador;Visão Aguçada;Ritmo Próprio;-;-
+678;Meowstic;Infiltrador;Visão Aguçada;Travessura (Macho) ou Competição (Fêmea);-;-
+679;Honedge;Guarda Baixa;-;-;-;-
+680;Doublade;Guarda Baixa;-;-;-;-
+681;Aegislash;Guarda Baixa;-;Posturas;-;-
+682;Spritzee;Cura;-;Véu Aromático;-;-
+683;Aromatisse;Cura;-;Véu Aromático;-;-
+684;Swirlix;Véu Doce;-;Leveza;-;-
+685;Slurpuff;Véu Doce;-;Leveza;-;-
+686;Inkay;Contrário;Ventosas;Infiltrador;-;-
+687;Malamar;Contrário;Ventosas;Infiltrador;-;-
+688;Binacle;Franco-Atirador;Garras Duras;Gatuno;-;-
+689;Barbaracle;Franco-Atirador;Garras Duras;Gatuno;-;-
+690;Skrelp;Espículas Venenosas;Toque Tóxico;Adaptabilidade;-;-
+691;Dragalge;Espículas Venenosas;Toque Tóxico;Adaptabilidade;-;-
+692;Clauncher;Bazuca;-;-;-;-
+693;Clawitzer;Bazuca;-;-;-;-
+694;Helioptile;Manto de Areia;Ressecado;Poder Solar;-;-
+695;Heliolisk;Manto de Areia;Ressecado;Poder Solar;-;-
+696;Tyrunt;Mandíbula;-;Robustez;-;-
+697;Tyrantrum;Mandíbula;-;Cabeça Dura;-;-
+698;Amaura;Refrigeração;-;Convocar Neve;-;-
+699;Aurorus;Refrigeração;-;Convocar Neve;-;-
+700;Sylveon;Adaptabilidade;Fuga;Encantação;Tentação;-
+701;Hawlucha;Elasticidade;Leveza;Quebra Moldes;-;-
+702;Dedenne;Bochechudo;Catagem;Mais;-;-
+703;Carbink;Transparência;-;Robustez;-;-
+704;Goomy;Absorção de Seiva;Hidratação;Pegajoso;-;-
+705;Sliggoo;Absorção de Seiva;Hidratação;Pegajoso;-;-
+706;Goodra;Absorção de Seiva;Hidratação;Pegajoso;-;-
+707;Klefki;Travessura;-;Mágica;-;-
+708;Phantump;Bisbilhoteiro;Recuperação;Colheita;-;-
+709;Trevenant;Bisbilhoteiro;Recuperação;Colheita;-;-
+710;Pumpkaboo;Bisbilhoteiro;Catagem;Insônia;-;-
+711;Gourgeist;Bisbilhoteiro;Catagem;Insônia;-;-
+712;Bergmite;Friorento;Ritmo Próprio;Robustez;-;-
+713;Avalugg;Friorento;Ritmo Próprio;Robustez;-;-
+714;Noibat;Bisbilhoteiro;Infiltrador;Telepatia;-;-
+715;Noivern;Bisbilhoteiro;Infiltrador;Telepatia;-;-
+716;Xerneas;Aura Feérica;-;-;-;-
+717;Yveltal;Aura de Trevas;-;-;-;-
+718;Zygarde;Agrupamento;-;Rompimento de Auras;-;-
+719;Diancie;Transparência;-;-;-;-
+720;Hoopa;Mágica;-;-;-;-
+721;Volcanion;Absorção de Água;-;-;-;-
+722;Rowlet;Alcance Remoto;-;Madrugar;-;-
+723;Dartrix;Alcance Remoto;-;Madrugar;-;-
+724;Decidueye;Alcance Remoto;-;Madrugar;-;-
+725;Litten;Intimidar;-;Visão Aguçada;-;-
+726;Torracat;Intimidar;-;Visão Aguçada;-;-
+727;Incineroar;Intimidar;-;Visão Aguçada;-;-
+728;Popplio;Voz Líquida;-;Velocidade na Água;-;-
+729;Brionne;Voz Líquida;-;Velocidade na Água;-;-
+730;Primarina;Voz Líquida;-;Velocidade na Água;-;-
+731;Pikipek;Ligação;Visão Aguçada;Catagem;-;-
+732;Trumbeak;Ligação;Visão Aguçada;Catagem;-;-
+733;Toucannon;Ligação;Visão Aguçada;Força Bruta;-;-
+734;Yungoos;Mandíbula;Vigília;Adaptabilidade;-;-
+735;Gumshoos;Mandíbula;Vigília;Adaptabilidade;-;-
+736;Grubbin;Obtusidade;-;-;-;-
+737;Charjabug;Obtusidade;-;Bateria;-;-
+738;Vikavolt;Obtusidade;-;Levitação;-;-
+739;Crabrawler;Hipercorte;Punho de Ferro;Frenesi;-;-
+740;Crabominable;Hipercorte;Punho de Ferro;Frenesi;-;-
+741;Oricorio;Dança;-;-;-;-
+742;Cutiefly;Mel;Polviíhar;Véu Doce;-;-
+743;Ribombee;Mel;Polviíhar;Véu Doce;-;-
+744;Rockruff;Espírito Vigoroso;Visão Aguçada;Inabalável;-;-
+745;Lycanroc (Diurna);Espírito Vigoroso;Visão Aguçada;Inabalável;Velocidade na Areia;-
+746;Lycanroc (Crepuscular);Espírito Vigoroso;Visão Aguçada;Garras Duras;-;-
+747;Lycanroc (Noturna);Espírito Vigoroso;Visão Aguçada;Guarda Baixa;-;-
+746;Wishiwashi (Solitário);Cardume;-;-;-;-
+746;Wishiwashi (Cardume);Constante;-;-;-;-
+747;Marcanie;Elasticidade;Impiedoso;Regeneração;-;-
+748;Toxapex;Elasticidade;Impiedoso;Regeneração;-;-
+749;Mudbray;Firmeza;Ritmo Próprio;Foco Interior;-;-
+750;Mudsdale;Firmeza;Ritmo Próprio;Foco Interior;-;-
+751;Dewpider;Bolha d'Água;-;Absorção de Água;-;-
+752;Araquanid;Bolha d'Água;-;Absorção de Água;-;-
+753;Fomantis;Proteção Vegetal;-;Contrário;-;-
+754;Lurantis;Proteção Vegetal;-;Contrário;-;-
+755;Morelull;Esporulação;Iluminação;Prato de Chuva;-;-
+756;Shiinotic;Esporulação;Iluminação;Prato de Chuva;-;-
+757;Salandit;Corrosão;-;Obtusidade;-;-
+758;Salazzale;Corrosão;-;Obtusidade;-;-
+759;Stufful;Desastrado;Maciez;Tentação;-;-
+760;Bewear;Desastrado;Maciez;Tensão;-;-
+761;Bounsweet;Obtusidade;Proteção Vegetal;Véu Doce;-;-
+762;Steenee;Obtusidade;Proteção Vegetal;Véu Doce;-;-
+763;Tsareena;Obtusidade;Proteção Vegetal;Majestade;Véu Doce;-
+764;Comfey;Prazer;Véu Florido;Recuperação;-;-
+765;Oranguru;Foco Interior;Telepatia;Simbiose;-;-
+766;Passimian;Receptor;-;Agonista;-;-
+767;Wimpod;Amarelar;-;-;-;-
+768;Golisopod;Amarelar;-;Saída de Emergência;-;-
+769;Sandygast;Desmanchar;-;Manto de Areia;-;-
+770;Palossand;Desmanchar;-;Manto de Areia;-;-
+771;Pyukumuku;Vísceras Extensíveis;-;Desatenção;-;-
+772;Tipo Nulo;Armadura;-;-;-;-
+773;Silvally;Armadura;-;Instalação;-;-
+774;Minior;Desprotecido;-;-;-;-
+775;Komala;Coma;-;-;-;-
+776;Turtonator;Concha;-;-;-;-
+777;Togedemaru;Espículas Metálicas;Pararraios;Robustez;-;-
+778;Mimikyu;Disfarce;-;-;-;-
+779;Bruxish;Deslumbrante;Mandíbula;Pele Perfeita;-;-
+780;Drampa;Absorção de Seiva;Barbárie;Aclimatação;-;-
+781;Dhelmise;Ferro Puro;-;-;-;-
+782;Jangmo-O;Blindagem;Cacofonia;Carapaça;-;-
+783;Hakamo-O;Blindagem;Cacofonia;Carapaça;-;-
+784;Kommo-O;Blindagem;Cacofonia;Carapaça;-;-
+785;Tapu Koko;Eletrogênese;-;Telepatia;-;-
+786;Tapu Lele;Psicogênese;-;Telepatia;-;-
+787;Tapu Bulu;Herbogênese;-;Telepatia;-;-
+788;Tapu Fini;Nebulogênese;-;Telepatia;-;-
+789;Cosmog;Desatenção;-;-;-;-
+790;Cosmoem;Desatenção;-;Robustez;-;-
+791;Solgaleo;Desatenção;-;Metal Precioso;-;-
+792;Lunala;Desatenção;-;Escudo Espectral;-;-
+793;Nihilego;Ultrabesta;-;-;-;-
+794;Buzzwole;Ultrabesta;-;-;-;-
+795;Pheromosa;Ultrabesta;-;-;-;-
+796;Xurkitree;Ultrabesta;-;-;-;-
+797;Celestesia;Ultrabesta;-;-;-;-
+798;Kartana;Ultrabesta;-;-;-;-
+799;Guzzlord;Ultrabesta;-;-;-;-
+800;Necrozma;Prisma;-;-;-;-
+801;Magearna;Cor da Alma;-;-;-;-
+802;Marshadow;Técnica;-;-;-;-
+803;Poipole;Ultrabesta;-;-;-;-
+804;Naganadel;Ultrabesta;-;-;-;-
+805;Stakataka;Ultrabesta;-;-;-;-
+806;Blacephalon;Ultrabesta;-;-;-;-
+807;Zeraora;Absorção de Voltagem;-;-;-;-

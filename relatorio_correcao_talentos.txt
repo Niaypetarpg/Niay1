@@ -1,0 +1,2743 @@
+================================================================================
+RELATÓRIO COMPLETO DE CORREÇÃO DE TALENTOS
+================================================================================
+
+Total de talentos corrigidos: 683
+Total de talentos encontrados no JS: 709
+Total de talentos no JSON: 1060
+
+TODAS AS CORREÇÕES:
+--------------------------------------------------------------------------------
+
+1. Acha Isso Impressionante?
+   Antigo: 'Defesa Especial 17'
+   Novo:   'Defesa Especial 17.'
+
+2. Aplausos
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+3. Clímax
+   Antigo: 'Defesa Especial 15, 2 prêmios em Concursos'
+   Novo:   'Defesa Especial 15, 2 prêmios em Concursos.'
+
+4. Clímax +
+   Antigo: 'Clímax'
+   Novo:   'Clímax.'
+
+5. Conquistando o Júri
+   Antigo: '2 prêmios em Concursos'
+   Novo:   '2 prêmios em Concursos.'
+
+6. Não Fique pra Trás!
+   Antigo: ''
+   Novo:   'N/A'
+
+7. Paciência
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+8. Perfeccionismo
+   Antigo: ''
+   Novo:   'N/A'
+
+9. Performance Eletrizante
+   Antigo: '3 prêmios em Concursos'
+   Novo:   '3 prêmios em Concursos.'
+
+10. Protagonismo
+   Antigo: 'Velocidade 16'
+   Novo:   'Velocidade 16.'
+
+11. Acompanhamento
+   Antigo: ''
+   Novo:   'N/A'
+
+12. Coro Coordenado
+   Antigo: 'seis Talentos de Coreógrafo'
+   Novo:   'seis Talentos de Coreógrafo (desconte as Características de Classe para este cálculo).'
+
+13. Deslumbrante
+   Antigo: 'Nível 15'
+   Novo:   'Nível 15.'
+
+14. Destacado
+   Antigo: ''
+   Novo:   'N/A'
+
+15. Fortíssimo
+   Antigo: 'Nível 15'
+   Novo:   'Nível 15.'
+
+16. Nas Pontas dos Pés
+   Antigo: ''
+   Novo:   'N/A'
+
+17. Passos Acrobáticos
+   Antigo: 'Velocidade 16'
+   Novo:   'Velocidade 16.'
+
+18. Roteiro Reproduzível
+   Antigo: ''
+   Novo:   'N/A'
+
+19. Toque Selvagem
+   Antigo: ''
+   Novo:   'N/A'
+
+20. Vibrato
+   Antigo: ''
+   Novo:   'N/A'
+
+21. Captura Adiantada
+   Antigo: 'Velocidade 16'
+   Novo:   'Velocidade 16.'
+
+22. Captura Chocante
+   Antigo: 'Velocidade 18'
+   Novo:   'Velocidade 18.'
+
+23. Cartão com Descontos
+   Antigo: ''
+   Novo:   'N/A'
+
+24. Criar Pokébola
+   Antigo: 'Reparar Pokébola'
+   Novo:   'Reparar Pokébola.'
+
+25. Jogar Rede
+   Antigo: ''
+   Novo:   'N/A'
+
+26. Ponto de Captura +
+   Antigo: 'Velocidade 16'
+   Novo:   'Velocidade 16.'
+
+27. Ponto de Captura ++
+   Antigo: 'Velocidade 18, Ponto de Captura +'
+   Novo:   'Velocidade 18, Ponto de Captura +.'
+
+28. Reparar Pokébola
+   Antigo: ''
+   Novo:   'N/A'
+
+29. Trabalho Manual
+   Antigo: 'Reparar Pokébola'
+   Novo:   'Reparar Pokébola.'
+
+30. A Pokébola do Salvador
+   Antigo: 'Trabalho Manual'
+   Novo:   'Trabalho Manual.'
+
+31. Ferreiro de Abricós
+   Antigo: 'Ferreiro de Pokébolas'
+   Novo:   'Ferreiro de Pokébolas.'
+
+32. Ferreiro de Pokébolas
+   Antigo: 'Trabalho Manual'
+   Novo:   'Trabalho Manual.'
+
+33. Melhoria de Aptidão
+   Antigo: ''
+   Novo:   'N/A'
+
+34. Melhoria de Capacidade
+   Antigo: ''
+   Novo:   'N/A'
+
+35. Melhoria de Combate
+   Antigo: ''
+   Novo:   'N/A'
+
+36. Pokébola para cada Tipo
+   Antigo: ''
+   Novo:   'N/A'
+
+37. Quebrar Cela
+   Antigo: ''
+   Novo:   'N/A'
+
+38. Busca pelo Brilho
+   Antigo: ''
+   Novo:   'N/A'
+
+39. Busca pelo Tipo
+   Antigo: ''
+   Novo:   'N/A'
+
+40. Conhecedor de Frutos
+   Antigo: ''
+   Novo:   'N/A'
+
+41. De Antemão!
+   Antigo: 'Planejamento'
+   Novo:   'Planejamento.'
+
+42. De Antemão! +
+   Antigo: 'Planejamento'
+   Novo:   'Planejamento.'
+
+43. Encontre Isso!
+   Antigo: 'Rastreador'
+   Novo:   'Rastreador.'
+
+44. Escrutínio
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+45. Estudo Silencioso
+   Antigo: 'Defesa Especial 18'
+   Novo:   'Defesa Especial 18.'
+
+46. Pinceladas
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+47. Psicologia
+   Antigo: ''
+   Novo:   'N/A'
+
+48. Rastreador
+   Antigo: 'um pokémon com a Capacidade Faro'
+   Novo:   'Rastreador Informado +.'
+
+49. Ajuda
+   Antigo: 'Nível 10, uma das Classes: Aventureiro, Cavaleiro, Detetive, Espião, Guia, Oficial, Pactuário'
+   Novo:   'Nível 10, uma das Classes a seguir: Aventureiro, Cavaleiro, Detetive, Espião, Guia, Oficial, Pactuário.'
+
+50. Ambientalista
+   Antigo: ''
+   Novo:   'N/A'
+
+51. Amigos
+   Antigo: 'ter usado Contenção em um pokémon com a Capacidade de Escolha'
+   Novo:   'ter usado Contenção em um pokémon com a Capacidade de Escolha.'
+
+52. Arma de Choque
+   Antigo: ''
+   Novo:   'N/A'
+
+53. Autoridade
+   Antigo: 'reconhecido pela execução de um serviço distintivo'
+   Novo:   'reconhecido pela execução de um serviço distintivo.'
+
+54. Contenção Aprimorada
+   Antigo: ''
+   Novo:   'N/A'
+
+55. Contenção Aprimorada +
+   Antigo: 'Contenção Aprimorada'
+   Novo:   'Contenção Aprimorada.'
+
+56. Prática Perfeita
+   Antigo: 'Velocidade 15'
+   Novo:   'Velocidade 15.'
+
+57. Recursos
+   Antigo: 'Autoridade'
+   Novo:   'Autoridade.'
+
+58. Santuário
+   Antigo: ''
+   Novo:   'N/A'
+
+59. Time de Resgate
+   Antigo: 'ter um Parceiro consigo há pelo menos dois meses'
+   Novo:   'ter um Parceiro consigo há pelo menos dois meses.'
+
+60. Afirmação
+   Antigo: 'Ataque 14'
+   Novo:   'Ataque 14.'
+
+61. Ataques Aprimorados +
+   Antigo: 'Ataque 16, Ataque Especial 16'
+   Novo:   'Ataque 16, Ataque Especial 16.'
+
+62. Ataques Aprimorados ++
+   Antigo: 'Ataque 18, Ataque Especial 18, Ataques Aprimorados +'
+   Novo:   'Ataque 18, Ataque Especial 18, Ataques Aprimorados +.'
+
+63. Capataz
+   Antigo: 'Pressão +'
+   Novo:   'Pressão +.'
+
+64. Crítica Construtiva
+   Antigo: 'Ataque Especial 15'
+   Novo:   'Ataque Especial 15.'
+
+65. Exercício Brutal
+   Antigo: 'Ataque 15'
+   Novo:   'Ataque 15.'
+
+66. Foco
+   Antigo: 'Crítica Construtiva'
+   Novo:   'Crítica Construtiva.'
+
+67. Intimidar
+   Antigo: 'Ataque 16, Ataque Especial 14'
+   Novo:   'Ataque 16, Ataque Especial 14.'
+
+68. Mestre das Feras
+   Antigo: '8 insígnias'
+   Novo:   '8 insígnias.'
+
+69. Pressão
+   Antigo: ''
+   Novo:   'N/A'
+
+70. Pressão +
+   Antigo: 'Pressão'
+   Novo:   'N/A'
+
+71. Transpassar
+   Antigo: 'Ataque Especial 16'
+   Novo:   'Ataque Especial 16.'
+
+72. Alma Elemental
+   Antigo: ''
+   Novo:   'N/A'
+
+73. Aprimorar Golpes Elementais +
+   Antigo: 'Ataque Especial 16'
+   Novo:   'Ataque Especial 16.'
+
+74. Com os Elementos
+   Antigo: ''
+   Novo:   'N/A'
+
+75. Conexão com Tipo
+   Antigo: 'Alma Elemental'
+   Novo:   'Alma Elemental.'
+
+76. Conversão
+   Antigo: 'Mudança de Tipo'
+   Novo:   'Mudança de Tipo.'
+
+77. Elementalismo
+   Antigo: 'Mudança Elemental'
+   Novo:   'Mudança Elemental.'
+
+78. Golpe Elemental
+   Antigo: 'Elementalismo'
+   Novo:   'Elementalismo.'
+
+79. Mudança de Tipo
+   Antigo: 'Ataque Especial 15'
+   Novo:   'Ataque Especial 15.'
+
+80. Sou Superior no Meu Tipo!
+   Antigo: 'Alma Elemental'
+   Novo:   'Alma Elemental.'
+
+81. Treinamento de Resistência
+   Antigo: 'Alma Elemental'
+   Novo:   'Alma Elemental.'
+
+82. Aguento Outra!
+   Antigo: 'Saúde 13'
+   Novo:   'Saúde 13.'
+
+83. Multitarefa
+   Antigo: 'todos os Atributos 12, Nível 10'
+   Novo:   'todos os Atributos 12, Nível 10.'
+
+84. Aguento Outra! +
+   Antigo: 'Aguento Outra!, Nível 20'
+   Novo:   'Saúde 17.'
+
+85. Ainda Não!
+   Antigo: 'Nível 10'
+   Novo:   'N/A'
+
+86. Arma de Escolha
+   Antigo: ''
+   Novo:   'N/A'
+
+87. Cuidado!
+   Antigo: 'SAB 12'
+   Novo:   'Velocidade 14.'
+
+88. Dê Tudo de Si!
+   Antigo: 'SAB 14'
+   Novo:   'N/A'
+
+89. Deixa Ajudar com Isso!
+   Antigo: 'SAB 16'
+   Novo:   'N/A'
+
+90. Deixa Ajudar Agora!
+   Antigo: 'SAB 16, Nível 10'
+   Novo:   'Nível 10, Deixa Ajudar com Isso!'
+
+91. Dê-Me Espaço!
+   Antigo: 'FOR 15, Nível 5'
+   Novo:   'N/A'
+
+92. Filiação à Liga Oficial
+   Antigo: ''
+   Novo:   '12 insígnias ou equivalentes, Nível 20, um Ginásio ou equivalente no valor de pelo menos 380000 créditos.'
+
+93. Já Ouvi Falar!
+   Antigo: 'INT 14'
+   Novo:   'Ataque Especial 14 ou Defesa Especia 14.'
+
+94. Karma do Ash
+   Antigo: 'CAR 15'
+   Novo:   'ter libertado três pokémons leais totalmente evoluídos.'
+
+95. Meditação
+   Antigo: 'SAB 12'
+   Novo:   'um entre Saúde 12, Ataque Especial 12 ou Defesa Especial 12'
+
+96. Mega!
+   Antigo: 'Nível 10'
+   Novo:   'todos os Atributos 10, uma Pedra Chave.'
+
+97. Mire no Chifre!
+   Antigo: 'SAB 14'
+   Novo:   'Ataque Especial 13.'
+
+98. Mire no Chifre! +
+   Antigo: 'SAB 20, Mire no Chifre!, Nível 20'
+   Novo:   'Ataque Especial 16, Mire no Chifre.'
+
+99. Não se Meta Comigo!
+   Antigo: ''
+   Novo:   'Defesa Especial 13.'
+
+100. O Escolhido
+   Antigo: 'todos os Atributos 15, Nível 30'
+   Novo:   'Nível 20.'
+
+101. Rotina de Estudos
+   Antigo: 'INT 12'
+   Novo:   'ter comprado um livro pelo menos uma vez.'
+
+102. Rotina de Exercícios
+   Antigo: 'FOR 12'
+   Novo:   'ter se exercitado pelo menos uma vez.'
+
+103. Socorrista
+   Antigo: 'SAB 12'
+   Novo:   'um entre Ataque Especial 13 ou Defesa Especial 13.'
+
+104. Sorte do Ash
+   Antigo: 'CAR 12'
+   Novo:   'ter libertado um pokémon leal totalmente evoluído.'
+
+105. Vai Abrir!
+   Antigo: ''
+   Novo:   'Ataque Especial 15.'
+
+106. Você Isso e Você Aquilo!
+   Antigo: 'CAR 14'
+   Novo:   'Nível 10, todos os Atributos 12.'
+
+107. Arquearia
+   Antigo: 'Nível 10, Arma de Escolha para uma arma À Distância'
+   Novo:   'Nível 10, Arma de Escolha para uma arma À Distância.'
+
+108. Chuva Ácida
+   Antigo: ''
+   Novo:   'N/A'
+
+109. De Olho no Céu
+   Antigo: ''
+   Novo:   'N/A'
+
+110. É o Fim!
+   Antigo: ''
+   Novo:   'N/A'
+
+111. Escalada
+   Antigo: ''
+   Novo:   'N/A'
+
+112. Intuição
+   Antigo: ''
+   Novo:   'N/A'
+
+113. Natureza Amiga
+   Antigo: ''
+   Novo:   'N/A'
+
+114. Pacifismo
+   Antigo: 'Ranger, Velocidade 16'
+   Novo:   'Ranger, Velocidade 16.'
+
+115. Sobrevivente
+   Antigo: ''
+   Novo:   'N/A'
+
+116. Cavalaria
+   Antigo: ''
+   Novo:   'N/A'
+
+117. Equitação Leve
+   Antigo: ''
+   Novo:   'N/A'
+
+118. Grande o Bastante
+   Antigo: 'Ranger'
+   Novo:   'Ranger.'
+
+119. Hipismo
+   Antigo: 'um pokémon com Deslocamento Terrestre 8'
+   Novo:   'um pokémon com Deslocamento Terrestre 8.'
+
+120. Já!
+   Antigo: ''
+   Novo:   'N/A'
+
+121. Mobilidade
+   Antigo: ''
+   Novo:   'N/A'
+
+122. Montaria Adaptável
+   Antigo: 'um pokémon com uma das Capacidades a seguir: Geleira, Intangibilidade, Silêncio, Térreo'
+   Novo:   'um pokémon com uma das Capacidades a seguir: Geleira, Intangibilidade, Silêncio, Térreo.'
+
+123. Salto de Selas
+   Antigo: ''
+   Novo:   'N/A'
+
+124. Veja e Aprenda!
+   Antigo: 'cinco Talentos de Cavaleiro (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Cavaleiro (desconte as Características de Classe para este cálculo).'
+
+125. Velocidade Pura
+   Antigo: 'um pokémon com Velocidade 25'
+   Novo:   'um pokémon com Velocidade 25.'
+
+126. Auxiliar
+   Antigo: 'Treinamento Investigativo'
+   Novo:   'Treinamento Investigativo.'
+
+127. Detector de Mentiras
+   Antigo: 'ter solucionado um caso'
+   Novo:   'ter solucionado um caso.'
+
+128. Disfarce
+   Antigo: ''
+   Novo:   'N/A'
+
+129. Fala Mansa
+   Antigo: ''
+   Novo:   'N/A'
+
+130. Mestre do Disfarce
+   Antigo: 'Disfarce'
+   Novo:   'Disfarce.'
+
+131. O Que Foi Aquilo?
+   Antigo: ''
+   Novo:   'N/A'
+
+132. Parado Aí!
+   Antigo: ''
+   Novo:   'N/A'
+
+133. Procurar Evidências
+   Antigo: ''
+   Novo:   'N/A'
+
+134. Treinamento Intuitivo
+   Antigo: 'Treinamento Investigativo'
+   Novo:   'Treinamento Investigativo.'
+
+135. Treinamento Investigativo
+   Antigo: 'um pokémon com Lealdade 3'
+   Novo:   'um pokémon com Lealdade 3.'
+
+136. Agora Mais Que Nunca!
+   Antigo: 'cinco Talentos de Guia (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Guia (desconte as Características de Classe para este cálculo).'
+
+137. Espertinho!
+   Antigo: 'um pokémon com Inteligência 5'
+   Novo:   'um pokémon com Inteligência 5.'
+
+138. Faça Dar Certo!
+   Antigo: ''
+   Novo:   'N/A'
+
+139. Fortaleza!
+   Antigo: 'Ataque 18'
+   Novo:   'Ataque 18.'
+
+140. Fortinho!
+   Antigo: 'um pokémon com Força 5'
+   Novo:   'um pokémon com Força 5.'
+
+141. Mais Alto!
+   Antigo: 'um pokémon com Salto 4'
+   Novo:   'um pokémon com Salto 4.'
+
+142. Rápido!
+   Antigo: ''
+   Novo:   'N/A'
+
+143. Ao Meu Sinal!
+   Antigo: ''
+   Novo:   'N/A'
+
+144. Contenção Aprimorada ++
+   Antigo: 'Contenção Aprimorada +'
+   Novo:   'Contenção Aprimorada +.'
+
+145. Inspiração
+   Antigo: ''
+   Novo:   'N/A'
+
+146. Levante-se!
+   Antigo: 'seis Talentos de Oficial (desconte as Características de Classe para este cálculo)'
+   Novo:   'seis Talentos de Oficial (desconte as Características de Classe para este cálculo).'
+
+147. Orientação
+   Antigo: ''
+   Novo:   'N/A'
+
+148. Pastoreio
+   Antigo: ''
+   Novo:   'N/A'
+
+149. Socorro
+   Antigo: ''
+   Novo:   'N/A'
+
+150. Supere Isso!
+   Antigo: ''
+   Novo:   'N/A'
+
+151. Tática
+   Antigo: 'Ao Meu Sinal!, Inspiração, Orientação'
+   Novo:   'Ao Meu Sinal!, Inspiração, Orientação.'
+
+152. Símbolo da Coragem
+   Antigo: 'ter um Parceiro consigo há pelo menos duas semanas'
+   Novo:   'ter um Parceiro consigo há pelo menos duas semanas.'
+
+153. Símbolo da Destruição
+   Antigo: ''
+   Novo:   'N/A'
+
+154. Símbolo da Fé
+   Antigo: 'ter um Parceiro consigo há pelo menos duas semanas'
+   Novo:   'ter um Parceiro consigo há pelo menos duas semanas.'
+
+155. Símbolo da Grandeza
+   Antigo: ''
+   Novo:   'N/A'
+
+156. Símbolo da Invocação
+   Antigo: 'oito Talentos de Pactuário (desconte as Características de Classe para este cálculo)'
+   Novo:   'oito Talentos de Pactuário (desconte as Características de Classe para este cálculo).'
+
+157. Símbolo da Justiça
+   Antigo: 'ter se aliado com dois Lendários'
+   Novo:   'ter se aliado com dois Lendários.'
+
+158. Símbolo da Rapidez
+   Antigo: 'ter um Parceiro consigo há pelo menos duas semanas'
+   Novo:   'ter um Parceiro consigo há pelo menos duas semanas.'
+
+159. Símbolo da Verdade
+   Antigo: ''
+   Novo:   'N/A'
+
+160. Símbolo da Vida
+   Antigo: 'Ataque 16'
+   Novo:   'Ataque 16.'
+
+161. Símbolo Sagrado
+   Antigo: 'Ataque 18, Símbolo da Fé'
+   Novo:   'Ataque 18, Símbolo da Fé.'
+
+162. Armadura
+   Antigo: 'Colete'
+   Novo:   'Colete.'
+
+163. Bobina Retrátil
+   Antigo: ''
+   Novo:   'N/A'
+
+164. Disparador
+   Antigo: ''
+   Novo:   'N/A'
+
+165. Catalizador
+   Antigo: ''
+   Novo:   'N/A'
+
+166. Colete
+   Antigo: ''
+   Novo:   'N/A'
+
+167. Derrubada
+   Antigo: ''
+   Novo:   'N/A'
+
+168. Proteção
+   Antigo: 'Colete'
+   Novo:   'um pokémon com Proteção.'
+
+169. Pulverizador
+   Antigo: ''
+   Novo:   'N/A'
+
+170. Resistência
+   Antigo: 'Colete'
+   Novo:   'um pokémon com Resistência.'
+
+171. Respirador
+   Antigo: ''
+   Novo:   'N/A'
+
+172. Afiar
+   Antigo: ''
+   Novo:   'N/A'
+
+173. Ataque Furtivo
+   Antigo: 'Arma de Escolha para uma arma pequena e real (não ataque desarmado)'
+   Novo:   'Arma de Escolha para uma arma pequena e real (não ataque desarmado).'
+
+174. Desarme
+   Antigo: 'seis Talentos de Bandido (desconte as Características de Classe para este cálculo)'
+   Novo:   'seis Talentos de Bandido (desconte as Características de Classe para este cálculo).'
+
+175. Desespero
+   Antigo: 'Ataque 18'
+   Novo:   'Ataque 18.'
+
+176. Encare!
+   Antigo: ''
+   Novo:   'N/A'
+
+177. Lágrimas de Crocodilo
+   Antigo: ''
+   Novo:   'N/A'
+
+178. No Saco!
+   Antigo: 'Ataque 17'
+   Novo:   'Ataque 17.'
+
+179. Olha Lá!
+   Antigo: ''
+   Novo:   'N/A'
+
+180. Pensa Rápido!
+   Antigo: ''
+   Novo:   'N/A'
+
+181. Riposta
+   Antigo: 'Arma de Escolha'
+   Novo:   'Arma de Escolha.'
+
+182. Roubo
+   Antigo: ''
+   Novo:   'N/A'
+
+183. Você Vai Pagar por Isso!
+   Antigo: ''
+   Novo:   'N/A'
+
+184. Altamente Capaz
+   Antigo: 'Capaz'
+   Novo:   'Ataque Especial 22, Lapidar Pedra do'
+
+185. Campeão em Treinamento
+   Antigo: 'ter evitado a evolução de um pokémon cuja forma final evolui no Nível 40 ou maior'
+   Novo:   'ter evitado a evolução de um pokémon cuja forma final evolui no Nível 40 ou maior.'
+
+186. Capaz
+   Antigo: 'Ataque Especial 16'
+   Novo:   'Ataque Especial 16.'
+
+187. Força Oculta +
+   Antigo: ''
+   Novo:   'N/A'
+
+188. Força Oculta ++
+   Antigo: 'Ataque 16, Ataque Especial 16, Força Oculta +'
+   Novo:   'Ataque 16, Ataque Especial 16, Força Oculta +.'
+
+189. Lapidar Pedra do Sempre
+   Antigo: ''
+   Novo:   'N/A'
+
+190. Qualquer Coisa que Você Possa Fazer!
+   Antigo: 'três Talentos de Azarão (desconte as Características de Classe para este cálculo)'
+   Novo:   'três Talentos de Azarão (desconte as Características de Classe para este cálculo).'
+
+191. Quanto Maior, Maior a Queda!
+   Antigo: ''
+   Novo:   'N/A'
+
+192. Técnica Evoluída
+   Antigo: ''
+   Novo:   'N/A'
+
+193. Técnica Versátil
+   Antigo: ''
+   Novo:   'N/A'
+
+194. Arranque
+   Antigo: 'Ataque Especial 16, um pokémon com Velocidade 20'
+   Novo:   'Ataque Especial 16, um pokémon com Velocidade 20. Referências: C,V'
+
+195. Alta Natural
+   Antigo: 'Afirmação'
+   Novo:   'Afirmação Referências: L,V'
+
+196. Emoção da Caça
+   Antigo: ''
+   Novo:   'N/A'
+
+197. Finalize-o!
+   Antigo: 'Sede de Sangue'
+   Novo:   'Sede de Sangue. Referências: L,V'
+
+198. Não Pare!
+   Antigo: 'Ataque 16'
+   Novo:   'Ataque 16. Referências: L,X'
+
+199. Peguei Você!
+   Antigo: ''
+   Novo:   'N/A'
+
+200. Perseguição
+   Antigo: 'Ataque 18'
+   Novo:   'Ataque 18. Referências: P,X'
+
+201. Perseguição Imprevisível
+   Antigo: 'Perseguição'
+   Novo:   'Perseguição. Referências: C,X'
+
+202. Sede de Sangue
+   Antigo: 'Ataque Especial 18'
+   Novo:   'Ataque Especial 18. Referências: C,V'
+
+203. Sem Escapatória +
+   Antigo: 'Ataque 16, Ataque Especial 14'
+   Novo:   'dois pokémons com Farejar, Olhar'
+
+204. Abundância
+   Antigo: 'Pressão + ou Pressão Positiva'
+   Novo:   'Pressão + ou Pressão Positiva.'
+
+205. Buscador de Talentos
+   Antigo: 'dois pokémons com uma Natureza idêntica'
+   Novo:   'dois pokémons com Naturezas que beneficiam o Atributo de Escolha.'
+
+206. Competência Fixa
+   Antigo: 'Ataque Especial 18'
+   Novo:   'Ataque Especial 18.'
+
+207. Desbloquear Atributo
+   Antigo: 'um pokémon com Atributo de Escolha 30'
+   Novo:   'um pokémon com Atributo de Escolha 30.'
+
+208. Explosão de Atributo
+   Antigo: 'Nível 10'
+   Novo:   'Nível 10.'
+
+209. Pressão Positiva
+   Antigo: 'Ataque 15, Pressão'
+   Novo:   'Ataque 15, Pressão.'
+
+210. Subversão Estatística +
+   Antigo: 'Ataque Especial 15'
+   Novo:   'Ataque Especial 15.'
+
+211. Superioridade
+   Antigo: 'cinco insígnias'
+   Novo:   'cinco insígnias ou equivalentes.'
+
+212. Treinamento de Especialista +
+   Antigo: 'três insígnias'
+   Novo:   '3 insígnias ou equivalentes.'
+
+213. Barreiras Pessoais
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+214. Configurar Terreno
+   Antigo: 'Ataque Especial 16'
+   Novo:   'Ataque Especial 16.'
+
+215. Explosão Adaptativa
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+216. Intenção Arriscada
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+217. Potencial Elevado
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+218. Prioridades
+   Antigo: 'Ataque 14'
+   Novo:   'Ataque 14.'
+
+219. Reconhecimento de Técnica
+   Antigo: 'seis Talentos de Estrategista (desconte as Características de Classe para este cálculo)'
+   Novo:   'seis Talentos de Estrategista (desconte as Características de Classe para este cálculo).'
+
+220. Táticas do Terreno
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+221. Versatilidade
+   Antigo: 'Ataque 14, Ataque Especial 18'
+   Novo:   'Ataque 14, Ataque Especial 18.'
+
+222. Vórtice Climático
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+223. Ainda de Pé!
+   Antigo: 'Ataque 18, Ataque Especial 16'
+   Novo:   'Ataque 18, Ataque Especial 16.'
+
+224. Ainda de Pé! +
+   Antigo: 'Ainda de Pé!'
+   Novo:   'Ainda de Pé!.'
+
+225. Amigo é pra Essas Coisas!
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+226. Aparar
+   Antigo: 'Ataque 15'
+   Novo:   'Ataque 15.'
+
+227. Aparar +
+   Antigo: 'Aparar'
+   Novo:   'Aparar.'
+
+228. Consciente
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+229. Mantenha a Linha!
+   Antigo: 'três pokémons com Defesa Especial 25'
+   Novo:   'três pokémons com Defesa Especial 25.'
+
+230. Proteção
+   Antigo: 'um pokémon com Proteção'
+   Novo:   'um pokémon com Proteção.'
+
+231. Resistência
+   Antigo: 'um pokémon com Resistência'
+   Novo:   'um pokémon com Resistência.'
+
+232. Segure Firme!
+   Antigo: 'três pokémons com Defesa 25'
+   Novo:   'três pokémons com Defesa 25.'
+
+233. Apoio!
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+234. Assalto Duplo
+   Antigo: 'Interferência'
+   Novo:   'Interferência.'
+
+235. Com Eles!
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+236. Combo!
+   Antigo: 'Defesa 22'
+   Novo:   'Defesa 22.'
+
+237. Impulso Sincronizado
+   Antigo: 'Interferência'
+   Novo:   'Interferência.'
+
+238. Interferência
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+239. Por um Amigo
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+240. Por um Amigo +
+   Antigo: 'Por um Amigo'
+   Novo:   'Por um Amigo.'
+
+241. Trabalho em Equipe
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+242. Aliados da Beldade
+   Antigo: '1 prêmios em Gincana ou Fisiculturismo'
+   Novo:   '1 prêmios em Gincana ou Fisiculturismo.'
+
+243. Arrebatar pela Beleza
+   Antigo: '1 prêmios em Concurso de Fofura ou Espetáculo'
+   Novo:   '1 prêmios em Concurso de Fofura ou Espetáculo.'
+
+244. Beleza Estonteante
+   Antigo: '2 prêmios em Desfiles de Beleza'
+   Novo:   '2 prêmios em Desfiles de Beleza.'
+
+245. Classe e Finura
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+246. Elegância
+   Antigo: 'um pokémon com Beleza 15'
+   Novo:   'um pokémon com Beleza 15.'
+
+247. Encantadora
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+248. Fabulosa
+   Antigo: 'Defesa Especial 18'
+   Novo:   'Defesa Especial 18.'
+
+249. Graça
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+250. Pele Maravilhosa
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+251. Sedução
+   Antigo: 'Defesa Especial 17'
+   Novo:   'Defesa Especial 17.'
+
+252. Aliados do Cativante
+   Antigo: '1 prêmios em Espetáculo ou Fisiculturismo'
+   Novo:   '1 prêmios em Concurso de Beleza ou'
+
+253. Atenção para não Cair
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+254. Brincadeiras
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+255. Delicadeza
+   Antigo: 'um pokémon com Ternura 15'
+   Novo:   'um pokémon com Ternura 15.'
+
+256. Fofo Demais
+   Antigo: '3 prêmios em Concursos de Fofura'
+   Novo:   '3 prêmios em Concursos de Fofura.'
+
+257. Infantilização
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+258. Miúdo
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+259. Subestimado
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+260. Tadinho de Mim!
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+261. Acha que é Inalcançável?
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+262. Aliados do Descolado
+   Antigo: '1 prêmios em Gincana ou Concurso de Fofura'
+   Novo:   '1 prêmios em Gincana ou Concurso de Fofura.'
+
+263. Arrebatar pelo Estilo
+   Antigo: '1 prêmio em Concurso de Beleza ou de Fisiculturismo'
+   Novo:   '1 prêmio em Concurso de Beleza ou de Fisiculturismo.'
+
+264. Atitude Radical!
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+265. Desafiador
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+266. Fitar
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+267. Liderança
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+268. Minúcia
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+269. Original
+   Antigo: 'um pokémon com Estilo 15'
+   Novo:   'um pokémon com Estilo 15.'
+
+270. Único
+   Antigo: 'Defesa Especial 18, 3 prêmios em Concurso de Beleza ou de Fisiculturismo'
+   Novo:   'Defesa Especial 18, 3 prêmios em Concurso de Beleza ou de Fisiculturismo.'
+
+271. Alfaiataria Personalizada
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+272. Alfaiataria Prática
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+273. Alfaiataria Primorosa
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+274. Design de Capacitação
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+275. Design de Habilitação
+   Antigo: 'Defesa Especial 18'
+   Novo:   'Defesa Especial 18.'
+
+276. Design de Técnica
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+277. Design Estável
+   Antigo: 'Design Volátil'
+   Novo:   'Design Volátil.'
+
+278. Design Volátil
+   Antigo: 'ter criado 10 itens com Talentos de Estilista'
+   Novo:   'ter criado 10 itens com Talentos de Estilista.'
+
+279. Estilização
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+280. Aliados do Nerd
+   Antigo: '1 prêmios em Concurso de Beleza ou Espetáculo'
+   Novo:   '1 prêmios em Concurso de Beleza ou Espetáculo.'
+
+281. Arrebatar pela Perspicácia
+   Antigo: '1 prêmios em Concurso de Fofura ou de Fisiculturismo'
+   Novo:   '1 prêmios em Concurso de Fofura ou de Fisiculturismo.'
+
+282. Aula de Idiomas
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+283. Detalhista
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+284. Escolaridade
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+285. Intelectualizar
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+286. Jogos Online
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+287. Potencial Mental
+   Antigo: 'um pokémon com Perspicácia 15'
+   Novo:   'um pokémon com Perspicácia 15.'
+
+288. Sabe Tudo
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+289. Aliados do Parrudo
+   Antigo: '1 prêmios em Concurso de Beleza ou de Fofura'
+   Novo:   '1 prêmios em Concurso de Beleza ou de Fofura.'
+
+290. Arrebatar pelo Vigor
+   Antigo: '1 prêmios em Gincana ou Espetáculo'
+   Novo:   '1 prêmios em Gincana ou Espetáculo.'
+
+291. Corpulento
+   Antigo: 'um pokémon com Vigor 5'
+   Novo:   'um pokémon com Vigor 5.'
+
+292. Couro Duro
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+293. Impassível
+   Antigo: 'um pokémon com Vigor 15'
+   Novo:   'um pokémon com Vigor 15.'
+
+294. Impenetrável
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+295. Musculação
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+296. Postura Robusta
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+297. Potência Muscular
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+298. Teimosia
+   Antigo: 'Defesa 16'
+   Novo:   'Defesa 16.'
+
+299. Armamento Elemental
+   Antigo: 'ter forjado três armas'
+   Novo:   'ter forjado três armas.'
+
+300. Armeiro
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+301. Aprendiz
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+302. Artesão
+   Antigo: 'Aprendiz'
+   Novo:   'Aprendiz.'
+
+303. Empoderador Potencial
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+304. Ferraria
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+305. Instrumental
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+306. Mestre da Armaria
+   Antigo: 'Armeiro'
+   Novo:   'Armeiro.'
+
+307. Mestre do Artesanato
+   Antigo: 'Artesão'
+   Novo:   'Artesão.'
+
+308. Perfumaria
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+309. Assistência
+   Antigo: 'Ponto de Captura ++'
+   Novo:   'Ponto de Captura ++.'
+
+310. Camuflagem
+   Antigo: 'Peregrino Silencioso'
+   Novo:   'Peregrino Silencioso.'
+
+311. Compulsão
+   Antigo: 'Velocidade 16'
+   Novo:   'Velocidade 16.'
+
+312. Cosplay
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+313. Inabalável
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+314. Maníaco por Captura +
+   Antigo: 'Velocidade 16'
+   Novo:   'Velocidade 16.'
+
+315. Peregrino Silencioso
+   Antigo: 'ter capturado pokémons em quatro biomas diferentes'
+   Novo:   'ter capturado pokémons em quatro biomas diferentes.'
+
+316. Pokébola Múltipla
+   Antigo: 'Velocidade 16'
+   Novo:   'Velocidade 16.'
+
+317. Prêmio Raro
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+318. Rastreador
+   Antigo: 'Rastreador Informado +'
+   Novo:   'Rastreador Informado +.'
+
+319. Zelo
+   Antigo: 'Velocidade 18'
+   Novo:   'Velocidade 18.'
+
+320. Armadilha Paralisante
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+321. Bem Aqui!
+   Antigo: 'um pokémon com um Golpe com o Descritor Prisão'
+   Novo:   'um pokémon com um Golpe com o Descritor Prisão.'
+
+322. Bomba Sonora
+   Antigo: 'um pokémon com Supersônico'
+   Novo:   'um pokémon com Supersônico.'
+
+323. Derrubar
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+324. Doçura no Ar
+   Antigo: 'um pokémon com Sedução'
+   Novo:   'um pokémon com Sedução.'
+
+325. Domação +
+   Antigo: 'Velocidade 18'
+   Novo:   'Velocidade 18.'
+
+326. Espalhar Feromônios
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+327. Falso Ataque
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+328. Pronto para Captura
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+329. Rodeio
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+330. Tranquilizante
+   Antigo: 'um pokémon com Esporos ou Pó Sonífero'
+   Novo:   'um pokémon com Esporos ou Pó Sonífero.'
+
+331. Alinhar Curva
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+332. Arma Acoplada
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+333. Armadilhas para Pokébolas
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+334. Canhão de Pokébolas
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+335. Hacker
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+336. Meteoro
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+337. Óculos Digitalizadores
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+338. Perfuração
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+339. Propulsor
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+340. Robô
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+341. Soco Bala
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+342. Aqui!
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+343. Bênção do Guardião
+   Antigo: 'Salvaguarda'
+   Novo:   'Salvaguarda.'
+
+344. Desgaste da Guerra
+   Antigo: 'Pelo Time!, cinco outros Talentos de Guardião (desconte as Características de Classe para este cálculo)'
+   Novo:   'Pelo Time!, cinco outros Talentos de Guardião (desconte as Características de Classe para este cálculo).'
+
+345. Guarda-Costas
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+346. Já foi o Bastante!
+   Antigo: 'ter usado Contra-Ataque mediante Permissão ou ter um pokémon leal que sabe Contra-Ataque'
+   Novo:   'ter usado Contra-Ataque mediante'
+
+347. Mártir
+   Antigo: 'sete Talentos de Guardião (desconte as Características de Classe para este cálculo)'
+   Novo:   'sete Talentos de Guardião (desconte as Características de Classe para este cálculo).'
+
+348. Não Tão Rápido!
+   Antigo: 'Salvaguarda'
+   Novo:   'Salvaguarda.'
+
+349. Reflexos
+   Antigo: 'Místico'
+   Novo:   'Místico.'
+
+350. Repelir!
+   Antigo: 'ter usado Escudo Espelho mediante Permissão ou ter um pokémon leal que sabe Escudo Espelho'
+   Novo:   'ter usado Escudo Espelho mediante Permissão ou ter um pokémon leal que sabe Escudo Espelho.'
+
+351. Salvaguarda
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+352. Substituição
+   Antigo: 'cinco Talentos de Guardião (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Guardião (desconte as Características de Classe para este cálculo).'
+
+353. Habilidade Inconsciente
+   Antigo: 'Defesa Especial 17'
+   Novo:   'Defesa Especial 17.'
+
+354. Habilidade Inconsciente +
+   Antigo: 'Habilidade Inconsciente'
+   Novo:   'Habilidade Inconsciente.'
+
+355. Habilidade Oculta
+   Antigo: 'Habilidade Inconsciente'
+   Novo:   'Habilidade Inconsciente.'
+
+356. Introjeção
+   Antigo: 'ter usando com sucesso Materialização Onírica cinco vezes'
+   Novo:   'ter usando com sucesso Materialização Onírica cinco vezes.'
+
+357. Sonho Lúcido
+   Antigo: 'Habilidade Inconsciente, Reprogramação Mental'
+   Novo:   'Habilidade Inconsciente, Reprogramação Mental.'
+
+358. Regressão
+   Antigo: 'Introjeção'
+   Novo:   'Introjeção.'
+
+359. Reprogramação Mental
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+360. Vivência
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+361. Buscar o Ódio
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+362. Calafrios de Sombras
+   Antigo: 'ter um pokémon de Gelo capturado mediante Furto ou Furto +'
+   Novo:   'ter um pokémon de Gelo capturado mediante Furto ou Furto +.'
+
+363. Esmagamento de Sombras
+   Antigo: 'ter um pokémon Lutador capturado mediante Furto ou Furto +'
+   Novo:   'ter um pokémon Lutador capturado mediante Furto ou Furto +.'
+
+364. Explosão de Sombras
+   Antigo: 'ter um pokémon de Fogo capturado mediante Furto ou Furto +'
+   Novo:   'ter um pokémon de Fogo capturado mediante Furto ou Furto +.'
+
+365. Fúria de Sombras
+   Antigo: 'ter um pokémon capturado mediante Furto ou Furto +'
+   Novo:   'ter um pokémon capturado mediante Furto ou Furto +.'
+
+366. Furto +
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+367. Produto de Resgate
+   Antigo: 'ter um pokémon com Lealdade 4 capturado mediante Furto ou Furto +'
+   Novo:   'ter um pokémon com Lealdade 4 capturado mediante Furto ou Furto +.'
+
+368. Raio de Sombras
+   Antigo: 'ter um pokémon Elétrico capturado mediante Furto ou Furto +'
+   Novo:   'ter um pokémon Elétrico capturado mediante Furto ou Furto +.'
+
+369. Resgate!
+   Antigo: 'ter um pokémon com Lealdade 3 capturado mediante Furto ou Furto +'
+   Novo:   'ter um pokémon com Lealdade 3 capturado mediante Furto ou Furto +.'
+
+370. Rompimento do Vínculo
+   Antigo: 'ter um pokémon capturado mediante Furto ou Furto +'
+   Novo:   'ter um pokémon capturado mediante Furto ou Furto +.'
+
+371. Bumerangue
+   Antigo: 'Ricochete'
+   Novo:   'Ricochete.'
+
+372. Como um Raio!
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+373. Continue o que Ele Estava Fazendo!
+   Antigo: 'Velocidade 18'
+   Novo:   'Velocidade 18.'
+
+374. Lançamento
+   Antigo: 'Velocidade 18'
+   Novo:   'Velocidade 18.'
+
+375. Prestidigitação de Pokébolas +
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+376. Ricochete
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+377. Saída de Emergência
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+378. Saque Rápido
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+379. Sem as Mãos!
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+380. Uma Rodada é uma Jornada!
+   Antigo: 'quatro Talentos de Malabarista (desconte as Características de Classe para este cálculo)'
+   Novo:   'quatro Talentos de Malabarista (desconte as Características de Classe para este cálculo).'
+
+381. Voleio de Pokébolas
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+382. Amor e Carinho
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+383. Chocadeira
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+384. Chocadeira +
+   Antigo: 'Chocadeira, Defesa Especial 19'
+   Novo:   'Chocadeira, Defesa Especial 19.'
+
+385. Começo Promissor
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+386. Comida Caseira
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+387. Cuidado Parental +
+   Antigo: 'Defesa 16, Defesa Especial 18'
+   Novo:   'Defesa 16, Defesa Especial 18.'
+
+388. Cuidarei Bem Dele!
+   Antigo: 'Defesa Especial 18'
+   Novo:   'Defesa Especial 18.'
+
+389. Ninhada
+   Antigo: 'um pokémon que já produziu pelo menos dois ovos'
+   Novo:   'um pokémon que já produziu pelo menos dois ovos.'
+
+390. Ninhada +
+   Antigo: 'Ninhada, um pokémon que já produziu pelo menos quatro ovos'
+   Novo:   'Ninhada, um pokémon que já produziu pelo menos quatro ovos.'
+
+391. Nunca Teria Acontecido!
+   Antigo: 'seis Talentos de Criador (desconte as Características de Classe para este cálculo)'
+   Novo:   'seis Talentos de Criador (desconte as Características de Classe para este cálculo).'
+
+392. Potencial Latente
+   Antigo: 'Defesa 17'
+   Novo:   'Defesa 17.'
+
+393. Progressão Natural
+   Antigo: 'Defesa 18'
+   Novo:   'N/A'
+
+394. Zootecnista
+   Antigo: 'Defesa Especial 18'
+   Novo:   'Defesa Especial 18.'
+
+395. Busca Mundana
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+396. Busca Rara
+   Antigo: 'já ter colhido uma das seguintes frutas em sua Horta: carambola (Starf), Enigma, fruta milagrosa (Micle), jabuticaba (Jaboca), jambo (Rowap), pinha (Custap)'
+   Novo:   'já ter colhido uma das seguintes frutas em sua Horta: carambola (Starf), Enigma, fruta milagrosa (Micle), jabuticaba (Jaboca), jambo (Rowap), pinha (Custap).'
+
+397. Busca Saborosa
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+398. Coma Agora!
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+399. Conhecedor de Frutos
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+400. Eficiência da Fruta
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+401. Fundir Frutas
+   Antigo: 'Defesa Especial 18'
+   Novo:   'Defesa Especial 18.'
+
+402. Hibridização
+   Antigo: 'já ter colhido dez frutos em sua Horta'
+   Novo:   'já ter colhido dez frutos em sua Horta.'
+
+403. Nutrientes Especiais
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+404. Procura Alterada
+   Antigo: 'quatro Talentos de Botânico (desconte as Características de Classe para este cálculo)'
+   Novo:   'quatro Talentos de Botânico (desconte as Características de Classe para este cálculo).'
+
+405. Procura Eficiente
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+406. Procura Melhorada
+   Antigo: 'um pokémon com um Atributo 30'
+   Novo:   'um pokémon com um Atributo 30.'
+
+407. Arremessar Isca
+   Antigo: 'Isca'
+   Novo:   'Isca.'
+
+408. Calórico
+   Antigo: 'Defesa 16'
+   Novo:   'Defesa 16.'
+
+409. Envenenamento
+   Antigo: 'Defesa Especial 17'
+   Novo:   'Defesa Especial 17.'
+
+410. Herbalismo
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+411. Isca
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+412. Liquidificador
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+413. Papinha de Bebê
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+414. Refeição Proteica
+   Antigo: 'Defesa 18'
+   Novo:   'Defesa 18.'
+
+415. Tempero Original
+   Antigo: 'Defesa 14'
+   Novo:   'Defesa 14.'
+
+416. Vitaminas e Sais Minerais
+   Antigo: 'Defesa Especial 20'
+   Novo:   'Defesa Especial 20.'
+
+417. Vitaminas e Sais Minerais +
+   Antigo: 'Vitaminas e Sais Minerais'
+   Novo:   'Vitaminas e Sais Minerais.'
+
+418. Arrumando-se
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+419. Arrumando-se +
+   Antigo: 'Defesa Especial 20, Arrumando-se'
+   Novo:   'Defesa Especial 20, Arrumando-se.'
+
+420. Código de Sinais
+   Antigo: 'Treinamento em Agilidade'
+   Novo:   'Treinamento em Agilidade.'
+
+421. Estrela
+   Antigo: '2 prêmios em Concursos'
+   Novo:   'N/A'
+
+422. Herdou de Mim!
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+423. Pelugem Brilhosa
+   Antigo: '3 prêmios em Concursos'
+   Novo:   '3 prêmios em Concursos.'
+
+424. Resplendor
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+425. Sangue de Vencedores
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+426. Sangue de Vencedores +
+   Antigo: 'Defesa 16, Sangue de Vencedores'
+   Novo:   'Defesa 16, Sangue de Vencedores.'
+
+427. Treinamento em Agilidade
+   Antigo: '2 prêmios em Concursos'
+   Novo:   '2 prêmios em Concursos.'
+
+428. Aperfeiçoar Pedra-Chave
+   Antigo: 'Pedra-Chave Elemental, Recarregar Pedra-Chave, Sobrecarga da Pedra-Chave'
+   Novo:   'Pedra-Chave Elemental, Recarregar Pedra-Chave, Sobrecarga da Pedra-Chave.'
+
+429. Conhecedor de Megaevoluções
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+430. Desbloquear Potencial
+   Antigo: 'Defesa 16, Defesa Especial 18'
+   Novo:   'Defesa 16, Defesa Especial 18.'
+
+431. Evolução Elemental
+   Antigo: 'Defesa 16, ter evoluído um pokémon usando uma Pedra Elemental'
+   Novo:   'Defesa 16, ter evoluído um pokémon usando uma Pedra Elemental.'
+
+432. Evolução Precoce +
+   Antigo: 'Defesa 16'
+   Novo:   'Defesa 16.'
+
+433. Involua!
+   Antigo: 'Defesa Especial 20'
+   Novo:   'Defesa Especial 20.'
+
+434. Pedra-Chave Elemental
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+435. Recarregar Pedra-Chave
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+436. Sobrecarga da Pedra-Chave
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+437. Ainda Não!
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+438. Chocadeira ++
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+439. Direito de Nascença
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+440. Herança Infundida
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+441. Hiperlexia Parental
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+442. Nascimento Poderoso
+   Antigo: 'Defesa 16'
+   Novo:   'Defesa 16.'
+
+443. Paleta de Atitudes
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+444. Paleta de Atitudes +
+   Antigo: 'Defesa Especial 18, Paleta de Atitudes'
+   Novo:   'Defesa Especial 18, Paleta de Atitudes.'
+
+445. Procriação Minuciosa
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+446. Protetor da Prole
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+447. Tutor de Golpes Herdados
+   Antigo: 'Defesa Especial 20'
+   Novo:   'Defesa Especial 20.'
+
+448. Analgésicos
+   Antigo: 'Defesa 15'
+   Novo:   'Defesa 15.'
+
+449. Alta Medicina
+   Antigo: 'Defesa 18'
+   Novo:   'Defesa 18.'
+
+450. Médico Especialista
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+451. Não Morrerá Comigo Aqui!
+   Antigo: 'Defesa 20'
+   Novo:   'Defesa 20.'
+
+452. Não Morrerá Comigo Aqui! +
+   Antigo: 'Não Morrerá Comigo Aqui!'
+   Novo:   'Não Morrerá Comigo Aqui!.'
+
+453. Sobreviveu Graças à Medicina!
+   Antigo: 'quatro Talentos de Médico (desconte as Características de Classe para este cálculo)'
+   Novo:   'quatro Talentos de Médico (desconte as Características de Classe para este cálculo).'
+
+454. Terapia de Choque
+   Antigo: 'Analgésicos'
+   Novo:   'Analgésicos.'
+
+455. Tratar Ferimentos Críticos
+   Antigo: 'Defesa 18'
+   Novo:   'Defesa 18.'
+
+456. Tratar Ferimentos Graves
+   Antigo: 'Defesa 16'
+   Novo:   'Defesa 16.'
+
+457. Tratar Ferimentos Leves
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+458. Desbloqueio Elemental
+   Antigo: 'Defesa Especial 20'
+   Novo:   'Defesa Especial 20.'
+
+459. Ensinar Capacidades
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+460. Imortalizar o Conhecimento
+   Antigo: 'Defesa Especial 20'
+   Novo:   'Defesa Especial 20.'
+
+461. Instrução de Efeito
+   Antigo: 'Nenhum'
+   Novo:   'N/A'
+
+462. Instrução Especial
+   Antigo: 'um pokémon com Ataque Especial 30'
+   Novo:   'um pokémon com Ataque Especial 30.'
+
+463. Instrução Física
+   Antigo: 'um pokémon com Ataque 30'
+   Novo:   'um pokémon com Ataque 30.'
+
+464. Inventor de Técnicas
+   Antigo: 'Recordador'
+   Novo:   'Recordador.'
+
+465. Recordador
+   Antigo: 'Defesa Especial 17, ter usado a Característica de Classe Tutorial três vezes com sucesso'
+   Novo:   'Defesa Especial 17, ter usado a Característica de Classe Tutorial três vezes com sucesso.'
+
+466. Sabedoria de Eras
+   Antigo: 'Recordador, Inventor de Técnicas'
+   Novo:   'Recordador, Inventor de Técnicas.'
+
+467. Sabedoria Didática
+   Antigo: 'Defesa Especial 16 e um dos seguintes- Instrução de Efeito, Instrução Especial ou Instrução Física'
+   Novo:   'Defesa Especial 16 e um dos seguintes- Instrução de Efeito, Instrução Especial ou Instrução Física.'
+
+468. Tutor Excepcional
+   Antigo: 'ter usado a Característica de Classe Tutorial cinco vezes'
+   Novo:   'ter usado a Característica de Classe Tutorial cinco vezes.'
+
+469. Chute Duplo
+   Antigo: 'ter um pokémon que conhece o Golpe Chute Duplo'
+   Novo:   'ter um pokémon que conhece o Golpe Chute Duplo.'
+
+470. Foco Combativo +
+   Antigo: 'Ataque 15, Defesa 15'
+   Novo:   'Ataque 15, Defesa 15.'
+
+471. Nada Pode me Parar!
+   Antigo: 'Velocidade 18'
+   Novo:   'Velocidade 18.'
+
+472. Quebra Telha
+   Antigo: 'seis Talentos de Guerreiro (desconte as Características de Classe para este cálculo)'
+   Novo:   'seis Talentos de Guerreiro (desconte as Características de Classe para este cálculo).'
+
+473. Resistência Marcial +
+   Antigo: 'Ataque 14, Defesa 14'
+   Novo:   'Ataque 14, Defesa 14.'
+
+474. Soco Focalizado
+   Antigo: 'Ataque 18'
+   Novo:   'Ataque 18.'
+
+475. Amortecer
+   Antigo: 'Arrojado'
+   Novo:   'Arrojado.'
+
+476. Arrojado
+   Antigo: 'Defesa 18'
+   Novo:   'Defesa 18.'
+
+477. Calejar +
+   Antigo: 'Calejar'
+   Novo:   'Calejar.'
+
+478. Chute Giratório
+   Antigo: 'ter sofrido o Golpe Soco de Fogo'
+   Novo:   'ter sofrido o Golpe Soco de Fogo.'
+
+479. Defesa Aberta
+   Antigo: 'Durão'
+   Novo:   'Durão.'
+
+480. Faca de Dois Gumes
+   Antigo: 'Ataque 20'
+   Novo:   'Ataque 20.'
+
+481. Pontapé
+   Antigo: 'Chute Giratório'
+   Novo:   'Chute Giratório.'
+
+482. Soco Rápido
+   Antigo: 'ter sofrido o Golpe Soco Rápido'
+   Novo:   'ter sofrido o Golpe Soco Rápido.'
+
+483. Supervoadora
+   Antigo: 'Voadora'
+   Novo:   'Voadora.'
+
+484. Alongamento
+   Antigo: 'Exercícios Revigorantes'
+   Novo:   'Exercícios Revigorantes.'
+
+485. Estímulo
+   Antigo: 'Técnica Milenar'
+   Novo:   'Técnica Milenar.'
+
+486. Liberdade de Movimento
+   Antigo: 'Contorcionismo'
+   Novo:   'Contorcionismo.'
+
+487. Relaxamento
+   Antigo: 'Exercícios Revigorantes'
+   Novo:   'Exercícios Revigorantes.'
+
+488. Terapia
+   Antigo: 'Exercícios Revigorantes'
+   Novo:   'Exercícios Revigorantes.'
+
+489. Tratamento
+   Antigo: 'Defesa 16'
+   Novo:   'Defesa 16.'
+
+490. Esquiva
+   Antigo: 'Defesa 18'
+   Novo:   'Defesa 18.'
+
+491. Hora Extra
+   Antigo: 'Ataque 26'
+   Novo:   'Ataque 26.'
+
+492. Jogo Duplo
+   Antigo: 'um pokémon com Força 5'
+   Novo:   'um pokémon com Força 5.'
+
+493. Na Zona
+   Antigo: 'Ataque 16'
+   Novo:   'Ataque 16.'
+
+494. Precisa ser Rápido
+   Antigo: 'Ataque 18'
+   Novo:   'Ataque 18.'
+
+495. Protegendo as Costas
+   Antigo: 'Ataque 18'
+   Novo:   'Ataque 18.'
+
+496. Corpo e Alma
+   Antigo: 'quatro Talentos de Áugure (desconte as Características de Classe para este cálculo), Ataque 18'
+   Novo:   'quatro Talentos de Áugure (desconte as Características de Classe para este cálculo), Ataque 18.'
+
+497. Esfera da Aura
+   Antigo: 'ter visto o Golpe Esfera da Aura ser usado'
+   Novo:   'ter visto o Golpe Esfera da Aura ser usado.'
+
+498. Expansão da Aura
+   Antigo: 'ter sofrido o Golpe Expansão da Aura'
+   Novo:   'ter sofrido o Golpe Expansão da Aura.'
+
+499. Pulso do Dragão
+   Antigo: 'ter sofrido o Golpe Pulso do Dragão'
+   Novo:   'ter sofrido o Golpe Pulso do Dragão.'
+
+500. Pulso Sombrio
+   Antigo: 'ter sofrido o Golpe Pulso Sombrio'
+   Novo:   'ter sofrido o Golpe Pulso Sombrio.'
+
+501. Soco de Drenagem
+   Antigo: 'um pokémon que conhece o Golpe Soco de Drenagem'
+   Novo:   'um pokémon que conhece o Golpe Soco de Drenagem.'
+
+502. Soco de Fogo
+   Antigo: 'ter sofrido o Golpe Soco de Fogo'
+   Novo:   'ter sofrido o Golpe Soco de Fogo.'
+
+503. Soco de Gelo
+   Antigo: 'ter sofrido o Golpe Soco de Gelo'
+   Novo:   'ter sofrido o Golpe Soco de Gelo.'
+
+504. Soco do Trovão
+   Antigo: 'ter sofrido o Golpe Soco do Trovão'
+   Novo:   'ter sofrido o Golpe Soco do Trovão.'
+
+505. Soco Sombrio
+   Antigo: 'ter sofrido o Golpe Soco Sombrio'
+   Novo:   'ter sofrido o Golpe Soco Sombrio.'
+
+506. Tela de Luz
+   Antigo: 'um pokémon que conhece o Golpe Tela de Luz'
+   Novo:   'N/A'
+
+507. Armas Untadas
+   Antigo: 'um pokémon Venenoso'
+   Novo:   'um pokémon Venenoso.'
+
+508. Do Céu
+   Antigo: 'Ataque 16'
+   Novo:   'Ataque 16.'
+
+509. Injetar Veneno
+   Antigo: 'um pokémon Venenoso'
+   Novo:   'um pokémon Venenoso.'
+
+510. Mortífero
+   Antigo: 'cinco Talentos de Ninja (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Ninja (desconte as Características de Classe para este cálculo).'
+
+511. Multiplicar
+   Antigo: 'Borrão, Velocidade 15'
+   Novo:   'um pokémon que conhece o Golpe Multiplicar.'
+
+512. Trocar de Lugar
+   Antigo: 'Ataque 18'
+   Novo:   'Ataque 18.'
+
+513. Ferimento Profundo
+   Antigo: 'Ataque 18'
+   Novo:   'Ataque 18.'
+
+514. Kata
+   Antigo: 'quatro Talentos de Soldado (desconte as Características de Classe para este cálculo)'
+   Novo:   'quatro Talentos de Soldado (desconte as Características de Classe para este cálculo).'
+
+515. Manobra Infalível
+   Antigo: 'Ataque 16, cinco Talentos de Soldado (desconte as Características de Classe para este cálculo)'
+   Novo:   'Ataque 16, cinco Talentos de Soldado (desconte as Características de Classe para este cálculo).'
+
+516. Sangramento
+   Antigo: 'Ataque 16'
+   Novo:   'Ataque 16.'
+
+517. Tiro Múltiplo
+   Antigo: 'Ataque 17, quatro Talentos de Soldado (desconte as Características de Classe para este cálculo)'
+   Novo:   'Ataque 17, quatro Talentos de Soldado (desconte as Características de Classe para este cálculo).'
+
+518. Canalizar Amigo
+   Antigo: 'um pokémon com Lealdade 4'
+   Novo:   'um pokémon com Lealdade 4.'
+
+519. Canalizar Amigo +
+   Antigo: 'Canalizar Amigo, Defesa 17'
+   Novo:   'Canalizar Amigo, Defesa 17.'
+
+520. Clérigo
+   Antigo: 'Nível 10'
+   Novo:   'Nível 10.'
+
+521. Esponja
+   Antigo: 'ter usado Permissão para usar um Golpe de um pokémon seu leal que já subiu pelo menos 20 Níveis com você'
+   Novo:   'ter usado Permissão para usar um Golpe de um pokémon seu leal que já subiu pelo menos 20 Níveis com você.'
+
+522. Grunhidos e Piados
+   Antigo: 'Canalizar Amigo'
+   Novo:   'Canalizar Amigo.'
+
+523. Vodu
+   Antigo: 'Clérigo'
+   Novo:   'Clérigo.'
+
+524. Concerto
+   Antigo: 'sete Talentos de Bardo (desconte as Características de Classe para este cálculo)'
+   Novo:   'sete Talentos de Bardo (desconte as Características de Classe para este cálculo).'
+
+525. Coro
+   Antigo: 'cinco Talentos de Bardo (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Bardo (desconte as Características de Classe para este cálculo).'
+
+526. Hino
+   Antigo: 'cinco Talentos de Bardo (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Bardo (desconte as Características de Classe para este cálculo).'
+
+527. Caça Talentos
+   Antigo: 'três Talentos de Ilusionista (desconte as Características de Classe para este cálculo)'
+   Novo:   'três Talentos de Ilusionista (desconte as Características de Classe para este cálculo).'
+
+528. Identidade
+   Antigo: 'ter usar Imitação em cinco pessoas que não eram suas aliadas'
+   Novo:   'ter usar Imitação em cinco pessoas que não eram suas aliadas.'
+
+529. Mais Um Pouquinho
+   Antigo: 'três Talentos de Ilusionista (desconte as Características de Classe para este cálculo)'
+   Novo:   'três Talentos de Ilusionista (desconte as Características de Classe para este cálculo).'
+
+530. Ressonância
+   Antigo: 'Defesa 18'
+   Novo:   'Defesa 18.'
+
+531. Talentoso
+   Antigo: 'cinco Talentos de Ilusionista (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Ilusionista (desconte as Características de Classe para este cálculo).'
+
+532. Transeunte
+   Antigo: 'Defesa 18'
+   Novo:   'Defesa 18.'
+
+533. Agilidade
+   Antigo: 'ter usado Agilidade ou Polimento mediante Permissão'
+   Novo:   'ter usado Agilidade ou Polimento mediante Permissão.'
+
+534. Amnésia
+   Antigo: 'ter usado Amnésia mediante Permissão'
+   Novo:   'ter usado Amnésia mediante Permissão.'
+
+535. Aumento de Massa
+   Antigo: 'ter usado dois Golpes que elevam Fases de Ataque ou Defesa mediante Permissão'
+   Novo:   'ter usado dois Golpes que elevam Fases de Ataque ou Defesa mediante Permissão.'
+
+536. Conspiração
+   Antigo: 'ter usado Brilho ou Conspiração mediante Permissão'
+   Novo:   'ter usado Brilho ou Conspiração mediante Permissão.'
+
+537. Dança das Espadas
+   Antigo: 'ter usado Dança das Espadas mediante Permissão'
+   Novo:   'ter usado Dança das Espadas mediante Permissão.'
+
+538. Defesa de Ferro
+   Antigo: 'ter usado um dos seguintes Golpes mediante Permissão: Armadura Ácida, Barreira ou Defesa de Ferro'
+   Novo:   'ter usado um dos seguintes Golpes mediante Permissão: Armadura Ácida, Barreira ou Defesa de Ferro.'
+
+539. Magia Natural
+   Antigo: 'já ter comido uma das seguintes frutas: damasco (Apicot), lichia (Liechi), longana (Ganlon), pitaia (Petaya), salak (Salac)'
+   Novo:   'já ter comido uma das seguintes frutas: damasco (Apicot), lichia (Liechi), longana (Ganlon), pitaia (Petaya), salak (Salac).'
+
+540. Mente Calma
+   Antigo: 'ter usado dois Golpes que elevam Fases de Ataque Especial ou Defesa Especial mediante Permissão'
+   Novo:   'ter usado dois Golpes que elevam Fases de Ataque Especial ou Defesa Especial mediante Permissão.'
+
+541. Poder Cósmico
+   Antigo: 'ter usado dois Golpes que elevam Fases de Defesa ou Defesa Especial mediante Permissão'
+   Novo:   'ter usado dois Golpes que elevam Fases de Defesa ou Defesa Especial mediante Permissão.'
+
+542. Preparação
+   Antigo: 'cinco Talentos de Médium (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Médium (desconte as Características de Classe para este cálculo).'
+
+543. Presença
+   Antigo: 'seis Talentos de Médium (desconte as Características de Classe para este cálculo)'
+   Novo:   'seis Talentos de Médium (desconte as Características de Classe para este cálculo).'
+
+544. Supremacia
+   Antigo: 'oito Talentos de Médium (desconte as Características de Classe para este cálculo)'
+   Novo:   'oito Talentos de Médium (desconte as Características de Classe para este cálculo).'
+
+545. Vegetarianismo
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+546. Adeus Frígido
+   Antigo: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Nevasca, Raio de Gelo ou Zero Absoluto'
+   Novo:   'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Nevasca, Raio de Gelo ou Zero Absoluto.'
+
+547. Ajoelhe-se!
+   Antigo: 'já ter consumido 5000 PV de Lendários usando seus Talentos de Orador'
+   Novo:   'já ter consumido 5000 PV de Lendários usando seus Talentos de Orador.'
+
+548. Atrocidade
+   Antigo: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Açoite, Investida do Dragão, Ultraje'
+   Novo:   'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Açoite, Investida do Dragão, Ultraje.'
+
+549. Escudo da Fé
+   Antigo: 'já ter consumido 1000 PV de Lendários usando seus Talentos de Orador'
+   Novo:   'já ter consumido 1000 PV de Lendários usando seus Talentos de Orador.'
+
+550. Incêndio
+   Antigo: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Erupção, Explosão de Fogo, Superaquecimento'
+   Novo:   'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Erupção, Explosão de Fogo, Superaquecimento.'
+
+551. Louvor
+   Antigo: 'já ter consumido 500 PV de Lendários usando seus Talentos de Orador'
+   Novo:   'já ter consumido 500 PV de Lendários usando seus Talentos de Orador.'
+
+552. Mímica
+   Antigo: 'já ter consumido 300 PV de Lendários usando seus Talentos de Orador'
+   Novo:   'já ter consumido 300 PV de Lendários usando seus Talentos de Orador.'
+
+553. Parasitismo
+   Antigo: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Absorção, Gigadreno, Megadreno'
+   Novo:   'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Absorção, Gigadreno, Megadreno.'
+
+554. Punição Divina
+   Antigo: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Canhão Elétrico, Relâmpago, Trovão'
+   Novo:   'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Canhão Elétrico, Relâmpago, Trovão.'
+
+555. Raio de Vida
+   Antigo: 'ter usado Hiper-Raio mediante Permissão ou Empréstimo'
+   Novo:   'ter usado Hiper-Raio mediante Permissão ou Empréstimo.'
+
+556. Tremor
+   Antigo: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Deslizamento de Rochas, Magnitude, Terremoto'
+   Novo:   'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Deslizamento de Rochas, Magnitude, Terremoto.'
+
+557. Arma Rúnica
+   Antigo: 'cinco Talentos de Rúnico (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Rúnico (desconte as Características de Classe para este cálculo).'
+
+558. Banimento
+   Antigo: '21 Unown'
+   Novo:   '21 Unown.'
+
+559. Ponto Final
+   Antigo: '14 Unown'
+   Novo:   '14 Unown.'
+
+560. Portal
+   Antigo: '14 Unown'
+   Novo:   '14 Unown.'
+
+561. Selo
+   Antigo: 'Poder Oculto'
+   Novo:   'Poder Oculto.'
+
+562. Dois se Tornam Um
+   Antigo: 'seis Talentos de Xamã (desconte as Características de Classe para este cálculo)'
+   Novo:   'seis Talentos de Xamã (desconte as Características de Classe para este cálculo).'
+
+563. Mente Dominante
+   Antigo: 'quatro Talentos de Xamã (desconte as Características de Classe para este cálculo)'
+   Novo:   'quatro Talentos de Xamã (desconte as Características de Classe para este cálculo).'
+
+564. Natureza Amiga
+   Antigo: 'um pokémon leal que já evoluiu pelo menos uma vez com você'
+   Novo:   'N/A'
+
+565. Elixires
+   Antigo: 'Éteres'
+   Novo:   'Éteres.'
+
+566. Magnificadores
+   Antigo: 'Suplementos Defensivos, Suplementos Explosivos, Suplementos Ofensivos'
+   Novo:   'Suplementos Defensivos, Suplementos Explosivos, Suplementos Ofensivos.'
+
+567. Melhoradores de Performance
+   Antigo: 'Defesa Especial 14'
+   Novo:   'Defesa Especial 14.'
+
+568. Melhoradores de Performance +
+   Antigo: 'ter usado Melhoradores de Performance três vezes'
+   Novo:   'ter usado Melhoradores de Performance três vezes.'
+
+569. Remédios +
+   Antigo: 'ter usado Remédios três vezes'
+   Novo:   'ter usado Remédios três vezes.'
+
+570. Suplementos Defensivos
+   Antigo: 'um pokémon com Defesa ou Defesa Especial 20'
+   Novo:   'um pokémon com Defesa ou Defesa Especial 20.'
+
+571. Suplementos Explosivos
+   Antigo: 'um pokémon com Saúde ou Velocidade 20'
+   Novo:   'um pokémon com Saúde ou Velocidade 20.'
+
+572. Suplementos Ofensivos
+   Antigo: 'um pokémon com Ataque ou Ataque Especial 20'
+   Novo:   'um pokémon com Ataque ou Ataque Especial 20.'
+
+573. Bola de Aporrinhar
+   Antigo: 'Incômodo ou Provocação'
+   Novo:   'Incômodo ou Provocação.'
+
+574. Fotografia Rara +
+   Antigo: 'Defesa Especial 17'
+   Novo:   'Defesa Especial 17.'
+
+575. Pesquisa Fotográfica
+   Antigo: 'Pesquisa'
+   Novo:   'Pesquisa.'
+
+576. Registro Fotográfico
+   Antigo: 'cinco Talentos de Fotógrafo (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Ardente (desconte as Características de Classe para este cálculo).'
+
+577. Registro Fotográfico +
+   Antigo: 'Registro Fotográfico'
+   Novo:   'Registro Fotográfico.'
+
+578. Vida Selvagem
+   Antigo: 'Defesa Especial 16'
+   Novo:   'Defesa Especial 16.'
+
+579. Bênção
+   Antigo: 'ter se aliado a um Lendário'
+   Novo:   'ter se aliado a um Lendário.'
+
+580. Bênção Lendária
+   Antigo: 'Defesa Especial 18, Bênção'
+   Novo:   'Defesa Especial 18, Bênção.'
+
+581. Idioma Sagrado
+   Antigo: 'Professor, Linguista'
+   Novo:   'Professor, Linguista.'
+
+582. Incorporação
+   Antigo: 'Vinculação, estar vinculado a um Lendário'
+   Novo:   'Vinculação, estar vinculado a um Lendário.'
+
+583. Invocação
+   Antigo: 'Vinculação, estar vinculado a um Lendário'
+   Novo:   'Vinculação, estar vinculado a um Lendário.'
+
+584. Milagre
+   Antigo: 'ter se aliado a um Lendário'
+   Novo:   'ter se aliado a um Lendário.'
+
+585. Moral
+   Antigo: 'Coordenação'
+   Novo:   'Coordenação.'
+
+586. Saudação
+   Antigo: 'ter usado Exaltação uma vez'
+   Novo:   'ter usado Exaltação uma vez.'
+
+587. Sexto Sentido
+   Antigo: 'Vinculação, estar vinculado a um Lendário'
+   Novo:   'Vinculação, estar vinculado a um Lendário.'
+
+588. Vinculação
+   Antigo: 'ter usado Exaltação uma vez'
+   Novo:   'ter usado Exaltação uma vez.'
+
+589. Armadilha Elemental
+   Antigo: 'Cavar e Cavar'
+   Novo:   'Cavar e Cavar.'
+
+590. Cinzelamento
+   Antigo: 'Condensação'
+   Novo:   'Condensação.'
+
+591. Espeleologia
+   Antigo: 'ter visitado três cavernas diferentes'
+   Novo:   'ter visitado três cavernas diferentes.'
+
+592. Gneisse Arruinado
+   Antigo: 'Cavar e Cavar'
+   Novo:   'Cavar e Cavar.'
+
+593. Poeira na Cara
+   Antigo: 'Cavar e Cavar'
+   Novo:   'Cavar e Cavar.'
+
+594. Ressurreição
+   Antigo: 'Reanimador'
+   Novo:   'Reanimador.'
+
+595. Soterramento
+   Antigo: 'Cavar e Cavar'
+   Novo:   'Cavar e Cavar.'
+
+596. Ânimo
+   Antigo: 'Coordenação'
+   Novo:   'Coordenação.'
+
+597. Autoconfiança
+   Antigo: 'Ânimo'
+   Novo:   'Ânimo.'
+
+598. Aviso Crítico
+   Antigo: 'Nível 10, Coordenação'
+   Novo:   'Nível 10, Coordenação.'
+
+599. Desmoralização
+   Antigo: 'Coordenação'
+   Novo:   'Coordenação.'
+
+600. Eficiência
+   Antigo: 'Nível 10, Coordenação'
+   Novo:   'Nível 10, Coordenação.'
+
+601. Lendo a Luta
+   Antigo: ''
+   Novo:   'N/A'
+
+602. Linguista
+   Antigo: ''
+   Novo:   'N/A'
+
+603. Manobra Coordenada
+   Antigo: 'Técnica Coordenada'
+   Novo:   'Técnica Coordenada.'
+
+604. Sabotagem
+   Antigo: 'Planejamento'
+   Novo:   'Planejamento.'
+
+605. Técnica Coordenada
+   Antigo: 'Coordenação'
+   Novo:   'Coordenação.'
+
+606. Adaptação
+   Antigo: 'Ataque Especial 15'
+   Novo:   'Ataque Especial 15.'
+
+607. Controlar Probabilidade
+   Antigo: 'Ataque Especial 16'
+   Novo:   'Ataque Especial 16.'
+
+608. Extrassensorial
+   Antigo: 'Ataque Especial 16'
+   Novo:   'Ataque Especial 16.'
+
+609. Gravidade
+   Antigo: 'Sala de Truques'
+   Novo:   'Sala de Truques.'
+
+610. Mentalismo
+   Antigo: 'Ataque Especial 16'
+   Novo:   'Ataque Especial 16.'
+
+611. Paranormal
+   Antigo: 'Ataque Especial 16'
+   Novo:   'Ataque Especial 16.'
+
+612. Psicocinese +
+   Antigo: 'Ataque Especial 15'
+   Novo:   'Ataque Especial 15.'
+
+613. Refletor
+   Antigo: 'um pokémon que conhece o Golpe Refletor'
+   Novo:   'N/A'
+
+614. Sala de Truques
+   Antigo: ''
+   Novo:   'N/A'
+
+615. Sala Mágica
+   Antigo: 'Sala de Truques'
+   Novo:   'Sala de Truques.'
+
+616. Tela de Luz
+   Antigo: 'Ataque Especial 15, um pokémon que conhece o Golpe Tela de Luz'
+   Novo:   'N/A'
+
+617. Teletransporte
+   Antigo: ''
+   Novo:   'N/A'
+
+618. Bruma de Lava
+   Antigo: 'dois Talentos de Ardente'
+   Novo:   'dois pokémons de Fogo.'
+
+619. Clarão
+   Antigo: ''
+   Novo:   'N/A'
+
+620. Dia de Sol
+   Antigo: ''
+   Novo:   'quatro Talentos de Ardente (desconte as Características de Classe para este cálculo).'
+
+621. Esfera de Sombras
+   Antigo: 'três Talentos de Ardente'
+   Novo:   'dois pokémons Fantasmas ou de Noturnos.'
+
+622. Espiral de Fogo
+   Antigo: ''
+   Novo:   'N/A'
+
+623. Explosão de Fogo
+   Antigo: 'quatro Talentos de Ardente'
+   Novo:   'Nível 15, Bruma de Lava.'
+
+624. Invisibilidade
+   Antigo: 'quatro Talentos de Ardente'
+   Novo:   'um pokémon com a Capacidade Invisibilidade.'
+
+625. Miragem
+   Antigo: 'dois Talentos de Ardente'
+   Novo:   'N/A'
+
+626. Multiplicar
+   Antigo: 'três Talentos de Ardente'
+   Novo:   'um pokémon que conhece o Golpe Multiplicar.'
+
+627. Ofuscação
+   Antigo: ''
+   Novo:   'Nível 10, Esfera de Sombras.'
+
+628. Sudário Cintilante
+   Antigo: 'dois Talentos de Ardente'
+   Novo:   'N/A'
+
+629. Visão no Escuro
+   Antigo: ''
+   Novo:   'N/A'
+
+630. Choro
+   Antigo: ''
+   Novo:   'N/A'
+
+631. Dança das Penas
+   Antigo: ''
+   Novo:   'N/A'
+
+632. Devorar Sonhos
+   Antigo: ''
+   Novo:   'N/A'
+
+633. Domínio
+   Antigo: 'Nível 18, Ataque Especial 26, Encantamento'
+   Novo:   'Nível 18, Ataque Especial 26, Encantamento.'
+
+634. Encantamento
+   Antigo: ''
+   Novo:   'N/A'
+
+635. Feitiço
+   Antigo: ''
+   Novo:   'N/A'
+
+636. Fogo-Fátuo
+   Antigo: 'seis Talentos de Bruxo (desconte as Características de Classe para este cálculo)'
+   Novo:   'seis Talentos de Bruxo (desconte as Características de Classe para este cálculo).'
+
+637. Gás Venenoso
+   Antigo: 'três Talentos de Bruxo (desconte as Características de Classe para este cálculo)'
+   Novo:   'três Talentos de Bruxo (desconte as Características de Classe para este cálculo).'
+
+638. Hipnose
+   Antigo: 'três Talentos de Bruxo (desconte as Características de Classe para este cálculo)'
+   Novo:   'três Talentos de Bruxo (desconte as Características de Classe para este cálculo).'
+
+639. Inaptidão
+   Antigo: 'quatro Talentos de Bruxo (desconte as Características de Classe para este cálculo)'
+   Novo:   'quatro Talentos de Bruxo (desconte as Características de Classe para este cálculo).'
+
+640. Maldição
+   Antigo: 'um pokémon que conhece Maldição'
+   Novo:   'um pokémon que conhece Maldição.'
+
+641. Raio de Confusão
+   Antigo: 'um pokémon que conhece Raio de Confusão'
+   Novo:   'um pokémon que conhece Raio de Confusão.'
+
+642. Aerodinâmico
+   Antigo: 'Desanuviar, um pokémon com Velocidade 20'
+   Novo:   'Desanuviar, um pokémon com Velocidade 20.'
+
+643. Cauda de Vento
+   Antigo: 'dois Talentos que concedem usos de Golpes Voadores'
+   Novo:   'dois Talentos que concedem usos de Golpes Voadores.'
+
+644. Corte Aéreo
+   Antigo: 'dois pokémons Voadores'
+   Novo:   'dois pokémons Voadores.'
+
+645. Descarga
+   Antigo: 'dois pokémons Elétricos'
+   Novo:   'Nível 15, Corte Aéreo.'
+
+646. Levitação
+   Antigo: 'Voo'
+   Novo:   'Voo.'
+
+647. Onda Trovão
+   Antigo: 'dois Talentos que concedem usos de Golpes Elétricos'
+   Novo:   'dois Talentos que concedem usos de Golpes Elétricos.'
+
+648. Relâmpago
+   Antigo: 'Nível 10, Descarga'
+   Novo:   'um pokémon com Deslocamento de'
+
+649. As Profundezas da Alma
+   Antigo: 'As Profundezas da Mente'
+   Novo:   'As Profundezas da Mente.'
+
+650. As Profundezas da Mente
+   Antigo: 'Psíquico, Ataque Especial 16'
+   Novo:   'Psíquico, Ataque Especial 16.'
+
+651. Conexão
+   Antigo: 'quatro pokémons seus já subiram pelo menos 15 Níveis com você'
+   Novo:   'quatro pokémons seus já subiram pelo menos 15 Níveis com você.'
+
+652. Conexão +
+   Antigo: 'Conexão, Ataque Especial 18'
+   Novo:   'Conexão, Ataque Especial 18.'
+
+653. Cura Maior
+   Antigo: 'Cura Média, Ataque Especial 18'
+   Novo:   'Cura Média, Ataque Especial 18.'
+
+654. Cura Máxima
+   Antigo: 'Cura Maior, Ataque Especial 20'
+   Novo:   'Cura Maior, Ataque Especial 20.'
+
+655. Desejo
+   Antigo: 'Cura Maior'
+   Novo:   'Cura Maior.'
+
+656. Repouso
+   Antigo: 'um pokémon com um Golpe que recupera Pontos de Vida'
+   Novo:   'um pokémon com um Golpe que recupera Pontos de Vida.'
+
+657. Sofrimento Mútuo
+   Antigo: 'Ataque Especial 16, Compartilhar Sofrimento'
+   Novo:   'Ataque Especial 16, Compartilhar Sofrimento.'
+
+658. Tratar a Alma
+   Antigo: 'Ataque Especial 16, ter curado Paralisia e/ou Sono três vezes usando itens ou Talentos'
+   Novo:   'Ataque Especial 16, ter curado Paralisia e/ou Sono três vezes usando itens ou Talentos.'
+
+659. Tratar o Corpo
+   Antigo: 'Ataque Especial 16, ter curado Queimadura e/ou Veneno três vezes usando itens ou Talentos'
+   Novo:   'Ataque Especial 16, ter curado Queimadura e/ou Veneno três vezes usando itens ou Talentos.'
+
+660. Vínculo
+   Antigo: 'Conexão'
+   Novo:   'Conexão.'
+
+661. Ambiente Aquoso
+   Antigo: 'Dança da Chuva ou Granizo'
+   Novo:   'Dança da Chuva ou Granizo.'
+
+662. Cascata
+   Antigo: 'dois pokémons de Água'
+   Novo:   'dois pokémons de Água.'
+
+663. Dança da Chuva
+   Antigo: 'cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo).'
+
+664. Estaca de Gelo
+   Antigo: 'dois pokémon de Gelo'
+   Novo:   'dois pokémon de Gelo.'
+
+665. Granizo
+   Antigo: 'cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo).'
+
+666. Nadador
+   Antigo: 'um pokémon com Deslocamento de Natação e Subaquático'
+   Novo:   'um pokémon com Deslocamento de'
+
+667. Nevasca
+   Antigo: 'Nível 15, Estaca de Gelo'
+   Novo:   'Nível 15, Estaca de Gelo.'
+
+668. Surfe
+   Antigo: 'Nível 10, Cascata'
+   Novo:   'Nível 10, Cascata.'
+
+669. Aromaterapia
+   Antigo: 'dois Talentos que concedem usos de Golpes de Planta'
+   Novo:   'dois Talentos que concedem usos de Golpes de Planta.'
+
+670. Deslizamento de Rochas
+   Antigo: 'dois pokémons de Pedra'
+   Novo:   'dois pokémons de Pedra.'
+
+671. Escavação
+   Antigo: 'um pokémon com um Deslocamento de Escavação'
+   Novo:   'um pokémon com um Deslocamento de Escavação.'
+
+672. Gigadreno
+   Antigo: 'dois pokémons de Planta'
+   Novo:   'dois pokémons de Planta.'
+
+673. Materialização
+   Antigo: 'um pokémon com Materialização'
+   Novo:   'um pokémon com Materialização.'
+
+674. Obelisco
+   Antigo: 'Nível 10, Deslizamento de Rochas'
+   Novo:   'Nível 10, Deslizamento de Rochas.'
+
+675. Tempestade de Areia
+   Antigo: 'cinco Talentos de Terrulento (desconte as Características de Classe para este cálculo)'
+   Novo:   'cinco Talentos de Terrulento (desconte as Características de Classe para este cálculo).'
+
+676. Tempestade de Folhas
+   Antigo: 'Nível 15, Gigadreno'
+   Novo:   'Nível 15, Gigadreno.'
+
+677. Transparência
+   Antigo: 'Nível 10, Materialização'
+   Novo:   'Nível 10, Materialização.'
+
+678. Buscador de Almas
+   Antigo: 'Buscador de Formas'
+   Novo:   'Buscador de Formas.'
+
+679. Buscador de Almas +
+   Antigo: 'Buscador de Almas'
+   Novo:   'Buscador de Almas.'
+
+680. Clariaudiência
+   Antigo: 'Ataque Especial 17'
+   Novo:   'Ataque Especial 17.'
+
+681. Clarividência
+   Antigo: 'Ataque Especial 16'
+   Novo:   'Ataque Especial 16.'
+
+682. Dissipar Ilusão
+   Antigo: 'Clariaudiência, Clarividência'
+   Novo:   'Clariaudiência, Clarividência.'
+
+683. Passado +
+   Antigo: 'Passado, Ataque Especial 19'
+   Novo:   'Passado, Ataque Especial 19.'
+

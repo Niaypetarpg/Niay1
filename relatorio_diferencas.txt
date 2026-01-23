@@ -1,0 +1,3461 @@
+RELATÓRIO DE DIFERENÇAS NOS REQUISITOS DOS TALENTOS
+====================================================================================================
+
+Talento: Acha Isso Impressionante?
+Requisitos no CÓDIGO: Defesa Especial 17
+Requisitos CORRETOS:  Defesa Especial 17.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aplausos
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Clímax
+Requisitos no CÓDIGO: Defesa Especial 15, 2 prêmios em Concursos
+Requisitos CORRETOS:  Defesa Especial 15, 2 prêmios em Concursos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Clímax +
+Requisitos no CÓDIGO: Clímax
+Requisitos CORRETOS:  Clímax.
+----------------------------------------------------------------------------------------------------
+
+Talento: Conquistando o Júri
+Requisitos no CÓDIGO: 2 prêmios em Concursos
+Requisitos CORRETOS:  2 prêmios em Concursos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Não Fique pra Trás!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Paciência
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Perfeccionismo
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Performance Eletrizante
+Requisitos no CÓDIGO: 3 prêmios em Concursos
+Requisitos CORRETOS:  3 prêmios em Concursos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Protagonismo
+Requisitos no CÓDIGO: Velocidade 16
+Requisitos CORRETOS:  Velocidade 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Acompanhamento
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Coro Coordenado
+Requisitos no CÓDIGO: seis Talentos de Coreógrafo
+Requisitos CORRETOS:  seis Talentos de Coreógrafo (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Deslumbrante
+Requisitos no CÓDIGO: Nível 15
+Requisitos CORRETOS:  Nível 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Destacado
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Fortíssimo
+Requisitos no CÓDIGO: Nível 15
+Requisitos CORRETOS:  Nível 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Nas Pontas dos Pés
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Passos Acrobáticos
+Requisitos no CÓDIGO: Velocidade 16
+Requisitos CORRETOS:  Velocidade 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Roteiro Reproduzível
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Toque Selvagem
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Vibrato
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Captura Adiantada
+Requisitos no CÓDIGO: Velocidade 16
+Requisitos CORRETOS:  Velocidade 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Captura Chocante
+Requisitos no CÓDIGO: Velocidade 18
+Requisitos CORRETOS:  Velocidade 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Cartão com Descontos
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Criar Pokébola
+Requisitos no CÓDIGO: Reparar Pokébola
+Requisitos CORRETOS:  Reparar Pokébola.
+----------------------------------------------------------------------------------------------------
+
+Talento: Jogar Rede
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Ponto de Captura +
+Requisitos no CÓDIGO: Velocidade 16
+Requisitos CORRETOS:  Velocidade 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ponto de Captura ++
+Requisitos no CÓDIGO: Velocidade 18, Ponto de Captura +
+Requisitos CORRETOS:  Velocidade 18, Ponto de Captura +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Reparar Pokébola
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Trabalho Manual
+Requisitos no CÓDIGO: Reparar Pokébola
+Requisitos CORRETOS:  Reparar Pokébola.
+----------------------------------------------------------------------------------------------------
+
+Talento: A Pokébola do Salvador
+Requisitos no CÓDIGO: Trabalho Manual
+Requisitos CORRETOS:  Trabalho Manual.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ferreiro de Abricós
+Requisitos no CÓDIGO: Ferreiro de Pokébolas
+Requisitos CORRETOS:  Ferreiro de Pokébolas.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ferreiro de Pokébolas
+Requisitos no CÓDIGO: Trabalho Manual
+Requisitos CORRETOS:  Trabalho Manual.
+----------------------------------------------------------------------------------------------------
+
+Talento: Melhoria de Aptidão
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Melhoria de Capacidade
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Melhoria de Combate
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Pokébola para cada Tipo
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Quebrar Cela
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Busca pelo Brilho
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Busca pelo Tipo
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Conhecedor de Frutos
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: De Antemão!
+Requisitos no CÓDIGO: Planejamento
+Requisitos CORRETOS:  Planejamento.
+----------------------------------------------------------------------------------------------------
+
+Talento: De Antemão! +
+Requisitos no CÓDIGO: Planejamento
+Requisitos CORRETOS:  Planejamento.
+----------------------------------------------------------------------------------------------------
+
+Talento: Encontre Isso!
+Requisitos no CÓDIGO: Rastreador
+Requisitos CORRETOS:  Rastreador.
+----------------------------------------------------------------------------------------------------
+
+Talento: Escrutínio
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Estudo Silencioso
+Requisitos no CÓDIGO: Defesa Especial 18
+Requisitos CORRETOS:  Defesa Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Pinceladas
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Psicologia
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Rastreador
+Requisitos no CÓDIGO: um pokémon com a Capacidade Faro
+Requisitos CORRETOS:  Rastreador Informado +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ajuda
+Requisitos no CÓDIGO: Nível 10, uma das Classes: Aventureiro, Cavaleiro, Detetive, Espião, Guia, Oficial, Pactuário
+Requisitos CORRETOS:  Nível 10, uma das Classes a seguir: Aventureiro, Cavaleiro, Detetive, Espião, Guia, Oficial, Pactuário.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ambientalista
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Amigos
+Requisitos no CÓDIGO: ter usado Contenção em um pokémon com a Capacidade de Escolha
+Requisitos CORRETOS:  ter usado Contenção em um pokémon com a Capacidade de Escolha.
+----------------------------------------------------------------------------------------------------
+
+Talento: Arma de Choque
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Autoridade
+Requisitos no CÓDIGO: reconhecido pela execução de um serviço distintivo
+Requisitos CORRETOS:  reconhecido pela execução de um serviço distintivo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Contenção Aprimorada
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Contenção Aprimorada +
+Requisitos no CÓDIGO: Contenção Aprimorada
+Requisitos CORRETOS:  Contenção Aprimorada.
+----------------------------------------------------------------------------------------------------
+
+Talento: Prática Perfeita
+Requisitos no CÓDIGO: Velocidade 15
+Requisitos CORRETOS:  Velocidade 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Recursos
+Requisitos no CÓDIGO: Autoridade
+Requisitos CORRETOS:  Autoridade.
+----------------------------------------------------------------------------------------------------
+
+Talento: Santuário
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Time de Resgate
+Requisitos no CÓDIGO: ter um Parceiro consigo há pelo menos dois meses
+Requisitos CORRETOS:  ter um Parceiro consigo há pelo menos dois meses.
+----------------------------------------------------------------------------------------------------
+
+Talento: Afirmação
+Requisitos no CÓDIGO: Ataque 14
+Requisitos CORRETOS:  Ataque 14.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ataques Aprimorados +
+Requisitos no CÓDIGO: Ataque 16, Ataque Especial 16
+Requisitos CORRETOS:  Ataque 16, Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ataques Aprimorados ++
+Requisitos no CÓDIGO: Ataque 18, Ataque Especial 18, Ataques Aprimorados +
+Requisitos CORRETOS:  Ataque 18, Ataque Especial 18, Ataques Aprimorados +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Capataz
+Requisitos no CÓDIGO: Pressão +
+Requisitos CORRETOS:  Pressão +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Crítica Construtiva
+Requisitos no CÓDIGO: Ataque Especial 15
+Requisitos CORRETOS:  Ataque Especial 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Exercício Brutal
+Requisitos no CÓDIGO: Ataque 15
+Requisitos CORRETOS:  Ataque 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Foco
+Requisitos no CÓDIGO: Crítica Construtiva
+Requisitos CORRETOS:  Crítica Construtiva.
+----------------------------------------------------------------------------------------------------
+
+Talento: Intimidar
+Requisitos no CÓDIGO: Ataque 16, Ataque Especial 14
+Requisitos CORRETOS:  Ataque 16, Ataque Especial 14.
+----------------------------------------------------------------------------------------------------
+
+Talento: Mestre das Feras
+Requisitos no CÓDIGO: 8 insígnias
+Requisitos CORRETOS:  8 insígnias.
+----------------------------------------------------------------------------------------------------
+
+Talento: Pressão
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Pressão +
+Requisitos no CÓDIGO: Pressão
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Transpassar
+Requisitos no CÓDIGO: Ataque Especial 16
+Requisitos CORRETOS:  Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Alma Elemental
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Aprimorar Golpes Elementais +
+Requisitos no CÓDIGO: Ataque Especial 16
+Requisitos CORRETOS:  Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Com os Elementos
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Conexão com Tipo
+Requisitos no CÓDIGO: Alma Elemental
+Requisitos CORRETOS:  Alma Elemental.
+----------------------------------------------------------------------------------------------------
+
+Talento: Conversão
+Requisitos no CÓDIGO: Mudança de Tipo
+Requisitos CORRETOS:  Mudança de Tipo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Elementalismo
+Requisitos no CÓDIGO: Mudança Elemental
+Requisitos CORRETOS:  Mudança Elemental.
+----------------------------------------------------------------------------------------------------
+
+Talento: Golpe Elemental
+Requisitos no CÓDIGO: Elementalismo
+Requisitos CORRETOS:  Elementalismo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Mudança de Tipo
+Requisitos no CÓDIGO: Ataque Especial 15
+Requisitos CORRETOS:  Ataque Especial 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sou Superior no Meu Tipo!
+Requisitos no CÓDIGO: Alma Elemental
+Requisitos CORRETOS:  Alma Elemental.
+----------------------------------------------------------------------------------------------------
+
+Talento: Treinamento de Resistência
+Requisitos no CÓDIGO: Alma Elemental
+Requisitos CORRETOS:  Alma Elemental.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aguento Outra!
+Requisitos no CÓDIGO: Saúde 13
+Requisitos CORRETOS:  Saúde 13.
+----------------------------------------------------------------------------------------------------
+
+Talento: Multitarefa
+Requisitos no CÓDIGO: todos os Atributos 12, Nível 10
+Requisitos CORRETOS:  todos os Atributos 12, Nível 10.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aguento Outra! +
+Requisitos no CÓDIGO: Aguento Outra!, Nível 20
+Requisitos CORRETOS:  Saúde 17.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ainda Não!
+Requisitos no CÓDIGO: Nível 10
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Arma de Escolha
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Cuidado!
+Requisitos no CÓDIGO: SAB 12
+Requisitos CORRETOS:  Velocidade 14.
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Dê Tudo de Si!
+Requisitos no CÓDIGO: SAB 14
+Requisitos CORRETOS:  N/A
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Deixa Ajudar com Isso!
+Requisitos no CÓDIGO: SAB 16
+Requisitos CORRETOS:  N/A
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Deixa Ajudar Agora!
+Requisitos no CÓDIGO: SAB 16, Nível 10
+Requisitos CORRETOS:  Nível 10, Deixa Ajudar com Isso!
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Dê-Me Espaço!
+Requisitos no CÓDIGO: FOR 15, Nível 5
+Requisitos CORRETOS:  N/A
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Filiação à Liga Oficial
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  12 insígnias ou equivalentes, Nível 20, um Ginásio ou equivalente no valor de pelo menos 380000 créditos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Já Ouvi Falar!
+Requisitos no CÓDIGO: INT 14
+Requisitos CORRETOS:  Ataque Especial 14 ou Defesa Especia 14.
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Karma do Ash
+Requisitos no CÓDIGO: CAR 15
+Requisitos CORRETOS:  ter libertado três pokémons leais totalmente evoluídos.
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Meditação
+Requisitos no CÓDIGO: SAB 12
+Requisitos CORRETOS:  um entre Saúde 12, Ataque Especial 12 ou Defesa Especial 12
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Mega!
+Requisitos no CÓDIGO: Nível 10
+Requisitos CORRETOS:  todos os Atributos 10, uma Pedra Chave.
+----------------------------------------------------------------------------------------------------
+
+Talento: Mire no Chifre!
+Requisitos no CÓDIGO: SAB 14
+Requisitos CORRETOS:  Ataque Especial 13.
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Mire no Chifre! +
+Requisitos no CÓDIGO: SAB 20, Mire no Chifre!, Nível 20
+Requisitos CORRETOS:  Ataque Especial 16, Mire no Chifre.
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Não se Meta Comigo!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  Defesa Especial 13.
+----------------------------------------------------------------------------------------------------
+
+Talento: O Escolhido
+Requisitos no CÓDIGO: todos os Atributos 15, Nível 30
+Requisitos CORRETOS:  Nível 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Rotina de Estudos
+Requisitos no CÓDIGO: INT 12
+Requisitos CORRETOS:  ter comprado um livro pelo menos uma vez.
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Rotina de Exercícios
+Requisitos no CÓDIGO: FOR 12
+Requisitos CORRETOS:  ter se exercitado pelo menos uma vez.
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Socorrista
+Requisitos no CÓDIGO: SAB 12
+Requisitos CORRETOS:  um entre Ataque Especial 13 ou Defesa Especial 13.
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Sorte do Ash
+Requisitos no CÓDIGO: CAR 12
+Requisitos CORRETOS:  ter libertado um pokémon leal totalmente evoluído.
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Vai Abrir!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  Ataque Especial 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Você Isso e Você Aquilo!
+Requisitos no CÓDIGO: CAR 14
+Requisitos CORRETOS:  Nível 10, todos os Atributos 12.
+⚠️  ATENÇÃO: Contém requisito inválido (FOR/SAB/CAR/INT/DEX/CONS)
+----------------------------------------------------------------------------------------------------
+
+Talento: Arquearia
+Requisitos no CÓDIGO: Nível 10, Arma de Escolha para uma arma À Distância
+Requisitos CORRETOS:  Nível 10, Arma de Escolha para uma arma À Distância.
+----------------------------------------------------------------------------------------------------
+
+Talento: Chuva Ácida
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: De Olho no Céu
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: É o Fim!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Escalada
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Intuição
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Natureza Amiga
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Pacifismo
+Requisitos no CÓDIGO: Ranger, Velocidade 16
+Requisitos CORRETOS:  Ranger, Velocidade 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sobrevivente
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Cavalaria
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Equitação Leve
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Grande o Bastante
+Requisitos no CÓDIGO: Ranger
+Requisitos CORRETOS:  Ranger.
+----------------------------------------------------------------------------------------------------
+
+Talento: Hipismo
+Requisitos no CÓDIGO: um pokémon com Deslocamento Terrestre 8
+Requisitos CORRETOS:  um pokémon com Deslocamento Terrestre 8.
+----------------------------------------------------------------------------------------------------
+
+Talento: Já!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Mobilidade
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Montaria Adaptável
+Requisitos no CÓDIGO: um pokémon com uma das Capacidades a seguir: Geleira, Intangibilidade, Silêncio, Térreo
+Requisitos CORRETOS:  um pokémon com uma das Capacidades a seguir: Geleira, Intangibilidade, Silêncio, Térreo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Salto de Selas
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Veja e Aprenda!
+Requisitos no CÓDIGO: cinco Talentos de Cavaleiro (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Cavaleiro (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Velocidade Pura
+Requisitos no CÓDIGO: um pokémon com Velocidade 25
+Requisitos CORRETOS:  um pokémon com Velocidade 25.
+----------------------------------------------------------------------------------------------------
+
+Talento: Auxiliar
+Requisitos no CÓDIGO: Treinamento Investigativo
+Requisitos CORRETOS:  Treinamento Investigativo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Detector de Mentiras
+Requisitos no CÓDIGO: ter solucionado um caso
+Requisitos CORRETOS:  ter solucionado um caso.
+----------------------------------------------------------------------------------------------------
+
+Talento: Disfarce
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Fala Mansa
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Mestre do Disfarce
+Requisitos no CÓDIGO: Disfarce
+Requisitos CORRETOS:  Disfarce.
+----------------------------------------------------------------------------------------------------
+
+Talento: O Que Foi Aquilo?
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Parado Aí!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Procurar Evidências
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Treinamento Intuitivo
+Requisitos no CÓDIGO: Treinamento Investigativo
+Requisitos CORRETOS:  Treinamento Investigativo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Treinamento Investigativo
+Requisitos no CÓDIGO: um pokémon com Lealdade 3
+Requisitos CORRETOS:  um pokémon com Lealdade 3.
+----------------------------------------------------------------------------------------------------
+
+Talento: Agora Mais Que Nunca!
+Requisitos no CÓDIGO: cinco Talentos de Guia (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Guia (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Espertinho!
+Requisitos no CÓDIGO: um pokémon com Inteligência 5
+Requisitos CORRETOS:  um pokémon com Inteligência 5.
+----------------------------------------------------------------------------------------------------
+
+Talento: Faça Dar Certo!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Fortaleza!
+Requisitos no CÓDIGO: Ataque 18
+Requisitos CORRETOS:  Ataque 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Fortinho!
+Requisitos no CÓDIGO: um pokémon com Força 5
+Requisitos CORRETOS:  um pokémon com Força 5.
+----------------------------------------------------------------------------------------------------
+
+Talento: Mais Alto!
+Requisitos no CÓDIGO: um pokémon com Salto 4
+Requisitos CORRETOS:  um pokémon com Salto 4.
+----------------------------------------------------------------------------------------------------
+
+Talento: Rápido!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Ao Meu Sinal!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Contenção Aprimorada ++
+Requisitos no CÓDIGO: Contenção Aprimorada +
+Requisitos CORRETOS:  Contenção Aprimorada +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Inspiração
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Levante-se!
+Requisitos no CÓDIGO: seis Talentos de Oficial (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  seis Talentos de Oficial (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Orientação
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Pastoreio
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Socorro
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Supere Isso!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Tática
+Requisitos no CÓDIGO: Ao Meu Sinal!, Inspiração, Orientação
+Requisitos CORRETOS:  Ao Meu Sinal!, Inspiração, Orientação.
+----------------------------------------------------------------------------------------------------
+
+Talento: Símbolo da Coragem
+Requisitos no CÓDIGO: ter um Parceiro consigo há pelo menos duas semanas
+Requisitos CORRETOS:  ter um Parceiro consigo há pelo menos duas semanas.
+----------------------------------------------------------------------------------------------------
+
+Talento: Símbolo da Destruição
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Símbolo da Fé
+Requisitos no CÓDIGO: ter um Parceiro consigo há pelo menos duas semanas
+Requisitos CORRETOS:  ter um Parceiro consigo há pelo menos duas semanas.
+----------------------------------------------------------------------------------------------------
+
+Talento: Símbolo da Grandeza
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Símbolo da Invocação
+Requisitos no CÓDIGO: oito Talentos de Pactuário (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  oito Talentos de Pactuário (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Símbolo da Justiça
+Requisitos no CÓDIGO: ter se aliado com dois Lendários
+Requisitos CORRETOS:  ter se aliado com dois Lendários.
+----------------------------------------------------------------------------------------------------
+
+Talento: Símbolo da Rapidez
+Requisitos no CÓDIGO: ter um Parceiro consigo há pelo menos duas semanas
+Requisitos CORRETOS:  ter um Parceiro consigo há pelo menos duas semanas.
+----------------------------------------------------------------------------------------------------
+
+Talento: Símbolo da Verdade
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Símbolo da Vida
+Requisitos no CÓDIGO: Ataque 16
+Requisitos CORRETOS:  Ataque 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Símbolo Sagrado
+Requisitos no CÓDIGO: Ataque 18, Símbolo da Fé
+Requisitos CORRETOS:  Ataque 18, Símbolo da Fé.
+----------------------------------------------------------------------------------------------------
+
+Talento: Armadura
+Requisitos no CÓDIGO: Colete
+Requisitos CORRETOS:  Colete.
+----------------------------------------------------------------------------------------------------
+
+Talento: Bobina Retrátil
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Disparador
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Catalizador
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Colete
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Derrubada
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Proteção
+Requisitos no CÓDIGO: Colete
+Requisitos CORRETOS:  um pokémon com Proteção.
+----------------------------------------------------------------------------------------------------
+
+Talento: Pulverizador
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Resistência
+Requisitos no CÓDIGO: Colete
+Requisitos CORRETOS:  um pokémon com Resistência.
+----------------------------------------------------------------------------------------------------
+
+Talento: Respirador
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Afiar
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Ataque Furtivo
+Requisitos no CÓDIGO: Arma de Escolha para uma arma pequena e real (não ataque desarmado)
+Requisitos CORRETOS:  Arma de Escolha para uma arma pequena e real (não ataque desarmado).
+----------------------------------------------------------------------------------------------------
+
+Talento: Desarme
+Requisitos no CÓDIGO: seis Talentos de Bandido (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  seis Talentos de Bandido (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Desespero
+Requisitos no CÓDIGO: Ataque 18
+Requisitos CORRETOS:  Ataque 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Encare!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Lágrimas de Crocodilo
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: No Saco!
+Requisitos no CÓDIGO: Ataque 17
+Requisitos CORRETOS:  Ataque 17.
+----------------------------------------------------------------------------------------------------
+
+Talento: Olha Lá!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Pensa Rápido!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Riposta
+Requisitos no CÓDIGO: Arma de Escolha
+Requisitos CORRETOS:  Arma de Escolha.
+----------------------------------------------------------------------------------------------------
+
+Talento: Roubo
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Você Vai Pagar por Isso!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Altamente Capaz
+Requisitos no CÓDIGO: Capaz
+Requisitos CORRETOS:  Ataque Especial 22, Lapidar Pedra do
+----------------------------------------------------------------------------------------------------
+
+Talento: Campeão em Treinamento
+Requisitos no CÓDIGO: ter evitado a evolução de um pokémon cuja forma final evolui no Nível 40 ou maior
+Requisitos CORRETOS:  ter evitado a evolução de um pokémon cuja forma final evolui no Nível 40 ou maior.
+----------------------------------------------------------------------------------------------------
+
+Talento: Capaz
+Requisitos no CÓDIGO: Ataque Especial 16
+Requisitos CORRETOS:  Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Força Oculta +
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Força Oculta ++
+Requisitos no CÓDIGO: Ataque 16, Ataque Especial 16, Força Oculta +
+Requisitos CORRETOS:  Ataque 16, Ataque Especial 16, Força Oculta +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Lapidar Pedra do Sempre
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Qualquer Coisa que Você Possa Fazer!
+Requisitos no CÓDIGO: três Talentos de Azarão (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  três Talentos de Azarão (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Quanto Maior, Maior a Queda!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Técnica Evoluída
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Técnica Versátil
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Arranque
+Requisitos no CÓDIGO: Ataque Especial 16, um pokémon com Velocidade 20
+Requisitos CORRETOS:  Ataque Especial 16, um pokémon com Velocidade 20. Referências: C,V
+----------------------------------------------------------------------------------------------------
+
+Talento: Alta Natural
+Requisitos no CÓDIGO: Afirmação
+Requisitos CORRETOS:  Afirmação Referências: L,V
+----------------------------------------------------------------------------------------------------
+
+Talento: Emoção da Caça
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Finalize-o!
+Requisitos no CÓDIGO: Sede de Sangue
+Requisitos CORRETOS:  Sede de Sangue. Referências: L,V
+----------------------------------------------------------------------------------------------------
+
+Talento: Não Pare!
+Requisitos no CÓDIGO: Ataque 16
+Requisitos CORRETOS:  Ataque 16. Referências: L,X
+----------------------------------------------------------------------------------------------------
+
+Talento: Peguei Você!
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Perseguição
+Requisitos no CÓDIGO: Ataque 18
+Requisitos CORRETOS:  Ataque 18. Referências: P,X
+----------------------------------------------------------------------------------------------------
+
+Talento: Perseguição Imprevisível
+Requisitos no CÓDIGO: Perseguição
+Requisitos CORRETOS:  Perseguição. Referências: C,X
+----------------------------------------------------------------------------------------------------
+
+Talento: Sede de Sangue
+Requisitos no CÓDIGO: Ataque Especial 18
+Requisitos CORRETOS:  Ataque Especial 18. Referências: C,V
+----------------------------------------------------------------------------------------------------
+
+Talento: Sem Escapatória +
+Requisitos no CÓDIGO: Ataque 16, Ataque Especial 14
+Requisitos CORRETOS:  dois pokémons com Farejar, Olhar
+----------------------------------------------------------------------------------------------------
+
+Talento: Abundância
+Requisitos no CÓDIGO: Pressão + ou Pressão Positiva
+Requisitos CORRETOS:  Pressão + ou Pressão Positiva.
+----------------------------------------------------------------------------------------------------
+
+Talento: Buscador de Talentos
+Requisitos no CÓDIGO: dois pokémons com uma Natureza idêntica
+Requisitos CORRETOS:  dois pokémons com Naturezas que beneficiam o Atributo de Escolha.
+----------------------------------------------------------------------------------------------------
+
+Talento: Competência Fixa
+Requisitos no CÓDIGO: Ataque Especial 18
+Requisitos CORRETOS:  Ataque Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Desbloquear Atributo
+Requisitos no CÓDIGO: um pokémon com Atributo de Escolha 30
+Requisitos CORRETOS:  um pokémon com Atributo de Escolha 30.
+----------------------------------------------------------------------------------------------------
+
+Talento: Explosão de Atributo
+Requisitos no CÓDIGO: Nível 10
+Requisitos CORRETOS:  Nível 10.
+----------------------------------------------------------------------------------------------------
+
+Talento: Pressão Positiva
+Requisitos no CÓDIGO: Ataque 15, Pressão
+Requisitos CORRETOS:  Ataque 15, Pressão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Subversão Estatística +
+Requisitos no CÓDIGO: Ataque Especial 15
+Requisitos CORRETOS:  Ataque Especial 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Superioridade
+Requisitos no CÓDIGO: cinco insígnias
+Requisitos CORRETOS:  cinco insígnias ou equivalentes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Treinamento de Especialista +
+Requisitos no CÓDIGO: três insígnias
+Requisitos CORRETOS:  3 insígnias ou equivalentes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Barreiras Pessoais
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Configurar Terreno
+Requisitos no CÓDIGO: Ataque Especial 16
+Requisitos CORRETOS:  Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Explosão Adaptativa
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Intenção Arriscada
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Potencial Elevado
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Prioridades
+Requisitos no CÓDIGO: Ataque 14
+Requisitos CORRETOS:  Ataque 14.
+----------------------------------------------------------------------------------------------------
+
+Talento: Reconhecimento de Técnica
+Requisitos no CÓDIGO: seis Talentos de Estrategista (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  seis Talentos de Estrategista (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Táticas do Terreno
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Versatilidade
+Requisitos no CÓDIGO: Ataque 14, Ataque Especial 18
+Requisitos CORRETOS:  Ataque 14, Ataque Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Vórtice Climático
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Ainda de Pé!
+Requisitos no CÓDIGO: Ataque 18, Ataque Especial 16
+Requisitos CORRETOS:  Ataque 18, Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ainda de Pé! +
+Requisitos no CÓDIGO: Ainda de Pé!
+Requisitos CORRETOS:  Ainda de Pé!.
+----------------------------------------------------------------------------------------------------
+
+Talento: Amigo é pra Essas Coisas!
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Aparar
+Requisitos no CÓDIGO: Ataque 15
+Requisitos CORRETOS:  Ataque 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aparar +
+Requisitos no CÓDIGO: Aparar
+Requisitos CORRETOS:  Aparar.
+----------------------------------------------------------------------------------------------------
+
+Talento: Consciente
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Mantenha a Linha!
+Requisitos no CÓDIGO: três pokémons com Defesa Especial 25
+Requisitos CORRETOS:  três pokémons com Defesa Especial 25.
+----------------------------------------------------------------------------------------------------
+
+Talento: Proteção
+Requisitos no CÓDIGO: Colete
+Requisitos CORRETOS:  um pokémon com Proteção.
+----------------------------------------------------------------------------------------------------
+
+Talento: Resistência
+Requisitos no CÓDIGO: Colete
+Requisitos CORRETOS:  um pokémon com Resistência.
+----------------------------------------------------------------------------------------------------
+
+Talento: Segure Firme!
+Requisitos no CÓDIGO: três pokémons com Defesa 25
+Requisitos CORRETOS:  três pokémons com Defesa 25.
+----------------------------------------------------------------------------------------------------
+
+Talento: Apoio!
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Assalto Duplo
+Requisitos no CÓDIGO: Interferência
+Requisitos CORRETOS:  Interferência.
+----------------------------------------------------------------------------------------------------
+
+Talento: Com Eles!
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Combo!
+Requisitos no CÓDIGO: Defesa 22
+Requisitos CORRETOS:  Defesa 22.
+----------------------------------------------------------------------------------------------------
+
+Talento: Impulso Sincronizado
+Requisitos no CÓDIGO: Interferência
+Requisitos CORRETOS:  Interferência.
+----------------------------------------------------------------------------------------------------
+
+Talento: Interferência
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Por um Amigo
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Por um Amigo +
+Requisitos no CÓDIGO: Por um Amigo
+Requisitos CORRETOS:  Por um Amigo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Trabalho em Equipe
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Aliados da Beldade
+Requisitos no CÓDIGO: 1 prêmios em Gincana ou Fisiculturismo
+Requisitos CORRETOS:  1 prêmios em Gincana ou Fisiculturismo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Arrebatar pela Beleza
+Requisitos no CÓDIGO: 1 prêmios em Concurso de Fofura ou Espetáculo
+Requisitos CORRETOS:  1 prêmios em Concurso de Fofura ou Espetáculo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Beleza Estonteante
+Requisitos no CÓDIGO: 2 prêmios em Desfiles de Beleza
+Requisitos CORRETOS:  2 prêmios em Desfiles de Beleza.
+----------------------------------------------------------------------------------------------------
+
+Talento: Classe e Finura
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Elegância
+Requisitos no CÓDIGO: um pokémon com Beleza 15
+Requisitos CORRETOS:  um pokémon com Beleza 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Encantadora
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Fabulosa
+Requisitos no CÓDIGO: Defesa Especial 18
+Requisitos CORRETOS:  Defesa Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Graça
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Pele Maravilhosa
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Sedução
+Requisitos no CÓDIGO: Defesa Especial 17
+Requisitos CORRETOS:  Defesa Especial 17.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aliados do Cativante
+Requisitos no CÓDIGO: 1 prêmios em Espetáculo ou Fisiculturismo
+Requisitos CORRETOS:  1 prêmios em Concurso de Beleza ou
+----------------------------------------------------------------------------------------------------
+
+Talento: Atenção para não Cair
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Brincadeiras
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Delicadeza
+Requisitos no CÓDIGO: um pokémon com Ternura 15
+Requisitos CORRETOS:  um pokémon com Ternura 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Fofo Demais
+Requisitos no CÓDIGO: 3 prêmios em Concursos de Fofura
+Requisitos CORRETOS:  3 prêmios em Concursos de Fofura.
+----------------------------------------------------------------------------------------------------
+
+Talento: Infantilização
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Miúdo
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Subestimado
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Tadinho de Mim!
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Acha que é Inalcançável?
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Aliados do Descolado
+Requisitos no CÓDIGO: 1 prêmios em Gincana ou Concurso de Fofura
+Requisitos CORRETOS:  1 prêmios em Gincana ou Concurso de Fofura.
+----------------------------------------------------------------------------------------------------
+
+Talento: Arrebatar pelo Estilo
+Requisitos no CÓDIGO: 1 prêmio em Concurso de Beleza ou de Fisiculturismo
+Requisitos CORRETOS:  1 prêmio em Concurso de Beleza ou de Fisiculturismo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Atitude Radical!
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Desafiador
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Fitar
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Liderança
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Minúcia
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Original
+Requisitos no CÓDIGO: um pokémon com Estilo 15
+Requisitos CORRETOS:  um pokémon com Estilo 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Único
+Requisitos no CÓDIGO: Defesa Especial 18, 3 prêmios em Concurso de Beleza ou de Fisiculturismo
+Requisitos CORRETOS:  Defesa Especial 18, 3 prêmios em Concurso de Beleza ou de Fisiculturismo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Alfaiataria Personalizada
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Alfaiataria Prática
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Alfaiataria Primorosa
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Design de Capacitação
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Design de Habilitação
+Requisitos no CÓDIGO: Defesa Especial 18
+Requisitos CORRETOS:  Defesa Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Design de Técnica
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Design Estável
+Requisitos no CÓDIGO: Design Volátil
+Requisitos CORRETOS:  Design Volátil.
+----------------------------------------------------------------------------------------------------
+
+Talento: Design Volátil
+Requisitos no CÓDIGO: ter criado 10 itens com Talentos de Estilista
+Requisitos CORRETOS:  ter criado 10 itens com Talentos de Estilista.
+----------------------------------------------------------------------------------------------------
+
+Talento: Estilização
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Aliados do Nerd
+Requisitos no CÓDIGO: 1 prêmios em Concurso de Beleza ou Espetáculo
+Requisitos CORRETOS:  1 prêmios em Concurso de Beleza ou Espetáculo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Arrebatar pela Perspicácia
+Requisitos no CÓDIGO: 1 prêmios em Concurso de Fofura ou de Fisiculturismo
+Requisitos CORRETOS:  1 prêmios em Concurso de Fofura ou de Fisiculturismo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aula de Idiomas
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Detalhista
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Escolaridade
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Intelectualizar
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Jogos Online
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Potencial Mental
+Requisitos no CÓDIGO: um pokémon com Perspicácia 15
+Requisitos CORRETOS:  um pokémon com Perspicácia 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sabe Tudo
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Aliados do Parrudo
+Requisitos no CÓDIGO: 1 prêmios em Concurso de Beleza ou de Fofura
+Requisitos CORRETOS:  1 prêmios em Concurso de Beleza ou de Fofura.
+----------------------------------------------------------------------------------------------------
+
+Talento: Arrebatar pelo Vigor
+Requisitos no CÓDIGO: 1 prêmios em Gincana ou Espetáculo
+Requisitos CORRETOS:  1 prêmios em Gincana ou Espetáculo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Corpulento
+Requisitos no CÓDIGO: um pokémon com Vigor 5
+Requisitos CORRETOS:  um pokémon com Vigor 5.
+----------------------------------------------------------------------------------------------------
+
+Talento: Couro Duro
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Impassível
+Requisitos no CÓDIGO: um pokémon com Vigor 15
+Requisitos CORRETOS:  um pokémon com Vigor 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Impenetrável
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Musculação
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Postura Robusta
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Potência Muscular
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Teimosia
+Requisitos no CÓDIGO: Defesa 16
+Requisitos CORRETOS:  Defesa 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Armamento Elemental
+Requisitos no CÓDIGO: ter forjado três armas
+Requisitos CORRETOS:  ter forjado três armas.
+----------------------------------------------------------------------------------------------------
+
+Talento: Armeiro
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Aprendiz
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Artesão
+Requisitos no CÓDIGO: Aprendiz
+Requisitos CORRETOS:  Aprendiz.
+----------------------------------------------------------------------------------------------------
+
+Talento: Empoderador Potencial
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Ferraria
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Instrumental
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Mestre da Armaria
+Requisitos no CÓDIGO: Armeiro
+Requisitos CORRETOS:  Armeiro.
+----------------------------------------------------------------------------------------------------
+
+Talento: Mestre do Artesanato
+Requisitos no CÓDIGO: Artesão
+Requisitos CORRETOS:  Artesão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Perfumaria
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Assistência
+Requisitos no CÓDIGO: Ponto de Captura ++
+Requisitos CORRETOS:  Ponto de Captura ++.
+----------------------------------------------------------------------------------------------------
+
+Talento: Camuflagem
+Requisitos no CÓDIGO: Peregrino Silencioso
+Requisitos CORRETOS:  Peregrino Silencioso.
+----------------------------------------------------------------------------------------------------
+
+Talento: Compulsão
+Requisitos no CÓDIGO: Velocidade 16
+Requisitos CORRETOS:  Velocidade 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Cosplay
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Inabalável
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Maníaco por Captura +
+Requisitos no CÓDIGO: Velocidade 16
+Requisitos CORRETOS:  Velocidade 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Peregrino Silencioso
+Requisitos no CÓDIGO: ter capturado pokémons em quatro biomas diferentes
+Requisitos CORRETOS:  ter capturado pokémons em quatro biomas diferentes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Pokébola Múltipla
+Requisitos no CÓDIGO: Velocidade 16
+Requisitos CORRETOS:  Velocidade 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Prêmio Raro
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Rastreador
+Requisitos no CÓDIGO: um pokémon com a Capacidade Faro
+Requisitos CORRETOS:  Rastreador Informado +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Zelo
+Requisitos no CÓDIGO: Velocidade 18
+Requisitos CORRETOS:  Velocidade 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Armadilha Paralisante
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Bem Aqui!
+Requisitos no CÓDIGO: um pokémon com um Golpe com o Descritor Prisão
+Requisitos CORRETOS:  um pokémon com um Golpe com o Descritor Prisão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Bomba Sonora
+Requisitos no CÓDIGO: um pokémon com Supersônico
+Requisitos CORRETOS:  um pokémon com Supersônico.
+----------------------------------------------------------------------------------------------------
+
+Talento: Derrubar
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Doçura no Ar
+Requisitos no CÓDIGO: um pokémon com Sedução
+Requisitos CORRETOS:  um pokémon com Sedução.
+----------------------------------------------------------------------------------------------------
+
+Talento: Domação +
+Requisitos no CÓDIGO: Velocidade 18
+Requisitos CORRETOS:  Velocidade 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Espalhar Feromônios
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Falso Ataque
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Pronto para Captura
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Rodeio
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Tranquilizante
+Requisitos no CÓDIGO: um pokémon com Esporos ou Pó Sonífero
+Requisitos CORRETOS:  um pokémon com Esporos ou Pó Sonífero.
+----------------------------------------------------------------------------------------------------
+
+Talento: Alinhar Curva
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Arma Acoplada
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Armadilhas para Pokébolas
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Canhão de Pokébolas
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Hacker
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Meteoro
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Óculos Digitalizadores
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Perfuração
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Propulsor
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Robô
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Soco Bala
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Aqui!
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Bênção do Guardião
+Requisitos no CÓDIGO: Salvaguarda
+Requisitos CORRETOS:  Salvaguarda.
+----------------------------------------------------------------------------------------------------
+
+Talento: Desgaste da Guerra
+Requisitos no CÓDIGO: Pelo Time!, cinco outros Talentos de Guardião (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  Pelo Time!, cinco outros Talentos de Guardião (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Guarda-Costas
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Já foi o Bastante!
+Requisitos no CÓDIGO: ter usado Contra-Ataque mediante Permissão ou ter um pokémon leal que sabe Contra-Ataque
+Requisitos CORRETOS:  ter usado Contra-Ataque mediante
+----------------------------------------------------------------------------------------------------
+
+Talento: Mártir
+Requisitos no CÓDIGO: sete Talentos de Guardião (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  sete Talentos de Guardião (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Não Tão Rápido!
+Requisitos no CÓDIGO: Salvaguarda
+Requisitos CORRETOS:  Salvaguarda.
+----------------------------------------------------------------------------------------------------
+
+Talento: Reflexos
+Requisitos no CÓDIGO: Místico
+Requisitos CORRETOS:  Místico.
+----------------------------------------------------------------------------------------------------
+
+Talento: Repelir!
+Requisitos no CÓDIGO: ter usado Escudo Espelho mediante Permissão ou ter um pokémon leal que sabe Escudo Espelho
+Requisitos CORRETOS:  ter usado Escudo Espelho mediante Permissão ou ter um pokémon leal que sabe Escudo Espelho.
+----------------------------------------------------------------------------------------------------
+
+Talento: Salvaguarda
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Substituição
+Requisitos no CÓDIGO: cinco Talentos de Guardião (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Guardião (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Habilidade Inconsciente
+Requisitos no CÓDIGO: Defesa Especial 17
+Requisitos CORRETOS:  Defesa Especial 17.
+----------------------------------------------------------------------------------------------------
+
+Talento: Habilidade Inconsciente +
+Requisitos no CÓDIGO: Habilidade Inconsciente
+Requisitos CORRETOS:  Habilidade Inconsciente.
+----------------------------------------------------------------------------------------------------
+
+Talento: Habilidade Oculta
+Requisitos no CÓDIGO: Habilidade Inconsciente
+Requisitos CORRETOS:  Habilidade Inconsciente.
+----------------------------------------------------------------------------------------------------
+
+Talento: Introjeção
+Requisitos no CÓDIGO: ter usando com sucesso Materialização Onírica cinco vezes
+Requisitos CORRETOS:  ter usando com sucesso Materialização Onírica cinco vezes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sonho Lúcido
+Requisitos no CÓDIGO: Habilidade Inconsciente, Reprogramação Mental
+Requisitos CORRETOS:  Habilidade Inconsciente, Reprogramação Mental.
+----------------------------------------------------------------------------------------------------
+
+Talento: Regressão
+Requisitos no CÓDIGO: Introjeção
+Requisitos CORRETOS:  Introjeção.
+----------------------------------------------------------------------------------------------------
+
+Talento: Reprogramação Mental
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Vivência
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Buscar o Ódio
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Calafrios de Sombras
+Requisitos no CÓDIGO: ter um pokémon de Gelo capturado mediante Furto ou Furto +
+Requisitos CORRETOS:  ter um pokémon de Gelo capturado mediante Furto ou Furto +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Esmagamento de Sombras
+Requisitos no CÓDIGO: ter um pokémon Lutador capturado mediante Furto ou Furto +
+Requisitos CORRETOS:  ter um pokémon Lutador capturado mediante Furto ou Furto +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Explosão de Sombras
+Requisitos no CÓDIGO: ter um pokémon de Fogo capturado mediante Furto ou Furto +
+Requisitos CORRETOS:  ter um pokémon de Fogo capturado mediante Furto ou Furto +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Fúria de Sombras
+Requisitos no CÓDIGO: ter um pokémon capturado mediante Furto ou Furto +
+Requisitos CORRETOS:  ter um pokémon capturado mediante Furto ou Furto +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Furto +
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Produto de Resgate
+Requisitos no CÓDIGO: ter um pokémon com Lealdade 4 capturado mediante Furto ou Furto +
+Requisitos CORRETOS:  ter um pokémon com Lealdade 4 capturado mediante Furto ou Furto +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Raio de Sombras
+Requisitos no CÓDIGO: ter um pokémon Elétrico capturado mediante Furto ou Furto +
+Requisitos CORRETOS:  ter um pokémon Elétrico capturado mediante Furto ou Furto +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Resgate!
+Requisitos no CÓDIGO: ter um pokémon com Lealdade 3 capturado mediante Furto ou Furto +
+Requisitos CORRETOS:  ter um pokémon com Lealdade 3 capturado mediante Furto ou Furto +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Rompimento do Vínculo
+Requisitos no CÓDIGO: ter um pokémon capturado mediante Furto ou Furto +
+Requisitos CORRETOS:  ter um pokémon capturado mediante Furto ou Furto +.
+----------------------------------------------------------------------------------------------------
+
+Talento: Bumerangue
+Requisitos no CÓDIGO: Ricochete
+Requisitos CORRETOS:  Ricochete.
+----------------------------------------------------------------------------------------------------
+
+Talento: Como um Raio!
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Continue o que Ele Estava Fazendo!
+Requisitos no CÓDIGO: Velocidade 18
+Requisitos CORRETOS:  Velocidade 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Lançamento
+Requisitos no CÓDIGO: Velocidade 18
+Requisitos CORRETOS:  Velocidade 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Prestidigitação de Pokébolas +
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Ricochete
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Saída de Emergência
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Saque Rápido
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Sem as Mãos!
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Uma Rodada é uma Jornada!
+Requisitos no CÓDIGO: quatro Talentos de Malabarista (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  quatro Talentos de Malabarista (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Voleio de Pokébolas
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Amor e Carinho
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Chocadeira
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Chocadeira +
+Requisitos no CÓDIGO: Chocadeira, Defesa Especial 19
+Requisitos CORRETOS:  Chocadeira, Defesa Especial 19.
+----------------------------------------------------------------------------------------------------
+
+Talento: Começo Promissor
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Comida Caseira
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Cuidado Parental +
+Requisitos no CÓDIGO: Defesa 16, Defesa Especial 18
+Requisitos CORRETOS:  Defesa 16, Defesa Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Cuidarei Bem Dele!
+Requisitos no CÓDIGO: Defesa Especial 18
+Requisitos CORRETOS:  Defesa Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ninhada
+Requisitos no CÓDIGO: um pokémon que já produziu pelo menos dois ovos
+Requisitos CORRETOS:  um pokémon que já produziu pelo menos dois ovos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ninhada +
+Requisitos no CÓDIGO: Ninhada, um pokémon que já produziu pelo menos quatro ovos
+Requisitos CORRETOS:  Ninhada, um pokémon que já produziu pelo menos quatro ovos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Nunca Teria Acontecido!
+Requisitos no CÓDIGO: seis Talentos de Criador (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  seis Talentos de Criador (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Potencial Latente
+Requisitos no CÓDIGO: Defesa 17
+Requisitos CORRETOS:  Defesa 17.
+----------------------------------------------------------------------------------------------------
+
+Talento: Progressão Natural
+Requisitos no CÓDIGO: Defesa 18
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Zootecnista
+Requisitos no CÓDIGO: Defesa Especial 18
+Requisitos CORRETOS:  Defesa Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Busca Mundana
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Busca Rara
+Requisitos no CÓDIGO: já ter colhido uma das seguintes frutas em sua Horta: carambola (Starf), Enigma, fruta milagrosa (Micle), jabuticaba (Jaboca), jambo (Rowap), pinha (Custap)
+Requisitos CORRETOS:  já ter colhido uma das seguintes frutas em sua Horta: carambola (Starf), Enigma, fruta milagrosa (Micle), jabuticaba (Jaboca), jambo (Rowap), pinha (Custap).
+----------------------------------------------------------------------------------------------------
+
+Talento: Busca Saborosa
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Coma Agora!
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Conhecedor de Frutos
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Eficiência da Fruta
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Fundir Frutas
+Requisitos no CÓDIGO: Defesa Especial 18
+Requisitos CORRETOS:  Defesa Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Hibridização
+Requisitos no CÓDIGO: já ter colhido dez frutos em sua Horta
+Requisitos CORRETOS:  já ter colhido dez frutos em sua Horta.
+----------------------------------------------------------------------------------------------------
+
+Talento: Nutrientes Especiais
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Procura Alterada
+Requisitos no CÓDIGO: quatro Talentos de Botânico (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  quatro Talentos de Botânico (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Procura Eficiente
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Procura Melhorada
+Requisitos no CÓDIGO: um pokémon com um Atributo 30
+Requisitos CORRETOS:  um pokémon com um Atributo 30.
+----------------------------------------------------------------------------------------------------
+
+Talento: Arremessar Isca
+Requisitos no CÓDIGO: Isca
+Requisitos CORRETOS:  Isca.
+----------------------------------------------------------------------------------------------------
+
+Talento: Calórico
+Requisitos no CÓDIGO: Defesa 16
+Requisitos CORRETOS:  Defesa 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Envenenamento
+Requisitos no CÓDIGO: Defesa Especial 17
+Requisitos CORRETOS:  Defesa Especial 17.
+----------------------------------------------------------------------------------------------------
+
+Talento: Herbalismo
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Isca
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Liquidificador
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Papinha de Bebê
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Refeição Proteica
+Requisitos no CÓDIGO: Defesa 18
+Requisitos CORRETOS:  Defesa 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tempero Original
+Requisitos no CÓDIGO: Defesa 14
+Requisitos CORRETOS:  Defesa 14.
+----------------------------------------------------------------------------------------------------
+
+Talento: Vitaminas e Sais Minerais
+Requisitos no CÓDIGO: Defesa Especial 20
+Requisitos CORRETOS:  Defesa Especial 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Vitaminas e Sais Minerais +
+Requisitos no CÓDIGO: Vitaminas e Sais Minerais
+Requisitos CORRETOS:  Vitaminas e Sais Minerais.
+----------------------------------------------------------------------------------------------------
+
+Talento: Arrumando-se
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Arrumando-se +
+Requisitos no CÓDIGO: Defesa Especial 20, Arrumando-se
+Requisitos CORRETOS:  Defesa Especial 20, Arrumando-se.
+----------------------------------------------------------------------------------------------------
+
+Talento: Código de Sinais
+Requisitos no CÓDIGO: Treinamento em Agilidade
+Requisitos CORRETOS:  Treinamento em Agilidade.
+----------------------------------------------------------------------------------------------------
+
+Talento: Estrela
+Requisitos no CÓDIGO: 2 prêmios em Concursos
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Herdou de Mim!
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Pelugem Brilhosa
+Requisitos no CÓDIGO: 3 prêmios em Concursos
+Requisitos CORRETOS:  3 prêmios em Concursos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Resplendor
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Sangue de Vencedores
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Sangue de Vencedores +
+Requisitos no CÓDIGO: Defesa 16, Sangue de Vencedores
+Requisitos CORRETOS:  Defesa 16, Sangue de Vencedores.
+----------------------------------------------------------------------------------------------------
+
+Talento: Treinamento em Agilidade
+Requisitos no CÓDIGO: 2 prêmios em Concursos
+Requisitos CORRETOS:  2 prêmios em Concursos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aperfeiçoar Pedra-Chave
+Requisitos no CÓDIGO: Pedra-Chave Elemental, Recarregar Pedra-Chave, Sobrecarga da Pedra-Chave
+Requisitos CORRETOS:  Pedra-Chave Elemental, Recarregar Pedra-Chave, Sobrecarga da Pedra-Chave.
+----------------------------------------------------------------------------------------------------
+
+Talento: Conhecedor de Megaevoluções
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Desbloquear Potencial
+Requisitos no CÓDIGO: Defesa 16, Defesa Especial 18
+Requisitos CORRETOS:  Defesa 16, Defesa Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Evolução Elemental
+Requisitos no CÓDIGO: Defesa 16, ter evoluído um pokémon usando uma Pedra Elemental
+Requisitos CORRETOS:  Defesa 16, ter evoluído um pokémon usando uma Pedra Elemental.
+----------------------------------------------------------------------------------------------------
+
+Talento: Evolução Precoce +
+Requisitos no CÓDIGO: Defesa 16
+Requisitos CORRETOS:  Defesa 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Involua!
+Requisitos no CÓDIGO: Defesa Especial 20
+Requisitos CORRETOS:  Defesa Especial 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Pedra-Chave Elemental
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Recarregar Pedra-Chave
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Sobrecarga da Pedra-Chave
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Ainda Não!
+Requisitos no CÓDIGO: Nível 10
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Chocadeira ++
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Direito de Nascença
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Herança Infundida
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Hiperlexia Parental
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Nascimento Poderoso
+Requisitos no CÓDIGO: Defesa 16
+Requisitos CORRETOS:  Defesa 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Paleta de Atitudes
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Paleta de Atitudes +
+Requisitos no CÓDIGO: Defesa Especial 18, Paleta de Atitudes
+Requisitos CORRETOS:  Defesa Especial 18, Paleta de Atitudes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Procriação Minuciosa
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Protetor da Prole
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Tutor de Golpes Herdados
+Requisitos no CÓDIGO: Defesa Especial 20
+Requisitos CORRETOS:  Defesa Especial 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Analgésicos
+Requisitos no CÓDIGO: Defesa 15
+Requisitos CORRETOS:  Defesa 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Alta Medicina
+Requisitos no CÓDIGO: Defesa 18
+Requisitos CORRETOS:  Defesa 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Médico Especialista
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Não Morrerá Comigo Aqui!
+Requisitos no CÓDIGO: Defesa 20
+Requisitos CORRETOS:  Defesa 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Não Morrerá Comigo Aqui! +
+Requisitos no CÓDIGO: Não Morrerá Comigo Aqui!
+Requisitos CORRETOS:  Não Morrerá Comigo Aqui!.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sobreviveu Graças à Medicina!
+Requisitos no CÓDIGO: quatro Talentos de Médico (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  quatro Talentos de Médico (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Terapia de Choque
+Requisitos no CÓDIGO: Analgésicos
+Requisitos CORRETOS:  Analgésicos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tratar Ferimentos Críticos
+Requisitos no CÓDIGO: Defesa 18
+Requisitos CORRETOS:  Defesa 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tratar Ferimentos Graves
+Requisitos no CÓDIGO: Defesa 16
+Requisitos CORRETOS:  Defesa 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tratar Ferimentos Leves
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Desbloqueio Elemental
+Requisitos no CÓDIGO: Defesa Especial 20
+Requisitos CORRETOS:  Defesa Especial 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ensinar Capacidades
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Imortalizar o Conhecimento
+Requisitos no CÓDIGO: Defesa Especial 20
+Requisitos CORRETOS:  Defesa Especial 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Instrução de Efeito
+Requisitos no CÓDIGO: Nenhum
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Instrução Especial
+Requisitos no CÓDIGO: um pokémon com Ataque Especial 30
+Requisitos CORRETOS:  um pokémon com Ataque Especial 30.
+----------------------------------------------------------------------------------------------------
+
+Talento: Instrução Física
+Requisitos no CÓDIGO: um pokémon com Ataque 30
+Requisitos CORRETOS:  um pokémon com Ataque 30.
+----------------------------------------------------------------------------------------------------
+
+Talento: Inventor de Técnicas
+Requisitos no CÓDIGO: Recordador
+Requisitos CORRETOS:  Recordador.
+----------------------------------------------------------------------------------------------------
+
+Talento: Recordador
+Requisitos no CÓDIGO: Defesa Especial 17, ter usado a Característica de Classe Tutorial três vezes com sucesso
+Requisitos CORRETOS:  Defesa Especial 17, ter usado a Característica de Classe Tutorial três vezes com sucesso.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sabedoria de Eras
+Requisitos no CÓDIGO: Recordador, Inventor de Técnicas
+Requisitos CORRETOS:  Recordador, Inventor de Técnicas.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sabedoria Didática
+Requisitos no CÓDIGO: Defesa Especial 16 e um dos seguintes- Instrução de Efeito, Instrução Especial ou Instrução Física
+Requisitos CORRETOS:  Defesa Especial 16 e um dos seguintes- Instrução de Efeito, Instrução Especial ou Instrução Física.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tutor Excepcional
+Requisitos no CÓDIGO: ter usado a Característica de Classe Tutorial cinco vezes
+Requisitos CORRETOS:  ter usado a Característica de Classe Tutorial cinco vezes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Chute Duplo
+Requisitos no CÓDIGO: ter um pokémon que conhece o Golpe Chute Duplo
+Requisitos CORRETOS:  ter um pokémon que conhece o Golpe Chute Duplo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Foco Combativo +
+Requisitos no CÓDIGO: Ataque 15, Defesa 15
+Requisitos CORRETOS:  Ataque 15, Defesa 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Nada Pode me Parar!
+Requisitos no CÓDIGO: Velocidade 18
+Requisitos CORRETOS:  Velocidade 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Quebra Telha
+Requisitos no CÓDIGO: seis Talentos de Guerreiro (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  seis Talentos de Guerreiro (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Resistência Marcial +
+Requisitos no CÓDIGO: Ataque 14, Defesa 14
+Requisitos CORRETOS:  Ataque 14, Defesa 14.
+----------------------------------------------------------------------------------------------------
+
+Talento: Soco Focalizado
+Requisitos no CÓDIGO: Ataque 18
+Requisitos CORRETOS:  Ataque 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Voadora
+Requisitos no CÓDIGO: Arrojado
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Amortecer
+Requisitos no CÓDIGO: Arrojado
+Requisitos CORRETOS:  Arrojado.
+----------------------------------------------------------------------------------------------------
+
+Talento: Arrojado
+Requisitos no CÓDIGO: Defesa 18
+Requisitos CORRETOS:  Defesa 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Calejar +
+Requisitos no CÓDIGO: Calejar
+Requisitos CORRETOS:  Calejar.
+----------------------------------------------------------------------------------------------------
+
+Talento: Chute Giratório
+Requisitos no CÓDIGO: ter sofrido o Golpe Soco de Fogo
+Requisitos CORRETOS:  ter sofrido o Golpe Soco de Fogo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Defesa Aberta
+Requisitos no CÓDIGO: Durão
+Requisitos CORRETOS:  Durão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Faca de Dois Gumes
+Requisitos no CÓDIGO: Ataque 20
+Requisitos CORRETOS:  Ataque 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Pontapé
+Requisitos no CÓDIGO: Chute Giratório
+Requisitos CORRETOS:  Chute Giratório.
+----------------------------------------------------------------------------------------------------
+
+Talento: Soco Rápido
+Requisitos no CÓDIGO: ter sofrido o Golpe Soco Rápido
+Requisitos CORRETOS:  ter sofrido o Golpe Soco Rápido.
+----------------------------------------------------------------------------------------------------
+
+Talento: Supervoadora
+Requisitos no CÓDIGO: Voadora
+Requisitos CORRETOS:  Voadora.
+----------------------------------------------------------------------------------------------------
+
+Talento: Vá para Longe!
+Requisitos no CÓDIGO: Exercícios Revigorantes
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Alongamento
+Requisitos no CÓDIGO: Exercícios Revigorantes
+Requisitos CORRETOS:  Exercícios Revigorantes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Estímulo
+Requisitos no CÓDIGO: Técnica Milenar
+Requisitos CORRETOS:  Técnica Milenar.
+----------------------------------------------------------------------------------------------------
+
+Talento: Liberdade de Movimento
+Requisitos no CÓDIGO: Contorcionismo
+Requisitos CORRETOS:  Contorcionismo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Relaxamento
+Requisitos no CÓDIGO: Exercícios Revigorantes
+Requisitos CORRETOS:  Exercícios Revigorantes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Terapia
+Requisitos no CÓDIGO: Exercícios Revigorantes
+Requisitos CORRETOS:  Exercícios Revigorantes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tratamento
+Requisitos no CÓDIGO: Defesa 16
+Requisitos CORRETOS:  Defesa 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Esquiva
+Requisitos no CÓDIGO: Defesa 18
+Requisitos CORRETOS:  Defesa 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Hora Extra
+Requisitos no CÓDIGO: Ataque 26
+Requisitos CORRETOS:  Ataque 26.
+----------------------------------------------------------------------------------------------------
+
+Talento: Jogo Duplo
+Requisitos no CÓDIGO: um pokémon com Força 5
+Requisitos CORRETOS:  um pokémon com Força 5.
+----------------------------------------------------------------------------------------------------
+
+Talento: Na Zona
+Requisitos no CÓDIGO: Ataque 16
+Requisitos CORRETOS:  Ataque 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Precisa ser Rápido
+Requisitos no CÓDIGO: Ataque 18
+Requisitos CORRETOS:  Ataque 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Protegendo as Costas
+Requisitos no CÓDIGO: Ataque 18
+Requisitos CORRETOS:  Ataque 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Você vai Ver!
+Requisitos no CÓDIGO: quatro Talentos de Áugure (desconte as Características de Classe para este cálculo), Ataque 18
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Corpo e Alma
+Requisitos no CÓDIGO: quatro Talentos de Áugure (desconte as Características de Classe para este cálculo), Ataque 18
+Requisitos CORRETOS:  quatro Talentos de Áugure (desconte as Características de Classe para este cálculo), Ataque 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Esfera da Aura
+Requisitos no CÓDIGO: ter visto o Golpe Esfera da Aura ser usado
+Requisitos CORRETOS:  ter visto o Golpe Esfera da Aura ser usado.
+----------------------------------------------------------------------------------------------------
+
+Talento: Expansão da Aura
+Requisitos no CÓDIGO: ter sofrido o Golpe Expansão da Aura
+Requisitos CORRETOS:  ter sofrido o Golpe Expansão da Aura.
+----------------------------------------------------------------------------------------------------
+
+Talento: Pulso do Dragão
+Requisitos no CÓDIGO: ter sofrido o Golpe Pulso do Dragão
+Requisitos CORRETOS:  ter sofrido o Golpe Pulso do Dragão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Pulso Sombrio
+Requisitos no CÓDIGO: ter sofrido o Golpe Pulso Sombrio
+Requisitos CORRETOS:  ter sofrido o Golpe Pulso Sombrio.
+----------------------------------------------------------------------------------------------------
+
+Talento: Soco de Drenagem
+Requisitos no CÓDIGO: um pokémon que conhece o Golpe Soco de Drenagem
+Requisitos CORRETOS:  um pokémon que conhece o Golpe Soco de Drenagem.
+----------------------------------------------------------------------------------------------------
+
+Talento: Soco de Fogo
+Requisitos no CÓDIGO: ter sofrido o Golpe Soco de Fogo
+Requisitos CORRETOS:  ter sofrido o Golpe Soco de Fogo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Soco de Gelo
+Requisitos no CÓDIGO: ter sofrido o Golpe Soco de Gelo
+Requisitos CORRETOS:  ter sofrido o Golpe Soco de Gelo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Soco do Trovão
+Requisitos no CÓDIGO: ter sofrido o Golpe Soco do Trovão
+Requisitos CORRETOS:  ter sofrido o Golpe Soco do Trovão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Soco Sombrio
+Requisitos no CÓDIGO: ter sofrido o Golpe Soco Sombrio
+Requisitos CORRETOS:  ter sofrido o Golpe Soco Sombrio.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tela de Luz
+Requisitos no CÓDIGO: um pokémon que conhece o Golpe Tela de Luz
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Armas Untadas
+Requisitos no CÓDIGO: um pokémon Venenoso
+Requisitos CORRETOS:  um pokémon Venenoso.
+----------------------------------------------------------------------------------------------------
+
+Talento: Do Céu
+Requisitos no CÓDIGO: Ataque 16
+Requisitos CORRETOS:  Ataque 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Injetar Veneno
+Requisitos no CÓDIGO: um pokémon Venenoso
+Requisitos CORRETOS:  um pokémon Venenoso.
+----------------------------------------------------------------------------------------------------
+
+Talento: Mortífero
+Requisitos no CÓDIGO: cinco Talentos de Ninja (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Ninja (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Multiplicar
+Requisitos no CÓDIGO: Borrão, Velocidade 15
+Requisitos CORRETOS:  um pokémon que conhece o Golpe Multiplicar.
+----------------------------------------------------------------------------------------------------
+
+Talento: Trocar de Lugar
+Requisitos no CÓDIGO: Ataque 18
+Requisitos CORRETOS:  Ataque 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ferimento Profundo
+Requisitos no CÓDIGO: Ataque 18
+Requisitos CORRETOS:  Ataque 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Kata
+Requisitos no CÓDIGO: quatro Talentos de Soldado (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  quatro Talentos de Soldado (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Manobra Infalível
+Requisitos no CÓDIGO: Ataque 16, cinco Talentos de Soldado (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  Ataque 16, cinco Talentos de Soldado (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Sangramento
+Requisitos no CÓDIGO: Ataque 16
+Requisitos CORRETOS:  Ataque 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tiro Múltiplo
+Requisitos no CÓDIGO: Ataque 17, quatro Talentos de Soldado (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  Ataque 17, quatro Talentos de Soldado (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Canalizar Amigo
+Requisitos no CÓDIGO: um pokémon com Lealdade 4
+Requisitos CORRETOS:  um pokémon com Lealdade 4.
+----------------------------------------------------------------------------------------------------
+
+Talento: Canalizar Amigo +
+Requisitos no CÓDIGO: Canalizar Amigo, Defesa 17
+Requisitos CORRETOS:  Canalizar Amigo, Defesa 17.
+----------------------------------------------------------------------------------------------------
+
+Talento: Clérigo
+Requisitos no CÓDIGO: Nível 10
+Requisitos CORRETOS:  Nível 10.
+----------------------------------------------------------------------------------------------------
+
+Talento: Esponja
+Requisitos no CÓDIGO: ter usado Permissão para usar um Golpe de um pokémon seu leal que já subiu pelo menos 20 Níveis com você
+Requisitos CORRETOS:  ter usado Permissão para usar um Golpe de um pokémon seu leal que já subiu pelo menos 20 Níveis com você.
+----------------------------------------------------------------------------------------------------
+
+Talento: Grunhidos e Piados
+Requisitos no CÓDIGO: Canalizar Amigo
+Requisitos CORRETOS:  Canalizar Amigo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Vodu
+Requisitos no CÓDIGO: Clérigo
+Requisitos CORRETOS:  Clérigo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Concerto
+Requisitos no CÓDIGO: sete Talentos de Bardo (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  sete Talentos de Bardo (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Coro
+Requisitos no CÓDIGO: cinco Talentos de Bardo (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Bardo (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Hino
+Requisitos no CÓDIGO: cinco Talentos de Bardo (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Bardo (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Verso
+Requisitos no CÓDIGO: três Talentos de Ilusionista (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Caça Talentos
+Requisitos no CÓDIGO: três Talentos de Ilusionista (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  três Talentos de Ilusionista (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Identidade
+Requisitos no CÓDIGO: ter usar Imitação em cinco pessoas que não eram suas aliadas
+Requisitos CORRETOS:  ter usar Imitação em cinco pessoas que não eram suas aliadas.
+----------------------------------------------------------------------------------------------------
+
+Talento: Mais Um Pouquinho
+Requisitos no CÓDIGO: três Talentos de Ilusionista (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  três Talentos de Ilusionista (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Ressonância
+Requisitos no CÓDIGO: Defesa 18
+Requisitos CORRETOS:  Defesa 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Talentoso
+Requisitos no CÓDIGO: cinco Talentos de Ilusionista (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Ilusionista (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Transeunte
+Requisitos no CÓDIGO: Defesa 18
+Requisitos CORRETOS:  Defesa 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Voz
+Requisitos no CÓDIGO: ter usado Agilidade ou Polimento mediante Permissão
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Agilidade
+Requisitos no CÓDIGO: ter usado Agilidade ou Polimento mediante Permissão
+Requisitos CORRETOS:  ter usado Agilidade ou Polimento mediante Permissão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Amnésia
+Requisitos no CÓDIGO: ter usado Amnésia mediante Permissão
+Requisitos CORRETOS:  ter usado Amnésia mediante Permissão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aumento de Massa
+Requisitos no CÓDIGO: ter usado dois Golpes que elevam Fases de Ataque ou Defesa mediante Permissão
+Requisitos CORRETOS:  ter usado dois Golpes que elevam Fases de Ataque ou Defesa mediante Permissão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Conspiração
+Requisitos no CÓDIGO: ter usado Brilho ou Conspiração mediante Permissão
+Requisitos CORRETOS:  ter usado Brilho ou Conspiração mediante Permissão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Dança das Espadas
+Requisitos no CÓDIGO: ter usado Dança das Espadas mediante Permissão
+Requisitos CORRETOS:  ter usado Dança das Espadas mediante Permissão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Defesa de Ferro
+Requisitos no CÓDIGO: ter usado um dos seguintes Golpes mediante Permissão: Armadura Ácida, Barreira ou Defesa de Ferro
+Requisitos CORRETOS:  ter usado um dos seguintes Golpes mediante Permissão: Armadura Ácida, Barreira ou Defesa de Ferro.
+----------------------------------------------------------------------------------------------------
+
+Talento: Magia Natural
+Requisitos no CÓDIGO: já ter comido uma das seguintes frutas: damasco (Apicot), lichia (Liechi), longana (Ganlon), pitaia (Petaya), salak (Salac)
+Requisitos CORRETOS:  já ter comido uma das seguintes frutas: damasco (Apicot), lichia (Liechi), longana (Ganlon), pitaia (Petaya), salak (Salac).
+----------------------------------------------------------------------------------------------------
+
+Talento: Mente Calma
+Requisitos no CÓDIGO: ter usado dois Golpes que elevam Fases de Ataque Especial ou Defesa Especial mediante Permissão
+Requisitos CORRETOS:  ter usado dois Golpes que elevam Fases de Ataque Especial ou Defesa Especial mediante Permissão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Poder Cósmico
+Requisitos no CÓDIGO: ter usado dois Golpes que elevam Fases de Defesa ou Defesa Especial mediante Permissão
+Requisitos CORRETOS:  ter usado dois Golpes que elevam Fases de Defesa ou Defesa Especial mediante Permissão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Preparação
+Requisitos no CÓDIGO: cinco Talentos de Médium (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Médium (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Presença
+Requisitos no CÓDIGO: seis Talentos de Médium (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  seis Talentos de Médium (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Supremacia
+Requisitos no CÓDIGO: oito Talentos de Médium (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  oito Talentos de Médium (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Vegetarianismo
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Adeus Frígido
+Requisitos no CÓDIGO: ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Nevasca, Raio de Gelo ou Zero Absoluto
+Requisitos CORRETOS:  ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Nevasca, Raio de Gelo ou Zero Absoluto.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ajoelhe-se!
+Requisitos no CÓDIGO: já ter consumido 5000 PV de Lendários usando seus Talentos de Orador
+Requisitos CORRETOS:  já ter consumido 5000 PV de Lendários usando seus Talentos de Orador.
+----------------------------------------------------------------------------------------------------
+
+Talento: Atrocidade
+Requisitos no CÓDIGO: ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Açoite, Investida do Dragão, Ultraje
+Requisitos CORRETOS:  ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Açoite, Investida do Dragão, Ultraje.
+----------------------------------------------------------------------------------------------------
+
+Talento: Escudo da Fé
+Requisitos no CÓDIGO: já ter consumido 1000 PV de Lendários usando seus Talentos de Orador
+Requisitos CORRETOS:  já ter consumido 1000 PV de Lendários usando seus Talentos de Orador.
+----------------------------------------------------------------------------------------------------
+
+Talento: Incêndio
+Requisitos no CÓDIGO: ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Erupção, Explosão de Fogo, Superaquecimento
+Requisitos CORRETOS:  ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Erupção, Explosão de Fogo, Superaquecimento.
+----------------------------------------------------------------------------------------------------
+
+Talento: Louvor
+Requisitos no CÓDIGO: já ter consumido 500 PV de Lendários usando seus Talentos de Orador
+Requisitos CORRETOS:  já ter consumido 500 PV de Lendários usando seus Talentos de Orador.
+----------------------------------------------------------------------------------------------------
+
+Talento: Mímica
+Requisitos no CÓDIGO: já ter consumido 300 PV de Lendários usando seus Talentos de Orador
+Requisitos CORRETOS:  já ter consumido 300 PV de Lendários usando seus Talentos de Orador.
+----------------------------------------------------------------------------------------------------
+
+Talento: Parasitismo
+Requisitos no CÓDIGO: ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Absorção, Gigadreno, Megadreno
+Requisitos CORRETOS:  ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Absorção, Gigadreno, Megadreno.
+----------------------------------------------------------------------------------------------------
+
+Talento: Punição Divina
+Requisitos no CÓDIGO: ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Canhão Elétrico, Relâmpago, Trovão
+Requisitos CORRETOS:  ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Canhão Elétrico, Relâmpago, Trovão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Raio de Vida
+Requisitos no CÓDIGO: ter usado Hiper-Raio mediante Permissão ou Empréstimo
+Requisitos CORRETOS:  ter usado Hiper-Raio mediante Permissão ou Empréstimo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tremor
+Requisitos no CÓDIGO: ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Deslizamento de Rochas, Magnitude, Terremoto
+Requisitos CORRETOS:  ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Deslizamento de Rochas, Magnitude, Terremoto.
+----------------------------------------------------------------------------------------------------
+
+Talento: Arma Rúnica
+Requisitos no CÓDIGO: cinco Talentos de Rúnico (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Rúnico (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Banimento
+Requisitos no CÓDIGO: 21 Unown
+Requisitos CORRETOS:  21 Unown.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ponto Final
+Requisitos no CÓDIGO: 14 Unown
+Requisitos CORRETOS:  14 Unown.
+----------------------------------------------------------------------------------------------------
+
+Talento: Portal
+Requisitos no CÓDIGO: 14 Unown
+Requisitos CORRETOS:  14 Unown.
+----------------------------------------------------------------------------------------------------
+
+Talento: Selo
+Requisitos no CÓDIGO: Poder Oculto
+Requisitos CORRETOS:  Poder Oculto.
+----------------------------------------------------------------------------------------------------
+
+Talento: Dois se Tornam Um
+Requisitos no CÓDIGO: seis Talentos de Xamã (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  seis Talentos de Xamã (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Mente Dominante
+Requisitos no CÓDIGO: quatro Talentos de Xamã (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  quatro Talentos de Xamã (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Natureza Amiga
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Elixires
+Requisitos no CÓDIGO: Éteres
+Requisitos CORRETOS:  Éteres.
+----------------------------------------------------------------------------------------------------
+
+Talento: Magnificadores
+Requisitos no CÓDIGO: Suplementos Defensivos, Suplementos Explosivos, Suplementos Ofensivos
+Requisitos CORRETOS:  Suplementos Defensivos, Suplementos Explosivos, Suplementos Ofensivos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Melhoradores de Performance
+Requisitos no CÓDIGO: Defesa Especial 14
+Requisitos CORRETOS:  Defesa Especial 14.
+----------------------------------------------------------------------------------------------------
+
+Talento: Melhoradores de Performance +
+Requisitos no CÓDIGO: ter usado Melhoradores de Performance três vezes
+Requisitos CORRETOS:  ter usado Melhoradores de Performance três vezes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Remédios +
+Requisitos no CÓDIGO: ter usado Remédios três vezes
+Requisitos CORRETOS:  ter usado Remédios três vezes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Suplementos Defensivos
+Requisitos no CÓDIGO: um pokémon com Defesa ou Defesa Especial 20
+Requisitos CORRETOS:  um pokémon com Defesa ou Defesa Especial 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Suplementos Explosivos
+Requisitos no CÓDIGO: um pokémon com Saúde ou Velocidade 20
+Requisitos CORRETOS:  um pokémon com Saúde ou Velocidade 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Suplementos Ofensivos
+Requisitos no CÓDIGO: um pokémon com Ataque ou Ataque Especial 20
+Requisitos CORRETOS:  um pokémon com Ataque ou Ataque Especial 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Bola de Aporrinhar
+Requisitos no CÓDIGO: Incômodo ou Provocação
+Requisitos CORRETOS:  Incômodo ou Provocação.
+----------------------------------------------------------------------------------------------------
+
+Talento: Fotografia Rara +
+Requisitos no CÓDIGO: Defesa Especial 17
+Requisitos CORRETOS:  Defesa Especial 17.
+----------------------------------------------------------------------------------------------------
+
+Talento: Pesquisa Fotográfica
+Requisitos no CÓDIGO: Pesquisa
+Requisitos CORRETOS:  Pesquisa.
+----------------------------------------------------------------------------------------------------
+
+Talento: Registro Fotográfico
+Requisitos no CÓDIGO: cinco Talentos de Fotógrafo (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Ardente (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Registro Fotográfico +
+Requisitos no CÓDIGO: Registro Fotográfico
+Requisitos CORRETOS:  Registro Fotográfico.
+----------------------------------------------------------------------------------------------------
+
+Talento: Vida Selvagem
+Requisitos no CÓDIGO: Defesa Especial 16
+Requisitos CORRETOS:  Defesa Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Bênção
+Requisitos no CÓDIGO: ter se aliado a um Lendário
+Requisitos CORRETOS:  ter se aliado a um Lendário.
+----------------------------------------------------------------------------------------------------
+
+Talento: Bênção Lendária
+Requisitos no CÓDIGO: Defesa Especial 18, Bênção
+Requisitos CORRETOS:  Defesa Especial 18, Bênção.
+----------------------------------------------------------------------------------------------------
+
+Talento: Idioma Sagrado
+Requisitos no CÓDIGO: Professor, Linguista
+Requisitos CORRETOS:  Professor, Linguista.
+----------------------------------------------------------------------------------------------------
+
+Talento: Incorporação
+Requisitos no CÓDIGO: Vinculação, estar vinculado a um Lendário
+Requisitos CORRETOS:  Vinculação, estar vinculado a um Lendário.
+----------------------------------------------------------------------------------------------------
+
+Talento: Invocação
+Requisitos no CÓDIGO: Vinculação, estar vinculado a um Lendário
+Requisitos CORRETOS:  Vinculação, estar vinculado a um Lendário.
+----------------------------------------------------------------------------------------------------
+
+Talento: Milagre
+Requisitos no CÓDIGO: ter se aliado a um Lendário
+Requisitos CORRETOS:  ter se aliado a um Lendário.
+----------------------------------------------------------------------------------------------------
+
+Talento: Moral
+Requisitos no CÓDIGO: Coordenação
+Requisitos CORRETOS:  Coordenação.
+----------------------------------------------------------------------------------------------------
+
+Talento: Saudação
+Requisitos no CÓDIGO: ter usado Exaltação uma vez
+Requisitos CORRETOS:  ter usado Exaltação uma vez.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sexto Sentido
+Requisitos no CÓDIGO: Vinculação, estar vinculado a um Lendário
+Requisitos CORRETOS:  Vinculação, estar vinculado a um Lendário.
+----------------------------------------------------------------------------------------------------
+
+Talento: Vinculação
+Requisitos no CÓDIGO: ter usado Exaltação uma vez
+Requisitos CORRETOS:  ter usado Exaltação uma vez.
+----------------------------------------------------------------------------------------------------
+
+Talento: Armadilha Elemental
+Requisitos no CÓDIGO: Cavar e Cavar
+Requisitos CORRETOS:  Cavar e Cavar.
+----------------------------------------------------------------------------------------------------
+
+Talento: Cinzelamento
+Requisitos no CÓDIGO: Condensação
+Requisitos CORRETOS:  Condensação.
+----------------------------------------------------------------------------------------------------
+
+Talento: Espeleologia
+Requisitos no CÓDIGO: ter visitado três cavernas diferentes
+Requisitos CORRETOS:  ter visitado três cavernas diferentes.
+----------------------------------------------------------------------------------------------------
+
+Talento: Gneisse Arruinado
+Requisitos no CÓDIGO: Cavar e Cavar
+Requisitos CORRETOS:  Cavar e Cavar.
+----------------------------------------------------------------------------------------------------
+
+Talento: Poeira na Cara
+Requisitos no CÓDIGO: Cavar e Cavar
+Requisitos CORRETOS:  Cavar e Cavar.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ressurreição
+Requisitos no CÓDIGO: Reanimador
+Requisitos CORRETOS:  Reanimador.
+----------------------------------------------------------------------------------------------------
+
+Talento: Soterramento
+Requisitos no CÓDIGO: Cavar e Cavar
+Requisitos CORRETOS:  Cavar e Cavar.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ânimo
+Requisitos no CÓDIGO: Coordenação
+Requisitos CORRETOS:  Coordenação.
+----------------------------------------------------------------------------------------------------
+
+Talento: Autoconfiança
+Requisitos no CÓDIGO: Ânimo
+Requisitos CORRETOS:  Ânimo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aviso Crítico
+Requisitos no CÓDIGO: Nível 10, Coordenação
+Requisitos CORRETOS:  Nível 10, Coordenação.
+----------------------------------------------------------------------------------------------------
+
+Talento: Desmoralização
+Requisitos no CÓDIGO: Coordenação
+Requisitos CORRETOS:  Coordenação.
+----------------------------------------------------------------------------------------------------
+
+Talento: Eficiência
+Requisitos no CÓDIGO: Nível 10, Coordenação
+Requisitos CORRETOS:  Nível 10, Coordenação.
+----------------------------------------------------------------------------------------------------
+
+Talento: Lendo a Luta
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Linguista
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Manobra Coordenada
+Requisitos no CÓDIGO: Técnica Coordenada
+Requisitos CORRETOS:  Técnica Coordenada.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sabotagem
+Requisitos no CÓDIGO: Planejamento
+Requisitos CORRETOS:  Planejamento.
+----------------------------------------------------------------------------------------------------
+
+Talento: Técnica Coordenada
+Requisitos no CÓDIGO: Coordenação
+Requisitos CORRETOS:  Coordenação.
+----------------------------------------------------------------------------------------------------
+
+Talento: Adaptação
+Requisitos no CÓDIGO: Ataque Especial 15
+Requisitos CORRETOS:  Ataque Especial 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Controlar Probabilidade
+Requisitos no CÓDIGO: Ataque Especial 16
+Requisitos CORRETOS:  Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Extrassensorial
+Requisitos no CÓDIGO: Ataque Especial 16
+Requisitos CORRETOS:  Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Gravidade
+Requisitos no CÓDIGO: Sala de Truques
+Requisitos CORRETOS:  Sala de Truques.
+----------------------------------------------------------------------------------------------------
+
+Talento: Mentalismo
+Requisitos no CÓDIGO: Ataque Especial 16
+Requisitos CORRETOS:  Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Paranormal
+Requisitos no CÓDIGO: Ataque Especial 16
+Requisitos CORRETOS:  Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Psicocinese +
+Requisitos no CÓDIGO: Ataque Especial 15
+Requisitos CORRETOS:  Ataque Especial 15.
+----------------------------------------------------------------------------------------------------
+
+Talento: Refletor
+Requisitos no CÓDIGO: um pokémon que conhece o Golpe Refletor
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Sala de Truques
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Sala Mágica
+Requisitos no CÓDIGO: Sala de Truques
+Requisitos CORRETOS:  Sala de Truques.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tela de Luz
+Requisitos no CÓDIGO: um pokémon que conhece o Golpe Tela de Luz
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Teletransporte
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Bruma de Lava
+Requisitos no CÓDIGO: dois Talentos de Ardente
+Requisitos CORRETOS:  dois pokémons de Fogo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Clarão
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Dia de Sol
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  quatro Talentos de Ardente (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Esfera de Sombras
+Requisitos no CÓDIGO: três Talentos de Ardente
+Requisitos CORRETOS:  dois pokémons Fantasmas ou de Noturnos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Espiral de Fogo
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Explosão de Fogo
+Requisitos no CÓDIGO: quatro Talentos de Ardente
+Requisitos CORRETOS:  Nível 15, Bruma de Lava.
+----------------------------------------------------------------------------------------------------
+
+Talento: Invisibilidade
+Requisitos no CÓDIGO: quatro Talentos de Ardente
+Requisitos CORRETOS:  um pokémon com a Capacidade Invisibilidade.
+----------------------------------------------------------------------------------------------------
+
+Talento: Miragem
+Requisitos no CÓDIGO: dois Talentos de Ardente
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Multiplicar
+Requisitos no CÓDIGO: Borrão, Velocidade 15
+Requisitos CORRETOS:  um pokémon que conhece o Golpe Multiplicar.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ofuscação
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  Nível 10, Esfera de Sombras.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sudário Cintilante
+Requisitos no CÓDIGO: dois Talentos de Ardente
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Visão no Escuro
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Choro
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Dança das Penas
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Devorar Sonhos
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Domínio
+Requisitos no CÓDIGO: Nível 18, Ataque Especial 26, Encantamento
+Requisitos CORRETOS:  Nível 18, Ataque Especial 26, Encantamento.
+----------------------------------------------------------------------------------------------------
+
+Talento: Encantamento
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Feitiço
+Requisitos no CÓDIGO: 
+Requisitos CORRETOS:  N/A
+----------------------------------------------------------------------------------------------------
+
+Talento: Fogo-Fátuo
+Requisitos no CÓDIGO: seis Talentos de Bruxo (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  seis Talentos de Bruxo (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Gás Venenoso
+Requisitos no CÓDIGO: três Talentos de Bruxo (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  três Talentos de Bruxo (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Hipnose
+Requisitos no CÓDIGO: três Talentos de Bruxo (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  três Talentos de Bruxo (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Inaptidão
+Requisitos no CÓDIGO: quatro Talentos de Bruxo (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  quatro Talentos de Bruxo (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Maldição
+Requisitos no CÓDIGO: um pokémon que conhece Maldição
+Requisitos CORRETOS:  um pokémon que conhece Maldição.
+----------------------------------------------------------------------------------------------------
+
+Talento: Raio de Confusão
+Requisitos no CÓDIGO: um pokémon que conhece Raio de Confusão
+Requisitos CORRETOS:  um pokémon que conhece Raio de Confusão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aerodinâmico
+Requisitos no CÓDIGO: Desanuviar, um pokémon com Velocidade 20
+Requisitos CORRETOS:  Desanuviar, um pokémon com Velocidade 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Cauda de Vento
+Requisitos no CÓDIGO: dois Talentos que concedem usos de Golpes Voadores
+Requisitos CORRETOS:  dois Talentos que concedem usos de Golpes Voadores.
+----------------------------------------------------------------------------------------------------
+
+Talento: Corte Aéreo
+Requisitos no CÓDIGO: dois pokémons Voadores
+Requisitos CORRETOS:  dois pokémons Voadores.
+----------------------------------------------------------------------------------------------------
+
+Talento: Descarga
+Requisitos no CÓDIGO: dois pokémons Elétricos
+Requisitos CORRETOS:  Nível 15, Corte Aéreo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Levitação
+Requisitos no CÓDIGO: Voo
+Requisitos CORRETOS:  Voo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Onda Trovão
+Requisitos no CÓDIGO: dois Talentos que concedem usos de Golpes Elétricos
+Requisitos CORRETOS:  dois Talentos que concedem usos de Golpes Elétricos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Relâmpago
+Requisitos no CÓDIGO: Nível 10, Descarga
+Requisitos CORRETOS:  um pokémon com Deslocamento de
+----------------------------------------------------------------------------------------------------
+
+Talento: As Profundezas da Alma
+Requisitos no CÓDIGO: As Profundezas da Mente
+Requisitos CORRETOS:  As Profundezas da Mente.
+----------------------------------------------------------------------------------------------------
+
+Talento: As Profundezas da Mente
+Requisitos no CÓDIGO: Psíquico, Ataque Especial 16
+Requisitos CORRETOS:  Psíquico, Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Conexão
+Requisitos no CÓDIGO: quatro pokémons seus já subiram pelo menos 15 Níveis com você
+Requisitos CORRETOS:  quatro pokémons seus já subiram pelo menos 15 Níveis com você.
+----------------------------------------------------------------------------------------------------
+
+Talento: Conexão +
+Requisitos no CÓDIGO: Conexão, Ataque Especial 18
+Requisitos CORRETOS:  Conexão, Ataque Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Cura Maior
+Requisitos no CÓDIGO: Cura Média, Ataque Especial 18
+Requisitos CORRETOS:  Cura Média, Ataque Especial 18.
+----------------------------------------------------------------------------------------------------
+
+Talento: Cura Máxima
+Requisitos no CÓDIGO: Cura Maior, Ataque Especial 20
+Requisitos CORRETOS:  Cura Maior, Ataque Especial 20.
+----------------------------------------------------------------------------------------------------
+
+Talento: Desejo
+Requisitos no CÓDIGO: Cura Maior
+Requisitos CORRETOS:  Cura Maior.
+----------------------------------------------------------------------------------------------------
+
+Talento: Repouso
+Requisitos no CÓDIGO: um pokémon com um Golpe que recupera Pontos de Vida
+Requisitos CORRETOS:  um pokémon com um Golpe que recupera Pontos de Vida.
+----------------------------------------------------------------------------------------------------
+
+Talento: Sofrimento Mútuo
+Requisitos no CÓDIGO: Ataque Especial 16, Compartilhar Sofrimento
+Requisitos CORRETOS:  Ataque Especial 16, Compartilhar Sofrimento.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tratar a Alma
+Requisitos no CÓDIGO: Ataque Especial 16, ter curado Paralisia e/ou Sono três vezes usando itens ou Talentos
+Requisitos CORRETOS:  Ataque Especial 16, ter curado Paralisia e/ou Sono três vezes usando itens ou Talentos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tratar o Corpo
+Requisitos no CÓDIGO: Ataque Especial 16, ter curado Queimadura e/ou Veneno três vezes usando itens ou Talentos
+Requisitos CORRETOS:  Ataque Especial 16, ter curado Queimadura e/ou Veneno três vezes usando itens ou Talentos.
+----------------------------------------------------------------------------------------------------
+
+Talento: Vínculo
+Requisitos no CÓDIGO: Conexão
+Requisitos CORRETOS:  Conexão.
+----------------------------------------------------------------------------------------------------
+
+Talento: Ambiente Aquoso
+Requisitos no CÓDIGO: Dança da Chuva ou Granizo
+Requisitos CORRETOS:  Dança da Chuva ou Granizo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Cascata
+Requisitos no CÓDIGO: dois pokémons de Água
+Requisitos CORRETOS:  dois pokémons de Água.
+----------------------------------------------------------------------------------------------------
+
+Talento: Dança da Chuva
+Requisitos no CÓDIGO: cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Estaca de Gelo
+Requisitos no CÓDIGO: dois pokémon de Gelo
+Requisitos CORRETOS:  dois pokémon de Gelo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Granizo
+Requisitos no CÓDIGO: cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Nadador
+Requisitos no CÓDIGO: um pokémon com Deslocamento de Natação e Subaquático
+Requisitos CORRETOS:  um pokémon com Deslocamento de
+----------------------------------------------------------------------------------------------------
+
+Talento: Nevasca
+Requisitos no CÓDIGO: Nível 15, Estaca de Gelo
+Requisitos CORRETOS:  Nível 15, Estaca de Gelo.
+----------------------------------------------------------------------------------------------------
+
+Talento: Surfe
+Requisitos no CÓDIGO: Nível 10, Cascata
+Requisitos CORRETOS:  Nível 10, Cascata.
+----------------------------------------------------------------------------------------------------
+
+Talento: Aromaterapia
+Requisitos no CÓDIGO: dois Talentos que concedem usos de Golpes de Planta
+Requisitos CORRETOS:  dois Talentos que concedem usos de Golpes de Planta.
+----------------------------------------------------------------------------------------------------
+
+Talento: Deslizamento de Rochas
+Requisitos no CÓDIGO: dois pokémons de Pedra
+Requisitos CORRETOS:  dois pokémons de Pedra.
+----------------------------------------------------------------------------------------------------
+
+Talento: Escavação
+Requisitos no CÓDIGO: um pokémon com um Deslocamento de Escavação
+Requisitos CORRETOS:  um pokémon com um Deslocamento de Escavação.
+----------------------------------------------------------------------------------------------------
+
+Talento: Gigadreno
+Requisitos no CÓDIGO: dois pokémons de Planta
+Requisitos CORRETOS:  dois pokémons de Planta.
+----------------------------------------------------------------------------------------------------
+
+Talento: Materialização
+Requisitos no CÓDIGO: um pokémon com Materialização
+Requisitos CORRETOS:  um pokémon com Materialização.
+----------------------------------------------------------------------------------------------------
+
+Talento: Obelisco
+Requisitos no CÓDIGO: Nível 10, Deslizamento de Rochas
+Requisitos CORRETOS:  Nível 10, Deslizamento de Rochas.
+----------------------------------------------------------------------------------------------------
+
+Talento: Tempestade de Areia
+Requisitos no CÓDIGO: cinco Talentos de Terrulento (desconte as Características de Classe para este cálculo)
+Requisitos CORRETOS:  cinco Talentos de Terrulento (desconte as Características de Classe para este cálculo).
+----------------------------------------------------------------------------------------------------
+
+Talento: Tempestade de Folhas
+Requisitos no CÓDIGO: Nível 15, Gigadreno
+Requisitos CORRETOS:  Nível 15, Gigadreno.
+----------------------------------------------------------------------------------------------------
+
+Talento: Transparência
+Requisitos no CÓDIGO: Nível 10, Materialização
+Requisitos CORRETOS:  Nível 10, Materialização.
+----------------------------------------------------------------------------------------------------
+
+Talento: Buscador de Almas
+Requisitos no CÓDIGO: Buscador de Formas
+Requisitos CORRETOS:  Buscador de Formas.
+----------------------------------------------------------------------------------------------------
+
+Talento: Buscador de Almas +
+Requisitos no CÓDIGO: Buscador de Almas
+Requisitos CORRETOS:  Buscador de Almas.
+----------------------------------------------------------------------------------------------------
+
+Talento: Clariaudiência
+Requisitos no CÓDIGO: Ataque Especial 17
+Requisitos CORRETOS:  Ataque Especial 17.
+----------------------------------------------------------------------------------------------------
+
+Talento: Clarividência
+Requisitos no CÓDIGO: Ataque Especial 16
+Requisitos CORRETOS:  Ataque Especial 16.
+----------------------------------------------------------------------------------------------------
+
+Talento: Dissipar Ilusão
+Requisitos no CÓDIGO: Clariaudiência, Clarividência
+Requisitos CORRETOS:  Clariaudiência, Clarividência.
+----------------------------------------------------------------------------------------------------
+
+Talento: Passado +
+Requisitos no CÓDIGO: Passado, Ataque Especial 19
+Requisitos CORRETOS:  Passado, Ataque Especial 19.
+----------------------------------------------------------------------------------------------------
+
+
+
+TOTAL DE TALENTOS COM DIFERENÇAS: 688

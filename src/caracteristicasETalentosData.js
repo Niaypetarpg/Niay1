@@ -1086,7 +1086,7 @@ export const TALENTOS_DATA = {
   'Artista': [
     {
       nome: 'Acha Isso Impressionante?',
-      requisitos: 'Defesa Especial 17',
+      requisitos: 'Defesa Especial 17.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -1094,14 +1094,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Aplausos',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'P, V',
       frequencia: 'Diária',
       efeito: 'usa o Golpe Bis. Em Concursos: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Originalidade.'
     },
     {
       nome: 'Clímax',
-      requisitos: 'Defesa Especial 15, 2 prêmios em Concursos',
+      requisitos: 'Defesa Especial 15, 2 prêmios em Concursos.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -1109,7 +1109,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Clímax +',
-      requisitos: 'Clímax',
+      requisitos: 'Clímax.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -1117,7 +1117,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Conquistando o Júri',
-      requisitos: '2 prêmios em Concursos',
+      requisitos: '2 prêmios em Concursos.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -1125,14 +1125,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Não Fique pra Trás!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'À Vontade',
       efeito: 'usa o Golpe Mão Amiga. Em Concursos: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Reviravolta.'
     },
     {
       nome: 'Paciência',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -1140,7 +1140,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Perfeccionismo',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -1148,7 +1148,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Performance Eletrizante',
-      requisitos: '3 prêmios em Concursos',
+      requisitos: '3 prêmios em Concursos.',
       referencia: 'P, V',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
       alvo: 'um pokémon seu',
@@ -1156,7 +1156,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Protagonismo',
-      requisitos: 'Velocidade 16',
+      requisitos: 'Velocidade 16.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -1168,7 +1168,7 @@ export const TALENTOS_DATA = {
   'Coreógrafo': [
     {
       nome: 'Acompanhamento',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária',
       gatilho: 'um pokémon seu está executando um Golpe não causador de dano com o Descritor Som',
@@ -1176,14 +1176,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Coro Coordenado',
-      requisitos: 'seis Talentos de Coreógrafo',
+      requisitos: 'seis Talentos de Coreógrafo (desconte as Características de Classe para este cálculo).',
       referencia: 'P, V',
       frequencia: 'Diária',
       efeito: 'na próxima rodada do combate, todos os aliados a até 10 metros de você causam dano extra quando fizerem rolagens de dano e reduzem dano sofrido quando forem sofrer danos. A quantidade é o maior entre seu MDE ou seu MV, mas não mais do que 5.'
     },
     {
       nome: 'Deslumbrante',
-      requisitos: 'Nível 15',
+      requisitos: 'Nível 15.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu está executando um Golpe com o Descritor Dança ou com o Descritor Som',
@@ -1191,7 +1191,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Destacado',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu está executando um Golpe com o Descritor Som com pelo menos um alvo',
@@ -1199,7 +1199,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Fortíssimo',
-      requisitos: 'Nível 15',
+      requisitos: 'Nível 15.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu está executando um Golpe com o Descritor Dança ou com o Descritor Som',
@@ -1207,21 +1207,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Nas Pontas dos Pés',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'quando um pokémon seu usa um Golpe com o Descritor Dança, ele não pode ser Empurrado nem Atordoado durante aquela rodada. Uma vez por encontro, quando seu pokémon está Paralisado, ele ainda pode executar um Golpe com o Descritor Dança como se não estivesse Paralisado.'
     },
     {
       nome: 'Passos Acrobáticos',
-      requisitos: 'Velocidade 16',
+      requisitos: 'Velocidade 16.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       efeito: 'pelo resto do encontro, receba +3 à Evasão. Este Talento não pode ser usado novamente até o fim do encontro.'
     },
     {
       nome: 'Roteiro Reproduzível',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu está executando um Golpe Corpo a Corpo com o Descritor Dança dentro do alcance de visão de um pokémon aliado',
@@ -1229,7 +1229,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Toque Selvagem',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Constante',
       alvo: 'um pokémon seu',
@@ -1237,7 +1237,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Vibrato',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'quando um pokémon seu perderia uma ou mais Fases devido a um Golpe causador de dano usado por um oponente, o oponente deve ter rolado 19 ou 20 no Teste de Acurácia dele para ter sucesso em fazer seu pokémon perder Fases. Uma vez por encontro, quando seu pokémon usou um Golpe com o Descritor Som, todos os que o tiverem como alvo na mesma rodada do combate terão as Dificuldades de Acurácia aumentadas em 1.'
@@ -1248,7 +1248,7 @@ export const TALENTOS_DATA = {
   'Captor': [
     {
       nome: 'Captura Adiantada',
-      requisitos: 'Velocidade 16',
+      requisitos: 'Velocidade 16.',
       referencia: 'P, X',
       frequencia: 'Por Encontro',
       gatilho: 'um pokémon ou humano obtém um resultado de 17 a 20 em um Teste de Acurácia contra um pokémon selvagem',
@@ -1256,7 +1256,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Captura Chocante',
-      requisitos: 'Velocidade 18',
+      requisitos: 'Velocidade 18.',
       referencia: 'C, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       gatilho: 'você usa No Ponto Fraco!',
@@ -1264,21 +1264,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Cartão com Descontos',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Constante',
       efeito: 'você recebe 20% de desconto em produtos regulares de pokélojas. Quando você gasta 2000 créditos ou mais em uma só compra, você recebe uma Pokébola Premiada de brinde.'
     },
     {
       nome: 'Criar Pokébola',
-      requisitos: 'Reparar Pokébola',
+      requisitos: 'Reparar Pokébola.',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       efeito: 'após uma hora de trabalho mecânico, role 1d20 + MV. Você cria uma pokébola de acordo com o resultado: Até 14 (Pokébola Básica), 15 a 19 (Superbola), 20 ou mais (Ultrabola).'
     },
     {
       nome: 'Jogar Rede',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'À Vontade',
       alvo: 'um pokémon ou um humano',
@@ -1286,7 +1286,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ponto de Captura +',
-      requisitos: 'Velocidade 16',
+      requisitos: 'Velocidade 16.',
       referencia: 'C, X',
       frequencia: 'Constante',
       gatilho: 'você arremessa uma pokébola',
@@ -1294,7 +1294,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ponto de Captura ++',
-      requisitos: 'Velocidade 18, Ponto de Captura +',
+      requisitos: 'Velocidade 18, Ponto de Captura +.',
       referencia: 'C, X',
       frequencia: 'Constante',
       gatilho: 'você arremessa uma pokébola',
@@ -1326,7 +1326,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Reparar Pokébola',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'uma pokébola que falhou em capturar um pokémon e quebrou',
@@ -1334,7 +1334,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Trabalho Manual',
-      requisitos: 'Reparar Pokébola',
+      requisitos: 'Reparar Pokébola.',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'um Abricó',
@@ -1346,7 +1346,7 @@ export const TALENTOS_DATA = {
   'Pokébolista': [
     {
       nome: 'A Pokébola do Salvador',
-      requisitos: 'Trabalho Manual',
+      requisitos: 'Trabalho Manual.',
       referencia: 'E, X',
       frequencia: 'Semanal',
       alvo: 'sete Abricós sendo um de cada cor',
@@ -1354,7 +1354,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ferreiro de Abricós',
-      requisitos: 'Ferreiro de Pokébolas',
+      requisitos: 'Ferreiro de Pokébolas.',
       referencia: 'E, X',
       frequencia: 'Diária',
       alvo: 'dois Abricós',
@@ -1362,7 +1362,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ferreiro de Pokébolas',
-      requisitos: 'Trabalho Manual',
+      requisitos: 'Trabalho Manual.',
       referencia: 'E, X',
       frequencia: 'À Vontade',
       alvo: 'um Abricó',
@@ -1378,7 +1378,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Melhoria de Aptidão',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'À Vontade',
       alvo: 'qualquer pokébola',
@@ -1386,7 +1386,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Melhoria de Capacidade',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
       alvo: 'qualquer pokébola',
@@ -1394,7 +1394,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Melhoria de Combate',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
       alvo: 'qualquer pokébola',
@@ -1410,7 +1410,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pokébola para cada Tipo',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
       alvo: 'uma Pokébola de Teia',
@@ -1418,7 +1418,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Quebrar Cela',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária',
       alvo: 'qualquer pokébola',
@@ -1520,7 +1520,7 @@ export const TALENTOS_DATA = {
   'Observador': [
     {
       nome: 'Busca pelo Brilho',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 20 Níveis, receba um uso diário adicional',
       alvo: 'um local não urbano',
@@ -1528,7 +1528,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Busca pelo Tipo',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon selvagem',
@@ -1536,14 +1536,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Conhecedor de Frutos',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'você pode identificar qualquer Fruta, suas propriedades e seus sabores. Receba +2 às rolagens para produzir Sucos ou Temperos. Quando seu pokémon come uma Fruta cujo sabor ele gosta, quaisquer ganhos de lealdade são dobrados.'
     },
     {
       nome: 'De Antemão!',
-      requisitos: 'Planejamento',
+      requisitos: 'Planejamento.',
       referencia: 'C, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você começa um encontro com um pokémon selvagem',
@@ -1551,7 +1551,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'De Antemão! +',
-      requisitos: 'Planejamento',
+      requisitos: 'Planejamento.',
       referencia: 'L, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você começa um encontro',
@@ -1559,7 +1559,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Encontre Isso!',
-      requisitos: 'Rastreador',
+      requisitos: 'Rastreador.',
       referencia: 'P, V',
       frequencia: 'Diária',
       alvo: 'um pokémon que está subindo de Nível',
@@ -1567,7 +1567,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Escrutínio',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon',
@@ -1575,21 +1575,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Estudo Silencioso',
-      requisitos: 'Defesa Especial 18',
+      requisitos: 'Defesa Especial 18.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'se você está usando Ver de Perto, você pode se aproximar a até 3 metros do pokémon selvagem sem alertá-lo, a menos que queira.'
     },
     {
       nome: 'Pinceladas',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você é um pintor e desenhista veloz. É necessário para você menos de um minuto para fazer um esboço de qualquer coisa que veja. Você pode adicionar os detalhes em 30 minutos. Após uma hora de trabalho, você desenha qualquer coisa que tenha visto nas últimas 24 horas com detalhes maravilhosos.'
     },
     {
       nome: 'Psicologia',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'À Vontade',
       gatilho: 'você ouve algo que você suspeita ser uma mentira',
@@ -1597,7 +1597,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Rastreador',
-      requisitos: 'um pokémon com a Capacidade Faro',
+      requisitos: 'Rastreador Informado +.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando um pokémon seu faz um teste para usar a Capacidade Faro, adicione +5 à rolagem.'
@@ -1608,7 +1608,7 @@ export const TALENTOS_DATA = {
   'Ranger': [
     {
       nome: 'Ajuda',
-      requisitos: 'Nível 10, uma das Classes: Aventureiro, Cavaleiro, Detetive, Espião, Guia, Oficial, Pactuário',
+      requisitos: 'Nível 10, uma das Classes a seguir: Aventureiro, Cavaleiro, Detetive, Espião, Guia, Oficial, Pactuário.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon Parceiro ou Prestativo',
@@ -1616,7 +1616,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ambientalista',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você tem sucesso em usar Contenção em um pokémon selvagem',
@@ -1624,7 +1624,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Amigos',
-      requisitos: 'ter usado Contenção em um pokémon com a Capacidade de Escolha',
+      requisitos: 'ter usado Contenção em um pokémon com a Capacidade de Escolha.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um local',
@@ -1632,7 +1632,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Arma de Choque',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon ou um humano',
@@ -1640,28 +1640,28 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Autoridade',
-      requisitos: 'reconhecido pela execução de um serviço distintivo',
+      requisitos: 'reconhecido pela execução de um serviço distintivo.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você assume as responsabilidades como um Ranger de alta patente. Você pode dar ordens a Rangers sem este Talento e possui maior poder decisório.'
     },
     {
       nome: 'Contenção Aprimorada',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando usar Contenção, o teste é feito usando 1d100 -30 (em vez de apenas -20). Você agora pode possuir dois pokémons Prestativos mediante Contenção.'
     },
     {
       nome: 'Contenção Aprimorada +',
-      requisitos: 'Contenção Aprimorada',
+      requisitos: 'Contenção Aprimorada.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando usar Contenção, o teste é feito usando 1d100 -40 (em vez de apenas -30). Você agora pode possuir cinco pokémons Prestativos mediante Contenção. Este Talento substitui Contenção Aprimorada.'
     },
     {
       nome: 'Prática Perfeita',
-      requisitos: 'Velocidade 15',
+      requisitos: 'Velocidade 15.',
       referencia: 'I, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'uma rolagem de Contenção',
@@ -1669,7 +1669,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Recursos',
-      requisitos: 'Autoridade',
+      requisitos: 'Autoridade.',
       referencia: 'P, X',
       frequencia: 'Semanal',
       alvo: 'si',
@@ -1677,7 +1677,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Santuário',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um local não urbano',
@@ -1685,7 +1685,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Time de Resgate',
-      requisitos: 'ter um Parceiro consigo há pelo menos dois meses',
+      requisitos: 'ter um Parceiro consigo há pelo menos dois meses.',
       referencia: 'E, X',
       frequencia: 'Uso Único. A cada 10 Níveis, receba um uso adicional',
       alvo: 'um Parceiro que está com você há pelo menos um mês',
@@ -1697,7 +1697,7 @@ export const TALENTOS_DATA = {
   'Treinador': [
     {
       nome: 'Afirmação',
-      requisitos: 'Ataque 14',
+      requisitos: 'Ataque 14.',
       referencia: 'C, V',
       frequencia: 'Constante',
       gatilho: 'seu pokémon vence um inimigo ou obtém um Crítico',
@@ -1705,7 +1705,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ataques Aprimorados +',
-      requisitos: 'Ataque 16, Ataque Especial 16',
+      requisitos: 'Ataque 16, Ataque Especial 16.',
       referencia: 'C, V',
       frequencia: 'Constante',
       gatilho: 'seu pokémon acerta um ataque causador de dano em um oponente',
@@ -1713,7 +1713,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ataques Aprimorados ++',
-      requisitos: 'Ataque 18, Ataque Especial 18, Ataques Aprimorados +',
+      requisitos: 'Ataque 18, Ataque Especial 18, Ataques Aprimorados +.',
       referencia: 'C, V',
       frequencia: 'Constante',
       gatilho: 'seu pokémon acerta um ataque causador de dano em um oponente',
@@ -1721,14 +1721,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Capataz',
-      requisitos: 'Pressão +',
+      requisitos: 'Pressão +.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando você usa Pressão, Pressão + ou Pressão Positiva em um alvo, remova as Condições Confusão e Atordoamento do alvo se aplicável. Além disso, neutralize qualquer Fase prejudicial que estava sob efeito no alvo.'
     },
     {
       nome: 'Crítica Construtiva',
-      requisitos: 'Ataque Especial 15',
+      requisitos: 'Ataque Especial 15.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu, cujo ataque na ação anterior não acertou nenhum inimigo',
@@ -1736,7 +1736,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Exercício Brutal',
-      requisitos: 'Ataque 15',
+      requisitos: 'Ataque 15.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu que acabou de derrotar um oponente',
@@ -1744,7 +1744,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Foco',
-      requisitos: 'Crítica Construtiva',
+      requisitos: 'Crítica Construtiva.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -1752,7 +1752,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Intimidar',
-      requisitos: 'Ataque 16, Ataque Especial 14',
+      requisitos: 'Ataque 16, Ataque Especial 14.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon',
@@ -1760,7 +1760,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Mestre das Feras',
-      requisitos: '8 insígnias',
+      requisitos: '8 insígnias.',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'seu pokémon',
@@ -1768,7 +1768,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pressão',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu adjacente',
@@ -1776,7 +1776,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pressão +',
-      requisitos: 'Pressão',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu adjacente',
@@ -1784,7 +1784,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Transpassar',
-      requisitos: 'Ataque Especial 16',
+      requisitos: 'Ataque Especial 16.',
       referencia: 'L, V',
       frequencia: 'Diária',
       gatilho: 'seu pokémon acerta um ataque causador de dano em um oponente',
@@ -1796,14 +1796,14 @@ export const TALENTOS_DATA = {
   'Elementalista': [
     {
       nome: 'Alma Elemental',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'você se sente continuamente obrigado a estar na presença do Tipo de Escolha, devendo possuir pelo menos quatro pokémons do seu Tipo de Escolha seus consigo em sua equipe. Você pode sentir pokémons do Tipo de Escolha a até um número de metros igual ao quíntuplo de seu MAE.'
     },
     {
       nome: 'Aprimorar Golpes Elementais +',
-      requisitos: 'Ataque Especial 16',
+      requisitos: 'Ataque Especial 16.',
       referencia: 'C, V',
       frequencia: 'Constante',
       gatilho: 'um pokémon seu acerta um Golpe do Tipo de Escolha',
@@ -1811,7 +1811,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Com os Elementos',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária',
       gatilho: 'você decide batalhar pokémons selvagens',
@@ -1819,7 +1819,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Conexão com Tipo',
-      requisitos: 'Alma Elemental',
+      requisitos: 'Alma Elemental.',
       referencia: 'P, X',
       frequencia: 'À Vontade',
       alvo: 'um pokémon selvagem hostil ou indiferente de seu Tipo de Escolha',
@@ -1827,7 +1827,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Conversão',
-      requisitos: 'Mudança de Tipo',
+      requisitos: 'Mudança de Tipo.',
       referencia: 'E, X',
       frequencia: 'Uso Único. A cada 10 Níveis, receba um uso adicional',
       alvo: 'um pokémon seu',
@@ -1835,7 +1835,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Elementalismo',
-      requisitos: 'Mudança Elemental',
+      requisitos: 'Mudança Elemental.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu usa um Golpe',
@@ -1843,7 +1843,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Golpe Elemental',
-      requisitos: 'Elementalismo',
+      requisitos: 'Elementalismo.',
       referencia: 'E, X',
       frequencia: 'Uso Único. A cada 10 Níveis, receba um uso adicional',
       alvo: 'um pokémon seu',
@@ -1851,7 +1851,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Mudança de Tipo',
-      requisitos: 'Ataque Especial 15',
+      requisitos: 'Ataque Especial 15.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon',
@@ -1859,7 +1859,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sou Superior no Meu Tipo!',
-      requisitos: 'Alma Elemental',
+      requisitos: 'Alma Elemental.',
       referencia: 'C, V',
       frequencia: 'Constante',
       gatilho: 'um inimigo usa um Golpe do Tipo de Escolha contra um ou mais pokémons seus também do Tipo de Escolha',
@@ -1867,7 +1867,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Treinamento de Resistência',
-      requisitos: 'Alma Elemental',
+      requisitos: 'Alma Elemental.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você é resistente ao dano do Tipo de Escolha.'
@@ -1886,61 +1886,59 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Aguento Outra!',
-      requisitos: 'Saúde 13',
+      requisitos: 'Saúde 13.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando sofrer dano, reduza em 5 o dano sofrido. Isso não reduz o custo de ativar Talentos.'
     },
     {
       nome: 'Multitarefa',
-      requisitos: 'todos os Atributos 12, Nível 10',
+      requisitos: 'todos os Atributos 12, Nível 10.',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'você pode executar duas Ações Padrões por rodada. Você ainda não poderá usar ativar mais de uma vez por rodada Talentos (mesmo diferentes) que requerem Ações Padrões.'
     },
     {
       nome: 'Aguento Outra! +',
-      requisitos: 'Aguento Outra!, Nível 20',
+      requisitos: 'Saúde 17.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando sofrer dano, reduza em 10 o dano sofrido. Isso não reduz o custo de ativar Talentos.'
     },
     {
       nome: 'Ainda Não!',
-      requisitos: 'Nível 10',
-      referencia: 'X',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
-      alvo: 'um aliado com 0 Pontos de Vida',
-      gatilho: 'quando o alvo receber dano',
-      efeito: 'o alvo não fica debilitado.'
+      requisitos: 'N/A',
+      referencia: 'C, V',
+      frequencia: 'Constante.',
+      gatilho: 'um ovo está chocando.',
+      efeito: 'se um ovo que você (ou um humano aliado) possui está chocando, você pode atrasar o nascimento por 48 horas. Se você não é o dono do ovo, você precisará de permissão deste para usar este Talento.'
     },
     {
       nome: 'Arma de Escolha',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'escolha um Movimento quando adquirir este Talento. Você pode usar esse Movimento como se fosse uma Arma Improvisada ou uma Arma Corpo a Corpo. Nesse caso, seu acerto será 1d20 + FOR + DES, dano 1d6 + FOR e ataques críticos acertam em 19+. Você pode aplicar Características ou Talentos relacionados a Armas Corpo a Corpo nesse Golpe, se fizerem sentido. Você pode escolher este Talento várias vezes, e escolher um Movimento diferente a cada vez.'
     },
     {
       nome: 'Cuidado!',
-      requisitos: 'SAB 12',
-      referencia: 'V',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
-      alvo: 'um aliado',
-      gatilho: 'quando o alvo for atacado',
-      efeito: 'role 1d20 + DES ou SAB. O alvo poderá escolher usar seu resultado no lugar dele.'
+      requisitos: 'Velocidade 14.',
+      referencia: 'P, V',
+      frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
+      alvo: 'um pokémon seu.',
+      efeito: 'Durante esta rodada, se seu pokémon alvo for atacado, jogue uma moeda várias vezes, até sair cara, e não coroa. Quando o inimigo for fazer o Teste de Acurácia, ele deve obter um resultado maior que o número de vezes que a moeda foi jogada ou ele errará.'
     },
     {
       nome: 'Dê Tudo de Si!',
-      requisitos: 'SAB 14',
-      referencia: 'C, V',
+      requisitos: 'N/A',
+      referencia: 'L, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'você ou um aliado',
       efeito: 'o alvo pode lançar um Golpe que usa a Ação Padrão dele para executar, independente de sua Frequência. Isso não permite lançar Golpes Z, Golpes com Frequência Especial ou Movimentos dos Talentos de Coreógrafo.'
     },
     {
       nome: 'Deixa Ajudar com Isso!',
-      requisitos: 'SAB 16',
+      requisitos: 'N/A',
       referencia: 'C, V, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um aliado a até 3m',
@@ -1948,58 +1946,59 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Deixa Ajudar Agora!',
-      requisitos: 'SAB 16, Nível 10',
+      requisitos: 'Nível 10, Deixa Ajudar com Isso!',
       referencia: 'C, V, X',
       frequencia: 'Constante',
       efeito: 'você pode Ajudar Outro usando uma Ação Rápida em vez de Padrão.'
     },
     {
       nome: 'Dê-Me Espaço!',
-      requisitos: 'FOR 15, Nível 5',
-      referencia: 'X',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
-      alvo: 'você',
-      efeito: 'todos os inimigos adjacentes a você são empurrados até 3m para trás.'
+      requisitos: 'N/A',
+      referencia: 'L, V',
+      frequencia: 'Uso Único. A cada 10 Níveis, receba um uso adicional.',
+      alvogatilho: 'um pokémon seu foi alvo de um ataque.',
+      efeito: 'seu pokémon imediatamente se desloca. Se ele se mover para fora da área do ataque original, ele não sofre os efeitos daquele ataque.'
     },
     {
       nome: 'Filiação à Liga Oficial',
-      requisitos: '',
+      requisitos: '12 insígnias ou equivalentes, Nível 20, um Ginásio ou equivalente no valor de pelo menos 380000 créditos.',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'você é um membro oficial da Liga da região. Você tem acesso a informações sobre torneios, instalações, hospedagem e itens especiais, além de contatos importantes. Você pode embarcar em trens e em veículos da Liga como passageiro sem pagar (e sem precisar rolar Carisma!).'
     },
     {
       nome: 'Já Ouvi Falar!',
-      requisitos: 'INT 14',
+      requisitos: 'Ataque Especial 14 ou Defesa Especia 14.',
       referencia: 'C, V',
       frequencia: 'Diária',
       efeito: 'durante uma cena, você pode declarar que já ouviu ou leu algo sobre determinado tópico, independentemente das circunstâncias. Por exemplo, se o grupo estiver investigando o desaparecimento de pokémons, você pode declarar que leu algo relacionado a isso em um livro há 1 ano atrás. Fale ao Mestre o que você sabe. Se esse conhecimento já tiver sido estabelecido anteriormente, você o relembra; se não, o Mestre pode ou não aceitar sua declaração. Se aceitar, você pode Criar uma verdade sem rolar.'
     },
     {
       nome: 'Karma do Ash',
-      requisitos: 'CAR 15',
-      referencia: 'X',
-      frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
-      efeito: 'se você lançar um Golpe de Frequência Diária e errar, você pode relançá-lo.'
+      requisitos: 'ter libertado três pokémons leais totalmente evoluídos.',
+      referencia: 'L, V',
+      frequencia: 'Diária.',
+      alvo: 'uma rolagem.',
+      efeito: 'você rola novamente um dado da rolagem.'
     },
     {
       nome: 'Meditação',
-      requisitos: 'SAB 12',
+      requisitos: 'um entre Saúde 12, Ataque Especial 12 ou Defesa Especial 12',
       referencia: 'C, V',
       frequencia: 'Diária',
       efeito: 'se você tiver ao menos uma hora de descanso, recupere todos os usos de Talentos ou Golpes que possuam Frequência Diária. Depois de usar este Talento, você não pode usá-lo novamente até descansar por ao menos uma noite.'
     },
     {
       nome: 'Mega!',
-      requisitos: 'Nível 10',
-      referencia: 'X',
-      frequencia: 'Diária. Após Nível 10, a cada 5 Níveis, receba um uso diário adicional',
-      alvo: 'você ou um pokémon aliado a até 6m que possa mega evoluir',
-      efeito: 'se o alvo puder mega evoluir, ele imediatamente mega evolui. Ele continua assim até sair da batalha.'
+      requisitos: 'todos os Atributos 10, uma Pedra Chave.',
+      referencia: 'P, V',
+      frequencia: 'Diária.',
+      alvo: 'um pokémon com uma Megapedra.',
+      efeito: 'o pokémon alvo megaevolui por 10 minutos ou até atingir 0 Pontos de Vida.'
     },
     {
       nome: 'Mire no Chifre!',
-      requisitos: 'SAB 14',
+      requisitos: 'Ataque Especial 13.',
       referencia: 'C, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -2007,7 +2006,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Mire no Chifre! +',
-      requisitos: 'SAB 20, Mire no Chifre!, Nível 20',
+      requisitos: 'Ataque Especial 16, Mire no Chifre.',
       referencia: 'C, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -2015,59 +2014,60 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Não se Meta Comigo!',
-      requisitos: '',
-      referencia: 'X',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
-      gatilho: 'quando você sofrer dano de um adversário',
-      efeito: 'o adversário sofre o mesmo dano de volta. Esse dano não pode ser reduzido por Resistências ou Aguento Outra! ou similares.'
+      requisitos: 'Defesa Especial 13.',
+      referencia: 'P, X',
+      frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
+      gatilho: 'um humano desafia você para uma batalha não oficial.',
+      efeito: 'role 1d20 + MDE. Se o resultado for maior que 10, o humano é intimidado e recua de seu desafio'
     },
     {
       nome: 'O Escolhido',
-      requisitos: 'todos os Atributos 15, Nível 30',
+      requisitos: 'Nível 20.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você e todos os seus pokémons em combate recebem +1 em todos os Atributos.'
     },
     {
       nome: 'Rotina de Estudos',
-      requisitos: 'INT 12',
+      requisitos: 'ter comprado um livro pelo menos uma vez.',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'sempre que atingir um novo Nível, você recebe 2 Pontos de Experiência extras além dos regulares. Esses pontos não o farão atingir um novo Nível imediatamente.'
     },
     {
       nome: 'Rotina de Exercícios',
-      requisitos: 'FOR 12',
+      requisitos: 'ter se exercitado pelo menos uma vez.',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'sempre que atingir um novo Nível, você recebe 2 Pontos de Experiência extras além dos regulares. Esses pontos não o farão atingir um novo Nível imediatamente.'
     },
     {
       nome: 'Socorrista',
-      requisitos: 'SAB 12',
-      referencia: 'X',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
-      alvo: 'um pokémon debilitado adjacente a você',
-      efeito: 'role 1d20 + SAB. Se o resultado for 16 ou mais, o alvo não estará mais debilitado, mas seus Pontos de Vida continuarão sendo 0. Se o resultado for 21 ou mais, o alvo também recupera 1d8 + SAB Pontos de Vida.'
+      requisitos: 'um entre Ataque Especial 13 ou Defesa Especial 13.',
+      referencia: 'P, X',
+      frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
+      alvo: 'uum humano.',
+      efeito: 'role 1d20 + MAE ou MDE. Cure um número de Pontos de Vida do alvo igual ao resultado da rolagem.'
     },
     {
       nome: 'Sorte do Ash',
-      requisitos: 'CAR 12',
-      referencia: 'X',
-      frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
-      efeito: 'role 1d20 novamente. Você pode escolher qual resultado usar.'
+      requisitos: 'ter libertado um pokémon leal totalmente evoluído.',
+      referencia: 'L, V',
+      frequencia: 'Diária.',
+      alvo: 'uma rolagem.',
+      efeito: 'ao custo de 15 Pontos de Vida (este sacrifício não pode ser ignorado de forma alguma), você pode rolar novamente um dado da rolagem.'
     },
     {
       nome: 'Vai Abrir!',
-      requisitos: '',
-      referencia: 'X',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
-      alvo: 'você ou um pokémon',
-      efeito: 'role 1d20 + FOR + DES do alvo. Se o resultado for 16 ou mais, e o alvo for destinado à captura de pokémons selvagens, ele abre.'
+      requisitos: 'Ataque Especial 15.',
+      referencia: 'P, X',
+      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
+      alvo: 'uma fechadura ou trava não computadorizada.',
+      efeito: 'role 1d20 + MAE. Se o resultado for maior que 15, a fechadura ou a trava são arrombadas, e não haverá sinais de arrombamento.'
     },
     {
       nome: 'Você Isso e Você Aquilo!',
-      requisitos: 'CAR 14',
+      requisitos: 'Nível 10, todos os Atributos 12.',
       referencia: 'C, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon adversário',
@@ -2079,14 +2079,14 @@ export const TALENTOS_DATA = {
   'Aventureiro': [
     {
       nome: 'Arquearia',
-      requisitos: 'Nível 10, Arma de Escolha para uma arma À Distância',
+      requisitos: 'Nível 10, Arma de Escolha para uma arma À Distância.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'os alvos dos seus ataques de Armas feitos com armas À Distância não se beneficiam de Evasão por Velocidade nem por terreno ou clima. Eles também não se beneficiam por Golpes que dificultam o seu Teste de Acurácia para atacá-los. Seus ataques de Armas feitos com armas À Distância possuem alcance adicional igual à metade da sua Velocidade e causam dano adicional igual à metade da sua Velocidade. Isso só é válido se você não pertence a nenhuma das seguintes Classes: Artista Marcial, Atleta, Áugure, Bandido, Guerreiro, Monge, Ninja ou Soldado.'
     },
     {
       nome: 'Chuva Ácida',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária',
       gatilho: 'um pokémon usa um Golpe com o Descritor Clima',
@@ -2094,7 +2094,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'De Olho no Céu',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'há um efeito climático vigente',
@@ -2102,7 +2102,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'É o Fim!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'L, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você declara um ataque de Armas com uma arma À Distância',
@@ -2110,14 +2110,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Escalada',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você não precisa fazer testes enquanto se deslocar através de Terreno Acidentado nem sofre penalidades aos seus Deslocamentos por Terreno Acidentado. Além disso, você nunca precisa fazer testes para escalar: você pode escalar usando seu Deslocamento Terrestre reduzido em 3.'
     },
     {
       nome: 'Intuição',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um local não urbano',
@@ -2125,14 +2125,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Natureza Amiga',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando você descansa em ambiente selvagem por pelo menos 8 horas, você acorda com todos os seus Pontos de Vida recuperados e é curado de quaisquer Condições. As únicas coisas que não serão recuperadas são doenças, fraturas ósseas e feridas abertas.'
     },
     {
       nome: 'Pacifismo',
-      requisitos: 'Ranger, Velocidade 16',
+      requisitos: 'Ranger, Velocidade 16.',
       referencia: 'L, X',
       frequencia: 'Diária. A cada 6 Níveis, receba um uso diário adicional',
       alvo: 'uma rolagem de Contenção',
@@ -2140,7 +2140,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sobrevivente',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'À Vontade',
       alvo: 'qualquer material (como madeiro, plástico, osso, etc.)',
@@ -2152,63 +2152,63 @@ export const TALENTOS_DATA = {
   'Cavaleiro': [
     {
       nome: 'Cavalaria',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'L, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       efeito: 'você pode montar um pokémon voluntário usando apenas uma Ação Livre, e isso não consome a Ação de Movimento nem a Ação de Golpe do pokémon.'
     },
     {
       nome: 'Equitação Leve',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'enquanto você está montado e você for a única pessoa sobre sua montaria, a montaria não sofre nenhuma penalidade aos seus Deslocamentos nem perde Fases de Velocidade. Além disso, enquanto você está montado, sua montaria pode carregar uma pessoa extra do que poderia, independente de sua Força ou do formato de seu corpo.'
     },
     {
       nome: 'Grande o Bastante',
-      requisitos: 'Ranger',
+      requisitos: 'Ranger.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando usar um Talento de Ranger ou mesmo de qualquer Classe Avançada do Ranger para fazer um pokémon selvagem aparecer, você pode especificar que este pokémon possa ser montado.'
     },
     {
       nome: 'Hipismo',
-      requisitos: 'um pokémon com Deslocamento Terrestre 8',
+      requisitos: 'um pokémon com Deslocamento Terrestre 8.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'enquanto você está montado, sua montaria aumenta os Deslocamentos dela por um número igual a seu MV e também recebe +1 à Capacidade Salto.'
     },
     {
       nome: 'Já!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 25 Níveis, receba um uso diário adicional',
       efeito: 'enquanto você está montado, todos os ataques causadores de dano físico feitos por você possuem o Descritor Impacto e causar dano adicional igual ao Deslocamento que sua montaria está usando no momento.'
     },
     {
       nome: 'Mobilidade',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você pode usar a Velocidade da sua montaria no lugar da sua para determinar sua Iniciativa.'
     },
     {
       nome: 'Montaria Adaptável',
-      requisitos: 'um pokémon com uma das Capacidades a seguir: Geleira, Intangibilidade, Silêncio, Térreo',
+      requisitos: 'um pokémon com uma das Capacidades a seguir: Geleira, Intangibilidade, Silêncio, Térreo.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'enquanto você está montado, sua montaria ignora os efeitos de Terreno Acidentado e é considerada possuindo a Capacidade Geleira.'
     },
     {
       nome: 'Salto de Selas',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você pode trocar o pokémon sobre o qual você está montado por outro sem desmontar, convocando o pokémon de volta para a pokébola e substituindo por outro de outra pokébola que ocupará o lugar do anterior.'
     },
     {
       nome: 'Veja e Aprenda!',
-      requisitos: 'cinco Talentos de Cavaleiro (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Cavaleiro (desconte as Características de Classe para este cálculo).',
       referencia: 'P, X',
       frequencia: 'À Vontade',
       alvo: 'um humano aliado que está montado, mas que não é Cavaleiro',
@@ -2216,7 +2216,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Velocidade Pura',
-      requisitos: 'um pokémon com Velocidade 25',
+      requisitos: 'um pokémon com Velocidade 25.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'enquanto for montado por você, o pokémon eleva duas Fases de Velocidade.'
@@ -2227,7 +2227,7 @@ export const TALENTOS_DATA = {
   'Detetive': [
     {
       nome: 'Auxiliar',
-      requisitos: 'Treinamento Investigativo',
+      requisitos: 'Treinamento Investigativo.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu que já recebeu Treinamento Investigativo',
@@ -2235,7 +2235,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Detector de Mentiras',
-      requisitos: 'ter solucionado um caso',
+      requisitos: 'ter solucionado um caso.',
       referencia: 'P, X',
       frequencia: 'À Vontade',
       gatilho: 'você ouve algo que você suspeita ser uma mentira',
@@ -2243,28 +2243,28 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Disfarce',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'À Vontade',
       efeito: 'após dez minutos se arrumando, você cria um disfarce, tornando sua identidade irreconhecível. Este disfarce não imita alguém específico.'
     },
     {
       nome: 'Fala Mansa',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'adicione +5 aos resultados de testes que envolvam seu MAE ou seu MDE.'
     },
     {
       nome: 'Mestre do Disfarce',
-      requisitos: 'Disfarce',
+      requisitos: 'Disfarce.',
       referencia: 'E, X',
       frequencia: 'À Vontade',
       efeito: 'após uma hora de preparação, você cria um disfarce que é idêntico a alguém específico. Quando vestir o disfarce preparado (um processo que demora dez minutos), este Talento permite que você se disfarce não apenas como outra pessoa, mas como pokémons e até mesmo objetos inanimados do mesmo tamanho que você. Você não será reconhecido como outra coisa além daquilo que quer parecer. Você pode carregar consigo até dois disfarces e pode manter uma coleção guardada onde você quiser.'
     },
     {
       nome: 'O Que Foi Aquilo?',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       alvo: 'uma pessoa que não está em combate e não é hostil a você (ela não precisa estar ciente da sua presença)',
@@ -2272,7 +2272,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Parado Aí!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'L, X',
       frequencia: 'Diária',
       gatilho: 'você está perseguindo alguém que está fugindo ou está em combate contra um inimigo o qual você andou procurando',
@@ -2280,7 +2280,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Procurar Evidências',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       alvo: 'uma área (normalmente a cena de um crime, a casa de um suspeito ou o local de trabalho de um suspeito)',
@@ -2288,7 +2288,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Treinamento Intuitivo',
-      requisitos: 'Treinamento Investigativo',
+      requisitos: 'Treinamento Investigativo.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu que já recebeu Treinamento Investigativo',
@@ -2296,7 +2296,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Treinamento Investigativo',
-      requisitos: 'um pokémon com Lealdade 3',
+      requisitos: 'um pokémon com Lealdade 3.',
       referencia: 'P, X',
       frequencia: 'Uso Único. A cada 10 Níveis, receba um uso adicional',
       alvo: 'um pokémon seu com Lealdade 3 ou mais ou um Parceiro',
@@ -2308,14 +2308,14 @@ export const TALENTOS_DATA = {
   'Guia': [
     {
       nome: 'Agora Mais Que Nunca!',
-      requisitos: 'cinco Talentos de Guia (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Guia (desconte as Características de Classe para este cálculo).',
       referencia: 'P, V',
       frequencia: 'Diária',
       efeito: 'por uma rodada, os Talentos Você pode fazer Melhor!, Robusto! e Rápido! poderão ser usados para elevar três Fases, em vez de apenas duas Fases. Por esta mesma rodada, Talentos de Guia que aumentam Deslocamentos concedem bônus dobrados.'
     },
     {
       nome: 'Espertinho!',
-      requisitos: 'um pokémon com Inteligência 5',
+      requisitos: 'um pokémon com Inteligência 5.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -2323,7 +2323,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Faça Dar Certo!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -2331,7 +2331,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Fortaleza!',
-      requisitos: 'Ataque 18',
+      requisitos: 'Ataque 18.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu que deixou inconsciente algum humano ou pokémon nas últimas três rodadas',
@@ -2339,7 +2339,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Fortinho!',
-      requisitos: 'um pokémon com Força 5',
+      requisitos: 'um pokémon com Força 5.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -2355,7 +2355,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Mais Alto!',
-      requisitos: 'um pokémon com Salto 4',
+      requisitos: 'um pokémon com Salto 4.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 4 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -2363,7 +2363,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Rápido!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu sob efeito de Mais Longe!',
@@ -2391,7 +2391,7 @@ export const TALENTOS_DATA = {
   'Oficial': [
     {
       nome: 'Ao Meu Sinal!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'L, X',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       gatilho: 'você causa dano a um inimigo dentro do campo de visão de pelo menos um aliado (humano ou pokémon)',
@@ -2399,14 +2399,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Contenção Aprimorada ++',
-      requisitos: 'Contenção Aprimorada +',
+      requisitos: 'Contenção Aprimorada +.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando usar Contenção, o teste é feito usando 1d100 -40 (em vez de apenas -30). Você agora pode possuir sete pokémons Prestativos mediante Contenção. Este Talento substitui Contenção Aprimorada +.'
     },
     {
       nome: 'Inspiração',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       gatilho: 'você causa dano a um inimigo dentro do campo de visão de pelo menos um humano aliado',
@@ -2414,7 +2414,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Levante-se!',
-      requisitos: 'seis Talentos de Oficial (desconte as Características de Classe para este cálculo)',
+      requisitos: 'seis Talentos de Oficial (desconte as Características de Classe para este cálculo).',
       referencia: 'I, X',
       frequencia: 'Diária',
       gatilho: 'um aliado humano que estava com mais de 1 PV tem seus Pontos de Vida reduzidos a zero ou menos',
@@ -2422,7 +2422,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Orientação',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'um humano aliado',
@@ -2430,7 +2430,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pastoreio',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Constante',
       efeito: 'quando usar Contenção, você pode ter como alvo dois pokémons adjacentes.'
@@ -2438,13 +2438,13 @@ export const TALENTOS_DATA = {
     {
       nome: 'Reagrupamento',
       requisitos: '',
-      referencia: '',
+      referencia: 'P, X',
       frequencia: 'Diária',
       efeito: 'se houver pelo menos um Ranger além de você no seu campo de visão, todos os humanos aliados que possam ver e ouvir você recebem +3 a todos os seus Modificadores por um número de rodadas igual a seu MA. Os bônus deste Talento não são acumulativos, mesmo que um segundo Oficial o ative.'
     },
     {
       nome: 'Socorro',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'um local',
@@ -2452,7 +2452,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Supere Isso!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'L, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um aliado faz uma rolagem devido a possuir uma Condição',
@@ -2460,7 +2460,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tática',
-      requisitos: 'Ao Meu Sinal!, Inspiração, Orientação',
+      requisitos: 'Ao Meu Sinal!, Inspiração, Orientação.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 25 Níveis, receba um uso diário adicional',
       alvo: 'um humano aliado',
@@ -2472,7 +2472,7 @@ export const TALENTOS_DATA = {
   'Pactuário': [
     {
       nome: 'Símbolo da Coragem',
-      requisitos: 'ter um Parceiro consigo há pelo menos duas semanas',
+      requisitos: 'ter um Parceiro consigo há pelo menos duas semanas.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon Prestativo que está prestes a deixar de ser Prestativo',
@@ -2480,14 +2480,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Símbolo da Destruição',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Constante',
       efeito: 'quando você faz um ataque de Armas, você pode ativar um Símbolo. O ataque é considerado do mesmo Tipo que o patrono do Símbolo escolhido. Se o patrono possui mais de um Tipo, você pode escolher qual Tipo o ataque assume.'
     },
     {
       nome: 'Símbolo da Fé',
-      requisitos: 'ter um Parceiro consigo há pelo menos duas semanas',
+      requisitos: 'ter um Parceiro consigo há pelo menos duas semanas.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um Parceiro que está com você há pelo menos duas semanas',
@@ -2495,7 +2495,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Símbolo da Grandeza',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 6 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon Prestativo',
@@ -2503,7 +2503,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Símbolo da Invocação',
-      requisitos: 'oito Talentos de Pactuário (desconte as Características de Classe para este cálculo)',
+      requisitos: 'oito Talentos de Pactuário (desconte as Características de Classe para este cálculo).',
       referencia: 'P, X',
       frequencia: 'Semanal',
       alvo: 'um espaço adjacente e vazio',
@@ -2511,14 +2511,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Símbolo da Justiça',
-      requisitos: 'ter se aliado com dois Lendários',
+      requisitos: 'ter se aliado com dois Lendários.',
       referencia: 'P, X',
       frequencia: 'Diária',
       efeito: 'todos os aliados dentro do alcance da visão podem escolher um Atributo (salvo Saúde). Eleve duas Fases do Atributo escolhido de cada aliado. O uso deste Talento consome uma Carga da bateria de seu Estilizador.'
     },
     {
       nome: 'Símbolo da Rapidez',
-      requisitos: 'ter um Parceiro consigo há pelo menos duas semanas',
+      requisitos: 'ter um Parceiro consigo há pelo menos duas semanas.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon Prestativo',
@@ -2526,7 +2526,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Símbolo da Verdade',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 3 Níveis, receba um uso diário adicional',
       gatilho: 'você usou Contenção com sucesso',
@@ -2534,7 +2534,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Símbolo da Vida',
-      requisitos: 'Ataque 16',
+      requisitos: 'Ataque 16.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon ou um humano',
@@ -2542,7 +2542,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Símbolo Sagrado',
-      requisitos: 'Ataque 18, Símbolo da Fé',
+      requisitos: 'Ataque 18, Símbolo da Fé.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um Parceiro que está com você há pelo menos um mês',
@@ -2554,14 +2554,14 @@ export const TALENTOS_DATA = {
   'Policial': [
     {
       nome: 'Armadura',
-      requisitos: 'Colete',
+      requisitos: 'Colete.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando sofrer dano por ataques, reduza o dano em 15. A Armadura é aparente, não podendo ser ocultada por vestimentas. Não é possível usar a Armadura em conjunção com o Colete.'
     },
     {
       nome: 'Bobina Retrátil',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon ou um humano',
@@ -2569,7 +2569,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Disparador',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon ou um humano',
@@ -2577,21 +2577,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Catalizador',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'uma Pedra Elemental é inserida em seu Estilizador. Uma vez inserida, a pedra perde a capacidade de evoluir pokémons, pois tem sua radiação canalizada para o aparelho e aproveitada de outras formas. Só é possível possuir uma Pedra Elemental atada ao seu Estilizador, e é necessário um minuto para trocar a Pedra do espaço destinado a ela. Cada Pedra Elemental concede uma Capacidade diferente a você. Todas as vezes que usar a Capacidade, são consumidas cinco Cargas da bateria de seu Estilizador. Pedra Elemental; Capacidade - Pedra Brilhante; Luminar - Pedra da Água; Manancial - Pedra da Alvorada; Luminar - Pedra da Folha; Secreção - Pedra da Lua; Silêncio - Pedra do Crepúsculo; Ininteligível - Pedra do Fogo; Combustão - Pedra do Sol; Sedução - Pedra do Trovão; * (Diferente das outras Pedras Elementais, a Pedra do Trovão não concede nenhuma Capacidade, portanto não há consumo de bateria associada a ela. Em vez disso, ela serve de bateria extra, aprimorando em dez Cargas o máximo de Cargas do Estilizador).'
     },
     {
       nome: 'Colete',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando sofrer dano por ataques, reduza o dano em 5. Este Colete não é aparente, pois pode ser ocultado abaixo de outras vestimentas.'
     },
     {
       nome: 'Derrubada',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon ou um humano',
@@ -2599,7 +2599,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Proteção',
-      requisitos: 'Colete',
+      requisitos: 'um pokémon com Proteção.',
       referencia: 'I, P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você é atingido por um Golpe',
@@ -2607,7 +2607,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pulverizador',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 6 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon ou um humano',
@@ -2615,7 +2615,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Resistência',
-      requisitos: 'Colete',
+      requisitos: 'um pokémon com Resistência.',
       referencia: 'I, P, X',
       frequencia: 'Diária',
       alvo: 'si',
@@ -2623,7 +2623,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Respirador',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'si',
@@ -2635,7 +2635,7 @@ export const TALENTOS_DATA = {
   'Bandido': [
     {
       nome: 'Afiar',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'uma de suas armas',
@@ -2643,14 +2643,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ataque Furtivo',
-      requisitos: 'Arma de Escolha para uma arma pequena e real (não ataque desarmado)',
+      requisitos: 'Arma de Escolha para uma arma pequena e real (não ataque desarmado).',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'outros não são conscientes que você carrega sua Arma de Escolha consigo. Quando você usa pela primeira vez sua Arma de Escolha para atacar em um combate, a Dificuldade de Acurácia é de apenas 2 e você ignora a Evasão do alvo. Além disso, se você acertar, você causa dano dobrado.'
     },
     {
       nome: 'Desarme',
-      requisitos: 'seis Talentos de Bandido (desconte as Características de Classe para este cálculo)',
+      requisitos: 'seis Talentos de Bandido (desconte as Características de Classe para este cálculo).',
       referencia: 'P, X',
       frequencia: 'Diária',
       gatilho: 'você ataca um humano com um ataque de Armas e tem sucesso',
@@ -2658,7 +2658,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Desespero',
-      requisitos: 'Ataque 18',
+      requisitos: 'Ataque 18.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon ou um humano',
@@ -2666,7 +2666,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Encare!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 4 Níveis, receba um uso diário adicional.',
       alvo: 'um pokémon ou um humano',
@@ -2674,7 +2674,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Lágrimas de Crocodilo',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'À Vontade',
       gatilho: 'você faz um Teste de Acurácia para atacar um pokémon ou um humano que causou dano a você na última ação dele',
@@ -2682,7 +2682,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'No Saco!',
-      requisitos: 'Ataque 17',
+      requisitos: 'Ataque 17.',
       referencia: 'P, X',
       frequencia: 'À Vontade',
       alvo: 'um humano',
@@ -2690,7 +2690,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Olha Lá!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       alvo: 'um pokémon ou um humano',
@@ -2698,7 +2698,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pensa Rápido!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       gatilho: 'você erra um ataque de Armas',
@@ -2706,7 +2706,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Riposta',
-      requisitos: 'Arma de Escolha',
+      requisitos: 'Arma de Escolha.',
       referencia: 'I, P, X',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       gatilho: 'você recebe um ataque de Armas usando uma arma real (não ataque desarmado)',
@@ -2714,7 +2714,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Roubo',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       alvo: 'um pokémon ou um humano',
@@ -2722,7 +2722,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Você Vai Pagar por Isso!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon ou um humano',
@@ -2734,7 +2734,7 @@ export const TALENTOS_DATA = {
   'Azarão': [
     {
       nome: 'Altamente Capaz',
-      requisitos: 'Capaz',
+      requisitos: 'Ataque Especial 22, Lapidar Pedra do',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu que possui pelo menos um estágio evolutivo não alcançado',
@@ -2750,7 +2750,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Campeão em Treinamento',
-      requisitos: 'ter evitado a evolução de um pokémon cuja forma final evolui no Nível 40 ou maior',
+      requisitos: 'ter evitado a evolução de um pokémon cuja forma final evolui no Nível 40 ou maior.',
       referencia: 'P, V',
       frequencia: 'Diária',
       alvo: 'um pokémon seu que possui pelo menos um estágio evolutivo não alcançado',
@@ -2758,7 +2758,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Capaz',
-      requisitos: 'Ataque Especial 16',
+      requisitos: 'Ataque Especial 16.',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'um pokémon seu que possui pelo menos um estágio evolutivo não alcançado',
@@ -2766,7 +2766,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Força Oculta +',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu que possui pelo menos um estágio evolutivo não alcançado',
@@ -2774,7 +2774,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Força Oculta ++',
-      requisitos: 'Ataque 16, Ataque Especial 16, Força Oculta +',
+      requisitos: 'Ataque 16, Ataque Especial 16, Força Oculta +.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu que possui pelo menos um estágio evolutivo não alcançado',
@@ -2790,7 +2790,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Lapidar Pedra do Sempre',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária',
       alvo: 'uma Pedra do Sempre',
@@ -2798,7 +2798,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Qualquer Coisa que Você Possa Fazer!',
-      requisitos: 'três Talentos de Azarão (desconte as Características de Classe para este cálculo)',
+      requisitos: 'três Talentos de Azarão (desconte as Características de Classe para este cálculo).',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 6 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu que possui pelo menos um estágio evolutivo não alcançado de um Tipo diferente de seu estágio evolutivo atual',
@@ -2806,7 +2806,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Quanto Maior, Maior a Queda!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'um pokémon seu que possui pelo menos um estágio evolutivo não alcançado',
@@ -2814,7 +2814,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Técnica Evoluída',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'seus pokémons que possuem pelo menos um estágio evolutivo não alcançado',
@@ -2822,7 +2822,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Técnica Versátil',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'todos os seus pokémons',
@@ -2834,14 +2834,14 @@ export const TALENTOS_DATA = {
   'Caçador': [
     {
       nome: 'Arranque',
-      requisitos: 'Ataque Especial 16, um pokémon com Velocidade 20',
+      requisitos: 'Ataque Especial 16, um pokémon com Velocidade 20. Referências: C,V',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'quando um pokémon seu sobe de nível, você pode adicionar pontos de Atributos à Velocidade, ignorando a Relação Basal.'
     },
     {
       nome: 'Alta Natural',
-      requisitos: 'Afirmação',
+      requisitos: 'Afirmação Referências: L,V',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu nocauteia um inimigo',
@@ -2849,14 +2849,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Emoção da Caça',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando seu pokémon nocauteia um inimigo usando Perseguição, devido a um Talento de Caçador ou após tê-lo rastreado depois de ele ter escapado, este pokémon recebe 25% de experiência extra.'
     },
     {
       nome: 'Finalize-o!',
-      requisitos: 'Sede de Sangue',
+      requisitos: 'Sede de Sangue. Referências: L,V',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu usando um Golpe que causa dano',
@@ -2864,7 +2864,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Não Pare!',
-      requisitos: 'Ataque 16',
+      requisitos: 'Ataque 16. Referências: L,X',
       referencia: 'L, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'seu pokémon deixa inconsciente um oponente',
@@ -2872,14 +2872,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Peguei Você!',
-      requisitos: '',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       efeito: 'quando seu Pokémon usa um Golpe com o Descritor Armadilha, você pode escolher maximizar a duração, em vez de rolá-la.'
     },
     {
       nome: 'Perseguição',
-      requisitos: 'Ataque 18',
+      requisitos: 'Ataque 18. Referências: P,X',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon ou um humano',
@@ -2887,21 +2887,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Perseguição Imprevisível',
-      requisitos: 'Perseguição',
+      requisitos: 'Perseguição. Referências: C,X',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'Quando obtiver este Talento, escolha um Tipo. Quando você ou um pokémon seu usar Perseguição, este Golpe pode ser usado do tipo escolhido, em vez de ser do Tipo Trevas. Uma vez escolhido o tipo, isso não pode ser mudado, mas você e seus pokémons ainda podem usar Perseguição como um Golpe de Trevas a seu critério. Especial: este Talento pode ser escolhido diversas vezes. Seus efeitos não se acumulam. Cada vez que ele é escolhido, ele é aplicado a um Tipo diferente.'
     },
     {
       nome: 'Sede de Sangue',
-      requisitos: 'Ataque Especial 18',
+      requisitos: 'Ataque Especial 18. Referências: C,V',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'você sabe se alguém está com menos da metade dos Pontos de Vida. Além disso, quando uma criatura hostil está abaixo de 50% dos PV, seu pokémon ativo eleva uma Fase de Velocidade. Esta elevação desaparece quando nenhuma criatura hostil estiver com menos da metade dos PV, e não se acumula se houver mais de um inimigo com menos de 50% de PV presente.'
     },
     {
       nome: 'Sem Escapatória +',
-      requisitos: 'Ataque 16, Ataque Especial 14',
+      requisitos: 'dois pokémons com Farejar, Olhar',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando humanos ou pokémons tentam fugir durante um encontro em que você participa e o deslocamento deles for igual ou maior do que o seu ou o do seu pokémon, eles devem rolar 1d20 e adicionar seus próprios MV. Se eles conseguirem um resultado maior do que 15 + seu MA, eles conseguem escapar. Caso contrário, você consegue manter seu rastro. Mesmo que o inimigo venha a escapar (obter sucesso neste teste), para fins de rastreá-lo e persegui-lo, seus pokémons e você adicionam +4 metros aos seus deslocamentos por 10 minutos. Se o inimigo estiver usando a Habilidade Fuga, ele é imune a este Talento. Este Talento substitui Sem Escapatória.'
@@ -2918,14 +2918,14 @@ export const TALENTOS_DATA = {
   'Especialista': [
     {
       nome: 'Abundância',
-      requisitos: 'Pressão + ou Pressão Positiva',
+      requisitos: 'Pressão + ou Pressão Positiva.',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'quando seus pokémons ganham uma elevação de um dos Atributos de Batalha através de uma Característica, Golpe ou Habilidade, eles ganham duas elevações naquele Atributo em vez disso.'
     },
     {
       nome: 'Buscador de Talentos',
-      requisitos: 'dois pokémons com uma Natureza idêntica',
+      requisitos: 'dois pokémons com Naturezas que beneficiam o Atributo de Escolha.',
       referencia: 'E, V',
       frequencia: 'Semanal',
       alvo: 'um pokémon',
@@ -2933,14 +2933,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Competência Fixa',
-      requisitos: 'Ataque Especial 18',
+      requisitos: 'Ataque Especial 18.',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'quando você substitui o Atributo de Escolha de um pokémon com Subversão Estatística ou Subversão Estatística +, em vez de ele perder uma Fase no novo Atributo de Escolha, ele ganha uma Fase naquele Atributo.'
     },
     {
       nome: 'Desbloquear Atributo',
-      requisitos: 'um pokémon com Atributo de Escolha 30',
+      requisitos: 'um pokémon com Atributo de Escolha 30.',
       referencia: 'P, X',
       frequencia: 'Especial',
       alvo: 'um pokémon',
@@ -2948,7 +2948,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Explosão de Atributo',
-      requisitos: 'Nível 10',
+      requisitos: 'Nível 10.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon',
@@ -2956,7 +2956,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pressão Positiva',
-      requisitos: 'Ataque 15, Pressão',
+      requisitos: 'Ataque 15, Pressão.',
       referencia: 'P, V',
       frequencia: 'À Vontade',
       alvo: 'um pokémon',
@@ -2964,7 +2964,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Subversão Estatística +',
-      requisitos: 'Ataque Especial 15',
+      requisitos: 'Ataque Especial 15.',
       referencia: 'P, V',
       frequencia: 'À Vontade',
       alvo: 'um pokémon',
@@ -2972,7 +2972,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Superioridade',
-      requisitos: 'cinco insígnias',
+      requisitos: 'cinco insígnias ou equivalentes.',
       referencia: 'P, V',
       frequencia: 'Diária',
       alvo: 'um pokémon inimigo',
@@ -2980,7 +2980,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Treinamento de Especialista +',
-      requisitos: 'três insígnias',
+      requisitos: '3 insígnias ou equivalentes.',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'o Atributo de Escolha de todos os seus pokémons',
@@ -2990,7 +2990,7 @@ export const TALENTOS_DATA = {
   'Estrategista': [
     {
       nome: 'Barreiras Pessoais',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu usa um Golpe com o Descritor Barreira',
@@ -2998,7 +2998,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Configurar Terreno',
-      requisitos: 'Ataque Especial 16',
+      requisitos: 'Ataque Especial 16.',
       referencia: 'L, V',
       frequencia: 'Diária',
       gatilho: 'um pokémon seu usa uma Capacidade que afeta o Terreno ou um Golpe com um dos seguintes Descritores: Ameaça, Barreira, Clima, Cobertura',
@@ -3006,7 +3006,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Explosão Adaptativa',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu usa um Golpe não causador de dano para elevar a Fase dele em um ou mais Atributos',
@@ -3014,14 +3014,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Intenção Arriscada',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'quando um pokémon seu está colocando Ameaças, ele pode aumentar a área das Ameaças em um número de metros igual a seu MA. Todos os metros extras devem ser adjacentes à área original. Se seus pokémons colocarem Ameaças em uma área ocupada por um inimigo, este imediatamente sofre os efeitos da Ameaça ao se deslocar.'
     },
     {
       nome: 'Potencial Elevado',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu faz um teste para uma Capacidade',
@@ -3029,7 +3029,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Prioridades',
-      requisitos: 'Ataque 14',
+      requisitos: 'Ataque 14.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu usa um Golpe que tem como alvo(s) apenas um ou mais aliados',
@@ -3037,14 +3037,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Reconhecimento de Técnica',
-      requisitos: 'seis Talentos de Estrategista (desconte as Características de Classe para este cálculo)',
+      requisitos: 'seis Talentos de Estrategista (desconte as Características de Classe para este cálculo).',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'quando um pokémon de um oponente usa um Golpe que ele já usou antes naquele encontro, a Dificuldade de Acurácia dele aumenta em 4.'
     },
     {
       nome: 'Táticas do Terreno',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'um pokémon seu com pelo menos uma das seguintes Capacidades: Congelação, Manancial, Materialização, Rebento ou Térreo',
@@ -3052,7 +3052,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Versatilidade',
-      requisitos: 'Ataque 14, Ataque Especial 18',
+      requisitos: 'Ataque 14, Ataque Especial 18.',
       referencia: 'P, V',
       frequencia: 'Diária',
       alvo: 'um pokémon seu',
@@ -3060,7 +3060,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Vórtice Climático',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu usa um Golpe com o Descritor Clima',
@@ -3070,21 +3070,21 @@ export const TALENTOS_DATA = {
   'Inquebrável': [
     {
       nome: 'Ainda de Pé!',
-      requisitos: 'Ataque 18, Ataque Especial 16',
+      requisitos: 'Ataque 18, Ataque Especial 16.',
       referencia: 'I, P, X',
       frequencia: 'Constante',
       efeito: 'você ainda por comandar seus pokémons mesmo enquanto inconsciente. Se você escolher fazê-lo e for reduzido a -100% de seus PV, você não poderá fazer um teste de morte.'
     },
     {
       nome: 'Ainda de Pé! +',
-      requisitos: 'Ainda de Pé!',
+      requisitos: 'Ainda de Pé!.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você ainda por comandar seus pokémons mesmo enquanto inconsciente. Isso não interfere em quando você deve fazer um teste de morte. Este Talento substitui Ainda de Pé!'
     },
     {
       nome: 'Amigo é pra Essas Coisas!',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um de seus pokémons adjacente a você é acertado por um Golpe',
@@ -3092,28 +3092,28 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Aparar',
-      requisitos: 'Ataque 15',
+      requisitos: 'Ataque 15.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'adicione seu MA à sua Defesa e à sua Defesa Especial para fins de diminuir o dano que você sofreria quando é atacado.'
     },
     {
       nome: 'Aparar +',
-      requisitos: 'Aparar',
+      requisitos: 'Aparar.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'adicione o dobro de seu MA à sua Defesa e à sua Defesa Especial para fins de diminuir o dano que você sofreria quando é atacado. Este Talento substitui Aparar.'
     },
     {
       nome: 'Consciente',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'enquanto dorme, você mantêm ciência sobre o ambiente externo usando seus sentidos normalmente como se estivesse acordado, salvo para a visão. Você instintivamente reage a perigos enquanto dorme, acordando imediatamente. Enquanto dorme, você não recebe penalidades a testes envolvendo percepção. Se você estiver sob a Condição Sono, você simplesmente ignora todos os efeitos a ela associados.'
     },
     {
       nome: 'Mantenha a Linha!',
-      requisitos: 'três pokémons com Defesa Especial 25',
+      requisitos: 'três pokémons com Defesa Especial 25.',
       referencia: 'I, P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você é atingido por um Golpe especial (ou por um humano usando Armas se for considerado um ataque especial) e perderia mais do que 25 PV por isso',
@@ -3121,7 +3121,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Proteção',
-      requisitos: 'um pokémon com Proteção',
+      requisitos: 'um pokémon com Proteção.',
       referencia: 'I, P, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       gatilho: 'você é atingido por um Golpe',
@@ -3129,7 +3129,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Resistência',
-      requisitos: 'um pokémon com Resistência',
+      requisitos: 'um pokémon com Resistência.',
       referencia: 'I, P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você é atingido por um Golpe',
@@ -3137,7 +3137,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Segure Firme!',
-      requisitos: 'três pokémons com Defesa 25',
+      requisitos: 'três pokémons com Defesa 25.',
       referencia: 'I, P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você é atingido por um Golpe físico ou por um humano usando Armas (mas não se por algum motivo, este é considerado um ataque especial) e perderia mais do que 25 PV por isso',
@@ -3147,7 +3147,7 @@ export const TALENTOS_DATA = {
   'Síncrono': [
     {
       nome: 'Apoio!',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'dois pokémons ativos seus ou um pokémon ativo seu e si',
@@ -3155,7 +3155,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Assalto Duplo',
-      requisitos: 'Interferência',
+      requisitos: 'Interferência.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémons seu causa dano a um oponente que também sofreu dano de outro pokémon ativo seu nesta mesma rodada',
@@ -3163,7 +3163,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Com Eles!',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária',
       alvo: 'seu pokémon ativo enquanto você está em uma batalha dupla ao lado de um aliado que possui o outro pokémon ativo aliado da batalha dupla',
@@ -3171,7 +3171,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Combo!',
-      requisitos: 'Defesa 22',
+      requisitos: 'Defesa 22.',
       referencia: 'P, V',
       frequencia: 'Diária',
       alvo: 'dois pokémons ativos seus',
@@ -3179,7 +3179,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Impulso Sincronizado',
-      requisitos: 'Interferência',
+      requisitos: 'Interferência.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémons seu causa dano a um oponente que também sofreu dano de outro pokémon ativo seu nesta mesma rodada',
@@ -3187,7 +3187,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Interferência',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'um pokémon que foi acertado por dois pokémons seus nesta rodada',
@@ -3195,7 +3195,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Por um Amigo',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um de seus dois pokémons adjacentes é alvo de um Golpe',
@@ -3203,7 +3203,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Por um Amigo +',
-      requisitos: 'Por um Amigo',
+      requisitos: 'Por um Amigo.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um de seus dois pokémons adjacentes é alvo de um Golpe',
@@ -3219,7 +3219,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Trabalho em Equipe',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'dois pokémons ativos seus',
@@ -3229,7 +3229,7 @@ export const TALENTOS_DATA = {
   'Beldade': [
     {
       nome: 'Aliados da Beldade',
-      requisitos: '1 prêmios em Gincana ou Fisiculturismo',
+      requisitos: '1 prêmios em Gincana ou Fisiculturismo.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Desfile de Beleza ou um pokémon aliado com pelo menos um prêmio em Desfile de Beleza',
@@ -3237,7 +3237,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Arrebatar pela Beleza',
-      requisitos: '1 prêmios em Concurso de Fofura ou Espetáculo',
+      requisitos: '1 prêmios em Concurso de Fofura ou Espetáculo.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Desfile de Beleza ou um pokémon aliado com pelo menos um prêmio em Desfile de Beleza',
@@ -3245,7 +3245,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Beleza Estonteante',
-      requisitos: '2 prêmios em Desfiles de Beleza',
+      requisitos: '2 prêmios em Desfiles de Beleza.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Desfile de Beleza ou um pokémon aliado com pelo menos um prêmio em Desfile de Beleza',
@@ -3253,7 +3253,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Classe e Finura',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu ou um pokémon aliado',
@@ -3261,7 +3261,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Elegância',
-      requisitos: 'um pokémon com Beleza 15',
+      requisitos: 'um pokémon com Beleza 15.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu com Beleza 15 usa um Golpe com a Categoria Beleza',
@@ -3269,7 +3269,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Encantadora',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Desfile de Beleza ou um pokémon aliado com pelo menos um prêmio em Desfile de Beleza',
@@ -3277,7 +3277,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Fabulosa',
-      requisitos: 'Defesa Especial 18',
+      requisitos: 'Defesa Especial 18.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu com Beleza 15 usa um Golpe com a Categoria Beleza',
@@ -3285,7 +3285,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Graça',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Desfile de Beleza ou um pokémon aliado com pelo menos um prêmio em Desfile de Beleza',
@@ -3293,7 +3293,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pele Maravilhosa',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Desfile de Beleza ou um pokémon aliado com pelo menos um prêmio em Desfile de Beleza',
@@ -3301,7 +3301,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sedução',
-      requisitos: 'Defesa Especial 17',
+      requisitos: 'Defesa Especial 17.',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'todos os seus pokémons com pelo menos um prêmio em Desfile de Beleza possuem a Capacidade Sedução. Quando alguém (qualquer um) estiver atacando um pokémon selvagem que atacou um dos seus pokémons com Sedução na mesma rodada ou na rodada anterior, a Dificuldade de Acurácia é reduzida em 2.'
@@ -3310,7 +3310,7 @@ export const TALENTOS_DATA = {
   'Cativante': [
     {
       nome: 'Aliados do Cativante',
-      requisitos: '1 prêmios em Espetáculo ou Fisiculturismo',
+      requisitos: '1 prêmios em Concurso de Beleza ou',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fofura ou um pokémon aliado com pelo menos um prêmio em Concurso de Fofura',
@@ -3326,7 +3326,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Atenção para não Cair',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fofura ou um pokémon aliado com pelo menos um prêmio em Concurso de Fofura',
@@ -3334,7 +3334,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Brincadeiras',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com um prêmio em Concurso de Fofura',
@@ -3342,7 +3342,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Delicadeza',
-      requisitos: 'um pokémon com Ternura 15',
+      requisitos: 'um pokémon com Ternura 15.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu com Ternura 15 usa um Golpe com a Categoria Ternura',
@@ -3350,7 +3350,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Fofo Demais',
-      requisitos: '3 prêmios em Concursos de Fofura',
+      requisitos: '3 prêmios em Concursos de Fofura.',
       referencia: 'P, V',
       frequencia: 'Diária',
       gatilho: 'um pokémon seu um prêmio em Concurso de Fofura é alvo de um ataque',
@@ -3358,7 +3358,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Infantilização',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu ou um pokémon aliado',
@@ -3366,7 +3366,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Miúdo',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fofura ou um pokémon aliado com pelo menos um prêmio em Concurso de Fofura',
@@ -3374,7 +3374,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Subestimado',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fofura ou um pokémon aliado com pelo menos um prêmio em Concurso de Fofura',
@@ -3382,7 +3382,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tadinho de Mim!',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fofura ou um pokémon aliado com pelo menos um prêmio em Concurso de Fofura',
@@ -3392,7 +3392,7 @@ export const TALENTOS_DATA = {
   'Descolado': [
     {
       nome: 'Acha que é Inalcançável?',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Espetáculo ou um pokémon aliado com pelo menos um prêmio em Espetáculo',
@@ -3400,7 +3400,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Aliados do Descolado',
-      requisitos: '1 prêmios em Gincana ou Concurso de Fofura',
+      requisitos: '1 prêmios em Gincana ou Concurso de Fofura.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Espetáculo ou um pokémon aliado com pelo menos um prêmio em Espetáculo',
@@ -3408,7 +3408,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Arrebatar pelo Estilo',
-      requisitos: '1 prêmio em Concurso de Beleza ou de Fisiculturismo',
+      requisitos: '1 prêmio em Concurso de Beleza ou de Fisiculturismo.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Espetáculo ou um pokémon aliado com pelo menos um prêmio em Espetáculo',
@@ -3416,7 +3416,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Atitude Radical!',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu ou um pokémon aliado',
@@ -3424,7 +3424,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Desafiador',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Espetáculo ou um pokémon aliado com pelo menos um prêmio em Espetáculo',
@@ -3432,7 +3432,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Fitar',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Espetáculo ou um pokémon aliado com pelo menos um prêmio em Espetáculo',
@@ -3440,14 +3440,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Liderança',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'todos os seus pokémons com pelo menos um prêmio em Espetáculo e Estilo 10 possuem a Capacidade Hierarquia.'
     },
     {
       nome: 'Minúcia',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Espetáculo ou um pokémon aliado com pelo menos um prêmio em Espetáculo',
@@ -3455,7 +3455,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Original',
-      requisitos: 'um pokémon com Estilo 15',
+      requisitos: 'um pokémon com Estilo 15.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu com Estilo 15 usa um Golpe com a Categoria Estilo',
@@ -3463,7 +3463,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Único',
-      requisitos: 'Defesa Especial 18, 3 prêmios em Concurso de Beleza ou de Fisiculturismo',
+      requisitos: 'Defesa Especial 18, 3 prêmios em Concurso de Beleza ou de Fisiculturismo.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu com Estilo 15 usa um Golpe com a Categoria Estilo',
@@ -3480,63 +3480,63 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Alfaiataria Personalizada',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após uma hora de trabalho, escolha uma Aptidão. Você cria uma Peça Estilosa, que é uma Peça de Vestuário para humanos, associada à Aptidão escolhida. A Peça Estilosa possui um valor igual a seu MDE no momento da criação dela. Quando o usuário da Peça Estilosa usá-la em um Concurso que usa aquela Aptidão, ele pode Apelar a pontos da Peça Estilosa quando poderia apelas à Aptidão, mas apenas se estiver ativando algum Talento ou Acessório. Não é possível combinar mais de uma Peça Estilosa para beneficiar a mesma Aptidão. Além disso, aquele que estiver usando a Peça Estilosa recebe +1 às rolagens de Defesa Especial.'
     },
     {
       nome: 'Alfaiataria Prática',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após uma hora de trabalho, escolha um Atributo. Você cria uma Peça Prática, que é uma Peça de Vestuário para humanos, associada ao Atributo escolhido. A Peça Prática pode ser ativada pelo usuário para adicionar +1 ao Modificador daquele Atributo por cinco minutos. Uma vez que tenha sido ativada pela terceira vez, ela perde suas habilidades, mas não se quebra. Não é possível combinar mais de uma Peça Prática para beneficiar o mesmo Atributo.'
     },
     {
       nome: 'Alfaiataria Primorosa',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'E, X',
       frequencia: 'À Vontade',
       efeito: 'após cinco horas de trabalho, você cria uma Peça Primorosa, que é uma Peça de Vestuário para humanos. A Peça da Sorte pode ser ativada pelo usuário para adicionar +1d8 ao resultado de uma rolagem qualquer feita por ele. Uma vez que tenha sido ativada pela terceira vez, ela quebra. Não é possível ativá-la mais de uma vez na mesma rodada. Além disso, aquele que estiver usando a Peça Primorosa recebe +1 às rolagens de Defesa Especial.'
     },
     {
       nome: 'Design de Capacitação',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após duas horas de trabalho, escolha uma Capacidade com um valor numérico ou um Deslocamento. Você cria um item Mantido que pode ser ativado uma vez diária para conceder, durante cinco minutos, +2 à Capacidade designada ou ao Deslocamento designado do pokémon. Se você escolher Força ou Inteligência, o bônus é de apenas +1. Uma vez que o item seja ativado pela terceira vez, ele se quebra.'
     },
     {
       nome: 'Design de Habilitação',
-      requisitos: 'Defesa Especial 18',
+      requisitos: 'Defesa Especial 18.',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após duas horas de trabalho, escolha uma Habilidade que um dos seus pokémons possui (mas não a Habilidade Sem Alma). Você cria um item Mantido que pode ser ativado uma vez diária para conceder, por duas rodadas, a Habilidade escolhida ao pokémon.'
     },
     {
       nome: 'Design de Técnica',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após quatro horas de trabalho, escolha um Golpe que um dos seus pokémons conhece. Você cria um Acessório que pode ser ativado uma vez diária para simular aquele Golpe em Concursos. Uma vez que tenha sido ativado pela terceira vez, o Acessório perde suas habilidades, mas não se quebra.'
     },
     {
       nome: 'Design Estável',
-      requisitos: 'Design Volátil',
+      requisitos: 'Design Volátil.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando você cria um Acessório ou uma Peça de Vestuário que possui um número de usos limitado antes de quebrar, você pode passar três horas a mais trabalhando no objeto para que ele seja permanente. Acessórios e Peças de Vestuário permanentes não quebram por número de usos, mas só podem ser ativados uma vez diária.'
     },
     {
       nome: 'Design Volátil',
-      requisitos: 'ter criado 10 itens com Talentos de Estilista',
+      requisitos: 'ter criado 10 itens com Talentos de Estilista.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando você cria um Acessório ou uma Peça de Vestuário que possui um número de usos limitado antes de quebrar, você pode passar três horas a mais trabalhando no objeto para que ele seja semipermanente. Acessórios e Peças de Vestuário semipermanentes não quebram por número de usos, mas, a cada vez que são ativados, o usuário rola 1d20. Se a rolagem for 4 ou menos, o Acessório ou a Peça de Vestuário perdem os benefícios que conferem.'
     },
     {
       nome: 'Estilização',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'À Vontade',
       alvo: 'um item',
@@ -3546,7 +3546,7 @@ export const TALENTOS_DATA = {
   'Nerd': [
     {
       nome: 'Aliados do Nerd',
-      requisitos: '1 prêmios em Concurso de Beleza ou Espetáculo',
+      requisitos: '1 prêmios em Concurso de Beleza ou Espetáculo.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Gincana ou um pokémon aliado com pelo menos um prêmio em Gincana',
@@ -3554,7 +3554,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Arrebatar pela Perspicácia',
-      requisitos: '1 prêmios em Concurso de Fofura ou de Fisiculturismo',
+      requisitos: '1 prêmios em Concurso de Fofura ou de Fisiculturismo.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Gincana ou um pokémon aliado com pelo menos um prêmio em Gincana',
@@ -3562,7 +3562,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Aula de Idiomas',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Mensal',
       alvo: 'um pokémon seu com Lealdade elevada e Inteligência 6',
@@ -3570,7 +3570,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Detalhista',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Gincana ou um pokémon aliado com pelo menos um prêmio em Gincana',
@@ -3578,7 +3578,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Escolaridade',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       alvo: 'um pokémon seu com pelo menos um prêmio em Gincana',
@@ -3586,7 +3586,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Intelectualizar',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu ou um pokémon aliado',
@@ -3594,7 +3594,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Jogos Online',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Gincana ou um pokémon aliado com pelo menos um prêmio em Gincana',
@@ -3602,7 +3602,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Potencial Mental',
-      requisitos: 'um pokémon com Perspicácia 15',
+      requisitos: 'um pokémon com Perspicácia 15.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu com Perspicácia 15 usa um Golpe com a Categoria Perspicácia',
@@ -3610,7 +3610,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sabe Tudo',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Gincana ou um pokémon aliado com pelo menos um prêmio em Gincana',
@@ -3620,7 +3620,7 @@ export const TALENTOS_DATA = {
   'Parrudo': [
     {
       nome: 'Aliados do Parrudo',
-      requisitos: '1 prêmios em Concurso de Beleza ou de Fofura',
+      requisitos: '1 prêmios em Concurso de Beleza ou de Fofura.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fisiculturismo ou um pokémon aliado com pelo menos um prêmio em Concurso de Fisiculturismo',
@@ -3628,7 +3628,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Arrebatar pelo Vigor',
-      requisitos: '1 prêmios em Gincana ou Espetáculo',
+      requisitos: '1 prêmios em Gincana ou Espetáculo.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fisiculturismo ou um pokémon aliado com pelo menos um prêmio em Concurso de Fisiculturismo',
@@ -3636,7 +3636,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Corpulento',
-      requisitos: 'um pokémon com Vigor 5',
+      requisitos: 'um pokémon com Vigor 5.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon com Vigor 5',
@@ -3644,7 +3644,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Couro Duro',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fisiculturismo ou um pokémon aliado com pelo menos um prêmio em Concurso de Fisiculturismo',
@@ -3652,7 +3652,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Impassível',
-      requisitos: 'um pokémon com Vigor 15',
+      requisitos: 'um pokémon com Vigor 15.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu com Vigor 15 usa um Golpe com a Categoria Vigor',
@@ -3660,7 +3660,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Impenetrável',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fisiculturismo ou um pokémon aliado com pelo menos um prêmio em Concurso de Fisiculturismo',
@@ -3668,7 +3668,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Musculação',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fisiculturismo ou um pokémon aliado com pelo menos um prêmio em Concurso de Fisiculturismo',
@@ -3676,7 +3676,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Postura Robusta',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fisiculturismo ou um pokémon aliado com pelo menos um prêmio em Concurso de Fisiculturismo',
@@ -3684,7 +3684,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Potência Muscular',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu com pelo menos um prêmio em Concurso de Fisiculturismo ou um pokémon aliado com pelo menos um prêmio em Concurso de Fisiculturismo',
@@ -3692,7 +3692,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Teimosia',
-      requisitos: 'Defesa 16',
+      requisitos: 'Defesa 16.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu ou um pokémon aliado',
@@ -3702,70 +3702,70 @@ export const TALENTOS_DATA = {
   'Artífice': [
     {
       nome: 'Armamento Elemental',
-      requisitos: 'ter forjado três armas',
+      requisitos: 'ter forjado três armas.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você pode usar um Empoderador Elemental como matéria-prima quando criar uma arma para que o dano causado por aquela arma passe a ser do Tipo do Empoderador Elemental usado. Infelizmente, isso reduz a Categoria de Dano Basal da arma em 1. Não é possível usar mais de um Empoderador Elemental como matéria-prima para uma arma.'
     },
     {
       nome: 'Armeiro',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você pode usar as pedras listadas abaixo como matérias-primas quando criar armas. Uma vez diária, quando você faz um Teste de Acurácia para atacar com uma arma criada com uma destas pedras e o resultado é maior que 15, você pode ativar o poder da pedra como uma Ação Livre para usar o efeito descrito adiante no alvo do seu ataque. Se, em virtude de algum Talento ou outra característica sua, seu ataque de Armas pode acertar mais de um alvo, apenas o primeiro alvo sofre o efeito da pedra. Matérias-primas e efeitos: Pedra Brilhante (Crítico), Pedra da Água (Confusão), Pedra da Folha (Veneno), Pedra do Fogo (Queimadura), Pedra do Sempre (Perde uma Fase de Defesa), Pedra do Trovão (Paralisia).'
     },
     {
       nome: 'Aprendiz',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após cinco horas de trabalho cansativo (consumindo 20 PV), role 1d20 + MV. Se o resultado for 20 ou mais, você cria um dos seguintes objetos à sua escolha: Argila, Garra Rápida, Orbe Ardente ou Orbe Tóxico. Se o resultado for menor que 20, você ainda cria um destes objetos, mas qual objeto é determinado aleatoriamente.'
     },
     {
       nome: 'Artesão',
-      requisitos: 'Aprendiz',
+      requisitos: 'Aprendiz.',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após cinco horas de trabalho cansativo (consumindo 20 PV), role 1d20 + MV. Se o resultado for 20 ou mais, você cria um dos seguintes objetos à sua escolha: Cinturão do Campeão, Lente Larga, Polvilho Brilhante ou Sino de Conchas. Se o resultado for menor que 20, você ainda cria um destes objetos, mas qual objeto é determinado aleatoriamente.'
     },
     {
       nome: 'Empoderador Potencial',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após dez horas de trabalho cansativo (consumindo 20 PV), você cria um Item que, ao ser Mantido, eleva uma Fase de um Atributo à sua escolha. Você pode dar a ele o formato e o nome que quiser.'
     },
     {
       nome: 'Ferraria',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após dez horas de trabalho cansativo (consumindo 20 PV), você cria um objeto que pode ser ativado uma vez diária. Quando ativado, ele garante ao humano que o use uma Habilidade por uma hora. Criar este objeto exige o sacrifício de um item. A Habilidade que ele concederá depende do item usado para produzi-lo. O objeto frequentemente é uma armadura, mas pode assumir outras formas, de acordo com sua criatividade e se o Narrador julgar que a forma é apropriada. Objetos destruídos e Habilidades: Armadura (Robustez), Eletrizante (Elasticidade), Escama de Dragão (Espírito Vigoroso), Escama Marinha (Revestimento Aquoso), Garra Afiada (Armadura), Pedra do Rei (Foco Interior), Pedra Oval (Obtusidade), Presa Marinha (Revestimento Aquoso), Revestimento Metálico (Metabolização), Rocha Magmática (Revestimento Magmático), Traje do Ceifador (Ritmo Próprio).'
     },
     {
       nome: 'Instrumental',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Mensal',
       efeito: 'após dez horas de trabalho cansativo (consumindo 20 PV), escolha uma Condição entre Confusão, Paixão ou Sono. Você cria um instrumento musical que, quando tocado, cura a Condição escolhida de todos os pokémons e humanos a até três metros. Este efeito do instrumento musical pode ser ativado até uma vez diária.'
     },
     {
       nome: 'Mestre da Armaria',
-      requisitos: 'Armeiro',
+      requisitos: 'Armeiro.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você pode usar as pedras listadas adiante como matérias-primas para criar armas. Uma vez diária, você pode ativar o poder da pedra. Matérias-primas, ativação e efeitos: Pedra da Alvorada (A qualquer momento com a arma - Ataca um alvo adjacente com a arma reduzindo a Categoria de Dano Basal em 2), Pedra da Lua (Ao atacar com a arma - Ignore a Evasão do alvo e também os Golpes Detecção e Proteção), Pedra do Crepúsculo (Ao obter um Crítico com a arma - Recebe a Habilidade Franco-Atirador para aquele Crítico), Pedra do Frio (Ao obter um Crítico com a arma - Congelamento ao alvo), Pedra do Sol (Ao acertar um ataque com a arma - Causar dano Especial, em vez de dano Físico).'
     },
     {
       nome: 'Mestre do Artesanato',
-      requisitos: 'Artesão',
+      requisitos: 'Artesão.',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após cinco horas de trabalho cansativo (consumindo 20 PV), role 1d20 + MV. Se o resultado for 20 ou mais, você cria um dos seguintes objetos à sua escolha: Bandana, Faixa Meditativa ou Orbe Vital. Se o resultado for menor que 20, você ainda cria um destes objetos, mas qual objeto é determinado aleatoriamente.'
     },
     {
       nome: 'Perfumaria',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após seis horas de trabalho cansativo (consumindo 20 PV), você cria um Incenso Relaxante, um Incenso Intenso ou um Incenso Místico.'
@@ -3776,7 +3776,7 @@ export const TALENTOS_DATA = {
   'Colecionador': [
     {
       nome: 'Assistência',
-      requisitos: 'Ponto de Captura ++',
+      requisitos: 'Ponto de Captura ++.',
       referencia: 'C, E',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon aliado numa posse adjacente',
@@ -3784,35 +3784,35 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Camuflagem',
-      requisitos: 'Peregrino Silencioso',
+      requisitos: 'Peregrino Silencioso.',
       referencia: 'C, X',
       frequencia: 'Diária',
       efeito: 'você recebe os benefícios de Mimetismo e Mimetismo Tático.'
     },
     {
       nome: 'Compulsão',
-      requisitos: 'Velocidade 16',
+      requisitos: 'Velocidade 16.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você pode ter um total de pokémons 6 superior ao normal.'
     },
     {
       nome: 'Cosplay',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Cena',
       efeito: 'você recebe a Habilidade de um pokémon seu à sua escolha até o final da cena.'
     },
     {
       nome: 'Inabalável',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'uma vez por rodada, você pode ignorar um ataque que o atingiria, afetando sua Defesa Especial em vez de sua Defesa ou vice-versa.'
     },
     {
       nome: 'Maníaco por Captura +',
-      requisitos: 'Velocidade 16',
+      requisitos: 'Velocidade 16.',
       referencia: 'C, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você faz um Teste de Captura',
@@ -3820,28 +3820,28 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Peregrino Silencioso',
-      requisitos: 'ter capturado pokémons em quatro biomas diferentes',
+      requisitos: 'ter capturado pokémons em quatro biomas diferentes.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você recebe +1 nos Testes de Atletismo e Furtividade feitos fora de combate. Você pode fazer Testes de Furtividade para se esconder mesmo enquanto observado desde que haja neblina, vegetação, água ou outros fenômenos naturais nos quais se esconder.'
     },
     {
       nome: 'Pokébola Múltipla',
-      requisitos: 'Velocidade 16',
+      requisitos: 'Velocidade 16.',
       referencia: 'C, E',
       frequencia: 'Semanal',
       efeito: 'arremesse uma pokébola numa posse adjacente. Todas as criaturas naquela posse tornam-se alvos de Teste de Captura com a pokébola (sendo que cada teste recebe a penalidade normalmente aplicada quando o alvo não é uma criatura). A pokébola só captura uma criatura.'
     },
     {
       nome: 'Prêmio Raro',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
-      efeito: 'você recebe +10 em Testes de Captura de pokémons Lendários.'
+      efeito: 'qualquer pokémon shiny ou Lendário conta como oito novas espécies para propósitos de sua Contagem e de subir de Nível.'
     },
     {
       nome: 'Rastreador',
-      requisitos: 'Rastreador Informado +',
+      requisitos: 'Rastreador Informado +.',
       referencia: 'C, E',
       frequencia: 'Diária',
       alvo: 'um pokémon aliado',
@@ -3849,7 +3849,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Zelo',
-      requisitos: 'Velocidade 18',
+      requisitos: 'Velocidade 18.',
       referencia: 'C, X',
       frequencia: 'Semanal',
       alvo: 'um pokémon aliado',
@@ -3861,7 +3861,7 @@ export const TALENTOS_DATA = {
   'Domador': [
     {
       nome: 'Armadilha Paralisante',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon ou um humano que passe na área onde a armadilha foi posicionada',
@@ -3869,7 +3869,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Bem Aqui!',
-      requisitos: 'um pokémon com um Golpe com o Descritor Prisão',
+      requisitos: 'um pokémon com um Golpe com o Descritor Prisão.',
       referencia: 'C, X',
       frequencia: 'Constante',
       alvo: 'um pokémon Preso por um dos seus pokémons',
@@ -3877,7 +3877,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Bomba Sonora',
-      requisitos: 'um pokémon com Supersônico',
+      requisitos: 'um pokémon com Supersônico.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon',
@@ -3885,7 +3885,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Derrubar',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon Laçado ou um humano Laçado',
@@ -3893,7 +3893,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Doçura no Ar',
-      requisitos: 'um pokémon com Sedução',
+      requisitos: 'um pokémon com Sedução.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon',
@@ -3901,7 +3901,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Domação +',
-      requisitos: 'Velocidade 18',
+      requisitos: 'Velocidade 18.',
       referencia: 'L, X',
       frequencia: 'À Vontade',
       alvo: 'um pokémon selvagem',
@@ -3909,7 +3909,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Espalhar Feromônios',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon',
@@ -3917,7 +3917,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Falso Ataque',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você causa dano à sua Presa',
@@ -3925,7 +3925,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pronto para Captura',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon Preso por Derrubar',
@@ -3933,7 +3933,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Rodeio',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon Laçado tenta usar um Golpe',
@@ -3941,7 +3941,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tranquilizante',
-      requisitos: 'um pokémon com Esporos ou Pó Sonífero',
+      requisitos: 'um pokémon com Esporos ou Pó Sonífero.',
       referencia: 'P, X',
       frequencia: 'Diária',
       efeito: 'usa o Golpe Bocejo em um alvo a até 30 metros. Após o alvo dormir devido aos efeitos do Tranquilizante, ele se torna imune ao Tranquilizante por seis horas.'
@@ -3952,42 +3952,42 @@ export const TALENTOS_DATA = {
   'Engenheiro': [
     {
       nome: 'Alinhar Curva',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária',
       efeito: 'aumente seu MAE ou seu MDE por um valor igual ao número de espécies diferentes de pokémons possuídas dividido por dez.'
     },
     {
       nome: 'Arma Acoplada',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'após doze horas de trabalho, você pode acoplar ao seu Braço Mecânico uma arma criada por um Artífice com matérias-primas especiais ou não. Você sempre é considerado possuindo o Talento Arma de Escolha para a arma que estiver atualmente acoplada a seu Braço Mecânico e nunca poderá ser desarmado de sua Arma Acoplada. Se preferir, a Arma Acoplada pode ser retrátil se encolhendo para dentro de seu Braço Mecânico quando você determinar. Com sua Arma Acoplada, você pode adicionar sua Velocidade às rolagens de dano em substituição a seu Ataque.'
     },
     {
       nome: 'Armadilhas para Pokébolas',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'a qualquer momento, você pode ter uma quantidade de suas pokébolas igual a seu MV para serem usadas em armadilhas. Aplicar ou remover as modificações necessárias para tornar uma pokébola usável em uma armadilha requer dez minutos. Você deve instalar a pokébola em um lugar onde quer deixar a armadilha. Posteriormente, você poderá, usando uma Ação Padrão, disparar o gatilho deixado na Armadilha para Pokébola tanto para capturar um pokémon adjacente (se a pokébola estava vazia) quanto para liberar seu pokémon (se a pokébola contém um pokémon).'
     },
     {
       nome: 'Canhão de Pokébolas',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'seu Braço Mecânico pode agora atirar pokébolas tanto para enviar seus pokémons à batalha quanto para capturar pokébolas selvagens. Quando atirar um pokébola em um pokémon selvagem, subtraia 12 do resultado do Teste de Captura. Além disso, a pokébola causa 1d8 de dano ao pokémon selvagem, que não pode reduzir este dano usando Defesa ou Defesa Especial.'
     },
     {
       nome: 'Hacker',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você pode acessar qualquer computador ou rede sem a necessidade de um teste de Perícia. Para qualquer outra rolagem da Perícia Programação, receba +5.'
     },
     {
       nome: 'Meteoro',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon ou um humano',
@@ -3995,14 +3995,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Óculos Digitalizadores',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'uma vez por rodada, você pode ver uma porcentagem quando olha para um pokémon. Esta porcentagem representa quantos Pontos de Vida ele possui remanescentes.'
     },
     {
       nome: 'Perfuração',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon ou um humano',
@@ -4010,21 +4010,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Propulsor',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'após doze horas de trabalho, seu Braço Mecânico agora é flutuante e possui um compartimento que revela um propulsor concedendo a você Deslocamentos de Natação 8 e Subaquático 6.'
     },
     {
       nome: 'Robô',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após dez horas de trabalho cansativo (consumindo 40 PV), você consegue construir um pequeno robô em formato de um pokémon controlado remotamente. O robô possui até 50 centímetros de altura e pode ser de qualquer espécie que possua até este tamanho, e sua aparência pode variar. Ele possui Deslocamento Terrestre 5 e pode ter um Item Mantido próprio (ele pode segurar qualquer pequeno objeto). Ele pode ser controlado remotamente a até 25 metros por um dispositivo que consta em seu Braço Mecânico. Pokémons seus com a Capacidade Virtualidade podem possuir um robô seu sem precisar fazer rolagens. Um robô possui 20 Pontos de Vida e recebe dano superefetivo por Eletricidade, Fogo, Terra e Pedra, a menos que esteja possuído por um Pokémon com Virtualidade, caso em que ele é considerado do Tipo do pokémon em questão. Após dez horas de trabalho cansativo (consumindo 40 PV), você consegue atualizar um robô seu para que ele ganhe uma das seguintes funções: receber 20 Pontos de Vida extras, poder usar o Golpe Brasa uma vez diária, poder usar o Golpe Choque do Trovão uma vez diária, possuir um gravador e reprodutor de áudio, possuir uma câmera, receber Deslocamento Aéreo de Voo 5, poder ser controlado remotamente a até 200 metros.'
     },
     {
       nome: 'Soco Bala',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon ou um humano',
@@ -4036,7 +4036,7 @@ export const TALENTOS_DATA = {
   'Guardião': [
     {
       nome: 'Aqui!',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -4044,7 +4044,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Bênção do Guardião',
-      requisitos: 'Salvaguarda',
+      requisitos: 'Salvaguarda.',
       frequencia: 'Constante',
       referencia: 'C, X',
       alvo: 'um pokémon ou um humano (possivelmente si mesmo)',
@@ -4052,7 +4052,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Desgaste da Guerra',
-      requisitos: 'Pelo Time!, cinco outros Talentos de Guardião (desconte as Características de Classe para este cálculo)',
+      requisitos: 'Pelo Time!, cinco outros Talentos de Guardião (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 20 Níveis, receba um uso diário adicional.',
       referencia: 'I, X',
       gatilho: 'você usa Guarda-Costas ou Pelo Time!',
@@ -4060,7 +4060,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Guarda-Costas',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'I, X',
       gatilho: 'um aliado (pokémon ou humano) adjacente é acertado por um ataque',
@@ -4068,7 +4068,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Já foi o Bastante!',
-      requisitos: 'ter usado Contra-Ataque mediante Permissão ou ter um pokémon leal que sabe Contra-Ataque',
+      requisitos: 'ter usado Contra-Ataque mediante',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'si',
@@ -4076,7 +4076,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Mártir',
-      requisitos: 'sete Talentos de Guardião (desconte as Características de Classe para este cálculo)',
+      requisitos: 'sete Talentos de Guardião (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 25 Níveis, receba um uso diário adicional.',
       referencia: 'L, X',
       alvo: 'si',
@@ -4084,14 +4084,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Não Tão Rápido!',
-      requisitos: 'Salvaguarda',
+      requisitos: 'Salvaguarda.',
       frequencia: 'À Vontade',
       referencia: 'I, X',
       efeito: 'você pode usar Refletor, Salvaguarda e Tela de Luz como uma Ação de Interrupção. Se possuir o Talento Substituição, inclua-o nesta lista.'
     },
     {
       nome: 'Reflexos',
-      requisitos: 'Místico',
+      requisitos: 'Místico.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       gatilho: 'você ou um pokémon canalizado é acertado por um ataque superefetivo e você está canalizando pelo menos um pokémon que é resistente ou imune ao ataque',
@@ -4099,7 +4099,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Repelir!',
-      requisitos: 'ter usado Escudo Espelho mediante Permissão ou ter um pokémon leal que sabe Escudo Espelho',
+      requisitos: 'ter usado Escudo Espelho mediante Permissão ou ter um pokémon leal que sabe Escudo Espelho.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'si',
@@ -4107,7 +4107,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Salvaguarda',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -4115,7 +4115,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Substituição',
-      requisitos: 'cinco Talentos de Guardião (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Guardião (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -4135,7 +4135,7 @@ export const TALENTOS_DATA = {
   'Hipnólogo': [
     {
       nome: 'Habilidade Inconsciente',
-      requisitos: 'Defesa Especial 17',
+      requisitos: 'Defesa Especial 17.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon que está sonhando há pelo menos oito horas',
@@ -4143,7 +4143,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Habilidade Inconsciente +',
-      requisitos: 'Habilidade Inconsciente',
+      requisitos: 'Habilidade Inconsciente.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon que está sonhando há pelo menos oito horas',
@@ -4151,7 +4151,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Habilidade Oculta',
-      requisitos: 'Habilidade Inconsciente',
+      requisitos: 'Habilidade Inconsciente.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon que teve seu sonho avaliado alguma vez nesta semana',
@@ -4159,7 +4159,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Introjeção',
-      requisitos: 'ter usando com sucesso Materialização Onírica cinco vezes',
+      requisitos: 'ter usando com sucesso Materialização Onírica cinco vezes.',
       frequencia: 'Semanal',
       referencia: 'P, X',
       alvo: 'o pokémon que está dormindo e sendo avaliado pela Máquina dos Sonhos',
@@ -4167,7 +4167,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sonho Lúcido',
-      requisitos: 'Habilidade Inconsciente, Reprogramação Mental',
+      requisitos: 'Habilidade Inconsciente, Reprogramação Mental.',
       frequencia: 'Constante',
       referencia: 'C, X',
       alvo: 'o pokémon que está dormindo e sendo avaliado pela Máquina dos Sonhos',
@@ -4175,7 +4175,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Regressão',
-      requisitos: 'Introjeção',
+      requisitos: 'Introjeção.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'o pokémon que está dormindo e sendo avaliado pela Máquina dos Sonhos',
@@ -4183,7 +4183,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Reprogramação Mental',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       frequencia: 'Semanal',
       referencia: 'P, X',
       alvo: 'um pokémon que está sonhando há pelo menos sete horas',
@@ -4191,7 +4191,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Vivência',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'receba +3 a quaisquer testes feitos para usar um Talento em um pokémon que está sonhando.'
@@ -4202,14 +4202,14 @@ export const TALENTOS_DATA = {
   'Ladrão': [
     {
       nome: 'Buscar o Ódio',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando você usa Furto ou Furto +, subtraia 3 do resultado do Teste de Captura se a Lealdade do alvo for 1; ou subtraia 10 do resultado do Teste de Captura se a Lealdade do alvo for 0.'
     },
     {
       nome: 'Calafrios de Sombras',
-      requisitos: 'ter um pokémon de Gelo capturado mediante Furto ou Furto +',
+      requisitos: 'ter um pokémon de Gelo capturado mediante Furto ou Furto +.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu com Lealdade menor que 3',
@@ -4217,7 +4217,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Esmagamento de Sombras',
-      requisitos: 'ter um pokémon Lutador capturado mediante Furto ou Furto +',
+      requisitos: 'ter um pokémon Lutador capturado mediante Furto ou Furto +.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu com Lealdade menor que 3',
@@ -4225,7 +4225,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Explosão de Sombras',
-      requisitos: 'ter um pokémon de Fogo capturado mediante Furto ou Furto +',
+      requisitos: 'ter um pokémon de Fogo capturado mediante Furto ou Furto +.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu com Lealdade menor que 3',
@@ -4233,7 +4233,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Fúria de Sombras',
-      requisitos: 'ter um pokémon capturado mediante Furto ou Furto +',
+      requisitos: 'ter um pokémon capturado mediante Furto ou Furto +.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu com Lealdade menor que 3',
@@ -4241,7 +4241,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Furto +',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon não selvagem com Lealdade igual ou menor a 1',
@@ -4249,7 +4249,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Produto de Resgate',
-      requisitos: 'ter um pokémon com Lealdade 4 capturado mediante Furto ou Furto +',
+      requisitos: 'ter um pokémon com Lealdade 4 capturado mediante Furto ou Furto +.',
       referencia: 'C, X',
       frequencia: 'Constante',
       alvo: 'todos os seus pokémons com Lealdade 4 capturados mediante Furto ou Furto +',
@@ -4257,7 +4257,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Raio de Sombras',
-      requisitos: 'ter um pokémon Elétrico capturado mediante Furto ou Furto +',
+      requisitos: 'ter um pokémon Elétrico capturado mediante Furto ou Furto +.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu com Lealdade menor que 3',
@@ -4265,14 +4265,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Resgate!',
-      requisitos: 'ter um pokémon com Lealdade 3 capturado mediante Furto ou Furto +',
+      requisitos: 'ter um pokémon com Lealdade 3 capturado mediante Furto ou Furto +.',
       referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando você captura mediante Furto ou Furto + um pokémon com Lealdade 0 ou 1, a Lealdade dele em relação a você começa em no mínimo 1.'
     },
     {
       nome: 'Rompimento do Vínculo',
-      requisitos: 'ter um pokémon capturado mediante Furto ou Furto +',
+      requisitos: 'ter um pokémon capturado mediante Furto ou Furto +.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon seu com Lealdade 2',
@@ -4284,7 +4284,7 @@ export const TALENTOS_DATA = {
   'Malabarista': [
     {
       nome: 'Bumerangue',
-      requisitos: 'Ricochete',
+      requisitos: 'Ricochete.',
       referencia: 'C, X',
       frequencia: 'Constante',
       gatilho: 'acertar o segundo alvo usando Ricochete',
@@ -4292,7 +4292,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Como um Raio!',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você coloca um pokémon seu para fora da pokébola',
@@ -4300,7 +4300,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Continue o que Ele Estava Fazendo!',
-      requisitos: 'Velocidade 18',
+      requisitos: 'Velocidade 18.',
       referencia: 'L, V',
       frequencia: 'Diária',
       gatilho: 'você chama um pokémon de volta para a pokébola',
@@ -4308,7 +4308,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Lançamento',
-      requisitos: 'Velocidade 18',
+      requisitos: 'Velocidade 18.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon ou um humano',
@@ -4324,7 +4324,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Prestidigitação de Pokébolas +',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       gatilho: 'seu pokémon fica inconsciente ou um oponente envia um pokémon ao combate',
@@ -4332,7 +4332,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ricochete',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       gatilho: 'um objeto (possivelmente uma arma ou uma pokébola) arremessado por você atinge o alvo',
@@ -4340,28 +4340,28 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Saída de Emergência',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'I, P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       efeito: 'você envia um pokémon a partir de uma pokébola como uma Ação de Interrupção.'
     },
     {
       nome: 'Saque Rápido',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Por Encontro',
       efeito: 'você pode usar um item em si ou em um aliado (humano ou pokémon) como uma Ação Livre.'
     },
     {
       nome: 'Sem as Mãos!',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'você pode manter consigo até três objetos de tamanho igual ou menor que uma pokébola de maneira que sejam indetectáveis em uma revista. Você pode ativar pokébolas contendo seus pokémons sem usar as mãos.'
     },
     {
       nome: 'Uma Rodada é uma Jornada!',
-      requisitos: 'quatro Talentos de Malabarista (desconte as Características de Classe para este cálculo)',
+      requisitos: 'quatro Talentos de Malabarista (desconte as Características de Classe para este cálculo).',
       referencia: 'P, X',
       frequencia: 'Diária',
       gatilho: 'um pokémon seu usa um Golpe',
@@ -4369,7 +4369,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Voleio de Pokébolas',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'seus pokémons',
@@ -4381,7 +4381,7 @@ export const TALENTOS_DATA = {
   'Criador': [
     {
       nome: 'Amor e Carinho',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um número de pokémons igual a seu MD ou seu MDE',
@@ -4389,7 +4389,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Chocadeira',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       alvo: 'ovos em sua posse',
@@ -4397,7 +4397,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Chocadeira +',
-      requisitos: 'Chocadeira, Defesa Especial 19',
+      requisitos: 'Chocadeira, Defesa Especial 19.',
       referencia: 'C, X',
       frequencia: 'Constante',
       alvo: 'ovos em sua posse',
@@ -4405,7 +4405,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Começo Promissor',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, X',
       frequencia: 'À Vontade',
       gatilho: 'um ovo seu está chocando',
@@ -4413,14 +4413,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Comida Caseira',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       efeito: 'após uma hora cozinhando, role 1d4 + MDE. O resultado representa a quantidade de porções de alimentos que você produz, que podem ser consumidos tanto por pokémons quanto por humanos, alimentando-os igualmente por um dia inteiro. Pokémons que comerem sua comida têm sua lealdade aumentada. Você sabe exatamente quais são as necessidades dietéticas de um pokémon seu.'
     },
     {
       nome: 'Cuidado Parental +',
-      requisitos: 'Defesa 16, Defesa Especial 18',
+      requisitos: 'Defesa 16, Defesa Especial 18.',
       referencia: 'L, X',
       frequencia: 'Diária',
       gatilho: 'um ovo seu está chocando',
@@ -4428,7 +4428,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Cuidarei Bem Dele!',
-      requisitos: 'Defesa Especial 18',
+      requisitos: 'Defesa Especial 18.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'uma fêmea pokémon não hostil com um ou mais ovos',
@@ -4436,7 +4436,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ninhada',
-      requisitos: 'um pokémon que já produziu pelo menos dois ovos',
+      requisitos: 'um pokémon que já produziu pelo menos dois ovos.',
       referencia: 'E, X',
       frequencia: 'Semanal',
       alvo: 'pokémons que estão procriando',
@@ -4444,7 +4444,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ninhada +',
-      requisitos: 'Ninhada, um pokémon que já produziu pelo menos quatro ovos',
+      requisitos: 'Ninhada, um pokémon que já produziu pelo menos quatro ovos.',
       referencia: 'E, X',
       frequencia: 'Semanal',
       alvo: 'pokémons que estão procriando',
@@ -4452,7 +4452,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Nunca Teria Acontecido!',
-      requisitos: 'seis Talentos de Criador (desconte as Características de Classe para este cálculo)',
+      requisitos: 'seis Talentos de Criador (desconte as Características de Classe para este cálculo).',
       referencia: 'E, X',
       frequencia: 'Diária',
       alvo: 'dois pokémons de sexos opostos que não compartilham um Grupo Reprodutivo',
@@ -4460,7 +4460,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Potencial Latente',
-      requisitos: 'Defesa 17',
+      requisitos: 'Defesa 17.',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu sobe de Nível para um Nível múltiplo de 5',
@@ -4468,7 +4468,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Progressão Natural',
-      requisitos: 'Defesa 18',
+      requisitos: 'N/A',
       referencia: 'C, X',
       frequencia: 'Constante',
       gatilho: 'um pokémon seu sobe de Nível para um Nível múltiplo de 5',
@@ -4476,7 +4476,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Zootecnista',
-      requisitos: 'Defesa Especial 18',
+      requisitos: 'Defesa Especial 18.',
       referencia: 'E, X',
       frequencia: 'Diária',
       alvo: 'dois pokémons compatíveis para reprodução conforme seus Grupos Reprodutivos',
@@ -4488,7 +4488,7 @@ export const TALENTOS_DATA = {
   'Botânico': [
     {
       nome: 'Busca Mundana',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um local não urbano',
@@ -4496,7 +4496,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Busca Rara',
-      requisitos: 'já ter colhido uma das seguintes frutas em sua Horta: carambola (Starf), Enigma, fruta milagrosa (Micle), jabuticaba (Jaboca), jambo (Rowap), pinha (Custap)',
+      requisitos: 'já ter colhido uma das seguintes frutas em sua Horta: carambola (Starf), Enigma, fruta milagrosa (Micle), jabuticaba (Jaboca), jambo (Rowap), pinha (Custap).',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um local não urbano',
@@ -4504,7 +4504,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Busca Saborosa',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um local não urbano',
@@ -4512,7 +4512,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Coma Agora!',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 7 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon aliado',
@@ -4520,14 +4520,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Conhecedor de Frutos',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'você pode identificar qualquer Fruta, suas propriedades e seus sabores (portanto como ela influencia Aptidões). Receba +2 às rolagens para produzir Sucos ou Temperos. Quando seu pokémon come uma Fruta cujo sabor ele gosta, quaisquer ganhos de lealdade são dobrados.'
     },
     {
       nome: 'Eficiência da Fruta',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       gatilho: 'um pokémon se alimenta de uma fruta',
@@ -4535,7 +4535,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Fundir Frutas',
-      requisitos: 'Defesa Especial 18',
+      requisitos: 'Defesa Especial 18.',
       referencia: 'P, X',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
       alvo: 'cinco frutas iguais',
@@ -4543,7 +4543,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Hibridização',
-      requisitos: 'já ter colhido dez frutos em sua Horta',
+      requisitos: 'já ter colhido dez frutos em sua Horta.',
       referencia: 'P, X',
       frequencia: 'À Vontade',
       alvo: 'frutos',
@@ -4551,7 +4551,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Nutrientes Especiais',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'Semanal',
       alvo: 'frutas plantadas',
@@ -4559,7 +4559,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Procura Alterada',
-      requisitos: 'quatro Talentos de Botânico (desconte as Características de Classe para este cálculo)',
+      requisitos: 'quatro Talentos de Botânico (desconte as Características de Classe para este cálculo).',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um local não urbano',
@@ -4567,7 +4567,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Procura Eficiente',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um local não urbano',
@@ -4575,7 +4575,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Procura Melhorada',
-      requisitos: 'um pokémon com um Atributo 30',
+      requisitos: 'um pokémon com um Atributo 30.',
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um local não urbano',
@@ -4587,7 +4587,7 @@ export const TALENTOS_DATA = {
   'Cozinheiro': [
     {
       nome: 'Arremessar Isca',
-      requisitos: 'Isca',
+      requisitos: 'Isca.',
       referencia: 'E, X',
       frequencia: 'Diária',
       alvo: 'um pokémon selvagem',
@@ -4595,14 +4595,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Calórico',
-      requisitos: 'Defesa 16',
+      requisitos: 'Defesa 16.',
       referencia: 'E, X',
       frequencia: 'Diária',
       efeito: 'após cozinhar por quinze minutos (com ingredientes e equipamento adequado), você cria um Prato que serve até dez criaturas (pessoas ou pokémons) que provê a pokémons Pontos de Vida Temporários igual ao dobro de seu MD. Pontos de Vida temporários desaparecem após um encontro ou ao serem consumidos (eles são consumidos antes dos Pontos de Vida normais quando se sofre dano).'
     },
     {
       nome: 'Envenenamento',
-      requisitos: 'Defesa Especial 17',
+      requisitos: 'Defesa Especial 17.',
       referencia: 'L, X',
       frequencia: 'À Vontade',
       alvo: 'um Prato ou uma Isca que você está criando',
@@ -4610,21 +4610,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Herbalismo',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária',
       efeito: 'após cozinhar por uma hora (com ingredientes e equipamento adequado), você cria um Polvilho Curativo ou um Polvilho Energizante.'
     },
     {
       nome: 'Isca',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária',
       efeito: 'após cozinhar por uma hora (com ingredientes e equipamento adequado), você cria uma comida e a coloca em algum ambiente selvagem. Então, se você se escondeu apropriadamente, após uma quantidade de tempo entre quinze minutos e uma hora, o Narrador deve fazer um pokémon selvagem aparecer em busca da Isca. Role 1d20 + MD. Se o resultado for 15 ou mais, um pokémon de Nível pelo menos igual ao seu pokémon leal de Nível mais alto aparecerá. Se a rolagem exceder 19, o pokémon terá 5 Níveis a mais que seu pokémon leal de Nível mais alto. Um pokémon capturado mediante este Talento não é considerado válido para determinar os Níveis dos futuros pokémons atraídos pela Isca.'
     },
     {
       nome: 'Liquidificador',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um Suco',
@@ -4632,21 +4632,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Papinha de Bebê',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       efeito: 'após cozinhar por trinta minutos (com ingredientes e equipamento adequado), você cria um Prato que serve até dez criaturas (pessoas ou pokémons) que, quando comido por um pokémon com Nível até 25, faz o pokémon receber 25% de experiência extra pelo resto do dia.'
     },
     {
       nome: 'Refeição Proteica',
-      requisitos: 'Defesa 18',
+      requisitos: 'Defesa 18.',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       efeito: 'após cozinhar por uma hora (com ingredientes e equipamento adequado), você cria uma Refeição Proteica, que provê humanos com energia suficiente para passarem um dia sem dormir. Após 48 horas insones, aquele que consumiu o item perde 10 Pontos de Vida a cada hora que não dormir. Enquanto sob os efeitos de uma Refeição Proteica, o humano é imune a Sono: se receberia esta Condição, ele começará a sentir os efeitos que sentiria só após 48 horas sem dormir com duas horas de antecipação (isso é acumulativo: a cada vez que receberia a Condição Sono, reduza duas horas).'
     },
     {
       nome: 'Tempero Original',
-      requisitos: 'Defesa 14',
+      requisitos: 'Defesa 14.',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um Tempero que está sendo criado',
@@ -4654,14 +4654,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Vitaminas e Sais Minerais',
-      requisitos: 'Defesa Especial 20',
+      requisitos: 'Defesa Especial 20.',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após cozinhar por três horas (com ingredientes e equipamento adequado), você cria uma Vitamina. Role 1d6 para determinar qual: Resultado; Vitamina - 1; Imunizante - 2; Proteína - 3; Ferro - 4; Cálcio - 5; Zinco - 6; Carburante'
     },
     {
       nome: 'Vitaminas e Sais Minerais +',
-      requisitos: 'Vitaminas e Sais Minerais',
+      requisitos: 'Vitaminas e Sais Minerais.',
       referencia: 'E, X',
       frequencia: 'Semanal',
       efeito: 'após cozinhar por três horas (com ingredientes e equipamento adequado), você cria um dos seguintes à sua escolha: Imunizante, Proteína, Ferro, Cálcio, Zinco ou Carburante. Este Talento substitui Vitaminas.'
@@ -4672,7 +4672,7 @@ export const TALENTOS_DATA = {
   'Cuidador': [
     {
       nome: 'Arrumando-se',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon',
@@ -4680,7 +4680,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Arrumando-se +',
-      requisitos: 'Defesa Especial 20, Arrumando-se',
+      requisitos: 'Defesa Especial 20, Arrumando-se.',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon',
@@ -4688,7 +4688,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Código de Sinais',
-      requisitos: 'Treinamento em Agilidade',
+      requisitos: 'Treinamento em Agilidade.',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'seus pokémons sob efeito de Treinamento em Agilidade',
@@ -4696,7 +4696,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Estrela',
-      requisitos: '2 prêmios em Concursos',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu sobe de Nível para um Nível múltiplo de 5',
@@ -4704,14 +4704,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Herdou de Mim!',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'quando um ovo seu choca, adicione seu MD ou seu MDE a uma Aptidão do pokémon nascido se você já venceu pelo menos um prêmio em um Concurso relacionado àquela Aptidão.'
     },
     {
       nome: 'Pelugem Brilhosa',
-      requisitos: '3 prêmios em Concursos',
+      requisitos: '3 prêmios em Concursos.',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon adjacente',
@@ -4719,7 +4719,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Resplendor',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'E, X',
       frequencia: 'Diária',
       gatilho: 'dois pokémons estão procriando e tiveram sucesso em produzir um ovo',
@@ -4727,7 +4727,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sangue de Vencedores',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária',
       gatilho: 'um ovo seu está chocando',
@@ -4735,7 +4735,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sangue de Vencedores +',
-      requisitos: 'Defesa 16, Sangue de Vencedores',
+      requisitos: 'Defesa 16, Sangue de Vencedores.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um ovo seu está chocando',
@@ -4743,7 +4743,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Treinamento em Agilidade',
-      requisitos: '2 prêmios em Concursos',
+      requisitos: '2 prêmios em Concursos.',
       referencia: 'E, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
@@ -4755,7 +4755,7 @@ export const TALENTOS_DATA = {
   'Evolucionista': [
     {
       nome: 'Aperfeiçoar Pedra-Chave',
-      requisitos: 'Pedra-Chave Elemental, Recarregar Pedra-Chave, Sobrecarga da Pedra-Chave',
+      requisitos: 'Pedra-Chave Elemental, Recarregar Pedra-Chave, Sobrecarga da Pedra-Chave.',
       referencia: 'P, V',
       frequencia: 'Diária',
       alvo: 'dois pokémons seus com Megapedras',
@@ -4763,21 +4763,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Conhecedor de Megaevoluções',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'você pode identificar se qualquer pokémon possui uma Megapedra que ele pode usar para evoluir só de olhar para ela.'
     },
     {
       nome: 'Desbloquear Potencial',
-      requisitos: 'Defesa 16, Defesa Especial 18',
+      requisitos: 'Defesa 16, Defesa Especial 18.',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'se você possui uma Megapedra que corresponde a uma Megaevolução padrão (que aparece no Livro dos Pokémons, não uma Megapedra exclusiva produzida para um pokémon), você pode usá-la para megaevoluir para a forma megaevoluída um pokémon que ainda não está em sua última forma evolutiva. Por exemplo, você pode usar uma Blazikenita para megaevoluir um Torchic ou um Combusken a um Mega Blaziken.'
     },
     {
       nome: 'Evolução Elemental',
-      requisitos: 'Defesa 16, ter evoluído um pokémon usando uma Pedra Elemental',
+      requisitos: 'Defesa 16, ter evoluído um pokémon usando uma Pedra Elemental.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon aliado (não necessariamente seu) que pode evoluir mediante o uso de uma Pedra Elemental',
@@ -4785,14 +4785,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Evolução Precoce +',
-      requisitos: 'Defesa 16',
+      requisitos: 'Defesa 16.',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'Subtraia o dobro de seu MD do Nível mínimo necessário que um pokémon precisa atingir para evoluir. Outros requerimentos de evolução não são afetados por este Talento. Este Talento substitui Evolução Precoce.'
     },
     {
       nome: 'Involua!',
-      requisitos: 'Defesa Especial 20',
+      requisitos: 'Defesa Especial 20.',
       referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon adjacente ao qual você causou dano',
@@ -4800,21 +4800,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pedra-Chave Elemental',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'seus pokémons megaevoluídos recebem +2 a seus Bônus Elementais, mas sofrem dano igual a 1d20 – MD a cada vez que usarem isso.'
     },
     {
       nome: 'Recarregar Pedra-Chave',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'você pode ativar uma mesma Pedra-Chave duas vezes diárias. Você não pode ter como alvo o mesmo pokémon duas vezes no mesmo dia. Sua Pedra-Chave só pode megaevoluir um pokémon de cada vez.'
     },
     {
       nome: 'Sobrecarga da Pedra-Chave',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       efeito: 'suas megaevoluções duram por até meia hora ou até o pokémon megaevoluído ficar inconsciente.'
@@ -4825,7 +4825,7 @@ export const TALENTOS_DATA = {
   'Incubador': [
     {
       nome: 'Ainda Não!',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       gatilho: 'um ovo está chocando',
@@ -4833,7 +4833,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Chocadeira ++',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'ovos em sua posse',
@@ -4841,7 +4841,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Direito de Nascença',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um ovo seu está chocando',
@@ -4849,14 +4849,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Herança Infundida',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       referencia: 'L, V',
       frequencia: 'Constante',
       efeito: 'Golpes Herdados e Golpes Naturais (aqueles aprendidos subindo de Nível) também são considerados dentro das listas de Golpes que podem ser aprendidos por TM ou Tutor para os seus pokémons.'
     },
     {
       nome: 'Hiperlexia Parental',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'seus pokémons acima do Nível 15 chocados por você',
@@ -4864,7 +4864,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Nascimento Poderoso',
-      requisitos: 'Defesa 16',
+      requisitos: 'Defesa 16.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um ovo seu está chocando',
@@ -4872,7 +4872,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Paleta de Atitudes',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um ovo seu está chocando',
@@ -4880,7 +4880,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Paleta de Atitudes +',
-      requisitos: 'Defesa Especial 18, Paleta de Atitudes',
+      requisitos: 'Defesa Especial 18, Paleta de Atitudes.',
       referencia: 'L, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'um ovo seu está chocando',
@@ -4888,7 +4888,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Procriação Minuciosa',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'seus pokémons que você chocou que são filhos de pelo menos um pokémon seu que você também chocou',
@@ -4896,7 +4896,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Protetor da Prole',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       referencia: 'I, P, X',
       frequencia: 'Por Encontro',
       gatilho: 'um pokémon que você chocou é acertado por um Golpe e está dentro do alcance do seu Deslocamento',
@@ -4904,7 +4904,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tutor de Golpes Herdados',
-      requisitos: 'Defesa Especial 20',
+      requisitos: 'Defesa Especial 20.',
       referencia: 'E, X',
       frequencia: 'Diária',
       alvo: 'um pokémon que você chocou',
@@ -4916,7 +4916,7 @@ export const TALENTOS_DATA = {
   'Médico': [
     {
       nome: 'Analgésicos',
-      requisitos: 'Defesa 15',
+      requisitos: 'Defesa 15.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano Envenenado ou Queimado',
@@ -4924,7 +4924,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Alta Medicina',
-      requisitos: 'Defesa 18',
+      requisitos: 'Defesa 18.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon',
@@ -4932,14 +4932,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Médico Especialista',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       frequencia: 'Constante',
       referencia: 'C, V',
       efeito: 'quando você usa um item restaurativo (por exemplo: uma Poção ou um item que restaura Condições, como um Antídoto), ele cura uma quantidade de PV extras igual à sua Defesa.'
     },
     {
       nome: 'Não Morrerá Comigo Aqui!',
-      requisitos: 'Defesa 20',
+      requisitos: 'Defesa 20.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano que falhou em um Teste de Morte há menos de cinco minutos',
@@ -4947,7 +4947,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Não Morrerá Comigo Aqui! +',
-      requisitos: 'Não Morrerá Comigo Aqui!',
+      requisitos: 'Não Morrerá Comigo Aqui!.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano que falhou em um Teste de Morte há menos de cinco minutos',
@@ -4955,14 +4955,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sobreviveu Graças à Medicina!',
-      requisitos: 'quatro Talentos de Médico (desconte as Características de Classe para este cálculo)',
+      requisitos: 'quatro Talentos de Médico (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       efeito: 'você pode usar dois itens restaurativos ou dois Talentos de Médico em uma mesma Ação Padrão. Alternativamente, você pode usar um item restaurativo e um Talento de Médico em uma mesma Ação Padrão.'
     },
     {
       nome: 'Terapia de Choque',
-      requisitos: 'Analgésicos',
+      requisitos: 'Analgésicos.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano Congelado ou Sonolento',
@@ -4970,7 +4970,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tratar Ferimentos Críticos',
-      requisitos: 'Defesa 18',
+      requisitos: 'Defesa 18.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -4978,7 +4978,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tratar Ferimentos Graves',
-      requisitos: 'Defesa 16',
+      requisitos: 'Defesa 16.',
       frequencia: 'Diária. A cada 9 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -4986,7 +4986,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tratar Ferimentos Leves',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -4998,7 +4998,7 @@ export const TALENTOS_DATA = {
   'Tutor': [
     {
       nome: 'Desbloqueio Elemental',
-      requisitos: 'Defesa Especial 20',
+      requisitos: 'Defesa Especial 20.',
       frequencia: 'Uso Único',
       referencia: 'E, X',
       alvo: 'um pokémon',
@@ -5007,7 +5007,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ensinar Capacidades',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       frequencia: 'Diária',
       referencia: 'E, X',
       alvo: 'um pokémon',
@@ -5015,7 +5015,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Imortalizar o Conhecimento',
-      requisitos: 'Defesa Especial 20',
+      requisitos: 'Defesa Especial 20.',
       frequencia: 'Mensal',
       referencia: 'E, X',
       alvo: 'um Registro',
@@ -5023,7 +5023,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Instrução de Efeito',
-      requisitos: 'Nenhum',
+      requisitos: 'N/A',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'E, X',
       alvo: 'um pokémon',
@@ -5031,7 +5031,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Instrução Especial',
-      requisitos: 'um pokémon com Ataque Especial 30',
+      requisitos: 'um pokémon com Ataque Especial 30.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'E, X',
       alvo: 'um pokémon',
@@ -5039,7 +5039,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Instrução Física',
-      requisitos: 'um pokémon com Ataque 30',
+      requisitos: 'um pokémon com Ataque 30.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'E, X',
       alvo: 'um pokémon',
@@ -5047,14 +5047,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Inventor de Técnicas',
-      requisitos: 'Recordador',
+      requisitos: 'Recordador.',
       frequencia: 'Diária',
       referencia: 'E, X',
       efeito: 'após quatro horas de trabalho diligente, role 1d20 + MDE. Se o resultado for 21 ou mais, escolha um Golpe que um dos seus pokémons conhece, mas para o qual não existe um Registro normalmente. Você cria um Registro não permanente contendo o Golpe. Não é possível criar o mesmo Registro mais de uma vez com este Talento.'
     },
     {
       nome: 'Recordador',
-      requisitos: 'Defesa Especial 17, ter usado a Característica de Classe Tutorial três vezes com sucesso',
+      requisitos: 'Defesa Especial 17, ter usado a Característica de Classe Tutorial três vezes com sucesso.',
       frequencia: 'Semanal',
       referencia: 'E, X',
       alvo: 'um pokémon',
@@ -5062,7 +5062,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sabedoria de Eras',
-      requisitos: 'Recordador, Inventor de Técnicas',
+      requisitos: 'Recordador, Inventor de Técnicas.',
       frequencia: 'Constante',
       referencia: 'C, X',
       alvo: 'um pokémon',
@@ -5070,7 +5070,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sabedoria Didática',
-      requisitos: 'Defesa Especial 16 e um dos seguintes- Instrução de Efeito, Instrução Especial ou Instrução Física',
+      requisitos: 'Defesa Especial 16 e um dos seguintes- Instrução de Efeito, Instrução Especial ou Instrução Física.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'E, X',
       alvo: 'um pokémon',
@@ -5078,7 +5078,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tutor Excepcional',
-      requisitos: 'ter usado a Característica de Classe Tutorial cinco vezes',
+      requisitos: 'ter usado a Característica de Classe Tutorial cinco vezes.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'você agora pode usar Tutorial várias vezes em um mesmo pokémon.'
@@ -5095,7 +5095,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Chute Duplo',
-      requisitos: 'ter um pokémon que conhece o Golpe Chute Duplo',
+      requisitos: 'ter um pokémon que conhece o Golpe Chute Duplo.',
       frequencia: 'Diária. A cada 4 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5110,7 +5110,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Foco Combativo +',
-      requisitos: 'Ataque 15, Defesa 15',
+      requisitos: 'Ataque 15, Defesa 15.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'adicione o dobro de seu MA e o dobro de seu MD às rolagens de dano causado por você. Este Talentos substitui Foco Combativo.'
@@ -5131,7 +5131,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Nada Pode me Parar!',
-      requisitos: 'Velocidade 18',
+      requisitos: 'Velocidade 18.',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'L, X',
       alvo: 'si',
@@ -5139,7 +5139,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Quebra Telha',
-      requisitos: 'seis Talentos de Guerreiro (desconte as Características de Classe para este cálculo)',
+      requisitos: 'seis Talentos de Guerreiro (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5147,14 +5147,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Resistência Marcial +',
-      requisitos: 'Ataque 14, Defesa 14',
+      requisitos: 'Ataque 14, Defesa 14.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'some seus MA e MD e multiplique esta soma por 5. Adicione o resultado deste cálculo ao seus Pontos de Vida máximos. Este Talento substitui Resistência Marcial.'
     },
     {
       nome: 'Soco Focalizado',
-      requisitos: 'Ataque 18',
+      requisitos: 'Ataque 18.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5173,7 +5173,7 @@ export const TALENTOS_DATA = {
   'Artista Marcial': [
     {
       nome: 'Amortecer',
-      requisitos: 'Arrojado',
+      requisitos: 'Arrojado.',
       frequencia: 'Constante',
       referencia: 'C, X',
       gatilho: 'você sofre dano por um Golpe que você já sofreu antes na vida',
@@ -5189,21 +5189,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Arrojado',
-      requisitos: 'Defesa 18',
+      requisitos: 'Defesa 18.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'receba a Habilidade Imprudência.'
     },
     {
       nome: 'Calejar +',
-      requisitos: 'Calejar',
+      requisitos: 'Calejar.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando sofrer dano (mas não dano causado a si mesmo), reduza o dano sofrido pelo seu MA e pelo seu MD. Obviamente, isso não afeta danos irredutíveis.'
     },
     {
       nome: 'Chute Giratório',
-      requisitos: 'ter sofrido o Golpe Soco de Fogo',
+      requisitos: 'ter sofrido o Golpe Soco de Fogo.',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5211,7 +5211,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Defesa Aberta',
-      requisitos: 'Durão',
+      requisitos: 'Durão.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5219,7 +5219,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Faca de Dois Gumes',
-      requisitos: 'Ataque 20',
+      requisitos: 'Ataque 20.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5241,7 +5241,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pontapé',
-      requisitos: 'Chute Giratório',
+      requisitos: 'Chute Giratório.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5249,7 +5249,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Soco Rápido',
-      requisitos: 'ter sofrido o Golpe Soco Rápido',
+      requisitos: 'ter sofrido o Golpe Soco Rápido.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'I, P, X',
       alvo: 'um pokémon ou um humano',
@@ -5257,7 +5257,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Supervoadora',
-      requisitos: 'Voadora',
+      requisitos: 'Voadora.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5276,7 +5276,7 @@ export const TALENTOS_DATA = {
   'Monge': [
     {
       nome: 'Alongamento',
-      requisitos: 'Exercícios Revigorantes',
+      requisitos: 'Exercícios Revigorantes.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'E, X',
       gatilho: 'você usa Ioga',
@@ -5290,7 +5290,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Estímulo',
-      requisitos: 'Técnica Milenar',
+      requisitos: 'Técnica Milenar.',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5311,7 +5311,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Liberdade de Movimento',
-      requisitos: 'Contorcionismo',
+      requisitos: 'Contorcionismo.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, V',
       alvo: 'uma criatura adjacente Atordoada ou Paralisada',
@@ -5319,7 +5319,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Relaxamento',
-      requisitos: 'Exercícios Revigorantes',
+      requisitos: 'Exercícios Revigorantes.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'E, X',
       gatilho: 'você usa Ioga',
@@ -5334,7 +5334,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Terapia',
-      requisitos: 'Exercícios Revigorantes',
+      requisitos: 'Exercícios Revigorantes.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'E, X',
       gatilho: 'você usa Ioga em um humano',
@@ -5342,7 +5342,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tratamento',
-      requisitos: 'Defesa 16',
+      requisitos: 'Defesa 16.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'E, X',
       alvo: 'um pokémon ou um humano',
@@ -5354,7 +5354,7 @@ export const TALENTOS_DATA = {
   'Atleta': [
     {
       nome: 'Esquiva',
-      requisitos: 'Defesa 18',
+      requisitos: 'Defesa 18.',
       frequencia: 'Diária',
       referencia: 'I, P, X',
       efeito: 'você usa o Golpe Detecção.'
@@ -5367,7 +5367,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Hora Extra',
-      requisitos: 'Ataque 26',
+      requisitos: 'Ataque 26.',
       frequencia: 'Diária',
       referencia: 'L, X',
       gatilho: 'você é reduzido a inconsciente (0 PV ou menos), mas não a -100% de seus PV ou menos',
@@ -5375,7 +5375,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Jogo Duplo',
-      requisitos: 'um pokémon com Força 5',
+      requisitos: 'um pokémon com Força 5.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'L, X',
       gatilho: 'um pokémon seu acerta um Golpe Corpo a Corpo causador de dano em um inimigo ao qual você já causou dano na rodada atual',
@@ -5383,21 +5383,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Na Zona',
-      requisitos: 'Ataque 16',
+      requisitos: 'Ataque 16.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando você usa Rapidez, você pode usar seu Ataque ou sua Defesa no lugar de sua Velocidade para fins de calcular sua Iniciativa e sua Evasão até o fim da próxima rodada.'
     },
     {
       nome: 'Precisa ser Rápido',
-      requisitos: 'Ataque 18',
+      requisitos: 'Ataque 18.',
       frequencia: 'Diária',
       referencia: 'I, P, X',
       efeito: 'você usa o Golpe Extrema Velocidade.'
     },
     {
       nome: 'Protegendo as Costas',
-      requisitos: 'Ataque 18',
+      requisitos: 'Ataque 18.',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'I, P, X',
       gatilho: 'um pokémon seu é acertado por um ataque',
@@ -5437,21 +5437,21 @@ export const TALENTOS_DATA = {
   'Áugure': [
     {
       nome: 'Corpo e Alma',
-      requisitos: 'quatro Talentos de Áugure (desconte as Características de Classe para este cálculo), Ataque 18',
+      requisitos: 'quatro Talentos de Áugure (desconte as Características de Classe para este cálculo), Ataque 18.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'no momento que escolher este Talento, escolha um Tipo elemental. Todas as vezes que fizer um ataque de Armas, você pode causar dano daquele Tipo a seu critério.'
     },
     {
       nome: 'Esfera da Aura',
-      requisitos: 'ter visto o Golpe Esfera da Aura ser usado',
+      requisitos: 'ter visto o Golpe Esfera da Aura ser usado.',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       efeito: 'você usa o Golpe Esfera da Aura.'
     },
     {
       nome: 'Expansão da Aura',
-      requisitos: 'ter sofrido o Golpe Expansão da Aura',
+      requisitos: 'ter sofrido o Golpe Expansão da Aura.',
       frequencia: 'Semanal. A cada 15 Níveis, receba um uso semanal adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5474,7 +5474,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pulso do Dragão',
-      requisitos: 'ter sofrido o Golpe Pulso do Dragão',
+      requisitos: 'ter sofrido o Golpe Pulso do Dragão.',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5482,7 +5482,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pulso Sombrio',
-      requisitos: 'ter sofrido o Golpe Pulso Sombrio',
+      requisitos: 'ter sofrido o Golpe Pulso Sombrio.',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5490,7 +5490,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Soco de Drenagem',
-      requisitos: 'um pokémon que conhece o Golpe Soco de Drenagem',
+      requisitos: 'um pokémon que conhece o Golpe Soco de Drenagem.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5498,7 +5498,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Soco de Fogo',
-      requisitos: 'ter sofrido o Golpe Soco de Fogo',
+      requisitos: 'ter sofrido o Golpe Soco de Fogo.',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5506,7 +5506,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Soco de Gelo',
-      requisitos: 'ter sofrido o Golpe Soco de Gelo',
+      requisitos: 'ter sofrido o Golpe Soco de Gelo.',
       frequencia: 'Diária. A cada 18 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5514,7 +5514,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Soco do Trovão',
-      requisitos: 'ter sofrido o Golpe Soco do Trovão',
+      requisitos: 'ter sofrido o Golpe Soco do Trovão.',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5522,7 +5522,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Soco Sombrio',
-      requisitos: 'ter sofrido o Golpe Soco Sombrio',
+      requisitos: 'ter sofrido o Golpe Soco Sombrio.',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5530,7 +5530,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tela de Luz',
-      requisitos: 'um pokémon que conhece o Golpe Tela de Luz',
+      requisitos: 'N/A',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si mesmo',
@@ -5549,7 +5549,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Armas Untadas',
-      requisitos: 'um pokémon Venenoso',
+      requisitos: 'um pokémon Venenoso.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'receba a Habilidade Toque Tóxico.'
@@ -5575,7 +5575,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Do Céu',
-      requisitos: 'Ataque 16',
+      requisitos: 'Ataque 16.',
       frequencia: 'Diária. A cada 4 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5590,7 +5590,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Injetar Veneno',
-      requisitos: 'um pokémon Venenoso',
+      requisitos: 'um pokémon Venenoso.',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5598,7 +5598,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Mortífero',
-      requisitos: 'cinco Talentos de Ninja (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Ninja (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'L, X',
       gatilho: 'você Envenena um alvo',
@@ -5606,7 +5606,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Multiplicar',
-      requisitos: 'Borrão, Velocidade 15',
+      requisitos: 'um pokémon que conhece o Golpe Multiplicar.',
       frequencia: 'Diária',
       referencia: 'P, X',
       efeito: 'você usa o Golpe Multiplicar.'
@@ -5620,7 +5620,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Trocar de Lugar',
-      requisitos: 'Ataque 18',
+      requisitos: 'Ataque 18.',
       frequencia: 'Diária',
       referencia: 'I, P, X',
       alvo: 'um aliado a até 5 metros a quem você possui linha de visão',
@@ -5651,7 +5651,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ferimento Profundo',
-      requisitos: 'Ataque 18',
+      requisitos: 'Ataque 18.',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'L, X',
       gatilho: 'você obtém um resultado maior que 15 em um Teste de Acurácia para um ataque de Armas',
@@ -5665,7 +5665,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Kata',
-      requisitos: 'quatro Talentos de Soldado (desconte as Características de Classe para este cálculo)',
+      requisitos: 'quatro Talentos de Soldado (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -5673,7 +5673,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Manobra Infalível',
-      requisitos: 'Ataque 16, cinco Talentos de Soldado (desconte as Características de Classe para este cálculo)',
+      requisitos: 'Ataque 16, cinco Talentos de Soldado (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 20 Níveis, receba um uso diário adicional.',
       referencia: 'L, X',
       gatilho: 'você declara um ataque de Armas',
@@ -5688,7 +5688,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sangramento',
-      requisitos: 'Ataque 16',
+      requisitos: 'Ataque 16.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'L, X',
       gatilho: 'você obtém um resultado maior que 15 em um Teste de Acurácia para um ataque de Armas',
@@ -5696,7 +5696,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tiro Múltiplo',
-      requisitos: 'Ataque 17, quatro Talentos de Soldado (desconte as Características de Classe para este cálculo)',
+      requisitos: 'Ataque 17, quatro Talentos de Soldado (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'L, X',
       gatilho: 'você declara um ataque de Armas feito com uma arma de Alcance (curto ou longo)',
@@ -5714,21 +5714,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Canalizar Amigo',
-      requisitos: 'um pokémon com Lealdade 4',
+      requisitos: 'um pokémon com Lealdade 4.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando usar Canalizar em um pokémon seu com Lealdade 2 ou mais, você obtém sucesso automático.'
     },
     {
       nome: 'Canalizar Amigo +',
-      requisitos: 'Canalizar Amigo, Defesa 17',
+      requisitos: 'Canalizar Amigo, Defesa 17.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando usar Canalizar em um pokémon seu com Lealdade 2 ou mais, você obtém sucesso automático e não perde Pontos de Vida. Quando usar Canalizar em um pokémon de alguém com Lealdade 2 ou mais, você obtém sucesso automático se houver permissão de ambos humano e pokémon. Agora você pode canalizar dois pokémons simultaneamente. Este Talento substitui Canalizar Amigo.'
     },
     {
       nome: 'Clérigo',
-      requisitos: 'Nível 10',
+      requisitos: 'Nível 10.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'você pode canalizar até três pokémons simultaneamente.'
@@ -5753,14 +5753,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Esponja',
-      requisitos: 'ter usado Permissão para usar um Golpe de um pokémon seu leal que já subiu pelo menos 20 Níveis com você',
+      requisitos: 'ter usado Permissão para usar um Golpe de um pokémon seu leal que já subiu pelo menos 20 Níveis com você.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando usar Permissão ou Empréstimo, você obtém três Golpes, em vez de apenas um (e não é possível selecionar o mesmo Golpe mais de uma vez).'
     },
     {
       nome: 'Grunhidos e Piados',
-      requisitos: 'Canalizar Amigo',
+      requisitos: 'Canalizar Amigo.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon adjacente',
@@ -5780,7 +5780,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Vodu',
-      requisitos: 'Clérigo',
+      requisitos: 'Clérigo.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'você pode fazer duas tentativas de Canalizar em uma mesma Ação Padrão.'
@@ -5803,7 +5803,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Concerto',
-      requisitos: 'sete Talentos de Bardo (desconte as Características de Classe para este cálculo)',
+      requisitos: 'sete Talentos de Bardo (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -5811,7 +5811,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Coro',
-      requisitos: 'cinco Talentos de Bardo (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Bardo (desconte as Características de Classe para este cálculo).',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       gatilho: 'você usou Balada, Cântico, Cantiga, Hino, Lamento, Opera, Poema, Ritual ou Verso na rodada anterior',
@@ -5825,7 +5825,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Hino',
-      requisitos: 'cinco Talentos de Bardo (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Bardo (desconte as Características de Classe para este cálculo).',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       efeito: 'assim que declarar o uso deste Talento, seu turno acaba. Quando usar Hino sete rodadas seguidas, cada aliado adjacente escolhe um Atributo e eleva duas Fases daquele Atributo. Na rodada seguinte, se o Hino for mantido, os aliados adjacentes não são beneficiados (sejam os mesmos ou outros), mas aqueles que estavam adjacentes na hora que receberam o benefício o mantêm. Depois de três rodadas em efeito, Hino novamente elevará duas Fases de Atributos dos aliados que estiverem adjacentes no momento (sejam eles os mesmos ou não). Assim continuará de três em três rodadas.'
@@ -5866,7 +5866,7 @@ export const TALENTOS_DATA = {
   'Ilusionista': [
     {
       nome: 'Caça Talentos',
-      requisitos: 'três Talentos de Ilusionista (desconte as Características de Classe para este cálculo)',
+      requisitos: 'três Talentos de Ilusionista (desconte as Características de Classe para este cálculo).',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'você pode usar Indiscernível três vezes diárias, mas só uma vez por indivíduo.'
@@ -5881,14 +5881,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Identidade',
-      requisitos: 'ter usar Imitação em cinco pessoas que não eram suas aliadas',
+      requisitos: 'ter usar Imitação em cinco pessoas que não eram suas aliadas.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando você usa Imitação, você pode duplicar também o equipamento e o vestuário do alvo. Diferente de sua aparência, estes objetos não são ilusões, mas são réplicas físicas reais. Contudo nenhum destes objetos oferece qualquer bônus ou efeito especial que ele pudesse possuir. Se um destes itens é consumível e for usado, ele simplesmente não funciona. Assim, haverá de fato um frasco contendo um líquido colorido e diversos adereços, mas nenhum deles tem função estatística. Quando você usa Imitação em alguém, você copia também a aura dele, mascarando a sua própria aura.'
     },
     {
       nome: 'Mais Um Pouquinho',
-      requisitos: 'três Talentos de Ilusionista (desconte as Características de Classe para este cálculo)',
+      requisitos: 'três Talentos de Ilusionista (desconte as Características de Classe para este cálculo).',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'você não perde mais acesso a uma Imitação por dormir ou por inconsciência. Você ainda perde o acesso depois de 24 horas, a menos que reduza seus Pontos de Vida máximos por 10 para escolher automaticamente manter a forma que você está por mais 24 horas. Manter uma forma não é a mesma coisa que usar uma Imitação de novo, de modo que não serve para gatilhos que envolvem usar ativamente a Imitação.'
@@ -5908,7 +5908,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ressonância',
-      requisitos: 'Defesa 18',
+      requisitos: 'Defesa 18.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando usar Imitação em um aliado, você obtém sucesso automático, e não perde Pontos de Vida. Se possuir o Talento Um Pouquinho Mais!, você pode acessar até três Imitações diárias em aliados antes que seus Pontos de Vida máximos sejam reduzidos.'
@@ -5922,14 +5922,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Talentoso',
-      requisitos: 'cinco Talentos de Ilusionista (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Ilusionista (desconte as Características de Classe para este cálculo).',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'você pode usar os Talentos obtidos por Indiscernível em qualquer forma imitada ou na sua própria forma.'
     },
     {
       nome: 'Transeunte',
-      requisitos: 'Defesa 18',
+      requisitos: 'Defesa 18.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       efeito: 'você muda sua aparência para uma forma genérica, alguém bastante comum e discreto. Você não pode designar uma característica (como altura, tipo físico ou mesmo gênero), assumindo simplesmente um aspecto muito mundano, nunca parecido com alguém específico. Transeunte consome 10 Pontos de Vida.'
@@ -5947,7 +5947,7 @@ export const TALENTOS_DATA = {
   'Médium': [
     {
       nome: 'Agilidade',
-      requisitos: 'ter usado Agilidade ou Polimento mediante Permissão',
+      requisitos: 'ter usado Agilidade ou Polimento mediante Permissão.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -5955,7 +5955,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Amnésia',
-      requisitos: 'ter usado Amnésia mediante Permissão',
+      requisitos: 'ter usado Amnésia mediante Permissão.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -5963,7 +5963,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Aumento de Massa',
-      requisitos: 'ter usado dois Golpes que elevam Fases de Ataque ou Defesa mediante Permissão',
+      requisitos: 'ter usado dois Golpes que elevam Fases de Ataque ou Defesa mediante Permissão.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -5971,7 +5971,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Conspiração',
-      requisitos: 'ter usado Brilho ou Conspiração mediante Permissão',
+      requisitos: 'ter usado Brilho ou Conspiração mediante Permissão.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -5979,7 +5979,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Dança das Espadas',
-      requisitos: 'ter usado Dança das Espadas mediante Permissão',
+      requisitos: 'ter usado Dança das Espadas mediante Permissão.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -5987,7 +5987,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Defesa de Ferro',
-      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão: Armadura Ácida, Barreira ou Defesa de Ferro',
+      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão: Armadura Ácida, Barreira ou Defesa de Ferro.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -5995,7 +5995,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Magia Natural',
-      requisitos: 'já ter comido uma das seguintes frutas: damasco (Apicot), lichia (Liechi), longana (Ganlon), pitaia (Petaya), salak (Salac)',
+      requisitos: 'já ter comido uma das seguintes frutas: damasco (Apicot), lichia (Liechi), longana (Ganlon), pitaia (Petaya), salak (Salac).',
       frequencia: 'À Vontade',
       referencia: 'E, X',
       alvo: 'uma fruta',
@@ -6003,7 +6003,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Mente Calma',
-      requisitos: 'ter usado dois Golpes que elevam Fases de Ataque Especial ou Defesa Especial mediante Permissão',
+      requisitos: 'ter usado dois Golpes que elevam Fases de Ataque Especial ou Defesa Especial mediante Permissão.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -6011,7 +6011,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Poder Cósmico',
-      requisitos: 'ter usado dois Golpes que elevam Fases de Defesa ou Defesa Especial mediante Permissão',
+      requisitos: 'ter usado dois Golpes que elevam Fases de Defesa ou Defesa Especial mediante Permissão.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'si',
@@ -6019,14 +6019,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Preparação',
-      requisitos: 'cinco Talentos de Médium (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Médium (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       efeito: 'escolha dois Talentos de Médium que elevam Fases. Você usa os dois ao mesmo tempo e sem consumir usos diários deles.'
     },
     {
       nome: 'Presença',
-      requisitos: 'seis Talentos de Médium (desconte as Características de Classe para este cálculo)',
+      requisitos: 'seis Talentos de Médium (desconte as Características de Classe para este cálculo).',
       frequencia: 'Constante',
       referencia: 'C, X',
       gatilho: 'usando um Talento de Médium, você eleva uma ou mais Fases de um pokémon de modo que, no total, ele possui um saldo de pelo menos seis Fases positivas somando todas as Fases em todos os Atributos',
@@ -6034,7 +6034,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Supremacia',
-      requisitos: 'oito Talentos de Médium (desconte as Características de Classe para este cálculo)',
+      requisitos: 'oito Talentos de Médium (desconte as Características de Classe para este cálculo).',
       frequencia: 'Constante',
       referencia: 'C, X',
       gatilho: 'usando um Talento de Médium, você eleva uma ou mais Fases de um pokémon de modo que, no total, ele possui um saldo de pelo menos oito Fases positivas somando todas as Fases em todos os Atributos',
@@ -6042,7 +6042,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Vegetarianismo',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       frequencia: 'Constante',
       referencia: 'C, X',
       gatilho: 'você come uma das seguintes frutas: damasco (Apicot), lichia (Liechi), longana (Ganlon), pitaia (Petaya) ou salak (Salac)',
@@ -6054,7 +6054,7 @@ export const TALENTOS_DATA = {
   'Orador': [
     {
       nome: 'Adeus Frígido',
-      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Nevasca, Raio de Gelo ou Zero Absoluto',
+      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Nevasca, Raio de Gelo ou Zero Absoluto.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6062,7 +6062,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ajoelhe-se!',
-      requisitos: 'já ter consumido 5000 PV de Lendários usando seus Talentos de Orador',
+      requisitos: 'já ter consumido 5000 PV de Lendários usando seus Talentos de Orador.',
       frequencia: 'Semanal',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6070,7 +6070,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Atrocidade',
-      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Açoite, Investida do Dragão, Ultraje',
+      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Açoite, Investida do Dragão, Ultraje.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6078,7 +6078,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Escudo da Fé',
-      requisitos: 'já ter consumido 1000 PV de Lendários usando seus Talentos de Orador',
+      requisitos: 'já ter consumido 1000 PV de Lendários usando seus Talentos de Orador.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'I, P, X',
       alvo: 'um pokémon ou um humano',
@@ -6086,7 +6086,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Incêndio',
-      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Erupção, Explosão de Fogo, Superaquecimento',
+      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Erupção, Explosão de Fogo, Superaquecimento.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6094,14 +6094,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Louvor',
-      requisitos: 'já ter consumido 500 PV de Lendários usando seus Talentos de Orador',
+      requisitos: 'já ter consumido 500 PV de Lendários usando seus Talentos de Orador.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'pokémons canalizados por você podem o Golpe Mão Amiga tendo você como alvo. Um pokémon só pode fazer isso mediante Louvor uma vez diária.'
     },
     {
       nome: 'Mímica',
-      requisitos: 'já ter consumido 300 PV de Lendários usando seus Talentos de Orador',
+      requisitos: 'já ter consumido 300 PV de Lendários usando seus Talentos de Orador.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6109,7 +6109,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Parasitismo',
-      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Absorção, Gigadreno, Megadreno',
+      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Absorção, Gigadreno, Megadreno.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6117,7 +6117,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Punição Divina',
-      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Canhão Elétrico, Relâmpago, Trovão',
+      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Canhão Elétrico, Relâmpago, Trovão.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6125,7 +6125,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Raio de Vida',
-      requisitos: 'ter usado Hiper-Raio mediante Permissão ou Empréstimo',
+      requisitos: 'ter usado Hiper-Raio mediante Permissão ou Empréstimo.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6133,7 +6133,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tremor',
-      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Deslizamento de Rochas, Magnitude, Terremoto',
+      requisitos: 'ter usado um dos seguintes Golpes mediante Permissão ou Empréstimo: Deslizamento de Rochas, Magnitude, Terremoto.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6145,7 +6145,7 @@ export const TALENTOS_DATA = {
   'Rúnico': [
     {
       nome: 'Arma Rúnica',
-      requisitos: 'cinco Talentos de Rúnico (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Rúnico (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 20 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um Unown palavra',
@@ -6153,7 +6153,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Banimento',
-      requisitos: '21 Unown',
+      requisitos: '21 Unown.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6186,7 +6186,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ponto Final',
-      requisitos: '14 Unown',
+      requisitos: '14 Unown.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6194,7 +6194,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Portal',
-      requisitos: '14 Unown',
+      requisitos: '14 Unown.',
       frequencia: 'Semanal. A cada 25 Níveis, receba um uso semanal adicional.',
       referencia: 'P, X',
       alvo: 'uma área adjacente desocupada',
@@ -6215,7 +6215,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Selo',
-      requisitos: 'Poder Oculto',
+      requisitos: 'Poder Oculto.',
       frequencia: 'Diária',
       referencia: 'P, X',
       gatilho: 'você usa o Talento Poder Oculto',
@@ -6239,7 +6239,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Dois se Tornam Um',
-      requisitos: 'seis Talentos de Xamã (desconte as Características de Classe para este cálculo)',
+      requisitos: 'seis Talentos de Xamã (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária',
       referencia: 'P, X',
       efeito: 'enquanto você possui um pokémon, o Nível do pokémon é aumentado por seu Nível para fins de definir quais Golpes ele conhece.'
@@ -6258,7 +6258,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Mente Dominante',
-      requisitos: 'quatro Talentos de Xamã (desconte as Características de Classe para este cálculo)',
+      requisitos: 'quatro Talentos de Xamã (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       gatilho: 'o pokémon que você está possuindo é afligido com Confusão, Paixão ou Sono',
@@ -6272,7 +6272,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Natureza Amiga',
-      requisitos: 'um pokémon leal que já evoluiu pelo menos uma vez com você',
+      requisitos: 'N/A',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando o alvo da sua Possessão é um pokémon seu leal, você automaticamente tem sucesso em possuí-lo.'
@@ -6309,7 +6309,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Elixires',
-      requisitos: 'Éteres',
+      requisitos: 'Éteres.',
       frequencia: 'Diária',
       referencia: 'E, X',
       efeito: 'após quatro horas de trabalho químico, você cria um Elixir.'
@@ -6322,21 +6322,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Magnificadores',
-      requisitos: 'Suplementos Defensivos, Suplementos Explosivos, Suplementos Ofensivos',
+      requisitos: 'Suplementos Defensivos, Suplementos Explosivos, Suplementos Ofensivos.',
       frequencia: 'Mensal. A cada 15 Níveis, receba um uso mensal adicional.',
       referencia: 'E, X',
       efeito: 'após dez horas de trabalho químico, você cria um Magnificador.'
     },
     {
       nome: 'Melhoradores de Performance',
-      requisitos: 'Defesa Especial 14',
+      requisitos: 'Defesa Especial 14.',
       frequencia: 'Diária',
       referencia: 'E, X',
       efeito: 'após trinta minutos de trabalho químico, você rola 1d8 e cria um item conforme o resultado: 1 - X-Ataque; 2 - X-Defesa; 3 - X-Ataque Especial; 4 - X-Defesa Especial; 5 - X-Velocidade; 6 - X-Acurácia; 7 - Golpe Atroz; 8 - Guarda Especial.'
     },
     {
       nome: 'Melhoradores de Performance +',
-      requisitos: 'ter usado Melhoradores de Performance três vezes',
+      requisitos: 'ter usado Melhoradores de Performance três vezes.',
       frequencia: 'Diária',
       referencia: 'E, X',
       efeito: 'após uma hora de trabalho químico, você cria um dos seguintes itens à sua escolha: X-Ataque, X-Defesa, X-Ataque Especial, X-Defesa Especial, X-Velocidade, X-Acurácia, Golpe Atroz, Guarda Especial. Este Talento substitui Melhoradores de Performance.'
@@ -6349,28 +6349,28 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Remédios +',
-      requisitos: 'ter usado Remédios três vezes',
+      requisitos: 'ter usado Remédios três vezes.',
       frequencia: 'Diária',
       referencia: 'E, X',
       efeito: 'após uma hora de trabalho químico, você cria um dos seguintes itens à sua escolha: Antídoto, Despertador, Pomada, Anticongelante, Antiparalisante. Este Talento substitui Remédios.'
     },
     {
       nome: 'Suplementos Defensivos',
-      requisitos: 'um pokémon com Defesa ou Defesa Especial 20',
+      requisitos: 'um pokémon com Defesa ou Defesa Especial 20.',
       frequencia: 'Diária',
       referencia: 'E, X',
       efeito: 'após quatro horas de trabalho químico, você cria um Ferro ou um Zinco.'
     },
     {
       nome: 'Suplementos Explosivos',
-      requisitos: 'um pokémon com Saúde ou Velocidade 20',
+      requisitos: 'um pokémon com Saúde ou Velocidade 20.',
       frequencia: 'Diária',
       referencia: 'E, X',
       efeito: 'após quatro horas de trabalho químico, você cria um Imunizante ou um Carburante.'
     },
     {
       nome: 'Suplementos Ofensivos',
-      requisitos: 'um pokémon com Ataque ou Ataque Especial 20',
+      requisitos: 'um pokémon com Ataque ou Ataque Especial 20.',
       frequencia: 'Diária',
       referencia: 'E, X',
       efeito: 'após quatro horas de trabalho químico, você cria uma Proteína ou um Cálcio.'
@@ -6388,7 +6388,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Bola de Aporrinhar',
-      requisitos: 'Incômodo ou Provocação',
+      requisitos: 'Incômodo ou Provocação.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon',
@@ -6409,7 +6409,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Fotografia Rara +',
-      requisitos: 'Defesa Especial 17',
+      requisitos: 'Defesa Especial 17.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, V',
       gatilho: 'você ou um aliado é atacado por um pokémon usando um Golpe',
@@ -6424,7 +6424,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Pesquisa Fotográfica',
-      requisitos: 'Pesquisa',
+      requisitos: 'Pesquisa.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional.',
       referencia: 'P, V',
       efeito: 'escolha uma fotografia de um pokémon, de um humano ou de um local tirada usando Arte Fotográfica. Você recebe um Ponto de Pesquisa para o alvo da fotografia, como se tivesse usado Pesquisa sobre ele. Múltiplas fotos podem aumentar esta quantidade, mas a uma determinada fotografia só concede um Ponto de Pesquisa.'
@@ -6438,7 +6438,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Registro Fotográfico',
-      requisitos: 'cinco Talentos de Fotógrafo (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Ardente (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'uma fotografia obtida por Fotografia Rara ou Fotografia Rara +',
@@ -6446,7 +6446,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Registro Fotográfico +',
-      requisitos: 'Registro Fotográfico',
+      requisitos: 'Registro Fotográfico.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'C, X',
       alvo: 'uma fotografia obtida por Fotografia Rara ou Fotografia Rara +',
@@ -6454,7 +6454,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Vida Selvagem',
-      requisitos: 'Defesa Especial 16',
+      requisitos: 'Defesa Especial 16.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando usar Arte Fotográfica em um pokémon selvagem, em vez de multiplicar a rolagem por 20 para definir o valor da fotografia, multiplique por 45.'
@@ -6465,7 +6465,7 @@ export const TALENTOS_DATA = {
   'Ocultista': [
     {
       nome: 'Bênção',
-      requisitos: 'ter se aliado a um Lendário',
+      requisitos: 'ter se aliado a um Lendário.',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6473,7 +6473,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Bênção Lendária',
-      requisitos: 'Defesa Especial 18, Bênção',
+      requisitos: 'Defesa Especial 18, Bênção.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6481,14 +6481,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Idioma Sagrado',
-      requisitos: 'Professor, Linguista',
+      requisitos: 'Professor, Linguista.',
       frequencia: 'Constante',
       referencia: 'C, V',
       efeito: 'você pode falar com todos os Lendários e entendê-los.'
     },
     {
       nome: 'Incorporação',
-      requisitos: 'Vinculação, estar vinculado a um Lendário',
+      requisitos: 'Vinculação, estar vinculado a um Lendário.',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional.',
       referencia: 'P, X',
       alvo: 'um pokémon leal',
@@ -6496,7 +6496,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Invocação',
-      requisitos: 'Vinculação, estar vinculado a um Lendário',
+      requisitos: 'Vinculação, estar vinculado a um Lendário.',
       frequencia: 'Mensal. A cada 15 Níveis, receba um uso mensal adicional.',
       referencia: 'P, X',
       alvo: 'um Lendário aliado',
@@ -6504,7 +6504,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Milagre',
-      requisitos: 'ter se aliado a um Lendário',
+      requisitos: 'ter se aliado a um Lendário.',
       frequencia: 'Semanal. A cada 8 Níveis, receba um uso semanal adicional.',
       referencia: 'L, X',
       gatilho: 'um aliado (pokémon ou humano) falha em um Teste de Morte',
@@ -6512,7 +6512,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Moral',
-      requisitos: 'Coordenação',
+      requisitos: 'Coordenação.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, V',
       alvo: 'pokémons aliados a até um número de metros igual a seu MDE',
@@ -6527,7 +6527,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Saudação',
-      requisitos: 'ter usado Exaltação uma vez',
+      requisitos: 'ter usado Exaltação uma vez.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'a área de residência de um Lendário que você já encontrou',
@@ -6535,7 +6535,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sexto Sentido',
-      requisitos: 'Vinculação, estar vinculado a um Lendário',
+      requisitos: 'Vinculação, estar vinculado a um Lendário.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um Lendário vinculado',
@@ -6543,7 +6543,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Vinculação',
-      requisitos: 'ter usado Exaltação uma vez',
+      requisitos: 'ter usado Exaltação uma vez.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um Lendário aliado',
@@ -6555,7 +6555,7 @@ export const TALENTOS_DATA = {
   'Petrologista': [
     {
       nome: 'Armadilha Elemental',
-      requisitos: 'Cavar e Cavar',
+      requisitos: 'Cavar e Cavar.',
       frequencia: 'Diária',
       referencia: 'E, X',
       alvo: 'uma armadilha de fosso sua',
@@ -6576,7 +6576,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Cinzelamento',
-      requisitos: 'Condensação',
+      requisitos: 'Condensação.',
       frequencia: 'Mensal',
       referencia: 'E, X',
       alvo: 'uma pedra ordinária',
@@ -6598,14 +6598,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Espeleologia',
-      requisitos: 'ter visitado três cavernas diferentes',
+      requisitos: 'ter visitado três cavernas diferentes.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'enquanto no subsolo, você sabe se há outras saídas viáveis à superfície ou se há áreas instáveis geologicamente. Você também pode achar áreas que garantam +3 às rolagens de Arqueologia e Procurar Pedras.'
     },
     {
       nome: 'Gneisse Arruinado',
-      requisitos: 'Cavar e Cavar',
+      requisitos: 'Cavar e Cavar.',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'E, X',
       alvo: 'uma armadilha de fosso sua',
@@ -6613,7 +6613,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Poeira na Cara',
-      requisitos: 'Cavar e Cavar',
+      requisitos: 'Cavar e Cavar.',
       frequencia: 'À Vontade',
       referencia: 'E, X',
       alvo: 'uma armadilha de fosso sua',
@@ -6628,7 +6628,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ressurreição',
-      requisitos: 'Reanimador',
+      requisitos: 'Reanimador.',
       frequencia: 'Mensal',
       referencia: 'E, X',
       alvo: 'um pokémon falecido nas últimas 24 horas',
@@ -6636,7 +6636,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Soterramento',
-      requisitos: 'Cavar e Cavar',
+      requisitos: 'Cavar e Cavar.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'E, X',
       alvo: 'uma armadilha de fosso sua',
@@ -6648,7 +6648,7 @@ export const TALENTOS_DATA = {
   'Professor': [
     {
       nome: 'Ânimo',
-      requisitos: 'Coordenação',
+      requisitos: 'Coordenação.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, V',
       alvo: 'pokémons aliados a até um número de metros igual a seu MAE',
@@ -6656,7 +6656,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Autoconfiança',
-      requisitos: 'Ânimo',
+      requisitos: 'Ânimo.',
       frequencia: 'Diária',
       referencia: 'P, V',
       alvo: 'pokémons aliados a até um número de metros igual a seu MAE',
@@ -6664,7 +6664,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Aviso Crítico',
-      requisitos: 'Nível 10, Coordenação',
+      requisitos: 'Nível 10, Coordenação.',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       referencia: 'P, V',
       alvo: 'aliados',
@@ -6672,7 +6672,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Desmoralização',
-      requisitos: 'Coordenação',
+      requisitos: 'Coordenação.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, V',
       alvo: 'pokémons inimigos a até um número de metros igual a seu MAE',
@@ -6680,7 +6680,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Eficiência',
-      requisitos: 'Nível 10, Coordenação',
+      requisitos: 'Nível 10, Coordenação.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, V',
       alvo: 'aliados',
@@ -6688,7 +6688,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Lendo a Luta',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
       referencia: 'P, V',
       alvo: 'um humano',
@@ -6696,7 +6696,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Linguista',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'Constante',
       referencia: 'C, V',
       efeito: 'escolha uma família de pokémons (o que inclui todas as espécies relacionadas por evolução entre si). Você pode falar os pokémons desta família e entendê-los.',
@@ -6704,7 +6704,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Manobra Coordenada',
-      requisitos: 'Técnica Coordenada',
+      requisitos: 'Técnica Coordenada.',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       gatilho: 'um pokémon seu teve sucesso em usar um Golpe',
@@ -6712,7 +6712,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sabotagem',
-      requisitos: 'Planejamento',
+      requisitos: 'Planejamento.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'os pokémons selvagens',
@@ -6720,7 +6720,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Técnica Coordenada',
-      requisitos: 'Coordenação',
+      requisitos: 'Coordenação.',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
       referencia: 'P, X',
       gatilho: 'um pokémon seu teve sucesso em usar um Golpe',
@@ -6732,7 +6732,7 @@ export const TALENTOS_DATA = {
   'Psíquico': [
     {
       nome: 'Adaptação',
-      requisitos: 'Ataque Especial 15',
+      requisitos: 'Ataque Especial 15.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6740,7 +6740,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Controlar Probabilidade',
-      requisitos: 'Ataque Especial 16',
+      requisitos: 'Ataque Especial 16.',
       frequencia: 'À Vontade',
       referencia: 'L, X',
       alvo: 'uma rolagem própria ou de um aliado',
@@ -6748,7 +6748,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Extrassensorial',
-      requisitos: 'Ataque Especial 16',
+      requisitos: 'Ataque Especial 16.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6756,14 +6756,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Gravidade',
-      requisitos: 'Sala de Truques',
+      requisitos: 'Sala de Truques.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       efeito: 'você usa o Golpe Gravidade. O uso deste Talento consome 20 Pontos de Vida.'
     },
     {
       nome: 'Mentalismo',
-      requisitos: 'Ataque Especial 16',
+      requisitos: 'Ataque Especial 16.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6771,7 +6771,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Paranormal',
-      requisitos: 'Ataque Especial 16',
+      requisitos: 'Ataque Especial 16.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6779,7 +6779,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Psicocinese +',
-      requisitos: 'Ataque Especial 15',
+      requisitos: 'Ataque Especial 15.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um objeto cujo peso máximo em quilos não exceda o quíntuplo do seu MAE que não esteja mais distante que um número de metros igual ao triplo de seu MAE',
@@ -6787,21 +6787,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Refletor',
-      requisitos: 'um pokémon que conhece o Golpe Refletor',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       efeito: 'você usa o Golpe Refletor. O uso deste Talento consome 5 Pontos de Vida.'
     },
     {
       nome: 'Sala de Truques',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       efeito: 'você usa o Golpe Sala de Truques. O uso deste Talento consome 20 Pontos de Vida.'
     },
     {
       nome: 'Sala Mágica',
-      requisitos: 'Sala de Truques',
+      requisitos: 'Sala de Truques.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6809,14 +6809,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tela de Luz',
-      requisitos: 'Ataque Especial 15, um pokémon que conhece o Golpe Tela de Luz',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       efeito: 'você usa o Golpe Tela de Luz. O uso deste Talento consome 5 Pontos de Vida.'
     },
     {
       nome: 'Teletransporte',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'si',
@@ -6828,7 +6828,7 @@ export const TALENTOS_DATA = {
   'Ardente': [
     {
       nome: 'Bruma de Lava',
-      requisitos: 'dois Talentos de Ardente',
+      requisitos: 'dois pokémons de Fogo.',
       frequencia: 'Cena',
       referencia: 'Nenhuma',
       alvo: 'Uma Zona',
@@ -6836,7 +6836,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Clarão',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'Nenhuma',
       alvo: 'Todos os Oponentes',
@@ -6844,7 +6844,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Dia de Sol',
-      requisitos: '',
+      requisitos: 'quatro Talentos de Ardente (desconte as Características de Classe para este cálculo).',
       frequencia: 'Diária',
       referencia: 'Nenhuma',
       alvo: 'Todo o Campo de Batalha',
@@ -6852,7 +6852,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Esfera de Sombras',
-      requisitos: 'três Talentos de Ardente',
+      requisitos: 'dois pokémons Fantasmas ou de Noturnos.',
       frequencia: 'Cena x2',
       referencia: 'Nenhuma',
       alvo: 'Uma criatura',
@@ -6860,7 +6860,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Espiral de Fogo',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'Nenhuma',
       alvo: 'Uma criatura',
@@ -6868,7 +6868,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Explosão de Fogo',
-      requisitos: 'quatro Talentos de Ardente',
+      requisitos: 'Nível 15, Bruma de Lava.',
       frequencia: 'Diária',
       referencia: 'Nenhuma',
       alvo: 'Todos no Campo de Batalha exceto você',
@@ -6876,7 +6876,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Invisibilidade',
-      requisitos: 'quatro Talentos de Ardente',
+      requisitos: 'um pokémon com a Capacidade Invisibilidade.',
       frequencia: 'Cena',
       referencia: 'Nenhuma',
       alvo: 'Você',
@@ -6884,7 +6884,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Miragem',
-      requisitos: 'dois Talentos de Ardente',
+      requisitos: 'N/A',
       frequencia: 'Cena x2',
       referencia: 'Nenhuma',
       alvo: 'Uma Zona',
@@ -6892,7 +6892,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Multiplicar',
-      requisitos: 'três Talentos de Ardente',
+      requisitos: 'um pokémon que conhece o Golpe Multiplicar.',
       frequencia: 'Cena',
       referencia: 'Nenhuma',
       alvo: 'Você',
@@ -6900,7 +6900,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Ofuscação',
-      requisitos: '',
+      requisitos: 'Nível 10, Esfera de Sombras.',
       frequencia: 'À Vontade',
       referencia: 'Nenhuma',
       alvo: 'Uma criatura',
@@ -6908,7 +6908,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sudário Cintilante',
-      requisitos: 'dois Talentos de Ardente',
+      requisitos: 'N/A',
       frequencia: 'Cena',
       referencia: 'Nenhuma',
       alvo: 'Você',
@@ -6916,7 +6916,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Visão no Escuro',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'Cena x3',
       referencia: 'Nenhuma',
       alvo: 'Você',
@@ -6928,7 +6928,7 @@ export const TALENTOS_DATA = {
   'Bruxo': [
     {
       nome: 'Choro',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6936,7 +6936,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Dança das Penas',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6944,7 +6944,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Devorar Sonhos',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       referencia: 'P, X',
       alvo: 'um pokémon dormindo ou um humano dormindo',
@@ -6952,7 +6952,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Domínio',
-      requisitos: 'Nível 18, Ataque Especial 26, Encantamento',
+      requisitos: 'Nível 18, Ataque Especial 26, Encantamento.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6960,7 +6960,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Encantamento',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6968,7 +6968,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Feitiço',
-      requisitos: '',
+      requisitos: 'N/A',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6976,7 +6976,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Fogo-Fátuo',
-      requisitos: 'seis Talentos de Bruxo (desconte as Características de Classe para este cálculo)',
+      requisitos: 'seis Talentos de Bruxo (desconte as Características de Classe para este cálculo).',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6984,7 +6984,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Gás Venenoso',
-      requisitos: 'três Talentos de Bruxo (desconte as Características de Classe para este cálculo)',
+      requisitos: 'três Talentos de Bruxo (desconte as Características de Classe para este cálculo).',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -6992,7 +6992,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Hipnose',
-      requisitos: 'três Talentos de Bruxo (desconte as Características de Classe para este cálculo)',
+      requisitos: 'três Talentos de Bruxo (desconte as Características de Classe para este cálculo).',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7000,7 +7000,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Inaptidão',
-      requisitos: 'quatro Talentos de Bruxo (desconte as Características de Classe para este cálculo)',
+      requisitos: 'quatro Talentos de Bruxo (desconte as Características de Classe para este cálculo).',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'uma rolagem em que houve sucesso',
@@ -7008,7 +7008,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Maldição',
-      requisitos: 'um pokémon que conhece Maldição',
+      requisitos: 'um pokémon que conhece Maldição.',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7016,7 +7016,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Raio de Confusão',
-      requisitos: 'um pokémon que conhece Raio de Confusão',
+      requisitos: 'um pokémon que conhece Raio de Confusão.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7028,7 +7028,7 @@ export const TALENTOS_DATA = {
   'Célio': [
     {
       nome: 'Aerodinâmico',
-      requisitos: 'Desanuviar, um pokémon com Velocidade 20',
+      requisitos: 'Desanuviar, um pokémon com Velocidade 20.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'enquanto o clima estiver ameno, você é tratado como se sua Velocidade fosse igual a 1 + o humano que antecederia você na ordem de iniciativa, mas apenas para fins de determinar a Iniciativa.'
@@ -7042,7 +7042,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Cauda de Vento',
-      requisitos: 'dois Talentos que concedem usos de Golpes Voadores',
+      requisitos: 'dois Talentos que concedem usos de Golpes Voadores.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'área',
@@ -7050,7 +7050,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Corte Aéreo',
-      requisitos: 'dois pokémons Voadores',
+      requisitos: 'dois pokémons Voadores.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7064,7 +7064,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Descarga',
-      requisitos: 'dois pokémons Elétricos',
+      requisitos: 'Nível 15, Corte Aéreo.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7080,7 +7080,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Levitação',
-      requisitos: 'Voo',
+      requisitos: 'Voo.',
       frequencia: 'Constante',
       referencia: 'C, X',
       alvo: 'um número de voluntários (pokémons e/ou humanos) igual a seu MAE. Nenhum alvo pode ser mais pesado que você',
@@ -7088,7 +7088,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Onda Trovão',
-      requisitos: 'dois Talentos que concedem usos de Golpes Elétricos',
+      requisitos: 'dois Talentos que concedem usos de Golpes Elétricos.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7096,7 +7096,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Relâmpago',
-      requisitos: 'Nível 10, Descarga',
+      requisitos: 'um pokémon com Deslocamento de',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7115,7 +7115,7 @@ export const TALENTOS_DATA = {
   'Empático': [
     {
       nome: 'As Profundezas da Alma',
-      requisitos: 'As Profundezas da Mente',
+      requisitos: 'As Profundezas da Mente.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7123,7 +7123,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'As Profundezas da Mente',
-      requisitos: 'Psíquico, Ataque Especial 16',
+      requisitos: 'Psíquico, Ataque Especial 16.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando usar Telepatia, você pode ler os pensamentos e as memórias de alguém desde a última hora no passado. Isso deixa resíduo psíquico no alvo.'
@@ -7137,7 +7137,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Conexão',
-      requisitos: 'quatro pokémons seus já subiram pelo menos 15 Níveis com você',
+      requisitos: 'quatro pokémons seus já subiram pelo menos 15 Níveis com você.',
       frequencia: 'Constante',
       referencia: 'C, V',
       alvo: 'seus pokémons',
@@ -7145,7 +7145,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Conexão +',
-      requisitos: 'Conexão, Ataque Especial 18',
+      requisitos: 'Conexão, Ataque Especial 18.',
       frequencia: 'Constante',
       referencia: 'C, V',
       alvo: 'pokémons',
@@ -7153,7 +7153,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Cura Maior',
-      requisitos: 'Cura Média, Ataque Especial 18',
+      requisitos: 'Cura Média, Ataque Especial 18.',
       frequencia: 'Diária. A cada 12 Níveis, receba um uso diário adicional',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7161,7 +7161,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Cura Máxima',
-      requisitos: 'Cura Maior, Ataque Especial 20',
+      requisitos: 'Cura Maior, Ataque Especial 20.',
       frequencia: 'Diária. A cada 12 Níveis, receba um uso diário adicional',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7176,7 +7176,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Desejo',
-      requisitos: 'Cura Maior',
+      requisitos: 'Cura Maior.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7184,7 +7184,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Repouso',
-      requisitos: 'um pokémon com um Golpe que recupera Pontos de Vida',
+      requisitos: 'um pokémon com um Golpe que recupera Pontos de Vida.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'si',
@@ -7192,7 +7192,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Sofrimento Mútuo',
-      requisitos: 'Ataque Especial 16, Compartilhar Sofrimento',
+      requisitos: 'Ataque Especial 16, Compartilhar Sofrimento.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7200,7 +7200,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tratar a Alma',
-      requisitos: 'Ataque Especial 16, ter curado Paralisia e/ou Sono três vezes usando itens ou Talentos',
+      requisitos: 'Ataque Especial 16, ter curado Paralisia e/ou Sono três vezes usando itens ou Talentos.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7208,7 +7208,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tratar o Corpo',
-      requisitos: 'Ataque Especial 16, ter curado Queimadura e/ou Veneno três vezes usando itens ou Talentos',
+      requisitos: 'Ataque Especial 16, ter curado Queimadura e/ou Veneno três vezes usando itens ou Talentos.',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7216,7 +7216,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Vínculo',
-      requisitos: 'Conexão',
+      requisitos: 'Conexão.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'enquanto você está inconsciente, seus pokémons podem agir como se você não estivesse inconsciente.'
@@ -7227,14 +7227,14 @@ export const TALENTOS_DATA = {
   'Nebuloso': [
     {
       nome: 'Ambiente Aquoso',
-      requisitos: 'Dança da Chuva ou Granizo',
+      requisitos: 'Dança da Chuva ou Granizo.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'se o clima estiver de Chuva ou Granizo, ou se você estiver próximo a um grande corpo de água (a partir do tamanho de um lago) com profundidade suficiente para um pokémon de tamanho Pequeno submergir, você pode fazer seus Golpes de Água ou de Gelo se originarem da água natural presente nas redondezas.'
     },
     {
       nome: 'Cascata',
-      requisitos: 'dois pokémons de Água',
+      requisitos: 'dois pokémons de Água.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7242,7 +7242,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Dança da Chuva',
-      requisitos: 'cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo).',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       efeito: 'você usa o Golpe Dança da Chuva. O uso deste Talento consome 20 Pontos de Vida.'
@@ -7255,7 +7255,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Estaca de Gelo',
-      requisitos: 'dois pokémon de Gelo',
+      requisitos: 'dois pokémon de Gelo.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7263,14 +7263,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Granizo',
-      requisitos: 'cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Nebuloso (desconte as Características de Classe para este cálculo).',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       efeito: 'você usa o Golpe Granizo. O uso deste Talento consome 20 Pontos de Vida.'
     },
     {
       nome: 'Nadador',
-      requisitos: 'um pokémon com Deslocamento de Natação e Subaquático',
+      requisitos: 'um pokémon com Deslocamento de',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'adicione seu MAE aos seus Deslocamentos de Natação e Subaquático. Além disso, durante um número de minutos igual a seu Ataque Especial distribuídos a cada hora, você pode respirar embaixo d\'água.'
@@ -7283,7 +7283,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Nevasca',
-      requisitos: 'Nível 15, Estaca de Gelo',
+      requisitos: 'Nível 15, Estaca de Gelo.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7311,7 +7311,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Surfe',
-      requisitos: 'Nível 10, Cascata',
+      requisitos: 'Nível 10, Cascata.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7323,7 +7323,7 @@ export const TALENTOS_DATA = {
   'Terrulento': [
     {
       nome: 'Aromaterapia',
-      requisitos: 'dois Talentos que concedem usos de Golpes de Planta',
+      requisitos: 'dois Talentos que concedem usos de Golpes de Planta.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7338,7 +7338,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Deslizamento de Rochas',
-      requisitos: 'dois pokémons de Pedra',
+      requisitos: 'dois pokémons de Pedra.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7346,7 +7346,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Escavação',
-      requisitos: 'um pokémon com um Deslocamento de Escavação',
+      requisitos: 'um pokémon com um Deslocamento de Escavação.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'você recebe Deslocamento de Escavação igual a seu MAE. O uso deste Talento em combate consome 2 Pontos de Vida por rodada. O uso deste Talento fora de combate consome 5 Pontos de Vida por minuto.'
@@ -7367,7 +7367,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Gigadreno',
-      requisitos: 'dois pokémons de Planta',
+      requisitos: 'dois pokémons de Planta.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7375,14 +7375,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Materialização',
-      requisitos: 'um pokémon com Materialização',
+      requisitos: 'um pokémon com Materialização.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'você recebe a Capacidade Materialização.'
     },
     {
       nome: 'Obelisco',
-      requisitos: 'Nível 10, Deslizamento de Rochas',
+      requisitos: 'Nível 10, Deslizamento de Rochas.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7390,14 +7390,14 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Tempestade de Areia',
-      requisitos: 'cinco Talentos de Terrulento (desconte as Características de Classe para este cálculo)',
+      requisitos: 'cinco Talentos de Terrulento (desconte as Características de Classe para este cálculo).',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       efeito: 'você usa o Golpe Tempestade de Areia. O uso deste Talento consome 20 Pontos de Vida.'
     },
     {
       nome: 'Tempestade de Folhas',
-      requisitos: 'Nível 15, Gigadreno',
+      requisitos: 'Nível 15, Gigadreno.',
       frequencia: 'À Vontade',
       referencia: 'P, X',
       alvo: 'um pokémon ou um humano',
@@ -7405,7 +7405,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Transparência',
-      requisitos: 'Nível 10, Materialização',
+      requisitos: 'Nível 10, Materialização.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'você pode enxergar através de areia, terra, solo e rochas como se não estivessem lá. O alcance máximo deste poder é de um número de metros igual ao triplo de seu MAE.'
@@ -7416,7 +7416,7 @@ export const TALENTOS_DATA = {
   'Vidente': [
     {
       nome: 'Buscador de Almas',
-      requisitos: 'Buscador de Formas',
+      requisitos: 'Buscador de Formas.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'uma pessoa que você já conheceu e tocou',
@@ -7424,7 +7424,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Buscador de Almas +',
-      requisitos: 'Buscador de Almas',
+      requisitos: 'Buscador de Almas.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'uma pessoa que você já conheceu e tocou',
@@ -7439,21 +7439,21 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Clariaudiência',
-      requisitos: 'Ataque Especial 17',
+      requisitos: 'Ataque Especial 17.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'quando você usa Passado Recente, Passado ou Passado +, você também ouve os sons ocorridos. Você sabe automaticamente se alguém está deliberadamente mentindo para você.'
     },
     {
       nome: 'Clarividência',
-      requisitos: 'Ataque Especial 16',
+      requisitos: 'Ataque Especial 16.',
       frequencia: 'Constante',
       referencia: 'C, X',
       efeito: 'receba +3 a todas as rolagens envolvidas com fazer um ataque. Você pode ver através de ilusões. Uma ilusão é qualquer habilidade que permite criar imagens visuais que não existem, incluindo Golpes como Multiplicar.'
     },
     {
       nome: 'Dissipar Ilusão',
-      requisitos: 'Clariaudiência, Clarividência',
+      requisitos: 'Clariaudiência, Clarividência.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'uma ilusão',
@@ -7468,7 +7468,7 @@ export const TALENTOS_DATA = {
     },
     {
       nome: 'Passado +',
-      requisitos: 'Passado, Ataque Especial 19',
+      requisitos: 'Passado, Ataque Especial 19.',
       frequencia: 'Diária',
       referencia: 'P, X',
       alvo: 'o local onde você se encontra ou um objeto',
