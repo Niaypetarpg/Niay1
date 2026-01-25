@@ -1710,6 +1710,16 @@ function App() {
   const [showPokebolVaiMenu, setShowPokebolVaiMenu] = useState(false) // Menu Pokébola, Vai!
   const [showCuraInterludioMenu, setShowCuraInterludioMenu] = useState(false) // Menu Cura no Interlúdio
 
+  // States para Interlúdio M (mestre)
+  const [interludioMSelectedTrainer, setInterludioMSelectedTrainer] = useState(null) // Treinador selecionado no Interlúdio M
+  const [interludioMTrainerData, setInterludioMTrainerData] = useState(null) // Dados do treinador selecionado no Interlúdio M
+  const [interludioMApp, setInterludioMApp] = useState(null) // App selecionado no Interlúdio M ('combate' ou 'concurso')
+  const [showIntMTalentosMenu, setShowIntMTalentosMenu] = useState(false) // Menu Int. Talentos no Interlúdio M
+  const [showIntMLUMenu, setShowIntMLUMenu] = useState(false) // Menu Int. L.U. no Interlúdio M
+  const [showIntMPokebolVaiMenu, setShowIntMPokebolVaiMenu] = useState(false) // Menu Pokébola, Vai! no Interlúdio M
+  const [showIntMCuraMenu, setShowIntMCuraMenu] = useState(false) // Menu Cura no Interlúdio M
+  const [showRegrasInterludioModal, setShowRegrasInterludioModal] = useState(false) // Modal de Regras do Interlúdio
+
   // Modais
   const [showLevelModal, setShowLevelModal] = useState(false)
   const [showClassModal, setShowClassModal] = useState(false)
@@ -2090,14 +2100,17 @@ function App() {
 
   // Ações de JN (Jogo de Narração)
   const acoesJN = [
-    { nome: 'Participar de Concurso', custo: 1 },
-    { nome: 'Participar de Torneio', custo: 1 },
+    { nome: 'Participar de Concurso', custo: 3 },
+    { nome: 'Participar de Torneio', custo: 3 },
     { nome: 'Procurar Pokémon', custo: 1 },
-    { nome: 'Procurar Batalhas', custo: 1 },
-    { nome: 'Escanear Pokémons', custo: 1 },
-    { nome: 'Adicionar recompensa', custo: 2 },
-    { nome: 'Em busca da Lenda', custo: 5 },
-    { nome: 'Em busca do Alvo', custo: 4 }
+    { nome: 'Batalha com treinador', custo: 1 },
+    { nome: 'Catalogar pokémon', custo: 1 },
+    { nome: 'Adicionar Recompensa', custo: 3 },
+    { nome: 'Em busca da Lenda', custo: 4 },
+    { nome: 'Sidequest', custo: 5 },
+    { nome: 'NPC aleatório', custo: 1 },
+    { nome: 'NPC específico', custo: 3 },
+    { nome: 'Batalha de Ginásio', custo: 3 }
   ]
 
   // Ações de RT (Roteiro)
@@ -2402,7 +2415,7 @@ function App() {
     { username: 'Pedro', type: 'treinador', gradient: 'linear-gradient(135deg, #0000CD, #4169E1, #00CED1, #32CD32)' }
   ]
 
-  const mestreAreas = ['Gerador Pokémon', 'Treinador NPC', 'Pokémon NPC', 'Batalha', 'Enciclopédia M', 'Visão do Mestre', 'XP & Capturas M', 'PokeApp', 'Interlúdio']
+  const mestreAreas = ['Gerador Pokémon', 'Treinador NPC', 'Pokémon NPC', 'Batalha', 'Enciclopédia M', 'Visão do Mestre', 'XP & Capturas M', 'PokeApp', 'Interlúdio M']
   const treinadorAreas = ['Treinador', 'PC', 'Pokédex', 'Mochila', 'Características & Talentos', 'Pokéloja', 'Insígnias', 'Enciclopédia', 'Progressão', 'Batalha Pkm', 'Interlúdio']
 
   const allClasses = [
@@ -2926,6 +2939,43 @@ function App() {
       isDiceRoll: false,
       isAction: true
     })
+
+    // Rolagens automáticas para ações específicas
+    if (acao.nome === 'Procurar Pokémon') {
+      const d6Roll = Math.floor(Math.random() * 6) + 1
+      const total = d6Roll + 1
+      const rollTimestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      addChatMessage({
+        username: username,
+        text: `🎲 Procurar Pokémon - 1d6+1`,
+        timestamp: rollTimestamp,
+        isDiceRoll: true,
+        diceResult: `1d6(${d6Roll}) + 1 = ${total} pokémons gerados`
+      })
+    } else if (acao.nome === 'Catalogar pokémon') {
+      const d8Roll = Math.floor(Math.random() * 8) + 1
+      const total = d8Roll + 2
+      const rollTimestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      addChatMessage({
+        username: username,
+        text: `🎲 Catalogar pokémon - 1d8+2`,
+        timestamp: rollTimestamp,
+        isDiceRoll: true,
+        diceResult: `1d8(${d8Roll}) + 2 = ${total} pokémons gerados`
+      })
+    } else if (acao.nome === 'Batalha com treinador') {
+      const d4Treinadores = Math.floor(Math.random() * 4) + 1
+      const d4Pokemons = Math.floor(Math.random() * 4) + 1
+      const totalPokemons = d4Pokemons + 1
+      const rollTimestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      addChatMessage({
+        username: username,
+        text: `🎲 Batalha com treinador`,
+        timestamp: rollTimestamp,
+        isDiceRoll: true,
+        diceResult: `Treinadores: 1d4 = ${d4Treinadores} | Pokémons por treinador: 1d4(${d4Pokemons}) + 1 = ${totalPokemons}`
+      })
+    }
   }
 
   const handleAcaoRT = (username, acao) => {
@@ -8353,6 +8403,26 @@ function App() {
       setSelectedTrainerData(data)
     }
   }, [selectedTrainer])
+
+  // Carregar dados do treinador selecionado para Interlúdio M (tempo real)
+  useEffect(() => {
+    if (!interludioMSelectedTrainer) {
+      setInterludioMTrainerData(null)
+      return
+    }
+
+    if (useFirebase) {
+      const unsubscribe = subscribeToTrainer(interludioMSelectedTrainer, (data) => {
+        setInterludioMTrainerData(data)
+      })
+      return () => {
+        if (unsubscribe) unsubscribe()
+      }
+    } else {
+      const data = JSON.parse(localStorage.getItem(`trainer_${interludioMSelectedTrainer}`) || 'null')
+      setInterludioMTrainerData(data)
+    }
+  }, [interludioMSelectedTrainer])
 
   // Sincronizar chat em tempo real com Firebase
   useEffect(() => {
@@ -29187,8 +29257,8 @@ function App() {
     )
   }
 
-  // ÁREA INTERLÚDIO (Treinador e Mestre)
-  if (currentArea === 'Interlúdio') {
+  // ÁREA INTERLÚDIO (Apenas Treinador)
+  if (currentArea === 'Interlúdio' && currentUser.type === 'treinador') {
     return (
       <>
         <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
@@ -29196,9 +29266,12 @@ function App() {
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                  Interlúdio {currentUser.type === 'mestre' ? '👑' : ''}
+                  Interlúdio
                 </h2>
                 <div className="flex gap-2">
+                  <button onClick={() => setShowRegrasInterludioModal(true)} className={`px-4 py-2 rounded-lg font-semibold ${darkMode ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}>
+                    Regras Interlúdio
+                  </button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
@@ -29206,10 +29279,7 @@ function App() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {currentUser.type === 'mestre'
-                  ? mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Interlúdio' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)
-                  : treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Interlúdio' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)
-                }
+                {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Interlúdio' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
               </div>
             </div>
           </div>
@@ -30325,6 +30395,968 @@ function App() {
                     Confirmar
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* MODAL DE REGRAS DO INTERLÚDIO - Área Treinador */}
+        {showRegrasInterludioModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowRegrasInterludioModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-6 sticky top-0 pb-4 border-b ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}">
+                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Regras do Interlúdio</h3>
+                <button onClick={() => setShowRegrasInterludioModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
+              </div>
+
+              <div className={`space-y-6 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                {/* Explicação */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>Explicação</h4>
+                  <p><strong>Verdade</strong> - a verdade sobre o mundo é algo que seja alcançável e plausível, para o mundo e nível dos personagens.</p>
+                  <p className="mt-2"><strong>Jogador-narrador (JN)</strong> - aquele que vai narrar e jogar. Contará seus feitos em tempo real. Gastará seus pontos de narração para contar sua história.</p>
+                  <p className="mt-2"><strong>Roteiristas (RT)</strong> - aqueles que vão ouvir a história e adicionar complicações, ajudas, npcs, pokémons... no caminho do JN. Gastarão pontos de roteiro.</p>
+                  <p className="mt-2"><strong>Ponto de Narração</strong> - pontos usados para suas cenas.</p>
+                  <p className="mt-2"><strong>Pontos de Roteiro</strong> - pontos usados para adicionar elementos nas cenas.</p>
+                </div>
+
+                {/* Mais a fundo */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>Mais a fundo</h4>
+                  <p><strong>Verdade:</strong> O JN, ou o grupo, cria a verdade e não poderá alterá-la.</p>
+                  <p className="mt-2"><strong>Pontos de Narração:</strong> O JN, ou o grupo, tem 6pts de narração.</p>
+                </div>
+
+                {/* Uso de Pontos de Narração */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>Uso de Pontos de Narração</h4>
+
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg mb-3`}>
+                    <h5 className="font-bold mb-2">Concursos e Torneios (3pts)</h5>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Gastam 1 semana no mínimo, tem 1d8-nºJN participantes e o prêmio é de 1º-1000₽, 2º-500₽, 3º-250₽.</li>
+                      <li>A cada 3 dias a mais se adiciona 1d4 participantes.</li>
+                      <li>A cada 3 dias a mais se adiciona 50% no valor da premiação.</li>
+                      <li>Com 1 semana a mais, um item aleatório também entra como premiação.</li>
+                      <li>Com 2 semanas a mais, o JN pode escolher a classe do item.</li>
+                      <li>Com 3 semanas a mais o JN pode escolher o Item.</li>
+                      <li>Em TORNEIOS, feitos de interlúdio, as regras sempre vão ser na inscrição de até 3 pkms.</li>
+                      <li>O level dos pokémons variam em 5, pra menos ou mais, do pokémon mais forte do JN.</li>
+                    </ul>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Procurar pkm (1pt):</strong> 4 dias procurando pokémon, cada dia te dá direito a 1d6+1 pokémons gerados.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Batalha com treinador (1pt):</strong> Você pode batalhar com 1d4 treinadores, cada treinador possui 1d4+1 pokémons.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Catalogar pokémon (1pt):</strong> Você pode ter gerado 1d8+2 pkms, o que não implica na certeza de pkms novos.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Adicionar recompensa (3pts):</strong> O jogador deve escolher 5 elementos do obstáculo ou quest, e a recompensa extra será escolhida rolando 1d5.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Em busca da Lenda (5pts):</strong> O jogador vai contar como conseguiu ou quase conseguiu uma pista sobre um pokémon lendário. Já tendo a pista, pode ir atrás do lendário.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Em busca do alvo (4pts/2pts):</strong> O jogador pode buscar informações sobre um pokémon específico. Se já tem a localização, só gasta 2pts.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Sidequest (5pts):</strong> O jogador pode criar uma quest com recompensa de itens, pokémoedas ou pokémons (limite de 1pkm por quest).</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>NPC aleatório (1pt):</strong> Pode gerar um NPC aleatório no gerador de NPC, level máximo não pode passar o seu próprio.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>NPC específico (3pts):</strong> Pode escolher as classes/subclasses do NPC, level máximo não pode passar o seu próprio.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Batalha de Ginásio (3pts):</strong> Ir para uma batalha de ginásio. O líder tem 1d4+2 pkms.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Encontro Pokémon */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-green-400' : 'text-green-600'}`}>Encontro Pokémon</h4>
+
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg mb-3`}>
+                    <h5 className="font-bold mb-2">Mapa</h5>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>O JN anda pelo mapa após um dos RT posicionarem os pokémons gerados.</li>
+                      <li>O JN tem 3 turnos antes que os pokémons se movam.</li>
+                      <li>Caso um pokémon selvagem se mova do lado da borda, o RT joga 1d2: 1-sai do mapa; 2-se move para dentro do mapa.</li>
+                      <li>Caso o JN pare seu movimento ao lado do pkm selvagem, o RT joga 1d20: 1-10 não percebe nada; 11-20 percebeu o pkm selvagem.</li>
+                    </ul>
+                  </div>
+
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg`}>
+                    <h5 className="font-bold mb-2">App de chance de encontro</h5>
+                    <p>O RT usa o app de chance de encontro de acordo com as ações do JN. Um número de vezes igual ao valor do dado.</p>
+                  </div>
+                </div>
+
+                {/* Pontos de Roteiro */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>Pontos de Roteiro</h4>
+                  <p className="mb-3">O RT tem 4pts de roteiro.</p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p className="font-bold mb-1">Adicionar NPC:</p>
+                      <ul className="list-disc list-inside ml-2">
+                        <li>NPC treinador: 1pt a cada 3 pkms (limite 6pkms)</li>
+                        <li>NPC de história: 1pt</li>
+                        <li>NPC vilão: 3pts a cada 3 pkms (limite 6pkms)</li>
+                      </ul>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p className="font-bold mb-1">Adicionar Obstáculo:</p>
+                      <ul className="list-disc list-inside ml-2">
+                        <li>Fácil: 1pt (recompensa até 250₽)</li>
+                        <li>Médio: 2pts (recompensa até 500₽)</li>
+                        <li>Difícil: 3pts (recompensa até 800₽)</li>
+                      </ul>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p className="font-bold mb-1">Adicionar Quest:</p>
+                      <ul className="list-disc list-inside ml-2">
+                        <li>Fácil: 2pts (recompensa até 450₽)</li>
+                        <li>Médio: 3pts (recompensa até 750₽)</li>
+                        <li>Difícil: 4pts (recompensa até 1000₽)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Level de NPCs */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-red-400' : 'text-red-600'}`}>Level de NPCs e PKMs</h4>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p className="font-bold mb-1">Level de NPCs:</p>
+                      <ul className="list-disc list-inside ml-2">
+                        <li>Treinador: 5 levels a mais/menos do que o JN</li>
+                        <li>Vilão: de 5 a 15 levels a mais do que o JN</li>
+                        <li>Líder de Ginásio: entre level 35 a 50</li>
+                      </ul>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p className="font-bold mb-1">Level de PKMs de NPCs:</p>
+                      <ul className="list-disc list-inside ml-2">
+                        <li>Treinador: 5 levels a mais/menos do que o pkm mais forte do JN</li>
+                        <li>Vilão: 2x o level do pkm mais forte do JN</li>
+                        <li>Líder de Ginásio: até 5 levels a mais que o mais forte do JN</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Ganho de ₽ */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Ganho de ₽ por Batalha</h4>
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg`}>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li><strong>Treinador:</strong> 25x o level do treinador, aumentando o valor final em 50% por pokémon adicionado.</li>
+                      <li><strong>Vilão:</strong> 50x o level do vilão, aumentando o valor final em 50% por pokémon adicionado.</li>
+                      <li><strong>Líder de Ginásio:</strong> 75x o level do líder.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}">
+                <button onClick={() => setShowRegrasInterludioModal(false)} className={`w-full py-3 rounded-lg font-semibold ${darkMode ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}>
+                  Fechar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {accountDataModal}
+      </>
+    )
+  }
+
+  // ÁREA INTERLÚDIO M (Apenas Mestre)
+  if (currentArea === 'Interlúdio M' && currentUser.type === 'mestre') {
+    // Lista de treinadores disponíveis
+    const trainersForSelection = users.filter(u => u.type === 'treinador')
+
+    // Função para calcular HP máximo do treinador: (level + saude) * 4
+    const calculateTrainerMaxHP = (trainerData) => {
+      if (!trainerData) return 0
+      const saudeAttr = trainerData.attributes?.saude || 10
+      const level = trainerData.level || 1
+      return (level + saudeAttr) * 4
+    }
+
+    // Função para calcular HP máximo de pokémon: (3 x Saúde Total) + Nível
+    const calculatePokemonMaxHP = (pokemon) => {
+      if (!pokemon) return 0
+      const saudeBase = parseInt(pokemon.baseAttributes?.saude) || 0
+      const selectedNature = natures.find(n => n.nome === pokemon.nature)
+      const isIncreased = selectedNature?.up === 'Saúde'
+      const isDecreased = selectedNature?.down === 'Saúde'
+      const natureBonus = isIncreased ? 1 : isDecreased ? -1 : 0
+      const saudePontos = parseInt(pokemon.levelPoints?.saude) || 0
+      const saudeTotal = saudeBase + natureBonus + saudePontos
+      return (3 * saudeTotal) + (pokemon.level || 1)
+    }
+
+    // Função para obter modificador
+    const getTrainerModifier = (value) => Math.floor((value - 10) / 2)
+
+    return (
+      <>
+        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  Interlúdio M 👑
+                </h2>
+                <div className="flex gap-2">
+                  <button onClick={() => setShowRegrasInterludioModal(true)} className={`px-4 py-2 rounded-lg font-semibold ${darkMode ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}>
+                    Regras Interlúdio
+                  </button>
+                  <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
+                    {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+                  </button>
+                  <button onClick={() => { setCurrentUser(null); setCurrentArea('') }} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Interlúdio M' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              </div>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 py-8">
+            {/* Botões de Seleção de Treinador */}
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-8`}>
+              <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                Selecionar Treinador
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {trainersForSelection.map(trainer => (
+                  <button
+                    key={trainer.username}
+                    onClick={() => setInterludioMSelectedTrainer(interludioMSelectedTrainer === trainer.username ? null : trainer.username)}
+                    className={`px-6 py-3 rounded-lg font-bold transition-all ${
+                      interludioMSelectedTrainer === trainer.username
+                        ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white shadow-lg scale-105'
+                        : darkMode
+                          ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                  >
+                    {trainer.username}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Informações do Treinador Selecionado */}
+            {interludioMSelectedTrainer && interludioMTrainerData && (
+              <>
+                {/* Treinador Info e Time Principal */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                  {/* Coluna Esquerda: Treinador */}
+                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4`}>
+                      <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                        {interludioMSelectedTrainer} <span className={`ml-2 text-sm font-normal ${darkMode ? 'text-green-400' : 'text-green-600'}`}>HP: {interludioMTrainerData.currentHP !== undefined ? interludioMTrainerData.currentHP : calculateTrainerMaxHP(interludioMTrainerData)}/{calculateTrainerMaxHP(interludioMTrainerData)}</span>
+                      </h4>
+
+                      {/* Perícias do Treinador */}
+                      <div>
+                        <h5 className={`text-xs font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                          Perícias:
+                        </h5>
+                        <div className="grid grid-cols-2 gap-1">
+                          {interludioMTrainerData.skills && Object.entries(interludioMTrainerData.skills).map(([attr, skillList]) => {
+                            const attrNames = {
+                              saude: 'Saúde',
+                              ataque: 'Ataque',
+                              defesa: 'Defesa',
+                              ataqueEspecial: 'Ataque Especial',
+                              defesaEspecial: 'Defesa Especial',
+                              velocidade: 'Velocidade'
+                            }
+
+                            return skillList.map((skill, idx) => {
+                              const count = skillList.filter(s => s === skill).length
+                              const isFirst = skillList.indexOf(skill) === idx
+
+                              if (!isFirst) return null
+
+                              const modifier = getTrainerModifier(interludioMTrainerData.attributes?.[attr] || 10)
+
+                              return (
+                                <div
+                                  key={`${attr}-${skill}-${idx}`}
+                                  className={`text-xs p-2 rounded ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800 border'}`}
+                                >
+                                  {skill} {count > 1 && `(x${count})`}
+                                </div>
+                              )
+                            })
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Coluna Direita: Time Principal */}
+                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                      Time Principal
+                    </h4>
+
+                    {(!interludioMTrainerData.mainTeam || interludioMTrainerData.mainTeam.length === 0) ? (
+                      <p className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'} py-4`}>
+                        Nenhum Pokémon no time
+                      </p>
+                    ) : (
+                      <div className="space-y-2">
+                        {interludioMTrainerData.mainTeam.map((pkmn, idx) => {
+                          const maxHP = calculatePokemonMaxHP(pkmn)
+                          return (
+                            <div
+                              key={idx}
+                              className={`flex items-center justify-between p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}
+                            >
+                              <div>
+                                <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                                  {pkmn.nickname || pkmn.species}
+                                </span>
+                                <span className={`ml-2 text-xs ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
+                                  HP: {pkmn.currentHP !== undefined ? pkmn.currentHP : maxHP}/{maxHP}
+                                </span>
+                                <span className={`ml-2 text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                  Nv. {pkmn.level}
+                                </span>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* MENUS DE INTERLÚDIO M */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                  {/* Menu Int. Talentos */}
+                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4`}>
+                    <div
+                      className="flex justify-between items-center cursor-pointer"
+                      onClick={() => setShowIntMTalentosMenu(!showIntMTalentosMenu)}
+                    >
+                      <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                        Int. Talentos
+                      </h3>
+                      <div className="flex items-center gap-2">
+                        {showIntMTalentosMenu ? <ChevronUp size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
+                      </div>
+                    </div>
+
+                    {showIntMTalentosMenu && (
+                      <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-3 mt-3`}>
+                        {(!interludioMTrainerData.talentinhos || interludioMTrainerData.talentinhos.length === 0) ? (
+                          <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-4`}>
+                            Nenhum talento em jogo
+                          </p>
+                        ) : (
+                          <div className="space-y-2">
+                            {interludioMTrainerData.talentinhos.map((talentinho, idx) => (
+                              <div
+                                key={idx}
+                                className={`p-3 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}
+                              >
+                                <div className="flex items-start justify-between gap-2 mb-1">
+                                  <span className={`font-semibold text-sm ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
+                                    {talentinho.nome}
+                                  </span>
+                                </div>
+                                <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} font-mono`}>
+                                  {talentinho.expressao}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Menu Int. L.U. */}
+                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4`}>
+                    <div
+                      className="flex justify-between items-center cursor-pointer"
+                      onClick={() => setShowIntMLUMenu(!showIntMLUMenu)}
+                    >
+                      <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                        Int. L.U.
+                      </h3>
+                      <div className="flex items-center gap-2">
+                        {showIntMLUMenu ? <ChevronUp size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
+                      </div>
+                    </div>
+
+                    {showIntMLUMenu && (
+                      <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-3 mt-3`}>
+                        {(() => {
+                          // Coletar itens com limite de uso do treinador
+                          const trainerData = interludioMTrainerData
+                          const limitesItems = []
+
+                          // Modificadores com limite de uso
+                          if (trainerData.customModifiers) {
+                            trainerData.customModifiers.forEach((mod, idx) => {
+                              if (mod.usosACadaXLvl) {
+                                const totalUsos = Math.floor((trainerData.level || 1) / parseInt(mod.usosACadaXLvl))
+                                const usosAtuais = trainerData.modifierUsosAtuais?.[idx] !== undefined ? trainerData.modifierUsosAtuais[idx] : totalUsos
+                                limitesItems.push({
+                                  nome: mod.nome,
+                                  tipo: 'modificador',
+                                  atual: usosAtuais,
+                                  total: totalUsos
+                                })
+                              }
+                            })
+                          }
+
+                          // Talentinhos com limite de uso
+                          if (trainerData.talentinhos) {
+                            trainerData.talentinhos.forEach((tal, idx) => {
+                              if (tal.usosACadaXLvl) {
+                                const totalUsos = Math.floor((trainerData.level || 1) / parseInt(tal.usosACadaXLvl))
+                                const usosAtuais = trainerData.talentinhoUsosAtuais?.[idx] !== undefined ? trainerData.talentinhoUsosAtuais[idx] : totalUsos
+                                limitesItems.push({
+                                  nome: tal.nome,
+                                  tipo: 'talentinho',
+                                  atual: usosAtuais,
+                                  total: totalUsos
+                                })
+                              }
+                            })
+                          }
+
+                          // Limites personalizados
+                          if (trainerData.limitesUsoPersonalizados) {
+                            trainerData.limitesUsoPersonalizados.forEach((limite, idx) => {
+                              const totalUsos = Math.floor((trainerData.level || 1) / parseInt(limite.usosACadaXLvl || 1))
+                              const usosAtuais = trainerData.limitesUsoPersonalizadosUsosAtuais?.[idx] !== undefined ? trainerData.limitesUsoPersonalizadosUsosAtuais[idx] : totalUsos
+                              limitesItems.push({
+                                nome: limite.nome,
+                                tipo: 'personalizado',
+                                atual: usosAtuais,
+                                total: totalUsos,
+                                fontes: limite.fontes
+                              })
+                            })
+                          }
+
+                          if (limitesItems.length === 0) {
+                            return (
+                              <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-4`}>
+                                Nenhum limite de uso
+                              </p>
+                            )
+                          }
+
+                          return (
+                            <div className="grid grid-cols-1 gap-2">
+                              {limitesItems.map((item, idx) => (
+                                <div
+                                  key={idx}
+                                  className={`p-3 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${
+                                    item.atual === 0
+                                      ? darkMode ? 'border-red-600' : 'border-red-400'
+                                      : darkMode ? 'border-gray-700' : 'border-gray-200'
+                                  }`}
+                                >
+                                  <div className="flex items-center justify-between">
+                                    <span className={`font-semibold text-sm ${
+                                      item.tipo === 'modificador'
+                                        ? darkMode ? 'text-blue-400' : 'text-blue-600'
+                                        : item.tipo === 'talentinho'
+                                          ? darkMode ? 'text-purple-400' : 'text-purple-600'
+                                          : darkMode ? 'text-cyan-400' : 'text-cyan-600'
+                                    }`}>
+                                      {item.nome}
+                                    </span>
+                                    <span className={`text-lg font-bold ${
+                                      item.atual === 0
+                                        ? darkMode ? 'text-red-400' : 'text-red-600'
+                                        : darkMode ? 'text-white' : 'text-gray-800'
+                                    }`}>
+                                      {item.atual}/{item.total}
+                                    </span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )
+                        })()}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Menu Pokébola, Vai! */}
+                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4`}>
+                    <div
+                      className="flex justify-between items-center cursor-pointer"
+                      onClick={() => setShowIntMPokebolVaiMenu(!showIntMPokebolVaiMenu)}
+                    >
+                      <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                        Pokébola, Vai!
+                      </h3>
+                      {showIntMPokebolVaiMenu ? <ChevronUp size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
+                    </div>
+
+                    {showIntMPokebolVaiMenu && (
+                      <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-3 mt-3`}>
+                        {(() => {
+                          const trainerKeyItems = interludioMTrainerData.keyItems || []
+                          const pokeballs = trainerKeyItems.filter(item => POKEBALL_MODIFIERS[item.name])
+
+                          if (pokeballs.length === 0) {
+                            return (
+                              <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-4`}>
+                                Nenhuma pokébola disponível
+                              </p>
+                            )
+                          }
+
+                          return (
+                            <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                              {pokeballs.map((item, idx) => (
+                                <div
+                                  key={idx}
+                                  className={`relative flex flex-col items-center p-2 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-white'} ${item.quantity === 0 ? 'opacity-50' : ''}`}
+                                  title={item.name}
+                                >
+                                  <img
+                                    src={`/pokeballs/${item.name.toLowerCase().replace(' ', '')}.png`}
+                                    alt={item.name}
+                                    className="w-10 h-10 object-contain"
+                                    onError={(e) => {
+                                      e.target.style.display = 'none'
+                                      e.target.nextSibling.style.display = 'flex'
+                                    }}
+                                  />
+                                  <div className="w-10 h-10 hidden items-center justify-center text-xl">
+                                    O
+                                  </div>
+                                  <span className={`text-[9px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    {item.name}
+                                  </span>
+                                  <div className={`absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold ${item.quantity > 0 ? (darkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white') : (darkMode ? 'bg-gray-600 text-gray-400' : 'bg-gray-400 text-gray-600')}`}>
+                                    {item.quantity}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )
+                        })()}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Menu Cura no Interlúdio */}
+                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4`}>
+                    <div
+                      className="flex justify-between items-center cursor-pointer"
+                      onClick={() => setShowIntMCuraMenu(!showIntMCuraMenu)}
+                    >
+                      <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                        Cura no Interlúdio
+                      </h3>
+                      {showIntMCuraMenu ? <ChevronUp size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
+                    </div>
+
+                    {showIntMCuraMenu && (
+                      <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-3 mt-3`}>
+                        {(() => {
+                          const trainerKeyItems = interludioMTrainerData.keyItems || []
+                          const healingItems = trainerKeyItems.filter(item => {
+                            const curaItem = POKELOJA_DATA['Cura']?.find(i => i.name === item.name)
+                            if (!curaItem) return false
+                            const hasDiceExpression = /\d+d\d+/i.test(curaItem.description)
+                            return hasDiceExpression && item.quantity > 0
+                          })
+
+                          if (healingItems.length === 0) {
+                            return (
+                              <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-4`}>
+                                Nenhum item de cura com dados disponível
+                              </p>
+                            )
+                          }
+
+                          return (
+                            <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                              {healingItems.map((item, idx) => {
+                                const curaItem = POKELOJA_DATA['Cura']?.find(i => i.name === item.name)
+                                return (
+                                  <div
+                                    key={idx}
+                                    className={`relative flex flex-col items-center p-2 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+                                    title={item.name}
+                                  >
+                                    <img
+                                      src={curaItem?.image || `/pokeballs/${item.name.toLowerCase().replace(/ /g, '')}.png`}
+                                      alt={item.name}
+                                      className="w-10 h-10 object-contain"
+                                      onError={(e) => {
+                                        e.target.style.display = 'none'
+                                        e.target.nextSibling.style.display = 'flex'
+                                      }}
+                                    />
+                                    <div className="w-10 h-10 hidden items-center justify-center text-xl">
+                                      +
+                                    </div>
+                                    <span className={`text-[9px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                      {item.name}
+                                    </span>
+                                    <div className={`absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold ${darkMode ? 'bg-green-600 text-white' : 'bg-green-500 text-white'}`}>
+                                      {item.quantity}
+                                    </div>
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          )
+                        })()}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Apps de Interlúdio M */}
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 mb-8`}>
+              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                Apps de Interlúdio M
+              </h3>
+
+              {/* Botões para selecionar o app */}
+              <div className="flex gap-4 mb-6 justify-center">
+                <button
+                  onClick={() => setInterludioMApp(interludioMApp === 'combate' ? null : 'combate')}
+                  className={`px-6 py-3 rounded-lg font-bold text-lg transition-all ${
+                    interludioMApp === 'combate'
+                      ? 'bg-red-600 text-white shadow-lg scale-105'
+                      : darkMode
+                        ? 'bg-gray-700 text-gray-300 hover:bg-red-600 hover:text-white'
+                        : 'bg-gray-200 text-gray-700 hover:bg-red-500 hover:text-white'
+                  }`}
+                >
+                  Combate
+                </button>
+                <button
+                  onClick={() => setInterludioMApp(interludioMApp === 'concurso' ? null : 'concurso')}
+                  className={`px-6 py-3 rounded-lg font-bold text-lg transition-all ${
+                    interludioMApp === 'concurso'
+                      ? 'bg-purple-600 text-white shadow-lg scale-105'
+                      : darkMode
+                        ? 'bg-gray-700 text-gray-300 hover:bg-purple-600 hover:text-white'
+                        : 'bg-gray-200 text-gray-700 hover:bg-purple-500 hover:text-white'
+                  }`}
+                >
+                  Concurso
+                </button>
+              </div>
+
+              {/* App de Combate */}
+              {interludioMApp === 'combate' && (
+                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-6`}>
+                  <CombateInterludioApp darkMode={darkMode} />
+                </div>
+              )}
+
+              {/* App de Concurso */}
+              {interludioMApp === 'concurso' && (
+                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-6`}>
+                  <ConcursoInterludioApp darkMode={darkMode} />
+                </div>
+              )}
+
+              {/* Mensagem quando nenhum app está selecionado */}
+              {!interludioMApp && (
+                <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'} text-center py-4`}>
+                  Selecione um app acima para começar
+                </p>
+              )}
+            </div>
+
+            {/* Chat */}
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                Chat & Rolagem de Dados
+              </h3>
+              <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                Use /r ou /roll para rolar dados. Exemplo: /r 1d20+5, /roll 2d6
+              </p>
+
+              {/* Área de Mensagens */}
+              <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
+                {chatMessages.length === 0 ? (
+                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                    Nenhuma mensagem ainda. Seja o primeiro a falar!
+                  </p>
+                ) : (
+                  <div className="space-y-3">
+                    {chatMessages.map((msg, idx) => (
+                      <div key={idx} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3`}>
+                        <div className="flex justify-between items-start mb-1">
+                          <span className={`font-bold text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+                            {msg.username}
+                          </span>
+                          <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                            {msg.timestamp}
+                          </span>
+                        </div>
+                        {msg.isDiceRoll ? (
+                          <div>
+                            <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                              {msg.text}
+                            </p>
+                            <div className={`mt-2 p-2 rounded ${darkMode ? 'bg-green-900' : 'bg-green-100'}`}>
+                              <p className={`font-bold text-lg ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
+                                Resultado: {msg.diceResult}
+                              </p>
+                              <p className={`text-xs ${darkMode ? 'text-green-300' : 'text-green-600'}`}>
+                                {msg.diceDetails}
+                              </p>
+                            </div>
+                          </div>
+                        ) : msg.isAction ? (
+                          <p className={`text-sm font-semibold text-yellow-500`}>
+                            {msg.text}
+                          </p>
+                        ) : (
+                          <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {msg.text}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Input de Mensagem */}
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      handleSendMessage()
+                    }
+                  }}
+                  placeholder="Digite sua mensagem, 1d20+@MAE, ou /r 1d20..."
+                  className={`flex-1 px-4 py-3 rounded-lg border-2 ${
+                    darkMode
+                      ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500'
+                      : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'
+                  } focus:outline-none focus:border-blue-500`}
+                />
+                <button
+                  onClick={handleSendMessage}
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
+                >
+                  Enviar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* MODAL DE REGRAS DO INTERLÚDIO - Área Mestre */}
+        {showRegrasInterludioModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowRegrasInterludioModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-6 sticky top-0 pb-4 border-b ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}">
+                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Regras do Interlúdio</h3>
+                <button onClick={() => setShowRegrasInterludioModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
+              </div>
+
+              <div className={`space-y-6 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                {/* Explicação */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>Explicação</h4>
+                  <p><strong>Verdade</strong> - a verdade sobre o mundo é algo que seja alcançável e plausível, para o mundo e nível dos personagens.</p>
+                  <p className="mt-2"><strong>Jogador-narrador (JN)</strong> - aquele que vai narrar e jogar. Contará seus feitos em tempo real. Gastará seus pontos de narração para contar sua história.</p>
+                  <p className="mt-2"><strong>Roteiristas (RT)</strong> - aqueles que vão ouvir a história e adicionar complicações, ajudas, npcs, pokémons... no caminho do JN. Gastarão pontos de roteiro.</p>
+                  <p className="mt-2"><strong>Ponto de Narração</strong> - pontos usados para suas cenas.</p>
+                  <p className="mt-2"><strong>Pontos de Roteiro</strong> - pontos usados para adicionar elementos nas cenas.</p>
+                </div>
+
+                {/* Mais a fundo */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>Mais a fundo</h4>
+                  <p><strong>Verdade:</strong> O JN, ou o grupo, cria a verdade e não poderá alterá-la.</p>
+                  <p className="mt-2"><strong>Pontos de Narração:</strong> O JN, ou o grupo, tem 6pts de narração.</p>
+                </div>
+
+                {/* Uso de Pontos de Narração */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>Uso de Pontos de Narração</h4>
+
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg mb-3`}>
+                    <h5 className="font-bold mb-2">Concursos e Torneios (3pts)</h5>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>Gastam 1 semana no mínimo, tem 1d8-nºJN participantes e o prêmio é de 1º-1000₽, 2º-500₽, 3º-250₽.</li>
+                      <li>A cada 3 dias a mais se adiciona 1d4 participantes.</li>
+                      <li>A cada 3 dias a mais se adiciona 50% no valor da premiação.</li>
+                      <li>Com 1 semana a mais, um item aleatório também entra como premiação.</li>
+                      <li>Com 2 semanas a mais, o JN pode escolher a classe do item.</li>
+                      <li>Com 3 semanas a mais o JN pode escolher o Item.</li>
+                      <li>Em TORNEIOS, feitos de interlúdio, as regras sempre vão ser na inscrição de até 3 pkms.</li>
+                      <li>O level dos pokémons variam em 5, pra menos ou mais, do pokémon mais forte do JN.</li>
+                    </ul>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Procurar pkm (1pt):</strong> 4 dias procurando pokémon, cada dia te dá direito a 1d6+1 pokémons gerados.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Batalha com treinador (1pt):</strong> Você pode batalhar com 1d4 treinadores, cada treinador possui 1d4+1 pokémons.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Catalogar pokémon (1pt):</strong> Você pode ter gerado 1d8+2 pkms, o que não implica na certeza de pkms novos.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Adicionar recompensa (3pts):</strong> O jogador deve escolher 5 elementos do obstáculo ou quest, e a recompensa extra será escolhida rolando 1d5.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Em busca da Lenda (5pts):</strong> O jogador vai contar como conseguiu ou quase conseguiu uma pista sobre um pokémon lendário. Já tendo a pista, pode ir atrás do lendário.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Em busca do alvo (4pts/2pts):</strong> O jogador pode buscar informações sobre um pokémon específico. Se já tem a localização, só gasta 2pts.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Sidequest (5pts):</strong> O jogador pode criar uma quest com recompensa de itens, pokémoedas ou pokémons (limite de 1pkm por quest).</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>NPC aleatório (1pt):</strong> Pode gerar um NPC aleatório no gerador de NPC, level máximo não pode passar o seu próprio.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>NPC específico (3pts):</strong> Pode escolher as classes/subclasses do NPC, level máximo não pode passar o seu próprio.</p>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p><strong>Batalha de Ginásio (3pts):</strong> Ir para uma batalha de ginásio. O líder tem 1d4+2 pkms.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Encontro Pokémon */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-green-400' : 'text-green-600'}`}>Encontro Pokémon</h4>
+
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg mb-3`}>
+                    <h5 className="font-bold mb-2">Mapa</h5>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li>O JN anda pelo mapa após um dos RT posicionarem os pokémons gerados.</li>
+                      <li>O JN tem 3 turnos antes que os pokémons se movam.</li>
+                      <li>Caso um pokémon selvagem se mova do lado da borda, o RT joga 1d2: 1-sai do mapa; 2-se move para dentro do mapa.</li>
+                      <li>Caso o JN pare seu movimento ao lado do pkm selvagem, o RT joga 1d20: 1-10 não percebe nada; 11-20 percebeu o pkm selvagem.</li>
+                    </ul>
+                  </div>
+
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg`}>
+                    <h5 className="font-bold mb-2">App de chance de encontro</h5>
+                    <p>O RT usa o app de chance de encontro de acordo com as ações do JN. Um número de vezes igual ao valor do dado.</p>
+                  </div>
+                </div>
+
+                {/* Pontos de Roteiro */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>Pontos de Roteiro</h4>
+                  <p className="mb-3">O RT tem 4pts de roteiro.</p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p className="font-bold mb-1">Adicionar NPC:</p>
+                      <ul className="list-disc list-inside ml-2">
+                        <li>NPC treinador: 1pt a cada 3 pkms (limite 6pkms)</li>
+                        <li>NPC de história: 1pt</li>
+                        <li>NPC vilão: 3pts a cada 3 pkms (limite 6pkms)</li>
+                      </ul>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p className="font-bold mb-1">Adicionar Obstáculo:</p>
+                      <ul className="list-disc list-inside ml-2">
+                        <li>Fácil: 1pt (recompensa até 250₽)</li>
+                        <li>Médio: 2pts (recompensa até 500₽)</li>
+                        <li>Difícil: 3pts (recompensa até 800₽)</li>
+                      </ul>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p className="font-bold mb-1">Adicionar Quest:</p>
+                      <ul className="list-disc list-inside ml-2">
+                        <li>Fácil: 2pts (recompensa até 450₽)</li>
+                        <li>Médio: 3pts (recompensa até 750₽)</li>
+                        <li>Difícil: 4pts (recompensa até 1000₽)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Level de NPCs */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-red-400' : 'text-red-600'}`}>Level de NPCs e PKMs</h4>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p className="font-bold mb-1">Level de NPCs:</p>
+                      <ul className="list-disc list-inside ml-2">
+                        <li>Treinador: 5 levels a mais/menos do que o JN</li>
+                        <li>Vilão: de 5 a 15 levels a mais do que o JN</li>
+                        <li>Líder de Ginásio: entre level 35 a 50</li>
+                      </ul>
+                    </div>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 rounded-lg`}>
+                      <p className="font-bold mb-1">Level de PKMs de NPCs:</p>
+                      <ul className="list-disc list-inside ml-2">
+                        <li>Treinador: 5 levels a mais/menos do que o pkm mais forte do JN</li>
+                        <li>Vilão: 2x o level do pkm mais forte do JN</li>
+                        <li>Líder de Ginásio: até 5 levels a mais que o mais forte do JN</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Ganho de ₽ */}
+                <div>
+                  <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Ganho de ₽ por Batalha</h4>
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg`}>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li><strong>Treinador:</strong> 25x o level do treinador, aumentando o valor final em 50% por pokémon adicionado.</li>
+                      <li><strong>Vilão:</strong> 50x o level do vilão, aumentando o valor final em 50% por pokémon adicionado.</li>
+                      <li><strong>Líder de Ginásio:</strong> 75x o level do líder.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}">
+                <button onClick={() => setShowRegrasInterludioModal(false)} className={`w-full py-3 rounded-lg font-semibold ${darkMode ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}>
+                  Fechar
+                </button>
               </div>
             </div>
           </div>
