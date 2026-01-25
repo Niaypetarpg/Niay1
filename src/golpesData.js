@@ -920,7 +920,7 @@ const GOLPES_DATA = {
     "efeito": "Os alvos adormecem no fim de seus próximos Turnos."
   },
   "Bolha": {
-    "tipo": "água",
+    "tipo": "Água",
     "aptidao": "Ternura",
     "descritores": "",
     "acuracia": "2",

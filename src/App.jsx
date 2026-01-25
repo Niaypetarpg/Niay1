@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText } from 'lucide-react'
+import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus } from 'lucide-react'
 import AccountDataModal from './AccountDataModal'
 import pokedexData from './pokemonData'
 import GOLPES_DATA_IMPORTED from './golpesData'
@@ -20,7 +20,8 @@ import {
   saveInterludioData, loadInterludioData, subscribeToInterludio,
   saveHiddenPokelojaItems, loadHiddenPokelojaItems, subscribeToHiddenPokelojaItems,
   saveCustomPrices, loadCustomPrices, subscribeToCustomPrices,
-  saveVTTData, loadVTTData, subscribeToVTT
+  saveVTTData, loadVTTData, subscribeToVTT,
+  saveXpCapturas, loadXpCapturas, subscribeToXpCapturas, subscribeToAllXpCapturas
 } from './firebaseService'
 
 // Helper para sanitizar IDs de Pokemon para uso como chaves do Firebase
@@ -774,10 +775,14 @@ const KEY_ITEMS_LIST = [
   'Barra de Pokechocolate Radical',
   'Bala de Coração',
   'Spray para Queimaduras',
+  'Concentrado de Sálvia',
+  'Poção da Paciência',
+  'Poção da Braveza',
   // Corredor de Repelente
   'Repel',
   'Super Repel',
   'Max Repel',
+  'Repel Off',
   // Corredor de Suplemento
   'Hp-up',
   'Proteína',
@@ -789,6 +794,8 @@ const KEY_ITEMS_LIST = [
   'Rare Candy',
   'Éter',
   'Elixir',
+  'Suplemento Sortido',
+  'Doce não tão raro',
   // Corredor de Melhoradores
   'X-Ataque',
   'X-Defesa',
@@ -800,7 +807,9 @@ const KEY_ITEMS_LIST = [
   'Guarda Especial',
   'Reforço Natural',
   'Raiz Revigorante',
-  'Fumo Rápido'
+  'Fumo Rápido',
+  'Veneno Sintético',
+  'Shiny Charm'
 ]
 
 // Lista de imagens de Pokeovo (será randomizada quando adicionar)
@@ -954,12 +963,16 @@ const POKELOJA_DATA = {
     { name: 'Lava Cookie', price: 400, description: 'Restaura todas as Condições.', image: '/pokeballs/lavacookie.png' },
     { name: 'Barra de Pokechocolate Radical', price: 100, description: 'Restaura 20 Pontos de vida. Role 1d20, se o resultado for maior ou igual a 11, o pokémon pedirá outra, caso não receba, diminua em 10 a felicidade dele. Faça essa rolagem toda vez que ele consumir o item.', image: '/pokeballs/barradepokechocolateradical.png' },
     { name: 'Bala de Coração', price: 100, description: 'Restaura 20 pontos de vida. Role 1d20, se o resultado for maior ou igual a 11, o pokémon recebe a condição Paixão.', image: '/pokeballs/baladecoração.png' },
-    { name: 'Spray para Queimaduras', price: 250, description: 'Cura queimaduras.', image: '/pokeballs/sprayparaqueimaduras.png' }
+    { name: 'Spray para Queimaduras', price: 250, description: 'Cura queimaduras.', image: '/pokeballs/sprayparaqueimaduras.png' },
+    { name: 'Concentrado de Sálvia', price: 400, description: 'O pokémon se cura em 2d10+15 Pontos de vida. Se o pokémon for do tipo planta, ele recebe 4d10+15.', image: '/pokeballs/concentradodesalvia.png' },
+    { name: 'Poção da Paciência', price: 300, description: 'A cada rodada o pokémon se cura em 10 Pontos de vida, por cinco rodadas.', image: '/pokeballs/pocaodapaciencia.png' },
+    { name: 'Poção da Braveza', price: 650, description: 'O pokémon se cura em 2d12+15 Pontos de vida e aumenta em 1 a fase de ataque.', image: '/pokeballs/pocaodabraveza.png' }
   ],
   'Repelente': [
     { name: 'Repel', price: 200, description: '1d6+3 horas', image: '/pokeballs/repel.png' },
     { name: 'Super Repel', price: 300, description: '1d8+4 horas', image: '/pokeballs/superrepel.png' },
-    { name: 'Max Repel', price: 400, description: '1d10+5 horas', image: '/pokeballs/maxrepel.png' }
+    { name: 'Max Repel', price: 400, description: '1d10+5 horas', image: '/pokeballs/maxrepel.png' },
+    { name: 'Repel Off', price: 400, description: 'Cancela os efeitos de qualquer repelente.', image: '/pokeballs/repeloff.png' }
   ],
   'Captura': [
     { name: 'Pokeball', price: 200, description: '+15', image: '/pokeballs/pokeball.png' },
@@ -1001,7 +1014,9 @@ const POKELOJA_DATA = {
     { name: 'PP-up', price: 9800, description: 'Escolha um Golpe* do pokémon.Se o Golpe escolhido tinha Frequência Rodada Sim Rodada Não, ele agora pode ser usado À Vontade. Se o Golpe escolhido tinha Frequência Por Encontro, ele agora pode ser usado Rodada Sim Rodada Não. Se ele possuía Frequência Centro Pokémon, ele agora pode ser usado Por Encontro.', image: '/pokeballs/ppup.png' },
     { name: 'Rare Candy', price: 48000, description: 'O pokémon ganha 1 nível.', image: '/pokeballs/rarecandy.png' },
     { name: 'Éter', price: 450, description: 'Restaura o uso de um Golpe.', image: '/pokeballs/eter.png' },
-    { name: 'Elixir', price: 750, description: 'Restaura o uso de todos os Golpes.', image: '/pokeballs/elixir.png' }
+    { name: 'Elixir', price: 750, description: 'Restaura o uso de todos os Golpes.', image: '/pokeballs/elixir.png' },
+    { name: 'Suplemento Sortido', price: 2000, description: 'Este suplemento não passou em todos os testes de qualidade, talvez ele faça mal a seu pokémon. Role 1d20, se o resultado for 8 ou mais, seu pokémon perde 1 de um atributo aleatório (Role 1d6 para saber o atributo). Caso contrário, ele recebe 2 em um atributo aleatório.', image: '/pokeballs/suplementosortido.png' },
+    { name: 'Doce não tão raro', price: 25000, description: 'O pokémon recebe 10000 de XP.', image: '/pokeballs/docenaotaoraro.png' }
   ],
   'Melhoradores': [
     { name: 'X-Ataque', price: 80, description: 'Eleva uma Fase de Ataque.', image: '/pokeballs/x-ataque.png' },
@@ -1014,8 +1029,99 @@ const POKELOJA_DATA = {
     { name: 'Guarda Especial', price: 80, description: 'Não pode perder Fases, porém dura apenas cinco rodadas.', image: '/pokeballs/guardaespecial.png' },
     { name: 'Reforço Natural', price: 200, description: 'Eleva duas Fases de Ataque ou de Ataque Especial, mas é Repulsivo (o pokémon perde 10% de felicidade).', image: '/pokeballs/reforconatural.png' },
     { name: 'Raiz Revigorante', price: 200, description: 'Eleva duas Fases de Defesa ou de Defesa Especial, mas é Repulsivo (o pokémon perde 10% de felicidade).', image: '/pokeballs/raizrevigorante.png' },
-    { name: 'Fumo Rápido', price: 200, description: 'Eleva duas Fases de Velocidade, mas é Repulsivo (o pokémon perde 10% de felicidade).', image: '/pokeballs/fumorapido.png' }
+    { name: 'Fumo Rápido', price: 200, description: 'Eleva duas Fases de Velocidade, mas é Repulsivo (o pokémon perde 10% de felicidade).', image: '/pokeballs/fumorapido.png' },
+    { name: 'Veneno Sintético', price: 200, description: 'O pokémon está envenenado. Todos os ataques corpo a corpo do pokémon infligem a condição Envenenado.', image: '/pokeballs/venenosintetico.png' }
   ]
+}
+
+// Mapa de pesos para sorteio de itens escondidos na Pokéloja
+// Quanto maior o peso, maior a chance de ser escondido
+const POKELOJA_HIDE_WEIGHTS = {
+  // Captura
+  'Pokeball': 1,
+  'Greatball': 2,
+  'Ultraball': 4,
+  'Beastball': 9,
+  'Cherishball': 5,
+  'Diveball': 5,
+  'Dreamball': 9,
+  'Duskball': 5,
+  'Fastball': 5,
+  'Friendball': 5,
+  'Healball': 5,
+  'Heavyball': 5,
+  'Leadenball': 5,
+  'Levelball': 5,
+  'Loveball': 5,
+  'Lunarball': 5,
+  'Lureball': 5,
+  'Luxuryball': 5,
+  'Nestball': 5,
+  'Netball': 5,
+  'Parkball': 9,
+  'Premierball': 9,
+  'Quickball': 5,
+  'Repeatball': 5,
+  'Safariball': 9,
+  'Sportball': 9,
+  'Timerball': 5,
+  'Featherball': 5,
+  // Cura
+  'Potion': 1,
+  'Superpotion': 3,
+  'Hiperpotion': 4,
+  'Antidoto': 1,
+  'Antiparalisante': 1,
+  'Despertador': 1,
+  'Anticongelante': 1,
+  'Revive': 4,
+  'Moomoo Milk': 7,
+  'Pó Energizante': 7,
+  'Raiz Energizante': 7,
+  'Panaceia': 3,
+  'Pó Curativo': 5,
+  'Erva da Sobrevida': 5,
+  'Água Solarizada': 2,
+  'Refri': 2,
+  'Limonada': 3,
+  'Lava Cookie': 5,
+  'Barra de Pokechocolate Radical': 1,
+  'Bala de Coração': 1,
+  'Spray para Queimaduras': 1,
+  'Concentrado de Sálvia': 5,
+  'Poção da Paciência': 5,
+  'Poção da Braveza': 5,
+  // Repelente
+  'Repel': 1,
+  'Super Repel': 2,
+  'Max Repel': 4,
+  'Repel Off': 3,
+  // Suplemento
+  'Hp-up': 5,
+  'Proteína': 5,
+  'Ferro': 5,
+  'Cálcio': 5,
+  'Zinco': 5,
+  'Carburante': 5,
+  'PP-up': 5,
+  'Rare Candy': 9,
+  'Éter': 5,
+  'Elixir': 6,
+  'Suplemento Sortido': 4,
+  'Doce não tão raro': 8,
+  // Melhoradores
+  'X-Ataque': 1,
+  'X-Defesa': 1,
+  'X-Ataque Especial': 1,
+  'X-Defesa Especial': 1,
+  'X-Velocidade': 1,
+  'X-Acurácia': 1,
+  'Golpe Atroz': 3,
+  'Guarda Especial': 3,
+  'Reforço Natural': 3,
+  'Raiz Revigorante': 3,
+  'Fumo Rápido': 3,
+  'Veneno Sintético': 3
 }
 
 // Componente de Combate Interlúdio
@@ -1515,6 +1621,9 @@ function App() {
   const [natureSearchSend, setNatureSearchSend] = useState('') // Busca de natureza no modal de envio
   const [showAbilityModal, setShowAbilityModal] = useState(false) // Modal de detalhes da habilidade
   const [selectedAbility, setSelectedAbility] = useState(null) // Habilidade selecionada
+  const [showSendXpModal, setShowSendXpModal] = useState(false) // Modal de envio de XP para treinadores
+  const [selectedNpcPokemonForXp, setSelectedNpcPokemonForXp] = useState(null) // Pokémon NPC selecionado para enviar XP
+  const [selectedTrainersForXp, setSelectedTrainersForXp] = useState({}) // Treinadores selecionados para receber XP
 
   // Estados de pesquisa e filtro do PC
   const [pcSearchQuery, setPcSearchQuery] = useState('') // Busca por nome/espécie no PC
@@ -1540,6 +1649,7 @@ function App() {
   // Estados para Dano/Cura Treinador em Batalha
   const [showTrainerBattleDamageModal, setShowTrainerBattleDamageModal] = useState(false)
   const [trainerBattleDamageAmount, setTrainerBattleDamageAmount] = useState('')
+  const [armaDeEscolha, setArmaDeEscolha] = useState(false) // Checkbox "Arma de escolha" - muda tabela de dano do treinador
 
   // Estados para Dano/Cura Treinador NPC em Batalha (Mestre)
   const [showNpcTrainerBattleDamageModal, setShowNpcTrainerBattleDamageModal] = useState(false)
@@ -1557,7 +1667,7 @@ function App() {
   const [selectedBattleAbility, setSelectedBattleAbility] = useState(null) // Habilidade selecionada na batalha
   const [userBattleModifiers, setUserBattleModifiers] = useState({}) // {username: [...modifiers]} - Modificadores de batalha por usuário
   const [showModifierModal, setShowModifierModal] = useState(false) // Modal de adicionar/editar modificador
-  const [modifierForm, setModifierForm] = useState({ nome: '', mod: '', descricao: '', aplicarAcuracia: false, aplicarDano: false, aplicarCaptura: false }) // Formulário de modificador
+  const [modifierForm, setModifierForm] = useState({ nome: '', mod: '', descricao: '', aplicarAcuracia: false, aplicarDano: false, aplicarCaptura: false, usosACadaXLvl: '' }) // Formulário de modificador
   const [editingModifierIndex, setEditingModifierIndex] = useState(null) // Índice do modificador sendo editado
   const [showModifierDetailsModal, setShowModifierDetailsModal] = useState(false) // Modal de detalhes do modificador
   const [selectedModifier, setSelectedModifier] = useState(null) // Modificador selecionado para ver detalhes
@@ -1581,10 +1691,24 @@ function App() {
   const [showTalentosSection, setShowTalentosSection] = useState(false) // Controla expansão da seção Talentos em Jogo
   const [talentinhos, setTalentinhos] = useState([]) // Lista de talentinhos [{nome, expressao, alvos: []}, ...]
   const [showTalentinhoModal, setShowTalentinhoModal] = useState(false) // Modal de adicionar/editar talentinho
-  const [talentinhoForm, setTalentinhoForm] = useState({ nome: '', expressao: '', alvos: [] }) // Formulário de talentinho
+  const [talentinhoForm, setTalentinhoForm] = useState({ nome: '', expressao: '', alvos: [], usosACadaXLvl: '' }) // Formulário de talentinho
   const [editingTalentinhoIndex, setEditingTalentinhoIndex] = useState(null) // Índice do talentinho sendo editado
   const [showTalentinhoDetailModal, setShowTalentinhoDetailModal] = useState(false) // Modal de detalhes do talentinho
   const [selectedTalentinhoDetail, setSelectedTalentinhoDetail] = useState(null) // Talentinho selecionado para ver detalhes
+  const [showLimitesUsoSection, setShowLimitesUsoSection] = useState(false) // Controla expansão da seção Limites de Uso
+  const [modifierUsosAtuais, setModifierUsosAtuais] = useState({}) // {modifierIndex: usosRestantes} - Usos atuais dos modificadores
+  const [talentinhoUsosAtuais, setTalentinhoUsosAtuais] = useState({}) // {talentinhoIndex: usosRestantes} - Usos atuais dos talentinhos
+  const [shinyCharmUsoDiario, setShinyCharmUsoDiario] = useState(true) // Se o Shiny Charm ainda pode ser usado hoje
+  const [limitesUsoPersonalizados, setLimitesUsoPersonalizados] = useState([]) // Array de limites de uso personalizados
+  const [limitesUsoPersonalizadosUsosAtuais, setLimitesUsoPersonalizadosUsosAtuais] = useState({}) // {index: usosRestantes}
+  const [showAddLimiteUsoModal, setShowAddLimiteUsoModal] = useState(false) // Modal de adicionar limite de uso
+  const [limiteUsoForm, setLimiteUsoForm] = useState({ nome: '', usosACadaXLvl: '', fontes: { talento: false, item: false, outros: false } }) // Formulário de limite de uso
+
+  // States para menus de Interlúdio
+  const [showIntTalentosMenu, setShowIntTalentosMenu] = useState(false) // Menu Int. Talentos
+  const [showIntLUMenu, setShowIntLUMenu] = useState(false) // Menu Int. L.U.
+  const [showPokebolVaiMenu, setShowPokebolVaiMenu] = useState(false) // Menu Pokébola, Vai!
+  const [showCuraInterludioMenu, setShowCuraInterludioMenu] = useState(false) // Menu Cura no Interlúdio
 
   // Modais
   const [showLevelModal, setShowLevelModal] = useState(false)
@@ -1650,6 +1774,14 @@ function App() {
   const [estilizadorPolicialBattery, setEstilizadorPolicialBattery] = useState(30) // Bateria do Estilizador Policial (0-30 ou 0-40)
   const [thunderStoneActive, setThunderStoneActive] = useState(false) // Se a Pedra do Trovão foi ativada
 
+  // States para sistema de Evolução
+  const [showEvolutionModal, setShowEvolutionModal] = useState(false)
+  const [selectedPokemonForEvolution, setSelectedPokemonForEvolution] = useState(null)
+  const [evolutionLocation, setEvolutionLocation] = useState(null) // 'team' ou 'pc'
+  const [evolutionPokemonIndex, setEvolutionPokemonIndex] = useState(null)
+  const [evolutionSearch, setEvolutionSearch] = useState('')
+  const [selectedEvolutionSpecies, setSelectedEvolutionSpecies] = useState(null)
+
   // States para sistema de Pokébolas
   const [showPokeballModal, setShowPokeballModal] = useState(false)
   const [showPokeballPCModal, setShowPokeballPCModal] = useState(false)
@@ -1714,6 +1846,12 @@ function App() {
   const [selectedPokeovoToHatch, setSelectedPokeovoToHatch] = useState(null)
   const [hatchSpeciesSearch, setHatchSpeciesSearch] = useState('')
   const [selectedHatchSpecies, setSelectedHatchSpecies] = useState('')
+
+  // States para Shiny Charm
+  const [showShinyCharmModal, setShowShinyCharmModal] = useState(false)
+  const [shinyCharmLuckyNumber, setShinyCharmLuckyNumber] = useState('')
+  const [showEditShinyCharmModal, setShowEditShinyCharmModal] = useState(false)
+  const [shinyCharmToEdit, setShinyCharmToEdit] = useState(null)
 
   // States para PokéLoja
   const [expandedCorredores, setExpandedCorredores] = useState({}) // {corredor: boolean}
@@ -1909,6 +2047,19 @@ function App() {
   const [showFimCicloModal, setShowFimCicloModal] = useState(false) // Modal para encerrar ciclo
   const [fimCicloVerdade, setFimCicloVerdade] = useState('') // Verdade do ciclo
   const [selectedCiclo, setSelectedCiclo] = useState(null) // Ciclo selecionado para visualizar
+  const [draggingConquistaId, setDraggingConquistaId] = useState(null) // ID da conquista sendo arrastada
+
+  // Estados para XP & Capturas
+  const [xpList, setXpList] = useState([]) // Lista de XPs: [{value: number, species?: string}]
+  const [capturaList, setCapturaList] = useState([]) // Lista de capturas: [{species: string, level: number, captureValue: number}]
+  const [showAddXpModal, setShowAddXpModal] = useState(false) // Modal para adicionar XP
+  const [addXpValue, setAddXpValue] = useState('') // Valor do XP a ser adicionado
+  const [allTrainersXpCapturas, setAllTrainersXpCapturas] = useState({}) // Dados de XP & Capturas de todos os treinadores (para o mestre)
+  const [showAcoesComandoModal, setShowAcoesComandoModal] = useState(false) // Modal de Ações de Comando
+  const [selectedAcaoComandoPokemon, setSelectedAcaoComandoPokemon] = useState('') // Pokémon selecionado no dropdown
+  const [acaoComandoType, setAcaoComandoType] = useState('') // 'captura', 'batalha', 'block'
+  const [showXpCapturasM, setShowXpCapturasM] = useState(true) // Controla expansão da área XP & Capturas M
+  const [showCombateXpCapturas, setShowCombateXpCapturas] = useState(false) // Controla expansão do App de Combate na área XP & Capturas M
 
   // Estados para Interlúdio
   const [interludioPlayers, setInterludioPlayers] = useState([
@@ -1929,6 +2080,13 @@ function App() {
   const [customActionPlayer, setCustomActionPlayer] = useState(null) // Player que está criando ação customizada
   const [customActionType, setCustomActionType] = useState('') // 'jn' ou 'rt'
   const [interludioApp, setInterludioApp] = useState(null) // null, 'combate', 'concurso'
+
+  // Estados para Dano/Cura Interlúdio
+  const [showInterludioPokemonDamageModal, setShowInterludioPokemonDamageModal] = useState(false)
+  const [selectedInterludioPokemon, setSelectedInterludioPokemon] = useState(null)
+  const [interludioPokemonDamageAmount, setInterludioPokemonDamageAmount] = useState('')
+  const [showInterludioTrainerDamageModal, setShowInterludioTrainerDamageModal] = useState(false)
+  const [interludioTrainerDamageAmount, setInterludioTrainerDamageAmount] = useState('')
 
   // Ações de JN (Jogo de Narração)
   const acoesJN = [
@@ -2244,7 +2402,7 @@ function App() {
     { username: 'Pedro', type: 'treinador', gradient: 'linear-gradient(135deg, #0000CD, #4169E1, #00CED1, #32CD32)' }
   ]
 
-  const mestreAreas = ['Gerador Pokémon', 'Treinador NPC', 'Pokémon NPC', 'Batalha', 'Enciclopédia M', 'Visão do Mestre', 'PokeApp', 'Interlúdio']
+  const mestreAreas = ['Gerador Pokémon', 'Treinador NPC', 'Pokémon NPC', 'Batalha', 'Enciclopédia M', 'Visão do Mestre', 'XP & Capturas M', 'PokeApp', 'Interlúdio']
   const treinadorAreas = ['Treinador', 'PC', 'Pokédex', 'Mochila', 'Características & Talentos', 'Pokéloja', 'Insígnias', 'Enciclopédia', 'Progressão', 'Batalha Pkm', 'Interlúdio']
 
   const allClasses = [
@@ -3364,7 +3522,7 @@ function App() {
 
   // Funções para gerenciar modificadores de batalha
   const handleAddModifier = () => {
-    setModifierForm({ nome: '', mod: '', descricao: '', aplicarAcuracia: false, aplicarDano: false, aplicarCaptura: false })
+    setModifierForm({ nome: '', mod: '', descricao: '', aplicarAcuracia: false, aplicarDano: false, aplicarCaptura: false, usosACadaXLvl: '' })
     setEditingModifierIndex(null)
     setShowModifierModal(true)
   }
@@ -3385,7 +3543,7 @@ function App() {
     }
 
     setShowModifierModal(false)
-    setModifierForm({ nome: '', mod: '', descricao: '', aplicarAcuracia: false, aplicarDano: false, aplicarCaptura: false })
+    setModifierForm({ nome: '', mod: '', descricao: '', aplicarAcuracia: false, aplicarDano: false, aplicarCaptura: false, usosACadaXLvl: '' })
     setEditingModifierIndex(null)
   }
 
@@ -3414,7 +3572,7 @@ function App() {
 
   // Funções para gerenciar talentinhos
   const handleAddTalentinho = () => {
-    setTalentinhoForm({ nome: '', expressao: '', alvos: [] })
+    setTalentinhoForm({ nome: '', expressao: '', alvos: [], usosACadaXLvl: '' })
     setEditingTalentinhoIndex(null)
     setShowTalentinhoModal(true)
   }
@@ -3439,7 +3597,7 @@ function App() {
     }
 
     setShowTalentinhoModal(false)
-    setTalentinhoForm({ nome: '', expressao: '', alvos: [] })
+    setTalentinhoForm({ nome: '', expressao: '', alvos: [], usosACadaXLvl: '' })
     setEditingTalentinhoIndex(null)
   }
 
@@ -3451,6 +3609,247 @@ function App() {
 
   const handleDeleteTalentinho = (index) => {
     setTalentinhos(talentinhos.filter((_, i) => i !== index))
+  }
+
+  // Função para calcular o número total de usos baseado no level do treinador
+  // Fórmula: 1 (uso base) + floor(level / usosACadaXLvl)
+  const calcularUsosTotais = (usosACadaXLvl) => {
+    if (!usosACadaXLvl || usosACadaXLvl <= 0) return null // null significa sem limite
+    const bonusUsos = Math.floor(level / usosACadaXLvl)
+    return 1 + bonusUsos
+  }
+
+  // Função para obter usos atuais de um modificador
+  const getModifierUsosAtuais = (index) => {
+    const modifier = getUserModifiers()[index]
+    if (!modifier || !modifier.usosACadaXLvl || modifier.usosACadaXLvl <= 0) return null
+    const total = calcularUsosTotais(modifier.usosACadaXLvl)
+    // Se não há registro, retorna o total (usos ainda não gastos)
+    return modifierUsosAtuais[index] !== undefined ? modifierUsosAtuais[index] : total
+  }
+
+  // Função para obter usos atuais de um talentinho
+  const getTalentinhoUsosAtuais = (index) => {
+    const talentinho = talentinhos[index]
+    if (!talentinho || !talentinho.usosACadaXLvl || talentinho.usosACadaXLvl <= 0) return null
+    const total = calcularUsosTotais(talentinho.usosACadaXLvl)
+    // Se não há registro, retorna o total (usos ainda não gastos)
+    return talentinhoUsosAtuais[index] !== undefined ? talentinhoUsosAtuais[index] : total
+  }
+
+  // Função para decrementar uso de um modificador
+  const decrementarUsoModifier = (index) => {
+    const modifier = getUserModifiers()[index]
+    if (!modifier || !modifier.usosACadaXLvl || modifier.usosACadaXLvl <= 0) return
+    const total = calcularUsosTotais(modifier.usosACadaXLvl)
+    const atual = modifierUsosAtuais[index] !== undefined ? modifierUsosAtuais[index] : total
+    if (atual > 0) {
+      setModifierUsosAtuais({ ...modifierUsosAtuais, [index]: atual - 1 })
+    }
+  }
+
+  // Função para decrementar uso de um talentinho
+  const decrementarUsoTalentinho = (index) => {
+    const talentinho = talentinhos[index]
+    if (!talentinho || !talentinho.usosACadaXLvl || talentinho.usosACadaXLvl <= 0) return
+    const total = calcularUsosTotais(talentinho.usosACadaXLvl)
+    const atual = talentinhoUsosAtuais[index] !== undefined ? talentinhoUsosAtuais[index] : total
+    if (atual > 0) {
+      setTalentinhoUsosAtuais({ ...talentinhoUsosAtuais, [index]: atual - 1 })
+    }
+  }
+
+  // Função para resetar uso de um modificador específico
+  const resetarUsoModifier = (index) => {
+    const modifier = getUserModifiers()[index]
+    if (!modifier || !modifier.usosACadaXLvl || modifier.usosACadaXLvl <= 0) return
+    const total = calcularUsosTotais(modifier.usosACadaXLvl)
+    setModifierUsosAtuais({ ...modifierUsosAtuais, [index]: total })
+  }
+
+  // Função para resetar uso de um talentinho específico
+  const resetarUsoTalentinho = (index) => {
+    const talentinho = talentinhos[index]
+    if (!talentinho || !talentinho.usosACadaXLvl || talentinho.usosACadaXLvl <= 0) return
+    const total = calcularUsosTotais(talentinho.usosACadaXLvl)
+    setTalentinhoUsosAtuais({ ...talentinhoUsosAtuais, [index]: total })
+  }
+
+  // Função para resetar todos os usos (modificadores, talentinhos e Shiny Charm)
+  const resetarTodosOsUsos = () => {
+    // Resetar modificadores
+    const newModifierUsos = {}
+    getUserModifiers().forEach((modifier, index) => {
+      if (modifier.usosACadaXLvl && modifier.usosACadaXLvl > 0) {
+        newModifierUsos[index] = calcularUsosTotais(modifier.usosACadaXLvl)
+      }
+    })
+    setModifierUsosAtuais(newModifierUsos)
+
+    // Resetar talentinhos
+    const newTalentinhoUsos = {}
+    talentinhos.forEach((talentinho, index) => {
+      if (talentinho.usosACadaXLvl && talentinho.usosACadaXLvl > 0) {
+        newTalentinhoUsos[index] = calcularUsosTotais(talentinho.usosACadaXLvl)
+      }
+    })
+    setTalentinhoUsosAtuais(newTalentinhoUsos)
+
+    // Resetar Shiny Charm
+    setShinyCharmUsoDiario(true)
+
+    // Resetar limites personalizados
+    const newLimitesUsos = {}
+    limitesUsoPersonalizados.forEach((limite, index) => {
+      newLimitesUsos[index] = calcularUsosTotais(limite.usosACadaXLvl)
+    })
+    setLimitesUsoPersonalizadosUsosAtuais(newLimitesUsos)
+  }
+
+  // Função para usar o Shiny Charm (gasta o uso diário)
+  const usarShinyCharm = () => {
+    setShinyCharmUsoDiario(false)
+  }
+
+  // Funções para limites de uso personalizados
+  const adicionarLimiteUsoPersonalizado = () => {
+    if (!limiteUsoForm.nome.trim()) {
+      alert('Por favor, insira um nome para o limite de uso.')
+      return
+    }
+    if (!limiteUsoForm.usosACadaXLvl || limiteUsoForm.usosACadaXLvl <= 0) {
+      alert('Por favor, insira um valor válido para o número de usos.')
+      return
+    }
+    const novoLimite = {
+      nome: limiteUsoForm.nome.trim(),
+      usosACadaXLvl: parseInt(limiteUsoForm.usosACadaXLvl),
+      fontes: { ...limiteUsoForm.fontes }
+    }
+    const newLimites = [...limitesUsoPersonalizados, novoLimite]
+    setLimitesUsoPersonalizados(newLimites)
+    // Inicializar usos atuais com o total
+    const total = calcularUsosTotais(novoLimite.usosACadaXLvl)
+    setLimitesUsoPersonalizadosUsosAtuais(prev => ({
+      ...prev,
+      [newLimites.length - 1]: total
+    }))
+    setLimiteUsoForm({ nome: '', usosACadaXLvl: '', fontes: { talento: false, item: false, outros: false } })
+    setShowAddLimiteUsoModal(false)
+  }
+
+  const decrementarUsoLimitePersonalizado = (index) => {
+    const limite = limitesUsoPersonalizados[index]
+    if (!limite) return
+    const total = calcularUsosTotais(limite.usosACadaXLvl)
+    const atual = limitesUsoPersonalizadosUsosAtuais[index] !== undefined ? limitesUsoPersonalizadosUsosAtuais[index] : total
+    if (atual > 0) {
+      setLimitesUsoPersonalizadosUsosAtuais(prev => ({
+        ...prev,
+        [index]: atual - 1
+      }))
+    }
+  }
+
+  const resetarUsoLimitePersonalizado = (index) => {
+    const limite = limitesUsoPersonalizados[index]
+    if (!limite) return
+    const total = calcularUsosTotais(limite.usosACadaXLvl)
+    setLimitesUsoPersonalizadosUsosAtuais(prev => ({
+      ...prev,
+      [index]: total
+    }))
+  }
+
+  const removerLimiteUsoPersonalizado = (index) => {
+    const newLimites = limitesUsoPersonalizados.filter((_, i) => i !== index)
+    setLimitesUsoPersonalizados(newLimites)
+    // Reindexar os usos atuais
+    const newUsosAtuais = {}
+    newLimites.forEach((_, i) => {
+      if (i < index) {
+        newUsosAtuais[i] = limitesUsoPersonalizadosUsosAtuais[i]
+      } else {
+        newUsosAtuais[i] = limitesUsoPersonalizadosUsosAtuais[i + 1]
+      }
+    })
+    setLimitesUsoPersonalizadosUsosAtuais(newUsosAtuais)
+  }
+
+  // Função para obter todos os itens com limite de uso
+  const getItensComLimiteDeUso = () => {
+    const itens = []
+
+    // Adicionar modificadores com limite de uso
+    getUserModifiers().forEach((modifier, index) => {
+      if (modifier.usosACadaXLvl && modifier.usosACadaXLvl > 0) {
+        const total = calcularUsosTotais(modifier.usosACadaXLvl)
+        const atual = modifierUsosAtuais[index] !== undefined ? modifierUsosAtuais[index] : total
+        itens.push({
+          tipo: 'modificador',
+          nome: modifier.nome,
+          index,
+          atual,
+          total,
+          decrementar: () => decrementarUsoModifier(index),
+          resetar: () => resetarUsoModifier(index)
+        })
+      }
+    })
+
+    // Adicionar talentinhos com limite de uso
+    talentinhos.forEach((talentinho, index) => {
+      if (talentinho.usosACadaXLvl && talentinho.usosACadaXLvl > 0) {
+        const total = calcularUsosTotais(talentinho.usosACadaXLvl)
+        const atual = talentinhoUsosAtuais[index] !== undefined ? talentinhoUsosAtuais[index] : total
+        itens.push({
+          tipo: 'talentinho',
+          nome: talentinho.nome,
+          index,
+          atual,
+          total,
+          decrementar: () => decrementarUsoTalentinho(index),
+          resetar: () => resetarUsoTalentinho(index)
+        })
+      }
+    })
+
+    // Adicionar Shiny Charm se o usuário tiver
+    const hasShinyCharm = keyItems.some(item => item.name === 'Shiny Charm')
+    if (hasShinyCharm) {
+      itens.push({
+        tipo: 'shinyCharm',
+        nome: 'Shiny Charm',
+        index: -1,
+        atual: shinyCharmUsoDiario ? 1 : 0,
+        total: 1,
+        decrementar: usarShinyCharm,
+        resetar: () => setShinyCharmUsoDiario(true)
+      })
+    }
+
+    // Adicionar limites de uso personalizados
+    limitesUsoPersonalizados.forEach((limite, index) => {
+      const total = calcularUsosTotais(limite.usosACadaXLvl)
+      const atual = limitesUsoPersonalizadosUsosAtuais[index] !== undefined ? limitesUsoPersonalizadosUsosAtuais[index] : total
+      // Determinar o tipo baseado nas fontes selecionadas
+      let tipo = 'personalizado'
+      if (limite.fontes.talento && !limite.fontes.item && !limite.fontes.outros) tipo = 'talentinho'
+      else if (limite.fontes.item && !limite.fontes.talento && !limite.fontes.outros) tipo = 'shinyCharm'
+      itens.push({
+        tipo,
+        nome: limite.nome,
+        index,
+        atual,
+        total,
+        decrementar: () => decrementarUsoLimitePersonalizado(index),
+        resetar: () => resetarUsoLimitePersonalizado(index),
+        isPersonalizado: true,
+        fontes: limite.fontes
+      })
+    })
+
+    return itens
   }
 
   const handleRollTalentinho = (talentinho) => {
@@ -3517,6 +3916,10 @@ function App() {
             case '<':
               sucesso = rolagem < alvoValor
               operadorTexto = 'menor que'
+              break
+            case '==':
+              sucesso = rolagem === alvoValor
+              operadorTexto = 'igual a'
               break
             default:
               sucesso = rolagem >= alvoValor
@@ -3691,6 +4094,24 @@ function App() {
     }
   }
 
+  // Função para calcular a estatística Contagem (para Colecionador)
+  // Contagem = MV + Grupos de 8 espécies diferentes capturados
+  const calcularContagem = () => {
+    const MV = getModifier(attributes.velocidade)
+
+    // Combinar todos os pokémons capturados (time + PC)
+    const todosPokemon = [...mainTeam, ...pcPokemon]
+
+    // Contar espécies únicas (não conta pokémons da mesma espécie)
+    const especiesUnicas = new Set(todosPokemon.map(p => p.species).filter(Boolean))
+    const numEspeciesUnicas = especiesUnicas.size
+
+    // Calcular grupos de 8
+    const gruposDe8 = Math.floor(numEspeciesUnicas / 8)
+
+    return MV + gruposDe8
+  }
+
   // Função para processar expressões com comandos @
   const processCommandExpression = (expression) => {
     if (!expression || typeof expression !== 'string') return null
@@ -3713,6 +4134,9 @@ function App() {
     const Vt = attributes.velocidade
     const St = attributes.saude
 
+    // Calcular Contagem para o comando @Cont
+    const Cont = calcularContagem()
+
     // Mapa de comandos
     const commandMap = {
       '@MA': MA,
@@ -3726,7 +4150,8 @@ function App() {
       '@AEt': AEt,
       '@DEt': DEt,
       '@Vt': Vt,
-      '@St': St
+      '@St': St,
+      '@Cont': Cont
     }
 
     let processedExpression = expression
@@ -4549,6 +4974,20 @@ function App() {
       return
     }
 
+    // Se for Shiny Charm, abrir modal para inserir número da sorte
+    if (selectedKeyItem === 'Shiny Charm') {
+      // Verificar se já existe um Shiny Charm
+      const existingCharm = keyItems.find(item => item.name === 'Shiny Charm')
+      if (existingCharm) {
+        alert('Você já possui um Shiny Charm!')
+        return
+      }
+      setShowAddKeyItemModal(false)
+      setShowShinyCharmModal(true)
+      setShinyCharmLuckyNumber('')
+      return
+    }
+
     const existingItem = keyItems.find(item => item.name === selectedKeyItem)
     if (existingItem) {
       setKeyItems(keyItems.map(item =>
@@ -4581,6 +5020,64 @@ function App() {
     setShowPokeovoSpeciesModal(false)
     setSelectedKeyItem('')
     setKeyItemQuantity(1)
+  }
+
+  // Função para adicionar Shiny Charm com número da sorte
+  const handleAddShinyCharm = () => {
+    const luckyNum = parseInt(shinyCharmLuckyNumber)
+    if (!luckyNum || luckyNum < 1 || luckyNum > 1365) {
+      alert('Por favor, insira um número da sorte válido (1 a 1365)!')
+      return
+    }
+
+    setKeyItems([...keyItems, { name: 'Shiny Charm', luckyNumber: luckyNum }])
+    setShowShinyCharmModal(false)
+    setSelectedKeyItem('')
+    setShinyCharmLuckyNumber('')
+  }
+
+  // Função para editar número da sorte do Shiny Charm
+  const handleEditShinyCharm = () => {
+    const luckyNum = parseInt(shinyCharmLuckyNumber)
+    if (!luckyNum || luckyNum < 1 || luckyNum > 1365) {
+      alert('Por favor, insira um número da sorte válido (1 a 1365)!')
+      return
+    }
+
+    setKeyItems(keyItems.map(item =>
+      item.name === 'Shiny Charm'
+        ? { ...item, luckyNumber: luckyNum }
+        : item
+    ))
+    setShowEditShinyCharmModal(false)
+    setShinyCharmToEdit(null)
+    setShinyCharmLuckyNumber('')
+  }
+
+  // Função para rolar 1d1365 do Shiny Charm
+  const handleShinyCharmRoll = async (luckyNumber) => {
+    const roll = Math.floor(Math.random() * 1365) + 1
+    const isSuccess = roll === luckyNumber
+
+    const text = isSuccess
+      ? `✨ SHINY CHARM ✨ ${currentUser?.username || 'Desconhecido'} rolou ${roll} - SUCESSO! Número da sorte: ${luckyNumber}`
+      : `🎲 SHINY CHARM: ${currentUser?.username || 'Desconhecido'} rolou ${roll} - Fracasso. Número da sorte: ${luckyNumber}`
+
+    const newMessage = {
+      id: `${Date.now()}-${Math.random()}`,
+      username: 'Sistema',
+      text: text,
+      timestamp: new Date().toISOString(),
+      type: 'system'
+    }
+
+    if (useFirebase) {
+      const currentMessages = await loadChatMessages()
+      const updatedMessages = [...(currentMessages || []), newMessage].slice(-10)
+      await saveChatMessages(updatedMessages)
+    } else {
+      setChatMessages(prev => [...prev, newMessage].slice(-10))
+    }
   }
 
   // Função para chocar ovo
@@ -5155,6 +5652,112 @@ function App() {
     if (confirm('Deseja realmente excluir este Pokémon do PC?')) {
       setPcPokemon(pcPokemon.filter((_, i) => i !== index))
     }
+  }
+
+  // Abrir modal de evolução
+  const openEvolutionModal = (pokemon, location, index) => {
+    setSelectedPokemonForEvolution(pokemon)
+    setEvolutionLocation(location)
+    setEvolutionPokemonIndex(index)
+    setEvolutionSearch('')
+    setSelectedEvolutionSpecies(null)
+    setShowEvolutionModal(true)
+  }
+
+  // Obter lista de opções de evolução (todos os pokémons disponíveis)
+  const getEvolutionOptions = () => {
+    // Combinar pokémons normais com exóticos
+    const allPokemon = [
+      ...pokedexData.map(p => ({ nome: p.nome, isExotic: false })),
+      ...globalExoticSpecies.map(p => ({ nome: p.nome, isExotic: true }))
+    ]
+
+    // Filtrar pela busca
+    if (evolutionSearch.trim()) {
+      return allPokemon.filter(p =>
+        p.nome.toLowerCase().includes(evolutionSearch.toLowerCase())
+      )
+    }
+
+    return allPokemon
+  }
+
+  // Executar evolução do Pokémon
+  const handleEvolution = () => {
+    if (!selectedEvolutionSpecies || !selectedPokemonForEvolution) return
+
+    const newSpeciesName = selectedEvolutionSpecies.nome
+    const isExotic = selectedEvolutionSpecies.isExotic
+
+    // Buscar dados da nova espécie
+    let newSpeciesData = null
+    if (isExotic) {
+      newSpeciesData = globalExoticSpecies.find(p => p.nome === newSpeciesName)
+    } else {
+      newSpeciesData = pokedexData.find(p => p.nome === newSpeciesName)
+    }
+
+    if (!newSpeciesData) {
+      alert('Dados da espécie não encontrados!')
+      return
+    }
+
+    // Criar os novos atributos basais
+    const newBaseAttributes = {
+      saude: newSpeciesData.statusBasais?.saude || '',
+      ataque: newSpeciesData.statusBasais?.ataque || '',
+      defesa: newSpeciesData.statusBasais?.defesa || '',
+      ataqueEspecial: newSpeciesData.statusBasais?.ataqueEspecial || '',
+      defesaEspecial: newSpeciesData.statusBasais?.defesaEspecial || '',
+      velocidade: newSpeciesData.statusBasais?.velocidade || ''
+    }
+
+    // Atualizar o pokémon - apenas species, baseAttributes, height e weight
+    const updatedPokemon = {
+      ...selectedPokemonForEvolution,
+      species: newSpeciesName,
+      isExotic: isExotic,
+      baseAttributes: newBaseAttributes,
+      height: newSpeciesData.altura || '',
+      weight: newSpeciesData.peso || ''
+    }
+
+    // Atualizar no time ou PC
+    if (evolutionLocation === 'team') {
+      setMainTeam(mainTeam.map((p, i) => i === evolutionPokemonIndex ? updatedPokemon : p))
+    } else {
+      setPcPokemon(pcPokemon.map((p, i) => i === evolutionPokemonIndex ? updatedPokemon : p))
+    }
+
+    // Adicionar nova espécie à Pokédex como escaneada e capturada
+    const existingEntry = pokedex.find(p => p.species === newSpeciesName)
+    if (!existingEntry) {
+      // Não existe na Pokédex - adicionar como capturada
+      if (isExotic) {
+        setPokedex([...pokedex, {
+          species: newSpeciesName,
+          isCaptured: true,
+          isExotic: true,
+          exoticData: newSpeciesData
+        }])
+      } else {
+        setPokedex([...pokedex, {
+          species: newSpeciesName,
+          isCaptured: true
+        }])
+      }
+    } else if (!existingEntry.isCaptured) {
+      // Já está escaneada - marcar como capturada
+      setPokedex(pokedex.map(p =>
+        p.species === newSpeciesName ? { ...p, isCaptured: true } : p
+      ))
+    }
+
+    // Fechar modal
+    setShowEvolutionModal(false)
+    setSelectedPokemonForEvolution(null)
+    setSelectedEvolutionSpecies(null)
+    setEvolutionSearch('')
   }
 
   // Marcar Pokémon como capturado na Pokédex
@@ -6038,6 +6641,54 @@ function App() {
     setExpandedNpcCards(prev => prev.filter(id => id !== pokemonId))
   }
 
+  // Função para enviar XP para treinadores selecionados
+  const enviarXpParaTreinadores = async () => {
+    if (!selectedNpcPokemonForXp) return
+
+    const trainersSelected = Object.entries(selectedTrainersForXp)
+      .filter(([_, isSelected]) => isSelected)
+      .map(([trainer]) => trainer)
+
+    if (trainersSelected.length === 0) {
+      alert('Selecione pelo menos um treinador.')
+      return
+    }
+
+    const totalXp = selectedNpcPokemonForXp.experience
+    const xpPerTrainer = Math.floor(totalXp / trainersSelected.length)
+    const speciesName = selectedNpcPokemonForXp.species || selectedNpcPokemonForXp.name || 'Pokémon'
+
+    try {
+      for (const trainer of trainersSelected) {
+        // Carregar dados atuais do treinador
+        const currentData = allTrainersXpCapturas[trainer] || { xpList: [], capturaList: [] }
+        const newXpList = [
+          ...(currentData.xpList || []),
+          {
+            value: xpPerTrainer,
+            species: speciesName,
+            fromNpc: true // Marcar que veio de NPC
+          }
+        ]
+
+        if (useFirebase) {
+          await saveXpCapturas(trainer, {
+            xpList: newXpList,
+            capturaList: currentData.capturaList || []
+          })
+        }
+      }
+
+      alert(`XP enviado com sucesso!\n${xpPerTrainer} XP para cada treinador: ${trainersSelected.join(', ')}`)
+      setShowSendXpModal(false)
+      setSelectedNpcPokemonForXp(null)
+      setSelectedTrainersForXp({})
+    } catch (error) {
+      console.error('Erro ao enviar XP:', error)
+      alert('Erro ao enviar XP. Tente novamente.')
+    }
+  }
+
   // Função para alternar expansão do card NPC
   const toggleNpcCard = (pokemonId) => {
     setExpandedNpcCards(prev => {
@@ -6190,14 +6841,14 @@ function App() {
     setSelectedNpcPokemonForDamage(null)
   }
 
-  // Função para aplicar dano com tipo (Físico/Especial) - subtrai defesa do dano
+  // Função para aplicar dano com tipo (Físico/Especial/Puro) - subtrai defesa do dano
   const applyDamageWithType = (damageType) => {
     if (!pendingDamageContext || pendingDamageValue <= 0) return
 
     let defense = 0
     let finalDamage = pendingDamageValue
 
-    // Obter defesa baseado no contexto
+    // Obter defesa baseado no contexto (se não for dano puro)
     if (pendingDamageContext === 'battlePokemon' && selectedBattlePokemon) {
       // Pokémon do treinador em batalha - buscar atributos totais do battlePokemonList
       const pokemon = selectedBattlePokemon
@@ -6209,15 +6860,17 @@ function App() {
         bp.owner === currentUser?.username
       )
 
-      if (battlePokemon && battlePokemon.totalAttributes) {
-        defense = damageType === 'fisico'
-          ? (battlePokemon.totalAttributes.defesa || 0)
-          : (battlePokemon.totalAttributes.defesaEspecial || 0)
-      } else {
-        // Fallback: calcular usando a função existente
-        defense = damageType === 'fisico'
-          ? calculateTotalAttribute(pokemon, 'defesa', 'Defesa')
-          : calculateTotalAttribute(pokemon, 'defesaEspecial', 'Defesa Especial')
+      if (damageType !== 'puro') {
+        if (battlePokemon && battlePokemon.totalAttributes) {
+          defense = damageType === 'fisico'
+            ? (battlePokemon.totalAttributes.defesa || 0)
+            : (battlePokemon.totalAttributes.defesaEspecial || 0)
+        } else {
+          // Fallback: calcular usando a função existente
+          defense = damageType === 'fisico'
+            ? calculateTotalAttribute(pokemon, 'defesa', 'Defesa')
+            : calculateTotalAttribute(pokemon, 'defesaEspecial', 'Defesa Especial')
+        }
       }
 
       finalDamage = Math.max(0, pendingDamageValue - defense)
@@ -6247,9 +6900,11 @@ function App() {
 
     } else if (pendingDamageContext === 'trainer') {
       // Treinador próprio (modal HP simples)
-      defense = damageType === 'fisico'
-        ? (attributes.defesa || 0)
-        : (attributes.defesaEspecial || 0)
+      if (damageType !== 'puro') {
+        defense = damageType === 'fisico'
+          ? (attributes.defesa || 0)
+          : (attributes.defesaEspecial || 0)
+      }
 
       finalDamage = Math.max(0, pendingDamageValue - defense)
       const maxHP = getMaxHP()
@@ -6263,9 +6918,11 @@ function App() {
 
     } else if (pendingDamageContext === 'trainerBattle') {
       // Treinador em batalha
-      defense = damageType === 'fisico'
-        ? (attributes.defesa || 0)
-        : (attributes.defesaEspecial || 0)
+      if (damageType !== 'puro') {
+        defense = damageType === 'fisico'
+          ? (attributes.defesa || 0)
+          : (attributes.defesaEspecial || 0)
+      }
 
       finalDamage = Math.max(0, pendingDamageValue - defense)
       const maxHP = getMaxHP()
@@ -6284,9 +6941,11 @@ function App() {
 
     } else if (pendingDamageContext === 'npcPokemon' && selectedNpcPokemon) {
       // Pokémon NPC (mestre)
-      defense = damageType === 'fisico'
-        ? (selectedNpcPokemon.attributes?.defesa || 0)
-        : (selectedNpcPokemon.attributes?.defesaEspecial || 0)
+      if (damageType !== 'puro') {
+        defense = damageType === 'fisico'
+          ? (selectedNpcPokemon.attributes?.defesa || 0)
+          : (selectedNpcPokemon.attributes?.defesaEspecial || 0)
+      }
 
       finalDamage = Math.max(0, pendingDamageValue - defense)
 
@@ -6306,9 +6965,11 @@ function App() {
 
     } else if (pendingDamageContext === 'npcPokemonBattle' && selectedNpcPokemonForDamage) {
       // Pokémon NPC em batalha (mestre) - usar atributos de totalAttributes
-      defense = damageType === 'fisico'
-        ? (selectedNpcPokemonForDamage.totalAttributes?.defesa || 0)
-        : (selectedNpcPokemonForDamage.totalAttributes?.defesaEspecial || 0)
+      if (damageType !== 'puro') {
+        defense = damageType === 'fisico'
+          ? (selectedNpcPokemonForDamage.totalAttributes?.defesa || 0)
+          : (selectedNpcPokemonForDamage.totalAttributes?.defesaEspecial || 0)
+      }
 
       finalDamage = Math.max(0, pendingDamageValue - defense)
 
@@ -6341,9 +7002,11 @@ function App() {
 
     } else if (pendingDamageContext === 'npcTrainerBattle' && selectedNpcTrainerForDamage) {
       // Treinador NPC em batalha (mestre) - usar atributos de baseAttributes
-      defense = damageType === 'fisico'
-        ? (selectedNpcTrainerForDamage.baseAttributes?.defesa || 0)
-        : (selectedNpcTrainerForDamage.baseAttributes?.defesaEspecial || 0)
+      if (damageType !== 'puro') {
+        defense = damageType === 'fisico'
+          ? (selectedNpcTrainerForDamage.baseAttributes?.defesa || 0)
+          : (selectedNpcTrainerForDamage.baseAttributes?.defesaEspecial || 0)
+      }
 
       finalDamage = Math.max(0, pendingDamageValue - defense)
 
@@ -6568,6 +7231,35 @@ function App() {
           await saveTrainerData(trainerUsername, trainerData)
         } else {
           localStorage.setItem(`trainer_${trainerUsername}`, JSON.stringify(trainerData))
+        }
+
+        // Adicionar à lista de captura e lista de XP do treinador
+        if (useFirebase) {
+          const currentXpCapturas = await loadXpCapturas(trainerUsername)
+          const pokemonXp = pokemonToSend.experience || 0
+
+          // Adicionar à lista de captura
+          const newCapturaList = [...(currentXpCapturas.capturaList || []), {
+            species: sendPokemonSpecies,
+            level: pokemonToSend.level,
+            captureValue: calculateCaptureValue(pokemonToSend),
+            experience: pokemonXp,
+            addedAt: Date.now()
+          }]
+
+          // Adicionar XP à lista de XP (se tiver XP)
+          const newXpList = pokemonXp > 0
+            ? [...(currentXpCapturas.xpList || []), {
+                value: pokemonXp,
+                species: sendPokemonSpecies,
+                addedAt: Date.now()
+              }]
+            : (currentXpCapturas.xpList || [])
+
+          await saveXpCapturas(trainerUsername, {
+            xpList: newXpList,
+            capturaList: newCapturaList
+          })
         }
 
         // Fechar modal e limpar estado
@@ -8051,6 +8743,31 @@ function App() {
     }
   }, [])
 
+  // Função para sortear aleatoriamente quais itens de um corredor serão escondidos
+  // Baseado no peso de cada item (maior peso = maior chance de esconder)
+  const sortearItensEscondidosCorredor = async (corredor, items) => {
+    // Remover todos os itens deste corredor da lista de escondidos
+    const itensDesteCorredor = items.map(item => item.name)
+    let novosEscondidos = hiddenPokelojaItems.filter(name => !itensDesteCorredor.includes(name))
+
+    // Para cada item, sortear se será escondido baseado no peso
+    items.forEach(item => {
+      const peso = POKELOJA_HIDE_WEIGHTS[item.name] || 3 // Peso padrão 3 se não definido
+      // Probabilidade de esconder = peso * 10% (ex: peso 1 = 10%, peso 6 = 60%)
+      const probabilidade = peso * 0.10
+      const sorteio = Math.random()
+
+      if (sorteio < probabilidade) {
+        novosEscondidos.push(item.name)
+      }
+    })
+
+    setHiddenPokelojaItems(novosEscondidos)
+    if (useFirebase) {
+      await saveHiddenPokelojaItems(novosEscondidos)
+    }
+  }
+
   // Sincronizar preços customizados da Pokéloja em tempo real com Firebase
   useEffect(() => {
     if (!useFirebase) return
@@ -8063,6 +8780,33 @@ function App() {
       if (unsubscribe) unsubscribe()
     }
   }, [])
+
+  // Sincronizar dados de XP & Capturas em tempo real com Firebase (treinador)
+  useEffect(() => {
+    if (!useFirebase || !currentUser || currentUser.type !== 'treinador') return
+
+    const unsubscribe = subscribeToXpCapturas(currentUser.username, (data) => {
+      setXpList(data?.xpList || [])
+      setCapturaList(data?.capturaList || [])
+    })
+
+    return () => {
+      if (unsubscribe) unsubscribe()
+    }
+  }, [currentUser, useFirebase])
+
+  // Sincronizar dados de XP & Capturas de TODOS os treinadores (para o mestre)
+  useEffect(() => {
+    if (!useFirebase || !currentUser || currentUser.type !== 'mestre') return
+
+    const unsubscribe = subscribeToAllXpCapturas((data) => {
+      setAllTrainersXpCapturas(data || {})
+    })
+
+    return () => {
+      if (unsubscribe) unsubscribe()
+    }
+  }, [currentUser, useFirebase])
 
   // Sincronizar dados de batalha em tempo real com Firebase
   useEffect(() => {
@@ -9613,6 +10357,18 @@ function App() {
                         >
                           Enviar para...
                         </button>
+
+                        {/* Botão Enviar XP para... */}
+                        <button
+                          onClick={() => {
+                            setSelectedNpcPokemonForXp(pokemon)
+                            setSelectedTrainersForXp({})
+                            setShowSendXpModal(true)
+                          }}
+                          className="w-full mt-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 rounded-lg hover:from-yellow-600 hover:to-orange-600 font-semibold text-sm"
+                        >
+                          Enviar XP para...
+                        </button>
                       </div>
                     )}
                   </div>
@@ -9692,12 +10448,18 @@ function App() {
                     <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Dano: {pendingDamageValue} | Selecione o tipo de dano:
                     </p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-3 gap-3">
                       <button
                         onClick={() => applyDamageWithType('fisico')}
                         className="flex items-center justify-center gap-2 bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold"
                       >
                         <Sword size={18} />Físico
+                      </button>
+                      <button
+                        onClick={() => applyDamageWithType('puro')}
+                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold"
+                      >
+                        <Minus size={18} />Puro
                       </button>
                       <button
                         onClick={() => applyDamageWithType('especial')}
@@ -10080,10 +10842,10 @@ function App() {
                   )}
                 </div>
 
-                {/* Lista de Treinadores */}
+                {/* Lista de Treinadores - Enviar para Time */}
                 <div className="mb-4">
                   <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                    Selecione o treinador:
+                    Enviar para o Time:
                   </h4>
                   <div className="space-y-2">
                     {users.filter(u => u.type === 'treinador').map(trainer => (
@@ -10106,6 +10868,114 @@ function App() {
                 >
                   Cancelar
                 </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal de Envio de XP para Treinadores */}
+        {showSendXpModal && selectedNpcPokemonForXp && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowSendXpModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Enviar XP para...
+                  </h3>
+                  <button onClick={() => setShowSendXpModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                    <X size={24} />
+                  </button>
+                </div>
+
+                {/* Imagem e informações do Pokémon */}
+                <div className="flex items-center gap-4 mb-4">
+                  {selectedNpcPokemonForXp.imageUrl && (
+                    <img src={selectedNpcPokemonForXp.imageUrl} alt={selectedNpcPokemonForXp.species} className="w-20 h-20 object-contain" />
+                  )}
+                  <div>
+                    <p className={`font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                      {selectedNpcPokemonForXp.species || selectedNpcPokemonForXp.name}
+                    </p>
+                    <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      Nível {selectedNpcPokemonForXp.level}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Valor de XP */}
+                <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-yellow-900/30' : 'bg-yellow-100'}`}>
+                  <p className={`text-sm ${darkMode ? 'text-yellow-400' : 'text-yellow-700'}`}>XP Concedido:</p>
+                  <p className={`text-3xl font-bold ${darkMode ? 'text-yellow-300' : 'text-yellow-600'}`}>
+                    {selectedNpcPokemonForXp.experience} XP
+                  </p>
+                  {Object.values(selectedTrainersForXp).filter(v => v).length > 1 && (
+                    <p className={`text-sm mt-2 ${darkMode ? 'text-yellow-400' : 'text-yellow-700'}`}>
+                      Dividido por {Object.values(selectedTrainersForXp).filter(v => v).length} treinadores: {' '}
+                      <strong>{Math.floor(selectedNpcPokemonForXp.experience / Object.values(selectedTrainersForXp).filter(v => v).length)} XP</strong> cada
+                    </p>
+                  )}
+                </div>
+
+                {/* Checkboxes dos Treinadores */}
+                <div className="mb-6">
+                  <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Selecione os treinadores:
+                  </h4>
+                  <div className="space-y-2">
+                    {['Alocin', 'Lila', 'Ludovic', 'Noryat', 'Pedro'].map(trainer => {
+                      const user = users.find(u => u.username === trainer)
+                      return (
+                        <label
+                          key={trainer}
+                          className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all ${
+                            selectedTrainersForXp[trainer]
+                              ? darkMode ? 'bg-blue-900/50 border-2 border-blue-500' : 'bg-blue-100 border-2 border-blue-500'
+                              : darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedTrainersForXp[trainer] || false}
+                            onChange={(e) => {
+                              setSelectedTrainersForXp(prev => ({
+                                ...prev,
+                                [trainer]: e.target.checked
+                              }))
+                            }}
+                            className="w-5 h-5 rounded"
+                          />
+                          <span
+                            className="font-semibold text-white px-3 py-1 rounded"
+                            style={{ background: user?.gradient || 'gray' }}
+                          >
+                            {trainer}
+                          </span>
+                        </label>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                {/* Botões */}
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => setShowSendXpModal(false)}
+                    className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    onClick={() => enviarXpParaTreinadores()}
+                    disabled={Object.values(selectedTrainersForXp).filter(v => v).length === 0}
+                    className={`flex-1 py-3 rounded-lg font-semibold transition-all ${
+                      Object.values(selectedTrainersForXp).filter(v => v).length === 0
+                        ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                        : 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600'
+                    }`}
+                  >
+                    Salvar
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -11402,7 +12272,7 @@ function App() {
               <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-4 space-y-1`}>
                 <p>Use /r ou /roll para rolar dados. Exemplo: /r 1d20+5, /roll 2d6</p>
                 <p>Use comandos @ para referenciar seus atributos: <span className="font-mono">1d20+@MAE</span>, <span className="font-mono">2d6+@MA+@MV</span></p>
-                <p className="text-[10px]">Comandos: @MA @MD @MAE @MDE @MV @MS @At @Dt @AEt @DEt @Vt @St</p>
+                <p className="text-[10px]">Comandos: @MA @MD @MAE @MDE @MV @MS @At @Dt @AEt @DEt @Vt @St @Cont</p>
               </div>
 
               {/* Área de Mensagens */}
@@ -11684,12 +12554,18 @@ function App() {
                     <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Dano: {pendingDamageValue} | Selecione o tipo de dano:
                     </p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-3 gap-3">
                       <button
                         onClick={() => applyDamageWithType('fisico')}
                         className="flex items-center justify-center gap-2 bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold"
                       >
                         <Sword size={18} />Físico
+                      </button>
+                      <button
+                        onClick={() => applyDamageWithType('puro')}
+                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold"
+                      >
+                        <Minus size={18} />Puro
                       </button>
                       <button
                         onClick={() => applyDamageWithType('especial')}
@@ -11781,12 +12657,18 @@ function App() {
                     <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Dano: {pendingDamageValue} | Selecione o tipo de dano:
                     </p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-3 gap-3">
                       <button
                         onClick={() => applyDamageWithType('fisico')}
                         className="flex items-center justify-center gap-2 bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold"
                       >
                         <Sword size={18} />Físico
+                      </button>
+                      <button
+                        onClick={() => applyDamageWithType('puro')}
+                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold"
+                      >
+                        <Minus size={18} />Puro
                       </button>
                       <button
                         onClick={() => applyDamageWithType('especial')}
@@ -13692,9 +14574,23 @@ function App() {
                 <div className="space-y-8">
                   {Object.entries(POKELOJA_DATA).map(([corredor, items]) => (
                     <div key={corredor} className={`p-6 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                      <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                        {corredor}
-                      </h4>
+                      <div className="flex items-center justify-between mb-4">
+                        <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                          {corredor}
+                        </h4>
+                        <button
+                          onClick={() => sortearItensEscondidosCorredor(corredor, items)}
+                          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                            darkMode
+                              ? 'bg-purple-600 hover:bg-purple-700 text-white'
+                              : 'bg-purple-500 hover:bg-purple-600 text-white'
+                          }`}
+                          title="Sortear aleatoriamente quais itens serão escondidos neste corredor"
+                        >
+                          <Dices size={16} />
+                          Sortear Escondidos
+                        </button>
+                      </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                         {items.map((item) => {
                           const isHidden = hiddenPokelojaItems.includes(item.name)
@@ -14712,6 +15608,439 @@ function App() {
     )
   }
 
+  // ÁREA XP & CAPTURAS M (MESTRE)
+  if (currentUser.type === 'mestre' && currentArea === 'XP & Capturas M') {
+    // Ordenar treinadores para a lista: Alocin, Lila, Ludovic, Noryat, Pedro
+    const trainerOrder = ['Alocin', 'Lila', 'Ludovic', 'Noryat', 'Pedro']
+
+    // Calcular ranking de XP
+    const xpRanking = trainerOrder
+      .map(username => {
+        const data = allTrainersXpCapturas[username] || { xpList: [], capturaList: [] }
+        const totalXp = (data.xpList || []).reduce((sum, xp) => sum + (xp.value || 0), 0)
+        return { username, totalXp, hasData: (data.xpList || []).length > 0 }
+      })
+      .filter(t => t.hasData)
+      .sort((a, b) => b.totalXp - a.totalXp)
+
+    // Atribuir posições de ranking (com empates)
+    let currentRank = 1
+    xpRanking.forEach((trainer, index) => {
+      if (index > 0 && trainer.totalXp === xpRanking[index - 1].totalXp) {
+        trainer.rank = xpRanking[index - 1].rank
+      } else {
+        trainer.rank = currentRank
+      }
+      currentRank++
+    })
+
+    // Lista de captura geral ordenada por treinador
+    const capturaGeralList = []
+    trainerOrder.forEach(username => {
+      const data = allTrainersXpCapturas[username] || { xpList: [], capturaList: [] }
+      const capturas = data.capturaList || []
+      if (capturas.length > 0) {
+        capturas.forEach((pokemon, idx) => {
+          capturaGeralList.push({
+            ...pokemon,
+            trainer: username,
+            globalIndex: capturaGeralList.length
+          })
+        })
+      }
+    })
+
+    return (
+      <>
+        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>XP & Capturas M 👑</h2>
+                <div className="flex gap-2">
+                  <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
+                    {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+                  </button>
+                  <button onClick={() => { setCurrentUser(null); setCurrentArea('') }} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'XP & Capturas M' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              </div>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 py-8">
+            {/* Grid com Ranking de XP e Lista de Captura Geral */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              {/* Ranking de XP (Esquerda) */}
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+                <h3 className={`text-xl font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+                  <Trophy size={24} />
+                  Ranking de XP
+                </h3>
+
+                {xpRanking.length === 0 ? (
+                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-8`}>
+                    Nenhum treinador com XP registrada.
+                  </p>
+                ) : (
+                  <div className="space-y-3">
+                    {xpRanking.filter(t => t.rank <= 5).map((trainer, index) => (
+                      <div key={trainer.username} className={`flex items-center justify-between p-3 rounded-lg ${
+                        trainer.rank === 1 ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-white' :
+                        trainer.rank === 2 ? 'bg-gradient-to-r from-gray-400 to-gray-500 text-white' :
+                        trainer.rank === 3 ? 'bg-gradient-to-r from-orange-600 to-orange-700 text-white' :
+                        darkMode ? 'bg-gray-700' : 'bg-gray-100'
+                      }`}>
+                        <div className="flex items-center gap-3">
+                          <span className={`text-2xl font-bold ${trainer.rank <= 3 ? 'text-white' : darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            #{trainer.rank}
+                          </span>
+                          <span className={`font-semibold ${trainer.rank <= 3 ? 'text-white' : darkMode ? 'text-white' : 'text-gray-800'}`}>
+                            {trainer.username}
+                          </span>
+                        </div>
+                        <span className={`font-bold ${trainer.rank <= 3 ? 'text-white' : darkMode ? 'text-cyan-400' : 'text-cyan-600'}`}>
+                          {trainer.totalXp} XP
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Lista de Captura Geral (Direita) */}
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className={`text-xl font-bold flex items-center gap-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+                    <Target size={24} />
+                    Lista de Captura Geral
+                  </h3>
+                  <div className="flex gap-2">
+                    {/* Botão Sortear Encontro */}
+                    <button
+                      onClick={() => {
+                        const availablePokemon = capturaGeralList.filter(p => !p.status)
+                        if (availablePokemon.length === 0) {
+                          alert('Não há pokémons disponíveis para sortear!')
+                          return
+                        }
+                        const randomIndex = Math.floor(Math.random() * availablePokemon.length)
+                        const sortedPokemon = availablePokemon[randomIndex]
+
+                        // Enviar mensagem no chat
+                        const newMessage = {
+                          id: Date.now(),
+                          username: 'Sistema',
+                          message: `🎲 Encontro sorteado: ${sortedPokemon.species} (Nv. ${sortedPokemon.level}) - Captura: ${sortedPokemon.captureValue} - Treinador: ${sortedPokemon.trainer}`,
+                          timestamp: new Date().toISOString(),
+                          type: 'system'
+                        }
+                        const updatedMessages = [...chatMessages, newMessage]
+                        setChatMessages(updatedMessages)
+                        if (useFirebase) {
+                          saveChatMessages(updatedMessages)
+                        }
+
+                        alert(`Encontro sorteado: ${sortedPokemon.species} (Nv. ${sortedPokemon.level})\nCaptura: ${sortedPokemon.captureValue}\nTreinador: ${sortedPokemon.trainer}`)
+                      }}
+                      className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 font-semibold text-sm flex items-center gap-1"
+                    >
+                      <Shuffle size={16} />
+                      Sortear
+                    </button>
+                    {/* Botão Ações de Comando */}
+                    <button
+                      onClick={() => setShowAcoesComandoModal(true)}
+                      className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-2 rounded-lg hover:from-purple-700 hover:to-indigo-700"
+                      title="Ações de Comando"
+                    >
+                      <ClipboardCheck size={20} />
+                    </button>
+                  </div>
+                </div>
+
+                {capturaGeralList.length === 0 ? (
+                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-8`}>
+                    Nenhum pokémon nas listas de captura.
+                  </p>
+                ) : (
+                  <div className="space-y-2 max-h-[400px] overflow-y-auto">
+                    {capturaGeralList.map((pokemon, index) => (
+                      <div key={`${pokemon.trainer}-${index}`} className={`flex justify-between items-center p-2 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-100'} ${
+                        pokemon.status === 'capturado' ? 'border-l-4 border-green-500' :
+                        pokemon.status === 'batalha' ? 'border-l-4 border-orange-500' :
+                        pokemon.status === 'block' ? 'border-l-4 border-red-500' : ''
+                      }`}>
+                        <div className="flex-1">
+                          <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{index + 1}. </span>
+                          <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                            {pokemon.species}
+                          </span>
+                          <span className={`ml-2 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                            Nv. {pokemon.level} | Cap: {pokemon.captureValue}
+                          </span>
+                          <span className={`ml-2 text-xs px-2 py-0.5 rounded ${darkMode ? 'bg-gray-600 text-gray-300' : 'bg-gray-200 text-gray-600'}`}>
+                            {pokemon.trainer}
+                          </span>
+                          {pokemon.status && (
+                            <span className={`ml-2 text-xs px-2 py-0.5 rounded ${
+                              pokemon.status === 'capturado' ? 'bg-green-500 text-white' :
+                              pokemon.status === 'batalha' ? 'bg-orange-500 text-white' :
+                              'bg-red-500 text-white'
+                            }`}>
+                              {pokemon.status === 'capturado' ? 'Capturado' :
+                               pokemon.status === 'batalha' ? 'Vencido' : 'Bloqueado'}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* App de Combate Expandível */}
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl overflow-hidden`}>
+              <button
+                onClick={() => setShowCombateXpCapturas(!showCombateXpCapturas)}
+                className={`w-full p-4 flex justify-between items-center ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-50'}`}
+              >
+                <h3 className={`text-xl font-bold flex items-center gap-2 ${darkMode ? 'text-orange-400' : 'text-orange-600'}`}>
+                  <Sword size={24} />
+                  App de Combate
+                </h3>
+                {showCombateXpCapturas ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+              </button>
+
+              {showCombateXpCapturas && (
+                <div className="p-6 border-t border-gray-700">
+                  <CombateInterludioApp darkMode={darkMode} />
+
+                  {/* Chat do App de Combate */}
+                  <div className={`mt-6 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4`}>
+                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat</h4>
+                    {/* Área de Mensagens */}
+                    <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-64 overflow-y-auto mb-4`}>
+                      {chatMessages.length === 0 ? (
+                        <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                          Nenhuma mensagem ainda. Seja o primeiro a falar!
+                        </p>
+                      ) : (
+                        <div className="space-y-3">
+                          {chatMessages.map((msg, idx) => (
+                            <div key={idx} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3`}>
+                              <div className="flex justify-between items-start mb-1">
+                                <span className={`font-bold text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+                                  {msg.username}
+                                </span>
+                                <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                                  {msg.timestamp}
+                                </span>
+                              </div>
+                              {msg.isDiceRoll ? (
+                                <div>
+                                  <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    {msg.text}
+                                  </p>
+                                  <div className={`mt-2 p-2 rounded ${darkMode ? 'bg-green-900' : 'bg-green-100'}`}>
+                                    <p className={`font-bold text-lg ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
+                                      Resultado: {msg.diceResult}
+                                    </p>
+                                    <p className={`text-xs ${darkMode ? 'text-green-300' : 'text-green-600'}`}>
+                                      {msg.diceDetails}
+                                    </p>
+                                  </div>
+                                </div>
+                              ) : msg.isAction ? (
+                                <p className={`text-sm font-semibold text-yellow-500`}>
+                                  {msg.text}
+                                </p>
+                              ) : (
+                                <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                  {msg.text}
+                                </p>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {/* Input de Mensagem */}
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={chatInput}
+                        onChange={(e) => setChatInput(e.target.value)}
+                        onKeyPress={(e) => {
+                          if (e.key === 'Enter') {
+                            handleSendMessage()
+                          }
+                        }}
+                        placeholder="Digite sua mensagem, 1d20+@MAE, ou /r 1d20..."
+                        className={`flex-1 px-4 py-3 rounded-lg border-2 ${
+                          darkMode
+                            ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500'
+                            : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'
+                        } focus:outline-none focus:border-blue-500`}
+                      />
+                      <button
+                        onClick={handleSendMessage}
+                        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
+                      >
+                        Enviar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Modal Ações de Comando */}
+          {showAcoesComandoModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAcoesComandoModal(false)}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                      Ações de Comando
+                    </h3>
+                    <button onClick={() => setShowAcoesComandoModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                      <X size={24} />
+                    </button>
+                  </div>
+
+                  {/* Dropdown de Pokémon */}
+                  <div className="mb-4">
+                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Selecione o Pokémon:
+                    </label>
+                    <select
+                      value={selectedAcaoComandoPokemon}
+                      onChange={(e) => setSelectedAcaoComandoPokemon(e.target.value)}
+                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    >
+                      <option value="">Selecione...</option>
+                      {capturaGeralList.map((pokemon, index) => (
+                        <option key={`${pokemon.trainer}-${index}`} value={`${pokemon.trainer}-${index}`}>
+                          {index + 1}. {pokemon.species} (Nv. {pokemon.level}) - {pokemon.trainer}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Checkboxes de Ação */}
+                  <div className="mb-6 space-y-3">
+                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Marcar como:
+                    </label>
+                    <label className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer ${acaoComandoType === 'capturado' ? 'bg-green-500 text-white' : darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'}`}>
+                      <input
+                        type="checkbox"
+                        checked={acaoComandoType === 'capturado'}
+                        onChange={() => setAcaoComandoType(acaoComandoType === 'capturado' ? '' : 'capturado')}
+                        className="w-5 h-5"
+                      />
+                      <span className="font-semibold">Captura</span>
+                    </label>
+                    <label className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer ${acaoComandoType === 'batalha' ? 'bg-orange-500 text-white' : darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'}`}>
+                      <input
+                        type="checkbox"
+                        checked={acaoComandoType === 'batalha'}
+                        onChange={() => setAcaoComandoType(acaoComandoType === 'batalha' ? '' : 'batalha')}
+                        className="w-5 h-5"
+                      />
+                      <span className="font-semibold">Batalha</span>
+                    </label>
+                    <label className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer ${acaoComandoType === 'block' ? 'bg-red-500 text-white' : darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'}`}>
+                      <input
+                        type="checkbox"
+                        checked={acaoComandoType === 'block'}
+                        onChange={() => setAcaoComandoType(acaoComandoType === 'block' ? '' : 'block')}
+                        className="w-5 h-5"
+                      />
+                      <span className="font-semibold">Block</span>
+                    </label>
+                  </div>
+
+                  {/* Botão Confirmar */}
+                  <button
+                    onClick={async () => {
+                      if (!selectedAcaoComandoPokemon || !acaoComandoType) {
+                        alert('Selecione um pokémon e uma ação!')
+                        return
+                      }
+
+                      // Parse do valor selecionado
+                      const [trainer, indexStr] = selectedAcaoComandoPokemon.split('-')
+                      const index = parseInt(indexStr)
+
+                      // Encontrar o pokémon na lista do treinador
+                      const trainerData = allTrainersXpCapturas[trainer] || { xpList: [], capturaList: [] }
+                      const capturaList = [...(trainerData.capturaList || [])]
+
+                      // Encontrar o índice correto no capturaList do treinador
+                      let trainerPokemonIndex = 0
+                      let globalCounter = 0
+                      for (const t of trainerOrder) {
+                        const tData = allTrainersXpCapturas[t] || { xpList: [], capturaList: [] }
+                        const tCapturas = tData.capturaList || []
+                        for (let i = 0; i < tCapturas.length; i++) {
+                          if (globalCounter === index && t === trainer) {
+                            trainerPokemonIndex = i
+                            break
+                          }
+                          globalCounter++
+                        }
+                      }
+
+                      // Atualizar status
+                      if (capturaList[trainerPokemonIndex]) {
+                        capturaList[trainerPokemonIndex] = {
+                          ...capturaList[trainerPokemonIndex],
+                          status: acaoComandoType
+                        }
+
+                        // Se for batalha, adicionar XP à lista de XP do treinador
+                        if (acaoComandoType === 'batalha' && capturaList[trainerPokemonIndex].experience) {
+                          const xpList = [...(trainerData.xpList || []), {
+                            value: capturaList[trainerPokemonIndex].experience,
+                            species: capturaList[trainerPokemonIndex].species
+                          }]
+
+                          if (useFirebase) {
+                            await saveXpCapturas(trainer, { xpList, capturaList })
+                          }
+                        } else {
+                          if (useFirebase) {
+                            await saveXpCapturas(trainer, { xpList: trainerData.xpList || [], capturaList })
+                          }
+                        }
+                      }
+
+                      setShowAcoesComandoModal(false)
+                      setSelectedAcaoComandoPokemon('')
+                      setAcaoComandoType('')
+                    }}
+                    disabled={!selectedAcaoComandoPokemon || !acaoComandoType}
+                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-indigo-700 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Confirmar Ação
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {accountDataModal}
+        </div>
+      </>
+    )
+  }
+
   // ÁREA POKEAPP (MESTRE)
   if (currentUser.type === 'mestre' && currentArea === 'PokeApp') {
     return (
@@ -15666,8 +16995,15 @@ function App() {
                   </div>
                 </div>
                 <div className="flex gap-4">
+                  <div className="bg-blue-100 px-4 py-2 rounded-lg text-center"><div className="text-xs text-blue-600">Capturados</div><div className="text-lg font-bold text-blue-800">{capturedCount}</div></div>
                   <div className="bg-yellow-100 px-4 py-2 rounded-lg text-center"><div className="text-xs text-yellow-600">Pokédex</div><div className="text-lg font-bold text-yellow-800">{scannedCount}</div></div>
                   <div className="bg-green-100 px-4 py-2 rounded-lg text-center"><div className="text-xs text-green-600">PC</div><div className="text-lg font-bold text-green-800">{pcPokemon.length}/1000</div></div>
+                  {classes.includes('Colecionador') && (
+                    <div className="bg-orange-100 px-4 py-2 rounded-lg text-center" title={`MV (${getModifier(attributes.velocidade)}) + Grupos de 8 espécies (${Math.floor(new Set([...mainTeam, ...pcPokemon].map(p => p.species).filter(Boolean)).size / 8)})`}>
+                      <div className="text-xs text-orange-600">Contagem</div>
+                      <div className="text-lg font-bold text-orange-800">{calcularContagem()}</div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -16064,6 +17400,9 @@ function App() {
                             >
                               <Webhook size={18} />
                             </button>
+                            <button onClick={() => openEvolutionModal(pokemon, 'team', idx)} className="bg-emerald-500 text-white px-3 py-2 rounded hover:bg-emerald-600 text-sm font-semibold flex items-center gap-1" title="Evoluir Pokémon">
+                              <Sparkles size={16} /> Evo
+                            </button>
                             <button onClick={() => openEditPokemonModal(pokemon, 'team', idx)} className="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-600 text-sm font-semibold" title="Editar Pokémon">
                               Edição Pkm
                             </button>
@@ -16372,8 +17711,9 @@ function App() {
             ) : (
               <div className="space-y-3">
                 <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Dano: {pendingDamageValue} | Selecione o tipo de dano:</p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-3">
                   <button onClick={() => applyDamageWithType('fisico')} className="bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold flex items-center justify-center gap-2"><Sword size={20} />Físico</button>
+                  <button onClick={() => applyDamageWithType('puro')} className="bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold flex items-center justify-center gap-2"><Minus size={20} />Puro</button>
                   <button onClick={() => applyDamageWithType('especial')} className="bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600 font-semibold flex items-center justify-center gap-2"><Zap size={20} />Especial</button>
                 </div>
                 <button onClick={cancelDamageTypeSelection} className={`w-full py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-600 text-gray-200 hover:bg-gray-500' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'}`}>Cancelar</button>
@@ -16588,6 +17928,125 @@ function App() {
             </div>
           </div>
         </div>}
+
+        {/* MODAL DE EVOLUÇÃO */}
+        {showEvolutionModal && selectedPokemonForEvolution && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEvolutionModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <Sparkles className="inline mr-2" size={24} />
+                  Evoluir Pokémon
+                </h3>
+                <button onClick={() => setShowEvolutionModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                  <X size={24} />
+                </button>
+              </div>
+
+              {/* Info do Pokémon atual */}
+              <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Pokémon atual:</p>
+                <p className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  {selectedPokemonForEvolution.nickname} ({selectedPokemonForEvolution.species})
+                </p>
+              </div>
+
+              {/* Campo de busca */}
+              <div className="mb-4">
+                <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>
+                  Buscar nova espécie:
+                </label>
+                <div className="relative">
+                  <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} size={18} />
+                  <input
+                    type="text"
+                    value={evolutionSearch}
+                    onChange={(e) => setEvolutionSearch(e.target.value)}
+                    placeholder="Digite o nome da espécie..."
+                    className={`w-full pl-10 pr-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'border-gray-300'}`}
+                  />
+                </div>
+              </div>
+
+              {/* Lista de opções */}
+              <div className={`mb-4 max-h-60 overflow-y-auto rounded-lg border-2 ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                {getEvolutionOptions().length > 0 ? (
+                  getEvolutionOptions().slice(0, 50).map((option, index) => (
+                    <button
+                      key={`${option.nome}-${index}`}
+                      onClick={() => setSelectedEvolutionSpecies(option)}
+                      className={`w-full p-3 text-left transition-colors ${
+                        selectedEvolutionSpecies?.nome === option.nome
+                          ? darkMode
+                            ? 'bg-emerald-600 text-white'
+                            : 'bg-emerald-500 text-white'
+                          : darkMode
+                            ? 'hover:bg-gray-700 text-white'
+                            : 'hover:bg-gray-100 text-gray-800'
+                      } ${index !== 0 ? 'border-t ' + (darkMode ? 'border-gray-600' : 'border-gray-200') : ''}`}
+                    >
+                      <span className="font-semibold">{option.nome}</span>
+                      {option.isExotic && (
+                        <span className={`ml-2 text-xs px-2 py-0.5 rounded ${darkMode ? 'bg-purple-600' : 'bg-purple-500'} text-white`}>
+                          Exótico
+                        </span>
+                      )}
+                    </button>
+                  ))
+                ) : (
+                  <p className={`p-4 text-center ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                    Nenhuma espécie encontrada
+                  </p>
+                )}
+                {getEvolutionOptions().length > 50 && (
+                  <p className={`p-2 text-center text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                    Mostrando primeiros 50 resultados. Refine sua busca.
+                  </p>
+                )}
+              </div>
+
+              {/* Espécie selecionada */}
+              {selectedEvolutionSpecies && (
+                <div className={`mb-4 p-4 rounded-lg ${darkMode ? 'bg-emerald-900' : 'bg-emerald-100'}`}>
+                  <p className={`text-sm ${darkMode ? 'text-emerald-300' : 'text-emerald-700'}`}>Evoluir para:</p>
+                  <p className={`text-xl font-bold ${darkMode ? 'text-emerald-100' : 'text-emerald-800'}`}>
+                    {selectedEvolutionSpecies.nome}
+                    {selectedEvolutionSpecies.isExotic && ' (Exótico)'}
+                  </p>
+                </div>
+              )}
+
+              {/* Aviso */}
+              <div className={`mb-4 p-3 rounded-lg text-sm ${darkMode ? 'bg-yellow-900 text-yellow-200' : 'bg-yellow-100 text-yellow-800'}`}>
+                <strong>Nota:</strong> A evolução irá atualizar apenas os atributos basais, altura, peso e espécie. Todos os outros dados (nível, XP, golpes, habilidades, etc.) serão mantidos.
+              </div>
+
+              {/* Botões */}
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowEvolutionModal(false)}
+                  className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-600 hover:bg-gray-500 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleEvolution}
+                  disabled={!selectedEvolutionSpecies}
+                  className={`flex-1 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 ${
+                    selectedEvolutionSpecies
+                      ? 'bg-emerald-500 hover:bg-emerald-600 text-white'
+                      : darkMode
+                        ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  <Sparkles size={18} />
+                  Evoluir!
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* MODAL ADICIONAR POKÉMON */}
         {showAddPokemonModal && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAddPokemonModal(false)}>
@@ -18474,6 +19933,9 @@ function App() {
                           </button>
                           <button onClick={() => handleOpenPCGolpes(pokemon)} className="bg-orange-500 text-white p-2 rounded hover:bg-orange-600" title="Ver Golpes">
                             <Zap size={16} />
+                          </button>
+                          <button onClick={() => openEvolutionModal(pokemon, 'pc', idx)} className="bg-emerald-500 text-white px-3 py-1 rounded hover:bg-emerald-600 text-sm font-semibold flex items-center gap-1" title="Evoluir Pokémon PC">
+                            <Sparkles size={14} /> Evo PC
                           </button>
                           <button onClick={() => openEditPokemonPCModal(pokemon, idx)} className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm font-semibold" title="Editar Pokémon PC">
                             Edit Pkm PC
@@ -20693,8 +22155,60 @@ function App() {
                   </div>
                 ))}
 
-                {/* Renderizar Itens Chave normais */}
-                {keyItems.map((item, idx) => (
+                {/* Renderizar Shiny Charm (se existir) */}
+                {keyItems.filter(item => item.name === 'Shiny Charm').map((item, idx) => (
+                  <div
+                    key={`shiny-charm-${idx}`}
+                    className={`inline-flex flex-col items-center p-3 rounded-lg border-2 ${darkMode ? 'bg-gradient-to-br from-yellow-900 to-amber-800 border-yellow-600' : 'bg-gradient-to-br from-yellow-100 to-amber-100 border-yellow-400'} relative group`}
+                  >
+                    {/* Botão de excluir */}
+                    <button
+                      onClick={() => handleOpenDeleteConfirm(item.name, 'keyItem')}
+                      className="absolute top-1 right-1 text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                      title="Excluir item"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+
+                    {/* Botão de editar */}
+                    <button
+                      onClick={() => {
+                        setShinyCharmToEdit(item)
+                        setShinyCharmLuckyNumber(item.luckyNumber?.toString() || '')
+                        setShowEditShinyCharmModal(true)
+                      }}
+                      className="absolute top-1 left-1 text-blue-500 hover:text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                      title="Editar número da sorte"
+                    >
+                      <Pencil size={16} />
+                    </button>
+
+                    {/* Imagem do item */}
+                    <div className="w-16 h-16 mb-2 flex items-center justify-center">
+                      <img
+                        src="/pokeballs/shinycharm.png"
+                        alt={item.name}
+                        className="max-w-full max-h-full object-contain"
+                        onError={(e) => {
+                          e.target.style.display = 'none'
+                        }}
+                      />
+                    </div>
+
+                    {/* Nome do item */}
+                    <h4 className={`font-bold text-sm text-center mb-1 ${darkMode ? 'text-yellow-300' : 'text-yellow-700'} max-w-[120px]`}>
+                      ✨ {item.name}
+                    </h4>
+
+                    {/* Número da sorte */}
+                    <span className={`text-xs ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+                      Nº da Sorte: {item.luckyNumber}
+                    </span>
+                  </div>
+                ))}
+
+                {/* Renderizar Itens Chave normais (exceto Shiny Charm) */}
+                {keyItems.filter(item => item.name !== 'Shiny Charm').map((item, idx) => (
                   <div
                     key={idx}
                     className={`inline-flex flex-col items-center p-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'} relative group`}
@@ -21044,6 +22558,93 @@ function App() {
                 <button
                   onClick={handleAddPokeovo}
                   className="flex-1 bg-gradient-to-r from-pink-600 to-purple-700 text-white py-3 rounded-lg hover:from-pink-700 hover:to-purple-800 font-semibold"
+                >
+                  Salvar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Adicionar Shiny Charm */}
+        {showShinyCharmModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowShinyCharmModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>✨ Shiny Charm</h3>
+
+              <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                Insira seu número da sorte (1 a 1365):
+              </p>
+
+              <input
+                type="number"
+                min="1"
+                max="1365"
+                value={shinyCharmLuckyNumber}
+                onChange={(e) => setShinyCharmLuckyNumber(e.target.value)}
+                placeholder="Ex: 777"
+                className={`w-full p-3 rounded-lg mb-4 ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-800'}`}
+              />
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    setShowShinyCharmModal(false)
+                    setSelectedKeyItem('')
+                    setShinyCharmLuckyNumber('')
+                  }}
+                  className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleAddShinyCharm}
+                  className="flex-1 bg-gradient-to-r from-yellow-500 to-amber-600 text-white py-3 rounded-lg hover:from-yellow-600 hover:to-amber-700 font-semibold"
+                >
+                  Adicionar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Editar Shiny Charm */}
+        {showEditShinyCharmModal && shinyCharmToEdit && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditShinyCharmModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>✨ Editar Shiny Charm</h3>
+
+              <p className={`mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                Número da sorte atual: <strong>{shinyCharmToEdit.luckyNumber}</strong>
+              </p>
+              <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                Insira o novo número da sorte (1 a 1365):
+              </p>
+
+              <input
+                type="number"
+                min="1"
+                max="1365"
+                value={shinyCharmLuckyNumber}
+                onChange={(e) => setShinyCharmLuckyNumber(e.target.value)}
+                placeholder="Ex: 777"
+                className={`w-full p-3 rounded-lg mb-4 ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-800'}`}
+              />
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    setShowEditShinyCharmModal(false)
+                    setShinyCharmToEdit(null)
+                    setShinyCharmLuckyNumber('')
+                  }}
+                  className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleEditShinyCharm}
+                  className="flex-1 bg-gradient-to-r from-yellow-500 to-amber-600 text-white py-3 rounded-lg hover:from-yellow-600 hover:to-amber-700 font-semibold"
                 >
                   Salvar
                 </button>
@@ -23450,6 +25051,18 @@ function App() {
                 Background
               </button>
               <button
+                onClick={() => setProgressaoSection('XP & Capturas')}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                  progressaoSection === 'XP & Capturas'
+                    ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg'
+                    : darkMode
+                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                XP & Capturas
+              </button>
+              <button
                 onClick={() => {
                   // Gerar conteúdo do arquivo TXT
                   let content = `=== HISTÓRIA DE ${currentUser.username.toUpperCase()} ===\n\n`
@@ -23739,7 +25352,39 @@ function App() {
 
                       {/* Conquistas */}
                       {conquistasToDisplay.map((conquista, index) => (
-                        <div key={conquista.id} className={`relative mb-16 ${index % 2 === 0 ? 'text-right pr-[52%]' : 'text-left pl-[52%]'}`}>
+                        <div
+                          key={conquista.id}
+                          className={`relative mb-16 ${index % 2 === 0 ? 'text-right pr-[52%]' : 'text-left pl-[52%]'} ${
+                            !selectedDiarioTrainer ? 'cursor-grab active:cursor-grabbing' : ''
+                          } ${draggingConquistaId === conquista.id ? 'opacity-50' : ''}`}
+                          draggable={!selectedDiarioTrainer}
+                          onDragStart={(e) => {
+                            if (selectedDiarioTrainer) return
+                            setDraggingConquistaId(conquista.id)
+                            e.dataTransfer.effectAllowed = 'move'
+                          }}
+                          onDragOver={(e) => {
+                            if (selectedDiarioTrainer) return
+                            e.preventDefault()
+                            e.dataTransfer.dropEffect = 'move'
+                          }}
+                          onDrop={(e) => {
+                            if (selectedDiarioTrainer) return
+                            e.preventDefault()
+                            if (draggingConquistaId && draggingConquistaId !== conquista.id) {
+                              const dragIndex = conquistas.findIndex(c => c.id === draggingConquistaId)
+                              const dropIndex = conquistas.findIndex(c => c.id === conquista.id)
+                              if (dragIndex !== -1 && dropIndex !== -1) {
+                                const newConquistas = [...conquistas]
+                                const [draggedItem] = newConquistas.splice(dragIndex, 1)
+                                newConquistas.splice(dropIndex, 0, draggedItem)
+                                setConquistas(newConquistas)
+                              }
+                            }
+                            setDraggingConquistaId(null)
+                          }}
+                          onDragEnd={() => setDraggingConquistaId(null)}
+                        >
                           <div className="relative inline-block">
                             {/* Ponto na linha do tempo */}
                             <div className={`absolute top-1/2 ${index % 2 === 0 ? '-right-6' : '-left-6'} transform -translate-y-1/2 w-4 h-4 rounded-full ${
@@ -23878,7 +25523,194 @@ function App() {
               </div>
             </div>
           )}
+
+          {/* XP & CAPTURAS */}
+          {progressaoSection === 'XP & Capturas' && (
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+              <div className="flex justify-between items-center mb-6">
+                <h3 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  XP & Capturas
+                </h3>
+                <button
+                  onClick={async () => {
+                    if (window.confirm('Tem certeza que deseja limpar todas as listas de XP e Capturas?')) {
+                      setXpList([])
+                      setCapturaList([])
+                      if (useFirebase) {
+                        await saveXpCapturas(currentUser.username, { xpList: [], capturaList: [] })
+                      }
+                    }
+                  }}
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold flex items-center gap-2"
+                >
+                  <Trash2 size={18} />
+                  Limpar listas
+                </button>
+              </div>
+
+              {/* Grid com Lista de XP e Lista de Captura */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Lista de XP (Esquerda) */}
+                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-4`}>
+                  <div className="flex justify-between items-center mb-4">
+                    <h4 className={`text-xl font-bold ${darkMode ? 'text-cyan-400' : 'text-cyan-700'}`}>
+                      Lista de XP
+                    </h4>
+                    <button
+                      onClick={() => setShowAddXpModal(true)}
+                      className="bg-cyan-500 text-white px-3 py-1 rounded-lg hover:bg-cyan-600 text-sm font-semibold flex items-center gap-1"
+                    >
+                      <Plus size={16} />
+                      Listar XP
+                    </button>
+                  </div>
+
+                  {xpList.length === 0 ? (
+                    <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-8`}>
+                      Nenhuma XP listada ainda.
+                    </p>
+                  ) : (
+                    <div className="space-y-2 max-h-[400px] overflow-y-auto">
+                      {xpList.map((xp, index) => (
+                        <div key={index} className={`flex justify-between items-center p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm`}>
+                          <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {index + 1}. {xp.value} XP {xp.species && <span className={xp.fromNpc ? 'text-red-500 font-semibold' : `${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>({xp.species})</span>}
+                          </span>
+                          <button
+                            onClick={async () => {
+                              const newList = xpList.filter((_, i) => i !== index)
+                              setXpList(newList)
+                              if (useFirebase) {
+                                await saveXpCapturas(currentUser.username, { xpList: newList, capturaList })
+                              }
+                            }}
+                            className="text-red-500 hover:text-red-600 p-1"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Total de XP */}
+                  {xpList.length > 0 && (
+                    <div className={`mt-4 pt-4 border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                      <p className={`text-lg font-bold ${darkMode ? 'text-cyan-400' : 'text-cyan-700'}`}>
+                        Total: {xpList.reduce((sum, xp) => sum + (xp.value || 0), 0)} XP
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Lista de Captura (Direita) */}
+                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-4`}>
+                  <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    Lista de Captura
+                  </h4>
+
+                  {capturaList.length === 0 ? (
+                    <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-8`}>
+                      Nenhum Pokémon na lista de captura.
+                    </p>
+                  ) : (
+                    <div className="space-y-2 max-h-[400px] overflow-y-auto">
+                      {capturaList.map((pokemon, index) => (
+                        <div key={index} className={`flex justify-between items-center p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm ${
+                          pokemon.status === 'capturado' ? 'border-l-4 border-green-500' :
+                          pokemon.status === 'batalha' ? 'border-l-4 border-orange-500' :
+                          pokemon.status === 'block' ? 'border-l-4 border-red-500' : ''
+                        }`}>
+                          <div className="flex-1">
+                            <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                              {pokemon.species}
+                            </span>
+                            <span className={`ml-2 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                              Nv. {pokemon.level} | Captura: {pokemon.captureValue}
+                            </span>
+                            {pokemon.status && (
+                              <span className={`ml-2 text-xs px-2 py-0.5 rounded ${
+                                pokemon.status === 'capturado' ? 'bg-green-500 text-white' :
+                                pokemon.status === 'batalha' ? 'bg-orange-500 text-white' :
+                                'bg-red-500 text-white'
+                              }`}>
+                                {pokemon.status === 'capturado' ? 'Capturado' :
+                                 pokemon.status === 'batalha' ? 'Vencido' : 'Bloqueado'}
+                              </span>
+                            )}
+                          </div>
+                          <button
+                            onClick={async () => {
+                              const newList = capturaList.filter((_, i) => i !== index)
+                              setCapturaList(newList)
+                              if (useFirebase) {
+                                await saveXpCapturas(currentUser.username, { xpList, capturaList: newList })
+                              }
+                            }}
+                            className="text-red-500 hover:text-red-600 p-1"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
+
+        {/* Modal Adicionar XP */}
+        {showAddXpModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAddXpModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Listar XP
+                  </h3>
+                  <button onClick={() => setShowAddXpModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Quantidade de XP
+                    </label>
+                    <input
+                      type="number"
+                      value={addXpValue}
+                      onChange={(e) => setAddXpValue(e.target.value)}
+                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      placeholder="Ex: 100"
+                    />
+                  </div>
+
+                  <button
+                    onClick={async () => {
+                      if (addXpValue && parseInt(addXpValue) > 0) {
+                        const newXpList = [...xpList, { value: parseInt(addXpValue) }]
+                        setXpList(newXpList)
+                        if (useFirebase) {
+                          await saveXpCapturas(currentUser.username, { xpList: newXpList, capturaList })
+                        }
+                        setAddXpValue('')
+                        setShowAddXpModal(false)
+                      }
+                    }}
+                    disabled={!addXpValue || parseInt(addXpValue) <= 0}
+                    className="w-full bg-cyan-500 text-white py-3 rounded-lg hover:bg-cyan-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Adicionar XP
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Modal Nova Vivência */}
         {showNovaVivenciaModal && (
@@ -25041,6 +26873,9 @@ function App() {
                             const stages = trainerStages[trainerId] || { precisao: 0 }
                             const precisaoStage = stages.precisao || 0
 
+                            // Acurácia do ataque: 4 com Arma de Escolha, 6 sem
+                            const acuraciaAtaque = armaDeEscolha ? 4 : 6
+
                             // Calcular resultado final com modificador de precisão
                             const finalResult = d20Roll + precisaoStage
                             let detailsParts = `1d20 = ${d20Roll}`
@@ -25048,7 +26883,7 @@ function App() {
                               detailsParts += ` | Fase Precisão: ${precisaoStage >= 0 ? '+' : ''}${precisaoStage}`
                             }
 
-                            const message = `🎲 Ataque Treinador\n${detailsParts}\nTotal: ${finalResult}`
+                            const message = `🎲 Ataque Treinador (Acurácia: ${acuraciaAtaque})\n${detailsParts}\nTotal: ${finalResult}`
 
                             addChatMessage({
                               username: currentUser.username,
@@ -25058,10 +26893,11 @@ function App() {
                               diceResult: finalResult
                             })
                           }}
-                          className={`flex-1 p-3 rounded-lg flex items-center justify-center ${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'} text-white`}
+                          className={`flex-1 p-3 rounded-lg flex items-center justify-center gap-1 ${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'} text-white`}
                           title="Ataque Treinador"
                         >
                           <Dices size={20} />
+                          <span className="text-xs">({armaDeEscolha ? 4 : 6})</span>
                         </button>
                         <button
                           onClick={() => {
@@ -25077,21 +26913,44 @@ function App() {
 
                             let damageRoll, damageBonus, diceType
 
-                            // Determinar dano baseado no nível
-                            if (level >= 1 && level <= 6) {
-                              diceType = '1d10+4'
-                              damageRoll = Math.floor(Math.random() * 10) + 1
-                              damageBonus = 4
-                            } else if (level >= 7 && level <= 14) {
-                              diceType = '1d12+6'
-                              damageRoll = Math.floor(Math.random() * 12) + 1
-                              damageBonus = 6
+                            // Determinar dano baseado no nível e se usa Arma de Escolha
+                            if (armaDeEscolha) {
+                              // Tabela de dano com Arma de Escolha
+                              if (level >= 1 && level <= 6) {
+                                diceType = '1d12+6'
+                                damageRoll = Math.floor(Math.random() * 12) + 1
+                                damageBonus = 6
+                              } else if (level >= 7 && level <= 14) {
+                                diceType = '2d10+8'
+                                const dice1 = Math.floor(Math.random() * 10) + 1
+                                const dice2 = Math.floor(Math.random() * 10) + 1
+                                damageRoll = dice1 + dice2
+                                damageBonus = 8
+                              } else {
+                                diceType = '3d10+12'
+                                const dice1 = Math.floor(Math.random() * 10) + 1
+                                const dice2 = Math.floor(Math.random() * 10) + 1
+                                const dice3 = Math.floor(Math.random() * 10) + 1
+                                damageRoll = dice1 + dice2 + dice3
+                                damageBonus = 12
+                              }
                             } else {
-                              diceType = '2d8+6'
-                              const dice1 = Math.floor(Math.random() * 8) + 1
-                              const dice2 = Math.floor(Math.random() * 8) + 1
-                              damageRoll = dice1 + dice2
-                              damageBonus = 6
+                              // Tabela de dano padrão
+                              if (level >= 1 && level <= 6) {
+                                diceType = '1d10+4'
+                                damageRoll = Math.floor(Math.random() * 10) + 1
+                                damageBonus = 4
+                              } else if (level >= 7 && level <= 14) {
+                                diceType = '1d12+6'
+                                damageRoll = Math.floor(Math.random() * 12) + 1
+                                damageBonus = 6
+                              } else {
+                                diceType = '2d8+6'
+                                const dice1 = Math.floor(Math.random() * 8) + 1
+                                const dice2 = Math.floor(Math.random() * 8) + 1
+                                damageRoll = dice1 + dice2
+                                damageBonus = 6
+                              }
                             }
 
                             const baseDamage = damageRoll + damageBonus
@@ -25142,6 +27001,20 @@ function App() {
                         >
                           <Sword size={20} className="text-purple-300" />
                         </button>
+                      </div>
+
+                      {/* Checkbox Arma de Escolha */}
+                      <div className="flex items-center gap-2 mt-2">
+                        <input
+                          type="checkbox"
+                          id="armaDeEscolha"
+                          checked={armaDeEscolha}
+                          onChange={(e) => setArmaDeEscolha(e.target.checked)}
+                          className="w-4 h-4 rounded"
+                        />
+                        <label htmlFor="armaDeEscolha" className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                          Arma de escolha
+                        </label>
                       </div>
 
                       {/* Fases do Treinador (controles interativos) */}
@@ -25593,19 +27466,38 @@ function App() {
                   <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Treinador
                   </h4>
-                  {image ? (
-                    <img
-                      src={image}
-                      alt={currentUser?.username || 'Treinador'}
-                      className="w-32 h-32 object-cover rounded-lg"
-                      onError={(e) => {
-                        e.target.style.display = 'none'
-                        e.target.nextSibling.style.display = 'flex'
-                      }}
-                    />
-                  ) : null}
-                  <div className={`w-32 h-32 ${image ? 'hidden' : 'flex'} items-center justify-center rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
-                    <User size={48} className={darkMode ? 'text-gray-600' : 'text-gray-400'} />
+                  <div className="flex items-center gap-2">
+                    {/* Shiny Charm (se o treinador possuir) */}
+                    {keyItems.find(item => item.name === 'Shiny Charm') && (
+                      <div
+                        className="w-12 h-12 cursor-pointer hover:scale-110 transition-transform"
+                        onClick={() => handleShinyCharmRoll(keyItems.find(item => item.name === 'Shiny Charm')?.luckyNumber)}
+                        title={`Shiny Charm - Clique para rolar 1d1365 (Nº da Sorte: ${keyItems.find(item => item.name === 'Shiny Charm')?.luckyNumber})`}
+                      >
+                        <img
+                          src="/pokeballs/shinycharm.png"
+                          alt="Shiny Charm"
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    )}
+                    {/* Imagem do Treinador */}
+                    <div className="flex flex-col items-center">
+                      {image ? (
+                        <img
+                          src={image}
+                          alt={currentUser?.username || 'Treinador'}
+                          className="w-32 h-32 object-cover rounded-lg"
+                          onError={(e) => {
+                            e.target.style.display = 'none'
+                            e.target.nextSibling.style.display = 'flex'
+                          }}
+                        />
+                      ) : null}
+                      <div className={`w-32 h-32 ${image ? 'hidden' : 'flex'} items-center justify-center rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
+                        <User size={48} className={darkMode ? 'text-gray-600' : 'text-gray-400'} />
+                      </div>
+                    </div>
                   </div>
                   <p className={`text-sm font-semibold mt-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {currentUser?.username || 'Treinador'}
@@ -25826,6 +27718,132 @@ function App() {
             </div>
             )}
 
+            {/* SEÇÃO LIMITES DE USO */}
+            {battleView === 'rolagens' && (
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+              <div
+                className="flex justify-between items-center cursor-pointer"
+                onClick={() => setShowLimitesUsoSection(!showLimitesUsoSection)}
+              >
+                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  Limites de Uso
+                </h3>
+                <div className="flex items-center gap-2">
+                  {showLimitesUsoSection && (
+                    <>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setShowAddLimiteUsoModal(true)
+                        }}
+                        className={`p-2 rounded-lg text-sm font-medium transition-all ${darkMode ? 'bg-blue-700 hover:bg-blue-600' : 'bg-blue-500 hover:bg-blue-600'} text-white`}
+                        title="Adicionar Limites de Uso"
+                      >
+                        <ListPlus size={18} />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          resetarTodosOsUsos()
+                        }}
+                        className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${darkMode ? 'bg-green-700 hover:bg-green-600' : 'bg-green-500 hover:bg-green-600'} text-white`}
+                        title="Resetar todos os usos"
+                      >
+                        <RotateCcw size={16} />
+                        Resetar Todos
+                      </button>
+                    </>
+                  )}
+                  {showLimitesUsoSection ? <ChevronUp size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
+                </div>
+              </div>
+
+              {showLimitesUsoSection && (
+                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 mt-4`}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {getItensComLimiteDeUso().map((item, idx) => (
+                      <div
+                        key={`${item.tipo}-${item.index}`}
+                        className={`p-4 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${
+                          item.atual === 0
+                            ? darkMode ? 'border-red-600' : 'border-red-400'
+                            : darkMode ? 'border-gray-700' : 'border-gray-200'
+                        }`}
+                      >
+                        <div className="flex flex-col gap-2 relative">
+                          {item.isPersonalizado && (
+                            <button
+                              onClick={() => removerLimiteUsoPersonalizado(item.index)}
+                              className="absolute -top-2 -right-2 p-1 rounded-full bg-red-500 hover:bg-red-600 text-white shadow-lg"
+                              title="Remover limite"
+                            >
+                              <X size={12} />
+                            </button>
+                          )}
+                          <div className="flex items-center justify-between">
+                            <span className={`font-semibold ${
+                              item.tipo === 'modificador'
+                                ? darkMode ? 'text-blue-400' : 'text-blue-600'
+                                : item.tipo === 'talentinho'
+                                  ? darkMode ? 'text-purple-400' : 'text-purple-600'
+                                  : item.isPersonalizado
+                                    ? darkMode ? 'text-cyan-400' : 'text-cyan-600'
+                                    : darkMode ? 'text-yellow-400' : 'text-yellow-600'
+                            }`}>
+                              {item.nome}
+                            </span>
+                            <span className={`text-xs px-2 py-0.5 rounded-full ${
+                              item.tipo === 'modificador'
+                                ? darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'
+                                : item.tipo === 'talentinho'
+                                  ? darkMode ? 'bg-purple-900 text-purple-300' : 'bg-purple-100 text-purple-700'
+                                  : item.isPersonalizado
+                                    ? darkMode ? 'bg-cyan-900 text-cyan-300' : 'bg-cyan-100 text-cyan-700'
+                                    : darkMode ? 'bg-yellow-900 text-yellow-300' : 'bg-yellow-100 text-yellow-700'
+                            }`}>
+                              {item.tipo === 'modificador' ? 'Mod' : item.tipo === 'talentinho' && !item.isPersonalizado ? 'Talento' : item.isPersonalizado ? (item.fontes?.talento ? 'Talento' : item.fontes?.item ? 'Item' : 'Outros') : 'Item'}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center justify-center gap-3">
+                            <button
+                              onClick={item.decrementar}
+                              disabled={item.atual === 0}
+                              className={`p-2 rounded-lg transition-colors ${
+                                item.atual === 0
+                                  ? darkMode ? 'bg-gray-700 text-gray-500 cursor-not-allowed' : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                  : darkMode ? 'bg-red-700 hover:bg-red-600 text-white' : 'bg-red-500 hover:bg-red-600 text-white'
+                              }`}
+                              title="Usar"
+                            >
+                              <Minus size={16} />
+                            </button>
+
+                            <span className={`text-2xl font-bold ${
+                              item.atual === 0
+                                ? darkMode ? 'text-red-400' : 'text-red-600'
+                                : darkMode ? 'text-white' : 'text-gray-800'
+                            }`}>
+                              {item.atual}/{item.total}
+                            </span>
+
+                            <button
+                              onClick={item.resetar}
+                              className={`p-2 rounded-lg transition-colors ${darkMode ? 'bg-green-700 hover:bg-green-600' : 'bg-green-500 hover:bg-green-600'} text-white`}
+                              title="Resetar"
+                            >
+                              <RotateCcw size={16} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            )}
+
             {/* SEÇÃO DE CAPTURA */}
             {battleView === 'rolagens' && (
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
@@ -25992,7 +28010,7 @@ function App() {
               <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-4 space-y-1`}>
                 <p>Use /r ou /roll para rolar dados. Exemplo: /r 1d20+5, /roll 2d6</p>
                 <p>Use comandos @ para referenciar seus atributos: <span className="font-mono">1d20+@MAE</span>, <span className="font-mono">2d6+@MA+@MV</span></p>
-                <p className="text-[10px]">Comandos: @MA @MD @MAE @MDE @MV @MS @At @Dt @AEt @DEt @Vt @St</p>
+                <p className="text-[10px]">Comandos: @MA @MD @MAE @MDE @MV @MS @At @Dt @AEt @DEt @Vt @St @Cont</p>
               </div>
 
               {/* Área de Mensagens */}
@@ -26280,6 +28298,27 @@ function App() {
                   />
                 </div>
 
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Número de usos a cada X lvl
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={modifierForm.usosACadaXLvl}
+                    onChange={(e) => setModifierForm({ ...modifierForm, usosACadaXLvl: e.target.value === '' ? '' : parseInt(e.target.value) || '' })}
+                    className={`w-full px-4 py-2 rounded-lg border-2 ${
+                      darkMode
+                        ? 'bg-gray-700 border-gray-600 text-white'
+                        : 'bg-white border-gray-300 text-gray-800'
+                    } focus:outline-none focus:border-blue-500`}
+                    placeholder="Ex: 5 (ganha +1 uso a cada 5 níveis)"
+                  />
+                  <p className={`text-xs mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                    Deixe vazio para uso ilimitado. Se preencher, o modificador terá 1 uso base + 1 a cada X níveis.
+                  </p>
+                </div>
+
                 {/* Checkboxes de Aplicação */}
                 <div>
                   <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -26396,7 +28435,7 @@ function App() {
                     placeholder="Ex: 1d20 + @MA + 2"
                   />
                   <p className={`text-xs mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    Use @ para referenciar atributos: @MA, @MD, @MAE, @MDE, @MV, @MS, @At, @Dt, @AEt, @DEt, @Vt, @St
+                    Use @ para referenciar atributos: @MA, @MD, @MAE, @MDE, @MV, @MS, @At, @Dt, @AEt, @DEt, @Vt, @St, @Cont
                   </p>
                 </div>
 
@@ -26438,6 +28477,7 @@ function App() {
                               <option value="<=">menor ou igual a</option>
                               <option value=">">maior que</option>
                               <option value="<">menor que</option>
+                              <option value="==">igual a</option>
                             </select>
                             <input
                               type="text"
@@ -26471,6 +28511,24 @@ function App() {
                   </p>
                 </div>
 
+                {/* Número de usos a cada X lvl */}
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Número de usos a cada X lvl
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={talentinhoForm.usosACadaXLvl}
+                    onChange={(e) => setTalentinhoForm({ ...talentinhoForm, usosACadaXLvl: e.target.value === '' ? '' : parseInt(e.target.value) || '' })}
+                    className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    placeholder="Ex: 5 (ganha +1 uso a cada 5 níveis)"
+                  />
+                  <p className={`text-xs mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    Deixe vazio para uso ilimitado. Se preencher, o talento terá 1 uso base + 1 a cada X níveis.
+                  </p>
+                </div>
+
                 <div className="flex gap-2">
                   <button
                     onClick={handleSaveTalentinho}
@@ -26481,6 +28539,124 @@ function App() {
                   </button>
                   <button
                     onClick={() => setShowTalentinhoModal(false)}
+                    className={`px-6 py-3 rounded-lg font-semibold ${
+                      darkMode
+                        ? 'bg-gray-700 text-white hover:bg-gray-600'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal de Adicionar Limite de Uso */}
+        {showAddLimiteUsoModal && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            onClick={() => setShowAddLimiteUsoModal(false)}
+          >
+            <div
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full p-6`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  Adicionar Limite de Uso
+                </h3>
+                <button
+                  onClick={() => setShowAddLimiteUsoModal(false)}
+                  className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {/* Nome */}
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Nome *
+                  </label>
+                  <input
+                    type="text"
+                    value={limiteUsoForm.nome}
+                    onChange={(e) => setLimiteUsoForm({ ...limiteUsoForm, nome: e.target.value })}
+                    className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    placeholder="Ex: Investida, Escudo Protetor"
+                  />
+                </div>
+
+                {/* Número de usos a cada X lvl */}
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Número de usos a cada X lvl *
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={limiteUsoForm.usosACadaXLvl}
+                    onChange={(e) => setLimiteUsoForm({ ...limiteUsoForm, usosACadaXLvl: e.target.value === '' ? '' : parseInt(e.target.value) || '' })}
+                    className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    placeholder="Ex: 5 (ganha +1 uso a cada 5 níveis)"
+                  />
+                  <p className={`text-xs mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    O limite terá 1 uso base + 1 a cada X níveis. Ex: Se colocar 5 e estiver no nível 12, terá 1 + floor(12/5) = 3 usos.
+                  </p>
+                </div>
+
+                {/* Fonte */}
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Fonte do Limite
+                  </label>
+                  <div className="flex flex-wrap gap-4">
+                    <label className={`flex items-center gap-2 cursor-pointer ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <input
+                        type="checkbox"
+                        checked={limiteUsoForm.fontes.talento}
+                        onChange={(e) => setLimiteUsoForm({ ...limiteUsoForm, fontes: { ...limiteUsoForm.fontes, talento: e.target.checked } })}
+                        className="w-4 h-4 rounded"
+                      />
+                      <span>Talento</span>
+                    </label>
+                    <label className={`flex items-center gap-2 cursor-pointer ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <input
+                        type="checkbox"
+                        checked={limiteUsoForm.fontes.item}
+                        onChange={(e) => setLimiteUsoForm({ ...limiteUsoForm, fontes: { ...limiteUsoForm.fontes, item: e.target.checked } })}
+                        className="w-4 h-4 rounded"
+                      />
+                      <span>Item</span>
+                    </label>
+                    <label className={`flex items-center gap-2 cursor-pointer ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <input
+                        type="checkbox"
+                        checked={limiteUsoForm.fontes.outros}
+                        onChange={(e) => setLimiteUsoForm({ ...limiteUsoForm, fontes: { ...limiteUsoForm.fontes, outros: e.target.checked } })}
+                        className="w-4 h-4 rounded"
+                      />
+                      <span>Outros</span>
+                    </label>
+                  </div>
+                  <p className={`text-xs mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    Marque de onde vem este limite de uso.
+                  </p>
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={adicionarLimiteUsoPersonalizado}
+                    className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
+                    disabled={!limiteUsoForm.nome || !limiteUsoForm.usosACadaXLvl}
+                  >
+                    Adicionar
+                  </button>
+                  <button
+                    onClick={() => setShowAddLimiteUsoModal(false)}
                     className={`px-6 py-3 rounded-lg font-semibold ${
                       darkMode
                         ? 'bg-gray-700 text-white hover:bg-gray-600'
@@ -26542,7 +28718,8 @@ function App() {
                           '>=': 'maior ou igual a',
                           '<=': 'menor ou igual a',
                           '>': 'maior que',
-                          '<': 'menor que'
+                          '<': 'menor que',
+                          '==': 'igual a'
                         }[alvoObj.operador] || 'maior ou igual a'
                         return (
                           <div key={idx} className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
@@ -26870,12 +29047,18 @@ function App() {
                   <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                     Dano: {pendingDamageValue} | Selecione o tipo de dano:
                   </p>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-3 gap-3">
                     <button
                       onClick={() => applyDamageWithType('fisico')}
                       className="bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold flex items-center justify-center gap-2"
                     >
                       <Sword size={20} />Físico
+                    </button>
+                    <button
+                      onClick={() => applyDamageWithType('puro')}
+                      className="bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold flex items-center justify-center gap-2"
+                    >
+                      <Minus size={20} />Puro
                     </button>
                     <button
                       onClick={() => applyDamageWithType('especial')}
@@ -26966,12 +29149,18 @@ function App() {
                     <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Dano: {pendingDamageValue} | Selecione o tipo de dano:
                     </p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-3 gap-3">
                       <button
                         onClick={() => applyDamageWithType('fisico')}
                         className="flex items-center justify-center gap-2 bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold"
                       >
                         <Sword size={18} />Físico
+                      </button>
+                      <button
+                        onClick={() => applyDamageWithType('puro')}
+                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold"
+                      >
+                        <Minus size={18} />Puro
                       </button>
                       <button
                         onClick={() => applyDamageWithType('especial')}
@@ -27026,18 +29215,24 @@ function App() {
           </div>
 
           <div className="max-w-7xl mx-auto px-4 py-8">
-            {/* PARTE 1: Ações dos Jogadores */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 mb-8`}>
-              <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                Ações dos Jogadores
-              </h3>
+            {/* PARTE 1: Ação do Jogador e Time Principal */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              {/* Coluna Esquerda: Ação do Jogador */}
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+                <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  Ação do Jogador
+                </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {interludioPlayers.map((player) => {
-                  const isCurrentUser = currentUser.username === player.username
+                {(() => {
+                  const player = interludioPlayers.find(p => p.username === currentUser.username)
+                  if (!player) return (
+                    <p className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      Jogador não encontrado
+                    </p>
+                  )
 
                   return (
-                    <div key={player.username} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4`}>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4`}>
                       {/* Nome do Jogador */}
                       <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                         {player.username}
@@ -27045,25 +29240,23 @@ function App() {
 
                       {/* Checkboxes JN e RT */}
                       <div className="flex gap-4 mb-4">
-                        <label className={`flex items-center gap-2 ${isCurrentUser ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'}`}>
+                        <label className="flex items-center gap-2 cursor-pointer">
                           <input
                             type="checkbox"
                             checked={player.jnChecked}
                             onChange={() => handleToggleJN(player.username)}
-                            disabled={!isCurrentUser}
-                            className={`w-4 h-4 ${isCurrentUser ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+                            className="w-4 h-4 cursor-pointer"
                           />
                           <span className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                             JN
                           </span>
                         </label>
-                        <label className={`flex items-center gap-2 ${isCurrentUser ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'}`}>
+                        <label className="flex items-center gap-2 cursor-pointer">
                           <input
                             type="checkbox"
                             checked={player.rtChecked}
                             onChange={() => handleToggleRT(player.username)}
-                            disabled={!isCurrentUser}
-                            className={`w-4 h-4 ${isCurrentUser ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+                            className="w-4 h-4 cursor-pointer"
                           />
                           <span className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                             Rt
@@ -27082,24 +29275,14 @@ function App() {
                             <div className="flex gap-2">
                               <button
                                 onClick={() => handleResetPoints(player.username)}
-                                disabled={!isCurrentUser}
-                                className={`p-2 rounded ${
-                                  isCurrentUser
-                                    ? darkMode ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'bg-purple-500 hover:bg-purple-600 text-white'
-                                    : 'bg-gray-400 cursor-not-allowed text-gray-200'
-                                } transition-colors`}
+                                className={`p-2 rounded ${darkMode ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'bg-purple-500 hover:bg-purple-600 text-white'} transition-colors`}
                                 title="Resetar Pontos"
                               >
                                 <RefreshCcw className="w-4 h-4" />
                               </button>
                               <button
                                 onClick={() => handleOpenCustomModal(player.username, player.jnChecked ? 'jn' : 'rt')}
-                                disabled={!isCurrentUser}
-                                className={`p-2 rounded ${
-                                  isCurrentUser
-                                    ? darkMode ? 'bg-orange-600 hover:bg-orange-700 text-white' : 'bg-orange-500 hover:bg-orange-600 text-white'
-                                    : 'bg-gray-400 cursor-not-allowed text-gray-200'
-                                } transition-colors`}
+                                className={`p-2 rounded ${darkMode ? 'bg-orange-600 hover:bg-orange-700 text-white' : 'bg-orange-500 hover:bg-orange-600 text-white'} transition-colors`}
                                 title="Ação Customizada"
                               >
                                 <Settings2 className="w-4 h-4" />
@@ -27123,12 +29306,10 @@ function App() {
                                       handleAcaoRT(player.username, acao)
                                     }
                                   }}
-                                  disabled={!isCurrentUser || !canAfford}
+                                  disabled={!canAfford}
                                   className={`w-full text-left px-3 py-2 rounded text-sm ${
                                     !canAfford
                                       ? darkMode ? 'bg-gray-900 text-gray-600 cursor-not-allowed' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                      : !isCurrentUser
-                                      ? darkMode ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-gray-200 text-gray-600 cursor-not-allowed'
                                       : darkMode
                                       ? 'bg-blue-600 text-white hover:bg-blue-700'
                                       : 'bg-blue-500 text-white hover:bg-blue-600'
@@ -27143,7 +29324,479 @@ function App() {
                       )}
                     </div>
                   )
-                })}
+                })()}
+              </div>
+
+              {/* Coluna Direita: Treinador e Time Principal */}
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+                {/* Seção do Treinador */}
+                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                      {currentUser?.username || 'Treinador'} <span className={`ml-2 text-sm font-normal ${darkMode ? 'text-green-400' : 'text-green-600'}`}>HP: {currentHP}/{getMaxHP()}</span>
+                    </h4>
+                    <button
+                      onClick={() => {
+                        setInterludioTrainerDamageAmount('')
+                        setShowInterludioTrainerDamageModal(true)
+                      }}
+                      className="flex items-center gap-1 px-3 py-2 bg-gradient-to-r from-red-500 to-green-500 text-white rounded-lg hover:from-red-600 hover:to-green-600 font-semibold"
+                      title="Dano/Cura Treinador"
+                    >
+                      <Sword size={16} /><Heart size={16} />
+                    </button>
+                  </div>
+
+                  {/* Perícias do Treinador */}
+                  <div>
+                    <h5 className={`text-xs font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      Perícias:
+                    </h5>
+                    <div className="grid grid-cols-2 gap-1">
+                      {Object.entries(skills).map(([attr, skillList]) => {
+                        const attrNames = {
+                          saude: 'Saúde',
+                          ataque: 'Ataque',
+                          defesa: 'Defesa',
+                          ataqueEspecial: 'Ataque Especial',
+                          defesaEspecial: 'Defesa Especial',
+                          velocidade: 'Velocidade'
+                        }
+
+                        return skillList.map((skill, idx) => {
+                          const count = skillList.filter(s => s === skill).length
+                          const isFirst = skillList.indexOf(skill) === idx
+
+                          if (!isFirst) return null
+
+                          const modifier = getModifier(attributes[attr])
+
+                          return (
+                            <button
+                              key={`${attr}-${skill}-${idx}`}
+                              onClick={() => {
+                                const d20Roll = Math.floor(Math.random() * 20) + 1
+                                let baseBonus, modifierMultiplier
+                                if (count === 1) {
+                                  baseBonus = 2
+                                  modifierMultiplier = 1
+                                } else {
+                                  baseBonus = 4
+                                  modifierMultiplier = 2
+                                }
+                                const modifierBonus = modifierMultiplier * modifier
+                                const total = d20Roll + baseBonus + modifierBonus
+                                const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+                                const message = `🎲 ${skill} (${attrNames[attr]})\n1d20 = ${d20Roll} | ${baseBonus} + ${modifierMultiplier > 1 ? `${modifierMultiplier}x` : ''}Modificador(${modifier}) = ${modifierBonus}\nTotal: ${total}`
+                                addChatMessage({
+                                  username: currentUser.username,
+                                  text: message,
+                                  timestamp,
+                                  isDiceRoll: true,
+                                  diceResult: message
+                                })
+                              }}
+                              className={`text-xs p-2 rounded ${darkMode ? 'bg-gray-800 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-200 text-gray-800 border'}`}
+                            >
+                              {skill} {count > 1 && `(x${count})`}
+                            </button>
+                          )
+                        })
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Time Principal */}
+                <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  Time Principal
+                </h4>
+
+                {mainTeam.length === 0 ? (
+                  <p className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'} py-4`}>
+                    Nenhum Pokémon no time
+                  </p>
+                ) : (
+                  <div className="space-y-2">
+                    {mainTeam.map((pkmn, idx) => (
+                      <div
+                        key={idx}
+                        className={`flex items-center justify-between p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}
+                      >
+                        <div>
+                          <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                            {pkmn.nickname || pkmn.species}
+                          </span>
+                          <span className={`ml-2 text-xs ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
+                            HP: {pkmn.currentHP !== undefined ? pkmn.currentHP : calculateMaxHP(pkmn)}/{calculateMaxHP(pkmn)}
+                          </span>
+                          <span className={`ml-2 text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            Nv. {pkmn.level}
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            setSelectedInterludioPokemon(pkmn)
+                            setInterludioPokemonDamageAmount('')
+                            setShowInterludioPokemonDamageModal(true)
+                          }}
+                          className="flex items-center gap-0.5 px-2 py-1 bg-gradient-to-r from-red-500 to-green-500 text-white rounded hover:from-red-600 hover:to-green-600 text-xs"
+                          title="Dano/Cura"
+                        >
+                          <Sword size={12} /><Heart size={12} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* MENUS DE INTERLÚDIO */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+              {/* Menu Int. Talentos */}
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4`}>
+                <div
+                  className="flex justify-between items-center cursor-pointer"
+                  onClick={() => setShowIntTalentosMenu(!showIntTalentosMenu)}
+                >
+                  <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Int. Talentos
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    {showIntTalentosMenu ? <ChevronUp size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
+                  </div>
+                </div>
+
+                {showIntTalentosMenu && (
+                  <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-3 mt-3`}>
+                    {talentinhos.length === 0 ? (
+                      <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-4`}>
+                        Nenhum talento em jogo
+                      </p>
+                    ) : (
+                      <div className="space-y-2">
+                        {talentinhos.map((talentinho, idx) => (
+                          <div
+                            key={idx}
+                            className={`p-3 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}
+                          >
+                            <div className="flex items-start justify-between gap-2 mb-1">
+                              <button
+                                onClick={() => {
+                                  setSelectedTalentinhoDetail(talentinho)
+                                  setShowTalentinhoDetailModal(true)
+                                }}
+                                className={`flex-1 text-left font-semibold text-sm ${darkMode ? 'text-purple-400 hover:text-purple-300' : 'text-purple-600 hover:text-purple-700'} transition-colors`}
+                              >
+                                {talentinho.nome}
+                              </button>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => handleRollTalentinho(talentinho)}
+                                  className={`p-1 rounded ${darkMode ? 'bg-green-700 hover:bg-green-600' : 'bg-green-500 hover:bg-green-600'} text-white`}
+                                  title="Enviar no Chat"
+                                >
+                                  <Send size={12} />
+                                </button>
+                                <button
+                                  onClick={() => handleEditTalentinho(idx)}
+                                  className={`p-1 rounded ${darkMode ? 'bg-blue-700 hover:bg-blue-600' : 'bg-blue-500 hover:bg-blue-600'} text-white`}
+                                  title="Editar"
+                                >
+                                  <Edit size={12} />
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteTalentinho(idx)}
+                                  className={`p-1 rounded ${darkMode ? 'bg-red-700 hover:bg-red-600' : 'bg-red-500 hover:bg-red-600'} text-white`}
+                                  title="Excluir"
+                                >
+                                  <Trash2 size={12} />
+                                </button>
+                              </div>
+                            </div>
+                            <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} font-mono`}>
+                              {talentinho.expressao}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Int. L.U. */}
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4`}>
+                <div
+                  className="flex justify-between items-center cursor-pointer"
+                  onClick={() => setShowIntLUMenu(!showIntLUMenu)}
+                >
+                  <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Int. L.U.
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    {showIntLUMenu && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          resetarTodosOsUsos()
+                        }}
+                        className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium transition-all ${darkMode ? 'bg-green-700 hover:bg-green-600' : 'bg-green-500 hover:bg-green-600'} text-white`}
+                        title="Resetar todos os usos"
+                      >
+                        <RotateCcw size={14} />
+                        Resetar
+                      </button>
+                    )}
+                    {showIntLUMenu ? <ChevronUp size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
+                  </div>
+                </div>
+
+                {showIntLUMenu && (
+                  <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-3 mt-3`}>
+                    {getItensComLimiteDeUso().length === 0 ? (
+                      <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-4`}>
+                        Nenhum limite de uso
+                      </p>
+                    ) : (
+                      <div className="grid grid-cols-1 gap-2">
+                        {getItensComLimiteDeUso().map((item, idx) => (
+                          <div
+                            key={`${item.tipo}-${item.index}`}
+                            className={`p-3 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${
+                              item.atual === 0
+                                ? darkMode ? 'border-red-600' : 'border-red-400'
+                                : darkMode ? 'border-gray-700' : 'border-gray-200'
+                            }`}
+                          >
+                            <div className="flex flex-col gap-2 relative">
+                              {item.isPersonalizado && (
+                                <button
+                                  onClick={() => removerLimiteUsoPersonalizado(item.index)}
+                                  className="absolute -top-1 -right-1 p-0.5 rounded-full bg-red-500 hover:bg-red-600 text-white shadow-lg"
+                                  title="Remover limite"
+                                >
+                                  <X size={10} />
+                                </button>
+                              )}
+                              <div className="flex items-center justify-between">
+                                <span className={`font-semibold text-sm ${
+                                  item.tipo === 'modificador'
+                                    ? darkMode ? 'text-blue-400' : 'text-blue-600'
+                                    : item.tipo === 'talentinho'
+                                      ? darkMode ? 'text-purple-400' : 'text-purple-600'
+                                      : item.isPersonalizado
+                                        ? darkMode ? 'text-cyan-400' : 'text-cyan-600'
+                                        : darkMode ? 'text-yellow-400' : 'text-yellow-600'
+                                }`}>
+                                  {item.nome}
+                                </span>
+                                <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                                  item.tipo === 'modificador'
+                                    ? darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'
+                                    : item.tipo === 'talentinho'
+                                      ? darkMode ? 'bg-purple-900 text-purple-300' : 'bg-purple-100 text-purple-700'
+                                      : item.isPersonalizado
+                                        ? darkMode ? 'bg-cyan-900 text-cyan-300' : 'bg-cyan-100 text-cyan-700'
+                                        : darkMode ? 'bg-yellow-900 text-yellow-300' : 'bg-yellow-100 text-yellow-700'
+                                }`}>
+                                  {item.tipo === 'modificador' ? 'Mod' : item.tipo === 'talentinho' && !item.isPersonalizado ? 'Talento' : item.isPersonalizado ? (item.fontes?.talento ? 'Talento' : item.fontes?.item ? 'Item' : 'Outros') : 'Item'}
+                                </span>
+                              </div>
+
+                              <div className="flex items-center justify-center gap-2">
+                                <button
+                                  onClick={item.decrementar}
+                                  disabled={item.atual === 0}
+                                  className={`p-1.5 rounded-lg transition-colors ${
+                                    item.atual === 0
+                                      ? darkMode ? 'bg-gray-700 text-gray-500 cursor-not-allowed' : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                      : darkMode ? 'bg-red-700 hover:bg-red-600 text-white' : 'bg-red-500 hover:bg-red-600 text-white'
+                                  }`}
+                                  title="Usar"
+                                >
+                                  <Minus size={14} />
+                                </button>
+
+                                <span className={`text-xl font-bold ${
+                                  item.atual === 0
+                                    ? darkMode ? 'text-red-400' : 'text-red-600'
+                                    : darkMode ? 'text-white' : 'text-gray-800'
+                                }`}>
+                                  {item.atual}/{item.total}
+                                </span>
+
+                                <button
+                                  onClick={item.resetar}
+                                  className={`p-1.5 rounded-lg transition-colors ${darkMode ? 'bg-green-700 hover:bg-green-600' : 'bg-green-500 hover:bg-green-600'} text-white`}
+                                  title="Resetar"
+                                >
+                                  <RotateCcw size={14} />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Pokébola, Vai! */}
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4`}>
+                <div
+                  className="flex justify-between items-center cursor-pointer"
+                  onClick={() => setShowPokebolVaiMenu(!showPokebolVaiMenu)}
+                >
+                  <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Pokébola, Vai!
+                  </h3>
+                  {showPokebolVaiMenu ? <ChevronUp size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
+                </div>
+
+                {showPokebolVaiMenu && (
+                  <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-3 mt-3`}>
+                  {keyItems.filter(item => POKEBALL_MODIFIERS[item.name]).length === 0 ? (
+                    <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-4`}>
+                      Nenhuma pokébola disponível
+                    </p>
+                  ) : (
+                    <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                      {/* Customball sempre aparece primeiro */}
+                      <button
+                        onClick={() => handleOpenCaptureModal('Customball')}
+                        className={`relative flex flex-col items-center p-2 rounded-lg transition-all ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} border-2 border-dashed ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}
+                        title="Customball"
+                      >
+                        <img
+                          src="/pokeballs/custompokeball.png"
+                          alt="Customball"
+                          className="w-10 h-10 object-contain"
+                          onError={(e) => {
+                            e.target.style.display = 'none'
+                            e.target.nextSibling.style.display = 'flex'
+                          }}
+                        />
+                        <div className="w-10 h-10 hidden items-center justify-center text-xl">
+                          ?
+                        </div>
+                        <span className={`text-[9px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                          Customball
+                        </span>
+                      </button>
+
+                      {/* Pokébolas dos keyItems */}
+                      {keyItems
+                        .filter(item => POKEBALL_MODIFIERS[item.name] && item.name !== 'Customball')
+                        .map((item, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleOpenCaptureModal(item.name)}
+                            className={`relative flex flex-col items-center p-2 rounded-lg transition-all ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} ${item.quantity > 0 ? '' : 'opacity-50 cursor-not-allowed'}`}
+                            disabled={item.quantity === 0}
+                            title={item.name}
+                          >
+                            <img
+                              src={`/pokeballs/${item.name.toLowerCase().replace(' ', '')}.png`}
+                              alt={item.name}
+                              className="w-10 h-10 object-contain"
+                              onError={(e) => {
+                                e.target.style.display = 'none'
+                                e.target.nextSibling.style.display = 'flex'
+                              }}
+                            />
+                            <div className="w-10 h-10 hidden items-center justify-center text-xl">
+                              O
+                            </div>
+                            <span className={`text-[9px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                              {item.name}
+                            </span>
+                            <div className={`absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold ${item.quantity > 0 ? (darkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white') : (darkMode ? 'bg-gray-600 text-gray-400' : 'bg-gray-400 text-gray-600')}`}>
+                              {item.quantity}
+                            </div>
+                          </button>
+                        ))}
+                    </div>
+                  )}
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Cura no Interlúdio */}
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4`}>
+                <div
+                  className="flex justify-between items-center cursor-pointer"
+                  onClick={() => setShowCuraInterludioMenu(!showCuraInterludioMenu)}
+                >
+                  <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Cura no Interlúdio
+                  </h3>
+                  {showCuraInterludioMenu ? <ChevronUp size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
+                </div>
+
+                {showCuraInterludioMenu && (
+                  <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-3 mt-3`}>
+                    {(() => {
+                      // Filtrar itens de cura que o usuário possui e que têm expressão de dados
+                      const healingItems = keyItems.filter(item => {
+                        // Verificar se o item está no corredor de Cura
+                        const curaItem = POKELOJA_DATA['Cura']?.find(i => i.name === item.name)
+                        if (!curaItem) return false
+                        // Verificar se tem expressão de dados na descrição
+                        const hasDiceExpression = /\d+d\d+/i.test(curaItem.description)
+                        return hasDiceExpression && item.quantity > 0
+                      })
+
+                      if (healingItems.length === 0) {
+                        return (
+                          <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-4`}>
+                            Nenhum item de cura com dados disponível
+                          </p>
+                        )
+                      }
+
+                      return (
+                        <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                          {healingItems.map((item, idx) => {
+                            const curaItem = POKELOJA_DATA['Cura']?.find(i => i.name === item.name)
+                            return (
+                              <button
+                                key={idx}
+                                onClick={() => {
+                                  setSelectedHealingItem({ ...item, ...curaItem })
+                                  setShowHealingModal(true)
+                                }}
+                                className={`relative flex flex-col items-center p-2 rounded-lg transition-all ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'}`}
+                                title={item.name}
+                              >
+                                <img
+                                  src={curaItem?.image || `/pokeballs/${item.name.toLowerCase().replace(/ /g, '')}.png`}
+                                  alt={item.name}
+                                  className="w-10 h-10 object-contain"
+                                  onError={(e) => {
+                                    e.target.style.display = 'none'
+                                    e.target.nextSibling.style.display = 'flex'
+                                  }}
+                                />
+                                <div className="w-10 h-10 hidden items-center justify-center text-xl">
+                                  +
+                                </div>
+                                <span className={`text-[9px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                  {item.name}
+                                </span>
+                                <div className={`absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold ${darkMode ? 'bg-green-600 text-white' : 'bg-green-500 text-white'}`}>
+                                  {item.quantity}
+                                </div>
+                              </button>
+                            )
+                          })}
+                        </div>
+                      )
+                    })()}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -27287,6 +29940,291 @@ function App() {
             </div>
           </div>
         </div>
+
+        {/* Modal de Dano/Cura Pokémon Interlúdio */}
+        {showInterludioPokemonDamageModal && selectedInterludioPokemon && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowInterludioPokemonDamageModal(false); cancelDamageTypeSelection(); }}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  Dano/Cura - {selectedInterludioPokemon.nickname || selectedInterludioPokemon.species}
+                </h3>
+                <button onClick={() => { setShowInterludioPokemonDamageModal(false); cancelDamageTypeSelection(); }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                  <X size={24} />
+                </button>
+              </div>
+              <input
+                type="number"
+                min="1"
+                max="1000"
+                value={interludioPokemonDamageAmount}
+                onChange={e => setInterludioPokemonDamageAmount(e.target.value)}
+                placeholder="Valor (1-1000)"
+                className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                disabled={showDamageTypeButtons && pendingDamageContext === 'interludioPokemon'}
+              />
+              {!showDamageTypeButtons || pendingDamageContext !== 'interludioPokemon' ? (
+                <div className="grid grid-cols-2 gap-4">
+                  <button
+                    onClick={() => {
+                      const v = parseInt(interludioPokemonDamageAmount) || 0;
+                      const idx = mainTeam.findIndex(p => p === selectedInterludioPokemon);
+                      if (idx !== -1) {
+                        const updatedTeam = [...mainTeam];
+                        const maxHP = calculateMaxHP(updatedTeam[idx]);
+                        const currentHp = updatedTeam[idx].currentHP !== undefined ? updatedTeam[idx].currentHP : maxHP;
+                        const newHP = Math.min(currentHp + v, maxHP);
+                        updatedTeam[idx] = { ...updatedTeam[idx], currentHP: newHP };
+                        setMainTeam(updatedTeam);
+                      }
+                      setInterludioPokemonDamageAmount('');
+                      setShowInterludioPokemonDamageModal(false);
+                    }}
+                    className="bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 font-semibold flex items-center justify-center gap-2"
+                  >
+                    <Heart size={20} />Curar
+                  </button>
+                  <button
+                    onClick={() => {
+                      const v = parseInt(interludioPokemonDamageAmount) || 0;
+                      if (v > 0) {
+                        setPendingDamageValue(v);
+                        setPendingDamageContext('interludioPokemon');
+                        setShowDamageTypeButtons(true);
+                      }
+                    }}
+                    className="bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 font-semibold flex items-center justify-center gap-2"
+                  >
+                    <Sword size={20} />Dano
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                    Dano: {pendingDamageValue} | Selecione o tipo de dano:
+                  </p>
+                  <div className="grid grid-cols-3 gap-3">
+                    <button
+                      onClick={() => {
+                        // Aplicar dano físico
+                        const idx = mainTeam.findIndex(p => p === selectedInterludioPokemon);
+                        if (idx !== -1) {
+                          const pokemon = mainTeam[idx];
+                          const pokemonData = pokedexData.find(p => p.nome === pokemon.species);
+                          const defense = pokemon.baseAttributes?.defesa || pokemonData?.statusBasais?.defesa || 0;
+                          const finalDamage = Math.max(0, pendingDamageValue - defense);
+                          const maxHP = calculateMaxHP(pokemon);
+                          const currentHp = pokemon.currentHP !== undefined ? pokemon.currentHP : maxHP;
+                          const newHP = Math.max(0, currentHp - finalDamage);
+                          const updatedTeam = [...mainTeam];
+                          updatedTeam[idx] = { ...pokemon, currentHP: newHP };
+                          setMainTeam(updatedTeam);
+                        }
+                        cancelDamageTypeSelection();
+                        setInterludioPokemonDamageAmount('');
+                        setShowInterludioPokemonDamageModal(false);
+                      }}
+                      className="bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold flex items-center justify-center gap-2"
+                    >
+                      <Sword size={20} />Físico
+                    </button>
+                    <button
+                      onClick={() => {
+                        // Aplicar dano puro (sem defesa)
+                        const idx = mainTeam.findIndex(p => p === selectedInterludioPokemon);
+                        if (idx !== -1) {
+                          const pokemon = mainTeam[idx];
+                          const maxHP = calculateMaxHP(pokemon);
+                          const currentHp = pokemon.currentHP !== undefined ? pokemon.currentHP : maxHP;
+                          const newHP = Math.max(0, currentHp - pendingDamageValue);
+                          const updatedTeam = [...mainTeam];
+                          updatedTeam[idx] = { ...pokemon, currentHP: newHP };
+                          setMainTeam(updatedTeam);
+                        }
+                        cancelDamageTypeSelection();
+                        setInterludioPokemonDamageAmount('');
+                        setShowInterludioPokemonDamageModal(false);
+                      }}
+                      className="bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold flex items-center justify-center gap-2"
+                    >
+                      <Minus size={20} />Puro
+                    </button>
+                    <button
+                      onClick={() => {
+                        // Aplicar dano especial
+                        const idx = mainTeam.findIndex(p => p === selectedInterludioPokemon);
+                        if (idx !== -1) {
+                          const pokemon = mainTeam[idx];
+                          const pokemonData = pokedexData.find(p => p.nome === pokemon.species);
+                          const defense = pokemon.baseAttributes?.defesaEspecial || pokemonData?.statusBasais?.defesaEspecial || 0;
+                          const finalDamage = Math.max(0, pendingDamageValue - defense);
+                          const maxHP = calculateMaxHP(pokemon);
+                          const currentHp = pokemon.currentHP !== undefined ? pokemon.currentHP : maxHP;
+                          const newHP = Math.max(0, currentHp - finalDamage);
+                          const updatedTeam = [...mainTeam];
+                          updatedTeam[idx] = { ...pokemon, currentHP: newHP };
+                          setMainTeam(updatedTeam);
+                        }
+                        cancelDamageTypeSelection();
+                        setInterludioPokemonDamageAmount('');
+                        setShowInterludioPokemonDamageModal(false);
+                      }}
+                      className="bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600 font-semibold flex items-center justify-center gap-2"
+                    >
+                      <Zap size={20} />Especial
+                    </button>
+                  </div>
+                  <button
+                    onClick={cancelDamageTypeSelection}
+                    className={`w-full py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-600 text-gray-200 hover:bg-gray-500' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'}`}
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Modal de Dano/Cura Treinador Interlúdio */}
+        {showInterludioTrainerDamageModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowInterludioTrainerDamageModal(false); cancelDamageTypeSelection(); }}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Dano/Cura - {currentUser?.username || 'Treinador'}
+                  </h3>
+                  <button onClick={() => { setShowInterludioTrainerDamageModal(false); cancelDamageTypeSelection(); }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                    <X size={24} />
+                  </button>
+                </div>
+
+                {/* Informação de HP Atual */}
+                <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>HP Atual</p>
+                  <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    {currentHP} / {getMaxHP()}
+                  </p>
+                </div>
+
+                {/* Input de Quantidade */}
+                <div className="mb-6">
+                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Quantidade
+                  </label>
+                  <input
+                    type="number"
+                    value={interludioTrainerDamageAmount}
+                    onChange={(e) => setInterludioTrainerDamageAmount(e.target.value)}
+                    placeholder="Digite a quantidade..."
+                    className={`w-full px-4 py-3 border-2 rounded-lg text-lg ${
+                      darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 placeholder-gray-400'
+                    }`}
+                    min="1"
+                    disabled={showDamageTypeButtons && pendingDamageContext === 'interludioTrainer'}
+                  />
+                </div>
+
+                {/* Botões de Ação */}
+                {!showDamageTypeButtons || pendingDamageContext !== 'interludioTrainer' ? (
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => {
+                        const v = parseInt(interludioTrainerDamageAmount) || 0;
+                        const maxHP = getMaxHP();
+                        const newHP = Math.min(currentHP + v, maxHP);
+                        setCurrentHP(newHP);
+                        setInterludioTrainerDamageAmount('');
+                        setShowInterludioTrainerDamageModal(false);
+                      }}
+                      disabled={!interludioTrainerDamageAmount || parseInt(interludioTrainerDamageAmount) <= 0}
+                      className={`flex-1 py-3 rounded-lg flex items-center justify-center gap-2 ${
+                        interludioTrainerDamageAmount && parseInt(interludioTrainerDamageAmount) > 0
+                          ? 'bg-green-500 hover:bg-green-600 text-white'
+                          : darkMode ? 'bg-gray-700 text-gray-500 cursor-not-allowed' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      } font-semibold`}
+                    >
+                      <Heart size={20} />Curar
+                    </button>
+                    <button
+                      onClick={() => {
+                        const v = parseInt(interludioTrainerDamageAmount) || 0;
+                        if (v > 0) {
+                          setPendingDamageValue(v);
+                          setPendingDamageContext('interludioTrainer');
+                          setShowDamageTypeButtons(true);
+                        }
+                      }}
+                      disabled={!interludioTrainerDamageAmount || parseInt(interludioTrainerDamageAmount) <= 0}
+                      className={`flex-1 py-3 rounded-lg flex items-center justify-center gap-2 ${
+                        interludioTrainerDamageAmount && parseInt(interludioTrainerDamageAmount) > 0
+                          ? 'bg-red-500 hover:bg-red-600 text-white'
+                          : darkMode ? 'bg-gray-700 text-gray-500 cursor-not-allowed' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      } font-semibold`}
+                    >
+                      <Sword size={20} />Dano
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      Dano: {pendingDamageValue} | Selecione o tipo de dano:
+                    </p>
+                    <div className="grid grid-cols-3 gap-3">
+                      <button
+                        onClick={() => {
+                          const defense = attributes?.defesa || 0;
+                          const finalDamage = Math.max(0, pendingDamageValue - defense);
+                          const newHP = Math.max(0, currentHP - finalDamage);
+                          setCurrentHP(newHP);
+                          cancelDamageTypeSelection();
+                          setInterludioTrainerDamageAmount('');
+                          setShowInterludioTrainerDamageModal(false);
+                        }}
+                        className="bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold flex items-center justify-center gap-2"
+                      >
+                        <Sword size={20} />Físico
+                      </button>
+                      <button
+                        onClick={() => {
+                          const newHP = Math.max(0, currentHP - pendingDamageValue);
+                          setCurrentHP(newHP);
+                          cancelDamageTypeSelection();
+                          setInterludioTrainerDamageAmount('');
+                          setShowInterludioTrainerDamageModal(false);
+                        }}
+                        className="bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold flex items-center justify-center gap-2"
+                      >
+                        <Minus size={20} />Puro
+                      </button>
+                      <button
+                        onClick={() => {
+                          const defense = attributes?.defesaEspecial || 0;
+                          const finalDamage = Math.max(0, pendingDamageValue - defense);
+                          const newHP = Math.max(0, currentHP - finalDamage);
+                          setCurrentHP(newHP);
+                          cancelDamageTypeSelection();
+                          setInterludioTrainerDamageAmount('');
+                          setShowInterludioTrainerDamageModal(false);
+                        }}
+                        className="bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600 font-semibold flex items-center justify-center gap-2"
+                      >
+                        <Zap size={20} />Especial
+                      </button>
+                    </div>
+                    <button
+                      onClick={cancelDamageTypeSelection}
+                      className={`w-full py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-600 text-gray-200 hover:bg-gray-500' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'}`}
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Modal de Ação Customizada */}
         {showCustomModal && (

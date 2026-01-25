@@ -1434,7 +1434,7 @@ export const TALENTOS_DATA = {
       referencia: 'C, V',
       frequencia: 'Constante',
       alvo: 'um pokémon de um aliado',
-      efeito: 'você pode dar comandos ao alvo desde que ele ainda não tenha agido naquela rodada. Deve haver consentimento explícito por parte do dono dele.'
+      efeito: 'você pode dar comandos ao alvo desde que ele ainda não tenha agido naquela rodada. Deve haver consentimento explícito por parte do dono dele, a menos que este esteja inconsciente. Você ainda só pode dar um comando por rodada, a menos que possua Você Isso e Você Aquilo! Um pokémon não pode agir mais de uma vez por rodada em virtude deste Talento.'
     },
     {
       nome: 'Estudo Comportamental +',
@@ -1512,7 +1512,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Diária',
       alvo: 'um pokémon seu',
-      efeito: 'escolha um Golpe dentre todos os Golpes para ser o Golpe Gatilho. Depois escolha um Golpe não causador de dano conhecido pelo alvo para ser o Golpe de Escolha. Pelo resto do dia, se um inimigo usar o Golpe Gatilho contra o alvo, este pode imediatamente usar o Golpe de Escolha como uma Ação de Interrupção.'
+      efeito: 'escolha um Golpe dentre todos os Golpes para ser o Golpe Gatilho. Depois escolha um Golpe não causador de dano conhecido pelo alvo para ser o Golpe de Escolha. Pelo resto do dia, se um inimigo usar o Golpe Gatilho contra o alvo, este pode imediatamente usar o Golpe de Escolha como uma Ação de Interrupção. Enquanto ativar o Talento consome sua Ação Padrão, uma vez que o Golpe Gatilho for usado, nenhum comando seu é necessário.'
     }
   ],
 
@@ -1547,7 +1547,7 @@ export const TALENTOS_DATA = {
       referencia: 'C, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você começa um encontro com um pokémon selvagem',
-      efeito: 'você pode, como uma Ação Livre, usar Planejamento, Planejamento Perfeito ou Sabotagem no início do encontro antes de quaisquer ações serem feitas.'
+      efeito: 'você pode, como uma Ação Livre, usar Planejamento, Planejamento Perfeito ou Sabotagem no início do encontro antes de quaisquer ações serem feitas por quaisquer criaturas (pokémons ou humanos). Usar este Talento consome tanto um uso diário de De Antemão! quanto um uso diário do Talento escolhido.'
     },
     {
       nome: 'De Antemão! +',
@@ -1555,7 +1555,7 @@ export const TALENTOS_DATA = {
       referencia: 'L, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você começa um encontro',
-      efeito: 'você pode, como uma Ação Livre, usar Planejamento, Planejamento Perfeito ou Sabotagem no início do encontro antes de quaisquer ações serem feitas. Este Talento substitui De Antemão!'
+      efeito: 'você pode, como uma Ação Livre, usar Planejamento, Planejamento Perfeito ou Sabotagem no início do encontro antes de quaisquer ações serem feitas por quaisquer criaturas (pokémons ou humanos). Usar este Talento consome tanto um uso diário de De Antemão! quanto um uso diário do Talento escolhido. Este Talento substitui De Antemão!'
     },
     {
       nome: 'Encontre Isso!',
@@ -1593,7 +1593,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'À Vontade',
       gatilho: 'você ouve algo que você suspeita ser uma mentira',
-      efeito: 'especifique qual sentença dita pela pessoa você quer avaliar. Você saberá se aquela sentença é inteiramente verdade ou não. Apenas mentiras contadas deliberadamente são reconhecíveis como mentiras.'
+      efeito: 'especifique qual sentença dita pela pessoa você quer avaliar. Você saberá se aquela sentença é inteiramente verdade ou não. Apenas mentiras contadas deliberadamente são reconhecíveis como mentiras. Este Talento pode ser usado tanto ouvindo alguém diretamente quanto em gravações de áudios ou vídeos.'
     },
     {
       nome: 'Rastreador',

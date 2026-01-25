@@ -315,6 +315,32 @@ export const subscribeToCustomPrices = (callback) => {
   })
 }
 
+// --- XP & CAPTURAS ---
+
+// Salvar dados de XP & Capturas do treinador
+export const saveXpCapturas = async (username, data) => {
+  return saveToFirebase(`xpCapturas/${username}`, data)
+}
+
+// Carregar dados de XP & Capturas do treinador
+export const loadXpCapturas = async (username) => {
+  return loadFromFirebase(`xpCapturas/${username}`, { xpList: [], capturaList: [] })
+}
+
+// Escutar mudanças em XP & Capturas do treinador (tempo real)
+export const subscribeToXpCapturas = (username, callback) => {
+  return subscribeToFirebase(`xpCapturas/${username}`, (data) => {
+    callback(data || { xpList: [], capturaList: [] })
+  })
+}
+
+// Escutar mudanças em XP & Capturas de TODOS os treinadores (para o mestre)
+export const subscribeToAllXpCapturas = (callback) => {
+  return subscribeToFirebase('xpCapturas', (data) => {
+    callback(data || {})
+  })
+}
+
 // --- VTT (Virtual Tabletop) ---
 
 // Salvar dados do VTT
