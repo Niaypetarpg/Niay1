@@ -2099,6 +2099,8 @@ function App() {
   ])
   const [chatMessages, setChatMessages] = useState([]) // Mensagens do chat
   const [chatInput, setChatInput] = useState('') // Input do chat
+  const [quickRollNumDice, setQuickRollNumDice] = useState(1) // Número de dados para rolagem rápida
+  const [quickRollDiceType, setQuickRollDiceType] = useState('d20') // Tipo de dado para rolagem rápida
   const chatContainerRef = useRef(null) // Ref para container do chat (scroll)
   const vttCanvasRef = useRef(null) // Ref para o canvas do VTT (zoom com roda do mouse)
   const isLoadingVttLocationRef = useRef(false) // Flag para evitar loop infinito no VTT
@@ -8029,6 +8031,8 @@ function App() {
             setUserActiveModifiers(data.userActiveModifiers || {})
             setTalentinhos(data.talentinhos || [])
             setBackground(data.background || '')
+            setLimitesUsoPersonalizados(data.limitesUsoPersonalizados || [])
+            setLimitesUsoPersonalizadosUsosAtuais(data.limitesUsoPersonalizadosUsosAtuais || {})
           }
           // Marcar dados como carregados após carregar tudo
           setDataLoaded(true)
@@ -8207,7 +8211,9 @@ function App() {
           vivencias, conquistas, ciclos,
           userBattleModifiers, userActiveModifiers,
           talentinhos,
-          background
+          background,
+          limitesUsoPersonalizados,
+          limitesUsoPersonalizadosUsosAtuais
         }
         try {
           console.log('[Save] Salvando dados do treinador. pokemonImages keys:', Object.keys(data.pokemonImages || {}))
@@ -8265,7 +8271,7 @@ function App() {
     // Debounce para evitar muitas escritas
     const timeoutId = setTimeout(saveData, 500)
     return () => clearTimeout(timeoutId)
-  }, [level, image, classes, attributes, skills, currentHP, mainTeam, pcPokemon, pokedex, pokemonedas, keyItems, customItems, pokeovoList, caracteristicasSelected, talentosSelected, pokemonImages, badges, estilizadorBattery, estilizadorPolicialBattery, thunderStoneActive, bolsaTalento, otherCapacities, vivencias, conquistas, ciclos, userBattleModifiers, userActiveModifiers, talentinhos, background, hiddenPokelojaItems, npcPokemon, npcPokemonList, battleTrainers, battlePokemon, battleTrainersList, battlePokemonList, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, npcConditions, expandedNpcCards, revealedNpcPokemon, revealedTrainers, battlePokemonConditions, battleTrainerConditions, archivedNpcTrainers, archivedNpcPokemon, currentUser])
+  }, [level, image, classes, attributes, skills, currentHP, mainTeam, pcPokemon, pokedex, pokemonedas, keyItems, customItems, pokeovoList, caracteristicasSelected, talentosSelected, pokemonImages, badges, estilizadorBattery, estilizadorPolicialBattery, thunderStoneActive, bolsaTalento, otherCapacities, vivencias, conquistas, ciclos, userBattleModifiers, userActiveModifiers, talentinhos, background, limitesUsoPersonalizados, limitesUsoPersonalizadosUsosAtuais, hiddenPokelojaItems, npcPokemon, npcPokemonList, battleTrainers, battlePokemon, battleTrainersList, battlePokemonList, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, npcConditions, expandedNpcCards, revealedNpcPokemon, revealedTrainers, battlePokemonConditions, battleTrainerConditions, archivedNpcTrainers, archivedNpcPokemon, currentUser])
 
   // Salvar dados de batalha no mestre_config mesmo quando for treinador
   useEffect(() => {
@@ -12938,6 +12944,86 @@ function App() {
               <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Chat de Batalha
               </h3>
+
+              {/* Menu de Rolagem Rápida */}
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+                <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Rolagem Rápida
+                </h4>
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* Primeira Parte: Número de dados */}
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                        <button
+                          key={num}
+                          onClick={() => setQuickRollNumDice(num)}
+                          className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                            quickRollNumDice === num
+                              ? 'bg-blue-600 text-white'
+                              : darkMode
+                              ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                              : 'bg-white text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Segunda Parte: Tipo de dado */}
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
+                    <div className="flex gap-1">
+                      {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
+                        <button
+                          key={dice}
+                          onClick={() => setQuickRollDiceType(dice)}
+                          className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                            quickRollDiceType === dice
+                              ? 'bg-green-600 text-white'
+                              : darkMode
+                              ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                              : 'bg-white text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {dice}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Botão Rolar */}
+                  <button
+                    onClick={() => {
+                      const diceNotation = `${quickRollNumDice}${quickRollDiceType}`
+                      const result = rollDiceExpression(diceNotation)
+                      if (result.error) {
+                        alert(result.error)
+                        return
+                      }
+                      const newMessage = {
+                        username: currentUser?.username || 'Anônimo',
+                        text: `🎲 Rolagem Rápida: ${diceNotation}`,
+                        timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+                        isDiceRoll: true,
+                        diceResult: result.total,
+                        diceDetails: result.formula
+                      }
+                      setChatMessages(prev => [...prev, newMessage])
+                      if (useFirebase) {
+                        saveChatMessage(newMessage).catch(err => console.error('Erro ao salvar mensagem:', err))
+                      }
+                    }}
+                    className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                  >
+                    🎲 Rolar
+                  </button>
+                </div>
+              </div>
+
               <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-4 space-y-1`}>
                 <p>Use /r ou /roll para rolar dados. Exemplo: /r 1d20+5, /roll 2d6</p>
                 <p>Use comandos @ para referenciar seus atributos: <span className="font-mono">1d20+@MAE</span>, <span className="font-mono">2d6+@MA+@MV</span></p>
@@ -22118,25 +22204,23 @@ function App() {
                         <div className={`absolute z-10 w-full mt-1 max-h-40 overflow-y-auto rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
                           {mainTeam
                             .filter(p =>
-                              (p.name || p.species || '').toLowerCase().includes(swapMainTeamSearch.toLowerCase()) ||
-                              (p.species || '').toLowerCase().includes(swapMainTeamSearch.toLowerCase())
+                              (p.nickname || '').toLowerCase().includes(swapMainTeamSearch.toLowerCase())
                             )
                             .map((pokemon, index) => (
                               <div
                                 key={pokemon.id || index}
                                 onClick={() => {
                                   setSelectedSwapMainTeam(pokemon)
-                                  setSwapMainTeamSearch(pokemon.name || pokemon.species)
+                                  setSwapMainTeamSearch(pokemon.nickname || pokemon.species)
                                 }}
                                 className={`px-4 py-2 cursor-pointer ${darkMode ? 'hover:bg-gray-600 text-white' : 'hover:bg-gray-100 text-gray-800'}`}
                               >
-                                {pokemon.name || pokemon.species} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'} <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>(Nv. {pokemon.level})</span>
+                                {pokemon.nickname || pokemon.species} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'} <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>(Nv. {pokemon.level})</span>
                               </div>
                             ))
                           }
                           {mainTeam.filter(p =>
-                            (p.name || p.species || '').toLowerCase().includes(swapMainTeamSearch.toLowerCase()) ||
-                            (p.species || '').toLowerCase().includes(swapMainTeamSearch.toLowerCase())
+                            (p.nickname || '').toLowerCase().includes(swapMainTeamSearch.toLowerCase())
                           ).length === 0 && (
                             <div className={`px-4 py-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                               Nenhum pokémon encontrado
@@ -22147,7 +22231,7 @@ function App() {
                     </div>
                     {selectedSwapMainTeam && (
                       <div className={`mt-2 p-2 rounded-lg ${darkMode ? 'bg-cyan-900 text-cyan-300' : 'bg-cyan-100 text-cyan-800'} text-sm`}>
-                        Selecionado: <strong>{selectedSwapMainTeam.name || selectedSwapMainTeam.species}</strong> (Nv. {selectedSwapMainTeam.level})
+                        Selecionado: <strong>{selectedSwapMainTeam.nickname || selectedSwapMainTeam.species}</strong> (Nv. {selectedSwapMainTeam.level})
                       </div>
                     )}
                   </div>
@@ -22177,25 +22261,23 @@ function App() {
                         <div className={`absolute z-10 w-full mt-1 max-h-40 overflow-y-auto rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
                           {pcPokemon
                             .filter(p =>
-                              (p.name || p.species || '').toLowerCase().includes(swapPcSearch.toLowerCase()) ||
-                              (p.species || '').toLowerCase().includes(swapPcSearch.toLowerCase())
+                              (p.nickname || '').toLowerCase().includes(swapPcSearch.toLowerCase())
                             )
                             .map((pokemon, index) => (
                               <div
                                 key={pokemon.id || index}
                                 onClick={() => {
                                   setSelectedSwapPc(pokemon)
-                                  setSwapPcSearch(pokemon.name || pokemon.species)
+                                  setSwapPcSearch(pokemon.nickname || pokemon.species)
                                 }}
                                 className={`px-4 py-2 cursor-pointer ${darkMode ? 'hover:bg-gray-600 text-white' : 'hover:bg-gray-100 text-gray-800'}`}
                               >
-                                {pokemon.name || pokemon.species} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'} <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>(Nv. {pokemon.level})</span>
+                                {pokemon.nickname || pokemon.species} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'} <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>(Nv. {pokemon.level})</span>
                               </div>
                             ))
                           }
                           {pcPokemon.filter(p =>
-                            (p.name || p.species || '').toLowerCase().includes(swapPcSearch.toLowerCase()) ||
-                            (p.species || '').toLowerCase().includes(swapPcSearch.toLowerCase())
+                            (p.nickname || '').toLowerCase().includes(swapPcSearch.toLowerCase())
                           ).length === 0 && (
                             <div className={`px-4 py-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                               Nenhum pokémon encontrado
@@ -22206,7 +22288,7 @@ function App() {
                     </div>
                     {selectedSwapPc && (
                       <div className={`mt-2 p-2 rounded-lg ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-800'} text-sm`}>
-                        Selecionado: <strong>{selectedSwapPc.name || selectedSwapPc.species}</strong> (Nv. {selectedSwapPc.level})
+                        Selecionado: <strong>{selectedSwapPc.nickname || selectedSwapPc.species}</strong> (Nv. {selectedSwapPc.level})
                       </div>
                     )}
                   </div>
@@ -29204,6 +29286,86 @@ function App() {
               <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Chat de Batalha
               </h3>
+
+              {/* Menu de Rolagem Rápida */}
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+                <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Rolagem Rápida
+                </h4>
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* Primeira Parte: Número de dados */}
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                        <button
+                          key={num}
+                          onClick={() => setQuickRollNumDice(num)}
+                          className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                            quickRollNumDice === num
+                              ? 'bg-blue-600 text-white'
+                              : darkMode
+                              ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                              : 'bg-white text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Segunda Parte: Tipo de dado */}
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
+                    <div className="flex gap-1">
+                      {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
+                        <button
+                          key={dice}
+                          onClick={() => setQuickRollDiceType(dice)}
+                          className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                            quickRollDiceType === dice
+                              ? 'bg-green-600 text-white'
+                              : darkMode
+                              ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                              : 'bg-white text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {dice}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Botão Rolar */}
+                  <button
+                    onClick={() => {
+                      const diceNotation = `${quickRollNumDice}${quickRollDiceType}`
+                      const result = rollDiceExpression(diceNotation)
+                      if (result.error) {
+                        alert(result.error)
+                        return
+                      }
+                      const newMessage = {
+                        username: currentUser?.username || 'Anônimo',
+                        text: `🎲 Rolagem Rápida: ${diceNotation}`,
+                        timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+                        isDiceRoll: true,
+                        diceResult: result.total,
+                        diceDetails: result.formula
+                      }
+                      setChatMessages(prev => [...prev, newMessage])
+                      if (useFirebase) {
+                        saveChatMessage(newMessage).catch(err => console.error('Erro ao salvar mensagem:', err))
+                      }
+                    }}
+                    className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                  >
+                    🎲 Rolar
+                  </button>
+                </div>
+              </div>
+
               <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-4 space-y-1`}>
                 <p>Use /r ou /roll para rolar dados. Exemplo: /r 1d20+5, /roll 2d6</p>
                 <p>Use comandos @ para referenciar seus atributos: <span className="font-mono">1d20+@MAE</span>, <span className="font-mono">2d6+@MA+@MV</span></p>
@@ -30529,9 +30691,25 @@ function App() {
                 {/* Seção do Treinador */}
                 <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                      {currentUser?.username || 'Treinador'} <span className={`ml-2 text-sm font-normal ${darkMode ? 'text-green-400' : 'text-green-600'}`}>HP: {currentHP}/{getMaxHP()}</span>
-                    </h4>
+                    <div className="flex items-center gap-3">
+                      <h4 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                        {currentUser?.username || 'Treinador'} <span className={`ml-2 text-sm font-normal ${darkMode ? 'text-green-400' : 'text-green-600'}`}>HP: {currentHP}/{getMaxHP()}</span>
+                      </h4>
+                      {/* Shiny Charm (se o treinador possuir) */}
+                      {keyItems.find(item => item.name === 'Shiny Charm') && (
+                        <div
+                          className="w-12 h-12 cursor-pointer hover:scale-110 transition-transform"
+                          onClick={() => handleShinyCharmRoll(keyItems.find(item => item.name === 'Shiny Charm')?.luckyNumber)}
+                          title={`Shiny Charm - Clique para rolar 1d1365 (Nº da Sorte: ${keyItems.find(item => item.name === 'Shiny Charm')?.luckyNumber})`}
+                        >
+                          <img
+                            src="/pokeballs/shinycharm.png"
+                            alt="Shiny Charm"
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      )}
+                    </div>
                     <button
                       onClick={() => {
                         setInterludioTrainerDamageAmount('')
@@ -31058,6 +31236,86 @@ function App() {
               <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Chat & Rolagem de Dados
               </h3>
+
+              {/* Menu de Rolagem Rápida */}
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+                <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Rolagem Rápida
+                </h4>
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* Primeira Parte: Número de dados */}
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                        <button
+                          key={num}
+                          onClick={() => setQuickRollNumDice(num)}
+                          className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                            quickRollNumDice === num
+                              ? 'bg-blue-600 text-white'
+                              : darkMode
+                              ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                              : 'bg-white text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Segunda Parte: Tipo de dado */}
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
+                    <div className="flex gap-1">
+                      {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
+                        <button
+                          key={dice}
+                          onClick={() => setQuickRollDiceType(dice)}
+                          className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                            quickRollDiceType === dice
+                              ? 'bg-green-600 text-white'
+                              : darkMode
+                              ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                              : 'bg-white text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {dice}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Botão Rolar */}
+                  <button
+                    onClick={() => {
+                      const diceNotation = `${quickRollNumDice}${quickRollDiceType}`
+                      const result = rollDiceExpression(diceNotation)
+                      if (result.error) {
+                        alert(result.error)
+                        return
+                      }
+                      const newMessage = {
+                        username: currentUser?.username || 'Anônimo',
+                        text: `🎲 Rolagem Rápida: ${diceNotation}`,
+                        timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+                        isDiceRoll: true,
+                        diceResult: result.total,
+                        diceDetails: result.formula
+                      }
+                      setChatMessages(prev => [...prev, newMessage])
+                      if (useFirebase) {
+                        saveChatMessage(newMessage).catch(err => console.error('Erro ao salvar mensagem:', err))
+                      }
+                    }}
+                    className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                  >
+                    🎲 Rolar
+                  </button>
+                </div>
+              </div>
+
               <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 Use /r ou /roll para rolar dados. Exemplo: /r 1d20+5, /roll 2d6
               </p>
@@ -31676,7 +31934,7 @@ function App() {
                       <p className="font-bold mb-1">Level de PKMs de NPCs:</p>
                       <ul className="list-disc list-inside ml-2">
                         <li>Treinador: 5 levels a mais/menos do que o pkm mais forte do JN</li>
-                        <li>Vilão: 2x o level do pkm mais forte do JN</li>
+                        <li>Vilão: 5-10 leveis a mais do pkm mais forte do JN</li>
                         <li>Líder de Ginásio: até 5 levels a mais que o mais forte do JN</li>
                       </ul>
                     </div>
@@ -32231,6 +32489,86 @@ function App() {
               <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Chat & Rolagem de Dados
               </h3>
+
+              {/* Menu de Rolagem Rápida */}
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+                <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Rolagem Rápida
+                </h4>
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* Primeira Parte: Número de dados */}
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                        <button
+                          key={num}
+                          onClick={() => setQuickRollNumDice(num)}
+                          className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                            quickRollNumDice === num
+                              ? 'bg-blue-600 text-white'
+                              : darkMode
+                              ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                              : 'bg-white text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Segunda Parte: Tipo de dado */}
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
+                    <div className="flex gap-1">
+                      {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
+                        <button
+                          key={dice}
+                          onClick={() => setQuickRollDiceType(dice)}
+                          className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                            quickRollDiceType === dice
+                              ? 'bg-green-600 text-white'
+                              : darkMode
+                              ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                              : 'bg-white text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {dice}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Botão Rolar */}
+                  <button
+                    onClick={() => {
+                      const diceNotation = `${quickRollNumDice}${quickRollDiceType}`
+                      const result = rollDiceExpression(diceNotation)
+                      if (result.error) {
+                        alert(result.error)
+                        return
+                      }
+                      const newMessage = {
+                        username: currentUser?.username || 'Anônimo',
+                        text: `🎲 Rolagem Rápida: ${diceNotation}`,
+                        timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+                        isDiceRoll: true,
+                        diceResult: result.total,
+                        diceDetails: result.formula
+                      }
+                      setChatMessages(prev => [...prev, newMessage])
+                      if (useFirebase) {
+                        saveChatMessage(newMessage).catch(err => console.error('Erro ao salvar mensagem:', err))
+                      }
+                    }}
+                    className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                  >
+                    🎲 Rolar
+                  </button>
+                </div>
+              </div>
+
               <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 Use /r ou /roll para rolar dados. Exemplo: /r 1d20+5, /roll 2d6
               </p>
@@ -32460,7 +32798,7 @@ function App() {
                       <p className="font-bold mb-1">Level de PKMs de NPCs:</p>
                       <ul className="list-disc list-inside ml-2">
                         <li>Treinador: 5 levels a mais/menos do que o pkm mais forte do JN</li>
-                        <li>Vilão: 2x o level do pkm mais forte do JN</li>
+                        <li>Vilão: 5-10 leveis a mais do pkm mais forte do JN</li>
                         <li>Líder de Ginásio: até 5 levels a mais que o mais forte do JN</li>
                       </ul>
                     </div>
