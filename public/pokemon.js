@@ -13,9 +13,9 @@ const pokedex = [
   {"dexNumber":6,"nome":"Charizard","altura":1.7,"peso":90.5,"genero":"87_12","tipos":["Fogo","Voador"],"habitats":["montanha","caverna"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":8,"defesa":11,"ataqueEspecial":9,"defesaEspecial":10,"velocidade":10}},
 
   // Linha do Squirtle
-  {"dexNumber":7,"nome":"Squirtle","altura":0.5,"peso":9.0,"genero":"87_12","tipos":["Água"],"habitats":["agua_doce","oceano","praia"],"catchRate":20,"baseExp":15,"evolucao":8,"evolucaoNivel":16,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":5,"defesa":7,"ataqueEspecial":5,"defesaEspecial":6,"velocidade":4}},
-  {"dexNumber":8,"nome":"Wartortle","altura":1.0,"peso":22.5,"genero":"87_12","tipos":["Água"],"habitats":["agua_doce","oceano","praia"],"catchRate":10,"baseExp":30,"evolucao":9,"evolucaoNivel":36,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":6,"defesa":8,"ataqueEspecial":7,"defesaEspecial":8,"velocidade":6}},
-  {"dexNumber":9,"nome":"Blastoise","altura":1.6,"peso":85.5,"genero":"87_12","tipos":["Água"],"habitats":["agua_doce","oceano","praia"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":9,"defesa":11,"ataqueEspecial":9,"defesaEspecial":12,"velocidade":8}},
+  {"dexNumber":7,"nome":"Squirtle","altura":0.5,"peso":9.0,"genero":"87_12","tipos":["Água"],"habitats":["Água_doce","oceano","praia"],"catchRate":20,"baseExp":15,"evolucao":8,"evolucaoNivel":16,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":5,"defesa":7,"ataqueEspecial":5,"defesaEspecial":6,"velocidade":4}},
+  {"dexNumber":8,"nome":"Wartortle","altura":1.0,"peso":22.5,"genero":"87_12","tipos":["Água"],"habitats":["Água_doce","oceano","praia"],"catchRate":10,"baseExp":30,"evolucao":9,"evolucaoNivel":36,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":6,"defesa":8,"ataqueEspecial":7,"defesaEspecial":8,"velocidade":6}},
+  {"dexNumber":9,"nome":"Blastoise","altura":1.6,"peso":85.5,"genero":"87_12","tipos":["Água"],"habitats":["Água_doce","oceano","praia"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":9,"defesa":11,"ataqueEspecial":9,"defesaEspecial":12,"velocidade":8}},
 
   // Linha do Caterpie
   {"dexNumber":10,"nome":"Caterpie","altura":0.3,"peso":2.9,"genero":"50_50","tipos":["Inseto"],"habitats":["floresta"],"catchRate":45,"baseExp":5,"evolucao":11,"evolucaoNivel":7,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":3,"defesa":4,"ataqueEspecial":2,"defesaEspecial":2,"velocidade":5}},
@@ -100,8 +100,8 @@ const pokedex = [
   {"dexNumber":53,"nome":"Persian","altura":1.0,"peso":33.0,"genero":"50_50","tipos":["Normal"],"habitats":["cidade"],"catchRate":10,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":7,"defesa":6,"ataqueEspecial":7,"defesaEspecial":7,"velocidade":12}},
 
   // Linha do Psyduck
-  {"dexNumber":54,"nome":"Psyduck","altura":0.8,"peso":19.6,"genero":"50_50","tipos":["Água"],"habitats":["agua_doce"],"catchRate":25,"baseExp":10,"evolucao":55,"evolucaoNivel":33,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":5,"defesa":5,"ataqueEspecial":7,"defesaEspecial":5,"velocidade":6}},
-  {"dexNumber":55,"nome":"Golduck","altura":1.7,"peso":76.4,"genero":"50_50","tipos":["Água"],"habitats":["agua_doce","praia"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":8,"defesa":8,"ataqueEspecial":10,"defesaEspecial":8,"velocidade":9}},
+  {"dexNumber":54,"nome":"Psyduck","altura":0.8,"peso":19.6,"genero":"50_50","tipos":["Água"],"habitats":["Água_doce"],"catchRate":25,"baseExp":10,"evolucao":55,"evolucaoNivel":33,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":5,"defesa":5,"ataqueEspecial":7,"defesaEspecial":5,"velocidade":6}},
+  {"dexNumber":55,"nome":"Golduck","altura":1.7,"peso":76.4,"genero":"50_50","tipos":["Água"],"habitats":["Água_doce","praia"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":8,"defesa":8,"ataqueEspecial":10,"defesaEspecial":8,"velocidade":9}},
 
   // Linha do Mankey
   {"dexNumber":56,"nome":"Mankey","altura":0.5,"peso":28.0,"genero":"50_50","tipos":["Lutador"],"habitats":["floresta","pradaria","selva","montanha"],"catchRate":25,"baseExp":10,"evolucao":57,"evolucaoNivel":28,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":8,"defesa":4,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":7}},
@@ -112,9 +112,9 @@ const pokedex = [
   {"dexNumber":59,"nome":"Arcanine","altura":1.9,"peso":155.0,"genero":"75_25","tipos":["Fogo"],"habitats":["pradaria","montanha"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":11,"defesa":8,"ataqueEspecial":10,"defesaEspecial":8,"velocidade":10}},
 
   // Linha do Poliwag
-  {"dexNumber":60,"nome":"Poliwag","altura":0.6,"peso":12.4,"genero":"50_50","tipos":["Água"],"habitats":["agua_doce","pantano"],"catchRate":25,"baseExp":15,"evolucao":61,"evolucaoNivel":25,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":5,"defesa":4,"ataqueEspecial":4,"defesaEspecial":4,"velocidade":9}},
-  {"dexNumber":61,"nome":"Poliwhirl","altura":1.0,"peso":20.0,"genero":"50_50","tipos":["Água"],"habitats":["agua_doce","pantano"],"catchRate":15,"baseExp":30,"evolucao":62,"evolucaoNivel":null,"evolucaoItem":"waterstone","statusBasais":{"saude":7,"ataque":7,"defesa":7,"ataqueEspecial":5,"defesaEspecial":5,"velocidade":9}},
-  {"dexNumber":62,"nome":"Poliwrath","altura":1.3,"peso":54.0,"genero":"50_50","tipos":["Água","Lutador"],"habitats":["agua_doce","pantano"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":10,"defesa":10,"ataqueEspecial":7,"defesaEspecial":9,"velocidade":7}},
+  {"dexNumber":60,"nome":"Poliwag","altura":0.6,"peso":12.4,"genero":"50_50","tipos":["Água"],"habitats":["Água_doce","pantano"],"catchRate":25,"baseExp":15,"evolucao":61,"evolucaoNivel":25,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":5,"defesa":4,"ataqueEspecial":4,"defesaEspecial":4,"velocidade":9}},
+  {"dexNumber":61,"nome":"Poliwhirl","altura":1.0,"peso":20.0,"genero":"50_50","tipos":["Água"],"habitats":["Água_doce","pantano"],"catchRate":15,"baseExp":30,"evolucao":62,"evolucaoNivel":null,"evolucaoItem":"waterstone","statusBasais":{"saude":7,"ataque":7,"defesa":7,"ataqueEspecial":5,"defesaEspecial":5,"velocidade":9}},
+  {"dexNumber":62,"nome":"Poliwrath","altura":1.3,"peso":54.0,"genero":"50_50","tipos":["Água","Lutador"],"habitats":["Água_doce","pantano"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":10,"defesa":10,"ataqueEspecial":7,"defesaEspecial":9,"velocidade":7}},
 
   // Linha do Abra
   {"dexNumber":63,"nome":"Abra","altura":0.9,"peso":19.5,"genero":"75_25","tipos":["Psíquico"],"habitats":["floresta","cidade"],"catchRate":15,"baseExp":15,"evolucao":64,"evolucaoNivel":16,"evolucaoItem":null,"statusBasais":{"saude":3,"ataque":2,"defesa":2,"ataqueEspecial":11,"defesaEspecial":6,"velocidade":9}},
@@ -145,15 +145,15 @@ const pokedex = [
   {"dexNumber":78,"nome":"Rapidash","altura":1.7,"peso":95,"genero":"50_50","tipos":["Fogo"],"habitats":["pradaria"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":10,"defesa":7,"ataqueEspecial":8,"defesaEspecial":8,"velocidade":11}},
   
   // Família Slowpoke
-  {"dexNumber":79,"nome":"Slowpoke","altura":1.2,"peso":36,"genero":"50_50","tipos":["Água","Psíquico"],"habitats":["agua_doce","praia"],"catchRate":25,"baseExp":15,"evolucao":80,"evolucaoNivel":37,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":7,"defesa":7,"ataqueEspecial":4,"defesaEspecial":4,"velocidade":2}},
-  {"dexNumber":80,"nome":"Slowbro","altura":1.6,"peso":78.5,"genero":"50_50","tipos":["Água","Psíquico"],"habitats":["agua_doce","praia"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":8,"defesa":11,"ataqueEspecial":9,"defesaEspecial":7,"velocidade":3}},
+  {"dexNumber":79,"nome":"Slowpoke","altura":1.2,"peso":36,"genero":"50_50","tipos":["Água","Psíquico"],"habitats":["Água_doce","praia"],"catchRate":25,"baseExp":15,"evolucao":80,"evolucaoNivel":37,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":7,"defesa":7,"ataqueEspecial":4,"defesaEspecial":4,"velocidade":2}},
+  {"dexNumber":80,"nome":"Slowbro","altura":1.6,"peso":78.5,"genero":"50_50","tipos":["Água","Psíquico"],"habitats":["Água_doce","praia"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":8,"defesa":11,"ataqueEspecial":9,"defesaEspecial":7,"velocidade":3}},
   
   // Família Magnemite
   {"dexNumber":81,"nome":"Magnemite","altura":0.3,"peso":6,"genero":"assexuado","tipos":["Elétrico","Aço"],"habitats":["cidade","montanha"],"catchRate":35,"baseExp":10,"evolucao":82,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":3,"ataque":4,"defesa":7,"ataqueEspecial":10,"defesaEspecial":6,"velocidade":5}},
   {"dexNumber":82,"nome":"Magneton","altura":1,"peso":60,"genero":"assexuado","tipos":["Elétrico","Aço"],"habitats":["cidade","montanha"],"catchRate":15,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":6,"defesa":10,"ataqueEspecial":12,"defesaEspecial":7,"velocidade":7}},
   
   // Família Farfetch'd
-  {"dexNumber":83,"nome":"Farfetch'd","altura":0.8,"peso":15,"genero":"50_50","tipos":["Normal","Voador"],"habitats":["agua_doce","pantano","pradaria"],"catchRate":35,"baseExp":25,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":7,"defesa":6,"ataqueEspecial":6,"defesaEspecial":6,"velocidade":6}},
+  {"dexNumber":83,"nome":"Farfetch'd","altura":0.8,"peso":15,"genero":"50_50","tipos":["Normal","Voador"],"habitats":["Água_doce","pantano","pradaria"],"catchRate":35,"baseExp":25,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":7,"defesa":6,"ataqueEspecial":6,"defesaEspecial":6,"velocidade":6}},
   
   // Família Doduo
   {"dexNumber":84,"nome":"Doduo","altura":1.4,"peso":39.2,"genero":"50_50","tipos":["Normal","Voador"],"habitats":["pradaria","deserto"],"catchRate":35,"baseExp":10,"evolucao":85,"evolucaoNivel":31,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":9,"defesa":5,"ataqueEspecial":4,"defesaEspecial":4,"velocidade":8}},
@@ -228,8 +228,8 @@ const pokedex = [
   {"dexNumber":117,"nome":"Seadra","altura":1.2,"peso":25,"genero":"50_50","tipos":["Água"],"habitats":["oceano"],"catchRate":10,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":7,"defesa":10,"ataqueEspecial":10,"defesaEspecial":5,"velocidade":9}},
   
   // Família Goldeen
-  {"dexNumber":118,"nome":"Goldeen","altura":0.6,"peso":15,"genero":"50_50","tipos":["Água"],"habitats":["agua_doce"],"catchRate":30,"baseExp":10,"evolucao":119,"evolucaoNivel":33,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":7,"defesa":6,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":9}},
-  {"dexNumber":119,"nome":"Seaking","altura":1.3,"peso":39,"genero":"50_50","tipos":["Água"],"habitats":["agua_doce"],"catchRate":20,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":9,"defesa":7,"ataqueEspecial":7,"defesaEspecial":8,"velocidade":7}},
+  {"dexNumber":118,"nome":"Goldeen","altura":0.6,"peso":15,"genero":"50_50","tipos":["Água"],"habitats":["Água_doce"],"catchRate":30,"baseExp":10,"evolucao":119,"evolucaoNivel":33,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":7,"defesa":6,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":9}},
+  {"dexNumber":119,"nome":"Seaking","altura":1.3,"peso":39,"genero":"50_50","tipos":["Água"],"habitats":["Água_doce"],"catchRate":20,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":9,"defesa":7,"ataqueEspecial":7,"defesaEspecial":8,"velocidade":7}},
   
   // Família Staryu
   {"dexNumber":120,"nome":"Staryu","altura":0.8,"peso":34.5,"genero":"assexuado","tipos":["Água"],"habitats":["oceano"],"catchRate":30,"baseExp":10,"evolucao":121,"evolucaoNivel":null,"evolucaoItem":"waterstone","statusBasais":{"saude":3,"ataque":5,"defesa":6,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":9}},
@@ -257,8 +257,8 @@ const pokedex = [
   {"dexNumber":128,"nome":"Tauros","altura":1.4,"peso":88.4,"genero":"100_0","tipos":["Normal"],"habitats":["pradaria"],"catchRate":10,"baseExp":35,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":10,"defesa":10,"ataqueEspecial":4,"defesaEspecial":7,"velocidade":11}},
   
   // Família Magikarp
-  {"dexNumber":129,"nome":"Magikarp","altura":0.9,"peso":10,"genero":"50_50","tipos":["Água"],"habitats":["agua_doce","oceano"],"catchRate":75,"baseExp":5,"evolucao":130,"evolucaoNivel":20,"evolucaoItem":null,"statusBasais":{"saude":2,"ataque":1,"defesa":6,"ataqueEspecial":2,"defesaEspecial":2,"velocidade":8}},
-  {"dexNumber":130,"nome":"Gyarados","altura":6.5,"peso":235,"genero":"50_50","tipos":["Água","Voador"],"habitats":["agua_doce","oceano"],"catchRate":10,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":13,"defesa":8,"ataqueEspecial":7,"defesaEspecial":9,"velocidade":8}},
+  {"dexNumber":129,"nome":"Magikarp","altura":0.9,"peso":10,"genero":"50_50","tipos":["Água"],"habitats":["Água_doce","oceano"],"catchRate":75,"baseExp":5,"evolucao":130,"evolucaoNivel":20,"evolucaoItem":null,"statusBasais":{"saude":2,"ataque":1,"defesa":6,"ataqueEspecial":2,"defesaEspecial":2,"velocidade":8}},
+  {"dexNumber":130,"nome":"Gyarados","altura":6.5,"peso":235,"genero":"50_50","tipos":["Água","Voador"],"habitats":["Água_doce","oceano"],"catchRate":10,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":13,"defesa":8,"ataqueEspecial":7,"defesaEspecial":9,"velocidade":8}},
   
   // Família Lapras
   {"dexNumber":131,"nome":"Lapras","altura":2.5,"peso":220,"genero":"50_50","tipos":["Água","Gelo"],"habitats":["oceano","artico"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":13,"ataque":9,"defesa":8,"ataqueEspecial":9,"defesaEspecial":10,"velocidade":6}},
@@ -268,7 +268,7 @@ const pokedex = [
   
   // Família Eevee
   {"dexNumber":133,"nome":"Eevee","altura":0.3,"peso":6.5,"genero":"87_12","tipos":["Normal"],"habitats":["cidade","floresta","pradaria"],"catchRate":20,"baseExp":10,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":6,"defesa":5,"ataqueEspecial":5,"defesaEspecial":7,"velocidade":6}},
-  {"dexNumber":134,"nome":"Vaporeon","altura":1,"peso":29,"genero":"87_12","tipos":["Água"],"habitats":["agua_doce","floresta"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":13,"ataque":7,"defesa":6,"ataqueEspecial":11,"defesaEspecial":10,"velocidade":7}},
+  {"dexNumber":134,"nome":"Vaporeon","altura":1,"peso":29,"genero":"87_12","tipos":["Água"],"habitats":["Água_doce","floresta"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":13,"ataque":7,"defesa":6,"ataqueEspecial":11,"defesaEspecial":10,"velocidade":7}},
   {"dexNumber":135,"nome":"Jolteon","altura":0.8,"peso":24.5,"genero":"87_12","tipos":["Elétrico"],"habitats":["cidade","floresta"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":7,"defesa":6,"ataqueEspecial":11,"defesaEspecial":10,"velocidade":13}},
   {"dexNumber":136,"nome":"Flareon","altura":0.9,"peso":25,"genero":"87_12","tipos":["Fogo"],"habitats":["caverna","floresta","montanha"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":13,"defesa":6,"ataqueEspecial":10,"defesaEspecial":11,"velocidade":7}},
   
@@ -298,9 +298,9 @@ const pokedex = [
   {"dexNumber":146,"nome":"Moltres","altura":2.0,"peso":60.0,"genero":"assexuado","tipos":["Fogo","Voador"],"habitats":["caverna","montanha"],"catchRate":0,"baseExp":100,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":10,"defesa":9,"ataqueEspecial":13,"defesaEspecial":9,"velocidade":9}},
   
   // Família Dratini
-  {"dexNumber":147,"nome":"Dratini","altura":1.8,"peso":3.3,"genero":"50_50","tipos":["Dragão"],"habitats":["agua_doce","caverna"],"catchRate":15,"baseExp":15,"evolucao":148,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":6,"defesa":5,"ataqueEspecial":5,"defesaEspecial":5,"velocidade":5}},
-  {"dexNumber":148,"nome":"Dragonair","altura":4.0,"peso":16.5,"genero":"50_50","tipos":["Dragão"],"habitats":["agua_doce","caverna"],"catchRate":5,"baseExp":30,"evolucao":149,"evolucaoNivel":55,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":8,"defesa":7,"ataqueEspecial":7,"defesaEspecial":7,"velocidade":7}},
-  {"dexNumber":149,"nome":"Dragonite","altura":2.2,"peso":210.0,"genero":"50_50","tipos":["Dragão","Voador"],"habitats":["agua_doce","caverna","montanha"],"catchRate":5,"baseExp":55,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":13,"defesa":10,"ataqueEspecial":10,"defesaEspecial":10,"velocidade":8}},
+  {"dexNumber":147,"nome":"Dratini","altura":1.8,"peso":3.3,"genero":"50_50","tipos":["Dragão"],"habitats":["Água_doce","caverna"],"catchRate":15,"baseExp":15,"evolucao":148,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":6,"defesa":5,"ataqueEspecial":5,"defesaEspecial":5,"velocidade":5}},
+  {"dexNumber":148,"nome":"Dragonair","altura":4.0,"peso":16.5,"genero":"50_50","tipos":["Dragão"],"habitats":["Água_doce","caverna"],"catchRate":5,"baseExp":30,"evolucao":149,"evolucaoNivel":55,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":8,"defesa":7,"ataqueEspecial":7,"defesaEspecial":7,"velocidade":7}},
+  {"dexNumber":149,"nome":"Dragonite","altura":2.2,"peso":210.0,"genero":"50_50","tipos":["Dragão","Voador"],"habitats":["Água_doce","caverna","montanha"],"catchRate":5,"baseExp":55,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":13,"defesa":10,"ataqueEspecial":10,"defesaEspecial":10,"velocidade":8}},
   
   // Família Mewtwo
   {"dexNumber":150,"nome":"Mewtwo","altura":2.0,"peso":122.0,"genero":"assexuado","tipos":["Psíquico"],"habitats":["caverna"],"catchRate":0,"baseExp":100,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":11,"defesa":9,"ataqueEspecial":15,"defesaEspecial":9,"velocidade":13}},
@@ -321,9 +321,9 @@ const pokedex = [
   {"dexNumber":157,"nome":"Typhlosion","altura":1.7,"peso":79.5,"genero":"87_12","tipos":["Fogo"],"habitats":["caverna","montanha"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":8,"defesa":8,"ataqueEspecial":11,"defesaEspecial":9,"velocidade":10}},
   
   // Família Totodile
-  {"dexNumber":158,"nome":"Totodile","altura":0.6,"peso":9.5,"genero":"87_12","tipos":["Água"],"habitats":["agua_doce","pantano","praia"],"catchRate":20,"baseExp":15,"evolucao":159,"evolucaoNivel":18,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":7,"defesa":6,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":4}},
-  {"dexNumber":159,"nome":"Croconaw","altura":1.1,"peso":25.0,"genero":"87_12","tipos":["Água"],"habitats":["agua_doce","pantano","praia"],"catchRate":10,"baseExp":30,"evolucao":160,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":8,"defesa":8,"ataqueEspecial":6,"defesaEspecial":6,"velocidade":6}},
-  {"dexNumber":160,"nome":"Feraligatr","altura":2.3,"peso":88.8,"genero":"87_12","tipos":["Água"],"habitats":["agua_doce","pantano","praia"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":11,"defesa":10,"ataqueEspecial":8,"defesaEspecial":8,"velocidade":8}},
+  {"dexNumber":158,"nome":"Totodile","altura":0.6,"peso":9.5,"genero":"87_12","tipos":["Água"],"habitats":["Água_doce","pantano","praia"],"catchRate":20,"baseExp":15,"evolucao":159,"evolucaoNivel":18,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":7,"defesa":6,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":4}},
+  {"dexNumber":159,"nome":"Croconaw","altura":1.1,"peso":25.0,"genero":"87_12","tipos":["Água"],"habitats":["Água_doce","pantano","praia"],"catchRate":10,"baseExp":30,"evolucao":160,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":8,"defesa":8,"ataqueEspecial":6,"defesaEspecial":6,"velocidade":6}},
+  {"dexNumber":160,"nome":"Feraligatr","altura":2.3,"peso":88.8,"genero":"87_12","tipos":["Água"],"habitats":["Água_doce","pantano","praia"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":11,"defesa":10,"ataqueEspecial":8,"defesaEspecial":8,"velocidade":8}},
   
   // Família Sentret
   {"dexNumber":161,"nome":"Sentret","altura":0.8,"peso":6.0,"genero":"50_50","tipos":["Normal"],"habitats":["floresta","pradaria"],"catchRate":40,"baseExp":10,"evolucao":162,"evolucaoNivel":15,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":5,"defesa":3,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":2}},
@@ -374,14 +374,14 @@ const pokedex = [
   {"dexNumber":182,"nome":"Bellossom","altura":0.4,"peso":5.8,"genero":"50_50","tipos":["Planta"],"habitats":["pantano","selva"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":8,"defesa":10,"ataqueEspecial":9,"defesaEspecial":10,"velocidade":5}},
   
   // Família Marill
-  {"dexNumber":183,"nome":"Marill","altura":0.4,"peso":8.5,"genero":"25_75","tipos":["Água","Fada"],"habitats":["agua_doce"],"catchRate":40,"baseExp":15,"evolucao":184,"evolucaoNivel":18,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":2,"defesa":5,"ataqueEspecial":2,"defesaEspecial":5,"velocidade":4}},
-  {"dexNumber":184,"nome":"Azumarill","altura":0.8,"peso":28.5,"genero":"25_75","tipos":["Água","Fada"],"habitats":["agua_doce"],"catchRate":25,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":5,"defesa":8,"ataqueEspecial":6,"defesaEspecial":8,"velocidade":5}},
+  {"dexNumber":183,"nome":"Marill","altura":0.4,"peso":8.5,"genero":"25_75","tipos":["Água","Fada"],"habitats":["Água_doce"],"catchRate":40,"baseExp":15,"evolucao":184,"evolucaoNivel":18,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":2,"defesa":5,"ataqueEspecial":2,"defesaEspecial":5,"velocidade":4}},
+  {"dexNumber":184,"nome":"Azumarill","altura":0.8,"peso":28.5,"genero":"25_75","tipos":["Água","Fada"],"habitats":["Água_doce"],"catchRate":25,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":5,"defesa":8,"ataqueEspecial":6,"defesaEspecial":8,"velocidade":5}},
   
   // Família Sudowoodo
   {"dexNumber":185,"nome":"Sudowoodo","altura":1.2,"peso":38.0,"genero":"50_50","tipos":["Pedra"],"habitats":["floresta","taiga"],"catchRate":15,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":10,"defesa":12,"ataqueEspecial":3,"defesaEspecial":7,"velocidade":3}},
   
   // Família Politoed
-  {"dexNumber":186,"nome":"Politoed","altura":1.1,"peso":33.9,"genero":"50_50","tipos":["Água"],"habitats":["agua_doce","pantano"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":8,"defesa":8,"ataqueEspecial":9,"defesaEspecial":10,"velocidade":7}},
+  {"dexNumber":186,"nome":"Politoed","altura":1.1,"peso":33.9,"genero":"50_50","tipos":["Água"],"habitats":["Água_doce","pantano"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":8,"defesa":8,"ataqueEspecial":9,"defesaEspecial":10,"velocidade":7}},
   
   // Família Hoppip
   {"dexNumber":187,"nome":"Hoppip","altura":0.4,"peso":0.5,"genero":"50_50","tipos":["Planta","Voador"],"habitats":["floresta","pradaria"],"catchRate":45,"baseExp":5,"evolucao":188,"evolucaoNivel":18,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":4,"defesa":4,"ataqueEspecial":4,"defesaEspecial":6,"velocidade":5}},
@@ -399,8 +399,8 @@ const pokedex = [
   {"dexNumber":193,"nome":"Yanma","altura":1.2,"peso":38.0,"genero":"50_50","tipos":["Inseto","Voador"],"habitats":["floresta","pantano"],"catchRate":25,"baseExp":20,"evolucao":469,"evolucaoNivel":null,"evolucaoItem":"movimento ancientpower","statusBasais":{"saude":7,"ataque":7,"defesa":5,"ataqueEspecial":8,"defesaEspecial":5,"velocidade":10}},
   
   // Família Wooper
-  {"dexNumber":194,"nome":"Wooper","altura":0.4,"peso":8.5,"genero":"50_50","tipos":["Água","Terra"],"habitats":["agua_doce","pantano"],"catchRate":30,"baseExp":10,"evolucao":195,"evolucaoNivel":20,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":5,"defesa":5,"ataqueEspecial":3,"defesaEspecial":3,"velocidade":2}},
-  {"dexNumber":195,"nome":"Quagsire","altura":1.4,"peso":75.0,"genero":"50_50","tipos":["Água","Terra"],"habitats":["agua_doce"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":9,"defesa":9,"ataqueEspecial":7,"defesaEspecial":7,"velocidade":4}},
+  {"dexNumber":194,"nome":"Wooper","altura":0.4,"peso":8.5,"genero":"50_50","tipos":["Água","Terra"],"habitats":["Água_doce","pantano"],"catchRate":30,"baseExp":10,"evolucao":195,"evolucaoNivel":20,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":5,"defesa":5,"ataqueEspecial":3,"defesaEspecial":3,"velocidade":2}},
+  {"dexNumber":195,"nome":"Quagsire","altura":1.4,"peso":75.0,"genero":"50_50","tipos":["Água","Terra"],"habitats":["Água_doce"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":9,"defesa":9,"ataqueEspecial":7,"defesaEspecial":7,"velocidade":4}},
   
   // Família Espeon
   {"dexNumber":196,"nome":"Espeon","altura":0.9,"peso":26.5,"genero":"87_12","tipos":["Psíquico"],"habitats":["cidade","floresta","pradaria"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":7,"defesa":6,"ataqueEspecial":13,"defesaEspecial":10,"velocidade":11}},
@@ -412,7 +412,7 @@ const pokedex = [
   {"dexNumber":198,"nome":"Murkrow","altura":0.5,"peso":2.1,"genero":"50_50","tipos":["Noturno","Voador"],"habitats":["cidade","floresta","pantano"],"catchRate":15,"baseExp":15,"evolucao":430,"evolucaoNivel":null,"evolucaoItem":"duskstone","statusBasais":{"saude":6,"ataque":9,"defesa":4,"ataqueEspecial":9,"defesaEspecial":4,"velocidade":9}},
   
   // Família Slowking
-  {"dexNumber":199,"nome":"Slowking","altura":2.0,"peso":79.5,"genero":"50_50","tipos":["Água","Psíquico"],"habitats":["agua_doce","praia"],"catchRate":10,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":8,"defesa":8,"ataqueEspecial":10,"defesaEspecial":11,"velocidade":3}},
+  {"dexNumber":199,"nome":"Slowking","altura":2.0,"peso":79.5,"genero":"50_50","tipos":["Água","Psíquico"],"habitats":["Água_doce","praia"],"catchRate":10,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":8,"defesa":8,"ataqueEspecial":10,"defesaEspecial":11,"velocidade":3}},
   
   // Família Misdreavus
   {"dexNumber":200,"nome":"Misdreavus","altura":0.7,"peso":1.0,"genero":"50_50","tipos":["Fantasma"],"habitats":["caverna","cidade","floresta"],"catchRate":15,"baseExp":20,"evolucao":429,"evolucaoNivel":null,"evolucaoItem":"duskstone","statusBasais":{"saude":6,"ataque":6,"defesa":6,"ataqueEspecial":9,"defesaEspecial":9,"velocidade":9}},
@@ -581,9 +581,9 @@ const pokedex = [
   {"dexNumber":269,"nome":"Dustox","altura":1.2,"peso":31.6,"genero":"50_50","tipos":["Inseto","Veneno"],"habitats":["floresta","selva"],"catchRate":10,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":5,"defesa":7,"ataqueEspecial":5,"defesaEspecial":9,"velocidade":7}},
 
   // Família Lotad
-  {"dexNumber":270,"nome":"Lotad","altura":0.5,"peso":2.6,"genero":"50_50","tipos":["Água","Planta"],"habitats":["agua_doce"],"catchRate":25,"baseExp":15,"evolucao":271,"evolucaoNivel":14,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":3,"defesa":3,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":3}},
-  {"dexNumber":271,"nome":"Lombre","altura":1.2,"peso":32.5,"genero":"50_50","tipos":["Água","Planta"],"habitats":["agua_doce"],"catchRate":20,"baseExp":30,"evolucao":272,"evolucaoNivel":null,"evolucaoItem":"water stone","statusBasais":{"saude":6,"ataque":5,"defesa":5,"ataqueEspecial":6,"defesaEspecial":7,"velocidade":5}},
-  {"dexNumber":272,"nome":"Ludicolo","altura":1.5,"peso":55.0,"genero":"50_50","tipos":["Água","Planta"],"habitats":["agua_doce","floresta"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":7,"defesa":7,"ataqueEspecial":9,"defesaEspecial":10,"velocidade":7}},
+  {"dexNumber":270,"nome":"Lotad","altura":0.5,"peso":2.6,"genero":"50_50","tipos":["Água","Planta"],"habitats":["Água_doce"],"catchRate":25,"baseExp":15,"evolucao":271,"evolucaoNivel":14,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":3,"defesa":3,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":3}},
+  {"dexNumber":271,"nome":"Lombre","altura":1.2,"peso":32.5,"genero":"50_50","tipos":["Água","Planta"],"habitats":["Água_doce"],"catchRate":20,"baseExp":30,"evolucao":272,"evolucaoNivel":null,"evolucaoItem":"water stone","statusBasais":{"saude":6,"ataque":5,"defesa":5,"ataqueEspecial":6,"defesaEspecial":7,"velocidade":5}},
+  {"dexNumber":272,"nome":"Ludicolo","altura":1.5,"peso":55.0,"genero":"50_50","tipos":["Água","Planta"],"habitats":["Água_doce","floresta"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":7,"defesa":7,"ataqueEspecial":9,"defesaEspecial":10,"velocidade":7}},
 
   // Família Seedot
   {"dexNumber":273,"nome":"Seedot","altura":0.5,"peso":4.0,"genero":"50_50","tipos":["Planta"],"habitats":["floresta","selva"],"catchRate":25,"baseExp":15,"evolucao":274,"evolucaoNivel":14,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":4,"defesa":5,"ataqueEspecial":3,"defesaEspecial":3,"velocidade":3}},
@@ -604,8 +604,8 @@ const pokedex = [
   {"dexNumber":282,"nome":"Gardevoir","altura":1.6,"peso":48.4,"genero":"50_50","tipos":["Psíquico","Fada"],"habitats":["cidade","floresta"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":7,"defesa":7,"ataqueEspecial":13,"defesaEspecial":12,"velocidade":8}},
 
   // Família Surskit
-  {"dexNumber":283,"nome":"Surskit","altura":0.5,"peso":1.7,"genero":"50_50","tipos":["Inseto","Água"],"habitats":["agua_doce"],"catchRate":40,"baseExp":10,"evolucao":284,"evolucaoNivel":22,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":3,"defesa":3,"ataqueEspecial":5,"defesaEspecial":5,"velocidade":7}},
-  {"dexNumber":284,"nome":"Masquerain","altura":0.8,"peso":3.6,"genero":"50_50","tipos":["Inseto","Voador"],"habitats":["agua_doce"],"catchRate":15,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":6,"defesa":6,"ataqueEspecial":8,"defesaEspecial":8,"velocidade":6}},
+  {"dexNumber":283,"nome":"Surskit","altura":0.5,"peso":1.7,"genero":"50_50","tipos":["Inseto","Água"],"habitats":["Água_doce"],"catchRate":40,"baseExp":10,"evolucao":284,"evolucaoNivel":22,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":3,"defesa":3,"ataqueEspecial":5,"defesaEspecial":5,"velocidade":7}},
+  {"dexNumber":284,"nome":"Masquerain","altura":0.8,"peso":3.6,"genero":"50_50","tipos":["Inseto","Voador"],"habitats":["Água_doce"],"catchRate":15,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":6,"defesa":6,"ataqueEspecial":8,"defesaEspecial":8,"velocidade":6}},
 
   // Família Shroomish
   {"dexNumber":285,"nome":"Shroomish","altura":0.4,"peso":4.5,"genero":"50_50","tipos":["Planta"],"habitats":["pantano","selva"],"catchRate":30,"baseExp":10,"evolucao":286,"evolucaoNivel":23,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":4,"defesa":6,"ataqueEspecial":4,"defesaEspecial":6,"velocidade":4}},
@@ -631,7 +631,7 @@ const pokedex = [
   {"dexNumber":297,"nome":"Hariyama","altura":2.3,"peso":253.8,"genero":"75_25","tipos":["Lutador"],"habitats":["caverna","montanha"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":14,"ataque":12,"defesa":6,"ataqueEspecial":4,"defesaEspecial":6,"velocidade":5}},
 
   // Família Azurill
-  {"dexNumber":298,"nome":"Azurill","altura":0.2,"peso":2.0,"genero":"25_75","tipos":["Normal","Fada"],"habitats":["agua_doce"],"catchRate":60,"baseExp":5,"evolucao":183,"evolucaoNivel":null,"evolucaoItem":"amizade","statusBasais":{"saude":5,"ataque":2,"defesa":4,"ataqueEspecial":2,"defesaEspecial":4,"velocidade":2}},
+  {"dexNumber":298,"nome":"Azurill","altura":0.2,"peso":2.0,"genero":"25_75","tipos":["Normal","Fada"],"habitats":["Água_doce"],"catchRate":60,"baseExp":5,"evolucao":183,"evolucaoNivel":null,"evolucaoItem":"amizade","statusBasais":{"saude":5,"ataque":2,"defesa":4,"ataqueEspecial":2,"defesaEspecial":4,"velocidade":2}},
 
   // Família Nosepass
   {"dexNumber":299,"nome":"Nosepass","altura":1.0,"peso":97.0,"genero":"50_50","tipos":["Pedra"],"habitats":["caverna","montanha","praia"],"catchRate":20,"baseExp":20,"evolucao":476,"evolucaoNivel":null,"evolucaoItem":"nivelar em area magnetic field","statusBasais":{"saude":3,"ataque":5,"defesa":14,"ataqueEspecial":5,"defesaEspecial":9,"velocidade":4}},
@@ -679,8 +679,8 @@ const pokedex = [
   {"dexNumber":317,"nome":"Swalot","altura":1.7,"peso":80.0,"genero":"50_50","tipos":["Veneno"],"habitats":["cidade","pantano","pradaria"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":7,"defesa":8,"ataqueEspecial":7,"defesaEspecial":8,"velocidade":6}},
 
   // Família Carvanha
-  {"dexNumber":318,"nome":"Carvanha","altura":0.8,"peso":20.8,"genero":"50_50","tipos":["Água","Noturno"],"habitats":["agua_doce","oceano"],"catchRate":30,"baseExp":10,"evolucao":319,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":9,"defesa":2,"ataqueEspecial":7,"defesaEspecial":2,"velocidade":7}},
-  {"dexNumber":319,"nome":"Sharpedo","altura":1.8,"peso":88.8,"genero":"50_50","tipos":["Água","Noturno"],"habitats":["agua_doce","oceano"],"catchRate":20,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":12,"defesa":5,"ataqueEspecial":10,"defesaEspecial":5,"velocidade":10}},
+  {"dexNumber":318,"nome":"Carvanha","altura":0.8,"peso":20.8,"genero":"50_50","tipos":["Água","Noturno"],"habitats":["Água_doce","oceano"],"catchRate":30,"baseExp":10,"evolucao":319,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":9,"defesa":2,"ataqueEspecial":7,"defesaEspecial":2,"velocidade":7}},
+  {"dexNumber":319,"nome":"Sharpedo","altura":1.8,"peso":88.8,"genero":"50_50","tipos":["Água","Noturno"],"habitats":["Água_doce","oceano"],"catchRate":20,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":12,"defesa":5,"ataqueEspecial":10,"defesaEspecial":5,"velocidade":10}},
 
   // Família Wailmer
   {"dexNumber":320,"nome":"Wailmer","altura":2.0,"peso":130.0,"genero":"50_50","tipos":["Água"],"habitats":["oceano"],"catchRate":30,"baseExp":15,"evolucao":321,"evolucaoNivel":40,"evolucaoItem":null,"statusBasais":{"saude":13,"ataque":7,"defesa":4,"ataqueEspecial":7,"defesaEspecial":4,"velocidade":6}},
@@ -726,8 +726,8 @@ const pokedex = [
   {"dexNumber":338,"nome":"Solrock","altura":1.2,"peso":154.0,"genero":"assexuado","tipos":["Pedra","Psíquico"],"habitats":["caverna","montanha","ruina"],"catchRate":15,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":10,"defesa":9,"ataqueEspecial":6,"defesaEspecial":7,"velocidade":7}},
 
   // Família Barboach
-  {"dexNumber":339,"nome":"Barboach","altura":0.4,"peso":1.9,"genero":"50_50","tipos":["Água","Terra"],"habitats":["agua_doce","pantano"],"catchRate":30,"baseExp":10,"evolucao":340,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":5,"defesa":4,"ataqueEspecial":5,"defesaEspecial":4,"velocidade":6}},
-  {"dexNumber":340,"nome":"Whiscash","altura":0.9,"peso":23.6,"genero":"50_50","tipos":["Água","Terra"],"habitats":["agua_doce","pantano"],"catchRate":20,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":8,"defesa":7,"ataqueEspecial":8,"defesaEspecial":7,"velocidade":6}},
+  {"dexNumber":339,"nome":"Barboach","altura":0.4,"peso":1.9,"genero":"50_50","tipos":["Água","Terra"],"habitats":["Água_doce","pantano"],"catchRate":30,"baseExp":10,"evolucao":340,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":5,"defesa":4,"ataqueEspecial":5,"defesaEspecial":4,"velocidade":6}},
+  {"dexNumber":340,"nome":"Whiscash","altura":0.9,"peso":23.6,"genero":"50_50","tipos":["Água","Terra"],"habitats":["Água_doce","pantano"],"catchRate":20,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":8,"defesa":7,"ataqueEspecial":8,"defesaEspecial":7,"velocidade":6}},
 
   // Família Corphish
   {"dexNumber":341,"nome":"Corphish","altura":0.6,"peso":11.5,"genero":"50_50","tipos":["Água"],"habitats":["oceano","pantano"],"catchRate":30,"baseExp":10,"evolucao":342,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":8,"defesa":7,"ataqueEspecial":5,"defesaEspecial":4,"velocidade":4}},
@@ -746,8 +746,8 @@ const pokedex = [
   {"dexNumber":348,"nome":"Armaldo","altura":1.5,"peso":68.2,"genero":"87_12","tipos":["Pedra","Inseto"],"habitats":["caverna"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":13,"defesa":10,"ataqueEspecial":7,"defesaEspecial":8,"velocidade":5}},
 
   // Família Feebas
-  {"dexNumber":349,"nome":"Feebas","altura":0.6,"peso":7.4,"genero":"50_50","tipos":["Água"],"habitats":["agua_doce"],"catchRate":75,"baseExp":5,"evolucao":350,"evolucaoNivel":null,"evolucaoItem":"beauty condition","statusBasais":{"saude":2,"ataque":2,"defesa":2,"ataqueEspecial":1,"defesaEspecial":6,"velocidade":8}},
-  {"dexNumber":350,"nome":"Milotic","altura":6.2,"peso":162.0,"genero":"50_50","tipos":["Água"],"habitats":["agua_doce"],"catchRate":5,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":6,"defesa":8,"ataqueEspecial":10,"defesaEspecial":13,"velocidade":8}},
+  {"dexNumber":349,"nome":"Feebas","altura":0.6,"peso":7.4,"genero":"50_50","tipos":["Água"],"habitats":["Água_doce"],"catchRate":75,"baseExp":5,"evolucao":350,"evolucaoNivel":null,"evolucaoItem":"beauty condition","statusBasais":{"saude":2,"ataque":2,"defesa":2,"ataqueEspecial":1,"defesaEspecial":6,"velocidade":8}},
+  {"dexNumber":350,"nome":"Milotic","altura":6.2,"peso":162.0,"genero":"50_50","tipos":["Água"],"habitats":["Água_doce"],"catchRate":5,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":6,"defesa":8,"ataqueEspecial":10,"defesaEspecial":13,"velocidade":8}},
 
   // Família Castform
   {"dexNumber":351,"nome":"Castform","altura":0.3,"peso":0.8,"genero":"50_50","tipos":["Normal"],"habitats":["cidade","floresta"],"catchRate":20,"baseExp":25,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":7,"defesa":7,"ataqueEspecial":7,"defesaEspecial":7,"velocidade":7}},
@@ -915,8 +915,8 @@ const pokedex = [
   {"dexNumber":417,"nome":"Pachirisu","tipos":["Elétrico"],"altura":0.4,"peso":3.9,"genero":"50_50","habitats":["cidade","floresta"],"catchRate":30,"baseExp":15,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":5,"defesa":7,"ataqueEspecial":5,"defesaEspecial":9,"velocidade":10}},
 
   // Família Buizel
-  {"dexNumber":418,"nome":"Buizel","tipos":["Água"],"altura":0.7,"peso":29.5,"genero":"50_50","habitats":["agua_doce","pradaria"],"catchRate":30,"baseExp":10,"evolucao":419,"evolucaoNivel":26,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":7,"defesa":4,"ataqueEspecial":6,"defesaEspecial":3,"velocidade":9}},
-  {"dexNumber":419,"nome":"Floatzel","tipos":["Água"],"altura":1.1,"peso":33.5,"genero":"50_50","habitats":["agua_doce","pradaria"],"catchRate":15,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":11,"defesa":6,"ataqueEspecial":9,"defesaEspecial":5,"velocidade":12}},
+  {"dexNumber":418,"nome":"Buizel","tipos":["Água"],"altura":0.7,"peso":29.5,"genero":"50_50","habitats":["Água_doce","pradaria"],"catchRate":30,"baseExp":10,"evolucao":419,"evolucaoNivel":26,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":7,"defesa":4,"ataqueEspecial":6,"defesaEspecial":3,"velocidade":9}},
+  {"dexNumber":419,"nome":"Floatzel","tipos":["Água"],"altura":1.1,"peso":33.5,"genero":"50_50","habitats":["Água_doce","pradaria"],"catchRate":15,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":11,"defesa":6,"ataqueEspecial":9,"defesaEspecial":5,"velocidade":12}},
 
   // Família Cherubi
   {"dexNumber":420,"nome":"Cherubi","tipos":["Planta"],"altura":0.4,"peso":3.3,"genero":"50_50","habitats":["floresta","selva"],"catchRate":30,"baseExp":10,"evolucao":421,"evolucaoNivel":25,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":4,"defesa":5,"ataqueEspecial":6,"defesaEspecial":5,"velocidade":4}},
@@ -996,8 +996,8 @@ const pokedex = [
   {"dexNumber":452,"nome":"Drapion","tipos":["Veneno", "Noturno"],"altura":1.3,"peso":61.5,"genero":"50_50","habitats":["floresta","selva","pantano"],"catchRate":5,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":9,"defesa":11,"ataqueEspecial":6,"defesaEspecial":7,"velocidade":9}},
 
   // Família Croagunk
-  {"dexNumber":453,"nome":"Croagunk","tipos":["Veneno", "Lutador"],"altura":0.7,"peso":23.0,"genero":"50_50","habitats":["pantano","agua_doce"],"catchRate":30,"baseExp":15,"evolucao":454,"evolucaoNivel":37,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":6,"defesa":4,"ataqueEspecial":6,"defesaEspecial":4,"velocidade":5}},
-  {"dexNumber":454,"nome":"Toxicroak","tipos":["Veneno", "Lutador"],"altura":1.3,"peso":44.4,"genero":"50_50","habitats":["pantano","agua_doce"],"catchRate":5,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":11,"defesa":7,"ataqueEspecial":9,"defesaEspecial":7,"velocidade":9}},
+  {"dexNumber":453,"nome":"Croagunk","tipos":["Veneno", "Lutador"],"altura":0.7,"peso":23.0,"genero":"50_50","habitats":["pantano","Água_doce"],"catchRate":30,"baseExp":15,"evolucao":454,"evolucaoNivel":37,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":6,"defesa":4,"ataqueEspecial":6,"defesaEspecial":4,"velocidade":5}},
+  {"dexNumber":454,"nome":"Toxicroak","tipos":["Veneno", "Lutador"],"altura":1.3,"peso":44.4,"genero":"50_50","habitats":["pantano","Água_doce"],"catchRate":5,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":11,"defesa":7,"ataqueEspecial":9,"defesaEspecial":7,"velocidade":9}},
 
   // Família Carnivine
   {"dexNumber":455,"nome":"Carnivine","tipos":["Planta"],"altura":1.4,"peso":27.0,"genero":"50_50","habitats":["selva","pantano"],"catchRate":15,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":10,"defesa":7,"ataqueEspecial":9,"defesaEspecial":7,"velocidade":5}},
@@ -1154,13 +1154,13 @@ const pokedex = [
   {"dexNumber":10233,"nome":"Typhlosion de Hisui","tipos":["Fogo", "Fantasma"],"altura":1.6,"peso":69.8,"genero":"87_12","habitats":["montanha","pradaria","ruina"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":8,"defesa":7,"ataqueEspecial":11,"defesaEspecial":8,"velocidade":10}},
 
   // Família Qwilfish de Hisui
-  {"dexNumber":10234,"nome":"Qwilfish de Hisui","tipos":["Veneno", "Noturno"],"altura":0.5,"peso":3.9,"genero":"50_50","habitats":["oceano","agua_doce"],"catchRate":45,"baseExp":50,"evolucao":904,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":9,"defesa":9,"ataqueEspecial":5,"defesaEspecial":5,"velocidade":8}},
+  {"dexNumber":10234,"nome":"Qwilfish de Hisui","tipos":["Veneno", "Noturno"],"altura":0.5,"peso":3.9,"genero":"50_50","habitats":["oceano","Água_doce"],"catchRate":45,"baseExp":50,"evolucao":904,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":9,"defesa":9,"ataqueEspecial":5,"defesaEspecial":5,"velocidade":8}},
 
   // Família Sneasel de Hisui
   {"dexNumber":10235,"nome":"Sneasel de Hisui","tipos":["Lutador", "Veneno"],"altura":0.9,"peso":27.0,"genero":"50_50","habitats":["montanha","tundra"],"catchRate":60,"baseExp":50,"evolucao":903,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":9,"defesa":6,"ataqueEspecial":4,"defesaEspecial":7,"velocidade":11}},
 
   // Família Samurott de Hisui
-  {"dexNumber":10236,"nome":"Samurott de Hisui","tipos":["Água", "Noturno"],"altura":1.5,"peso":58.2,"genero":"87_12","habitats":["agua_doce","oceano"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":10,"defesa":9,"ataqueEspecial":10,"defesaEspecial":7,"velocidade":7}},
+  {"dexNumber":10236,"nome":"Samurott de Hisui","tipos":["Água", "Noturno"],"altura":1.5,"peso":58.2,"genero":"87_12","habitats":["Água_doce","oceano"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":10,"defesa":9,"ataqueEspecial":10,"defesaEspecial":7,"velocidade":7}},
 
   // Família Lilligant de Hisui
   {"dexNumber":10237,"nome":"Lilligant de Hisui","tipos":["Planta", "Lutador"],"altura":1.2,"peso":19.2,"genero":"0_100","habitats":["pradaria","floresta","ruina"],"catchRate":75,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":10,"defesa":8,"ataqueEspecial":11,"defesaEspecial":8,"velocidade":9}},
@@ -1173,8 +1173,8 @@ const pokedex = [
   {"dexNumber":10240,"nome":"Braviary de Hisui","tipos":["Psíquico", "Voador"],"altura":1.7,"peso":43.4,"genero":"100_0","habitats":["montanha","tundra","ruina"],"catchRate":60,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":8,"defesa":7,"ataqueEspecial":11,"defesaEspecial":7,"velocidade":6}},
 
   // Família Sliggoo de Hisui
-  {"dexNumber":10241,"nome":"Sliggoo de Hisui","tipos":["Aço", "Dragão"],"altura":0.7,"peso":17.5,"genero":"50_50","habitats":["pantano","agua_doce"],"catchRate":45,"baseExp":50,"evolucao":706,"evolucaoNivel":50,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":8,"defesa":5,"ataqueEspecial":8,"defesaEspecial":11,"velocidade":6}},
-  {"dexNumber":10242,"nome":"Goodra de Hisui","tipos":["Aço", "Dragão"],"altura":1.7,"peso":334.1,"genero":"50_50","habitats":["pantano","agua_doce"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":10,"defesa":7,"ataqueEspecial":11,"defesaEspecial":15,"velocidade":8}},
+  {"dexNumber":10241,"nome":"Sliggoo de Hisui","tipos":["Aço", "Dragão"],"altura":0.7,"peso":17.5,"genero":"50_50","habitats":["pantano","Água_doce"],"catchRate":45,"baseExp":50,"evolucao":706,"evolucaoNivel":50,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":8,"defesa":5,"ataqueEspecial":8,"defesaEspecial":11,"velocidade":6}},
+  {"dexNumber":10242,"nome":"Goodra de Hisui","tipos":["Aço", "Dragão"],"altura":1.7,"peso":334.1,"genero":"50_50","habitats":["pantano","Água_doce"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":10,"defesa":7,"ataqueEspecial":11,"defesaEspecial":15,"velocidade":8}},
 
   // Família Avalugg de Hisui
   {"dexNumber":10243,"nome":"Avalugg de Hisui","tipos":["Gelo", "Pedra"],"altura":1.4,"peso":262.4,"genero":"50_50","habitats":["tundra","artico"],"catchRate":55,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":12,"defesa":18,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":3}},
@@ -1262,9 +1262,9 @@ const pokedex = [
     {"dexNumber":534,"nome":"Conkeldurr","tipos":["Lutador"],"altura":1.5,"peso":97.0,"genero":"75_25","habitats":["montanha"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":14,"defesa":10,"ataqueEspecial":6,"defesaEspecial":7,"velocidade":5}},
 
     // Família Tympole
-    {"dexNumber":535,"nome":"Tympole","tipos":["Água"],"altura":0.5,"peso":4.1,"genero":"50_50","habitats":["agua_doce","pantano"],"catchRate":15,"baseExp":null,"evolucao":536,"evolucaoNivel":25,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":5,"defesa":4,"ataqueEspecial":5,"defesaEspecial":4,"velocidade":6}},
-    {"dexNumber":536,"nome":"Palpitoad","tipos":["Água","Terra"],"altura":0.8,"peso":17.0,"genero":"50_50","habitats":["agua_doce","pantano"],"catchRate":10,"baseExp":30,"evolucao":537,"evolucaoNivel":36,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":7,"defesa":6,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":7}},
-    {"dexNumber":537,"nome":"Seismitoad","tipos":["Água","Terra"],"altura":1.5,"peso":62.0,"genero":"50_50","habitats":["agua_doce","pantano"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":10,"defesa":8,"ataqueEspecial":9,"defesaEspecial":8,"velocidade":7}},
+    {"dexNumber":535,"nome":"Tympole","tipos":["Água"],"altura":0.5,"peso":4.1,"genero":"50_50","habitats":["Água_doce","pantano"],"catchRate":15,"baseExp":null,"evolucao":536,"evolucaoNivel":25,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":5,"defesa":4,"ataqueEspecial":5,"defesaEspecial":4,"velocidade":6}},
+    {"dexNumber":536,"nome":"Palpitoad","tipos":["Água","Terra"],"altura":0.8,"peso":17.0,"genero":"50_50","habitats":["Água_doce","pantano"],"catchRate":10,"baseExp":30,"evolucao":537,"evolucaoNivel":36,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":7,"defesa":6,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":7}},
+    {"dexNumber":537,"nome":"Seismitoad","tipos":["Água","Terra"],"altura":1.5,"peso":62.0,"genero":"50_50","habitats":["Água_doce","pantano"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":10,"defesa":8,"ataqueEspecial":9,"defesaEspecial":8,"velocidade":7}},
 
     // Família Throh
     {"dexNumber":538,"nome":"Throh","tipos":["Lutador"],"altura":1.3,"peso":55.5,"genero":"100_0","habitats":["caverna","cidade","montanha"],"catchRate":15,"baseExp":30,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":12,"ataque":10,"defesa":9,"ataqueEspecial":3,"defesaEspecial":9,"velocidade":5}},
@@ -1348,8 +1348,8 @@ const pokedex = [
     {"dexNumber":578,"nome":"Duosion","tipos":["Psíquico"],"altura":0.6,"peso":8.0,"genero":"50_50","habitats":["caverna","floresta"],"catchRate":10,"baseExp":30,"evolucao":579,"evolucaoNivel":41,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":4,"defesa":5,"ataqueEspecial":13,"defesaEspecial":6,"velocidade":3}},
     {"dexNumber":579,"nome":"Reuniclus","tipos":["Psíquico"],"altura":1.0,"peso":20.1,"genero":"50_50","habitats":["caverna","floresta","ruina"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":7,"defesa":8,"ataqueEspecial":13,"defesaEspecial":9,"velocidade":3}},
 
-    {"dexNumber":580,"nome":"Ducklett","tipos":["Água","Voador"],"altura":0.5,"peso":5.5,"genero":"50_50","habitats":["agua_doce","pantano"],"catchRate":25,"baseExp":10,"evolucao":581,"evolucaoNivel":35,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":4,"defesa":5,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":6}},
-    {"dexNumber":581,"nome":"Swanna","tipos":["Água","Voador"],"altura":1.3,"peso":24.2,"genero":"50_50","habitats":["agua_doce","pantano"],"catchRate":15,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":9,"defesa":6,"ataqueEspecial":9,"defesaEspecial":6,"velocidade":10}},
+    {"dexNumber":580,"nome":"Ducklett","tipos":["Água","Voador"],"altura":0.5,"peso":5.5,"genero":"50_50","habitats":["Água_doce","pantano"],"catchRate":25,"baseExp":10,"evolucao":581,"evolucaoNivel":35,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":4,"defesa":5,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":6}},
+    {"dexNumber":581,"nome":"Swanna","tipos":["Água","Voador"],"altura":1.3,"peso":24.2,"genero":"50_50","habitats":["Água_doce","pantano"],"catchRate":15,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":9,"defesa":6,"ataqueEspecial":9,"defesaEspecial":6,"velocidade":10}},
 
     {"dexNumber":582,"nome":"Vanillite","tipos":["Gelo"],"altura":0.4,"peso":5.7,"genero":"50_50","habitats":["caverna","taiga","tundra"],"catchRate":20,"baseExp":15,"evolucao":583,"evolucaoNivel":35,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":5,"defesa":5,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":5}},
     {"dexNumber":583,"nome":"Vanillish","tipos":["Gelo"],"altura":1.1,"peso":41.0,"genero":"50_50","habitats":["caverna","taiga","tundra"],"catchRate":10,"baseExp":30,"evolucao":584,"evolucaoNivel":47,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":7,"defesa":7,"ataqueEspecial":8,"defesaEspecial":8,"velocidade":6}},
@@ -1381,9 +1381,9 @@ const pokedex = [
     {"dexNumber":600,"nome":"Klang","tipos":["Aço"],"altura":0.6,"peso":51.0,"genero":"assexuado","habitats":["caverna","cidade","ruina"],"catchRate":25,"baseExp":30,"evolucao":601,"evolucaoNivel":49,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":8,"defesa":10,"ataqueEspecial":7,"defesaEspecial":9,"velocidade":5}},
     {"dexNumber":601,"nome":"Klinklang","tipos":["Aço"],"altura":0.6,"peso":81.0,"genero":"assexuado","habitats":["caverna","ruina"],"catchRate":15,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":10,"defesa":12,"ataqueEspecial":7,"defesaEspecial":9,"velocidade":9}},
 
-    {"dexNumber":602,"nome":"Tynamo","tipos":["Elétrico"],"altura":0.2,"peso":0.3,"genero":"50_50","habitats":["agua_doce","caverna"],"catchRate":35,"baseExp":15,"evolucao":603,"evolucaoNivel":39,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":6,"defesa":4,"ataqueEspecial":5,"defesaEspecial":4,"velocidade":6}},
-    {"dexNumber":603,"nome":"Eelektrik","tipos":["Elétrico"],"altura":1.2,"peso":22.0,"genero":"50_50","habitats":["agua_doce","caverna"],"catchRate":25,"baseExp":30,"evolucao":604,"evolucaoNivel":null,"evolucaoItem":"Pedra trovão","statusBasais":{"saude":7,"ataque":9,"defesa":7,"ataqueEspecial":8,"defesaEspecial":7,"velocidade":4}},
-    {"dexNumber":604,"nome":"Eelektross","tipos":["Elétrico"],"altura":2.1,"peso":80.5,"genero":"50_50","habitats":["agua_doce","caverna"],"catchRate":15,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":12,"defesa":8,"ataqueEspecial":11,"defesaEspecial":8,"velocidade":5}},
+    {"dexNumber":602,"nome":"Tynamo","tipos":["Elétrico"],"altura":0.2,"peso":0.3,"genero":"50_50","habitats":["Água_doce","caverna"],"catchRate":35,"baseExp":15,"evolucao":603,"evolucaoNivel":39,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":6,"defesa":4,"ataqueEspecial":5,"defesaEspecial":4,"velocidade":6}},
+    {"dexNumber":603,"nome":"Eelektrik","tipos":["Elétrico"],"altura":1.2,"peso":22.0,"genero":"50_50","habitats":["Água_doce","caverna"],"catchRate":25,"baseExp":30,"evolucao":604,"evolucaoNivel":null,"evolucaoItem":"Pedra trovão","statusBasais":{"saude":7,"ataque":9,"defesa":7,"ataqueEspecial":8,"defesaEspecial":7,"velocidade":4}},
+    {"dexNumber":604,"nome":"Eelektross","tipos":["Elétrico"],"altura":2.1,"peso":80.5,"genero":"50_50","habitats":["Água_doce","caverna"],"catchRate":15,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":12,"defesa":8,"ataqueEspecial":11,"defesaEspecial":8,"velocidade":5}},
 
     {"dexNumber":605,"nome":"Elgyem","tipos":["Psíquico"],"altura":0.5,"peso":9.0,"genero":"50_50","habitats":["cidade","montanha","ruina"],"catchRate":35,"baseExp":10,"evolucao":606,"evolucaoNivel":42,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":6,"defesa":6,"ataqueEspecial":9,"defesaEspecial":6,"velocidade":3}},
     {"dexNumber":606,"nome":"Beheeyem","tipos":["Psíquico"],"altura":1.0,"peso":34.5,"genero":"50_50","habitats":["montanha","ruina"],"catchRate":25,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":8,"defesa":8,"ataqueEspecial":13,"defesaEspecial":10,"velocidade":4}},
@@ -1404,7 +1404,7 @@ const pokedex = [
     {"dexNumber":616,"nome":"Shelmet","tipos":["Inseto"],"altura":0.4,"peso":7.7,"genero":"50_50","habitats":["floresta","pantano"],"catchRate":35,"baseExp":10,"evolucao":617,"evolucaoNivel":null,"evolucaoItem":"troca com Karrablast","statusBasais":{"saude":5,"ataque":4,"defesa":9,"ataqueEspecial":4,"defesaEspecial":7,"velocidade":3}},
     {"dexNumber":617,"nome":"Accelgor","tipos":["Inseto"],"altura":0.8,"peso":25.3,"genero":"50_50","habitats":["floresta"],"catchRate":35,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":7,"defesa":4,"ataqueEspecial":10,"defesaEspecial":6,"velocidade":15}},
 
-    {"dexNumber":618,"nome":"Stunfisk","tipos":["Terra","Elétrico"],"altura":0.7,"peso":11.0,"genero":"50_50","habitats":["agua_doce","pantano"],"catchRate":35,"baseExp":25,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":7,"defesa":8,"ataqueEspecial":8,"defesaEspecial":10,"velocidade":3}},
+    {"dexNumber":618,"nome":"Stunfisk","tipos":["Terra","Elétrico"],"altura":0.7,"peso":11.0,"genero":"50_50","habitats":["Água_doce","pantano"],"catchRate":35,"baseExp":25,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":7,"defesa":8,"ataqueEspecial":8,"defesaEspecial":10,"velocidade":3}},
 
     {"dexNumber":619,"nome":"Mienfoo","tipos":["Lutador"],"altura":0.9,"peso":20.0,"genero":"50_50","habitats":["caverna","montanha"],"catchRate":35,"baseExp":10,"evolucao":620,"evolucaoNivel":50,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":9,"defesa":5,"ataqueEspecial":6,"defesaEspecial":5,"velocidade":7}},
     {"dexNumber":620,"nome":"Mienshao","tipos":["Lutador"],"altura":1.4,"peso":35.5,"genero":"50_50","habitats":["caverna","montanha"],"catchRate":30,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":13,"defesa":6,"ataqueEspecial":10,"defesaEspecial":6,"velocidade":11}},
@@ -1481,9 +1481,9 @@ const pokedex = [
     {"dexNumber":655,"nome":"Delphox","tipos":["Fogo", "Psíquico"],"altura":1.5,"peso":39.0,"genero":"87_12","habitats":["floresta","montanha","pradaria"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":7,"defesa":7,"ataqueEspecial":11,"defesaEspecial":10,"velocidade":10}},
 
     // Família Froakie
-    {"dexNumber":656,"nome":"Froakie","tipos":["Água"],"altura":0.3,"peso":7.0,"genero":"87_12","habitats":["agua_doce","pantano","selva"],"catchRate":15,"baseExp":15,"evolucao":657,"evolucaoNivel":16,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":6,"defesa":4,"ataqueEspecial":6,"defesaEspecial":4,"velocidade":7}},
-    {"dexNumber":657,"nome":"Frogadier","tipos":["Água"],"altura":0.6,"peso":10.9,"genero":"87_12","habitats":["agua_doce","pantano","selva"],"catchRate":10,"baseExp":30,"evolucao":658,"evolucaoNivel":36,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":6,"defesa":5,"ataqueEspecial":8,"defesaEspecial":6,"velocidade":10}},
-    {"dexNumber":658,"nome":"Greninja","tipos":["Água", "Noturno"],"altura":1.5,"peso":40.0,"genero":"87_12","habitats":["agua_doce","pantano","selva"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":10,"defesa":7,"ataqueEspecial":10,"defesaEspecial":7,"velocidade":12}},
+    {"dexNumber":656,"nome":"Froakie","tipos":["Água"],"altura":0.3,"peso":7.0,"genero":"87_12","habitats":["Água_doce","pantano","selva"],"catchRate":15,"baseExp":15,"evolucao":657,"evolucaoNivel":16,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":6,"defesa":4,"ataqueEspecial":6,"defesaEspecial":4,"velocidade":7}},
+    {"dexNumber":657,"nome":"Frogadier","tipos":["Água"],"altura":0.6,"peso":10.9,"genero":"87_12","habitats":["Água_doce","pantano","selva"],"catchRate":10,"baseExp":30,"evolucao":658,"evolucaoNivel":36,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":6,"defesa":5,"ataqueEspecial":8,"defesaEspecial":6,"velocidade":10}},
+    {"dexNumber":658,"nome":"Greninja","tipos":["Água", "Noturno"],"altura":1.5,"peso":40.0,"genero":"87_12","habitats":["Água_doce","pantano","selva"],"catchRate":5,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":10,"defesa":7,"ataqueEspecial":10,"defesaEspecial":7,"velocidade":12}},
 
     // Família Bunnelby
     {"dexNumber":659,"nome":"Bunnelby","tipos":["Normal"],"altura":0.4,"peso":9.5,"genero":"50_50","habitats":["floresta","pradaria"],"catchRate":35,"baseExp":10,"evolucao":660,"evolucaoNivel":20,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":4,"defesa":4,"ataqueEspecial":3,"defesaEspecial":4,"velocidade":6}},
@@ -1679,8 +1679,8 @@ const pokedex = [
     {"dexNumber":750,"nome":"Mudsdale","tipos":["Terra"],"altura":2.5,"peso":920.0,"genero":"50_50","habitats":["pradaria"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":13,"defesa":10,"ataqueEspecial":6,"defesaEspecial":9,"velocidade":4}},
 
     // Família Dewpider
-    {"dexNumber":751,"nome":"Dewpider","tipos":["Água","Inseto"],"altura":0.3,"peso":4.0,"genero":"50_50","habitats":["agua_doce"],"catchRate":15,"baseExp":20,"evolucao":752,"evolucaoNivel":22,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":4,"defesa":5,"ataqueEspecial":4,"defesaEspecial":7,"velocidade":3}},
-    {"dexNumber":752,"nome":"Araquanid","tipos":["Água","Inseto"],"altura":1.8,"peso":82.0,"genero":"50_50","habitats":["agua_doce"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":7,"defesa":9,"ataqueEspecial":5,"defesaEspecial":13,"velocidade":4}},
+    {"dexNumber":751,"nome":"Dewpider","tipos":["Água","Inseto"],"altura":0.3,"peso":4.0,"genero":"50_50","habitats":["Água_doce"],"catchRate":15,"baseExp":20,"evolucao":752,"evolucaoNivel":22,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":4,"defesa":5,"ataqueEspecial":4,"defesaEspecial":7,"velocidade":3}},
+    {"dexNumber":752,"nome":"Araquanid","tipos":["Água","Inseto"],"altura":1.8,"peso":82.0,"genero":"50_50","habitats":["Água_doce"],"catchRate":10,"baseExp":40,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":7,"defesa":9,"ataqueEspecial":5,"defesaEspecial":13,"velocidade":4}},
 
     // Família Fomantis
     {"dexNumber":753,"nome":"Fomantis","tipos":["Planta"],"altura":0.3,"peso":1.5,"genero":"50_50","habitats":["floresta","selva"],"catchRate":25,"baseExp":10,"evolucao":754,"evolucaoNivel":34,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":6,"defesa":4,"ataqueEspecial":5,"defesaEspecial":4,"velocidade":4}},
@@ -1848,9 +1848,9 @@ const pokedex = [
   {"dexNumber":815,"nome":"Cinderace","tipos":["Fogo"],"altura":1.4,"peso":33.0,"genero":"87_12","habitats":["pradaria","cidade"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":12,"defesa":8,"ataqueEspecial":9,"defesaEspecial":7,"velocidade":12}},
   
   // Família Sobble
-  {"dexNumber":816,"nome":"Sobble","tipos":["Água"],"altura":0.3,"peso":4.0,"genero":"87_12","habitats":["agua_doce","pradaria"],"catchRate":45,"baseExp":50,"evolucao":817,"evolucaoNivel":16,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":4,"defesa":4,"ataqueEspecial":6,"defesaEspecial":5,"velocidade":7}},
-  {"dexNumber":817,"nome":"Drizzile","tipos":["Água"],"altura":0.7,"peso":11.5,"genero":"87_12","habitats":["agua_doce","pradaria"],"catchRate":45,"baseExp":50,"evolucao":818,"evolucaoNivel":35,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":6,"defesa":5,"ataqueEspecial":8,"defesaEspecial":6,"velocidade":9}},
-  {"dexNumber":818,"nome":"Inteleon","tipos":["Água"],"altura":1.9,"peso":45.2,"genero":"87_12","habitats":["agua_doce","pradaria"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":8,"defesa":7,"ataqueEspecial":12,"defesaEspecial":8,"velocidade":12}},
+  {"dexNumber":816,"nome":"Sobble","tipos":["Água"],"altura":0.3,"peso":4.0,"genero":"87_12","habitats":["Água_doce","pradaria"],"catchRate":45,"baseExp":50,"evolucao":817,"evolucaoNivel":16,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":4,"defesa":4,"ataqueEspecial":6,"defesaEspecial":5,"velocidade":7}},
+  {"dexNumber":817,"nome":"Drizzile","tipos":["Água"],"altura":0.7,"peso":11.5,"genero":"87_12","habitats":["Água_doce","pradaria"],"catchRate":45,"baseExp":50,"evolucao":818,"evolucaoNivel":35,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":6,"defesa":5,"ataqueEspecial":8,"defesaEspecial":6,"velocidade":9}},
+  {"dexNumber":818,"nome":"Inteleon","tipos":["Água"],"altura":1.9,"peso":45.2,"genero":"87_12","habitats":["Água_doce","pradaria"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":8,"defesa":7,"ataqueEspecial":12,"defesaEspecial":8,"velocidade":12}},
    
   // Família Skwovet
   {"dexNumber":819,"nome":"Skwovet","altura":0.3,"peso":2.5,"tipos":["Normal"],"genero":"50_50","habitats":["floresta","pradaria"],"catchRate":255,"baseExp":50,"evolucao":820,"evolucaoNivel":24,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":6,"defesa":5,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":6}},
@@ -1879,8 +1879,8 @@ const pokedex = [
   {"dexNumber":832,"nome":"Dubwool","tipos":["Normal"],"altura":1.3,"peso":43.0,"genero":"50_50","habitats":["pradaria"],"catchRate":127,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":8,"defesa":9,"ataqueEspecial":5,"defesaEspecial":7,"velocidade":8}},
 
   // Família Chewtle
-  {"dexNumber":833,"nome":"Chewtle","tipos":["Água"],"altura":0.3,"peso":8.5,"genero":"50_50","habitats":["agua_doce","pradaria"],"catchRate":255,"baseExp":50,"evolucao":829,"evolucaoNivel":22,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":6,"defesa":4,"ataqueEspecial":3,"defesaEspecial":4,"velocidade":3}},
-  {"dexNumber":834,"nome":"Drednaw","tipos":["Água","Pedra"],"altura":1.0,"peso":115.5,"genero":"50_50","habitats":["agua_doce","pradaria"],"catchRate":75,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":12,"defesa":9,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":7}},
+  {"dexNumber":833,"nome":"Chewtle","tipos":["Água"],"altura":0.3,"peso":8.5,"genero":"50_50","habitats":["Água_doce","pradaria"],"catchRate":255,"baseExp":50,"evolucao":829,"evolucaoNivel":22,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":6,"defesa":4,"ataqueEspecial":3,"defesaEspecial":4,"velocidade":3}},
+  {"dexNumber":834,"nome":"Drednaw","tipos":["Água","Pedra"],"altura":1.0,"peso":115.5,"genero":"50_50","habitats":["Água_doce","pradaria"],"catchRate":75,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":12,"defesa":9,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":7}},
 
   // Família Yamper
   {"dexNumber":835,"nome":"Yamper","tipos":["Elétrico"],"altura":0.3,"peso":13.5,"genero":"50_50","habitats":["pradaria"],"catchRate":255,"baseExp":50,"evolucao":831,"evolucaoNivel":25,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":6,"defesa":5,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":6}},
@@ -1901,11 +1901,11 @@ const pokedex = [
   {"dexNumber":844,"nome":"SandAçonda","tipos":["Terra"],"altura":3.8,"peso":65.5,"genero":"50_50","habitats":["deserto"],"catchRate":120,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":11,"defesa":12,"ataqueEspecial":6,"defesaEspecial":6,"velocidade":3}},
 
   // Família Cramorant
-  {"dexNumber":845,"nome":"Cramorant","tipos":["Voador","Água"],"altura":0.8,"peso":18.0,"genero":"50_50","habitats":["oceano","agua_doce"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":9,"defesa":6,"ataqueEspecial":8,"defesaEspecial":5,"velocidade":5}},
+  {"dexNumber":845,"nome":"Cramorant","tipos":["Voador","Água"],"altura":0.8,"peso":18.0,"genero":"50_50","habitats":["oceano","Água_doce"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":9,"defesa":6,"ataqueEspecial":8,"defesaEspecial":5,"velocidade":5}},
 
   // Família Arrokuda
-  {"dexNumber":846,"nome":"Arrokuda","tipos":["Água"],"altura":0.5,"peso":1.0,"genero":"50_50","habitats":["oceano","agua_doce"],"catchRate":255,"baseExp":50,"evolucao":842,"evolucaoNivel":26,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":6,"defesa":3,"ataqueEspecial":3,"defesaEspecial":3,"velocidade":7}},
-  {"dexNumber":847,"nome":"Barraskewda","tipos":["Água"],"altura":1.3,"peso":30.0,"genero":"50_50","habitats":["oceano","agua_doce"],"catchRate":60,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":12,"defesa":5,"ataqueEspecial":6,"defesaEspecial":5,"velocidade":13}},
+  {"dexNumber":846,"nome":"Arrokuda","tipos":["Água"],"altura":0.5,"peso":1.0,"genero":"50_50","habitats":["oceano","Água_doce"],"catchRate":255,"baseExp":50,"evolucao":842,"evolucaoNivel":26,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":6,"defesa":3,"ataqueEspecial":3,"defesaEspecial":3,"velocidade":7}},
+  {"dexNumber":847,"nome":"Barraskewda","tipos":["Água"],"altura":1.3,"peso":30.0,"genero":"50_50","habitats":["oceano","Água_doce"],"catchRate":60,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":12,"defesa":5,"ataqueEspecial":6,"defesaEspecial":5,"velocidade":13}},
 
   // Família Toxel
   {"dexNumber":848,"nome":"Toxel","tipos":["Elétrico","Veneno"],"altura":0.4,"peso":11.0,"genero":"50_50","habitats":["montanha","caverna"],"catchRate":75,"baseExp":50,"evolucao":844,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":4,"defesa":4,"ataqueEspecial":5,"defesaEspecial":4,"velocidade":4}},
@@ -1992,7 +1992,7 @@ const pokedex = [
   {"dexNumber":881,"nome":"Arctozolt","altura":2.3,"peso":150.0,"tipos":["Elétrico","Gelo"],"genero":"assexuado","habitats":["tundra","artico"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":10,"defesa":9,"ataqueEspecial":9,"defesaEspecial":7,"velocidade":6}},
 
   // Família DrAçovish
-  {"dexNumber":882,"nome":"DrAçovish","altura":2.3,"peso":215.0,"tipos":["Água","Dragão"],"genero":"assexuado","habitats":["oceano","agua_doce"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":9,"defesa":10,"ataqueEspecial":6,"defesaEspecial":8,"velocidade":8}},
+  {"dexNumber":882,"nome":"DrAçovish","altura":2.3,"peso":215.0,"tipos":["Água","Dragão"],"genero":"assexuado","habitats":["oceano","Água_doce"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":9,"defesa":10,"ataqueEspecial":6,"defesaEspecial":8,"velocidade":8}},
 
   // Família Arctovish
   {"dexNumber":883,"nome":"Arctovish","altura":2.0,"peso":175.0,"tipos":["Água","Gelo"],"genero":"assexuado","habitats":["oceano","artico"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":9,"defesa":10,"ataqueEspecial":9,"defesaEspecial":7,"velocidade":6}},
@@ -2097,9 +2097,9 @@ const pokedex = [
   {"dexNumber":911,"nome":"Skeledirge","altura":1.6,"peso":326.5,"tipos":["Fogo","Fantasma"],"genero":"87_12","habitats":["deserto","montanha"],"catchRate":10,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":8,"defesa":10,"ataqueEspecial":11,"defesaEspecial":8,"velocidade":7}},
 
   // Família Quaxly
-  {"dexNumber":912,"nome":"Quaxly","altura":0.5,"peso":6.1,"tipos":["Água"],"genero":"87_12","habitats":["agua_doce","praia"],"catchRate":20,"baseExp":50,"evolucao":913,"evolucaoNivel":16,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":6,"defesa":5,"ataqueEspecial":5,"defesaEspecial":5,"velocidade":5}},
-  {"dexNumber":913,"nome":"Quaxwell","altura":1.2,"peso":21.5,"tipos":["Água"],"genero":"87_12","habitats":["agua_doce","praia"],"catchRate":15,"baseExp":50,"evolucao":914,"evolucaoNivel":36,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":8,"defesa":6,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":8}},
-  {"dexNumber":914,"nome":"Quaquaval","altura":1.8,"peso":61.9,"tipos":["Água","Lutador"],"genero":"87_12","habitats":["agua_doce","praia"],"catchRate":10,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":12,"defesa":8,"ataqueEspecial":9,"defesaEspecial":7,"velocidade":9}},
+  {"dexNumber":912,"nome":"Quaxly","altura":0.5,"peso":6.1,"tipos":["Água"],"genero":"87_12","habitats":["Água_doce","praia"],"catchRate":20,"baseExp":50,"evolucao":913,"evolucaoNivel":16,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":6,"defesa":5,"ataqueEspecial":5,"defesaEspecial":5,"velocidade":5}},
+  {"dexNumber":913,"nome":"Quaxwell","altura":1.2,"peso":21.5,"tipos":["Água"],"genero":"87_12","habitats":["Água_doce","praia"],"catchRate":15,"baseExp":50,"evolucao":914,"evolucaoNivel":36,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":8,"defesa":6,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":8}},
+  {"dexNumber":914,"nome":"Quaquaval","altura":1.8,"peso":61.9,"tipos":["Água","Lutador"],"genero":"87_12","habitats":["Água_doce","praia"],"catchRate":10,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":12,"defesa":8,"ataqueEspecial":9,"defesaEspecial":7,"velocidade":9}},
 
   // Família Lechonk
   {"dexNumber":915,"nome":"Lechonk","altura":0.5,"peso":10.2,"tipos":["Normal"],"genero":"50_50","habitats":["pradaria","floresta"],"catchRate":75,"baseExp":50,"evolucao":916,"evolucaoNivel":18,"evolucaoItem":null,"statusBasais":{"saude":5,"ataque":5,"defesa":5,"ataqueEspecial":3,"defesaEspecial":4,"velocidade":3}},
@@ -2145,8 +2145,8 @@ const pokedex = [
   {"dexNumber":937,"nome":"Ceruledge","altura":1.6,"peso":62.0,"tipos":["Fogo","Fantasma"],"genero":"50_50","habitats":["montanha","caverna","ruina"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":12,"defesa":8,"ataqueEspecial":8,"defesaEspecial":7,"velocidade":9}},
 
   // Família Tadbulb
-  {"dexNumber":938,"nome":"Tadbulb","altura":0.3,"peso":0.4,"tipos":["Elétrico"],"genero":"50_50","habitats":["agua_doce","pantano"],"catchRate":50,"baseExp":50,"evolucao":939,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":4,"defesa":4,"ataqueEspecial":6,"defesaEspecial":4,"velocidade":4}},
-  {"dexNumber":939,"nome":"Bellibolt","altura":1.2,"peso":113.0,"tipos":["Elétrico"],"genero":"50_50","habitats":["agua_doce","pantano"],"catchRate":35,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":8,"defesa":9,"ataqueEspecial":9,"defesaEspecial":8,"velocidade":4}},
+  {"dexNumber":938,"nome":"Tadbulb","altura":0.3,"peso":0.4,"tipos":["Elétrico"],"genero":"50_50","habitats":["Água_doce","pantano"],"catchRate":50,"baseExp":50,"evolucao":939,"evolucaoNivel":30,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":4,"defesa":4,"ataqueEspecial":6,"defesaEspecial":4,"velocidade":4}},
+  {"dexNumber":939,"nome":"Bellibolt","altura":1.2,"peso":113.0,"tipos":["Elétrico"],"genero":"50_50","habitats":["Água_doce","pantano"],"catchRate":35,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":8,"defesa":9,"ataqueEspecial":9,"defesaEspecial":8,"velocidade":4}},
 
   // Família Wattrel
   {"dexNumber":940,"nome":"Wattrel","altura":0.4,"peso":3.6,"tipos":["Elétrico","Voador"],"genero":"50_50","habitats":["oceano","praia"],"catchRate":40,"baseExp":50,"evolucao":941,"evolucaoNivel":25,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":5,"defesa":4,"ataqueEspecial":6,"defesaEspecial":4,"velocidade":6}},
@@ -2196,8 +2196,8 @@ const pokedex = [
   {"dexNumber":962,"nome":"Bombirdier","altura":1.5,"peso":42.9,"tipos":["Voador","Noturno"],"genero":"50_50","habitats":["montanha","caverna"],"catchRate":25,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":10,"defesa":7,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":8}},
 
   // Família Finizen
-  {"dexNumber":963,"nome":"Finizen","altura":1.3,"peso":60.2,"tipos":["Água"],"genero":"50_50","habitats":["oceano","agua_doce"],"catchRate":45,"baseExp":50,"evolucao":964,"evolucaoNivel":38,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":5,"defesa":5,"ataqueEspecial":6,"defesaEspecial":5,"velocidade":4}},
-  {"dexNumber":964,"nome":"Palafin","altura":1.3,"peso":60.2,"tipos":["Água"],"genero":"50_50","habitats":["oceano","agua_doce"],"catchRate":25,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":7,"defesa":7,"ataqueEspecial":7,"defesaEspecial":7,"velocidade":10}},
+  {"dexNumber":963,"nome":"Finizen","altura":1.3,"peso":60.2,"tipos":["Água"],"genero":"50_50","habitats":["oceano","Água_doce"],"catchRate":45,"baseExp":50,"evolucao":964,"evolucaoNivel":38,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":5,"defesa":5,"ataqueEspecial":6,"defesaEspecial":5,"velocidade":4}},
+  {"dexNumber":964,"nome":"Palafin","altura":1.3,"peso":60.2,"tipos":["Água"],"genero":"50_50","habitats":["oceano","Água_doce"],"catchRate":25,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":7,"defesa":7,"ataqueEspecial":7,"defesaEspecial":7,"velocidade":10}},
 
   // Família Varoom
   {"dexNumber":965,"nome":"Varoom","altura":1.0,"peso":35.0,"tipos":["Aço","Veneno"],"genero":"50_50","habitats":["cidade","montanha"],"catchRate":40,"baseExp":50,"evolucao":966,"evolucaoNivel":40,"evolucaoItem":null,"statusBasais":{"saude":4,"ataque":6,"defesa":6,"ataqueEspecial":4,"defesaEspecial":4,"velocidade":4}},
@@ -2218,26 +2218,26 @@ const pokedex = [
   {"dexNumber":972,"nome":"Houndstone","altura":2.0,"peso":15.0,"tipos":["Fantasma"],"genero":"50_50","habitats":["caverna","montanha","ruina"],"catchRate":90,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":7,"ataque":10,"defesa":10,"ataqueEspecial":5,"defesaEspecial":8,"velocidade":7}},
 
   // Família Flamigo
-  {"dexNumber":973,"nome":"Flamigo","altura":1.6,"peso":37.0,"tipos":["Voador","Lutador"],"genero":"50_50","habitats":["pradaria","agua_doce"],"catchRate":100,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":11,"defesa":7,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":9}},
+  {"dexNumber":973,"nome":"Flamigo","altura":1.6,"peso":37.0,"tipos":["Voador","Lutador"],"genero":"50_50","habitats":["pradaria","Água_doce"],"catchRate":100,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":11,"defesa":7,"ataqueEspecial":7,"defesaEspecial":6,"velocidade":9}},
 
   // Família Cetoddle
   {"dexNumber":974,"nome":"Cetoddle","altura":1.2,"peso":45.0,"tipos":["Gelo"],"genero":"50_50","habitats":["tundra","artico"],"catchRate":150,"baseExp":50,"evolucao":975,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":7,"defesa":6,"ataqueEspecial":4,"defesaEspecial":5,"velocidade":3}},
   {"dexNumber":975,"nome":"Cetitan","altura":4.5,"peso":700.0,"tipos":["Gelo"],"genero":"50_50","habitats":["tundra","artico"],"catchRate":50,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":17,"ataque":11,"defesa":9,"ataqueEspecial":6,"defesaEspecial":7,"velocidade":3}},
 
   // Família Veluza
-  {"dexNumber":976,"nome":"Veluza","altura":2.5,"peso":90.0,"tipos":["Água","Psíquico"],"genero":"50_50","habitats":["oceano","agua_doce"],"catchRate":100,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":10,"defesa":6,"ataqueEspecial":9,"defesaEspecial":6,"velocidade":7}},
+  {"dexNumber":976,"nome":"Veluza","altura":2.5,"peso":90.0,"tipos":["Água","Psíquico"],"genero":"50_50","habitats":["oceano","Água_doce"],"catchRate":100,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":10,"defesa":6,"ataqueEspecial":9,"defesaEspecial":6,"velocidade":7}},
 
   // Família Dondozo
-  {"dexNumber":977,"nome":"Dondozo","altura":12.0,"peso":220.0,"tipos":["Água"],"genero":"50_50","habitats":["oceano","agua_doce"],"catchRate":25,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":15,"ataque":10,"defesa":11,"ataqueEspecial":8,"defesaEspecial":7,"velocidade":4}},
+  {"dexNumber":977,"nome":"Dondozo","altura":12.0,"peso":220.0,"tipos":["Água"],"genero":"50_50","habitats":["oceano","Água_doce"],"catchRate":25,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":15,"ataque":10,"defesa":11,"ataqueEspecial":8,"defesaEspecial":7,"velocidade":4}},
 
   // Família Tatsugiri
-  {"dexNumber":978,"nome":"Tatsugiri","altura":0.3,"peso":8.0,"tipos":["Dragão","Água"],"genero":"50_50","habitats":["oceano","agua_doce"],"catchRate":25,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":5,"defesa":8,"ataqueEspecial":10,"defesaEspecial":7,"velocidade":8}},
+  {"dexNumber":978,"nome":"Tatsugiri","altura":0.3,"peso":8.0,"tipos":["Dragão","Água"],"genero":"50_50","habitats":["oceano","Água_doce"],"catchRate":25,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":5,"defesa":8,"ataqueEspecial":10,"defesaEspecial":7,"velocidade":8}},
 
   // Família Annihilape
   {"dexNumber":979,"nome":"Annihilape","altura":1.2,"peso":56.0,"tipos":["Lutador","Fantasma"],"genero":"50_50","habitats":["montanha","caverna","ruina"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":11,"ataque":12,"defesa":8,"ataqueEspecial":6,"defesaEspecial":7,"velocidade":9}},
 
   // Família Clodsire
-  {"dexNumber":980,"nome":"Clodsire","altura":1.8,"peso":223.0,"tipos":["Veneno","Terrestre"],"genero":"50_50","habitats":["pantano","agua_doce"],"catchRate":90,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":13,"ataque":8,"defesa":6,"ataqueEspecial":6,"defesaEspecial":9,"velocidade":2}},
+  {"dexNumber":980,"nome":"Clodsire","altura":1.8,"peso":223.0,"tipos":["Veneno","Terrestre"],"genero":"50_50","habitats":["pantano","Água_doce"],"catchRate":90,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":13,"ataque":8,"defesa":6,"ataqueEspecial":6,"defesaEspecial":9,"velocidade":2}},
 
   // Família Farigiraf
   {"dexNumber":981,"nome":"Farigiraf","altura":3.2,"peso":160.0,"tipos":["Normal","Psíquico"],"genero":"50_50","habitats":["pradaria","floresta"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":12,"ataque":9,"defesa":8,"ataqueEspecial":11,"defesaEspecial":7,"velocidade":6}},
@@ -2318,7 +2318,7 @@ const pokedex = [
   {"dexNumber":1008,"nome":"Miraidon","tipos":["Elétrico","Dragão"],"altura":3.5,"peso":240.0,"genero":"assexuado","habitats":["montanha","pradaria","ruina"],"catchRate":0,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":8,"defesa":8,"ataqueEspecial":13,"defesaEspecial":9,"velocidade":13}},
 
   // Família Walking Wake
-  {"dexNumber":1009,"nome":"Walking Wake","tipos":["Água","Dragão"],"altura":3.5,"peso":280.0,"genero":"assexuado","habitats":["agua_doce","oceano"],"catchRate":10,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":9,"defesa":8,"ataqueEspecial":12,"defesaEspecial":9,"velocidade":11}},
+  {"dexNumber":1009,"nome":"Walking Wake","tipos":["Água","Dragão"],"altura":3.5,"peso":280.0,"genero":"assexuado","habitats":["Água_doce","oceano"],"catchRate":10,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":10,"ataque":9,"defesa":8,"ataqueEspecial":12,"defesaEspecial":9,"velocidade":11}},
 
   // Família Iron Leaves
   {"dexNumber":1010,"nome":"Iron Leaves","tipos":["Planta","Psíquico"],"altura":1.5,"peso":125.0,"genero":"assexuado","habitats":["floresta","pradaria"],"catchRate":10,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":9,"ataque":13,"defesa":9,"ataqueEspecial":10,"defesaEspecial":8,"velocidade":11}},
@@ -2384,7 +2384,7 @@ const pokedex = [
   {"dexNumber":10252,"nome":"Tauros de Paldea (Água)","tipos":["Lutador","Água"],"altura":1.4,"peso":110.0,"genero":"100_0","habitats":["pradaria","montanha"],"catchRate":45,"baseExp":50,"evolucao":null,"evolucaoNivel":null,"evolucaoItem":null,"statusBasais":{"saude":8,"ataque":11,"defesa":9,"ataqueEspecial":7,"defesaEspecial":7,"velocidade":11}},
 
   // Família Wooper de Paldea
-  {"dexNumber":10253,"nome":"Wooper de Paldea","tipos":["Veneno","Terra"],"altura":0.4,"peso":11.0,"genero":"50_50","habitats":["pantano","agua_doce"],"catchRate":255,"baseExp":50,"evolucao":980,"evolucaoNivel":20,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":5,"defesa":5,"ataqueEspecial":3,"defesaEspecial":3,"velocidade":2}}
+  {"dexNumber":10253,"nome":"Wooper de Paldea","tipos":["Veneno","Terra"],"altura":0.4,"peso":11.0,"genero":"50_50","habitats":["pantano","Água_doce"],"catchRate":255,"baseExp":50,"evolucao":980,"evolucaoNivel":20,"evolucaoItem":null,"statusBasais":{"saude":6,"ataque":5,"defesa":5,"ataqueEspecial":3,"defesaEspecial":3,"velocidade":2}}
   
 ];
 console.log("Pokédex carregada:", pokedex.length);

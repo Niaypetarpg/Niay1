@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus } from 'lucide-react'
+import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus, Save, Archive, MoveVertical } from 'lucide-react'
 import AccountDataModal from './AccountDataModal'
 import pokedexData from './pokemonData'
 import GOLPES_DATA_IMPORTED from './golpesData'
@@ -1584,6 +1584,7 @@ function ConcursoInterludioApp({ darkMode }) {
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
+  const [dataLoaded, setDataLoaded] = useState(false) // Flag para evitar salvar antes de carregar
   const [currentArea, setCurrentArea] = useState('')
   const [darkMode, setDarkMode] = useState(true)
   const [selectedUser, setSelectedUser] = useState(null)
@@ -1606,6 +1607,11 @@ function App() {
   const [mainTeam, setMainTeam] = useState([])
   const [pcPokemon, setPcPokemon] = useState([])
   const [pokedex, setPokedex] = useState([])
+  const [showSwapPokemonModal, setShowSwapPokemonModal] = useState(false) // Modal de troca de pokémon
+  const [swapMainTeamSearch, setSwapMainTeamSearch] = useState('') // Pesquisa do time principal
+  const [swapPcSearch, setSwapPcSearch] = useState('') // Pesquisa do PC
+  const [selectedSwapMainTeam, setSelectedSwapMainTeam] = useState(null) // Pokémon selecionado do time principal
+  const [selectedSwapPc, setSelectedSwapPc] = useState(null) // Pokémon selecionado do PC
   const [npcPokemonList, setNpcPokemonList] = useState([]) // Pokémon gerados recentemente
   const [npcPokemon, setNpcPokemon] = useState([]) // Pokémon confirmados como NPC
   const [expandedNpcCards, setExpandedNpcCards] = useState([]) // IDs dos cards expandidos
@@ -1873,6 +1879,10 @@ function App() {
 
   // States para Treinador NPC
   const [npcTrainers, setNpcTrainers] = useState([])
+
+  // States para NPCs Arquivados
+  const [archivedNpcTrainers, setArchivedNpcTrainers] = useState([]) // Treinadores NPC arquivados
+  const [archivedNpcPokemon, setArchivedNpcPokemon] = useState([]) // Pokémon NPC arquivados
   const [showCustomTrainerModal, setShowCustomTrainerModal] = useState(false)
   const [showRandomTrainerModal, setShowRandomTrainerModal] = useState(false)
   const [customTrainerForm, setCustomTrainerForm] = useState({
@@ -1948,6 +1958,8 @@ function App() {
   const [editingPokemonLocation, setEditingPokemonLocation] = useState(null) // 'team' ou 'pc'
   const [pokemonEditForm, setPokemonEditForm] = useState({
     nature: '',
+    shiny: false,
+    legendary: false,
     baseAttributes: {
       saude: '',
       ataque: '',
@@ -2064,6 +2076,12 @@ function App() {
   const [capturaList, setCapturaList] = useState([]) // Lista de capturas: [{species: string, level: number, captureValue: number}]
   const [showAddXpModal, setShowAddXpModal] = useState(false) // Modal para adicionar XP
   const [addXpValue, setAddXpValue] = useState('') // Valor do XP a ser adicionado
+  const [showEditXpModal, setShowEditXpModal] = useState(false) // Modal para editar XP
+  const [editingXpIndex, setEditingXpIndex] = useState(null) // Índice do XP sendo editado
+  const [editXpValue, setEditXpValue] = useState('') // Valor do XP sendo editado
+  const [showEditCapturaModal, setShowEditCapturaModal] = useState(false) // Modal para editar Captura
+  const [editingCapturaIndex, setEditingCapturaIndex] = useState(null) // Índice da Captura sendo editada
+  const [editCapturaData, setEditCapturaData] = useState({ species: '', level: '', captureValue: '' }) // Dados da captura sendo editada
   const [allTrainersXpCapturas, setAllTrainersXpCapturas] = useState({}) // Dados de XP & Capturas de todos os treinadores (para o mestre)
   const [showAcoesComandoModal, setShowAcoesComandoModal] = useState(false) // Modal de Ações de Comando
   const [selectedAcaoComandoPokemon, setSelectedAcaoComandoPokemon] = useState('') // Pokémon selecionado no dropdown
@@ -2208,6 +2226,11 @@ function App() {
   const [showExoticConfigModal, setShowExoticConfigModal] = useState(false)
   const [exoticConfigSearch, setExoticConfigSearch] = useState('')
   const [selectedExoticConfig, setSelectedExoticConfig] = useState(null)
+
+  // Estados para modal de Escanear Pokémon
+  const [showScanPokemonModal, setShowScanPokemonModal] = useState(false)
+  const [scanSearch, setScanSearch] = useState('')
+  const [selectedScanPokemon, setSelectedScanPokemon] = useState(null)
   const [exoticConfigForm, setExoticConfigForm] = useState({
     dexNumber: '',
     altura: '',
@@ -2415,7 +2438,7 @@ function App() {
     { username: 'Pedro', type: 'treinador', gradient: 'linear-gradient(135deg, #0000CD, #4169E1, #00CED1, #32CD32)' }
   ]
 
-  const mestreAreas = ['Gerador Pokémon', 'Treinador NPC', 'Pokémon NPC', 'Batalha', 'Enciclopédia M', 'Visão do Mestre', 'XP & Capturas M', 'PokeApp', 'Interlúdio M']
+  const mestreAreas = ['Gerador Pokémon', 'Treinador NPC', 'Pokémon NPC', 'NPCs Arquivados', 'Batalha', 'Enciclopédia M', 'Visão do Mestre', 'XP & Capturas M', 'PokeApp', 'Interlúdio M']
   const treinadorAreas = ['Treinador', 'PC', 'Pokédex', 'Mochila', 'Características & Talentos', 'Pokéloja', 'Insígnias', 'Enciclopédia', 'Progressão', 'Batalha Pkm', 'Interlúdio']
 
   const allClasses = [
@@ -4145,19 +4168,30 @@ function App() {
   }
 
   // Função para calcular a estatística Contagem (para Colecionador)
-  // Contagem = MV + Grupos de 8 espécies diferentes capturados
+  // Contagem = MV + Grupos de 8 (com pontuação: shiny=8, lendário=8, normal=1)
   const calcularContagem = () => {
     const MV = getModifier(attributes.velocidade)
 
     // Combinar todos os pokémons capturados (time + PC)
     const todosPokemon = [...mainTeam, ...pcPokemon]
 
-    // Contar espécies únicas (não conta pokémons da mesma espécie)
-    const especiesUnicas = new Set(todosPokemon.map(p => p.species).filter(Boolean))
-    const numEspeciesUnicas = especiesUnicas.size
+    // Calcular pontos totais: cada shiny=8, cada lendário=8, cada normal=1
+    let pontosTotais = 0
+    todosPokemon.forEach(pokemon => {
+      if (pokemon.shiny) {
+        pontosTotais += 8
+      }
+      if (pokemon.legendary) {
+        pontosTotais += 8
+      }
+      // Se não for shiny nem lendário, conta como 1
+      if (!pokemon.shiny && !pokemon.legendary) {
+        pontosTotais += 1
+      }
+    })
 
     // Calcular grupos de 8
-    const gruposDe8 = Math.floor(numEspeciesUnicas / 8)
+    const gruposDe8 = Math.floor(pontosTotais / 8)
 
     return MV + gruposDe8
   }
@@ -4615,6 +4649,24 @@ function App() {
 
   const handleDeleteNPC = (npcId) => {
     setNpcTrainers(npcTrainers.filter(npc => npc.id !== npcId))
+  }
+
+  // Função para arquivar Treinador NPC
+  const archiveNpcTrainer = (npc) => {
+    setArchivedNpcTrainers(prev => [...prev, { ...npc, archivedAt: new Date().toISOString() }])
+    setNpcTrainers(prev => prev.filter(t => t.id !== npc.id))
+  }
+
+  // Função para desarquivar Treinador NPC (restaurar para área Treinador NPC)
+  const unarchiveNpcTrainer = (npc) => {
+    const { archivedAt, ...trainerWithoutArchiveDate } = npc
+    setNpcTrainers(prev => [...prev, trainerWithoutArchiveDate])
+    setArchivedNpcTrainers(prev => prev.filter(t => t.id !== npc.id))
+  }
+
+  // Função para remover Treinador NPC arquivado
+  const removeArchivedNpcTrainer = (npcId) => {
+    setArchivedNpcTrainers(prev => prev.filter(t => t.id !== npcId))
   }
 
   // Handlers para Tutoria de Golpes
@@ -5671,6 +5723,42 @@ function App() {
     setShowAddPokemonModal(false)
   }
 
+  // Catalogar Pokémon (escanear)
+  const catalogPokemon = () => {
+    if (!selectedScanPokemon) {
+      alert('Por favor, selecione uma espécie para catalogar.')
+      return
+    }
+
+    const species = selectedScanPokemon.nome || selectedScanPokemon.species
+
+    // Verificar se já existe na pokédex
+    const existsInPokedex = pokedex.find(p => p.species === species)
+
+    if (existsInPokedex) {
+      alert(`${species} já está catalogado na Pokédex!`)
+      return
+    }
+
+    // Verificar se é exótico
+    const isExotic = selectedScanPokemon.isExotic || false
+    const exoticData = isExotic ? selectedScanPokemon : null
+
+    // Adicionar à pokédex como escaneado (não capturado)
+    setPokedex([...pokedex, {
+      species,
+      isScanned: true,
+      isCaptured: false,
+      isExotic,
+      exoticData
+    }])
+
+    // Limpar e fechar modal
+    setScanSearch('')
+    setSelectedScanPokemon(null)
+    setShowScanPokemonModal(false)
+  }
+
   // Excluir Pokémon
   const handleDeletePokemon = (index) => {
     if (confirm('Deseja realmente excluir este Pokémon do time?')) {
@@ -6327,6 +6415,7 @@ function App() {
     // Preencher formulário com dados existentes ou buscar do pokemonData
     setPokemonEditForm({
       shiny: pokemon.shiny || false,
+      legendary: pokemon.legendary || false,
       nature: pokemon.nature || '',
       gender: pokemon.gender || '',
       baseAttributes: pokemon.baseAttributes || baseAttributesFromData,
@@ -6424,6 +6513,7 @@ function App() {
     // Preencher formulário com dados existentes ou buscar do pokemonData
     setPokemonEditForm({
       shiny: pokemon.shiny || false,
+      legendary: pokemon.legendary || false,
       nature: pokemon.nature || '',
       gender: pokemon.gender || '',
       baseAttributes: pokemon.baseAttributes || baseAttributesFromData,
@@ -6689,6 +6779,28 @@ function App() {
       p.id === pokemonId ? { ...p, addedToNpc: false } : p
     ))
     setExpandedNpcCards(prev => prev.filter(id => id !== pokemonId))
+  }
+
+  // Função para arquivar Pokémon NPC
+  const archiveNpcPokemon = (pokemon) => {
+    setArchivedNpcPokemon(prev => [...prev, { ...pokemon, archivedAt: new Date().toISOString() }])
+    setNpcPokemon(prev => prev.filter(p => p.id !== pokemon.id))
+    setNpcPokemonList(prev => prev.map(p =>
+      p.id === pokemon.id ? { ...p, addedToNpc: false } : p
+    ))
+    setExpandedNpcCards(prev => prev.filter(id => id !== pokemon.id))
+  }
+
+  // Função para desarquivar Pokémon NPC (restaurar para área Pokémon NPC)
+  const unarchiveNpcPokemon = (pokemon) => {
+    const { archivedAt, ...pokemonWithoutArchiveDate } = pokemon
+    setNpcPokemon(prev => [...prev, pokemonWithoutArchiveDate])
+    setArchivedNpcPokemon(prev => prev.filter(p => p.id !== pokemon.id))
+  }
+
+  // Função para remover Pokémon NPC arquivado
+  const removeArchivedNpcPokemon = (pokemonId) => {
+    setArchivedNpcPokemon(prev => prev.filter(p => p.id !== pokemonId))
   }
 
   // Função para enviar XP para treinadores selecionados
@@ -7227,11 +7339,11 @@ function App() {
           baseAttributes: pokemonToSend.baseAttributes,
           levelPoints: {
             saude: pokemonToSend.attributes.saude - pokemonToSend.baseAttributes.saude - (finalNature.up === 'Saúde' ? 1 : finalNature.down === 'Saúde' ? -1 : 0),
-            ataque: pokemonToSend.attributes.ataque - pokemonToSend.baseAttributes.ataque - (finalNature.up === 'Ataque' ? 1 : finalNature.down === 'Ataque' ? -1 : 0),
-            defesa: pokemonToSend.attributes.defesa - pokemonToSend.baseAttributes.defesa - (finalNature.up === 'Defesa' ? 1 : finalNature.down === 'Defesa' ? -1 : 0),
-            ataqueEspecial: pokemonToSend.attributes.ataqueEspecial - pokemonToSend.baseAttributes.ataqueEspecial - (finalNature.up === 'Ataque Especial' ? 1 : finalNature.down === 'Ataque Especial' ? -1 : 0),
-            defesaEspecial: pokemonToSend.attributes.defesaEspecial - pokemonToSend.baseAttributes.defesaEspecial - (finalNature.up === 'Defesa Especial' ? 1 : finalNature.down === 'Defesa Especial' ? -1 : 0),
-            velocidade: pokemonToSend.attributes.velocidade - pokemonToSend.baseAttributes.velocidade - (finalNature.up === 'Velocidade' ? 1 : finalNature.down === 'Velocidade' ? -1 : 0)
+            ataque: pokemonToSend.attributes.ataque - pokemonToSend.baseAttributes.ataque - (finalNature.up === 'Ataque' ? 2 : finalNature.down === 'Ataque' ? -2 : 0),
+            defesa: pokemonToSend.attributes.defesa - pokemonToSend.baseAttributes.defesa - (finalNature.up === 'Defesa' ? 2 : finalNature.down === 'Defesa' ? -2 : 0),
+            ataqueEspecial: pokemonToSend.attributes.ataqueEspecial - pokemonToSend.baseAttributes.ataqueEspecial - (finalNature.up === 'Ataque Especial' ? 2 : finalNature.down === 'Ataque Especial' ? -2 : 0),
+            defesaEspecial: pokemonToSend.attributes.defesaEspecial - pokemonToSend.baseAttributes.defesaEspecial - (finalNature.up === 'Defesa Especial' ? 2 : finalNature.down === 'Defesa Especial' ? -2 : 0),
+            velocidade: pokemonToSend.attributes.velocidade - pokemonToSend.baseAttributes.velocidade - (finalNature.up === 'Velocidade' ? 2 : finalNature.down === 'Velocidade' ? -2 : 0)
           },
           favoriteFlavor: finalNature.gosto,
           dislikedFlavor: finalNature.desgosto,
@@ -7847,6 +7959,9 @@ function App() {
 
   // Carregar dados do Firebase/LocalStorage
   useEffect(() => {
+    // Resetar flag ao mudar de usuário para evitar salvar antes de carregar
+    setDataLoaded(false)
+
     const loadData = async () => {
       if (currentUser?.type === 'treinador') {
         try {
@@ -7915,8 +8030,11 @@ function App() {
             setTalentinhos(data.talentinhos || [])
             setBackground(data.background || '')
           }
+          // Marcar dados como carregados após carregar tudo
+          setDataLoaded(true)
         } catch (e) {
           console.error('Erro ao carregar dados do treinador:', e)
+          setDataLoaded(true) // Marcar como carregado mesmo com erro
         }
         // Carregar itens ocultos da Pokéloja (para exibir corretamente na loja)
         if (useFirebase) {
@@ -7990,9 +8108,14 @@ function App() {
             setUserBattleModifiers(data.userBattleModifiers || {})
             setUserActiveModifiers(data.userActiveModifiers || {})
             setPokemonImages(data.pokemonImages || {}) // Carregar imagens de Pokémon NPC
+            setArchivedNpcTrainers(data.archivedNpcTrainers || []) // Carregar Treinadores NPC arquivados
+            setArchivedNpcPokemon(data.archivedNpcPokemon || []) // Carregar Pokémon NPC arquivados
           }
+          // Marcar dados como carregados após carregar tudo
+          setDataLoaded(true)
         } catch (e) {
           console.error('Erro ao carregar configurações do mestre:', e)
+          setDataLoaded(true) // Marcar como carregado mesmo com erro
         }
       }
     }
@@ -8068,6 +8191,9 @@ function App() {
 
   // Salvar no Firebase/LocalStorage
   useEffect(() => {
+    // Não salvar se os dados ainda não foram carregados (evita sobrescrever com dados vazios)
+    if (!dataLoaded) return
+
     const saveData = async () => {
       if (currentUser?.type === 'treinador') {
         const data = {
@@ -8120,7 +8246,9 @@ function App() {
           battleTrainerConditions,
           userBattleModifiers,
           userActiveModifiers,
-          pokemonImages // Salvar imagens de Pokémon NPC
+          pokemonImages, // Salvar imagens de Pokémon NPC
+          archivedNpcTrainers, // Treinadores NPC arquivados
+          archivedNpcPokemon // Pokémon NPC arquivados
         }
         try {
           if (useFirebase) {
@@ -8137,7 +8265,7 @@ function App() {
     // Debounce para evitar muitas escritas
     const timeoutId = setTimeout(saveData, 500)
     return () => clearTimeout(timeoutId)
-  }, [level, image, classes, attributes, skills, currentHP, mainTeam, pcPokemon, pokedex, pokemonedas, keyItems, customItems, pokeovoList, caracteristicasSelected, talentosSelected, pokemonImages, badges, estilizadorBattery, estilizadorPolicialBattery, thunderStoneActive, bolsaTalento, otherCapacities, vivencias, conquistas, ciclos, userBattleModifiers, userActiveModifiers, talentinhos, background, hiddenPokelojaItems, npcPokemon, npcPokemonList, battleTrainers, battlePokemon, battleTrainersList, battlePokemonList, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, npcConditions, expandedNpcCards, revealedNpcPokemon, revealedTrainers, battlePokemonConditions, battleTrainerConditions, currentUser])
+  }, [level, image, classes, attributes, skills, currentHP, mainTeam, pcPokemon, pokedex, pokemonedas, keyItems, customItems, pokeovoList, caracteristicasSelected, talentosSelected, pokemonImages, badges, estilizadorBattery, estilizadorPolicialBattery, thunderStoneActive, bolsaTalento, otherCapacities, vivencias, conquistas, ciclos, userBattleModifiers, userActiveModifiers, talentinhos, background, hiddenPokelojaItems, npcPokemon, npcPokemonList, battleTrainers, battlePokemon, battleTrainersList, battlePokemonList, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, npcConditions, expandedNpcCards, revealedNpcPokemon, revealedTrainers, battlePokemonConditions, battleTrainerConditions, archivedNpcTrainers, archivedNpcPokemon, currentUser])
 
   // Salvar dados de batalha no mestre_config mesmo quando for treinador
   useEffect(() => {
@@ -9157,7 +9285,7 @@ function App() {
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <h4 className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                          {pokemon.species} {pokemon.shiny && '✨'}
+                          {pokemon.species} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'}
                         </h4>
                         <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                           Nível {pokemon.level} • {pokemon.gender}
@@ -9287,6 +9415,13 @@ function App() {
                           title="Enviar para Batalha Treinador NPC"
                         >
                           <PlusCircle size={18} />
+                        </button>
+                        <button
+                          onClick={() => archiveNpcTrainer(npc)}
+                          className="bg-amber-500 text-white p-2 rounded hover:bg-amber-600"
+                          title="Arquivar Treinador NPC"
+                        >
+                          <Save size={18} />
                         </button>
                         <button
                           onClick={() => handleDeleteNPC(npc.id)}
@@ -10084,7 +10219,7 @@ function App() {
                             />
                           )}
                           <p className={`text-sm font-bold text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                            {pokemon.species || pokemon.name || 'Pokémon'} {pokemon.shiny && '✨'}
+                            {pokemon.species || pokemon.name || 'Pokémon'} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'}
                           </p>
                           <div className="flex items-center gap-1 mt-1">
                             <p className={`text-xs text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -10120,6 +10255,16 @@ function App() {
                           <button
                             onClick={(e) => {
                               e.stopPropagation()
+                              archiveNpcPokemon(pokemon)
+                            }}
+                            className="bg-amber-500 text-white p-1.5 rounded-lg hover:bg-amber-600"
+                            title="Arquivar Pkm NPC"
+                          >
+                            <Save size={14} />
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation()
                               removeNpcPokemon(pokemon.id)
                             }}
                             className="bg-red-500 text-white p-1.5 rounded-lg hover:bg-red-600"
@@ -10148,7 +10293,7 @@ function App() {
                             )}
                             <div className="text-center mb-2">
                               <p className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                                {pokemon.species || pokemon.name} {pokemon.shiny && '✨'}
+                                {pokemon.species || pokemon.name} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'}
                               </p>
                               <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                                 #{String(pokemon.dexNumber).padStart(4, '0')} • Nível {pokemon.level}
@@ -10162,6 +10307,13 @@ function App() {
                               title="Enviar para Batalha"
                             >
                               <ArrowRightCircle size={14} />
+                            </button>
+                            <button
+                              onClick={() => archiveNpcPokemon(pokemon)}
+                              className="bg-amber-500 text-white p-1.5 rounded-lg hover:bg-amber-600"
+                              title="Arquivar Pkm NPC"
+                            >
+                              <Save size={14} />
                             </button>
                             <button
                               onClick={() => removeNpcPokemon(pokemon.id)}
@@ -11050,6 +11202,453 @@ function App() {
             </div>
           </div>
         )}
+        </div>
+        {accountDataModal}
+      </>
+    )
+  }
+
+  // ÁREA NPCs ARQUIVADOS (MESTRE)
+  if (currentUser.type === 'mestre' && currentArea === 'NPCs Arquivados') {
+    return (
+      <>
+        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>NPCs Arquivados 👑</h2>
+              <div className="flex gap-2">
+                <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
+                <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
+                <button onClick={() => { setCurrentUser(null); setCurrentArea('') }} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'NPCs Arquivados' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+            </div>
+          </div>
+        </div>
+
+          <div className="max-w-7xl mx-auto px-4 py-8">
+            {/* Seção Treinadores NPC Arquivados */}
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-8`}>
+              <h3 className={`text-xl font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <Archive size={24} className="text-amber-500" />
+                Treinadores NPC Arquivados ({archivedNpcTrainers.length})
+              </h3>
+
+              {archivedNpcTrainers.length === 0 ? (
+                <div className={`text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  <p>Nenhum treinador NPC arquivado ainda.</p>
+                  <p className="text-sm mt-2">Use o botão de arquivar na área Treinador NPC para salvar treinadores aqui.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {archivedNpcTrainers.map(npc => (
+                    <div key={npc.id} className={`p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-amber-500' : 'bg-amber-50 border-amber-300'}`}>
+                      <div className="flex justify-between items-start mb-4">
+                        <div className="flex items-center gap-3">
+                          <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{npc.name}</h3>
+                          {npc.isRandom && npc.caracteristicasETalentos && (
+                            <button
+                              onClick={() => {
+                                setSelectedNPCForTalentos(npc)
+                                setShowNPCTalentosModal(true)
+                              }}
+                              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold text-sm"
+                              title="Ver Características e Talentos"
+                            >
+                              Talento R NPC
+                            </button>
+                          )}
+                          {!npc.isRandom && npc.caracteristicasETalentos && npc.caracteristicasETalentos.length > 0 && (
+                            <button
+                              onClick={() => {
+                                setSelectedNPCForTalentos(npc)
+                                setShowNPCTalentosModal(true)
+                              }}
+                              className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 py-1 rounded-lg hover:from-blue-700 hover:to-cyan-700 font-semibold text-sm"
+                              title="Ver Características e Talentos"
+                            >
+                              Treinador T Personalizado
+                            </button>
+                          )}
+                        </div>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => sendNpcTrainerToBattle(npc)}
+                            className="bg-cyan-500 text-white p-2 rounded hover:bg-cyan-600"
+                            title="Enviar para Batalha Treinador NPC"
+                          >
+                            <PlusCircle size={18} />
+                          </button>
+                          <button
+                            onClick={() => unarchiveNpcTrainer(npc)}
+                            className="bg-green-500 text-white p-2 rounded hover:bg-green-600"
+                            title="Restaurar para área Treinador NPC"
+                          >
+                            <RotateCcw size={18} />
+                          </button>
+                          <button
+                            onClick={() => removeArchivedNpcTrainer(npc.id)}
+                            className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
+                            title="Remover permanentemente"
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className={`mb-4 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <p className="mb-2"><span className="font-semibold">Nível:</span> {npc.level}</p>
+                        <p className="mb-2"><span className="font-semibold">Vida:</span> {npc.currentHP}/{npc.hp}</p>
+                      </div>
+
+                      {/* Tabela de Atributos */}
+                      <div className="mb-4">
+                        <h4 className={`font-bold mb-2 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Atributos</h4>
+                        <div className="overflow-x-auto">
+                          <table className={`w-full text-sm ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
+                            <thead>
+                              <tr className={darkMode ? 'bg-gray-500' : 'bg-gray-200'}>
+                                <th className={`border p-2 text-left ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Atributo</th>
+                                <th className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Valor</th>
+                                <th className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Modificador</th>
+                              </tr>
+                            </thead>
+                            <tbody className={darkMode ? 'text-gray-200' : 'text-gray-800'}>
+                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Saúde</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.saude}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.saude}</td></tr>
+                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Ataque</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.ataque}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.ataque}</td></tr>
+                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Defesa</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.defesa}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.defesa}</td></tr>
+                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Ataque Especial</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.ataqueEspecial}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.ataqueEspecial}</td></tr>
+                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Defesa Especial</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.defesaEspecial}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.defesaEspecial}</td></tr>
+                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Velocidade</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.velocidade}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.velocidade}</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      {/* Deslocamento */}
+                      <div className="mb-4">
+                        <h4 className={`font-bold mb-2 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Deslocamento</h4>
+                        <div className={`grid grid-cols-3 gap-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Terrestre:</span> {npc.displacement.terrestre}</div>
+                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Natação:</span> {npc.displacement.natacao}</div>
+                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Subaquático:</span> {npc.displacement.subaquatico}</div>
+                        </div>
+                      </div>
+
+                      {/* Evasão */}
+                      <div>
+                        <h4 className={`font-bold mb-2 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Evasão</h4>
+                        <div className={`grid grid-cols-3 gap-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Física:</span> {npc.evasion.fisica}</div>
+                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Especial:</span> {npc.evasion.especial}</div>
+                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Veloz:</span> {npc.evasion.veloz}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Seção Pokémon NPC Arquivados */}
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+              <h3 className={`text-xl font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <Archive size={24} className="text-amber-500" />
+                Pokémon NPC Arquivados ({archivedNpcPokemon.length})
+              </h3>
+
+              {archivedNpcPokemon.length === 0 ? (
+                <div className={`text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  <p>Nenhum Pokémon NPC arquivado ainda.</p>
+                  <p className="text-sm mt-2">Use o botão de arquivar na área Pokémon NPC para salvar pokémons aqui.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+                  {archivedNpcPokemon.map(pokemon => {
+                    const isExpanded = expandedNpcCards.includes(pokemon.id)
+
+                    return (
+                      <div
+                        key={pokemon.id}
+                        className={`${darkMode ? 'bg-gray-700' : 'bg-amber-50'} rounded-2xl shadow-lg overflow-hidden transition-all border-2 ${darkMode ? 'border-amber-500' : 'border-amber-300'} ${
+                          isExpanded ? 'col-span-2 md:col-span-2 lg:col-span-3 xl:col-span-4' : ''
+                        }`}
+                      >
+                        {!isExpanded ? (
+                          // Card compacto - apenas imagem
+                          <div className="relative group">
+                            <div
+                              onClick={() => toggleNpcCard(pokemon.id)}
+                              className="cursor-pointer p-4 flex flex-col items-center"
+                            >
+                              {pokemon.imageUrl && (
+                                <img
+                                  src={pokemon.imageUrl}
+                                  alt={pokemon.name || pokemon.species}
+                                  className="w-32 h-32 object-contain mb-2"
+                                />
+                              )}
+                              <p className={`text-sm font-bold text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                                {pokemon.species || pokemon.name || 'Pokémon'} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'}
+                              </p>
+                              <div className="flex items-center gap-1 mt-1">
+                                <p className={`text-xs text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                  Nível {pokemon.level}
+                                </p>
+                                {(pokemon.habilidade1 || pokemon.habilidade2) && (
+                                  <div className="flex gap-1">
+                                    {pokemon.habilidade1 && (
+                                      <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-500 text-white'}`}>
+                                        {pokemon.habilidade1}
+                                      </span>
+                                    )}
+                                    {pokemon.habilidade2 && (
+                                      <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${darkMode ? 'bg-purple-900 text-purple-300' : 'bg-purple-500 text-white'}`}>
+                                        {pokemon.habilidade2}
+                                      </span>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                            <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  sendNpcPokemonToBattle(pokemon)
+                                }}
+                                className="bg-cyan-500 text-white p-1.5 rounded-lg hover:bg-cyan-600"
+                                title="Enviar para Batalha"
+                              >
+                                <ArrowRightCircle size={14} />
+                              </button>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  unarchiveNpcPokemon(pokemon)
+                                }}
+                                className="bg-green-500 text-white p-1.5 rounded-lg hover:bg-green-600"
+                                title="Restaurar para área Pokémon NPC"
+                              >
+                                <RotateCcw size={14} />
+                              </button>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  removeArchivedNpcPokemon(pokemon.id)
+                                }}
+                                className="bg-red-500 text-white p-1.5 rounded-lg hover:bg-red-600"
+                                title="Remover permanentemente"
+                              >
+                                <Trash2 size={14} />
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          // Card expandido - todas as informações
+                          <div className="p-4">
+                            <div className="flex justify-between items-start mb-3">
+                              <div
+                                onClick={() => toggleNpcCard(pokemon.id)}
+                                className="cursor-pointer flex-1"
+                              >
+                                {pokemon.imageUrl && (
+                                  <div className="flex justify-center mb-2">
+                                    <img
+                                      src={pokemon.imageUrl}
+                                      alt={pokemon.name || pokemon.species}
+                                      className="w-20 h-20 object-contain"
+                                    />
+                                  </div>
+                                )}
+                                <div className="text-center mb-2">
+                                  <p className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                                    {pokemon.species || pokemon.name} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'}
+                                  </p>
+                                  <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                    #{String(pokemon.dexNumber).padStart(4, '0')} • Nível {pokemon.level}
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={() => sendNpcPokemonToBattle(pokemon)}
+                                  className="bg-cyan-500 text-white p-1.5 rounded-lg hover:bg-cyan-600"
+                                  title="Enviar para Batalha"
+                                >
+                                  <ArrowRightCircle size={14} />
+                                </button>
+                                <button
+                                  onClick={() => unarchiveNpcPokemon(pokemon)}
+                                  className="bg-green-500 text-white p-1.5 rounded-lg hover:bg-green-600"
+                                  title="Restaurar para área Pokémon NPC"
+                                >
+                                  <RotateCcw size={14} />
+                                </button>
+                                <button
+                                  onClick={() => removeArchivedNpcPokemon(pokemon.id)}
+                                  className="bg-red-500 text-white p-1.5 rounded-lg hover:bg-red-600"
+                                  title="Remover permanentemente"
+                                >
+                                  <Trash2 size={14} />
+                                </button>
+                              </div>
+                            </div>
+
+                            {/* Condições de Captura */}
+                            <div className="mb-2">
+                              <h4 className={`text-xs font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Condições</h4>
+                              <div className="grid grid-cols-3 gap-1">
+                                {[
+                                  { key: 'confusao', icon: BadgeHelp, color: 'text-purple-400', label: 'Confusão' },
+                                  { key: 'critico', icon: Clover, color: 'text-green-600', label: 'Crítico' },
+                                  { key: 'paralisia', icon: Zap, color: 'text-yellow-500', label: 'Paralisia' },
+                                  { key: 'sono', icon: Moon, color: 'text-blue-500', label: 'Sono' },
+                                  { key: 'atordoamento', icon: Shell, color: 'text-gray-500', label: 'Atordoamento' },
+                                  { key: 'congelamento', icon: Snowflake, color: 'text-blue-400', label: 'Congelamento' },
+                                  { key: 'paixao', icon: Heart, color: 'text-red-500', label: 'Paixão' },
+                                  { key: 'queimadura', icon: Flame, color: 'text-orange-500', label: 'Queimadura' },
+                                  { key: 'veneno', icon: Droplet, color: 'text-purple-600', label: 'Veneno' }
+                                ].map(condition => {
+                                  const Icon = condition.icon
+                                  const isChecked = npcConditions[pokemon.id]?.[condition.key] || false
+                                  return (
+                                    <label key={condition.key} className="flex items-center gap-1 cursor-pointer">
+                                      <input
+                                        type="checkbox"
+                                        checked={isChecked}
+                                        onChange={() => toggleNpcCondition(pokemon.id, condition.key)}
+                                        className="w-3 h-3"
+                                      />
+                                      <Icon size={14} className={condition.color} title={condition.label} />
+                                    </label>
+                                  )
+                                })}
+                              </div>
+                            </div>
+
+                            {/* Tipos e Habilidades */}
+                            <div className="mb-2">
+                              <h4 className={`text-xs font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Tipos & Habilidades</h4>
+                              <div className="flex items-center justify-between mb-2">
+                                <div className="flex gap-1 flex-wrap">
+                                  {pokemon.types.map((type, idx) => (
+                                    <span key={idx} className="px-2 py-0.5 text-xs rounded-lg bg-gradient-to-r from-amber-600 to-yellow-700 text-white font-semibold">
+                                      {type}
+                                    </span>
+                                  ))}
+                                  {pokemon.habilidade1 && (
+                                    <span
+                                      onClick={() => {
+                                        setSelectedAbility(pokemon.habilidade1)
+                                        setShowAbilityModal(true)
+                                      }}
+                                      className={`px-2 py-0.5 text-xs rounded-lg font-semibold cursor-pointer hover:opacity-80 transition-opacity ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-500 text-white'}`}>
+                                      {pokemon.habilidade1}
+                                    </span>
+                                  )}
+                                  {pokemon.habilidade2 && (
+                                    <span
+                                      onClick={() => {
+                                        setSelectedAbility(pokemon.habilidade2)
+                                        setShowAbilityModal(true)
+                                      }}
+                                      className={`px-2 py-0.5 text-xs rounded-lg font-semibold cursor-pointer hover:opacity-80 transition-opacity ${darkMode ? 'bg-purple-900 text-purple-300' : 'bg-purple-500 text-white'}`}>
+                                      {pokemon.habilidade2}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              <div className="flex justify-end">
+                                <div className={`px-3 py-1 rounded-lg font-bold text-sm ${
+                                  calculateCaptureValue(pokemon) >= 0
+                                    ? 'bg-green-600 text-white'
+                                    : 'bg-red-600 text-white'
+                                }`}>
+                                  Captura: {calculateCaptureValue(pokemon) >= 0 ? '+' : ''}{calculateCaptureValue(pokemon)}
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* HP */}
+                            <div className="mb-2">
+                              <h4 className={`text-xs font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>HP</h4>
+                              <div className="flex items-center gap-2">
+                                <div className="flex-1 h-3 bg-gray-300 rounded-full overflow-hidden">
+                                  <div
+                                    className={`h-full transition-all ${
+                                      (pokemon.currentHP / pokemon.hp) > 0.5 ? 'bg-green-500' :
+                                      (pokemon.currentHP / pokemon.hp) > 0.25 ? 'bg-yellow-500' : 'bg-red-500'
+                                    }`}
+                                    style={{ width: `${Math.max(0, (pokemon.currentHP / pokemon.hp) * 100)}%` }}
+                                  />
+                                </div>
+                                <span className={`text-xs font-bold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                  {pokemon.currentHP}/{pokemon.hp}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Atributos */}
+                            <div className="mb-2">
+                              <h4 className={`text-xs font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Atributos</h4>
+                              <div className="grid grid-cols-3 gap-1 text-[10px]">
+                                <div className={`p-1 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
+                                  <span className="font-semibold">ATK:</span> {pokemon.totalAttributes?.ataque || pokemon.ataque}
+                                </div>
+                                <div className={`p-1 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
+                                  <span className="font-semibold">DEF:</span> {pokemon.totalAttributes?.defesa || pokemon.defesa}
+                                </div>
+                                <div className={`p-1 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
+                                  <span className="font-semibold">ATK.E:</span> {pokemon.totalAttributes?.ataqueEspecial || pokemon.ataqueEspecial}
+                                </div>
+                                <div className={`p-1 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
+                                  <span className="font-semibold">DEF.E:</span> {pokemon.totalAttributes?.defesaEspecial || pokemon.defesaEspecial}
+                                </div>
+                                <div className={`p-1 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
+                                  <span className="font-semibold">VEL:</span> {pokemon.totalAttributes?.velocidade || pokemon.velocidade}
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Golpes */}
+                            {pokemon.golpes && pokemon.golpes.length > 0 && (
+                              <div>
+                                <h4 className={`text-xs font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Golpes</h4>
+                                <div className="flex flex-wrap gap-1">
+                                  {pokemon.golpes.filter(g => g).map((golpe, idx) => {
+                                    const golpeNome = typeof golpe === 'string' ? golpe : golpe?.nome
+                                    return golpeNome ? (
+                                      <span
+                                        key={idx}
+                                        onClick={() => {
+                                          const golpeData = GOLPES_DATA_IMPORTED.find(g => g.nome === golpeNome)
+                                          if (golpeData) {
+                                            setSelectedBattleMove(golpeData)
+                                            setShowBattleMoveModal(true)
+                                          }
+                                        }}
+                                        className={`px-2 py-0.5 text-[10px] rounded-lg font-semibold cursor-pointer hover:opacity-80 transition-opacity ${darkMode ? 'bg-gray-600 text-gray-200' : 'bg-gray-200 text-gray-700'}`}
+                                      >
+                                        {golpeNome}
+                                      </span>
+                                    ) : null
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         {accountDataModal}
       </>
@@ -17069,7 +17668,7 @@ function App() {
                   <div className="bg-yellow-100 px-4 py-2 rounded-lg text-center"><div className="text-xs text-yellow-600">Pokédex</div><div className="text-lg font-bold text-yellow-800">{scannedCount}</div></div>
                   <div className="bg-green-100 px-4 py-2 rounded-lg text-center"><div className="text-xs text-green-600">PC</div><div className="text-lg font-bold text-green-800">{pcPokemon.length}/1000</div></div>
                   {classes.includes('Colecionador') && (
-                    <div className="bg-orange-100 px-4 py-2 rounded-lg text-center" title={`MV (${getModifier(attributes.velocidade)}) + Grupos de 8 espécies (${Math.floor(new Set([...mainTeam, ...pcPokemon].map(p => p.species).filter(Boolean)).size / 8)})`}>
+                    <div className="bg-orange-100 px-4 py-2 rounded-lg text-center" title="MV + Grupos de 8 (Shiny=8pts, Lendário=8pts, Normal=1pt)">
                       <div className="text-xs text-orange-600">Contagem</div>
                       <div className="text-lg font-bold text-orange-800">{calcularContagem()}</div>
                     </div>
@@ -17418,13 +18017,27 @@ function App() {
                   return (
                     <div
                       key={idx}
-                      className={`p-4 rounded-lg border-2 ${pokemon ? pokemon.shiny ? 'border-yellow-500' : darkMode ? 'bg-gray-700 border-blue-500' : 'bg-blue-50 border-blue-300' : darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-100 border-gray-300'}`}
-                      style={pokemon?.shiny ? {
-                        backgroundImage: 'linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.2) 100%), url("/efeito shiny.gif")',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                      } : {}}
+                      className={`p-4 rounded-lg border-2 ${pokemon ? (pokemon.shiny || pokemon.legendary) ? (pokemon.shiny ? 'border-yellow-500' : 'border-orange-500') : darkMode ? 'bg-gray-700 border-blue-500' : 'bg-blue-50 border-blue-300' : darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-100 border-gray-300'}`}
+                      style={
+                        pokemon?.shiny && pokemon?.legendary ? {
+                          backgroundImage: 'url("/efeitolenda.gif"), url("/efeito shiny.gif")',
+                          backgroundSize: 'cover, cover',
+                          backgroundPosition: 'center, center',
+                          backgroundRepeat: 'no-repeat, no-repeat'
+                        } :
+                        pokemon?.legendary ? {
+                          backgroundImage: 'url("/efeitolenda.gif")',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          backgroundRepeat: 'no-repeat'
+                        } :
+                        pokemon?.shiny ? {
+                          backgroundImage: 'linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.2) 100%), url("/efeito shiny.gif")',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          backgroundRepeat: 'no-repeat'
+                        } : {}
+                      }
                     >
                       {pokemon ? (
                         <div>
@@ -18576,6 +19189,25 @@ function App() {
                     backgroundClip: 'text'
                   }}>
                     SHINY
+                  </label>
+                </div>
+
+                {/* CHECKBOX LENDÁRIO */}
+                <div className="mb-6 flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    id="legendary-checkbox"
+                    checked={pokemonEditForm.legendary}
+                    onChange={(e) => setPokemonEditForm({...pokemonEditForm, legendary: e.target.checked})}
+                    className="w-5 h-5 cursor-pointer"
+                  />
+                  <label htmlFor="legendary-checkbox" className="text-2xl font-bold cursor-pointer select-none" style={{
+                    background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6347 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}>
+                    LENDÁRIO
                   </label>
                 </div>
 
@@ -19789,7 +20421,16 @@ function App() {
 
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-            <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-6`}>Pokémon Armazenados</h3>
+            <div className="flex justify-between items-center mb-6">
+              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon Armazenados</h3>
+              <button
+                onClick={() => setShowSwapPokemonModal(true)}
+                className="bg-purple-500 text-white p-2 rounded-lg hover:bg-purple-600"
+                title="Move Pokémon"
+              >
+                <MoveVertical size={20} />
+              </button>
+            </div>
 
             {pcPokemon.length > 0 && (
               <div className="mb-6 space-y-4">
@@ -19855,13 +20496,27 @@ function App() {
                 }).map((pokemon, idx) => (
                   <div
                     key={pokemon.id || idx}
-                    className={`p-4 rounded-lg border-2 ${pokemon.shiny ? 'border-yellow-500' : darkMode ? 'bg-gray-700 border-purple-500' : 'bg-purple-50 border-purple-300'}`}
-                    style={pokemon?.shiny ? {
-                      backgroundImage: 'linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.2) 100%), url("/efeito shiny.gif")',
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      backgroundRepeat: 'no-repeat'
-                    } : {}}
+                    className={`p-4 rounded-lg border-2 ${(pokemon.shiny || pokemon.legendary) ? (pokemon.shiny ? 'border-yellow-500' : 'border-orange-500') : darkMode ? 'bg-gray-700 border-purple-500' : 'bg-purple-50 border-purple-300'}`}
+                    style={
+                      pokemon?.shiny && pokemon?.legendary ? {
+                        backgroundImage: 'url("/efeitolenda.gif"), url("/efeito shiny.gif")',
+                        backgroundSize: 'cover, cover',
+                        backgroundPosition: 'center, center',
+                        backgroundRepeat: 'no-repeat, no-repeat'
+                      } :
+                      pokemon?.legendary ? {
+                        backgroundImage: 'url("/efeitolenda.gif")',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                      } :
+                      pokemon?.shiny ? {
+                        backgroundImage: 'linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.2) 100%), url("/efeito shiny.gif")',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                      } : {}
+                    }
                   >
                     <div className="flex items-center justify-between gap-4">
                       {pokemonImages[sanitizeFirebaseKey(pokemon.id)] && (
@@ -20490,6 +21145,25 @@ function App() {
                     backgroundClip: 'text'
                   }}>
                     SHINY
+                  </label>
+                </div>
+
+                {/* CHECKBOX LENDÁRIO */}
+                <div className="mb-6 flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    id="legendary-checkbox"
+                    checked={pokemonEditForm.legendary}
+                    onChange={(e) => setPokemonEditForm({...pokemonEditForm, legendary: e.target.checked})}
+                    className="w-5 h-5 cursor-pointer"
+                  />
+                  <label htmlFor="legendary-checkbox" className="text-2xl font-bold cursor-pointer select-none" style={{
+                    background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6347 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}>
+                    LENDÁRIO
                   </label>
                 </div>
 
@@ -21396,6 +22070,179 @@ function App() {
             </div>
           </div>
         )}
+
+        {/* Modal Move Pokémon */}
+        {showSwapPokemonModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => {
+            setShowSwapPokemonModal(false)
+            setSwapMainTeamSearch('')
+            setSwapPcSearch('')
+            setSelectedSwapMainTeam(null)
+            setSelectedSwapPc(null)
+          }}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Move Pokémon
+                  </h3>
+                  <button onClick={() => {
+                    setShowSwapPokemonModal(false)
+                    setSwapMainTeamSearch('')
+                    setSwapPcSearch('')
+                    setSelectedSwapMainTeam(null)
+                    setSelectedSwapPc(null)
+                  }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  {/* Seleção do Time Principal */}
+                  <div>
+                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-cyan-400' : 'text-cyan-700'}`}>
+                      Time Principal → PC
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={swapMainTeamSearch}
+                        onChange={(e) => {
+                          setSwapMainTeamSearch(e.target.value)
+                          setSelectedSwapMainTeam(null)
+                        }}
+                        placeholder="Pesquisar no time principal..."
+                        className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      />
+                      {swapMainTeamSearch && !selectedSwapMainTeam && (
+                        <div className={`absolute z-10 w-full mt-1 max-h-40 overflow-y-auto rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                          {mainTeam
+                            .filter(p =>
+                              (p.name || p.species || '').toLowerCase().includes(swapMainTeamSearch.toLowerCase()) ||
+                              (p.species || '').toLowerCase().includes(swapMainTeamSearch.toLowerCase())
+                            )
+                            .map((pokemon, index) => (
+                              <div
+                                key={pokemon.id || index}
+                                onClick={() => {
+                                  setSelectedSwapMainTeam(pokemon)
+                                  setSwapMainTeamSearch(pokemon.name || pokemon.species)
+                                }}
+                                className={`px-4 py-2 cursor-pointer ${darkMode ? 'hover:bg-gray-600 text-white' : 'hover:bg-gray-100 text-gray-800'}`}
+                              >
+                                {pokemon.name || pokemon.species} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'} <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>(Nv. {pokemon.level})</span>
+                              </div>
+                            ))
+                          }
+                          {mainTeam.filter(p =>
+                            (p.name || p.species || '').toLowerCase().includes(swapMainTeamSearch.toLowerCase()) ||
+                            (p.species || '').toLowerCase().includes(swapMainTeamSearch.toLowerCase())
+                          ).length === 0 && (
+                            <div className={`px-4 py-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                              Nenhum pokémon encontrado
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    {selectedSwapMainTeam && (
+                      <div className={`mt-2 p-2 rounded-lg ${darkMode ? 'bg-cyan-900 text-cyan-300' : 'bg-cyan-100 text-cyan-800'} text-sm`}>
+                        Selecionado: <strong>{selectedSwapMainTeam.name || selectedSwapMainTeam.species}</strong> (Nv. {selectedSwapMainTeam.level})
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Ícone de troca */}
+                  <div className="flex justify-center">
+                    <MoveVertical size={32} className={darkMode ? 'text-purple-400' : 'text-purple-600'} />
+                  </div>
+
+                  {/* Seleção do PC */}
+                  <div>
+                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                      PC → Time Principal
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={swapPcSearch}
+                        onChange={(e) => {
+                          setSwapPcSearch(e.target.value)
+                          setSelectedSwapPc(null)
+                        }}
+                        placeholder="Pesquisar no PC..."
+                        className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      />
+                      {swapPcSearch && !selectedSwapPc && (
+                        <div className={`absolute z-10 w-full mt-1 max-h-40 overflow-y-auto rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                          {pcPokemon
+                            .filter(p =>
+                              (p.name || p.species || '').toLowerCase().includes(swapPcSearch.toLowerCase()) ||
+                              (p.species || '').toLowerCase().includes(swapPcSearch.toLowerCase())
+                            )
+                            .map((pokemon, index) => (
+                              <div
+                                key={pokemon.id || index}
+                                onClick={() => {
+                                  setSelectedSwapPc(pokemon)
+                                  setSwapPcSearch(pokemon.name || pokemon.species)
+                                }}
+                                className={`px-4 py-2 cursor-pointer ${darkMode ? 'hover:bg-gray-600 text-white' : 'hover:bg-gray-100 text-gray-800'}`}
+                              >
+                                {pokemon.name || pokemon.species} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'} <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>(Nv. {pokemon.level})</span>
+                              </div>
+                            ))
+                          }
+                          {pcPokemon.filter(p =>
+                            (p.name || p.species || '').toLowerCase().includes(swapPcSearch.toLowerCase()) ||
+                            (p.species || '').toLowerCase().includes(swapPcSearch.toLowerCase())
+                          ).length === 0 && (
+                            <div className={`px-4 py-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                              Nenhum pokémon encontrado
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    {selectedSwapPc && (
+                      <div className={`mt-2 p-2 rounded-lg ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-800'} text-sm`}>
+                        Selecionado: <strong>{selectedSwapPc.name || selectedSwapPc.species}</strong> (Nv. {selectedSwapPc.level})
+                      </div>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      if (selectedSwapMainTeam && selectedSwapPc) {
+                        // Remove do time principal e adiciona no PC
+                        const newMainTeam = mainTeam.filter(p => p.id !== selectedSwapMainTeam.id)
+                        newMainTeam.push(selectedSwapPc)
+
+                        // Remove do PC e adiciona no time principal
+                        const newPcPokemon = pcPokemon.filter(p => p.id !== selectedSwapPc.id)
+                        newPcPokemon.push(selectedSwapMainTeam)
+
+                        setMainTeam(newMainTeam)
+                        setPcPokemon(newPcPokemon)
+
+                        // Limpa o modal
+                        setShowSwapPokemonModal(false)
+                        setSwapMainTeamSearch('')
+                        setSwapPcSearch('')
+                        setSelectedSwapMainTeam(null)
+                        setSelectedSwapPc(null)
+                      }
+                    }}
+                    disabled={!selectedSwapMainTeam || !selectedSwapPc}
+                    className="w-full bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Mover
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         </div>
         {accountDataModal}
       </>
@@ -21428,6 +22275,13 @@ function App() {
             <div className="flex justify-between items-center mb-6">
               <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon Registrados</h3>
               <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setShowScanPokemonModal(true)}
+                  className={`p-2 rounded-lg transition-all hover:scale-110 ${darkMode ? 'bg-blue-900/50 hover:bg-blue-800' : 'bg-blue-100 hover:bg-blue-200'}`}
+                  title="Escanear"
+                >
+                  <img src="/pokedexpq.png" alt="Escanear" className="w-5 h-5" />
+                </button>
                 <button
                   onClick={() => setShowExoticConfigModal(true)}
                   className={`p-2 rounded-lg transition-all hover:scale-110 ${darkMode ? 'bg-purple-900/50 text-purple-400 hover:bg-purple-800' : 'bg-purple-100 text-purple-600 hover:bg-purple-200'}`}
@@ -22112,6 +22966,108 @@ function App() {
                       Salvar Configurações
                     </button>
                   )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Escanear Pokémon */}
+        {showScanPokemonModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => {
+            setShowScanPokemonModal(false)
+            setScanSearch('')
+            setSelectedScanPokemon(null)
+          }}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Escanear Pokémon
+                  </h3>
+                  <button onClick={() => {
+                    setShowScanPokemonModal(false)
+                    setScanSearch('')
+                    setSelectedScanPokemon(null)
+                  }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Espécie
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={scanSearch}
+                        onChange={(e) => {
+                          setScanSearch(e.target.value)
+                          setSelectedScanPokemon(null)
+                        }}
+                        placeholder="Pesquisar espécie..."
+                        className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      />
+                      {scanSearch && !selectedScanPokemon && (
+                        <div className={`absolute z-10 w-full mt-1 max-h-60 overflow-y-auto rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                          {/* Pokémon normais */}
+                          {pokedexData
+                            .filter(p => p.nome.toLowerCase().includes(scanSearch.toLowerCase()))
+                            .map((pokemon, index) => (
+                              <div
+                                key={`normal-${pokemon.dexNumber}-${index}`}
+                                onClick={() => {
+                                  setSelectedScanPokemon(pokemon)
+                                  setScanSearch(pokemon.nome)
+                                }}
+                                className={`px-4 py-2 cursor-pointer ${darkMode ? 'hover:bg-gray-600 text-white' : 'hover:bg-gray-100 text-gray-800'}`}
+                              >
+                                #{String(pokemon.dexNumber).padStart(4, '0')} - {pokemon.nome}
+                              </div>
+                            ))
+                          }
+                          {/* Pokémon exóticos */}
+                          {globalExoticSpecies
+                            .filter(p => (p.species || p.nome || '').toLowerCase().includes(scanSearch.toLowerCase()))
+                            .map((pokemon, index) => (
+                              <div
+                                key={`exotic-${pokemon.species || pokemon.nome}-${index}`}
+                                onClick={() => {
+                                  setSelectedScanPokemon({ ...pokemon, isExotic: true })
+                                  setScanSearch(pokemon.species || pokemon.nome)
+                                }}
+                                className={`px-4 py-2 cursor-pointer ${darkMode ? 'hover:bg-gray-600 text-purple-300' : 'hover:bg-gray-100 text-purple-600'}`}
+                              >
+                                {pokemon.species || pokemon.nome} <span className="text-xs">(Exótico)</span>
+                              </div>
+                            ))
+                          }
+                          {pokedexData.filter(p => p.nome.toLowerCase().includes(scanSearch.toLowerCase())).length === 0 &&
+                           globalExoticSpecies.filter(p => (p.species || p.nome || '').toLowerCase().includes(scanSearch.toLowerCase())).length === 0 && (
+                            <div className={`px-4 py-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                              Nenhuma espécie encontrada
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    {selectedScanPokemon && (
+                      <div className={`mt-2 p-2 rounded-lg ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-800'} text-sm`}>
+                        Selecionado: <strong>{selectedScanPokemon.nome || selectedScanPokemon.species}</strong>
+                        {selectedScanPokemon.isExotic && <span className="ml-2 text-xs">(Exótico)</span>}
+                      </div>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={catalogPokemon}
+                    disabled={!selectedScanPokemon}
+                    className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Catalogar
+                  </button>
                 </div>
               </div>
             </div>
@@ -25646,18 +26602,32 @@ function App() {
                           <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                             {index + 1}. {xp.value} XP {xp.species && <span className={xp.fromNpc ? 'text-red-500 font-semibold' : `${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>({xp.species})</span>}
                           </span>
-                          <button
-                            onClick={async () => {
-                              const newList = xpList.filter((_, i) => i !== index)
-                              setXpList(newList)
-                              if (useFirebase) {
-                                await saveXpCapturas(currentUser.username, { xpList: newList, capturaList })
-                              }
-                            }}
-                            className="text-red-500 hover:text-red-600 p-1"
-                          >
-                            <Trash2 size={16} />
-                          </button>
+                          <div className="flex gap-1">
+                            <button
+                              onClick={() => {
+                                setEditingXpIndex(index)
+                                setEditXpValue(xp.value.toString())
+                                setShowEditXpModal(true)
+                              }}
+                              className="text-blue-500 hover:text-blue-600 p-1"
+                              title="Editar XP"
+                            >
+                              <Pencil size={16} />
+                            </button>
+                            <button
+                              onClick={async () => {
+                                const newList = xpList.filter((_, i) => i !== index)
+                                setXpList(newList)
+                                if (useFirebase) {
+                                  await saveXpCapturas(currentUser.username, { xpList: newList, capturaList })
+                                }
+                              }}
+                              className="text-red-500 hover:text-red-600 p-1"
+                              title="Remover XP"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -25709,18 +26679,36 @@ function App() {
                               </span>
                             )}
                           </div>
-                          <button
-                            onClick={async () => {
-                              const newList = capturaList.filter((_, i) => i !== index)
-                              setCapturaList(newList)
-                              if (useFirebase) {
-                                await saveXpCapturas(currentUser.username, { xpList, capturaList: newList })
-                              }
-                            }}
-                            className="text-red-500 hover:text-red-600 p-1"
-                          >
-                            <Trash2 size={16} />
-                          </button>
+                          <div className="flex gap-1">
+                            <button
+                              onClick={() => {
+                                setEditingCapturaIndex(index)
+                                setEditCapturaData({
+                                  species: pokemon.species,
+                                  level: pokemon.level.toString(),
+                                  captureValue: pokemon.captureValue.toString()
+                                })
+                                setShowEditCapturaModal(true)
+                              }}
+                              className="text-blue-500 hover:text-blue-600 p-1"
+                              title="Editar Captura"
+                            >
+                              <Pencil size={16} />
+                            </button>
+                            <button
+                              onClick={async () => {
+                                const newList = capturaList.filter((_, i) => i !== index)
+                                setCapturaList(newList)
+                                if (useFirebase) {
+                                  await saveXpCapturas(currentUser.username, { xpList, capturaList: newList })
+                                }
+                              }}
+                              className="text-red-500 hover:text-red-600 p-1"
+                              title="Remover Captura"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -25775,6 +26763,145 @@ function App() {
                     className="w-full bg-cyan-500 text-white py-3 rounded-lg hover:bg-cyan-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Adicionar XP
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Editar XP */}
+        {showEditXpModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditXpModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Editar XP
+                  </h3>
+                  <button onClick={() => setShowEditXpModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Quantidade de XP
+                    </label>
+                    <input
+                      type="number"
+                      value={editXpValue}
+                      onChange={(e) => setEditXpValue(e.target.value)}
+                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      placeholder="Ex: 100"
+                    />
+                  </div>
+
+                  <button
+                    onClick={async () => {
+                      if (editXpValue && parseInt(editXpValue) > 0 && editingXpIndex !== null) {
+                        const newXpList = xpList.map((xp, i) =>
+                          i === editingXpIndex ? { ...xp, value: parseInt(editXpValue) } : xp
+                        )
+                        setXpList(newXpList)
+                        if (useFirebase) {
+                          await saveXpCapturas(currentUser.username, { xpList: newXpList, capturaList })
+                        }
+                        setEditXpValue('')
+                        setEditingXpIndex(null)
+                        setShowEditXpModal(false)
+                      }
+                    }}
+                    disabled={!editXpValue || parseInt(editXpValue) <= 0}
+                    className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Salvar Alterações
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Editar Captura */}
+        {showEditCapturaModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditCapturaModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    Editar Captura
+                  </h3>
+                  <button onClick={() => setShowEditCapturaModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Espécie
+                    </label>
+                    <input
+                      type="text"
+                      value={editCapturaData.species}
+                      onChange={(e) => setEditCapturaData({ ...editCapturaData, species: e.target.value })}
+                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      placeholder="Ex: Pikachu"
+                    />
+                  </div>
+
+                  <div>
+                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Nível
+                    </label>
+                    <input
+                      type="number"
+                      value={editCapturaData.level}
+                      onChange={(e) => setEditCapturaData({ ...editCapturaData, level: e.target.value })}
+                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      placeholder="Ex: 5"
+                    />
+                  </div>
+
+                  <div>
+                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Valor de Captura
+                    </label>
+                    <input
+                      type="number"
+                      value={editCapturaData.captureValue}
+                      onChange={(e) => setEditCapturaData({ ...editCapturaData, captureValue: e.target.value })}
+                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      placeholder="Ex: 100"
+                    />
+                  </div>
+
+                  <button
+                    onClick={async () => {
+                      if (editCapturaData.species && editCapturaData.level && editCapturaData.captureValue && editingCapturaIndex !== null) {
+                        const newCapturaList = capturaList.map((cap, i) =>
+                          i === editingCapturaIndex ? {
+                            ...cap,
+                            species: editCapturaData.species,
+                            level: parseInt(editCapturaData.level),
+                            captureValue: parseInt(editCapturaData.captureValue)
+                          } : cap
+                        )
+                        setCapturaList(newCapturaList)
+                        if (useFirebase) {
+                          await saveXpCapturas(currentUser.username, { xpList, capturaList: newCapturaList })
+                        }
+                        setEditCapturaData({ species: '', level: '', captureValue: '' })
+                        setEditingCapturaIndex(null)
+                        setShowEditCapturaModal(false)
+                      }
+                    }}
+                    disabled={!editCapturaData.species || !editCapturaData.level || !editCapturaData.captureValue}
+                    className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Salvar Alterações
                   </button>
                 </div>
               </div>
