@@ -1612,7 +1612,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon Parceiro ou Prestativo',
-      efeito: 'por um número de rodadas igual à metade de seu MA ou de seu MV, o alvo age de maneira independente em combate.'
+      efeito: 'por um número de rodadas igual à metade de seu MA ou de seu MV, o alvo age de maneira independente em combate. Como Prestativo ou Parceiro, ele agirá nos melhores interesses do Ranger, mas não segue as ordens do Ranger. Ele não foge ou recua enquanto este Talento durar. O Ranger não pode possuir mais de um pokémon sob os efeitos deste Talento. Este Talento não pode ser usado se o Talento Você Isso e Você Aquilo! estiver em uso.'
     },
     {
       nome: 'Ambientalista',
@@ -1628,7 +1628,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um local',
-      efeito: 'ao usar este Talento, role 1d20 + MA ou MV. Se o resultado for 15 ou mais, um pokémon com a Capacidade de Escolha aparece.'
+      efeito: 'Ao usar este Talento, role 1d20 + MA ou MV. Se o resultado for 15 ou mais, um pokémon com a Capacidade de Escolha aparece. Qualquer tentativa de atacar ou capturar este pokémon o faz ter sucesso automático em fugir. Quando obtiver este Talento, você deve selecionar uma Capacidade da lista a seguir: Afundamento, Amorfia, Calor, Combustão, Congelação, Encolhimento, Fiação, Frio, Geleira, Guelras, Luminar, Magnetismo, Manancial, Rebento, Sedução, Térreo, Tumefação, Vento. A Capacidade é selecionada não pode ser alterada. Ela é chamada de Capacidade de Escolha. Este Talento pode ser escolhido diversas vezes. Seus efeitos não se acumulam. A cada vez que é escolhido, ele se aplica a uma Capacidade diferente.'
     },
     {
       nome: 'Arma de Choque',
@@ -1643,7 +1643,7 @@ export const TALENTOS_DATA = {
       requisitos: 'reconhecido pela execução de um serviço distintivo.',
       referencia: 'C, X',
       frequencia: 'Constante',
-      efeito: 'você assume as responsabilidades como um Ranger de alta patente. Você pode dar ordens a Rangers sem este Talento e possui maior poder decisório.'
+      efeito: 'você assume as responsabilidades como um Ranger de alta patente. Você pode dar ordens a Rangers sem este Talento e possui maior poder decisório e encontros com outros indivíduos de alta patente governamental, particularmente policial e militar. Quando requisitar auxílio de uma Estação Ranger em um assunto importante, ela é obrigada a dar algum tipo de auxílio, salvo nas circunstâncias mais extraordinárias. Se você é Policial, este Talento também se aplica a Policiais e Postos Policiais.'
     },
     {
       nome: 'Contenção Aprimorada',
@@ -1657,7 +1657,7 @@ export const TALENTOS_DATA = {
       requisitos: 'Contenção Aprimorada.',
       referencia: 'C, X',
       frequencia: 'Constante',
-      efeito: 'quando usar Contenção, o teste é feito usando 1d100 -40 (em vez de apenas -30). Você agora pode possuir cinco pokémons Prestativos mediante Contenção. Este Talento substitui Contenção Aprimorada.'
+      efeito: 'quando usar Contenção, o teste é feito usando 1d100 -40 (em vez de apenas -30). Você agora pode possuir cinco pokémons Prestativos mediante Contenção. Este Talento substitui Contenção Aprimorada. Este Talento substitui Contenção Aprimorada.'
     },
     {
       nome: 'Prática Perfeita',
@@ -1673,7 +1673,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, X',
       frequencia: 'Semanal',
       alvo: 'si',
-      efeito: 'você convoca apoio de pelo menos um Ranger na área.'
+      efeito: 'você convoca apoio de pelo menos um Ranger na área. Este Ranger irá até você diretamente para encontrá-lo pessoalmente assim que possível e auxiliará você em assuntos urgentes, mas não abandonará completamente as atividades dele a menos que ordenado por uma Autoridade superior (um Oficial).'
     },
     {
       nome: 'Santuário',
@@ -1689,7 +1689,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, X',
       frequencia: 'Uso Único. A cada 10 Níveis, receba um uso adicional',
       alvo: 'um Parceiro que está com você há pelo menos um mês',
-      efeito: 'você passa uma hora conversando e negociando com o alvo. Depois disso, ele concorda em ser capturado por você.'
+      efeito: 'você passa uma hora conversando e negociando com o alvo. Depois disso, ele concorda em ser capturado por você. Após capturá-lo, ele ainda será considerado seu Parceiro para fins de quaisquer Talentos, mas não conta para seu número máximo de Parceiros.'
     }
   ],
 
@@ -1701,7 +1701,7 @@ export const TALENTOS_DATA = {
       referencia: 'C, V',
       frequencia: 'Constante',
       gatilho: 'seu pokémon vence um inimigo ou obtém um Crítico',
-      efeito: 'seu pokémon ganha Pontos de Vida temporários igual ao dobro do seu MA.'
+      efeito: 'seu pokémon ganha Pontos de Vida temporários igual ao dobro do seu MA. Pontos de Vida temporários desaparecem após um encontro ou ao serem consumidos (eles são consumidos antes dos Pontos de Vida normais quando se sofre dano).'
     },
     {
       nome: 'Ataques Aprimorados +',
@@ -1748,7 +1748,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
-      efeito: 'na próxima vez que seu pokémon usar um Golpe que não causa dano, reduza pela metade de seu MAE a Dificuldade de Acurácia.'
+      efeito: 'na próxima vez que seu pokémon usar um Golpe que não causa dano, reduza pela metade de seu MAE a Dificuldade de Acurácia. Este Talento não pode ser usado para Golpes que automaticamente derrubam os Pontos de Vida do inimigo a zero.'
     },
     {
       nome: 'Intimidar',
@@ -1772,7 +1772,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu adjacente',
-      efeito: 'cause dano ao seu pokémon igual a um quinto dos Pontos de Vida máximos dele. Eleve uma Fase de um Atributo dele à sua escolha.'
+      efeito: 'cause dano ao seu pokémon igual a um quinto dos Pontos de Vida máximos dele. Eleve uma Fase de um Atributo dele à sua escolha. Se você usar Pressão mais de uma vez diária no mesmo pokémon, isso afetará a lealdade dele.'
     },
     {
       nome: 'Pressão +',
@@ -1780,7 +1780,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu adjacente',
-      efeito: 'cause dano ao seu pokémon igual a um quarto dos Pontos de Vida máximos dele empregando uma arma para feri-lo. Eleve duas Fases de um Atributo dele à sua escolha.'
+      efeito: 'cause dano ao seu pokémon igual a um quarto dos Pontos de Vida máximos dele empregando uma arma para feri-lo. Eleve duas Fases de um Atributo dele à sua escolha. Se você usar Pressão + mais de uma vez diária no mesmo pokémon, isso afetará a lealdade dele.'
     },
     {
       nome: 'Transpassar',
@@ -1799,7 +1799,7 @@ export const TALENTOS_DATA = {
       requisitos: 'N/A',
       referencia: 'C, V',
       frequencia: 'Constante',
-      efeito: 'você se sente continuamente obrigado a estar na presença do Tipo de Escolha, devendo possuir pelo menos quatro pokémons do seu Tipo de Escolha seus consigo em sua equipe. Você pode sentir pokémons do Tipo de Escolha a até um número de metros igual ao quíntuplo de seu MAE.'
+      efeito: 'você se sente continuamente obrigado a estar na presença do Tipo de Escolha, devendo possuir pelo menos quatro pokémons do seu Tipo de Escolha seus consigo em sua equipe. Você pode sentir pokémons do Tipo de Escolha a até um número de metros igual ao quíntuplo de seu MAE. Além disso, nesta mesma área, você pode sentir se um pokémon conhece algum Golpe de seu Tipo de Escolha.'
     },
     {
       nome: 'Aprimorar Golpes Elementais +',
@@ -1815,7 +1815,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, X',
       frequencia: 'Diária',
       gatilho: 'você decide batalhar pokémons selvagens',
-      efeito: 'role 1d20 + MAE. Se o resultado for 15 ou mais e a área contiver pelo menos um pokémon de seu Tipo de Escolha, você encontrará pelo menos um pokémon de uma espécie de seu Tipo de Escolha.'
+      efeito: 'role 1d20 + MAE. Se o resultado for 15 ou mais e a área contiver pelo menos um pokémon de seu Tipo colha, você encontrará pelo menos um pokémon de uma espécie de seu Tipo de Escolha.'
     },
     {
       nome: 'Conexão com Tipo',
@@ -1823,7 +1823,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, X',
       frequencia: 'À Vontade',
       alvo: 'um pokémon selvagem hostil ou indiferente de seu Tipo de Escolha',
-      efeito: 'role 1d20 + MA. Se o resultado for 15 ou mais, este pokémon se torna mais amistoso.'
+      efeito: 'Role 1d20 + MA. Se o resultado for 15 ou mais, este pokémon se torna mais amistoso. Se ele era indiferente, ele agora demonstra interesse por você. Se for hostil, ele decidirá não atacar, mas ainda pode decidir fugir ou permanecer cauteloso. A atitude permanecerá até que algo a mude. Um mesmo pokémon não pode ser alo deste Talento mais de uma vez diária.'
     },
     {
       nome: 'Conversão',
@@ -1831,7 +1831,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, X',
       frequencia: 'Uso Único. A cada 10 Níveis, receba um uso adicional',
       alvo: 'um pokémon seu',
-      efeito: 'este Talento requer levar o pokémon alvo a um ambiente com profundas características associadas ao seu Tipo de Escolha e passar pelo menos 10 horas em treinamento neste lugar. O pokémon alvo recebe permanentemente o Tipo de Escolha.'
+      efeito: 'este Talento requer levar o pokémon alvo a um ambiente com profundas características associadas ao seu Tipo de Escolha e passar pelo menos 10 horas em treinamento neste lugar. O pokémon alvo recebe permanentemente o Tipo de Escolha. Se ele já possuía dois Tipos, substitua permanentemente um de seus Tipos. A aparência do pokémon é alterada de acordo com seu novo Tipo (como acontece com Vulpix adaptado às condições árticas ou um Geodude que vive cercado por campos elétricos, por exemplo).'
     },
     {
       nome: 'Elementalismo',
@@ -1855,7 +1855,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon',
-      efeito: 'o alvo recebe seu Tipo de Escolha por um número de rodadas igual a seu MA.'
+      efeito: 'o alvo recebe seu Tipo de Escolha por um número de rodadas igual a seu MA (cada rodada equivale a seis segundos). Se ele já possuía dois Tipos, substitua temporariamente um de seus Tipos. Ao fim do combate, como ele foi (mesmo que temporariamente) do Tipo de Escolha, seu Treinamento Elemental é aplicado.'
     },
     {
       nome: 'Sou Superior no Meu Tipo!',
@@ -2435,7 +2435,7 @@ export const TALENTOS_DATA = {
     {
       nome: 'Pastoreio',
       requisitos: 'N/A',
-      referencia: 'P, X',
+      referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'quando usar Contenção, você pode ter como alvo dois pokémons adjacentes.'
     },
