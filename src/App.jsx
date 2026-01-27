@@ -1976,6 +1976,14 @@ function App() {
       defesaEspecial: '',
       velocidade: ''
     },
+    bonusPoints: {
+      saude: '',
+      ataque: '',
+      defesa: '',
+      ataqueEspecial: '',
+      defesaEspecial: '',
+      velocidade: ''
+    },
     gender: '',
     displacement: {
       terrestre: '',
@@ -2030,6 +2038,7 @@ function App() {
   const [expandedAtributo, setExpandedAtributo] = useState(null) // Nome do atributo expandido ou null
   const [expandedCondicoes, setExpandedCondicoes] = useState([]) // Array de nomes de condições expandidas
   const [expandedItendexCorredores, setExpandedItendexCorredores] = useState([]) // Array de corredores expandidos no Itendex
+  const [highlightedProgressaoRows, setHighlightedProgressaoRows] = useState([]) // Array de níveis destacados na tabela de Progressão de nível
 
   // Estados para Enciclopédia M (Mestre)
   const [encyclopediaMSection, setEncyclopediaMSection] = useState('Golpedex M') // 'Golpedex M', 'Descritordex M', 'Tag de Concursodex M', 'Períciadex M', 'Habilidadedex M', 'Capacidadex M', 'Condiçõesdex M'
@@ -6194,27 +6203,29 @@ function App() {
     setSelectedExoticConfig(null)
   }
 
-  // Função para calcular HP máximo: (3 x Saúde) + Nível
+  // Função para calcular HP máximo: (3 x Saúde Total) + Nível
   const calculateMaxHP = (pokemon) => {
     const saudeBase = parseInt(pokemon.baseAttributes?.saude) || 0
+    const bonusVal = parseInt(pokemon.bonusPoints?.saude) || 0
     const selectedNature = natures.find(n => n.nome === pokemon.nature)
     const isIncreased = selectedNature?.up === 'Saúde'
     const isDecreased = selectedNature?.down === 'Saúde'
     const natureBonus = isIncreased ? 1 : isDecreased ? -1 : 0
     const saudePontos = parseInt(pokemon.levelPoints?.saude) || 0
-    const saudeTotal = saudeBase + natureBonus + saudePontos
+    const saudeTotal = saudeBase + bonusVal + natureBonus + saudePontos
     return (3 * saudeTotal) + (pokemon.level || 1)
   }
 
   // Função auxiliar para calcular atributo total com natureza
   const calculateTotalAttribute = (pokemon, attributeKey, attributeLabel) => {
     const baseVal = parseInt(pokemon.baseAttributes?.[attributeKey]) || 0
+    const bonusVal = parseInt(pokemon.bonusPoints?.[attributeKey]) || 0
     const selectedNature = natures.find(n => n.nome === pokemon.nature)
     const isIncreased = selectedNature?.up === attributeLabel
     const isDecreased = selectedNature?.down === attributeLabel
     const natureBonus = attributeKey === 'saude' ? (isIncreased ? 1 : isDecreased ? -1 : 0) : (isIncreased ? 2 : isDecreased ? -2 : 0)
     const levelPoints = parseInt(pokemon.levelPoints?.[attributeKey]) || 0
-    return baseVal + natureBonus + levelPoints
+    return baseVal + bonusVal + natureBonus + levelPoints
   }
 
   // Função para buscar tipos do Pokémon do pokemonData
@@ -6429,6 +6440,14 @@ function App() {
         defesaEspecial: '',
         velocidade: ''
       },
+      bonusPoints: pokemon.bonusPoints || {
+        saude: '',
+        ataque: '',
+        defesa: '',
+        ataqueEspecial: '',
+        defesaEspecial: '',
+        velocidade: ''
+      },
       displacement: pokemon.displacement || {
         terrestre: '',
         nadar: '',
@@ -6520,6 +6539,14 @@ function App() {
       gender: pokemon.gender || '',
       baseAttributes: pokemon.baseAttributes || baseAttributesFromData,
       levelPoints: pokemon.levelPoints || {
+        saude: '',
+        ataque: '',
+        defesa: '',
+        ataqueEspecial: '',
+        defesaEspecial: '',
+        velocidade: ''
+      },
+      bonusPoints: pokemon.bonusPoints || {
         saude: '',
         ataque: '',
         defesa: '',
@@ -15244,15 +15271,16 @@ function App() {
     // Usar dados do treinador carregados pelo useEffect
     const trainerData = selectedTrainerData
 
-    // Função para calcular HP máximo do pokémon
+    // Função para calcular HP máximo do pokémon: (3 x Saúde Total) + Nível
     const calculatePokemonMaxHP = (pokemon) => {
       const saudeBase = parseInt(pokemon.baseAttributes?.saude) || 0
+      const bonusVal = parseInt(pokemon.bonusPoints?.saude) || 0
       const selectedNature = natures.find(n => n.nome === pokemon.nature)
       const isIncreased = selectedNature?.up === 'Saúde'
       const isDecreased = selectedNature?.down === 'Saúde'
       const natureBonus = isIncreased ? 1 : isDecreased ? -1 : 0
       const saudePontos = parseInt(pokemon.levelPoints?.saude) || 0
-      const saudeTotal = saudeBase + natureBonus + saudePontos
+      const saudeTotal = saudeBase + bonusVal + natureBonus + saudePontos
       return (3 * saudeTotal) + (pokemon.level || 1)
     }
 
@@ -18030,7 +18058,7 @@ function App() {
                 <table className={`w-full border-collapse ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
                   <thead><tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
                     <th className={`border p-2 ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Atributo</th>
-                    <th className={`border p-2 ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Valor</th>
+                    <th className={`border p-2 ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Valor ({attributes.saude + attributes.ataque + attributes.defesa + attributes.ataqueEspecial + attributes.defesaEspecial + attributes.velocidade})</th>
                     <th className={`border p-2 ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Modificador</th>
                     <th className={`border p-2 ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Perícias</th>
                   </tr></thead>
@@ -19345,7 +19373,8 @@ function App() {
                         <tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
                           <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Atributos</th>
                           <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Atributos Basais</th>
-                          <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Basal + Natureza</th>
+                          <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Atributo Bônus</th>
+                          <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Basal + Bônus + Nat.</th>
                           <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Pontos por Nível</th>
                           <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Total</th>
                         </tr>
@@ -19363,11 +19392,12 @@ function App() {
                           const isIncreased = selectedNature?.up === attr.label
                           const isDecreased = selectedNature?.down === attr.label
                           const baseVal = parseInt(pokemonEditForm.baseAttributes[attr.key]) || 0
+                          const bonusVal = parseInt(pokemonEditForm.bonusPoints[attr.key]) || 0
                           // Saúde flutua ±1, outros atributos flutuam ±2
                           const natureBonus = attr.key === 'saude' ? 1 : 2
                           const natureVal = isIncreased ? natureBonus : isDecreased ? -natureBonus : 0
                           const levelVal = parseInt(pokemonEditForm.levelPoints[attr.key]) || 0
-                          const total = baseVal + natureVal + levelVal
+                          const total = baseVal + bonusVal + natureVal + levelVal
 
                           return (
                             <tr key={attr.key} className={
@@ -19390,8 +19420,19 @@ function App() {
                                   className={`w-full px-2 py-1 text-xs text-center border rounded ${darkMode ? 'bg-gray-600 text-white border-gray-500' : 'border-gray-300'}`}
                                 />
                               </td>
+                              <td className={`border p-2 ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
+                                <input
+                                  type="number"
+                                  value={pokemonEditForm.bonusPoints[attr.key]}
+                                  onChange={(e) => setPokemonEditForm({
+                                    ...pokemonEditForm,
+                                    bonusPoints: {...pokemonEditForm.bonusPoints, [attr.key]: e.target.value}
+                                  })}
+                                  className={`w-full px-2 py-1 text-xs text-center border rounded ${darkMode ? 'bg-gray-600 text-white border-gray-500' : 'border-gray-300'}`}
+                                />
+                              </td>
                               <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>
-                                {baseVal + natureVal}
+                                {baseVal + bonusVal + natureVal}
                               </td>
                               <td className={`border p-2 ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
                                 <input
@@ -19707,7 +19748,8 @@ function App() {
                           <tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
                             <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Atributo</th>
                             <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Basal</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Basal + Natureza</th>
+                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Atributo Bônus</th>
+                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Basal + Bônus + Nat.</th>
                             <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Pontos Nível</th>
                             <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Total</th>
                           </tr>
@@ -19725,16 +19767,19 @@ function App() {
                             const isIncreased = selectedNature?.up === attr.label
                             const isDecreased = selectedNature?.down === attr.label
                             const baseVal = parseInt(viewingPokemon.baseAttributes?.[attr.key]) || 0
+                            const bonusVal = parseInt(viewingPokemon.bonusPoints?.[attr.key]) || 0
                             const natureBonus = attr.key === 'saude' ? 1 : 2
                             const natureVal = isIncreased ? natureBonus : isDecreased ? -natureBonus : 0
                             const levelVal = parseInt(viewingPokemon.levelPoints?.[attr.key]) || 0
-                            const total = baseVal + natureVal + levelVal
+                            const basalBonusNat = baseVal + bonusVal + natureVal
+                            const total = basalBonusNat + levelVal
 
                             return (
                               <tr key={attr.key}>
                                 <td className={`border p-2 text-xs font-semibold ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{attr.label}</td>
                                 <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal || '-'}</td>
-                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal ? baseVal + natureVal : '-'}</td>
+                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{bonusVal || '-'}</td>
+                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal ? basalBonusNat : '-'}</td>
                                 <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{levelVal || '-'}</td>
                                 <td className={`border p-2 text-xs text-center font-bold ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal ? total : '-'}</td>
                               </tr>
@@ -20925,7 +20970,8 @@ function App() {
                           <tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
                             <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Atributo</th>
                             <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Basal</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Basal + Natureza</th>
+                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Atributo Bônus</th>
+                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Basal + Bônus + Nat.</th>
                             <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Pontos Nível</th>
                             <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Total</th>
                           </tr>
@@ -20943,16 +20989,19 @@ function App() {
                             const isIncreased = selectedNature?.up === attr.label
                             const isDecreased = selectedNature?.down === attr.label
                             const baseVal = parseInt(viewingPokemon.baseAttributes?.[attr.key]) || 0
+                            const bonusVal = parseInt(viewingPokemon.bonusPoints?.[attr.key]) || 0
                             const natureBonus = attr.key === 'saude' ? 1 : 2
                             const natureVal = isIncreased ? natureBonus : isDecreased ? -natureBonus : 0
                             const levelVal = parseInt(viewingPokemon.levelPoints?.[attr.key]) || 0
-                            const total = baseVal + natureVal + levelVal
+                            const basalBonusNat = baseVal + bonusVal + natureVal
+                            const total = basalBonusNat + levelVal
 
                             return (
                               <tr key={attr.key}>
                                 <td className={`border p-2 text-xs font-semibold ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{attr.label}</td>
                                 <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal || '-'}</td>
-                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal ? baseVal + natureVal : '-'}</td>
+                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{bonusVal || '-'}</td>
+                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal ? basalBonusNat : '-'}</td>
                                 <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{levelVal || '-'}</td>
                                 <td className={`border p-2 text-xs text-center font-bold ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal ? total : '-'}</td>
                               </tr>
@@ -21301,7 +21350,8 @@ function App() {
                         <tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
                           <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Atributos</th>
                           <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Atributos Basais</th>
-                          <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Basal + Natureza</th>
+                          <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Atributo Bônus</th>
+                          <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Basal + Bônus + Nat.</th>
                           <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Pontos por Nível</th>
                           <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Total</th>
                         </tr>
@@ -21319,10 +21369,11 @@ function App() {
                           const isIncreased = selectedNature?.up === attr.label
                           const isDecreased = selectedNature?.down === attr.label
                           const baseVal = parseInt(pokemonEditForm.baseAttributes[attr.key]) || 0
+                          const bonusVal = parseInt(pokemonEditForm.bonusPoints[attr.key]) || 0
                           const natureBonus = attr.key === 'saude' ? 1 : 2
                           const natureVal = isIncreased ? natureBonus : isDecreased ? -natureBonus : 0
                           const levelVal = parseInt(pokemonEditForm.levelPoints[attr.key]) || 0
-                          const total = baseVal + natureVal + levelVal
+                          const total = baseVal + bonusVal + natureVal + levelVal
 
                           return (
                             <tr key={attr.key} className={
@@ -21345,8 +21396,19 @@ function App() {
                                   className={`w-full px-2 py-1 text-xs text-center border rounded ${darkMode ? 'bg-gray-600 text-white border-gray-500' : 'border-gray-300'}`}
                                 />
                               </td>
+                              <td className={`border p-2 ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
+                                <input
+                                  type="number"
+                                  value={pokemonEditForm.bonusPoints[attr.key]}
+                                  onChange={(e) => setPokemonEditForm({
+                                    ...pokemonEditForm,
+                                    bonusPoints: {...pokemonEditForm.bonusPoints, [attr.key]: e.target.value}
+                                  })}
+                                  className={`w-full px-2 py-1 text-xs text-center border rounded ${darkMode ? 'bg-gray-600 text-white border-gray-500' : 'border-gray-300'}`}
+                                />
+                              </td>
                               <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>
-                                {baseVal + natureVal}
+                                {baseVal + bonusVal + natureVal}
                               </td>
                               <td className={`border p-2 ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
                                 <input
@@ -25056,7 +25118,7 @@ function App() {
 
   // ÁREA ENCICLOPÉDIA
   if (currentUser.type === 'treinador' && currentArea === 'Enciclopédia') {
-    const encyclopediaSections = ['Golpedex', 'Descritordex', 'Tag de Concursodex', 'Períciadex', 'Habilidadedex', 'Capacidadex', 'Condiçõesdex', 'Itendex']
+    const encyclopediaSections = ['Golpedex', 'Descritordex', 'Tag de Concursodex', 'Períciadex', 'Habilidadedex', 'Capacidadex', 'Condiçõesdex', 'Itendex', 'Progressão de nível']
 
     return (
       <>
@@ -26062,6 +26124,135 @@ function App() {
                     </div>
                   )
                 })}
+              </div>
+            </div>
+          )}
+
+          {/* Progressão de nível */}
+          {encyclopediaSection === 'Progressão de nível' && (
+            <div
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}
+              onClick={(e) => {
+                // Limpar destaques se clicar fora da tabela
+                if (!e.target.closest('table')) {
+                  setHighlightedProgressaoRows([])
+                }
+              }}
+            >
+              <h3 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                Progressão de nível
+              </h3>
+              <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                Tabela de progressão de nível do treinador, mostrando os pontos de atributo e talentos ganhos a cada nível. Clique em uma linha para destacá-la.
+              </p>
+
+              <div className="overflow-x-auto">
+                <table className={`w-full border-collapse ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
+                  <thead>
+                    <tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
+                      <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Nível</th>
+                      <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Classe</th>
+                      <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Ponto de Atributo</th>
+                      <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Pontos de Talento</th>
+                      <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Total de Pts de Atributo</th>
+                      <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Total de Pts de Talento</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { nivel: 0, classe: '0', ptoAtributo: '0', ptosTalento: '0', totalAtributo: 66, totalTalento: 0 },
+                      { nivel: 1, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 67, totalTalento: 1 },
+                      { nivel: 2, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 68, totalTalento: 2 },
+                      { nivel: 3, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 69, totalTalento: 3 },
+                      { nivel: 4, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 70, totalTalento: 4 },
+                      { nivel: 5, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 71, totalTalento: 5 },
+                      { nivel: 6, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 72, totalTalento: 6 },
+                      { nivel: 7, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 72, totalTalento: 7 },
+                      { nivel: 8, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 73, totalTalento: 8 },
+                      { nivel: 9, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 73, totalTalento: 9 },
+                      { nivel: 10, classe: '+2', ptoAtributo: '+1', ptosTalento: '+2', totalAtributo: 75, totalTalento: 10 },
+                      { nivel: 11, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 75, totalTalento: 11 },
+                      { nivel: 12, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 76, totalTalento: 11 },
+                      { nivel: 13, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 76, totalTalento: 12 },
+                      { nivel: 14, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 78, totalTalento: 12 },
+                      { nivel: 15, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 78, totalTalento: 13 },
+                      { nivel: 16, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 79, totalTalento: 13 },
+                      { nivel: 17, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 79, totalTalento: 14 },
+                      { nivel: 18, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 81, totalTalento: 14 },
+                      { nivel: 19, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 81, totalTalento: 15 },
+                      { nivel: 20, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 82, totalTalento: 15 },
+                      { nivel: 21, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 82, totalTalento: 16 },
+                      { nivel: 22, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 84, totalTalento: 16 },
+                      { nivel: 23, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 84, totalTalento: 17 },
+                      { nivel: 24, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 85, totalTalento: 17 },
+                      { nivel: 25, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 85, totalTalento: 18 },
+                      { nivel: 26, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 87, totalTalento: 18 },
+                      { nivel: 27, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 87, totalTalento: 19 },
+                      { nivel: 28, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 88, totalTalento: 19 },
+                      { nivel: 29, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 88, totalTalento: 20 },
+                      { nivel: 30, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 90, totalTalento: 20 },
+                      { nivel: 31, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 90, totalTalento: 21 },
+                      { nivel: 32, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 91, totalTalento: 21 },
+                      { nivel: 33, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 91, totalTalento: 22 },
+                      { nivel: 34, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 93, totalTalento: 22 },
+                      { nivel: 35, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 93, totalTalento: 23 },
+                      { nivel: 36, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 94, totalTalento: 23 },
+                      { nivel: 37, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 94, totalTalento: 24 },
+                      { nivel: 38, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 96, totalTalento: 24 },
+                      { nivel: 39, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 96, totalTalento: 25 },
+                      { nivel: 40, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 97, totalTalento: 25 },
+                      { nivel: 41, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 97, totalTalento: 26 },
+                      { nivel: 42, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 99, totalTalento: 26 },
+                      { nivel: 43, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 99, totalTalento: 27 },
+                      { nivel: 44, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 100, totalTalento: 27 },
+                      { nivel: 45, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 100, totalTalento: 28 },
+                      { nivel: 46, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 102, totalTalento: 28 },
+                      { nivel: 47, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 102, totalTalento: 29 },
+                      { nivel: 48, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 103, totalTalento: 29 },
+                      { nivel: 49, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 103, totalTalento: 30 },
+                      { nivel: 50, classe: '+3', ptoAtributo: '0', ptosTalento: '+3', totalAtributo: 106, totalTalento: 30 }
+                    ].map((row, index) => {
+                      const isHighlighted = highlightedProgressaoRows.includes(row.nivel)
+                      return (
+                        <tr
+                          key={row.nivel}
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            if (isHighlighted) {
+                              setHighlightedProgressaoRows(highlightedProgressaoRows.filter(n => n !== row.nivel))
+                            } else {
+                              setHighlightedProgressaoRows([...highlightedProgressaoRows, row.nivel])
+                            }
+                          }}
+                          className={`cursor-pointer transition-all ${
+                            isHighlighted
+                              ? (darkMode ? 'bg-yellow-600 hover:bg-yellow-500' : 'bg-yellow-300 hover:bg-yellow-400')
+                              : (index % 2 === 0 ? (darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-100') : (darkMode ? 'bg-gray-650 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-100'))
+                          }`}
+                        >
+                          <td className={`border p-2 text-center font-bold ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>
+                            <span className={isHighlighted ? `px-2 py-1 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}` : ''}>{row.nivel}{[1, 5, 12, 24].includes(row.nivel) ? ' ⭐' : ''}</span>
+                          </td>
+                          <td className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-green-400' : 'border-gray-300 text-green-600'}`}>
+                            <span className={isHighlighted ? `px-2 py-1 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}` : ''}>{row.classe}</span>
+                          </td>
+                          <td className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-blue-400' : 'border-gray-300 text-blue-600'}`}>
+                            <span className={isHighlighted ? `px-2 py-1 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}` : ''}>{row.ptoAtributo}</span>
+                          </td>
+                          <td className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-purple-400' : 'border-gray-300 text-purple-600'}`}>
+                            <span className={isHighlighted ? `px-2 py-1 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}` : ''}>{row.ptosTalento}</span>
+                          </td>
+                          <td className={`border p-2 text-center font-semibold ${darkMode ? 'border-gray-500 text-yellow-400' : 'border-gray-300 text-yellow-600'}`}>
+                            <span className={isHighlighted ? `px-2 py-1 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}` : ''}>{row.totalAtributo}</span>
+                          </td>
+                          <td className={`border p-2 text-center font-semibold ${darkMode ? 'border-gray-500 text-pink-400' : 'border-gray-300 text-pink-600'}`}>
+                            <span className={isHighlighted ? `px-2 py-1 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}` : ''}>{row.totalTalento}</span>
+                          </td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
               </div>
             </div>
           )}
@@ -31985,12 +32176,13 @@ function App() {
     const calculatePokemonMaxHP = (pokemon) => {
       if (!pokemon) return 0
       const saudeBase = parseInt(pokemon.baseAttributes?.saude) || 0
+      const bonusVal = parseInt(pokemon.bonusPoints?.saude) || 0
       const selectedNature = natures.find(n => n.nome === pokemon.nature)
       const isIncreased = selectedNature?.up === 'Saúde'
       const isDecreased = selectedNature?.down === 'Saúde'
       const natureBonus = isIncreased ? 1 : isDecreased ? -1 : 0
       const saudePontos = parseInt(pokemon.levelPoints?.saude) || 0
-      const saudeTotal = saudeBase + natureBonus + saudePontos
+      const saudeTotal = saudeBase + bonusVal + natureBonus + saudePontos
       return (3 * saudeTotal) + (pokemon.level || 1)
     }
 

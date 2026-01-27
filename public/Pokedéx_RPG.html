@@ -786,7 +786,7 @@ select option {
           <label><input type="checkbox" name="localidade" value="floresta" class="habitat-cb"> 🌳 Floresta</label>
           <label><input type="checkbox" name="localidade" value="caverna" class="habitat-cb"> 🪨 Caverna</label>
           <label><input type="checkbox" name="localidade" value="montanha" class="habitat-cb"> ⛰️ Montanha</label>
-          <label><input type="checkbox" name="localidade" value="agua_doce" class="habitat-cb"> <span style="font-size: 0.9em;">💧</span> Água Doce</label>
+          <label><input type="checkbox" name="localidade" value="Água_doce" class="habitat-cb"> <span style="font-size: 0.9em;">💧</span> Água Doce</label>
           <label><input type="checkbox" name="localidade" value="pradaria" class="habitat-cb"> 🌾 Pradarias</label>
           <label><input type="checkbox" name="localidade" value="oceano" class="habitat-cb"> 🌊 Oceanos</label>
           <label><input type="checkbox" name="localidade" value="deserto" class="habitat-cb"> 🏜️ Deserto</label>
@@ -1005,7 +1005,7 @@ select option {
       "floresta": "🌳 Floresta",
       "caverna": "🪨 Caverna",
       "montanha": "⛰️ Montanha",
-      "agua_doce": "💧 Água Doce",
+      "Água_doce": "💧 Água Doce",
       "pradaria": "🌾 Pradarias",
       "oceano": "🌊 Oceanos",
       "deserto": "🏜️ Deserto",
@@ -1614,11 +1614,11 @@ async function gerarPokemonIndividual(i = 0) {
     let disponiveis = pokedex.filter(p => {
         if (regioes.length > 0 && !regioes.includes(p.regiao)) return false;
         
-        if (locais.length > 0 && !p.habitats.some(h => locais.includes(h))) return false;
+        if (locais.length > 0 && !(p.habitats && p.habitats.some(h => locais.includes(h)))) return false;
 
         // NOVO FILTRO: Tipos
-        if (tiposSelecionados.length > 0 && !tiposSelecionados.includes("Todos") && 
-            !p.tipos.some(tipo => tiposSelecionados.includes(tipo))) return false;
+        if (tiposSelecionados.length > 0 && !tiposSelecionados.includes("Todos") &&
+            !(p.tipos && p.tipos.some(tipo => tiposSelecionados.includes(tipo)))) return false;
 
         try {
             const nivelNecessario = nivelMinimoLinha(p, pokedex);

@@ -1128,7 +1128,7 @@ export const TALENTOS_DATA = {
       requisitos: 'N/A',
       referencia: 'P, X',
       frequencia: 'À Vontade',
-      efeito: 'usa o Golpe Mão Amiga. Em Concursos: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Reviravolta.'
+      efeito: 'usa o Golpe Mão Amiga. Em Concursos, o efeito deste Talento é outro: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Reviravolta. Enquanto em batalhas, este Talento é ilegal, em Concursos, ele é legal. Só é possível usar este Talento uma vez por Concurso e ele não afeta a Pontuação Basal do Golpe.'
     },
     {
       nome: 'Paciência',
@@ -1257,7 +1257,7 @@ export const TALENTOS_DATA = {
     {
       nome: 'Captura Chocante',
       requisitos: 'Velocidade 18.',
-      referencia: 'C, X',
+      referencia: 'P, X',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       gatilho: 'você usa No Ponto Fraco!',
       efeito: 'caso o pokémon não seja capturado, role 1d20 + MV. Se o resultado for 15 ou mais, o pokémon está Atordoado ao sair da pokébola.'
@@ -1265,7 +1265,7 @@ export const TALENTOS_DATA = {
     {
       nome: 'Cartão com Descontos',
       requisitos: 'N/A',
-      referencia: 'E, X',
+      referencia: 'C, X',
       frequencia: 'Constante',
       efeito: 'você recebe 20% de desconto em produtos regulares de pokélojas. Quando você gasta 2000 créditos ou mais em uma só compra, você recebe uma Pokébola Premiada de brinde.'
     },
@@ -1282,7 +1282,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, X',
       frequencia: 'À Vontade',
       alvo: 'um pokémon ou um humano',
-      efeito: 'você faz um Teste de Acurácia com Dificuldade 4 contra o alvo, que deve estar a até 4 metros. Se acertar, você arremessa uma rede de captura sobre ele para diminuir em 6 todos os Deslocamentos dele.'
+      efeito: 'você faz um Teste de Acurácia com Dificuldade 4 contra o alvo, que deve estar a até 4 metros. Se acertar, você arremessa uma rede de captura sobre ele para diminuir em 6 todos os Deslocamentos dele. O alvo pode gastar um turno para rolar 1d20 + Força (se for um pokémon) ou 1d20 + metade de seu Ataque (se for humano). Se o resultado for 12 ou mais, ele se liberta da rede.'
     },
     {
       nome: 'Ponto de Captura +',
@@ -1350,7 +1350,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, X',
       frequencia: 'Semanal',
       alvo: 'sete Abricós sendo um de cada cor',
-      efeito: 'após três horas de trabalho mecânico cansativo (consumindo 25 PV), você combina um Abricó de cada cor para fazer uma Pokébola do Salvador. Uma Pokébola do Salvador pode capturar um pokémon que foi deixado inconsciente na rodada anterior.'
+      efeito: 'após três horas de trabalho mecânico cansativo (consumindo 25 PV), você combina um Abricó de cada cor (um branco, um rosado, um vermelho, um amarelo, um verde, um azul e um preto) para fazer uma pokébola chamada Pokébola do Salvador. Uma Pokébola do Salvador pode capturar um pokémon que foi deixado inconsciente na rodada anterior. Ela não possui bônus ou penalidades para captura.'
     },
     {
       nome: 'Ferreiro de Abricós',
@@ -1366,7 +1366,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, X',
       frequencia: 'À Vontade',
       alvo: 'um Abricó',
-      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), role 1d20 +MV. Se o resultado for 13 ou mais, você converte um Abricó em uma pokébola de um tipo específico.'
+      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), role 1d20 +MV. Se o resultado for 13 ou mais, você converte um Abricó em uma pokébola de um tipo específico. (Amarelo - Lunar), (Azul - Atrativa), (Branco - Rápida), (Preto - Pesada), (Rosa - Do Amor), (Verde - Amigável), (Vermelho - De Nível).'
     },
     {
       nome: 'Mais Poder para o Pokémon',
@@ -1382,7 +1382,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, X',
       frequencia: 'À Vontade',
       alvo: 'qualquer pokébola',
-      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV) e custoso (consumindo 500 créditos), você aplica uma Melhoria em uma pokébola. Escolha uma Aptidão. Um pokémon capturado em uma pokébola com Melhoria de Competência recebe +1d2 de bônus à Aptidão escolhida.'
+      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV) e custoso (consumindo 500 créditos), você aplica uma Melhoria em uma pokébola. Escolha uma Aptidão. Um pokémon capturado em uma pokébola com Melhoria de Competência recebe +1d2 de bônus à Aptidão escolhida. Uma pokébola só pode possuir uma Melhoria, a menos que você possua o Talento Quebrar Cela, que permite fazer amplas alterações na mecânica de uma pokébola até que ela permita três odificações. Neste caso, é possível aplicar Melhoria de Competência mais de uma vez na mesma pokébola, para a mesma Aptidão ou não.'
     },
     {
       nome: 'Melhoria de Capacidade',
@@ -1390,7 +1390,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, X',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
       alvo: 'qualquer pokébola',
-      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), você aplica uma Melhoria em uma pokébola. Escolha uma Capacidade Pokémon ou um Deslocamento Pokémon. O pokémon mantido recebe +2 ao Deslocamento ou +1 à Capacidade.'
+      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), você aplica uma Melhoria em uma pokébola. Escolha uma Capacidade Pokémon ou um Deslocamento Pokémon. Se escolher um Deslocamento, o pokémon mantido dentro da Pokébola com Melhoria de Capacidade recebe +2 àquele Deslocamento. Se escolher uma Capacidade (como Inteligência, Força ou Salto), o pokémon mantido dentro da pokébola com Melhoria de Capacidade recebe +1 àquela Capacidade. Uma pokébola só pode possuir uma Melhoria, a menos que você possua o Talento Quebrar Cela, que permite fazer amplas alterações na mecânica de uma pokébola até que ela permita três Melhorias. Neste caso, é possível aplicar Melhoria de Capacidade mais de uma vez na mesma pokébola, mas não para a mesma Capacidade nem para o mesmo Deslocamento.'
     },
     {
       nome: 'Melhoria de Combate',
@@ -1398,7 +1398,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, X',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
       alvo: 'qualquer pokébola',
-      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), você aplica uma Melhoria em uma pokébola. Escolha um Atributo. Sempre que o pokémon mantido dentro da pokébola com Melhoria de Atributo sai de sua pokébola, ele eleva uma Fase do Atributo selecionado.'
+      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), você aplica uma Melhoria em uma pokébola. Escolha um Atributo. Sempre que o pokémon mantido dentro da pokébola com Melhoria de Atributo sai de sua pokébola, ele eleva uma Fase do Atributo selecionado. Uma pokébola só pode possuir uma Melhoria de Batalha, mesmo que você possua Quebrar Cela.'
     },
     {
       nome: 'Pokébola para cada Habitat',
@@ -1406,7 +1406,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, X',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
       alvo: 'uma Pokébola de Mergulho',
-      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), você altera o ambiente dentro do qual a Pokébola de Mergulho facilita a captura para um dos biomas a seguir.'
+      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), você altera o ambiente dentro do qual a Pokébola de Mergulho facilita a captura para um dos biomas a seguir à sua escolha (no lugar de funcionar enquanto em ambiente subaquático e subterrâneo): Água Doce, Ártico, Caverna, Cidade, Deserto, Floresta, Montanha, Pântano, Planície, Praia, Selva, Taiga ou Tundra. Altere o nome da pokébola em conformidade com sua nova função.'
     },
     {
       nome: 'Pokébola para cada Tipo',
@@ -1414,7 +1414,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, X',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
       alvo: 'uma Pokébola de Teia',
-      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), você altera a Pokébola de Teia para trocar quais Tipos de pokémons ela facilita a captura.'
+      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), você altera a Pokébola de Teia para trocar quais Tipos de pokémons ela facilita a captura. (Aérea - Gelo e Voador), (Assombrosa - Fantasma e Trevas), (Encantadora - Fada e Normal), (Limosa - Lutador e Venenoso), (Mística - Dragão e Psíquico), (Quente - Elétrico e Fogo), (Sólida - Metal e Pedra), (Terrena - Planta e Terra).'
     },
     {
       nome: 'Quebrar Cela',
@@ -1422,7 +1422,7 @@ export const TALENTOS_DATA = {
       referencia: 'E, X',
       frequencia: 'Diária',
       alvo: 'qualquer pokébola',
-      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), você faz amplas alterações em uma pokébola. Uma pokébola comum pode receber uma Melhoria. Após este Talento ser usado, uma pokébola poderá receber uma Melhoria adicional (até três Modificações são o máximo).'
+      efeito: 'após quinze minutos de trabalho mecânico cansativo (consumindo 10 PV), você faz amplas alterações em uma pokébola. Uma pokébola comum pode receber uma Melhoria. Após este Talento ser usado, uma pokébola poderá receber uma Melhoria adicional. Ainda é possível usá-lo novamente para possibilitar uma terceira Melhoria na mesma pokébola. Três Modificações são o máximo que se pode ter. Também é possível usar este Talento para desativar uma Melhoria anteriormente vigente em uma determinada pokébola para abrir espaço para outra Melhoria em seu lugar.'
     }
   ],
 
@@ -3781,60 +3781,62 @@ export const TALENTOS_DATA = {
     {
       nome: 'Assistência',
       requisitos: 'Ponto de Captura ++.',
-      referencia: 'C, E',
+      referencia: 'P, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
-      alvo: 'um pokémon aliado numa posse adjacente',
-      efeito: 'o alvo pode usar um movimento de categoria Cinética ou Especial à sua escolha, e não precisa gastar um PA ou um uso de Movimento para tanto. A frequência do Movimento não é afetada.'
+      alvo: 'um aliado faz uma rolagem de Captura.',
+      efeito: 'seu aliado pode subtrair sua Contagem do resultado do Teste de Captura e se beneficia de seu Talento Ponto de Captura ++.'
     },
     {
       nome: 'Camuflagem',
       requisitos: 'Peregrino Silencioso.',
-      referencia: 'C, X',
+      referencia: 'P, X',
       frequencia: 'Diária',
-      efeito: 'você recebe os benefícios de Mimetismo e Mimetismo Tático.'
+      efeito: 'por um número de rodadas igual a seu MV, você recebe a Capacidade Pokémon Camuflagem, desde que você se desloque no máximo metade de seu Deslocamento Terrestre durante seu turno.'
     },
     {
       nome: 'Compulsão',
       requisitos: 'Velocidade 16.',
-      referencia: 'C, X',
-      frequencia: 'Constante',
-      efeito: 'você pode ter um total de pokémons 6 superior ao normal.'
+      referencia: 'I, P, X',
+      frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
+      gatilho: 'você falha em um Teste de Captura.',
+      efeito: 'você joga outra pokébola imediatamente.'
     },
     {
       nome: 'Cosplay',
       requisitos: 'N/A',
-      referencia: 'C, X',
-      frequencia: 'Cena',
-      efeito: 'você recebe a Habilidade de um pokémon seu à sua escolha até o final da cena.'
+      referencia: 'E, X',
+      frequencia: 'Semanal',
+      efeito: 'após vinte e quatro horas ininterruptas de trabalho cansativo (consumindo 60 PV), você cria um Disfarce próprio. Você pode usá-lo para se disfarçar como uma espécie de pokémon para se aproximar de pokémons selvagens de Inteligência 4 ou menos. O pokémon reagirá a você enquanto disfarçado como reagiria a um pokémon daquela espécie. Você pode tentar se amigar com o pokémon selvagem se não o provocar. Estes disfarces são para suas medidas, não servindo em outras pessoas. Sua coleção pode ser guardada onde você quiser.'
     },
     {
       nome: 'Inabalável',
       requisitos: 'N/A',
-      referencia: 'C, X',
+      referencia: 'C, V',
       frequencia: 'Constante',
-      efeito: 'uma vez por rodada, você pode ignorar um ataque que o atingiria, afetando sua Defesa Especial em vez de sua Defesa ou vice-versa.'
+      efeito: 'você e seus pokémons são imunes a efeitos que os obrigariam a fugir ou a trocar o pokémon ativo.'
     },
     {
       nome: 'Maníaco por Captura +',
       requisitos: 'Velocidade 16.',
-      referencia: 'C, X',
+      referencia: 'L, X',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       gatilho: 'você faz um Teste de Captura',
-      efeito: 'subtraia sua Contagem do resultado do Teste de Captura.'
+      efeito: 'subtraia o dobro de sua Contagem do resultado do Teste de Captura.'
     },
     {
       nome: 'Peregrino Silencioso',
       requisitos: 'ter capturado pokémons em quatro biomas diferentes.',
       referencia: 'C, X',
       frequencia: 'Constante',
-      efeito: 'você recebe +1 nos Testes de Atletismo e Furtividade feitos fora de combate. Você pode fazer Testes de Furtividade para se esconder mesmo enquanto observado desde que haja neblina, vegetação, água ou outros fenômenos naturais nos quais se esconder.'
+      alvo: 'um local não urbano.',
+      efeito: 'você não faz barulho, como se tivesse sucesso em usar a Perícia Furtividade, desde que você se desloque no máximo metade de seu Deslocamento Terrestre durante seu turno.'
     },
     {
       nome: 'Pokébola Múltipla',
       requisitos: 'Velocidade 16.',
-      referencia: 'C, E',
-      frequencia: 'Semanal',
-      efeito: 'arremesse uma pokébola numa posse adjacente. Todas as criaturas naquela posse tornam-se alvos de Teste de Captura com a pokébola (sendo que cada teste recebe a penalidade normalmente aplicada quando o alvo não é uma criatura). A pokébola só captura uma criatura.'
+      referencia: 'P, X',
+      frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional.',
+      efeito: 'você pode atirar duas pokébolas ao mesmo tempo como uma Ação Padrão. Você deve ter como alvo um pokémon diferente para cada pokébola.'
     },
     {
       nome: 'Prêmio Raro',
@@ -3846,18 +3848,18 @@ export const TALENTOS_DATA = {
     {
       nome: 'Rastreador',
       requisitos: 'Rastreador Informado +.',
-      referencia: 'C, E',
+      referencia: 'P, X',
       frequencia: 'Diária',
       alvo: 'um pokémon aliado',
-      efeito: 'o alvo recebe acesso imediato a um Movimento que ele poderia aprender, mas ainda não aprendeu, até o final da cena (se você não souber quais movimentos ele poderia aprender, o Narrador decidirá qual será o movimento). Use imediato quer dizer que o alvo pode usar o Movimento imediatamente após você usar este Talento, e não precisa gastar um PA ou um uso de Movimento para tanto. A frequência do Movimento não é afetada.'
+      efeito: ' role 1d20 + MV. Se o resultado for 21 ou mais, você inicia um encontro com um pokémon selvagem que você sabe existir naquela área. Se o resultado for 25 ou mais, você pode designar uma espécie de pokémon que ainda não capturou.'
     },
     {
       nome: 'Zelo',
       requisitos: 'Velocidade 18.',
-      referencia: 'C, X',
-      frequencia: 'Semanal',
-      alvo: 'um pokémon aliado',
-      efeito: 'o alvo recupera todos os usos de todos os seus movimentos.'
+      referencia: 'P, X',
+      frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
+      gatilho: 'você faz um Teste de Captura em uma pokémon cuja espécie não possuída.',
+      efeito: 'subtraia sua Contagem do resultado do Teste de Captura (em adição aos efeitos de Maníaco por Captura, se aplicar os dois Talentos).'
     }
   ],
 
