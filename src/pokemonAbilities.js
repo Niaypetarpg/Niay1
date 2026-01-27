@@ -2293,7 +2293,7 @@ const POKEMON_ABILITIES = {
       "Foco Interior"
     ]
   },
-  "Lavritar": {
+  "Larvitar": {
     "habilidades": [
       "Tenacidade"
     ],

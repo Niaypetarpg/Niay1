@@ -1090,14 +1090,14 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
-      efeito: 'o alvo ganha um dos seguintes efeitos, conforme o Golpe que usará na rodada atual. Se o Golpe possui o Descritor Explosão, aumente em 2 o tamanho da Explosão. Se o Golpe não possui este Descritor e é À Distância, aumente o alcance em 4. Finalmente, se o Golpe não possui este Descritor e é Corpo a Corpo, aumente em 4 os Deslocamentos do alvo por esta rodada. Em Concursos: role 1d20 + MDE. Se o resultado for 13 ou mais, adicione o Descritor Perspectiva a um Golpe usado pelo alvo nesta rodada.'
+      efeito: 'o alvo ganha um dos seguintes efeitos, conforme o Golpe que usará na rodada atual. Se o Golpe possui o Descritor Explosão, aumente em 2 o tamanho da Explosão. Se o Golpe não possui este Descritor e é À Distância, aumente o alcance em 4. Finalmente, se o Golpe não possui este Descritor e é Corpo a Corpo, aumente em 4 os Deslocamentos do alvo por esta rodada. Em Concursos, o efeito deste Talento é outro: role 1d20 + MDE. Se o resultado for 13 ou mais, adicione o Descritor Perspectiva a um Golpe usado pelo alvo nesta rodada. Este Talento não afeta a Pontuação Basal do Golpe.'
     },
     {
       nome: 'Aplausos',
       requisitos: 'Defesa Especial 16.',
-      referencia: 'P, V',
+      referencia: 'P, X',
       frequencia: 'Diária',
-      efeito: 'usa o Golpe Bis. Em Concursos: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Originalidade.'
+      efeito: 'usa o Golpe Bis. Em Concursos, o efeito deste Talento é outro: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Originalidade. Enquanto em batalhas, este Talento é ilegal, em Concursos, ele é legal. Este talento não afeta a Pontuação Basal do Golpe.'
     },
     {
       nome: 'Clímax',
@@ -1105,7 +1105,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
-      efeito: 'o próximo Golpe cuja Frequência seja Batalha usado pelo alvo não terá seu uso consumido. Em Concursos: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Abstração ou pelo Descritor Conquista.'
+      efeito: 'o próximo Golpe cuja Frequência seja Batalha usado pelo alvo não terá seu uso consumido. Em Concursos, o efeito deste Talento é outro: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Abstração ou pelo Descritor Conquista. Só é possível usar este Talento uma vez por Concurso e ele não afeta a Pontuação Basal do Golpe.'
     },
     {
       nome: 'Clímax +',
@@ -1113,7 +1113,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
-      efeito: 'o próximo Golpe cuja Frequência seja Diária ou Por Encontro usado pelo alvo não terá seu uso consumido. Em Concursos: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Abstração, pelo Descritor Conquista ou por ambos. Este Talento substitui Clímax.'
+      efeito: 'o próximo Golpe cuja Frequência seja Diária ou Por Encontro usado pelo alvo não terá seu uso consumido. Em Concursos, o efeito deste Talento é outro: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Abstração, pelo Descritor Conquista ou por ambos os Descritores Abstração e Conquista. Só é possível usar este Talento uma vez por Concurso e ele não afeta a Pontuação Basal do Golpe. Este Talento substitui Clímax.'
     },
     {
       nome: 'Conquistando o Júri',
@@ -1121,7 +1121,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
-      efeito: 'o alvo usa imediatamente o Golpe Isca consumindo a Ação de Golpe dele. Em Concursos: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Dedicatória.'
+      efeito: 'o alvo usa imediatamente o Golpe Isca consumindo a Ação de Golpe dele. Em Concursos, o efeito deste Talento é outro: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Dedicatória. Só é possível usar este Talento uma vez por Concurso e ele não afeta a Pontuação Basal do Golpe.'
     },
     {
       nome: 'Não Fique pra Trás!',
@@ -1136,7 +1136,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, X',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
-      efeito: 'usa o Golpe Revogação. Em Concursos: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Pausa.'
+      efeito: 'usa o Golpe Revogação. Em Concursos, o efeito deste Talento é outro: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Pausa. Enquanto em batalhas, este Talento é ilegal, em Concursos, ele é legal. Só é possível usar este Talento uma vez por Concurso e ele não afeta a Pontuação Basal do Golpe.'
     },
     {
       nome: 'Perfeccionismo',
@@ -1152,7 +1152,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Semanal. A cada 10 Níveis, receba um uso semanal adicional',
       alvo: 'um pokémon seu',
-      efeito: 'o alvo imediatamente usa o Golpe Mira sem consumir qualquer Ação. Em Concursos: adicione o Descritor Extravagância a um Golpe usado pelo alvo nesta rodada.'
+      efeito: 'o alvo imediatamente usa o Golpe Mira sem consumir qualquer Ação. Ele não pode usar Mira para beneficiar um dos seguintes Golpes: Chifre Broca, Fissura, Guilhotina, Zero Absoluto. Você ainda pode fazer o Teste de Acurácia apenas para determinar se é um Crítico. Este Talento deve ser declarado antes que um Teste de Acurácia seja feito. Em Concursos, o efeito deste Talento é outro: adicione o Descritor Extravagância a um Golpe usado pelo alvo nesta rodada. Este Talento não afeta a Pontuação Basal do Golpe.'
     },
     {
       nome: 'Protagonismo',
@@ -1160,7 +1160,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
       alvo: 'um pokémon seu',
-      efeito: 'o alvo usa imediatamente o Golpe Isca consumindo a Ação de Golpe dele. Em Concursos: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Dedicatória.'
+      efeito: 'o alvo usa imediatamente o Golpe Isca consumindo a Ação de Golpe dele. Em Concursos, o efeito deste Talento é outro: substitua um Descritor de um Golpe usado por um pokémon seu pelo Descritor Dedicatória. Só é possível usar este Talento uma vez por Concurso e ele não afeta a Pontuação Basal do Golpe'
     }
   ],
 
@@ -1170,16 +1170,16 @@ export const TALENTOS_DATA = {
       nome: 'Acompanhamento',
       requisitos: 'N/A',
       referencia: 'P, V',
-      frequencia: 'Diária',
+      frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional.',
       gatilho: 'um pokémon seu está executando um Golpe não causador de dano com o Descritor Som',
-      efeito: 'o Golpe usado pode ser usado por qualquer pokémon aliado que queira copiá-lo no lugar da Ação de Golpe daquele pokémon desde que isso ocorra ainda na rodada atual e se eles tiverem sucesso em rolar pelo menos 8 em 1d20.'
+      efeito: 'o Golpe usado pode ser usado por qualquer pokémon aliado que queira copiá-lo no lugar da Ação de Golpe daquele pokémon desde que isso ocorra ainda na rodada atual e se eles tiverem sucesso em rolar pelo menos 8 em 1d20. Se um pokémon falhar na rolagem, ele poderá executar sua Ação de Golpe normalmente. O pokémon a se beneficiar por este Talento deve conhecer o Golpe a ser reproduzido e isso consome usos deste Golpe.'
     },
     {
       nome: 'Coro Coordenado',
       requisitos: 'seis Talentos de Coreógrafo (desconte as Características de Classe para este cálculo).',
       referencia: 'P, V',
-      frequencia: 'Diária',
-      efeito: 'na próxima rodada do combate, todos os aliados a até 10 metros de você causam dano extra quando fizerem rolagens de dano e reduzem dano sofrido quando forem sofrer danos. A quantidade é o maior entre seu MDE ou seu MV, mas não mais do que 5.'
+      frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional.',
+      efeito: 'na próxima rodada do combate, todos os aliados (humanos e pokémons) a até 10 metros de você causam dano extra quando fizerem rolagens de dano e reduzem dano sofrido quando forem sofrer danos. A quantidade de dano extra e a quantidade de redução de dano é a mesma: o maior entre seu MDE ou seu MV, mas não mais do que 5.'
     },
     {
       nome: 'Deslumbrante',
@@ -1187,7 +1187,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu está executando um Golpe com o Descritor Dança ou com o Descritor Som',
-      efeito: 'escolha outro Golpe com o Descritor Som ou com o Descritor Dança. Os efeitos do Golpe escolhido são adicionados aos efeitos do Golpe executado pelo pokémon. Contudo, também adicione o Descritor Exaustão ao Golpe.'
+      efeito: 'escolha outro Golpe com o Descritor Som ou com o Descritor Dança. O Golpe escolhido deve ser conhecido pelo pokémon que ativou o Gatilho deste Talento e não pode ser causador de dano. Os efeitos do Golpe escolhido são adicionados aos efeitos do Golpe executado pelo pokémon Contudo, também adicione o Descritor Exaustão ao Golpe. Efeitos que reduziriam um alvo a uma quantidade específica de Pontos de Vida não podem ser usados co  Deslumbrante. Também não podem ser usados efeitos que criam Ameaças ou Barreiras. Um Golpe modificado por Deslumbrante não pode ser combinado mediante os Talentos do Síncrono.'
     },
     {
       nome: 'Destacado',
@@ -1203,7 +1203,7 @@ export const TALENTOS_DATA = {
       referencia: 'P, V',
       frequencia: 'Diária. A cada 15 Níveis, receba um uso diário adicional',
       gatilho: 'um pokémon seu está executando um Golpe com o Descritor Dança ou com o Descritor Som',
-      efeito: 'o pokémon usa o Golpe duas vezes em uma só Ação de Golpe. Contudo, o pokémon ficará Exausto por duas rodadas.'
+      efeito: 'o pokémon usa o Golpe duas vezes em uma só Ação de Golpe. Contudo, o pokémon ficará Exausto por duas rodadas. Ele não pode ser retornado à pokébola enquanto estiver Exausto a menos que fique inconsciente (com 0 PV ou menos). Se o próprio Golpe beneficiado por este Talento já possuía o Descritor Exaustão, o pokémon sofre os efeitos da Exaustão por duas rodadas extras.'
     },
     {
       nome: 'Nas Pontas dos Pés',
@@ -1224,8 +1224,8 @@ export const TALENTOS_DATA = {
       requisitos: 'N/A',
       referencia: 'P, V',
       frequencia: 'Diária. A cada 8 Níveis, receba um uso diário adicional',
-      gatilho: 'um pokémon seu está executando um Golpe Corpo a Corpo com o Descritor Dança dentro do alcance de visão de um pokémon aliado',
-      efeito: 'role 1d20 + MV. Se o resultado for 13 ou mais, o pokémon aliado pode, na rodada seguinte, executar o mesmo Golpe que o seu pokémon usou.'
+      gatilho: 'um pokémon seu está executando um Golpe Corpo a Corpo com o Descritor Dança dentro do alcance de visão de um pokémon aliado (seu ou não).',
+      efeito: 'role 1d20 + MV. Se o resultado for 13 ou mais, o pokémon aliado pode, na rodada seguinte, executar o mesmo Golpe que o seu pokémon usou. O pokémon que copiou os passos pode escolher seu(s) próprio(s) alvo(s) do Golpe.'
     },
     {
       nome: 'Toque Selvagem',
@@ -1233,7 +1233,7 @@ export const TALENTOS_DATA = {
       referencia: 'L, V',
       frequencia: 'Constante',
       alvo: 'um pokémon seu',
-      efeito: 'uma vez por encontro, quando seu pokémon perderia uma Fase como resultado de um Golpe de um oponente, ignore a perda de Fase. Em Concursos: quando seu pokémon usar um Golpe com o Descritor Dança, você pode elevar a Expectativa de um jurado específico em 1.'
+      efeito: 'uma vez por encontro, quando seu pokémon perderia uma Fase como resultado de um Golpe de um oponente, ignore a perda de Fase. Em Concursos, o efeito deste Talento é outro: quando seu pokémon usar um Golpe com o Descritor Dança, você pode elevar a Expectativa de um jurado específico em 1. Isso só pode ser feito se o seu pokémon receberia o Bônus Elemental por aquele Golpe se estivesse em combate comum.'
     },
     {
       nome: 'Vibrato',

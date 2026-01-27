@@ -1780,6 +1780,7 @@ function App() {
   const [showTalentosModal, setShowTalentosModal] = useState(false)
   const [talentosSearch, setTalentosSearch] = useState('')
   const [talentosSelected, setTalentosSelected] = useState([]) // Lista de talentos selecionados
+  const [talentosFilterSelected, setTalentosFilterSelected] = useState([]) // Filtros de talentos selecionados: 'Geral', classes[0], classes[1], classes[2], classes[3]
   const [showBolsaTalentoModal, setShowBolsaTalentoModal] = useState(false)
   const [bolsaTalento, setBolsaTalento] = useState(0)
 
@@ -24948,6 +24949,103 @@ function App() {
                   </div>
                 </div>
 
+                {/* FILTROS DE TALENTOS */}
+                <div className="mb-4">
+                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    Filtrar por Classe
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => {
+                        if (talentosFilterSelected.includes('Geral')) {
+                          setTalentosFilterSelected(talentosFilterSelected.filter(f => f !== 'Geral'))
+                        } else {
+                          setTalentosFilterSelected([...talentosFilterSelected, 'Geral'])
+                        }
+                      }}
+                      className={`px-3 py-1 rounded-lg text-sm font-semibold transition-all ${
+                        talentosFilterSelected.includes('Geral')
+                          ? 'bg-green-500 text-white'
+                          : darkMode ? 'bg-gray-600 text-gray-300 hover:bg-gray-500' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      Geral
+                    </button>
+                    {classes[0] && (
+                      <button
+                        onClick={() => {
+                          if (talentosFilterSelected.includes(classes[0])) {
+                            setTalentosFilterSelected(talentosFilterSelected.filter(f => f !== classes[0]))
+                          } else {
+                            setTalentosFilterSelected([...talentosFilterSelected, classes[0]])
+                          }
+                        }}
+                        className={`px-3 py-1 rounded-lg text-sm font-semibold transition-all ${
+                          talentosFilterSelected.includes(classes[0])
+                            ? 'bg-blue-500 text-white'
+                            : darkMode ? 'bg-gray-600 text-gray-300 hover:bg-gray-500' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                      >
+                        {classes[0]}
+                      </button>
+                    )}
+                    {classes[1] && (
+                      <button
+                        onClick={() => {
+                          if (talentosFilterSelected.includes(classes[1])) {
+                            setTalentosFilterSelected(talentosFilterSelected.filter(f => f !== classes[1]))
+                          } else {
+                            setTalentosFilterSelected([...talentosFilterSelected, classes[1]])
+                          }
+                        }}
+                        className={`px-3 py-1 rounded-lg text-sm font-semibold transition-all ${
+                          talentosFilterSelected.includes(classes[1])
+                            ? 'bg-purple-500 text-white'
+                            : darkMode ? 'bg-gray-600 text-gray-300 hover:bg-gray-500' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                      >
+                        {classes[1]}
+                      </button>
+                    )}
+                    {classes[2] && (
+                      <button
+                        onClick={() => {
+                          if (talentosFilterSelected.includes(classes[2])) {
+                            setTalentosFilterSelected(talentosFilterSelected.filter(f => f !== classes[2]))
+                          } else {
+                            setTalentosFilterSelected([...talentosFilterSelected, classes[2]])
+                          }
+                        }}
+                        className={`px-3 py-1 rounded-lg text-sm font-semibold transition-all ${
+                          talentosFilterSelected.includes(classes[2])
+                            ? 'bg-orange-500 text-white'
+                            : darkMode ? 'bg-gray-600 text-gray-300 hover:bg-gray-500' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                      >
+                        {classes[2]}
+                      </button>
+                    )}
+                    {classes[3] && (
+                      <button
+                        onClick={() => {
+                          if (talentosFilterSelected.includes(classes[3])) {
+                            setTalentosFilterSelected(talentosFilterSelected.filter(f => f !== classes[3]))
+                          } else {
+                            setTalentosFilterSelected([...talentosFilterSelected, classes[3]])
+                          }
+                        }}
+                        className={`px-3 py-1 rounded-lg text-sm font-semibold transition-all ${
+                          talentosFilterSelected.includes(classes[3])
+                            ? 'bg-red-500 text-white'
+                            : darkMode ? 'bg-gray-600 text-gray-300 hover:bg-gray-500' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                      >
+                        {classes[3]}
+                      </button>
+                    )}
+                  </div>
+                </div>
+
                 {/* TALENTOS DISPONÍVEIS */}
                 <div className="mb-6">
                   <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -24974,9 +25072,10 @@ function App() {
                         }
                       })
 
-                      // Filtrar pela busca e remover os já selecionados
+                      // Filtrar pela busca, filtros de classe e remover os já selecionados
                       const filtered = availableTalentos
                         .filter(talento => talento.nome.toLowerCase().includes(talentosSearch.toLowerCase()))
+                        .filter(talento => talentosFilterSelected.length === 0 || talentosFilterSelected.includes(talento.classe))
                         .filter(talento => !talentosSelected.some(t => t.nome === talento.nome))
 
                       if (filtered.length === 0) {
@@ -26151,7 +26250,6 @@ function App() {
                   <thead>
                     <tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
                       <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Nível</th>
-                      <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Classe</th>
                       <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Ponto de Atributo</th>
                       <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Pontos de Talento</th>
                       <th className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Total de Pts de Atributo</th>
@@ -26160,57 +26258,57 @@ function App() {
                   </thead>
                   <tbody>
                     {[
-                      { nivel: 0, classe: '0', ptoAtributo: '0', ptosTalento: '0', totalAtributo: 66, totalTalento: 0 },
-                      { nivel: 1, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 67, totalTalento: 1 },
-                      { nivel: 2, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 68, totalTalento: 2 },
-                      { nivel: 3, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 69, totalTalento: 3 },
-                      { nivel: 4, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 70, totalTalento: 4 },
-                      { nivel: 5, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 71, totalTalento: 5 },
-                      { nivel: 6, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 72, totalTalento: 6 },
-                      { nivel: 7, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 72, totalTalento: 7 },
-                      { nivel: 8, classe: '+1', ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 73, totalTalento: 8 },
-                      { nivel: 9, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 73, totalTalento: 9 },
-                      { nivel: 10, classe: '+2', ptoAtributo: '+1', ptosTalento: '+2', totalAtributo: 75, totalTalento: 10 },
-                      { nivel: 11, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 75, totalTalento: 11 },
-                      { nivel: 12, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 76, totalTalento: 11 },
-                      { nivel: 13, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 76, totalTalento: 12 },
-                      { nivel: 14, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 78, totalTalento: 12 },
-                      { nivel: 15, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 78, totalTalento: 13 },
-                      { nivel: 16, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 79, totalTalento: 13 },
-                      { nivel: 17, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 79, totalTalento: 14 },
-                      { nivel: 18, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 81, totalTalento: 14 },
-                      { nivel: 19, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 81, totalTalento: 15 },
-                      { nivel: 20, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 82, totalTalento: 15 },
-                      { nivel: 21, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 82, totalTalento: 16 },
-                      { nivel: 22, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 84, totalTalento: 16 },
-                      { nivel: 23, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 84, totalTalento: 17 },
-                      { nivel: 24, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 85, totalTalento: 17 },
-                      { nivel: 25, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 85, totalTalento: 18 },
-                      { nivel: 26, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 87, totalTalento: 18 },
-                      { nivel: 27, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 87, totalTalento: 19 },
-                      { nivel: 28, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 88, totalTalento: 19 },
-                      { nivel: 29, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 88, totalTalento: 20 },
-                      { nivel: 30, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 90, totalTalento: 20 },
-                      { nivel: 31, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 90, totalTalento: 21 },
-                      { nivel: 32, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 91, totalTalento: 21 },
-                      { nivel: 33, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 91, totalTalento: 22 },
-                      { nivel: 34, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 93, totalTalento: 22 },
-                      { nivel: 35, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 93, totalTalento: 23 },
-                      { nivel: 36, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 94, totalTalento: 23 },
-                      { nivel: 37, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 94, totalTalento: 24 },
-                      { nivel: 38, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 96, totalTalento: 24 },
-                      { nivel: 39, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 96, totalTalento: 25 },
-                      { nivel: 40, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 97, totalTalento: 25 },
-                      { nivel: 41, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 97, totalTalento: 26 },
-                      { nivel: 42, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 99, totalTalento: 26 },
-                      { nivel: 43, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 99, totalTalento: 27 },
-                      { nivel: 44, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 100, totalTalento: 27 },
-                      { nivel: 45, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 100, totalTalento: 28 },
-                      { nivel: 46, classe: '+2', ptoAtributo: '0', ptosTalento: '+2', totalAtributo: 102, totalTalento: 28 },
-                      { nivel: 47, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 102, totalTalento: 29 },
-                      { nivel: 48, classe: '+1', ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 103, totalTalento: 29 },
-                      { nivel: 49, classe: '0', ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 103, totalTalento: 30 },
-                      { nivel: 50, classe: '+3', ptoAtributo: '0', ptosTalento: '+3', totalAtributo: 106, totalTalento: 30 }
+                      { nivel: 0, ptoAtributo: '0', ptosTalento: '0', totalAtributo: 66, totalTalento: 0 },
+                      { nivel: 1, ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 67, totalTalento: 1 },
+                      { nivel: 2, ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 68, totalTalento: 2 },
+                      { nivel: 3, ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 69, totalTalento: 3 },
+                      { nivel: 4, ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 70, totalTalento: 4 },
+                      { nivel: 5, ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 71, totalTalento: 5 },
+                      { nivel: 6, ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 72, totalTalento: 6 },
+                      { nivel: 7, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 73, totalTalento: 7 },
+                      { nivel: 8, ptoAtributo: '+1', ptosTalento: '+1', totalAtributo: 74, totalTalento: 8 },
+                      { nivel: 9, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 73, totalTalento: 9 },
+                      { nivel: 10, ptoAtributo: '+2', ptosTalento: '+1', totalAtributo: 75, totalTalento: 10 },
+                      { nivel: 11, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 75, totalTalento: 11 },
+                      { nivel: 12, ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 76, totalTalento: 11 },
+                      { nivel: 13, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 76, totalTalento: 12 },
+                      { nivel: 14, ptoAtributo: '+2', ptosTalento: '0', totalAtributo: 78, totalTalento: 12 },
+                      { nivel: 15, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 78, totalTalento: 13 },
+                      { nivel: 16, ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 79, totalTalento: 13 },
+                      { nivel: 17, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 79, totalTalento: 14 },
+                      { nivel: 18, ptoAtributo: '+2', ptosTalento: '0', totalAtributo: 81, totalTalento: 14 },
+                      { nivel: 19, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 81, totalTalento: 15 },
+                      { nivel: 20, ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 82, totalTalento: 15 },
+                      { nivel: 21, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 82, totalTalento: 16 },
+                      { nivel: 22, ptoAtributo: '+2', ptosTalento: '0', totalAtributo: 84, totalTalento: 16 },
+                      { nivel: 23, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 84, totalTalento: 17 },
+                      { nivel: 24, ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 85, totalTalento: 17 },
+                      { nivel: 25, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 85, totalTalento: 18 },
+                      { nivel: 26, ptoAtributo: '+2', ptosTalento: '0', totalAtributo: 87, totalTalento: 18 },
+                      { nivel: 27, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 87, totalTalento: 19 },
+                      { nivel: 28, ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 88, totalTalento: 19 },
+                      { nivel: 29, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 88, totalTalento: 20 },
+                      { nivel: 30, ptoAtributo: '+2', ptosTalento: '0', totalAtributo: 90, totalTalento: 20 },
+                      { nivel: 31, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 90, totalTalento: 21 },
+                      { nivel: 32, ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 91, totalTalento: 21 },
+                      { nivel: 33, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 91, totalTalento: 22 },
+                      { nivel: 34, ptoAtributo: '+2', ptosTalento: '0', totalAtributo: 93, totalTalento: 22 },
+                      { nivel: 35, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 93, totalTalento: 23 },
+                      { nivel: 36, ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 94, totalTalento: 23 },
+                      { nivel: 37, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 94, totalTalento: 24 },
+                      { nivel: 38, ptoAtributo: '+2', ptosTalento: '0', totalAtributo: 96, totalTalento: 24 },
+                      { nivel: 39, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 96, totalTalento: 25 },
+                      { nivel: 40, ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 97, totalTalento: 25 },
+                      { nivel: 41, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 97, totalTalento: 26 },
+                      { nivel: 42, ptoAtributo: '+2', ptosTalento: '0', totalAtributo: 99, totalTalento: 26 },
+                      { nivel: 43, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 99, totalTalento: 27 },
+                      { nivel: 44, ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 100, totalTalento: 27 },
+                      { nivel: 45, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 100, totalTalento: 28 },
+                      { nivel: 46, ptoAtributo: '+2', ptosTalento: '0', totalAtributo: 102, totalTalento: 28 },
+                      { nivel: 47, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 102, totalTalento: 29 },
+                      { nivel: 48, ptoAtributo: '+1', ptosTalento: '0', totalAtributo: 103, totalTalento: 29 },
+                      { nivel: 49, ptoAtributo: '0', ptosTalento: '+1', totalAtributo: 103, totalTalento: 30 },
+                      { nivel: 50, ptoAtributo: '+3', ptosTalento: '0', totalAtributo: 106, totalTalento: 30 }
                     ].map((row, index) => {
                       const isHighlighted = highlightedProgressaoRows.includes(row.nivel)
                       return (
@@ -26232,9 +26330,6 @@ function App() {
                         >
                           <td className={`border p-2 text-center font-bold ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>
                             <span className={isHighlighted ? `px-2 py-1 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}` : ''}>{row.nivel}{[1, 5, 12, 24].includes(row.nivel) ? ' ⭐' : ''}</span>
-                          </td>
-                          <td className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-green-400' : 'border-gray-300 text-green-600'}`}>
-                            <span className={isHighlighted ? `px-2 py-1 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}` : ''}>{row.classe}</span>
                           </td>
                           <td className={`border p-2 text-center ${darkMode ? 'border-gray-500 text-blue-400' : 'border-gray-300 text-blue-600'}`}>
                             <span className={isHighlighted ? `px-2 py-1 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}` : ''}>{row.ptoAtributo}</span>
