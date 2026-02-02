@@ -53,13 +53,48 @@ const unsanitizeKeys = (obj) => {
   return result
 }
 
+// Sanitizar todas as chaves recursivamente (incluindo objetos aninhados)
+const sanitizeKeysRecursive = (obj) => {
+  if (obj === null || obj === undefined) return obj
+  if (Array.isArray(obj)) {
+    return obj.map(item => sanitizeKeysRecursive(item))
+  }
+  if (typeof obj === 'object') {
+    const result = {}
+    for (const key in obj) {
+      const sanitizedKey = sanitizeKey(key)
+      result[sanitizedKey] = sanitizeKeysRecursive(obj[key])
+    }
+    return result
+  }
+  return obj
+}
+
+// Restaurar todas as chaves recursivamente
+const unsanitizeKeysRecursive = (obj) => {
+  if (obj === null || obj === undefined) return obj
+  if (Array.isArray(obj)) {
+    return obj.map(item => unsanitizeKeysRecursive(item))
+  }
+  if (typeof obj === 'object') {
+    const result = {}
+    for (const key in obj) {
+      const unsanitizedKey = unsanitizeKey(key)
+      result[unsanitizedKey] = unsanitizeKeysRecursive(obj[key])
+    }
+    return result
+  }
+  return obj
+}
+
 // ==================== FUNÇÕES GENÉRICAS ====================
 
-// Salvar dados no Firebase (remove undefined automaticamente)
+// Salvar dados no Firebase (remove undefined e sanitiza chaves automaticamente)
 export const saveToFirebase = async (path, data) => {
   try {
     const cleanedData = removeUndefined(data)
-    await set(ref(database, path), cleanedData)
+    const sanitizedData = sanitizeKeysRecursive(cleanedData)
+    await set(ref(database, path), sanitizedData)
     return true
   } catch (error) {
     console.error('Erro ao salvar no Firebase:', error)
@@ -67,12 +102,13 @@ export const saveToFirebase = async (path, data) => {
   }
 }
 
-// Carregar dados do Firebase (uma vez)
+// Carregar dados do Firebase (uma vez) e restaura chaves sanitizadas
 export const loadFromFirebase = async (path, defaultValue = null) => {
   try {
     const snapshot = await get(ref(database, path))
     if (snapshot.exists()) {
-      return snapshot.val()
+      const data = snapshot.val()
+      return unsanitizeKeysRecursive(data)
     }
     return defaultValue
   } catch (error) {
@@ -81,11 +117,12 @@ export const loadFromFirebase = async (path, defaultValue = null) => {
   }
 }
 
-// Escutar mudanças em tempo real
+// Escutar mudanças em tempo real e restaura chaves sanitizadas
 export const subscribeToFirebase = (path, callback) => {
   const dbRef = ref(database, path)
   onValue(dbRef, (snapshot) => {
-    callback(snapshot.exists() ? snapshot.val() : null)
+    const data = snapshot.exists() ? snapshot.val() : null
+    callback(data ? unsanitizeKeysRecursive(data) : null)
   })
   // Retorna função para cancelar a inscrição
   return () => off(dbRef)
@@ -338,6 +375,32 @@ export const subscribeToXpCapturas = (username, callback) => {
 export const subscribeToAllXpCapturas = (callback) => {
   return subscribeToFirebase('xpCapturas', (data) => {
     callback(data || {})
+  })
+}
+
+// --- SAFARI ---
+
+export const saveSafariData = async (data) => {
+  return saveToFirebase('safari', data)
+}
+
+export const loadSafariData = async () => {
+  return loadFromFirebase('safari', {
+    runAreas: {},
+    runPermissions: {},
+    runEncounters: {},
+    runPaidUsers: {}
+  })
+}
+
+export const subscribeToSafari = (callback) => {
+  return subscribeToFirebase('safari', (data) => {
+    callback(data || {
+      runAreas: {},
+      runPermissions: {},
+      runEncounters: {},
+      runPaidUsers: {}
+    })
   })
 }
 
