@@ -132,9 +132,40 @@ export const subscribeToFirebase = (path, callback) => {
 
 // --- TREINADORES ---
 
-// Salvar dados do treinador
+// Salvar dados do treinador (salva cada campo separadamente para evitar "Write too large")
 export const saveTrainerData = async (username, data) => {
-  return saveToFirebase(`trainers/${username}`, data)
+  try {
+    const basePath = `trainers/${username}`
+    const cleanedData = removeUndefined(data)
+    const sanitizedData = sanitizeKeysRecursive(cleanedData)
+
+    // Salvar cada campo individualmente e logar tamanho + erros por campo
+    const results = await Promise.allSettled(
+      Object.entries(sanitizedData).map(async ([key, value]) => {
+        const size = JSON.stringify(value).length
+        const sizeMB = (size / (1024 * 1024)).toFixed(2)
+        if (size > 1000000) {
+          console.warn(`[Firebase] Campo "${key}" tem ${sizeMB} MB`)
+        }
+        try {
+          await set(ref(database, `${basePath}/${key}`), value)
+        } catch (err) {
+          console.error(`[Firebase] ERRO ao salvar campo "${key}" (${sizeMB} MB):`, err.message || err)
+          throw err
+        }
+      })
+    )
+
+    const failed = results.filter(r => r.status === 'rejected')
+    if (failed.length > 0) {
+      console.error(`[Firebase] ${failed.length} campo(s) falharam ao salvar`)
+      return false
+    }
+    return true
+  } catch (error) {
+    console.error('Erro ao salvar dados do treinador:', error)
+    return false
+  }
 }
 
 // Carregar dados do treinador
@@ -149,9 +180,39 @@ export const subscribeToTrainer = (username, callback) => {
 
 // --- MESTRE ---
 
-// Salvar configuração do mestre
+// Salvar configuração do mestre (salva cada campo separadamente para evitar "Write too large")
 export const saveMestreConfig = async (data) => {
-  return saveToFirebase('mestre/config', data)
+  try {
+    const basePath = 'mestre/config'
+    const cleanedData = removeUndefined(data)
+    const sanitizedData = sanitizeKeysRecursive(cleanedData)
+
+    const results = await Promise.allSettled(
+      Object.entries(sanitizedData).map(async ([key, value]) => {
+        const size = JSON.stringify(value).length
+        const sizeMB = (size / (1024 * 1024)).toFixed(2)
+        if (size > 1000000) {
+          console.warn(`[Firebase Mestre] Campo "${key}" tem ${sizeMB} MB`)
+        }
+        try {
+          await set(ref(database, `${basePath}/${key}`), value)
+        } catch (err) {
+          console.error(`[Firebase Mestre] ERRO ao salvar campo "${key}" (${sizeMB} MB):`, err.message || err)
+          throw err
+        }
+      })
+    )
+
+    const failed = results.filter(r => r.status === 'rejected')
+    if (failed.length > 0) {
+      console.error(`[Firebase Mestre] ${failed.length} campo(s) falharam ao salvar`)
+      return false
+    }
+    return true
+  } catch (error) {
+    console.error('Erro ao salvar configuração do mestre:', error)
+    return false
+  }
 }
 
 // Carregar configuração do mestre
@@ -161,14 +222,58 @@ export const loadMestreConfig = async () => {
 
 // --- NPCs ---
 
-// Salvar NPCs do mestre
+// Salvar NPCs do mestre (salva cada NPC individualmente para evitar "Write too large")
 export const saveNpcTrainers = async (username, npcs) => {
-  return saveToFirebase(`npcTrainers/${username}`, npcs)
+  try {
+    const basePath = `npcTrainers/${username}`
+    const cleanedData = removeUndefined(npcs)
+    const sanitizedData = sanitizeKeysRecursive(cleanedData)
+
+    // Se o array é pequeno (< 500KB), salvar de uma vez
+    const totalSize = JSON.stringify(sanitizedData).length
+    if (totalSize < 500000) {
+      return saveToFirebase(basePath, sanitizedData)
+    }
+
+    // Se é grande, salvar cada NPC individualmente
+    console.warn(`[Firebase NPC] Array grande (${(totalSize / (1024 * 1024)).toFixed(2)} MB), salvando individualmente...`)
+
+    // Primeiro, limpar o path inteiro para remover NPCs removidos
+    await set(ref(database, basePath), null)
+
+    const results = await Promise.allSettled(
+      sanitizedData.map(async (npc, index) => {
+        try {
+          await set(ref(database, `${basePath}/${index}`), npc)
+        } catch (err) {
+          console.error(`[Firebase NPC] ERRO ao salvar NPC ${index}:`, err.message || err)
+          throw err
+        }
+      })
+    )
+
+    const failed = results.filter(r => r.status === 'rejected')
+    if (failed.length > 0) {
+      console.error(`[Firebase NPC] ${failed.length} NPC(s) falharam ao salvar`)
+      return false
+    }
+    return true
+  } catch (error) {
+    console.error('Erro ao salvar NPCs:', error)
+    return false
+  }
 }
 
 // Carregar NPCs do mestre
 export const loadNpcTrainers = async (username) => {
   return loadFromFirebase(`npcTrainers/${username}`, [])
+}
+
+// Escutar mudanças nos NPCs do mestre (tempo real)
+export const subscribeToNpcTrainers = (username, callback) => {
+  return subscribeToFirebase(`npcTrainers/${username}`, (data) => {
+    callback(data || [])
+  })
 }
 
 // --- ESPÉCIES EXÓTICAS ---
@@ -192,9 +297,36 @@ export const subscribeToGlobalExoticSpecies = (callback) => {
 
 // --- BATALHA ---
 
-// Salvar dados de batalha
+// Salvar dados de batalha (salva cada campo separadamente para evitar "Write too large")
 export const saveBattleData = async (data) => {
-  return saveToFirebase('battle', data)
+  try {
+    const basePath = 'battle'
+    const cleanedData = removeUndefined(data)
+    const sanitizedData = sanitizeKeysRecursive(cleanedData)
+
+    const results = await Promise.allSettled(
+      Object.entries(sanitizedData).map(async ([key, value]) => {
+        try {
+          await set(ref(database, `${basePath}/${key}`), value)
+        } catch (err) {
+          const size = JSON.stringify(value).length
+          const sizeMB = (size / (1024 * 1024)).toFixed(2)
+          console.error(`[Firebase Battle] ERRO ao salvar campo "${key}" (${sizeMB} MB):`, err.message || err)
+          throw err
+        }
+      })
+    )
+
+    const failed = results.filter(r => r.status === 'rejected')
+    if (failed.length > 0) {
+      console.error(`[Firebase Battle] ${failed.length} campo(s) falharam ao salvar`)
+      return false
+    }
+    return true
+  } catch (error) {
+    console.error('Erro ao salvar dados de batalha:', error)
+    return false
+  }
 }
 
 // Carregar dados de batalha
@@ -420,5 +552,115 @@ export const loadVTTData = async () => {
 export const subscribeToVTT = (callback) => {
   return subscribeToFirebase('vtt/data', (data) => {
     callback(data || {})
+  })
+}
+
+// --- APRICORN TREES ---
+
+// Salvar árvores de apricorn geradas
+export const saveGeneratedApricornTrees = async (trees) => {
+  return saveToFirebase('apricornTrees/generated', trees)
+}
+
+// Carregar árvores de apricorn geradas
+export const loadGeneratedApricornTrees = async () => {
+  return loadFromFirebase('apricornTrees/generated', [])
+}
+
+// Escutar mudanças nas árvores de apricorn geradas (tempo real)
+export const subscribeToGeneratedApricornTrees = (callback) => {
+  return subscribeToFirebase('apricornTrees/generated', (data) => {
+    callback(data || [])
+  })
+}
+
+// --- BACKUPS ---
+
+// Salvar backups no Firebase (salva cada seção de cada backup separadamente para evitar "Write too large")
+export const saveBackups = async (backups) => {
+  try {
+    const results = await Promise.allSettled(
+      backups.map(async (backup, index) => {
+        const basePath = `backups/${index}`
+        const cleanedData = removeUndefined(backup)
+        const sanitizedData = sanitizeKeysRecursive(cleanedData)
+
+        // Salvar metadados (timestamp, version) diretamente
+        const { data, ...metadata } = sanitizedData
+        const metaResults = await Promise.allSettled(
+          Object.entries(metadata).map(async ([key, value]) => {
+            await set(ref(database, `${basePath}/${key}`), value)
+          })
+        )
+
+        // Salvar cada seção de data separadamente (trainers, mestreConfig, npcTrainers, etc.)
+        let dataResults = []
+        if (data && typeof data === 'object') {
+          dataResults = await Promise.allSettled(
+            Object.entries(data).map(async ([section, value]) => {
+              try {
+                await set(ref(database, `${basePath}/data/${section}`), value)
+              } catch (err) {
+                const size = JSON.stringify(value).length
+                const sizeMB = (size / (1024 * 1024)).toFixed(2)
+                console.error(`[Firebase Backup] ERRO ao salvar seção "${section}" do backup ${index} (${sizeMB} MB):`, err.message || err)
+                throw err
+              }
+            })
+          )
+        }
+
+        const allFailed = [...metaResults, ...dataResults].filter(r => r.status === 'rejected')
+        if (allFailed.length > 0) throw new Error(`${allFailed.length} seção(ões) falharam`)
+      })
+    )
+    // Remover slots extras (caso a lista tenha encolhido)
+    const currentCount = backups.length
+    for (let i = currentCount; i < 5; i++) {
+      try {
+        await set(ref(database, `backups/${i}`), null)
+      } catch (_) {
+        break
+      }
+    }
+    const failed = results.filter(r => r.status === 'rejected')
+    if (failed.length > 0) {
+      console.error(`[Firebase] ${failed.length} backup(s) falharam ao salvar`)
+      return false
+    }
+    return true
+  } catch (error) {
+    console.error('Erro ao salvar backups:', error)
+    return false
+  }
+}
+
+// Carregar backups do Firebase (reconstrói array a partir de slots individuais)
+export const loadBackups = async () => {
+  const data = await loadFromFirebase('backups', null)
+  if (!data) return []
+  // Se for array (formato antigo), retornar diretamente
+  if (Array.isArray(data)) return data
+  // Se for objeto (novo formato com chaves numéricas), converter para array
+  const backups = []
+  const keys = Object.keys(data).sort((a, b) => Number(a) - Number(b))
+  for (const key of keys) {
+    if (data[key]) backups.push(data[key])
+  }
+  return backups
+}
+
+// Escutar mudanças nos backups (tempo real)
+export const subscribeToBackups = (callback) => {
+  return subscribeToFirebase('backups', (data) => {
+    if (!data) return callback([])
+    if (Array.isArray(data)) return callback(data)
+    // Converter objeto com chaves numéricas para array
+    const backups = []
+    const keys = Object.keys(data).sort((a, b) => Number(a) - Number(b))
+    for (const key of keys) {
+      if (data[key]) backups.push(data[key])
+    }
+    callback(backups)
   })
 }

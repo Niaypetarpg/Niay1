@@ -1932,9 +1932,9 @@ export const TALENTOS_DATA = {
       nome: 'Dê Tudo de Si!',
       requisitos: 'N/A',
       referencia: 'L, V',
-      frequencia: 'Diária. A cada 5 Níveis, receba um uso diário adicional',
-      alvo: 'você ou um aliado',
-      efeito: 'o alvo pode lançar um Golpe que usa a Ação Padrão dele para executar, independente de sua Frequência. Isso não permite lançar Golpes Z, Golpes com Frequência Especial ou Movimentos dos Talentos de Coreógrafo.'
+      frequencia: 'Diária. A cada 10 Níveis, receba um uso diário adicional',
+      alvo: 'um Golpe de um dos seus pokémons.',
+      efeito: 'Este Golpe acerta e é Crítico.'
     },
     {
       nome: 'Deixa Ajudar com Isso!',
