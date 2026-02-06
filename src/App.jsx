@@ -1339,7 +1339,7 @@ function CombateInterludioApp({ darkMode }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-4">
-        <h2 className={`text-2xl font-bold ${darkMode ? 'text-cyan-400' : 'text-blue-600'}`}>
+        <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-cyan-400' : 'text-blue-600'}`}>
           Calculadora de Fórmulas com Dados
         </h2>
         <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -1347,7 +1347,7 @@ function CombateInterludioApp({ darkMode }) {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
         {/* Nível */}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-4`}>
           <label className={`block mb-2 font-bold ${darkMode ? 'text-cyan-400' : 'text-blue-600'}`}>
@@ -1421,11 +1421,11 @@ function CombateInterludioApp({ darkMode }) {
       </div>
 
       {/* Resultado */}
-      <div className={`${darkMode ? 'bg-gray-800 border-blue-500' : 'bg-white border-blue-400'} border-l-4 rounded-lg p-6`}>
-        <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-cyan-400' : 'text-blue-600'}`}>
+      <div className={`${darkMode ? 'bg-gray-800 border-blue-500' : 'bg-white border-blue-400'} border-l-4 rounded-lg p-3 sm:p-5 md:p-6`}>
+        <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-cyan-400' : 'text-blue-600'}`}>
           Fórmula Resultante:
         </h3>
-        <div className={`text-3xl font-mono font-bold text-center py-6 rounded-lg ${
+        <div className={`text-2xl sm:text-3xl font-mono font-bold text-center py-3 sm:py-5 md:py-6 rounded-lg ${
           darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-800'
         }`}>
           {formula}
@@ -1458,7 +1458,7 @@ function CombateInterludioApp({ darkMode }) {
             <li><strong>Vantagem x4:</strong> Adiciona 2d6 à fórmula</li>
             <li><strong>Pontos de Buffs:</strong> Cada ponto adiciona 1d4 à fórmula</li>
           </ul>
-          <div className="flex justify-center gap-4 mt-4">
+          <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 mt-4">
             <div className="w-12 h-12 bg-pink-600 rounded-lg flex items-center justify-center font-bold text-white">d12</div>
             <div className="w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center font-bold text-white">d6</div>
             <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center font-bold text-white">d4</div>
@@ -1593,7 +1593,7 @@ function ConcursoInterludioApp({ darkMode }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-4">
-        <h2 className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
+        <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
           Calculadora de Concurso Pokémon
         </h2>
         <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -1601,7 +1601,7 @@ function ConcursoInterludioApp({ darkMode }) {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
         {/* Configurações */}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-4`}>
           <h3 className={`font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Configurações do Concurso</h3>
@@ -1660,15 +1660,15 @@ function ConcursoInterludioApp({ darkMode }) {
           {/* Estatísticas */}
           <div className="grid grid-cols-3 gap-2 mt-4">
             <div className={`text-center p-2 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-              <div className={`text-xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{stats.selected}</div>
+              <div className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{stats.selected}</div>
               <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aptidão selecionada</div>
             </div>
             <div className={`text-center p-2 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-              <div className={`text-xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{stats.total}</div>
+              <div className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{stats.total}</div>
               <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Total de golpes</div>
             </div>
             <div className={`text-center p-2 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-              <div className={`text-xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+              <div className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
                 {stats.total > 0 ? Math.round((stats.selected / stats.total) * 100) : 0}%
               </div>
               <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Porcentagem</div>
@@ -2441,6 +2441,19 @@ function App() {
     { name: 'Árvore Apricorn sem frutos', chance: 64.5, image: '/treevaiza.png', fruit: null }
   ]
 
+  // Dados de Clima
+  const CLIMA_LIST = [
+    { name: 'Ensolarado', image: 'solclima.png' },
+    { name: 'Chuvoso', image: 'chuvosoclima.png' },
+    { name: 'Nublado', image: 'nubladoclima.png' },
+    { name: 'Tempestade', image: 'tempestadeclima.png' },
+    { name: 'Ventania', image: 'ventaniaclima.png' },
+    { name: 'Neve', image: 'neveclima.png' },
+    { name: 'Granizo', image: 'granizoclima.png' },
+    { name: 'Nevoeiro', image: 'nevoeiroclima.png' },
+    { name: 'Tempestade de Areia', image: 'tempestadedeareiaclima.png' },
+  ]
+
   // Estados para Visão do Mestre
   const [visaoMestreSection, setVisaoMestreSection] = useState('Perfis') // 'Perfis', 'Pokéloja Config'
   const [selectedTrainer, setSelectedTrainer] = useState(null) // Username do treinador selecionado ou null
@@ -2547,6 +2560,10 @@ function App() {
     evolucaoLevel: '',
     evolucaoItem: ''
   })
+
+  // Estados para Clima
+  const [currentClima, setCurrentClima] = useState(null) // {name, image}
+  const [desertoMode, setDesertoMode] = useState(false)
 
   // Estados para PokeApp
   const [pokeAppSubArea, setPokeAppSubArea] = useState('') // 'Concurso', 'Encontro', 'Sorteador', 'Backup'
@@ -2738,7 +2755,7 @@ function App() {
     { username: 'Pedro', type: 'treinador', gradient: 'linear-gradient(135deg, #0000CD, #4169E1, #00CED1, #32CD32)' }
   ]
 
-  const mestreAreas = ['Gerador Pokémon', 'Treinador NPC', 'Pokémon NPC', 'NPCs Arquivados', 'Batalha', 'Enciclopédia M', 'Visão do Mestre', 'XP & Capturas M', 'PokeApp', 'Interlúdio M', 'Safari Staff', 'Árvore de Apricorns M']
+  const mestreAreas = ['Gerador Pokémon', 'Treinador NPC', 'Pokémon NPC', 'NPCs Arquivados', 'Batalha', 'Enciclopédia M', 'Visão do Mestre', 'XP & Capturas M', 'PokeApp', 'Interlúdio M', 'Safari Staff', 'Árvore de Apricorns M', 'Clima']
   const treinadorAreas = ['Treinador', 'PC', 'Pokédex', 'Mochila', 'Características & Talentos', 'Pokéloja', 'Insígnias', 'Enciclopédia', 'Progressão', 'Batalha Pkm', 'Interlúdio', 'Safari', 'Árvore de Apricorns']
 
   // ===== CONFIGURACOES SAFARI =====
@@ -9458,6 +9475,21 @@ function App() {
     }
   }, [useFirebase])
 
+  // Subscribe to clima (weather) data
+  useEffect(() => {
+    if (!useFirebase) return
+    const unsubClima = subscribeToFirebase('clima', (data) => {
+      setCurrentClima(data || null)
+    })
+    const unsubDeserto = subscribeToFirebase('climaDesertoMode', (data) => {
+      setDesertoMode(data || false)
+    })
+    return () => {
+      if (unsubClima) unsubClima()
+      if (unsubDeserto) unsubDeserto()
+    }
+  }, [useFirebase])
+
   // Load planted trees from trainer data
   useEffect(() => {
     if (currentUser?.type === 'treinador') {
@@ -9922,6 +9954,28 @@ function App() {
         ...currentUser,
         plantedTrees: updatedPlantedTrees
       })
+    }
+  }
+
+  // ==================== FUNÇÕES DE CLIMA ====================
+
+  const handlePrevisaoDoTempo = async () => {
+    const climasDisponiveis = CLIMA_LIST.filter(c => {
+      if (desertoMode && (c.name === 'Neve' || c.name === 'Granizo')) return false
+      if (!desertoMode && c.name === 'Tempestade de Areia') return false
+      return true
+    })
+    const sorteado = climasDisponiveis[Math.floor(Math.random() * climasDisponiveis.length)]
+    setCurrentClima(sorteado)
+    if (useFirebase) {
+      await saveToFirebase('clima', sorteado)
+    }
+  }
+
+  const handleToggleDesertoMode = async (checked) => {
+    setDesertoMode(checked)
+    if (useFirebase) {
+      await saveToFirebase('climaDesertoMode', checked)
     }
   }
 
@@ -11632,17 +11686,17 @@ function App() {
     return (
       <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'} flex items-center justify-center p-4`}>
         <style>{`@keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}.animated-gradient{background-size:300% 300%;animation:gradient-shift 4s ease infinite}`}</style>
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 w-full max-w-xl`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8 w-full max-w-xl`}>
           <div className="flex justify-end mb-4">
             <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
           </div>
-          <div className="flex justify-center mb-6"><img src="/logo.png" alt="Logo" className="w-48 h-48 object-contain" /></div>
+          <div className="flex justify-center mb-6"><img src="/logo.png" alt="Logo" className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain" /></div>
           <div className="text-center mb-6">
-            <h1 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-2`}>Niaypeta Corp™</h1>
+            <h1 className={`text-2xl sm:text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-2`}>Niaypeta Corp™</h1>
             <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>O Professor Carvalho quer saber seu nome.</p>
           </div>
           <h2 className={`text-center font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-3`}>Selecione o Usuário</h2>
-          <div className="grid grid-cols-2 gap-3 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
             {users.map(user => (
               <button key={user.username} onClick={() => { setSelectedUser(user); setError('') }} className={`animated-gradient p-3 rounded-lg text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center justify-center gap-2 ${selectedUser?.username === user.username ? 'ring-4 ring-blue-400' : ''}`} style={{ background: user.gradient }}>
                 <User size={18} /><span className="text-base">{user.username}</span>
@@ -11672,20 +11726,20 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username} {currentUser.type === 'mestre' && '👑'}</h2>
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username} {currentUser.type === 'mestre' && '👑'}</h2>
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {areas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 text-sm font-semibold shadow-md">{area}</button>)}
+                {areas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className="px-3 py-2 sm:px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 text-xs sm:text-sm font-semibold shadow-md">{area}</button>)}
               </div>
             </div>
           </div>
-          <div className="max-w-7xl mx-auto px-4 py-8">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
               <p className={`text-center text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Selecione uma área acima</p>
             </div>
           </div>
@@ -11703,20 +11757,20 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Gerador Pokémon 👑</h2>
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Gerador Pokémon 👑</h2>
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Gerador Pokémon' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Gerador Pokémon' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
           <iframe
             src="/Pokedéx_RPG.html"
             className="w-full rounded-2xl shadow-2xl border-0"
@@ -11726,9 +11780,9 @@ function App() {
 
           {/* Lista de Pokémon gerados com botão para adicionar como NPC */}
           {npcPokemonList.length > 0 && (
-            <div className={`mt-8 p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-xl`}>
+            <div className={`mt-8 p-3 sm:p-5 md:p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-xl`}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Pokémon Gerados Recentemente ({npcPokemonList.length})
                 </h3>
                 <button
@@ -11744,7 +11798,7 @@ function App() {
                   Limpar Todos
                 </button>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
                 {npcPokemonList.map(pokemon => (
                   <div
                     key={pokemon.id}
@@ -11824,6 +11878,83 @@ function App() {
     )
   }
 
+  // ÁREA CLIMA
+  if (currentUser.type === 'mestre' && currentArea === 'Clima') {
+    return (
+      <>
+        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900'}`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Clima</h2>
+                <div className="flex gap-2">
+                  <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
+                  <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Clima' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              </div>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-lg sm:text-xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Previsao do Tempo</h3>
+
+              {currentClima && (
+                <div className="flex flex-col items-center mb-8">
+                  <img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-32 h-32 mb-3" />
+                  <span className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentClima.name}</span>
+                </div>
+              )}
+
+              {!currentClima && (
+                <div className={`text-center mb-8 py-3 sm:py-5 md:py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  <p className="text-lg">Nenhum clima definido. Clique no botao abaixo para sortear.</p>
+                </div>
+              )}
+
+              <div className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4">
+                <button
+                  onClick={handlePrevisaoDoTempo}
+                  className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 sm:px-3 sm:px-5 md:px-6 md:px-8 py-4 rounded-lg hover:from-blue-700 hover:to-cyan-700 font-semibold text-lg shadow-lg"
+                >
+                  Previsao do Tempo
+                </button>
+
+                {currentClima && (
+                  <button
+                    onClick={async () => {
+                      setCurrentClima(null)
+                      if (useFirebase) { await saveToFirebase('clima', null) }
+                    }}
+                    className="bg-gradient-to-r from-red-500 to-red-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:from-red-600 hover:to-red-700 font-semibold shadow-lg"
+                  >
+                    Limpar Clima
+                  </button>
+                )}
+
+                <label className={`flex items-center gap-2 mt-4 cursor-pointer ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <input
+                    type="checkbox"
+                    checked={desertoMode}
+                    onChange={(e) => handleToggleDesertoMode(e.target.checked)}
+                    className="w-5 h-5 rounded border-gray-400 text-yellow-600 focus:ring-yellow-500"
+                  />
+                  <span className="font-semibold">Deserto</span>
+                  <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>(habilita Tempestade de Areia, desabilita Neve e Granizo)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        {accountDataModal}
+      </>
+    )
+  }
+
   // ÁREA TREINADOR NPC
   if (currentUser.type === 'mestre' && currentArea === 'Treinador NPC') {
     return (
@@ -11832,31 +11963,31 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Treinador NPC 👑</h2>
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Treinador NPC 👑</h2>
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Treinador NPC' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Treinador NPC' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 mb-6`}>
-            <div className="flex gap-4 mb-6">
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8 mb-6`}>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 mb-6">
               <button
                 onClick={() => setShowCustomTrainerModal(true)}
-                className="flex-1 bg-gradient-to-r from-blue-600 to-purple-700 text-white px-6 py-4 rounded-lg hover:from-blue-700 hover:to-purple-800 font-semibold text-lg"
+                className="w-full sm:flex-1 bg-gradient-to-r from-blue-600 to-purple-700 text-white px-3 sm:px-5 md:px-6 py-3 sm:py-4 rounded-lg hover:from-blue-700 hover:to-purple-800 font-semibold text-sm sm:text-base md:text-lg"
               >
                 Treinador Personalizado
               </button>
               <button
                 onClick={() => setShowRandomTrainerModal(true)}
-                className="flex-1 bg-gradient-to-r from-green-600 to-teal-700 text-white px-6 py-4 rounded-lg hover:from-green-700 hover:to-teal-800 font-semibold text-lg"
+                className="w-full sm:flex-1 bg-gradient-to-r from-green-600 to-teal-700 text-white px-3 sm:px-5 md:px-6 py-3 sm:py-4 rounded-lg hover:from-green-700 hover:to-teal-800 font-semibold text-sm sm:text-base md:text-lg"
               >
                 Treinador Aleatório
               </button>
@@ -11868,19 +11999,19 @@ function App() {
                 <p className="text-lg">Nenhum treinador NPC criado ainda</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                 {npcTrainers.map(npc => (
-                  <div key={npc.id} className={`p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-blue-500' : 'bg-blue-50 border-blue-300'}`}>
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="flex items-center gap-3">
-                        <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{npc.name}</h3>
+                  <div key={npc.id} className={`p-3 sm:p-4 md:p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-blue-500' : 'bg-blue-50 border-blue-300'}`}>
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-3 mb-4">
+                      <div className="flex flex-col xs:flex-row items-start xs:items-center gap-2 xs:gap-3 w-full sm:w-auto">
+                        <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{npc.name}</h3>
                         {npc.isRandom && npc.caracteristicasETalentos && (
                           <button
                             onClick={() => {
                               setSelectedNPCForTalentos(npc)
                               setShowNPCTalentosModal(true)
                             }}
-                            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold text-sm"
+                            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-2 sm:px-3 py-1 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold text-xs sm:text-sm whitespace-nowrap"
                             title="Ver Características e Talentos"
                           >
                             Talento R NPC
@@ -11892,14 +12023,14 @@ function App() {
                               setSelectedNPCForTalentos(npc)
                               setShowNPCTalentosModal(true)
                             }}
-                            className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 py-1 rounded-lg hover:from-blue-700 hover:to-cyan-700 font-semibold text-sm"
+                            className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-2 sm:px-3 py-1 rounded-lg hover:from-blue-700 hover:to-cyan-700 font-semibold text-xs sm:text-sm whitespace-nowrap"
                             title="Ver Características e Talentos"
                           >
                             Treinador T Personalizado
                           </button>
                         )}
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 flex-shrink-0">
                         <button
                           onClick={() => sendNpcTrainerToBattle(npc)}
                           className="bg-cyan-500 text-white p-2 rounded hover:bg-cyan-600"
@@ -11930,9 +12061,9 @@ function App() {
 
                     {/* Tabela de Atributos */}
                     <div className="mb-4">
-                      <h4 className={`font-bold mb-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Atributos</h4>
-                      <div className="overflow-x-auto">
-                        <table className={`w-full text-sm ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
+                      <h4 className={`font-bold mb-2 text-sm sm:text-base ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Atributos</h4>
+                      <div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0">
+                        <table className={`w-full text-xs sm:text-sm min-w-[280px] ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
                           <thead>
                             <tr className={darkMode ? 'bg-gray-500' : 'bg-gray-200'}>
                               <th className={`border p-2 text-left ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Atributo</th>
@@ -11954,8 +12085,8 @@ function App() {
 
                     {/* Deslocamento */}
                     <div className="mb-4">
-                      <h4 className={`font-bold mb-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Deslocamento</h4>
-                      <div className={`grid grid-cols-3 gap-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <h4 className={`font-bold mb-2 text-sm sm:text-base ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Deslocamento</h4>
+                      <div className={`grid grid-cols-1 xs:grid-cols-3 gap-2 text-xs sm:text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                         <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Terrestre:</span> {npc.displacement.terrestre}</div>
                         <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Natação:</span> {npc.displacement.natacao}</div>
                         <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Subaquático:</span> {npc.displacement.subaquatico}</div>
@@ -11964,8 +12095,8 @@ function App() {
 
                     {/* Evasão */}
                     <div>
-                      <h4 className={`font-bold mb-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Evasão</h4>
-                      <div className={`grid grid-cols-3 gap-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      <h4 className={`font-bold mb-2 text-sm sm:text-base ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Evasão</h4>
+                      <div className={`grid grid-cols-1 xs:grid-cols-3 gap-2 text-xs sm:text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                         <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Física:</span> {npc.evasion.fisica}</div>
                         <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Especial:</span> {npc.evasion.especial}</div>
                         <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Veloz:</span> {npc.evasion.veloz}</div>
@@ -11980,11 +12111,11 @@ function App() {
 
         {/* MODAL TREINADOR PERSONALIZADO */}
         {showCustomTrainerModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowCustomTrainerModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowCustomTrainerModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Criar Treinador Personalizado
                   </h3>
                   <button onClick={() => setShowCustomTrainerModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -12041,8 +12172,8 @@ function App() {
                 {/* Tabela de Atributos */}
                 <div className="mb-6">
                   <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>4. Atributos</label>
-                  <div className="overflow-x-auto">
-                    <table className={`w-full ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
+                  <div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0">
+                    <table className={`w-full min-w-[280px] text-xs sm:text-sm ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
                       <thead>
                         <tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
                           <th className={`border p-2 text-left ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>Atributo</th>
@@ -12147,7 +12278,7 @@ function App() {
                     <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       6. Talentos
                     </label>
-                    <div className="flex gap-4 mb-4">
+                    <div className="flex flex-col xs:flex-row gap-2 sm:gap-3 md:gap-4 mb-4">
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
                           type="radio"
@@ -12155,7 +12286,7 @@ function App() {
                           onChange={() => setCustomTrainerForm({...customTrainerForm, talentosMode: 'aleatorio', selectedTalentos: []})}
                           className="w-4 h-4"
                         />
-                        <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>Aleatório</span>
+                        <span className={`text-sm sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Aleatório</span>
                       </label>
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
@@ -12164,7 +12295,7 @@ function App() {
                           onChange={() => setCustomTrainerForm({...customTrainerForm, talentosMode: 'manual'})}
                           className="w-4 h-4"
                         />
-                        <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>Escolher Manualmente</span>
+                        <span className={`text-sm sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Escolher Manualmente</span>
                       </label>
                     </div>
 
@@ -12181,7 +12312,7 @@ function App() {
                         </p>
                         <button
                           onClick={() => setShowSelectTalentosModal(true)}
-                          className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 font-semibold"
+                          className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 font-semibold text-sm sm:text-base"
                         >
                           Selecionar Talentos
                         </button>
@@ -12191,16 +12322,16 @@ function App() {
                 )}
 
                 {/* Botões */}
-                <div className="flex gap-3 pt-4">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-4">
                   <button
                     onClick={() => setShowCustomTrainerModal(false)}
-                    className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                    className={`w-full sm:flex-1 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
                   >
                     Cancelar
                   </button>
                   <button
                     onClick={handleSaveCustomTrainer}
-                    className="flex-1 bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold"
+                    className="w-full sm:flex-1 bg-blue-500 text-white py-2 sm:py-3 rounded-lg hover:bg-blue-600 font-semibold text-sm sm:text-base"
                   >
                     Salvar
                   </button>
@@ -12212,11 +12343,11 @@ function App() {
 
         {/* MODAL TREINADOR ALEATÓRIO */}
         {showRandomTrainerModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowRandomTrainerModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowRandomTrainerModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Criar Treinador Aleatório
                   </h3>
                   <button onClick={() => setShowRandomTrainerModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -12271,16 +12402,16 @@ function App() {
                 </div>
 
                 {/* Botões */}
-                <div className="flex gap-3 pt-4">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-4">
                   <button
                     onClick={() => setShowRandomTrainerModal(false)}
-                    className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                    className={`w-full sm:flex-1 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
                   >
                     Cancelar
                   </button>
                   <button
                     onClick={handleSaveRandomTrainer}
-                    className="flex-1 bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 font-semibold"
+                    className="w-full sm:flex-1 bg-green-500 text-white py-2 sm:py-3 rounded-lg hover:bg-green-600 font-semibold text-sm sm:text-base"
                   >
                     Gerar
                   </button>
@@ -12292,11 +12423,11 @@ function App() {
 
         {/* MODAL TALENTOS NPC */}
         {showNPCTalentosModal && selectedNPCForTalentos && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowNPCTalentosModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowNPCTalentosModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Características & Talentos - {selectedNPCForTalentos.name}
                   </h3>
                   <button onClick={() => setShowNPCTalentosModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -12333,7 +12464,7 @@ function App() {
                     <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
                       Características & Talentos ({selectedNPCForTalentos.caracteristicasETalentos.length})
                     </h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                       {selectedNPCForTalentos.caracteristicasETalentos.map((item, idx) => {
                         const isCaracteristica = item.tipo === 'caracteristica'
                         return (
@@ -12403,9 +12534,9 @@ function App() {
         {showSelectTalentosModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowSelectTalentosModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Selecionar Talentos
                   </h3>
                   <button onClick={() => setShowSelectTalentosModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -12663,28 +12794,28 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon NPC 👑</h2>
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon NPC 👑</h2>
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Pokémon NPC' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Pokémon NPC' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
           {npcPokemon.length === 0 ? (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 text-center`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8 text-center`}>
               <p className={`text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Nenhum Pokémon NPC adicionado ainda. Gere Pokémon no Gerador e adicione-os como NPCs.
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
               {npcPokemon.map(pokemon => {
                 const isExpanded = expandedNpcCards.includes(pokemon.id)
 
@@ -12692,7 +12823,7 @@ function App() {
                   <div
                     key={pokemon.id}
                     className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl overflow-hidden transition-all ${
-                      isExpanded ? 'col-span-2 md:col-span-2 lg:col-span-3 xl:col-span-4' : ''
+                      isExpanded ? 'col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-3 xl:col-span-3' : ''
                     }`}
                   >
                     {!isExpanded ? (
@@ -12700,13 +12831,13 @@ function App() {
                       <div className="relative group">
                         <div
                           onClick={() => toggleNpcCard(pokemon.id)}
-                          className="cursor-pointer p-4 flex flex-col items-center"
+                          className="cursor-pointer p-3 sm:p-4 flex flex-col items-center"
                         >
                           {pokemon.imageUrl && (
                             <img
                               src={pokemon.imageUrl}
                               alt={pokemon.name || pokemon.species}
-                              className="w-32 h-32 object-contain mb-2"
+                              className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain mb-2"
                             />
                           )}
                           <p className={`text-sm font-bold text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -12767,7 +12898,7 @@ function App() {
                       </div>
                     ) : (
                       // Card expandido - todas as informações
-                      <div className="p-4">
+                      <div className="p-3 sm:p-4">
                         <div className="flex justify-between items-start mb-3">
                           <div
                             onClick={() => toggleNpcCard(pokemon.id)}
@@ -12892,8 +13023,8 @@ function App() {
                         </div>
 
                         {/* HP e Evasões */}
-                        <div className={`mb-2 p-2 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
-                          <div className="flex items-center justify-between mb-2">
+                        <div className={`mb-2 p-2 sm:p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+                          <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 mb-2">
                             <div className="flex-1">
                               <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>HP</p>
                               <p className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -12905,7 +13036,7 @@ function App() {
                                 setSelectedNpcPokemon(pokemon)
                                 setShowNpcDamageModal(true)
                               }}
-                              className="flex items-center gap-1 bg-gradient-to-r from-red-600 to-pink-600 text-white px-3 py-1.5 rounded-lg hover:from-red-700 hover:to-pink-700 font-semibold text-xs"
+                              className="flex items-center gap-1 bg-gradient-to-r from-red-600 to-pink-600 text-white px-2 sm:px-3 py-1.5 rounded-lg hover:from-red-700 hover:to-pink-700 font-semibold text-xs whitespace-nowrap"
                               title="Dano/Cura PkmNpc"
                             >
                               <Sword size={12} />
@@ -12936,7 +13067,7 @@ function App() {
                         </div>
 
                         {/* Informações Básicas */}
-                        <div className={`grid grid-cols-2 gap-2 mb-2 p-2 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+                        <div className={`grid grid-cols-2 gap-2 mb-2 p-2 sm:p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
                           <div>
                             <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Espécie</p>
                             <p className={`text-xs font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{pokemon.species || pokemon.name}</p>
@@ -13066,7 +13197,7 @@ function App() {
                             setNatureSearchSend('')
                             setShowSendToTrainerModal(true)
                           }}
-                          className="w-full mt-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 font-semibold text-sm"
+                          className="w-full mt-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2 sm:py-2.5 rounded-lg hover:from-green-700 hover:to-emerald-700 font-semibold text-xs sm:text-sm"
                         >
                           Enviar para...
                         </button>
@@ -13078,7 +13209,7 @@ function App() {
                             setSelectedTrainersForXp({})
                             setShowSendXpModal(true)
                           }}
-                          className="w-full mt-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 rounded-lg hover:from-yellow-600 hover:to-orange-600 font-semibold text-sm"
+                          className="w-full mt-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 sm:py-2.5 rounded-lg hover:from-yellow-600 hover:to-orange-600 font-semibold text-xs sm:text-sm"
                         >
                           Enviar XP para...
                         </button>
@@ -13093,11 +13224,11 @@ function App() {
 
         {/* Modal de Dano/Cura Pokémon NPC */}
         {showNpcDamageModal && selectedNpcPokemon && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowNpcDamageModal(false); cancelDamageTypeSelection(); }}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => { setShowNpcDamageModal(false); cancelDamageTypeSelection(); }}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Dano/Cura - {selectedNpcPokemon.species}
                   </h3>
                   <button onClick={() => { setShowNpcDamageModal(false); cancelDamageTypeSelection(); }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -13108,7 +13239,7 @@ function App() {
                 {/* Informação de HP Atual */}
                 <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                   <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>HP Atual</p>
-                  <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <p className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {selectedNpcPokemon.currentHP !== undefined ? selectedNpcPokemon.currentHP : ((3 * selectedNpcPokemon.attributes.saude) + selectedNpcPokemon.level)} / {(3 * selectedNpcPokemon.attributes.saude) + selectedNpcPokemon.level}
                   </p>
                 </div>
@@ -13123,7 +13254,7 @@ function App() {
                     value={npcDamageAmount}
                     onChange={(e) => setNpcDamageAmount(e.target.value)}
                     placeholder="Digite a quantidade..."
-                    className={`w-full px-4 py-3 border-2 rounded-lg text-lg ${
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base text-lg ${
                       darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 placeholder-gray-400'
                     }`}
                     min="1"
@@ -13133,7 +13264,7 @@ function App() {
 
                 {/* Botões de Ação */}
                 {!showDamageTypeButtons || pendingDamageContext !== 'npcPokemon' ? (
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                     <button
                       onClick={() => {
                         const v = parseInt(npcDamageAmount) || 0;
@@ -13142,7 +13273,7 @@ function App() {
                         }
                       }}
                       disabled={!npcDamageAmount || parseInt(npcDamageAmount) <= 0}
-                      className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white py-3 rounded-lg hover:from-red-700 hover:to-red-800 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full sm:flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white py-2 sm:py-3 rounded-lg hover:from-red-700 hover:to-red-800 font-semibold text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Sword size={18} />
                       Aplicar Dano
@@ -13150,7 +13281,7 @@ function App() {
                     <button
                       onClick={() => applyNpcDamage(false)}
                       disabled={!npcDamageAmount || parseInt(npcDamageAmount) <= 0}
-                      className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-lg hover:from-green-700 hover:to-green-800 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full sm:flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-green-700 text-white py-2 sm:py-3 rounded-lg hover:from-green-700 hover:to-green-800 font-semibold text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Heart size={18} />
                       Curar
@@ -13165,7 +13296,7 @@ function App() {
                     {/* Multiplicadores de Dano */}
                     <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                       <p className={`text-xs font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Multiplicadores:</p>
-                      <div className="grid grid-cols-4 gap-2">
+                      <div className="grid grid-cols-2 xs:grid-cols-4 gap-2">
                         {['x2', 'x4', '/2', '/4'].map(mult => (
                           <label key={mult} className={`flex items-center justify-center gap-1 px-2 py-1 rounded cursor-pointer transition-colors ${
                             damageMultiplier === mult
@@ -13187,22 +13318,22 @@ function App() {
                     <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Selecione o tipo de dano:
                     </p>
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 xs:grid-cols-3 gap-2 sm:gap-3">
                       <button
                         onClick={() => applyDamageWithType('fisico')}
-                        className="flex items-center justify-center gap-2 bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-orange-500 text-white py-2 sm:py-3 rounded-lg hover:bg-orange-600 font-semibold text-sm sm:text-base"
                       >
                         <Sword size={18} />Físico
                       </button>
                       <button
                         onClick={() => applyDamageWithType('puro')}
-                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-2 sm:py-3 rounded-lg hover:bg-gray-600 font-semibold text-sm sm:text-base"
                       >
                         <Minus size={18} />Puro
                       </button>
                       <button
                         onClick={() => applyDamageWithType('especial')}
-                        className="flex items-center justify-center gap-2 bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-purple-500 text-white py-2 sm:py-3 rounded-lg hover:bg-purple-600 font-semibold text-sm sm:text-base"
                       >
                         <Zap size={18} />Especial
                       </button>
@@ -13222,11 +13353,11 @@ function App() {
 
         {/* Modal de Detalhes da Habilidade */}
         {showAbilityModal && selectedAbility && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAbilityModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowAbilityModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-lg w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {selectedAbility}
                   </h3>
                   <button onClick={() => setShowAbilityModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -13277,8 +13408,8 @@ function App() {
                       {/* Tabela da Habilidade (se houver) */}
                       {abilityData.tabela && (
                         <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                          <div className="overflow-x-auto">
-                            <table className={`w-full text-sm border-collapse ${
+                          <div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0">
+                            <table className={`w-full text-xs sm:text-sm border-collapse min-w-[280px] ${
                               darkMode ? 'border-gray-600' : 'border-gray-300'
                             }`}>
                               <thead>
@@ -13330,12 +13461,12 @@ function App() {
 
         {/* Modal de Detalhes do Golpe */}
         {showGolpeDetailModal && selectedGolpeForDetail && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col`}>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-md md:max-w-2xl w-full max-h-[90vh] flex flex-col`}>
               {/* Header Fixo */}
-              <div className="p-6 border-b border-gray-700">
+              <div className="p-3 sm:p-5 md:p-6 border-b border-gray-700">
                 <div className="flex justify-between items-center">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {selectedGolpeForDetail}
                   </h3>
                   <button
@@ -13348,7 +13479,7 @@ function App() {
               </div>
 
               {/* Conteúdo Scrollável */}
-              <div className="overflow-y-auto flex-1 p-6">
+              <div className="overflow-y-auto flex-1 p-3 sm:p-5 md:p-6">
                 {(() => {
                   const golpeData = GOLPES_DATA_IMPORTED[selectedGolpeForDetail]
 
@@ -13365,8 +13496,8 @@ function App() {
                   return (
                     <div className="space-y-4">
                       {/* Informações Básicas */}
-                      <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                        <div className="grid grid-cols-2 gap-3">
+                      <div className={`p-3 sm:p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                        <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 sm:gap-3">
                           {golpeData.tipo && (
                             <div>
                               <h4 className={`text-xs font-bold mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Tipo</h4>
@@ -13435,7 +13566,7 @@ function App() {
               </div>
 
               {/* Footer Fixo */}
-              <div className="p-6 border-t border-gray-700">
+              <div className="p-3 sm:p-5 md:p-6 border-t border-gray-700">
                 <button
                   onClick={() => setShowGolpeDetailModal(false)}
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-700 text-white py-3 rounded-lg hover:from-blue-700 hover:to-purple-800 font-semibold"
@@ -13449,11 +13580,11 @@ function App() {
 
         {/* Modal de Envio para Treinador */}
         {showSendToTrainerModal && pokemonToSend && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowSendToTrainerModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowSendToTrainerModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-md w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Enviar Pokémon NPC
                   </h3>
                   <button onClick={() => setShowSendToTrainerModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -13614,11 +13745,11 @@ function App() {
 
         {/* Modal de Envio de XP para Treinadores */}
         {showSendXpModal && selectedNpcPokemonForXp && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowSendXpModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowSendXpModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Enviar XP para...
                   </h3>
                   <button onClick={() => setShowSendXpModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -13627,7 +13758,7 @@ function App() {
                 </div>
 
                 {/* Imagem e informações do Pokémon */}
-                <div className="flex items-center gap-4 mb-4">
+                <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4">
                   {selectedNpcPokemonForXp.imageUrl && (
                     <img src={selectedNpcPokemonForXp.imageUrl} alt={selectedNpcPokemonForXp.species} className="w-20 h-20 object-contain" />
                   )}
@@ -13644,7 +13775,7 @@ function App() {
                 {/* Valor de XP */}
                 <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-yellow-900/30' : 'bg-yellow-100'}`}>
                   <p className={`text-sm ${darkMode ? 'text-yellow-400' : 'text-yellow-700'}`}>XP Concedido:</p>
-                  <p className={`text-3xl font-bold ${darkMode ? 'text-yellow-300' : 'text-yellow-600'}`}>
+                  <p className={`text-2xl sm:text-3xl font-bold ${darkMode ? 'text-yellow-300' : 'text-yellow-600'}`}>
                     {selectedNpcPokemonForXp.experience} XP
                   </p>
                   {Object.values(selectedTrainersForXp).filter(v => v).length > 1 && (
@@ -13696,17 +13827,17 @@ function App() {
                 </div>
 
                 {/* Botões */}
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                   <button
                     onClick={() => setShowSendXpModal(false)}
-                    className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                    className={`w-full sm:flex-1 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
                   >
                     Cancelar
                   </button>
                   <button
                     onClick={() => enviarXpParaTreinadores()}
                     disabled={Object.values(selectedTrainersForXp).filter(v => v).length === 0}
-                    className={`flex-1 py-3 rounded-lg font-semibold transition-all ${
+                    className={`w-full sm:flex-1 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
                       Object.values(selectedTrainersForXp).filter(v => v).length === 0
                         ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
                         : 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600'
@@ -13733,46 +13864,46 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>NPCs Arquivados 👑</h2>
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>NPCs Arquivados 👑</h2>
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'NPCs Arquivados' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'NPCs Arquivados' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {/* Seção Treinadores NPC Arquivados */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-8`}>
-              <h3 className={`text-xl font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-8`}>
+              <h3 className={`text-lg sm:text-xl font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 <Archive size={24} className="text-amber-500" />
                 Treinadores NPC Arquivados ({archivedNpcTrainers.length})
               </h3>
 
               {archivedNpcTrainers.length === 0 ? (
-                <div className={`text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                <div className={`text-center py-3 sm:py-5 md:py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                   <p>Nenhum treinador NPC arquivado ainda.</p>
                   <p className="text-sm mt-2">Use o botão de arquivar na área Treinador NPC para salvar treinadores aqui.</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   {archivedNpcTrainers.map(npc => (
-                    <div key={npc.id} className={`p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-amber-500' : 'bg-amber-50 border-amber-300'}`}>
-                      <div className="flex justify-between items-start mb-4">
-                        <div className="flex items-center gap-3">
-                          <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{npc.name}</h3>
+                    <div key={npc.id} className={`p-3 sm:p-4 md:p-5 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-amber-500' : 'bg-amber-50 border-amber-300'}`}>
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+                        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                          <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{npc.name}</h3>
                           {npc.isRandom && npc.caracteristicasETalentos && (
                             <button
                               onClick={() => {
                                 setSelectedNPCForTalentos(npc)
                                 setShowNPCTalentosModal(true)
                               }}
-                              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold text-sm"
+                              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-2 sm:px-3 py-1 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold text-xs sm:text-sm whitespace-nowrap"
                               title="Ver Características e Talentos"
                             >
                               Talento R NPC
@@ -13784,34 +13915,34 @@ function App() {
                                 setSelectedNPCForTalentos(npc)
                                 setShowNPCTalentosModal(true)
                               }}
-                              className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 py-1 rounded-lg hover:from-blue-700 hover:to-cyan-700 font-semibold text-sm"
+                              className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-2 sm:px-3 py-1 rounded-lg hover:from-blue-700 hover:to-cyan-700 font-semibold text-xs sm:text-sm whitespace-nowrap"
                               title="Ver Características e Talentos"
                             >
                               Treinador T Personalizado
                             </button>
                           )}
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-1.5 sm:gap-2">
                           <button
                             onClick={() => sendNpcTrainerToBattle(npc)}
-                            className="bg-cyan-500 text-white p-2 rounded hover:bg-cyan-600"
+                            className="bg-cyan-500 text-white p-1.5 sm:p-2 rounded hover:bg-cyan-600"
                             title="Enviar para Batalha Treinador NPC"
                           >
-                            <PlusCircle size={18} />
+                            <PlusCircle size={16} className="sm:w-[18px] sm:h-[18px]" />
                           </button>
                           <button
                             onClick={() => unarchiveNpcTrainer(npc)}
-                            className="bg-green-500 text-white p-2 rounded hover:bg-green-600"
+                            className="bg-green-500 text-white p-1.5 sm:p-2 rounded hover:bg-green-600"
                             title="Restaurar para área Treinador NPC"
                           >
-                            <RotateCcw size={18} />
+                            <RotateCcw size={16} className="sm:w-[18px] sm:h-[18px]" />
                           </button>
                           <button
                             onClick={() => removeArchivedNpcTrainer(npc.id)}
-                            className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
+                            className="bg-red-500 text-white p-1.5 sm:p-2 rounded hover:bg-red-600"
                             title="Remover permanentemente"
                           >
-                            <Trash2 size={18} />
+                            <Trash2 size={16} className="sm:w-[18px] sm:h-[18px]" />
                           </button>
                         </div>
                       </div>
@@ -13823,23 +13954,23 @@ function App() {
 
                       {/* Tabela de Atributos */}
                       <div className="mb-4">
-                        <h4 className={`font-bold mb-2 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Atributos</h4>
-                        <div className="overflow-x-auto">
-                          <table className={`w-full text-sm ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
+                        <h4 className={`font-bold mb-2 text-xs sm:text-sm ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Atributos</h4>
+                        <div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0">
+                          <table className={`w-full text-xs sm:text-sm min-w-[280px] ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
                             <thead>
                               <tr className={darkMode ? 'bg-gray-500' : 'bg-gray-200'}>
-                                <th className={`border p-2 text-left ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Atributo</th>
-                                <th className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Valor</th>
-                                <th className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Modificador</th>
+                                <th className={`border p-1.5 sm:p-2 text-left ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Atributo</th>
+                                <th className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Valor</th>
+                                <th className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Modificador</th>
                               </tr>
                             </thead>
                             <tbody className={darkMode ? 'text-gray-200' : 'text-gray-800'}>
-                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Saúde</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.saude}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.saude}</td></tr>
-                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Ataque</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.ataque}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.ataque}</td></tr>
-                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Defesa</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.defesa}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.defesa}</td></tr>
-                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Ataque Especial</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.ataqueEspecial}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.ataqueEspecial}</td></tr>
-                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Defesa Especial</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.defesaEspecial}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.defesaEspecial}</td></tr>
-                              <tr><td className={`border p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Velocidade</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.velocidade}</td><td className={`border p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.velocidade}</td></tr>
+                              <tr><td className={`border p-1.5 sm:p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Saúde</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.saude}</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.saude}</td></tr>
+                              <tr><td className={`border p-1.5 sm:p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Ataque</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.ataque}</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.ataque}</td></tr>
+                              <tr><td className={`border p-1.5 sm:p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Defesa</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.defesa}</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.defesa}</td></tr>
+                              <tr><td className={`border p-1.5 sm:p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Ataque Especial</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.ataqueEspecial}</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.ataqueEspecial}</td></tr>
+                              <tr><td className={`border p-1.5 sm:p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Defesa Especial</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.defesaEspecial}</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.defesaEspecial}</td></tr>
+                              <tr><td className={`border p-1.5 sm:p-2 ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>Velocidade</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.attributes.velocidade}</td><td className={`border p-1.5 sm:p-2 text-center ${darkMode ? 'border-gray-400' : 'border-gray-300'}`}>{npc.modifiers.velocidade}</td></tr>
                             </tbody>
                           </table>
                         </div>
@@ -13847,21 +13978,21 @@ function App() {
 
                       {/* Deslocamento */}
                       <div className="mb-4">
-                        <h4 className={`font-bold mb-2 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Deslocamento</h4>
-                        <div className={`grid grid-cols-3 gap-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Terrestre:</span> {npc.displacement.terrestre}</div>
-                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Natação:</span> {npc.displacement.natacao}</div>
-                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Subaquático:</span> {npc.displacement.subaquatico}</div>
+                        <h4 className={`font-bold mb-2 text-xs sm:text-sm ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Deslocamento</h4>
+                        <div className={`grid grid-cols-1 xs:grid-cols-3 gap-1.5 sm:gap-2 text-xs sm:text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                          <div className={`p-1.5 sm:p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Terrestre:</span> {npc.displacement.terrestre}</div>
+                          <div className={`p-1.5 sm:p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Natação:</span> {npc.displacement.natacao}</div>
+                          <div className={`p-1.5 sm:p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Subaquático:</span> {npc.displacement.subaquatico}</div>
                         </div>
                       </div>
 
                       {/* Evasão */}
                       <div>
-                        <h4 className={`font-bold mb-2 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Evasão</h4>
-                        <div className={`grid grid-cols-3 gap-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Física:</span> {npc.evasion.fisica}</div>
-                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Especial:</span> {npc.evasion.especial}</div>
-                          <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Veloz:</span> {npc.evasion.veloz}</div>
+                        <h4 className={`font-bold mb-2 text-xs sm:text-sm ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>Evasão</h4>
+                        <div className={`grid grid-cols-1 xs:grid-cols-3 gap-1.5 sm:gap-2 text-xs sm:text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                          <div className={`p-1.5 sm:p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Física:</span> {npc.evasion.fisica}</div>
+                          <div className={`p-1.5 sm:p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Especial:</span> {npc.evasion.especial}</div>
+                          <div className={`p-1.5 sm:p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}><span className="font-semibold">Veloz:</span> {npc.evasion.veloz}</div>
                         </div>
                       </div>
                     </div>
@@ -13871,19 +14002,19 @@ function App() {
             </div>
 
             {/* Seção Pokémon NPC Arquivados */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-              <h3 className={`text-xl font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <h3 className={`text-lg sm:text-xl font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 <Archive size={24} className="text-amber-500" />
                 Pokémon NPC Arquivados ({archivedNpcPokemon.length})
               </h3>
 
               {archivedNpcPokemon.length === 0 ? (
-                <div className={`text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                <div className={`text-center py-3 sm:py-5 md:py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                   <p>Nenhum Pokémon NPC arquivado ainda.</p>
                   <p className="text-sm mt-2">Use o botão de arquivar na área Pokémon NPC para salvar pokémons aqui.</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
                   {archivedNpcPokemon.map(pokemon => {
                     const isExpanded = expandedNpcCards.includes(pokemon.id)
 
@@ -13891,7 +14022,7 @@ function App() {
                       <div
                         key={pokemon.id}
                         className={`${darkMode ? 'bg-gray-700' : 'bg-amber-50'} rounded-2xl shadow-lg overflow-hidden transition-all border-2 ${darkMode ? 'border-amber-500' : 'border-amber-300'} ${
-                          isExpanded ? 'col-span-2 md:col-span-2 lg:col-span-3 xl:col-span-4' : ''
+                          isExpanded ? 'col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-3 xl:col-span-3' : ''
                         }`}
                       >
                         {!isExpanded ? (
@@ -13899,13 +14030,13 @@ function App() {
                           <div className="relative group">
                             <div
                               onClick={() => toggleNpcCard(pokemon.id)}
-                              className="cursor-pointer p-4 flex flex-col items-center"
+                              className="cursor-pointer p-3 sm:p-4 flex flex-col items-center"
                             >
                               {pokemon.imageUrl && (
                                 <img
                                   src={pokemon.imageUrl}
                                   alt={pokemon.name || pokemon.species}
-                                  className="w-32 h-32 object-contain mb-2"
+                                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain mb-2"
                                 />
                               )}
                               <p className={`text-sm font-bold text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -13966,18 +14097,18 @@ function App() {
                           </div>
                         ) : (
                           // Card expandido - todas as informações
-                          <div className="p-4">
-                            <div className="flex justify-between items-start mb-3">
+                          <div className="p-3 sm:p-4">
+                            <div className="flex flex-col xs:flex-row justify-between items-start gap-2 mb-3">
                               <div
                                 onClick={() => toggleNpcCard(pokemon.id)}
-                                className="cursor-pointer flex-1"
+                                className="cursor-pointer flex-1 w-full xs:w-auto"
                               >
                                 {pokemon.imageUrl && (
                                   <div className="flex justify-center mb-2">
                                     <img
                                       src={pokemon.imageUrl}
                                       alt={pokemon.name || pokemon.species}
-                                      className="w-20 h-20 object-contain"
+                                      className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
                                     />
                                   </div>
                                 )}
@@ -14018,7 +14149,7 @@ function App() {
                             {/* Condições de Captura */}
                             <div className="mb-2">
                               <h4 className={`text-xs font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Condições</h4>
-                              <div className="grid grid-cols-3 gap-1">
+                              <div className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-5 gap-1">
                                 {[
                                   { key: 'confusao', icon: BadgeHelp, color: 'text-purple-400', label: 'Confusão' },
                                   { key: 'critico', icon: Clover, color: 'text-green-600', label: 'Crítico' },
@@ -14112,7 +14243,7 @@ function App() {
                             {/* Atributos */}
                             <div className="mb-2">
                               <h4 className={`text-xs font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Atributos</h4>
-                              <div className="grid grid-cols-3 gap-1 text-[10px]">
+                              <div className="grid grid-cols-2 xs:grid-cols-3 gap-1 text-[10px]">
                                 <div className={`p-1 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
                                   <span className="font-semibold">ATK:</span> {pokemon.totalAttributes?.ataque || pokemon.ataque}
                                 </div>
@@ -14186,25 +14317,25 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Batalha 👑</h2>
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Batalha 👑</h2>
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Batalha' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Batalha' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
           {/* Navegação Mapa/Rolagens (Mestre) */}
-          <div className="mb-6 flex gap-4 justify-center">
+          <div className="mb-6 flex gap-2 sm:gap-3 md:gap-4 justify-center">
             <button
               onClick={() => setBattleView('mapa')}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+              className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-semibold transition-all ${
                 battleView === 'mapa'
                   ? 'bg-gradient-to-r from-green-600 to-teal-600 text-white shadow-lg'
                   : darkMode
@@ -14216,7 +14347,7 @@ function App() {
             </button>
             <button
               onClick={() => setBattleView('rolagens')}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+              className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-semibold transition-all ${
                 battleView === 'rolagens'
                   ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white shadow-lg'
                   : darkMode
@@ -14265,7 +14396,7 @@ function App() {
                   await saveTrainerStages({})
                 }
               }}
-              className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 font-semibold flex items-center gap-2"
+              className="bg-red-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-red-700 font-semibold flex items-center gap-2"
             >
               <X size={20} />
               Limpar Lista e Envios
@@ -14275,11 +14406,11 @@ function App() {
 
           {/* Layout de Duas Colunas */}
           {battleView === 'rolagens' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-5 md:p-6">
 
             {/* TRACKER TREINADORES */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-              <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
                 Tracker Treinadores
               </h3>
 
@@ -14827,8 +14958,8 @@ function App() {
             </div>
 
             {/* TRACKER POKÉMON */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-              <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-red-400' : 'text-red-600'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-red-400' : 'text-red-600'}`}>
                 Tracker Pokémon
               </h3>
 
@@ -15291,19 +15422,19 @@ function App() {
           <div className="mt-6 space-y-6">
 
             {/* Pokémon NPC em Batalha */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Pokémon NPC em Batalha
               </h3>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-5 md:p-6">
                 {/* Coluna Esquerda: Lista de Pokémon NPC */}
                 <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4`}>
                   <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Pokémon ({safePokemonList.length})
                   </h4>
                   {safePokemonList.length === 0 ? (
-                    <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                    <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                       Nenhum Pokémon NPC em batalha
                     </p>
                   ) : (
@@ -15361,7 +15492,7 @@ function App() {
                     )}
                   </div>
                   {!selectedMasterNpcPokemon ? (
-                    <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                    <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                       Selecione um Pokémon NPC para ver seus detalhes
                     </p>
                   ) : (
@@ -15451,8 +15582,8 @@ function App() {
             </div>
 
             {/* Chat de Batalha */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Chat de Batalha
               </h3>
 
@@ -15531,7 +15662,7 @@ function App() {
                         })().catch(err => console.error('Erro ao salvar mensagem:', err))
                       }
                     }}
-                    className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                    className="px-3 sm:px-5 md:px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
                   >
                     🎲 Rolar
                   </button>
@@ -15547,7 +15678,7 @@ function App() {
               {/* Área de Mensagens */}
               <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
                 {chatMessages.length === 0 ? (
-                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                     Nenhuma mensagem ainda. Seja o primeiro a falar!
                   </p>
                 ) : (
@@ -15611,7 +15742,7 @@ function App() {
                 />
                 <button
                   onClick={handleSendMessage}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
+                  className="px-3 sm:px-5 md:px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
                 >
                   Enviar
                 </button>
@@ -15629,11 +15760,11 @@ function App() {
             onClick={() => setShowBattleMoveModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-[95vw] sm:max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedBattleMove}
                 </h3>
                 <button
@@ -15652,7 +15783,7 @@ function App() {
 
                 return (
                   <div className="space-y-3">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                       <div>
                         <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Tipo:</span>
                         <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.tipo}</p>
@@ -15706,11 +15837,11 @@ function App() {
             onClick={() => setShowBattleAbilityModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-[95vw] sm:max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedBattleAbility}
                 </h3>
                 <button
@@ -15748,7 +15879,7 @@ function App() {
 
                     <button
                       onClick={() => handleSendAbilityToChat(selectedBattleAbility)}
-                      className="w-full mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
+                      className="w-full mt-4 bg-blue-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
                     >
                       Enviar no Chat
                     </button>
@@ -15763,9 +15894,9 @@ function App() {
         {showNpcTrainerBattleDamageModal && selectedNpcTrainerForDamage && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowNpcTrainerBattleDamageModal(false); cancelDamageTypeSelection(); }}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Dano/Cura - {selectedNpcTrainerForDamage.nome}
                   </h3>
                   <button onClick={() => { setShowNpcTrainerBattleDamageModal(false); cancelDamageTypeSelection(); }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -15776,7 +15907,7 @@ function App() {
                 {/* Informação de HP Atual */}
                 <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                   <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>HP Atual</p>
-                  <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <p className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {selectedNpcTrainerForDamage.hp} / {selectedNpcTrainerForDamage.maxHP}
                   </p>
                 </div>
@@ -15791,7 +15922,7 @@ function App() {
                     value={npcTrainerBattleDamageAmount}
                     onChange={(e) => setNpcTrainerBattleDamageAmount(e.target.value)}
                     placeholder="Digite a quantidade..."
-                    className={`w-full px-4 py-3 border-2 rounded-lg text-lg ${
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base text-lg ${
                       darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 placeholder-gray-400'
                     }`}
                     min="1"
@@ -15833,7 +15964,7 @@ function App() {
                     {/* Multiplicadores de Dano */}
                     <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                       <p className={`text-xs font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Multiplicadores:</p>
-                      <div className="grid grid-cols-4 gap-2">
+                      <div className="grid grid-cols-2 xs:grid-cols-4 gap-2">
                         {['x2', 'x4', '/2', '/4'].map(mult => (
                           <label key={mult} className={`flex items-center justify-center gap-1 px-2 py-1 rounded cursor-pointer transition-colors ${
                             damageMultiplier === mult
@@ -15855,22 +15986,22 @@ function App() {
                     <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Selecione o tipo de dano:
                     </p>
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 xs:grid-cols-3 gap-2 sm:gap-3">
                       <button
                         onClick={() => applyDamageWithType('fisico')}
-                        className="flex items-center justify-center gap-2 bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-orange-500 text-white py-2 sm:py-3 rounded-lg hover:bg-orange-600 font-semibold text-sm sm:text-base"
                       >
                         <Sword size={18} />Físico
                       </button>
                       <button
                         onClick={() => applyDamageWithType('puro')}
-                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-2 sm:py-3 rounded-lg hover:bg-gray-600 font-semibold text-sm sm:text-base"
                       >
                         <Minus size={18} />Puro
                       </button>
                       <button
                         onClick={() => applyDamageWithType('especial')}
-                        className="flex items-center justify-center gap-2 bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-purple-500 text-white py-2 sm:py-3 rounded-lg hover:bg-purple-600 font-semibold text-sm sm:text-base"
                       >
                         <Zap size={18} />Especial
                       </button>
@@ -15892,9 +16023,9 @@ function App() {
         {showNpcPokemonBattleDamageModal && selectedNpcPokemonForDamage && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowNpcPokemonBattleDamageModal(false); cancelDamageTypeSelection(); }}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Dano/Cura - {selectedNpcPokemonForDamage.nome}
                   </h3>
                   <button onClick={() => { setShowNpcPokemonBattleDamageModal(false); cancelDamageTypeSelection(); }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -15905,7 +16036,7 @@ function App() {
                 {/* Informação de HP Atual */}
                 <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                   <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>HP Atual</p>
-                  <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <p className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {selectedNpcPokemonForDamage.hp} / {selectedNpcPokemonForDamage.maxHP}
                   </p>
                 </div>
@@ -15920,7 +16051,7 @@ function App() {
                     value={npcPokemonBattleDamageAmount}
                     onChange={(e) => setNpcPokemonBattleDamageAmount(e.target.value)}
                     placeholder="Digite a quantidade..."
-                    className={`w-full px-4 py-3 border-2 rounded-lg text-lg ${
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base text-lg ${
                       darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 placeholder-gray-400'
                     }`}
                     min="1"
@@ -15962,7 +16093,7 @@ function App() {
                     {/* Multiplicadores de Dano */}
                     <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                       <p className={`text-xs font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Multiplicadores:</p>
-                      <div className="grid grid-cols-4 gap-2">
+                      <div className="grid grid-cols-2 xs:grid-cols-4 gap-2">
                         {['x2', 'x4', '/2', '/4'].map(mult => (
                           <label key={mult} className={`flex items-center justify-center gap-1 px-2 py-1 rounded cursor-pointer transition-colors ${
                             damageMultiplier === mult
@@ -15984,22 +16115,22 @@ function App() {
                     <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Selecione o tipo de dano:
                     </p>
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 xs:grid-cols-3 gap-2 sm:gap-3">
                       <button
                         onClick={() => applyDamageWithType('fisico')}
-                        className="flex items-center justify-center gap-2 bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-orange-500 text-white py-2 sm:py-3 rounded-lg hover:bg-orange-600 font-semibold text-sm sm:text-base"
                       >
                         <Sword size={18} />Físico
                       </button>
                       <button
                         onClick={() => applyDamageWithType('puro')}
-                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-2 sm:py-3 rounded-lg hover:bg-gray-600 font-semibold text-sm sm:text-base"
                       >
                         <Minus size={18} />Puro
                       </button>
                       <button
                         onClick={() => applyDamageWithType('especial')}
-                        className="flex items-center justify-center gap-2 bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-purple-500 text-white py-2 sm:py-3 rounded-lg hover:bg-purple-600 font-semibold text-sm sm:text-base"
                       >
                         <Zap size={18} />Especial
                       </button>
@@ -16019,9 +16150,9 @@ function App() {
 
           {/* ÁREA DO MAPA (VTT) - MESTRE */}
           {battleView === 'mapa' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-3xl font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
+                <h3 className={`text-2xl sm:text-3xl font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
                   Mapa de Batalha 👑
                 </h3>
                 <div className="flex gap-3">
@@ -16181,7 +16312,7 @@ function App() {
                       <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                         Dimensões do Canvas
                       </h4>
-                      <div className="grid grid-cols-2 gap-4 mb-3">
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-3">
                         <div>
                           <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                             Largura (px)
@@ -16244,7 +16375,7 @@ function App() {
                       <h4 className={`text-sm font-bold mb-3 mt-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                         Número de Quadrados
                       </h4>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                         <div>
                           <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                             Colunas
@@ -16382,7 +16513,7 @@ function App() {
                   )}
                   {!vttMapImage && (
                     <div className={`flex items-center justify-center h-full ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-                      <p className="text-xl">Cole a URL de um mapa acima para começar</p>
+                      <p className="text-lg sm:text-xl">Cole a URL de um mapa acima para começar</p>
                     </div>
                   )}
 
@@ -16764,8 +16895,8 @@ function App() {
           {/* Modal para Adicionar Nova Localidade - VTT */}
           {showAddLocationModal && (
             <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black bg-opacity-70">
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-8 shadow-2xl max-w-md w-full mx-4`}>
-                <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-8 shadow-2xl max-w-md w-full mx-4`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
                   Nova Localidade
                 </h3>
 
@@ -16779,7 +16910,7 @@ function App() {
                       value={newLocationName}
                       onChange={(e) => setNewLocationName(e.target.value)}
                       placeholder="Ex: Floresta Viridian, Caverna Cerulean..."
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white text-gray-800'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white text-gray-800'}`}
                     />
                   </div>
 
@@ -16792,12 +16923,12 @@ function App() {
                       value={newLocationMapUrl}
                       onChange={(e) => setNewLocationMapUrl(e.target.value)}
                       placeholder="Cole a URL da imagem do mapa"
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white text-gray-800'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white text-gray-800'}`}
                     />
                   </div>
                 </div>
 
-                <div className="flex gap-4">
+                <div className="flex gap-2 sm:gap-3 md:gap-4">
                   <button
                     onClick={() => {
                       setShowAddLocationModal(false)
@@ -16856,21 +16987,21 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Enciclopédia M 👑</h2>
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Enciclopédia M 👑</h2>
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Enciclopédia M' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Enciclopédia M' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
             {/* Menu de Navegação das Subáreas */}
             <div className="mb-6">
               <div className="flex flex-wrap gap-2 justify-center">
@@ -16984,7 +17115,7 @@ function App() {
             {/* GOLPEDEX M */}
             {encyclopediaMSection === 'Golpedex M' && (
               <div>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Golpedex M
                 </h3>
                 <p className={`mb-6 text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -16992,7 +17123,7 @@ function App() {
                 </p>
 
                 {/* Grid 4x2 de Barras de Pesquisa */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-5 md:p-6 mb-8">
                   {golpedexMSearches.map((search, index) => (
                     <div key={index} className="relative">
                       <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -17118,10 +17249,10 @@ function App() {
             {/* DESCRITORDEX M */}
             {encyclopediaMSection === 'Descritordex M' && (
               <div>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Descritordex M
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                   {DESCRITORES_DATA.map((descritor) => (
                     <div key={descritor.nome}>
                       <button
@@ -17170,10 +17301,10 @@ function App() {
             {/* TAG DE CONCURSODEX M */}
             {encyclopediaMSection === 'Tag de Concursodex M' && (
               <div>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Tag de Concursodex M
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                   {TAGS_CONCURSO_DATA.map((tag) => (
                     <div key={tag.nome}>
                       <button
@@ -17232,10 +17363,10 @@ function App() {
             {/* PERÍCIADEX M */}
             {encyclopediaMSection === 'Períciadex M' && (
               <div>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Períciadex M
                 </h3>
-                <div className="space-y-4 max-w-4xl mx-auto">
+                <div className="space-y-4 max-w-sm sm:max-w-2xl md:max-w-4xl mx-auto">
                   {ATRIBUTOS_PERICIAS_DATA.map((atributo) => (
                     <div
                       key={atributo.nome}
@@ -17253,7 +17384,7 @@ function App() {
                             setExpandedAtributoM(atributo.nome)
                           }
                         }}
-                        className={`w-full px-6 py-4 transition-all flex items-center justify-between ${
+                        className={`w-full px-3 sm:px-5 md:px-6 py-4 transition-all flex items-center justify-between ${
                           expandedAtributoM === atributo.nome
                             ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white'
                             : darkMode
@@ -17262,7 +17393,7 @@ function App() {
                         }`}
                       >
                         <div className="text-left flex-1">
-                          <h4 className="text-xl font-bold">{atributo.nome}</h4>
+                          <h4 className="text-lg sm:text-xl font-bold">{atributo.nome}</h4>
                           <p className={`text-sm mt-1 ${
                             expandedAtributoM === atributo.nome ? 'text-blue-100' : darkMode ? 'text-gray-400' : 'text-gray-600'
                           }`}>
@@ -17278,7 +17409,7 @@ function App() {
                       </button>
 
                       {expandedAtributoM === atributo.nome && (
-                        <div className={`px-6 py-4 space-y-3 ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
+                        <div className={`px-3 sm:px-5 md:px-6 py-4 space-y-3 ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
                           {atributo.pericias.map((pericia, index) => (
                             <div
                               key={pericia.nome}
@@ -17361,7 +17492,7 @@ function App() {
             {/* HABILIDADEDEX M */}
             {encyclopediaMSection === 'Habilidadedex M' && (
               <div>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Habilidadedex M
                 </h3>
                 <p className={`mb-6 text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -17369,7 +17500,7 @@ function App() {
                 </p>
 
                 {/* Grid 4x2 de Barras de Pesquisa */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-5 md:p-6 mb-8">
                   {habilidadedexMSearches.map((search, index) => (
                     <div key={index} className="relative">
                       <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -17489,7 +17620,7 @@ function App() {
             {/* CAPACIDADEX M */}
             {encyclopediaMSection === 'Capacidadex M' && (
               <div>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Capacidadex M
                 </h3>
                 <p className={`mb-6 text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -17497,7 +17628,7 @@ function App() {
                 </p>
 
                 {/* Grid 4x2 de Barras de Pesquisa */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-5 md:p-6 mb-8">
                   {capacidadexMSearches.map((search, index) => (
                     <div key={index} className="relative">
                       <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -17618,7 +17749,7 @@ function App() {
             {/* CONDIÇÕESDEX M */}
             {encyclopediaMSection === 'Condiçõesdex M' && (
               <div>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Condiçõesdex M
                 </h3>
                 <p className={`mb-6 text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -17626,7 +17757,7 @@ function App() {
                 </p>
 
                 {/* Lista de Condições em coluna única */}
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-2 sm:gap-3 md:gap-4">
                   {condicoes.map((condicao) => {
                     const isExpanded = expandedCondicoesM.includes(condicao.nome)
 
@@ -17660,7 +17791,7 @@ function App() {
                         </button>
 
                         {isExpanded && (
-                          <div className={`p-6 ${darkMode ? 'bg-gray-750' : 'bg-white'} border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                          <div className={`p-3 sm:p-5 md:p-6 ${darkMode ? 'bg-gray-750' : 'bg-white'} border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
                             <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed mb-4`}>
                               {condicao.descricao}
                             </p>
@@ -17725,7 +17856,7 @@ function App() {
             {/* ITENDEX M */}
             {encyclopediaMSection === 'Itendex M' && (
               <div>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Itendex M
                 </h3>
                 <p className={`mb-6 text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -17748,7 +17879,7 @@ function App() {
                           }}
                           className={`w-full p-4 text-left flex justify-between items-center ${darkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-200'} transition-colors`}
                         >
-                          <h4 className={`text-xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
+                          <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
                             Corredor de {corredor}
                             <span className={`ml-2 text-sm font-normal ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                               ({itens.length} itens)
@@ -17763,11 +17894,11 @@ function App() {
 
                         {isExpanded && (
                           <div className={`p-4 border-t ${darkMode ? 'border-gray-600 bg-gray-750' : 'border-gray-300 bg-white'}`}>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
                               {itens.map((item) => (
                                 <div
                                   key={item.name}
-                                  className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 flex gap-4`}
+                                  className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 flex gap-2 sm:gap-3 md:gap-4`}
                                 >
                                   <img
                                     src={item.image}
@@ -17835,21 +17966,21 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Visão do Mestre 👑</h2>
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Visão do Mestre 👑</h2>
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Visão do Mestre' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Visão do Mestre' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
             {/* Menu de Navegação das Subáreas */}
             <div className="mb-6">
               <div className="flex flex-wrap gap-3 justify-center">
@@ -17858,7 +17989,7 @@ function App() {
                     setVisaoMestreSection('Perfis')
                     setSelectedTrainer(null)
                   }}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
+                  className={`px-3 sm:px-5 md:px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
                     visaoMestreSection === 'Perfis'
                       ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg transform scale-105'
                       : darkMode
@@ -17874,7 +18005,7 @@ function App() {
                     setVisaoMestreSection('Pokéloja Config')
                     setSelectedTrainer(null)
                   }}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
+                  className={`px-3 sm:px-5 md:px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
                     visaoMestreSection === 'Pokéloja Config'
                       ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg transform scale-105'
                       : darkMode
@@ -17891,7 +18022,7 @@ function App() {
             {/* POKÉLOJA CONFIG */}
             {visaoMestreSection === 'Pokéloja Config' && (
               <div>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Configuração da Pokéloja
                 </h3>
                 <p className={`text-center mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -17901,39 +18032,40 @@ function App() {
                 {/* Corredores da Pokéloja */}
                 <div className="space-y-8">
                   {Object.entries(POKELOJA_DATA).map(([corredor, items]) => (
-                    <div key={corredor} className={`p-6 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                      <div className="flex items-center justify-between mb-4">
-                        <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    <div key={corredor} className={`p-3 sm:p-5 md:p-6 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                      <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 xs:gap-3 mb-4">
+                        <h4 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                           {corredor}
                         </h4>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                           <button
                             onClick={() => sortearItensEscondidosCorredor(corredor, items)}
-                            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                            className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
                               darkMode
                                 ? 'bg-purple-600 hover:bg-purple-700 text-white'
                                 : 'bg-purple-500 hover:bg-purple-600 text-white'
                             }`}
                             title="Sortear aleatoriamente quais itens serão escondidos neste corredor"
                           >
-                            <Dices size={16} />
-                            Sortear Escondidos
+                            <Dices size={14} className="sm:w-4 sm:h-4" />
+                            <span className="hidden xs:inline">Sortear Escondidos</span>
+                            <span className="xs:hidden">Sortear</span>
                           </button>
                           <button
                             onClick={() => resetarCorredor(corredor, items)}
-                            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                            className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
                               darkMode
                                 ? 'bg-orange-600 hover:bg-orange-700 text-white'
                                 : 'bg-orange-500 hover:bg-orange-600 text-white'
                             }`}
                             title="Resetar corredor: remover itens escondidos e preços customizados"
                           >
-                            <RotateCw size={16} />
+                            <RotateCw size={14} className="sm:w-4 sm:h-4" />
                             Resetar
                           </button>
                         </div>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                         {items.map((item) => {
                           const isHidden = hiddenPokelojaItems.includes(item.name)
                           const currentPrice = customPrices[item.name] !== undefined ? customPrices[item.name] : item.price
@@ -17942,7 +18074,7 @@ function App() {
                           return (
                             <div
                               key={item.name}
-                              className={`p-4 rounded-lg border-2 transition-all ${
+                              className={`p-3 sm:p-4 rounded-lg border-2 transition-all ${
                                 isHidden
                                   ? darkMode ? 'bg-gray-800 border-red-500 opacity-60' : 'bg-gray-200 border-red-400 opacity-60'
                                   : darkMode ? 'bg-gray-600 border-gray-500' : 'bg-white border-gray-300'
@@ -18092,18 +18224,18 @@ function App() {
             {/* PERFIS */}
             {visaoMestreSection === 'Perfis' && (
               <div>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Perfis dos Treinadores
                 </h3>
 
                 {/* Botões dos Treinadores */}
                 {!selectedTrainer && (
-                  <div className="flex flex-wrap gap-3 justify-center mb-8">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-8">
                     {treinadores.map(treinador => (
                       <button
                         key={treinador.username}
                         onClick={() => setSelectedTrainer(treinador.username)}
-                        className={`px-6 py-4 rounded-xl font-bold text-white shadow-lg hover:shadow-xl transition-all transform hover:scale-105`}
+                        className={`px-4 sm:px-5 md:px-6 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base text-white shadow-lg hover:shadow-xl transition-all transform hover:scale-105`}
                         style={{ background: treinador.gradient }}
                       >
                         {treinador.username}
@@ -18134,12 +18266,12 @@ function App() {
                     {/* Informações do Treinador */}
                     <div className="space-y-6">
                       {/* Card Principal */}
-                      <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                        <h4 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                      <div className={`p-3 sm:p-5 md:p-6 rounded-xl ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                        <h4 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                           {selectedTrainer}
                         </h4>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                           {/* De olho nas informações */}
                           <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
                             <h5 className={`text-lg font-bold mb-3 flex items-center gap-2 ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
@@ -18194,11 +18326,11 @@ function App() {
                         </div>
 
                         {/* Botões de Ação */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mt-6">
                           {/* De olho no time */}
                           <button
                             onClick={() => setExpandedTeamPokemon(expandedTeamPokemon === null ? 0 : null)}
-                            className={`p-4 rounded-lg text-left transition-all ${
+                            className={`p-3 sm:p-4 rounded-lg text-left transition-all ${
                               expandedTeamPokemon !== null
                                 ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white'
                                 : darkMode
@@ -18207,8 +18339,8 @@ function App() {
                             }`}
                           >
                             <div className="flex items-center gap-2 mb-1">
-                              <Users size={18} />
-                              <span className="font-bold">De olho no time</span>
+                              <Users size={16} className="sm:w-[18px] sm:h-[18px]" />
+                              <span className="font-bold text-sm sm:text-base">De olho no time</span>
                             </div>
                             <p className="text-xs opacity-75">Ver equipe principal</p>
                           </button>
@@ -18216,15 +18348,15 @@ function App() {
                           {/* De olho nos Carac&Tale */}
                           <button
                             onClick={() => setShowCaracTaleModal(true)}
-                            className={`p-4 rounded-lg text-left transition-all ${
+                            className={`p-3 sm:p-4 rounded-lg text-left transition-all ${
                               darkMode
                                 ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                                 : 'bg-white text-gray-700 hover:bg-gray-50'
                             }`}
                           >
                             <div className="flex items-center gap-2 mb-1">
-                              <Sparkles size={18} />
-                              <span className="font-bold">De olho nos Carac&Tale</span>
+                              <Sparkles size={16} className="sm:w-[18px] sm:h-[18px]" />
+                              <span className="font-bold text-sm sm:text-base">De olho nos Carac&Tale</span>
                             </div>
                             <p className="text-xs opacity-75">Ver habilidades</p>
                           </button>
@@ -18232,15 +18364,15 @@ function App() {
                           {/* De olho na Mochila */}
                           <button
                             onClick={() => setShowMochilaModal(true)}
-                            className={`p-4 rounded-lg text-left transition-all ${
+                            className={`p-3 sm:p-4 rounded-lg text-left transition-all ${
                               darkMode
                                 ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                                 : 'bg-white text-gray-700 hover:bg-gray-50'
                             }`}
                           >
                             <div className="flex items-center gap-2 mb-1">
-                              <Package size={18} />
-                              <span className="font-bold">De olho na Mochila</span>
+                              <Package size={16} className="sm:w-[18px] sm:h-[18px]" />
+                              <span className="font-bold text-sm sm:text-base">De olho na Mochila</span>
                             </div>
                             <p className="text-xs opacity-75">Ver itens</p>
                           </button>
@@ -18248,15 +18380,15 @@ function App() {
                           {/* De olho nas vivências */}
                           <button
                             onClick={() => setShowVivenciasModal(true)}
-                            className={`p-4 rounded-lg text-left transition-all ${
+                            className={`p-3 sm:p-4 rounded-lg text-left transition-all ${
                               darkMode
                                 ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                                 : 'bg-white text-gray-700 hover:bg-gray-50'
                             }`}
                           >
                             <div className="flex items-center gap-2 mb-1">
-                              <BookOpen size={18} />
-                              <span className="font-bold">De olho nas vivências</span>
+                              <BookOpen size={16} className="sm:w-[18px] sm:h-[18px]" />
+                              <span className="font-bold text-sm sm:text-base">De olho nas vivências</span>
                             </div>
                             <p className="text-xs opacity-75">Ver vivências</p>
                           </button>
@@ -18264,15 +18396,15 @@ function App() {
                           {/* De olho no Background */}
                           <button
                             onClick={() => setShowMestreBackgroundModal(true)}
-                            className={`p-4 rounded-lg text-left transition-all ${
+                            className={`p-3 sm:p-4 rounded-lg text-left transition-all ${
                               darkMode
                                 ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                                 : 'bg-white text-gray-700 hover:bg-gray-50'
                             }`}
                           >
                             <div className="flex items-center gap-2 mb-1">
-                              <FileText size={18} />
-                              <span className="font-bold">De olho no Background</span>
+                              <FileText size={16} className="sm:w-[18px] sm:h-[18px]" />
+                              <span className="font-bold text-sm sm:text-base">De olho no Background</span>
                             </div>
                             <p className="text-xs opacity-75">Ver história</p>
                           </button>
@@ -18280,15 +18412,15 @@ function App() {
                           {/* De olho nas Insígnias */}
                           <button
                             onClick={() => setShowMestreInsigniasModal(true)}
-                            className={`p-4 rounded-lg text-left transition-all ${
+                            className={`p-3 sm:p-4 rounded-lg text-left transition-all ${
                               darkMode
                                 ? 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                                 : 'bg-white text-gray-700 hover:bg-gray-50'
                             }`}
                           >
                             <div className="flex items-center gap-2 mb-1">
-                              <Award size={18} />
-                              <span className="font-bold">De olho nas Insígnias</span>
+                              <Award size={16} className="sm:w-[18px] sm:h-[18px]" />
+                              <span className="font-bold text-sm sm:text-base">De olho nas Insígnias</span>
                             </div>
                             <p className="text-xs opacity-75">Ver insígnias</p>
                           </button>
@@ -18296,16 +18428,16 @@ function App() {
 
                         {/* Time Expandido */}
                         {expandedTeamPokemon !== null && (
-                          <div className={`mt-6 p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
-                            <h5 className={`text-lg font-bold mb-4 ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
+                          <div className={`mt-6 p-3 sm:p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
+                            <h5 className={`text-base sm:text-lg font-bold mb-3 sm:mb-4 ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
                               Time Principal
                             </h5>
                             {trainerData?.mainTeam && trainerData.mainTeam.length > 0 ? (
-                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
                                 {trainerData.mainTeam.map((pokemon, index) => {
                                   const maxHP = calculatePokemonMaxHP(pokemon)
                                   return (
-                                    <div key={index} className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'} text-center`}>
+                                    <div key={index} className={`p-2 sm:p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'} text-center`}>
                                       <h6 className={`font-bold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                                         {pokemon.nickname || pokemon.species}
                                       </h6>
@@ -18352,10 +18484,10 @@ function App() {
 
         {/* Modal de Características & Talentos */}
         {showCaracTaleModal && selectedTrainer && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`}>
-              <div className={`sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}>
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`}>
+              <div className={`sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-4 md:p-5 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Características & Talentos - {selectedTrainer}
                 </h3>
                 <button
@@ -18365,10 +18497,10 @@ function App() {
                   <X size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />
                 </button>
               </div>
-              <div className="p-6 space-y-6">
+              <div className="p-3 sm:p-4 md:p-5 space-y-4 sm:space-y-6">
                 {/* Características de Classe */}
                 <div>
-                  <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  <h4 className={`text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
                     Características de Classe
                   </h4>
                   {(() => {
@@ -18423,9 +18555,9 @@ function App() {
                     }
 
                     return (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                         {userCaracteristicas.map((carac, index) => (
-                          <div key={index} className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'} border-2 ${darkMode ? 'border-blue-500' : 'border-blue-300'}`}>
+                          <div key={index} className={`p-3 sm:p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'} border-2 ${darkMode ? 'border-blue-500' : 'border-blue-300'}`}>
                             <div className="flex items-start justify-between mb-2">
                               <h5 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                                 {typeof carac.name === 'string' ? carac.name : 'Característica'}
@@ -18470,11 +18602,11 @@ function App() {
 
                 {/* Talentos Selecionados */}
                 <div>
-                  <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
+                  <h4 className={`text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
                     Talentos Selecionados
                   </h4>
                   {trainerData?.talentosSelected && trainerData.talentosSelected.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                       {trainerData.talentosSelected.map((talentoItem, index) => {
                         // Se talentoItem é um objeto, usar diretamente
                         // Se é uma string, buscar os dados
@@ -18496,7 +18628,7 @@ function App() {
 
                         if (!talentoData) {
                           return (
-                            <div key={index} className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'} border-2 ${darkMode ? 'border-purple-500' : 'border-purple-300'}`}>
+                            <div key={index} className={`p-3 sm:p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'} border-2 ${darkMode ? 'border-purple-500' : 'border-purple-300'}`}>
                               <h5 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                                 {typeof talentoNome === 'string' ? talentoNome : 'Talento desconhecido'}
                               </h5>
@@ -18508,8 +18640,8 @@ function App() {
                         }
 
                         return (
-                          <div key={index} className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'} border-2 ${darkMode ? 'border-purple-500' : 'border-purple-300'}`}>
-                            <h5 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                          <div key={index} className={`p-3 sm:p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'} border-2 ${darkMode ? 'border-purple-500' : 'border-purple-300'}`}>
+                            <h5 className={`font-bold mb-2 text-sm sm:text-base ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                               {typeof talentoData.nome === 'string' ? talentoData.nome : 'Talento'}
                             </h5>
                             <div className="space-y-1 text-sm">
@@ -18563,10 +18695,10 @@ function App() {
 
         {/* Modal da Mochila */}
         {showMochilaModal && selectedTrainer && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`}>
-              <div className={`sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}>
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-2xl w-full max-h-[90vh] overflow-y-auto`}>
+              <div className={`sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-4 md:p-5 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Mochila - {selectedTrainer}
                 </h3>
                 <button
@@ -18576,10 +18708,10 @@ function App() {
                   <X size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />
                 </button>
               </div>
-              <div className="p-6 space-y-6">
+              <div className="p-3 sm:p-4 md:p-5 space-y-4 sm:space-y-6">
                 {/* Itens Chave */}
                 <div>
-                  <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-yellow-400' : 'text-yellow-700'}`}>
+                  <h4 className={`text-base sm:text-lg font-bold mb-3 ${darkMode ? 'text-yellow-400' : 'text-yellow-700'}`}>
                     Itens Chave
                   </h4>
                   {trainerData?.keyItems && trainerData.keyItems.length > 0 ? (
@@ -18606,7 +18738,7 @@ function App() {
 
                 {/* Itens Customizados */}
                 <div>
-                  <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  <h4 className={`text-base sm:text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
                     Itens Customizados {trainerData?.customItems ? `(${trainerData.customItems.length})` : ''}
                   </h4>
                   {(() => {
@@ -18614,9 +18746,9 @@ function App() {
                     return null
                   })()}
                   {trainerData?.customItems && trainerData.customItems.length > 0 ? (
-                    <div className="space-y-2">
+                    <div className="space-y-2 overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0">
                       {/* Cabeçalho da tabela */}
-                      <div className={`grid grid-cols-12 gap-2 px-3 py-2 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
+                      <div className={`grid grid-cols-12 gap-2 px-3 py-2 rounded-lg min-w-[500px] ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
                         <div className="col-span-5">
                           <span className={`text-xs font-bold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Item</span>
                         </div>
@@ -18633,7 +18765,7 @@ function App() {
 
                       {/* Linhas de itens */}
                       {trainerData.customItems.map((item, index) => (
-                        <div key={index} className={`grid grid-cols-12 gap-2 p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                        <div key={index} className={`grid grid-cols-12 gap-2 p-3 rounded-lg min-w-[500px] ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                           <div className="col-span-5 flex items-center">
                             <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                               {item.name}
@@ -18733,10 +18865,10 @@ function App() {
 
         {/* Modal de Vivências */}
         {showVivenciasModal && selectedTrainer && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto`}>
-              <div className={`sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}>
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-3xl w-full max-h-[90vh] overflow-y-auto`}>
+              <div className={`sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-4 md:p-5 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Vivências - {selectedTrainer}
                 </h3>
                 <button
@@ -18746,11 +18878,11 @@ function App() {
                   <X size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />
                 </button>
               </div>
-              <div className="p-6">
+              <div className="p-3 sm:p-4 md:p-5">
                 {trainerData?.vivencias && trainerData.vivencias.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                     {trainerData.vivencias.map((vivencia) => (
-                      <div key={vivencia.id} className={`p-4 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'}`}>
+                      <div key={vivencia.id} className={`p-3 sm:p-4 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'}`}>
                         <h4 className={`font-bold text-lg mb-3 ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
                           {vivencia.nome}
                         </h4>
@@ -18784,7 +18916,7 @@ function App() {
                     ))}
                   </div>
                 ) : (
-                  <div className={`p-8 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <div className={`p-3 sm:p-5 md:p-8 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                     <p className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                       Este treinador não possui vivências cadastradas.
                     </p>
@@ -18797,10 +18929,10 @@ function App() {
 
         {/* Modal de Background */}
         {showMestreBackgroundModal && selectedTrainer && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto`}>
-              <div className={`sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}>
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-3xl w-full max-h-[90vh] overflow-y-auto`}>
+              <div className={`sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-4 md:p-5 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Background - {selectedTrainer}
                 </h3>
                 <button
@@ -18810,15 +18942,15 @@ function App() {
                   <X size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />
                 </button>
               </div>
-              <div className="p-6">
+              <div className="p-3 sm:p-4 md:p-5">
                 {trainerData?.background ? (
-                  <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <div className={`p-3 sm:p-4 md:p-5 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                     <p className={`whitespace-pre-wrap leading-relaxed ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>
                       {trainerData.background}
                     </p>
                   </div>
                 ) : (
-                  <div className={`p-8 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <div className={`p-3 sm:p-5 md:p-8 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                     <p className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                       Este treinador não possui background cadastrado.
                     </p>
@@ -18831,10 +18963,10 @@ function App() {
 
         {/* Modal de Insígnias */}
         {showMestreInsigniasModal && selectedTrainer && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`}>
-              <div className={`sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}>
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`}>
+              <div className={`sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-4 md:p-5 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Insígnias - {selectedTrainer}
                 </h3>
                 <button
@@ -18844,9 +18976,9 @@ function App() {
                   <X size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />
                 </button>
               </div>
-              <div className="p-6">
+              <div className="p-3 sm:p-4 md:p-5">
                 {trainerData?.badges ? (
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     {['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos']
                       .filter(region => trainerData.badges[region])
                       .map((region) => {
@@ -18866,13 +18998,13 @@ function App() {
                                   setExpandedMestreInsignias([...expandedMestreInsignias, region])
                                 }
                               }}
-                              className={`w-full p-4 flex justify-between items-center ${darkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-200'} transition-colors`}
+                              className={`w-full p-3 sm:p-4 flex justify-between items-center ${darkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-200'} transition-colors`}
                             >
-                              <div className="flex items-center gap-3">
-                                <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                              <div className="flex items-center gap-2 sm:gap-3">
+                                <h4 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                                   {region}
                                 </h4>
-                                <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                <span className={`text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                                   ({collectedCount} / {totalBadges})
                                 </span>
                               </div>
@@ -18884,7 +19016,7 @@ function App() {
                             </button>
                             {/* Conteúdo expandível */}
                             {isExpanded && (
-                              <div className={`p-4 border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                              <div className={`p-3 sm:p-4 border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
                                 {/* Imagem com grid sobreposto */}
                                 <div className="relative max-w-md mx-auto">
                                   <img
@@ -18933,7 +19065,7 @@ function App() {
                       })}
                   </div>
                 ) : (
-                  <div className={`p-8 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <div className={`p-3 sm:p-5 md:p-8 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                     <p className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                       Este treinador não possui insígnias cadastradas.
                     </p>
@@ -18998,32 +19130,32 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>XP & Capturas M 👑</h2>
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>XP & Capturas M 👑</h2>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'XP & Capturas M' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'XP & Capturas M' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
               </div>
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {/* Grid com Ranking de XP e Lista de Captura Geral */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-5 md:p-6 mb-6">
               {/* Ranking de XP (Esquerda) */}
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-                <h3 className={`text-xl font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+                <h3 className={`text-lg sm:text-xl font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
                   <Trophy size={24} />
                   Ranking de XP
                 </h3>
 
                 {xpRanking.length === 0 ? (
-                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-8`}>
+                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-3 sm:py-5 md:py-8`}>
                     Nenhum treinador com XP registrada.
                   </p>
                 ) : (
@@ -19036,7 +19168,7 @@ function App() {
                         darkMode ? 'bg-gray-700' : 'bg-gray-100'
                       }`}>
                         <div className="flex items-center gap-3">
-                          <span className={`text-2xl font-bold ${trainer.rank <= 3 ? 'text-white' : darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                          <span className={`text-xl sm:text-2xl font-bold ${trainer.rank <= 3 ? 'text-white' : darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                             #{trainer.rank}
                           </span>
                           <span className={`font-semibold ${trainer.rank <= 3 ? 'text-white' : darkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -19053,9 +19185,9 @@ function App() {
               </div>
 
               {/* Lista de Captura Geral (Direita) */}
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className={`text-xl font-bold flex items-center gap-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+                  <h3 className={`text-lg sm:text-xl font-bold flex items-center gap-2 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
                     <Target size={24} />
                     Lista de Captura Geral
                   </h3>
@@ -19114,7 +19246,7 @@ function App() {
                 </div>
 
                 {capturaGeralList.length === 0 ? (
-                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-8`}>
+                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-3 sm:py-5 md:py-8`}>
                     Nenhum pokémon nas listas de captura.
                   </p>
                 ) : (
@@ -19160,7 +19292,7 @@ function App() {
                 onClick={() => setShowCombateXpCapturas(!showCombateXpCapturas)}
                 className={`w-full p-4 flex justify-between items-center ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-50'}`}
               >
-                <h3 className={`text-xl font-bold flex items-center gap-2 ${darkMode ? 'text-orange-400' : 'text-orange-600'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold flex items-center gap-2 ${darkMode ? 'text-orange-400' : 'text-orange-600'}`}>
                   <Sword size={24} />
                   App de Combate
                 </h3>
@@ -19168,15 +19300,15 @@ function App() {
               </button>
 
               {showCombateXpCapturas && (
-                <div className="p-6 border-t border-gray-700">
+                <div className="p-3 sm:p-5 md:p-6 border-t border-gray-700">
                   <CombateInterludioApp darkMode={darkMode} />
                 </div>
               )}
             </div>
 
             {/* Chat (independente do App de Combate) */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat</h3>
 
               {/* Menu de Rolagem Rápida */}
               <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
@@ -19253,7 +19385,7 @@ function App() {
                         })().catch(err => console.error('Erro ao salvar mensagem:', err))
                       }
                     }}
-                    className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                    className="px-3 sm:px-5 md:px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
                   >
                     🎲 Rolar
                   </button>
@@ -19268,7 +19400,7 @@ function App() {
               {/* Área de Mensagens */}
               <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
                 {chatMessages.length === 0 ? (
-                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                     Nenhuma mensagem ainda. Seja o primeiro a falar!
                   </p>
                 ) : (
@@ -19332,7 +19464,7 @@ function App() {
                 />
                 <button
                   onClick={handleSendMessage}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
+                  className="px-3 sm:px-5 md:px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
                 >
                   Enviar
                 </button>
@@ -19344,9 +19476,9 @@ function App() {
           {showAcoesComandoModal && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAcoesComandoModal(false)}>
               <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-                <div className="p-6">
+                <div className="p-3 sm:p-5 md:p-6">
                   <div className="flex justify-between items-center mb-6">
-                    <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                       Ações de Comando
                     </h3>
                     <button onClick={() => setShowAcoesComandoModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -19362,7 +19494,7 @@ function App() {
                     <select
                       value={selectedAcaoComandoPokemon}
                       onChange={(e) => setSelectedAcaoComandoPokemon(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                     >
                       <option value="">Selecione...</option>
                       {capturaGeralList.map((pokemon, index) => (
@@ -19483,9 +19615,9 @@ function App() {
           {showGridModal && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowGridModal(false)}>
               <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-                <div className="p-6">
+                <div className="p-3 sm:p-5 md:p-6">
                   <div className="flex justify-between items-center mb-6">
-                    <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                       Grid de Captura
                     </h3>
                     <button onClick={() => setShowGridModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -19504,7 +19636,7 @@ function App() {
                       max="10"
                       value={gridRows}
                       onChange={(e) => setGridRows(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Ex: 5"
                     />
                   </div>
@@ -19520,7 +19652,7 @@ function App() {
                       max="10"
                       value={gridCols}
                       onChange={(e) => setGridCols(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Ex: 5"
                     />
                   </div>
@@ -19689,67 +19821,67 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>PokeApp 👑</h2>
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>PokeApp 👑</h2>
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'PokeApp' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'PokeApp' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
               </div>
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {!pokeAppSubArea && (
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-6`}>Selecione uma aplicação</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-4 md:p-5`}>
+                <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4 sm:mb-5 md:mb-6`}>Selecione uma aplicação</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                   <button
                     onClick={() => setPokeAppSubArea('Concurso')}
-                    className="p-8 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-600 text-white hover:from-yellow-600 hover:to-orange-700 transition-all transform hover:scale-105 shadow-lg"
+                    className="p-4 sm:p-5 md:p-6 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-600 text-white hover:from-yellow-600 hover:to-orange-700 transition-all transform hover:scale-105 shadow-lg"
                   >
-                    <h4 className="text-xl font-bold mb-2">🏆 Concurso Pokémon</h4>
-                    <p className="text-sm opacity-90">Calculadora de pontuação para concursos</p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-bold mb-2">🏆 Concurso Pokémon</h4>
+                    <p className="text-xs sm:text-sm opacity-90">Calculadora de pontuação para concursos</p>
                   </button>
                   <button
                     onClick={() => setPokeAppSubArea('Encontro')}
-                    className="p-8 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg"
+                    className="p-4 sm:p-5 md:p-6 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg"
                   >
-                    <h4 className="text-xl font-bold mb-2">🔍 Encontro</h4>
-                    <p className="text-sm opacity-90">Em desenvolvimento</p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-bold mb-2">🔍 Encontro</h4>
+                    <p className="text-xs sm:text-sm opacity-90">Em desenvolvimento</p>
                   </button>
                   <button
                     onClick={() => setPokeAppSubArea('Sorteador')}
-                    className="p-8 rounded-xl bg-gradient-to-br from-green-500 to-teal-600 text-white hover:from-green-600 hover:to-teal-700 transition-all transform hover:scale-105 shadow-lg"
+                    className="p-4 sm:p-5 md:p-6 rounded-xl bg-gradient-to-br from-green-500 to-teal-600 text-white hover:from-green-600 hover:to-teal-700 transition-all transform hover:scale-105 shadow-lg"
                   >
-                    <h4 className="text-xl font-bold mb-2">🎲 Sorteador</h4>
-                    <p className="text-sm opacity-90">Em desenvolvimento</p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-bold mb-2">🎲 Sorteador</h4>
+                    <p className="text-xs sm:text-sm opacity-90">Em desenvolvimento</p>
                   </button>
                   <button
                     onClick={() => setPokeAppSubArea('Backup')}
-                    className="p-8 rounded-xl bg-gradient-to-br from-red-500 to-pink-600 text-white hover:from-red-600 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg"
+                    className="p-4 sm:p-5 md:p-6 rounded-xl bg-gradient-to-br from-red-500 to-pink-600 text-white hover:from-red-600 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg"
                   >
-                    <h4 className="text-xl font-bold mb-2">💾 Backup & Restore</h4>
-                    <p className="text-sm opacity-90">Proteção contra perda de dados</p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-bold mb-2">💾 Backup & Restore</h4>
+                    <p className="text-xs sm:text-sm opacity-90">Proteção contra perda de dados</p>
                   </button>
                 </div>
               </div>
             )}
 
             {pokeAppSubArea && (
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{pokeAppSubArea}</h3>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-4 md:p-5`}>
+                <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center gap-3 mb-4 sm:mb-5 md:mb-6">
+                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{pokeAppSubArea}</h3>
                   <button
                     onClick={() => {
                       setPokeAppSubArea('')
                       setShowContestResults(false)
                       setContestPokemons([])
                     }}
-                    className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
+                    className="bg-gray-500 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-600 text-sm sm:text-base w-full xs:w-auto"
                   >
                     ← Voltar
                   </button>
@@ -19783,7 +19915,7 @@ function App() {
                             const val = Math.max(0, Math.min(100, parseInt(e.target.value) || 0))
                             setEncounterHours(val)
                           }}
-                          className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}
+                          className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}
                           placeholder="Digite as horas (0-100)"
                         />
                         <div className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-500'} mt-1 italic`}>
@@ -19808,7 +19940,7 @@ function App() {
                             const val = Math.max(0, Math.min(100, parseInt(e.target.value) || 0))
                             setEncounterInvestigation(val)
                           }}
-                          className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}
+                          className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}
                           placeholder="Digite os pontos (0-100)"
                         />
                         <div className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-500'} mt-1 italic`}>
@@ -19833,7 +19965,7 @@ function App() {
                             const val = Math.max(0, Math.min(100, parseInt(e.target.value) || 0))
                             setEncounterHelpers(val)
                           }}
-                          className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}
+                          className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}
                           placeholder="Digite os ajudantes (0-100)"
                         />
                         <div className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-500'} mt-1 italic`}>
@@ -19842,8 +19974,8 @@ function App() {
                       </div>
 
                       {/* Bônus de Encontro */}
-                      <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-lg`}>
-                        <h4 className={`text-lg font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'} mb-4`}>
+                      <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 md:p-5 rounded-lg`}>
+                        <h4 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'} mb-3 sm:mb-4`}>
                           Bônus de Encontro
                         </h4>
 
@@ -19879,7 +20011,7 @@ function App() {
                         <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-3`}>
                           Pokémon Específico:
                         </label>
-                        <div className="flex gap-6">
+                        <div className="flex gap-4 sm:gap-6">
                           <label className="flex items-center cursor-pointer">
                             <input
                               type="radio"
@@ -19952,15 +20084,15 @@ function App() {
                           ]
                         })
                       }}
-                      className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-800 px-8 py-4 rounded-full text-lg font-bold hover:from-yellow-500 hover:to-yellow-600 shadow-lg transform transition-transform hover:-translate-y-1"
+                      className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-800 px-4 sm:px-5 md:px-6 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-yellow-500 hover:to-yellow-600 shadow-lg transform transition-transform hover:-translate-y-1"
                     >
                       Procurar Pokémon!
                     </button>
 
                     {/* Display de Chance */}
-                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-lg mt-6`}>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 md:p-5 rounded-lg mt-6`}>
                       <div className="text-center">
-                        <div className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                        <div className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                           Chance de Encontro: <span className="text-blue-500">
                             {(() => {
                               let chance = 0
@@ -19993,7 +20125,7 @@ function App() {
 
                     {/* Resultado */}
                     {encounterResult && (
-                      <div className={`mt-6 p-6 rounded-lg border-2 ${
+                      <div className={`mt-6 p-3 sm:p-4 md:p-5 rounded-lg border-2 ${
                         encounterResult.chance === 0
                           ? `${darkMode ? 'bg-red-900/20 border-red-500/50' : 'bg-red-50 border-red-300'}`
                           : encounterResult.success
@@ -20001,10 +20133,10 @@ function App() {
                           : `${darkMode ? 'bg-red-900/20 border-red-500/50' : 'bg-red-50 border-red-300'}`
                       }`}>
                         <div className="text-center">
-                          <div className="text-5xl mb-4">
+                          <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">
                             {encounterResult.chance === 0 ? '❌' : encounterResult.success ? '🎉' : '😢'}
                           </div>
-                          <div className={`text-xl font-bold mb-2 ${
+                          <div className={`text-base sm:text-lg md:text-xl font-bold mb-2 ${
                             encounterResult.chance === 0
                               ? 'text-red-500'
                               : encounterResult.success
@@ -20030,11 +20162,11 @@ function App() {
 
                 {pokeAppSubArea === 'Sorteador' && (
                   <div>
-                    <p className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-6`}>
+                    <p className={`text-center text-sm sm:text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-4 sm:mb-6`}>
                       Clique nos botões para sortear itens aleatórios de cada categoria
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                       {/* Frutos */}
                       {(() => {
                         const sortearFruto = () => {
@@ -20052,11 +20184,11 @@ function App() {
                         }
 
                         return (
-                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
-                            <h3 className={`text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
+                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
+                            <h3 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-2 sm:mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
                               Frutos
                             </h3>
-                            <div className={`min-h-[120px] mb-3 p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-sm`}>
+                            <div className={`min-h-[100px] sm:min-h-[120px] mb-3 p-2 sm:p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-xs sm:text-sm`}>
                               {sortedItems.frutos ? (
                                 <>
                                   <p className="font-bold text-yellow-400 mb-1">{sortedItems.frutos.nome}</p>
@@ -20091,11 +20223,11 @@ function App() {
                         }
 
                         return (
-                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
-                            <h3 className={`text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
+                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
+                            <h3 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-2 sm:mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
                               Itens Mantidos
                             </h3>
-                            <div className={`min-h-[120px] mb-3 p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-sm overflow-y-auto`}>
+                            <div className={`min-h-[100px] sm:min-h-[120px] mb-3 p-2 sm:p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-xs sm:text-sm overflow-y-auto`}>
                               {sortedItems.itensMantidos ? (
                                 <>
                                   <p className="font-bold text-yellow-400 mb-1">{sortedItems.itensMantidos.nome}</p>
@@ -20130,11 +20262,11 @@ function App() {
                         }
 
                         return (
-                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
-                            <h3 className={`text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
+                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
+                            <h3 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-2 sm:mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
                               Melhoradores
                             </h3>
-                            <div className={`min-h-[120px] mb-3 p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-sm`}>
+                            <div className={`min-h-[100px] sm:min-h-[120px] mb-3 p-2 sm:p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-xs sm:text-sm`}>
                               {sortedItems.melhoradores ? (
                                 <>
                                   <p className="font-bold text-yellow-400 mb-1">{sortedItems.melhoradores.nome}</p>
@@ -20168,11 +20300,11 @@ function App() {
                         }
 
                         return (
-                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
-                            <h3 className={`text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
+                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
+                            <h3 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-2 sm:mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
                               Pedras de Evolução
                             </h3>
-                            <div className={`min-h-[120px] mb-3 p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-sm`}>
+                            <div className={`min-h-[100px] sm:min-h-[120px] mb-3 p-2 sm:p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-xs sm:text-sm`}>
                               {sortedItems.pedrasEvolucao ? (
                                 <p className="font-bold text-yellow-400 text-center pt-10">{sortedItems.pedrasEvolucao}</p>
                               ) : (
@@ -20205,11 +20337,11 @@ function App() {
                         }
 
                         return (
-                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
-                            <h3 className={`text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
+                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
+                            <h3 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-2 sm:mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
                               Itens de Cura
                             </h3>
-                            <div className={`min-h-[120px] mb-3 p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-sm`}>
+                            <div className={`min-h-[100px] sm:min-h-[120px] mb-3 p-2 sm:p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-xs sm:text-sm`}>
                               {sortedItems.itensCura ? (
                                 <>
                                   <p className="font-bold text-yellow-400 mb-1">{sortedItems.itensCura.nome}</p>
@@ -20245,11 +20377,11 @@ function App() {
                         }
 
                         return (
-                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
-                            <h3 className={`text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
+                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
+                            <h3 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-2 sm:mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
                               Pokébolas
                             </h3>
-                            <div className={`min-h-[120px] mb-3 p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-sm`}>
+                            <div className={`min-h-[100px] sm:min-h-[120px] mb-3 p-2 sm:p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-xs sm:text-sm`}>
                               {sortedItems.pokebolas ? (
                                 <>
                                   <p className="font-bold text-yellow-400 mb-1">{sortedItems.pokebolas.nome}</p>
@@ -20286,11 +20418,11 @@ function App() {
                         }
 
                         return (
-                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
-                            <h3 className={`text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
+                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
+                            <h3 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-2 sm:mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
                               Vitaminas
                             </h3>
-                            <div className={`min-h-[120px] mb-3 p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-sm`}>
+                            <div className={`min-h-[100px] sm:min-h-[120px] mb-3 p-2 sm:p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-xs sm:text-sm`}>
                               {sortedItems.vitaminas ? (
                                 <>
                                   <p className="font-bold text-yellow-400 mb-1">{sortedItems.vitaminas.nome}</p>
@@ -20329,11 +20461,11 @@ function App() {
                         }
 
                         return (
-                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
-                            <h3 className={`text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
+                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 border ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:shadow-lg transition-shadow`}>
+                            <h3 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} mb-2 sm:mb-3 pb-2 border-b-2 ${darkMode ? 'border-blue-500' : 'border-blue-400'}`}>
                               TMs
                             </h3>
-                            <div className={`min-h-[120px] mb-3 p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-sm`}>
+                            <div className={`min-h-[100px] sm:min-h-[120px] mb-3 p-2 sm:p-3 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded border ${darkMode ? 'border-gray-600' : 'border-gray-300'} text-xs sm:text-sm`}>
                               {sortedItems.tms ? (
                                 <>
                                   <p className="font-bold text-yellow-400 mb-1">{sortedItems.tms.nome}</p>
@@ -20359,30 +20491,30 @@ function App() {
                 {pokeAppSubArea === 'Backup' && (
                   <div>
                     {/* Ações de Backup */}
-                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-lg mb-6`}>
-                      <h4 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Ações Rápidas</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 md:p-5 rounded-lg mb-4 sm:mb-6`}>
+                      <h4 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-3 sm:mb-4`}>Ações Rápidas</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
                         <button
                           onClick={handleCreateBackup}
-                          className="flex flex-col items-center justify-center p-6 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all transform hover:scale-105 shadow-lg"
+                          className="flex flex-col items-center justify-center p-4 sm:p-5 md:p-6 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all transform hover:scale-105 shadow-lg"
                         >
-                          <span className="text-4xl mb-2">💾</span>
-                          <span className="font-bold">Criar Backup</span>
+                          <span className="text-3xl sm:text-4xl mb-2">💾</span>
+                          <span className="font-bold text-sm sm:text-base">Criar Backup</span>
                           <span className="text-xs opacity-80 mt-1">Salva estado atual</span>
                         </button>
 
                         <button
                           onClick={handleExportBackup}
-                          className="flex flex-col items-center justify-center p-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all transform hover:scale-105 shadow-lg"
+                          className="flex flex-col items-center justify-center p-4 sm:p-5 md:p-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all transform hover:scale-105 shadow-lg"
                         >
-                          <span className="text-4xl mb-2">📥</span>
-                          <span className="font-bold">Exportar Backup</span>
+                          <span className="text-3xl sm:text-4xl mb-2">📥</span>
+                          <span className="font-bold text-sm sm:text-base">Exportar Backup</span>
                           <span className="text-xs opacity-80 mt-1">Download arquivo JSON</span>
                         </button>
 
-                        <label className="flex flex-col items-center justify-center p-6 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-all transform hover:scale-105 shadow-lg cursor-pointer">
-                          <span className="text-4xl mb-2">📤</span>
-                          <span className="font-bold">Importar Backup</span>
+                        <label className="flex flex-col items-center justify-center p-4 sm:p-5 md:p-6 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-all transform hover:scale-105 shadow-lg cursor-pointer">
+                          <span className="text-3xl sm:text-4xl mb-2">📤</span>
+                          <span className="font-bold text-sm sm:text-base">Importar Backup</span>
                           <span className="text-xs opacity-80 mt-1">Carregar arquivo JSON</span>
                           <input
                             type="file"
@@ -20395,9 +20527,9 @@ function App() {
                     </div>
 
                     {/* Backup Automático Info */}
-                    <div className={`${darkMode ? 'bg-blue-900' : 'bg-blue-100'} ${darkMode ? 'border-blue-700' : 'border-blue-300'} border-2 p-4 rounded-lg mb-6`}>
-                      <div className="flex items-start gap-3">
-                        <span className="text-2xl">ℹ️</span>
+                    <div className={`${darkMode ? 'bg-blue-900' : 'bg-blue-100'} ${darkMode ? 'border-blue-700' : 'border-blue-300'} border-2 p-3 sm:p-4 rounded-lg mb-4 sm:mb-6`}>
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <span className="text-lg sm:text-xl md:text-2xl">ℹ️</span>
                         <div>
                           <h5 className={`font-bold ${darkMode ? 'text-blue-300' : 'text-blue-800'} mb-1`}>Backup Automático Ativo</h5>
                           <p className={`text-sm ${darkMode ? 'text-blue-200' : 'text-blue-700'}`}>
@@ -20419,7 +20551,7 @@ function App() {
                           </div>
                           <button
                             onClick={() => handleRestoreBackup(selectedBackup)}
-                            className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-lg font-bold transition-colors"
+                            className="bg-yellow-600 hover:bg-yellow-700 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg font-bold transition-colors"
                           >
                             ⚠️ Restaurar Agora
                           </button>
@@ -20428,13 +20560,13 @@ function App() {
                     )}
 
                     {/* Histórico de Backups */}
-                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-lg`}>
-                      <h4 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 md:p-5 rounded-lg`}>
+                      <h4 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-3 sm:mb-4`}>
                         Histórico de Backups ({backupHistory.length}/5)
                       </h4>
 
                       {backupHistory.length === 0 ? (
-                        <p className={`text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                        <p className={`text-center text-sm sm:text-base py-4 sm:py-6 md:py-8 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                           Nenhum backup encontrado. Clique em "Criar Backup" para começar.
                         </p>
                       ) : (
@@ -20442,12 +20574,12 @@ function App() {
                           {backupHistory.map((backup, index) => (
                             <div
                               key={index}
-                              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-4 rounded-lg border-2 ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:border-blue-500 transition-colors`}
+                              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-4 rounded-lg border-2 ${darkMode ? 'border-gray-600' : 'border-gray-300'} hover:border-blue-500 transition-colors`}
                             >
-                              <div className="flex justify-between items-center">
+                              <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
                                 <div className="flex-1">
-                                  <div className="flex items-center gap-3 mb-2">
-                                    <span className="text-2xl">
+                                  <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                                    <span className="text-lg sm:text-xl md:text-2xl">
                                       {index === 0 ? '🌟' : '💾'}
                                     </span>
                                     <div>
@@ -20464,7 +20596,7 @@ function App() {
                                   </div>
 
                                   {/* Info do Backup */}
-                                  <div className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-500'} grid grid-cols-2 gap-2`}>
+                                  <div className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-500'} grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2`}>
                                     <span>📊 Treinadores: {Object.keys(backup.data.trainers || {}).length}</span>
                                     <span>🎮 NPCs: {(backup.data.npcTrainers || []).length}</span>
                                     <span>💬 Mensagens: {(backup.data.chat || []).length}</span>
@@ -20472,10 +20604,10 @@ function App() {
                                   </div>
                                 </div>
 
-                                <div className="flex gap-2 ml-4">
+                                <div className="flex gap-2 sm:ml-4 flex-wrap sm:flex-nowrap">
                                   <button
                                     onClick={() => handleRestoreBackup(backup)}
-                                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
+                                    className="bg-green-600 hover:bg-green-700 text-white px-3 sm:px-4 py-2 rounded-lg font-semibold transition-colors text-xs sm:text-sm"
                                     title="Restaurar este backup"
                                   >
                                     ↩️ Restaurar
@@ -20493,14 +20625,14 @@ function App() {
                                       document.body.removeChild(link)
                                       URL.revokeObjectURL(url)
                                     }}
-                                    className={`${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-300 hover:bg-gray-400'} ${darkMode ? 'text-white' : 'text-gray-800'} px-4 py-2 rounded-lg font-semibold transition-colors`}
+                                    className={`${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-300 hover:bg-gray-400'} ${darkMode ? 'text-white' : 'text-gray-800'} px-3 sm:px-4 py-2 rounded-lg font-semibold transition-colors text-xs sm:text-sm`}
                                     title="Baixar este backup"
                                   >
                                     📥
                                   </button>
                                   <button
                                     onClick={() => handleDeleteBackup(index)}
-                                    className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
+                                    className="bg-red-600 hover:bg-red-700 text-white px-3 sm:px-4 py-2 rounded-lg font-semibold transition-colors text-xs sm:text-sm"
                                     title="Excluir este backup"
                                   >
                                     🗑️
@@ -20514,8 +20646,8 @@ function App() {
                     </div>
 
                     {/* Instruções */}
-                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-lg mt-6`}>
-                      <h4 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-3`}>📖 Como Usar</h4>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 md:p-5 rounded-lg mt-4 sm:mt-6`}>
+                      <h4 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-3`}>📖 Como Usar</h4>
                       <div className={`space-y-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                         <p><strong>✅ Criar Backup:</strong> Salva todos os dados atuais no navegador (automático a cada 5 min)</p>
                         <p><strong>📥 Exportar:</strong> Baixa um arquivo JSON com todos os dados (recomendado para backup externo)</p>
@@ -20532,10 +20664,10 @@ function App() {
                 {pokeAppSubArea === 'Concurso' && (
                   <div>
                     {/* Configuração do Concurso */}
-                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-lg mb-6`}>
-                      <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Configuração do Concurso</h4>
+                    <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 md:p-5 rounded-lg mb-4 sm:mb-6`}>
+                      <h4 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-3 sm:mb-4`}>Configuração do Concurso</h4>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-4">
                         <div>
                           <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>
                             Número de Pokémon no Concurso (1-20)
@@ -20586,7 +20718,7 @@ function App() {
                           setContestPokemons(newPokemons)
                           setShowContestResults(false)
                         }}
-                        className="w-full bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 font-semibold"
+                        className="w-full bg-green-500 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-green-600 font-semibold"
                       >
                         Gerar Formulário de Pokémon
                       </button>
@@ -20594,8 +20726,8 @@ function App() {
 
                     {/* Lista de Pokémon */}
                     {contestPokemons.length > 0 && (
-                      <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-lg mb-6`}>
-                        <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Notas dos Pokémon</h4>
+                      <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 md:p-5 rounded-lg mb-4 sm:mb-6`}>
+                        <h4 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-3 sm:mb-4`}>Notas dos Pokémon</h4>
 
                         <div className="space-y-4">
                           {contestPokemons.map((pokemon, idx) => (
@@ -20622,7 +20754,7 @@ function App() {
                                 </button>
                               </div>
 
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="grid grid-cols-1 gap-3 sm:gap-4">
                                 <div>
                                   <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>
                                     Nota de Apresentação
@@ -20644,7 +20776,7 @@ function App() {
                                   <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>
                                     Notas de Apelação
                                   </label>
-                                  <div className="grid grid-cols-4 gap-2">
+                                  <div className="grid grid-cols-2 xs:grid-cols-4 gap-2">
                                     {pokemon.appealScores.map((score, scoreIdx) => (
                                       <div key={scoreIdx}>
                                         <label className={`block text-xs text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>
@@ -20670,7 +20802,7 @@ function App() {
                           ))}
                         </div>
 
-                        <div className="flex gap-3 mt-6">
+                        <div className="flex flex-col xs:flex-row gap-2 sm:gap-3 mt-6">
                           <button
                             onClick={() => {
                               const results = contestPokemons.map(p => ({
@@ -20681,7 +20813,7 @@ function App() {
                               setContestPokemons(results)
                               setShowContestResults(true)
                             }}
-                            className="flex-1 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 font-semibold"
+                            className="flex-1 bg-blue-500 text-white px-4 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-blue-600 font-semibold text-sm sm:text-base"
                           >
                             Calcular Pódio
                           </button>
@@ -20690,7 +20822,7 @@ function App() {
                               setContestPokemons([])
                               setShowContestResults(false)
                             }}
-                            className="flex-1 bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 font-semibold"
+                            className="flex-1 bg-orange-500 text-white px-4 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-orange-600 font-semibold text-sm sm:text-base"
                           >
                             Reiniciar
                           </button>
@@ -20700,30 +20832,30 @@ function App() {
 
                     {/* Resultados */}
                     {showContestResults && contestPokemons.length > 0 && (
-                      <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-6 rounded-lg`}>
-                        <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-6`}>Resultado do Concurso</h4>
+                      <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 md:p-5 rounded-lg`}>
+                        <h4 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4 sm:mb-6`}>Resultado do Concurso</h4>
 
                         {/* Pódio */}
-                        <div className="flex justify-center items-end gap-4 mb-8">
+                        <div className="flex justify-center items-end gap-1 sm:gap-2 md:gap-3 mb-6 sm:mb-8">
                           {contestPokemons.length >= 2 && (
-                            <div className="bg-gradient-to-br from-gray-300 to-gray-400 rounded-t-lg p-4 text-center" style={{ width: '140px', height: '110px' }}>
-                              <div className="text-3xl font-bold text-gray-800">2º</div>
-                              <div className="font-bold text-gray-800 mt-2">{contestPokemons[1].name}</div>
-                              <div className="text-sm text-gray-700 mt-1">{contestPokemons[1].total} pontos</div>
+                            <div className="bg-gradient-to-br from-gray-300 to-gray-400 rounded-t-lg p-2 sm:p-3 md:p-4 text-center w-24 h-20 sm:w-32 sm:h-24 md:w-36 md:h-28">
+                              <div className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-800">2º</div>
+                              <div className="font-bold text-gray-800 mt-1 text-xs sm:text-sm truncate">{contestPokemons[1].name}</div>
+                              <div className="text-xs sm:text-sm text-gray-700 mt-0.5">{contestPokemons[1].total} pts</div>
                             </div>
                           )}
                           {contestPokemons.length >= 1 && (
-                            <div className="bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-t-lg p-4 text-center" style={{ width: '140px', height: '140px' }}>
-                              <div className="text-4xl font-bold text-yellow-900">1º</div>
-                              <div className="font-bold text-yellow-900 mt-2">{contestPokemons[0].name}</div>
-                              <div className="text-sm text-yellow-800 mt-1">{contestPokemons[0].total} pontos</div>
+                            <div className="bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-t-lg p-2 sm:p-3 md:p-4 text-center w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36">
+                              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-900">1º</div>
+                              <div className="font-bold text-yellow-900 mt-1 text-xs sm:text-sm truncate">{contestPokemons[0].name}</div>
+                              <div className="text-xs sm:text-sm text-yellow-800 mt-0.5">{contestPokemons[0].total} pts</div>
                             </div>
                           )}
                           {contestPokemons.length >= 3 && (
-                            <div className="bg-gradient-to-br from-orange-600 to-orange-800 rounded-t-lg p-4 text-center" style={{ width: '140px', height: '90px' }}>
-                              <div className="text-2xl font-bold text-orange-100">3º</div>
-                              <div className="font-bold text-orange-100 mt-2">{contestPokemons[2].name}</div>
-                              <div className="text-sm text-orange-200 mt-1">{contestPokemons[2].total} pontos</div>
+                            <div className="bg-gradient-to-br from-orange-600 to-orange-800 rounded-t-lg p-2 sm:p-3 md:p-4 text-center w-24 h-16 sm:w-32 sm:h-20 md:w-36 md:h-24">
+                              <div className="text-base sm:text-xl md:text-2xl font-bold text-orange-100">3º</div>
+                              <div className="font-bold text-orange-100 mt-1 text-xs sm:text-sm truncate">{contestPokemons[2].name}</div>
+                              <div className="text-xs sm:text-sm text-orange-200 mt-0.5">{contestPokemons[2].total} pts</div>
                             </div>
                           )}
                         </div>
@@ -20731,15 +20863,15 @@ function App() {
                         {/* Ranking completo */}
                         <div className="space-y-2">
                           {contestPokemons.map((pokemon, idx) => (
-                            <div key={pokemon.id} className={`flex justify-between items-center p-3 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'} border ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
-                              <div className="flex items-center gap-3">
-                                {idx === 0 && <span className="w-5 h-5 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600"></span>}
-                                {idx === 1 && <span className="w-5 h-5 rounded-full bg-gradient-to-br from-gray-300 to-gray-400"></span>}
-                                {idx === 2 && <span className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-600 to-orange-800"></span>}
-                                <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{idx + 1}º</span>
-                                <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{pokemon.name}</span>
+                            <div key={pokemon.id} className={`flex justify-between items-center p-2 sm:p-3 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'} border ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
+                              <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                                {idx === 0 && <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex-shrink-0"></span>}
+                                {idx === 1 && <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 flex-shrink-0"></span>}
+                                {idx === 2 && <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-br from-orange-600 to-orange-800 flex-shrink-0"></span>}
+                                <span className={`font-bold text-sm sm:text-base ${darkMode ? 'text-white' : 'text-gray-800'} flex-shrink-0`}>{idx + 1}º</span>
+                                <span className={`text-sm sm:text-base truncate ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{pokemon.name}</span>
                               </div>
-                              <span className={`font-bold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{pokemon.total} pontos</span>
+                              <span className={`font-bold text-sm sm:text-base flex-shrink-0 ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{pokemon.total} <span className="hidden xs:inline">pontos</span><span className="xs:hidden">pts</span></span>
                             </div>
                           ))}
                         </div>
@@ -20772,26 +20904,27 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username}</h2>
-              <div className="flex gap-2">
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username}</h2>
+              <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Treinador' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Treinador' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
             
             {/* CABEÇALHO COM IMAGEM E INFO */}
-            <div className="flex items-start gap-6 mb-8">
-              <div className="relative flex-shrink-0">
-                {image ? <img src={image} alt="T" className="w-32 h-32 object-cover rounded-lg border-4 border-blue-500" /> : <div className="w-32 h-32 bg-gray-300 rounded-lg flex items-center justify-center border-4 border-gray-400"><Camera size={48} className="text-gray-500" /></div>}
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 sm:p-5 md:p-6 mb-8">
+              <div className="relative flex-shrink-0 mx-auto sm:mx-0">
+                {image ? <img src={image} alt="T" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-cover rounded-lg border-4 border-blue-500" /> : <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gray-300 rounded-lg flex items-center justify-center border-4 border-gray-400"><Camera size={48} className="text-gray-500" /></div>}
                 <button onClick={() => setShowTrainerImageModal(true)} className="absolute -bottom-2 -right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600"><Camera size={20} /></button>
                 {/* TIPOS DO ELEMENTALISTA - embaixo da imagem */}
                 {classes.includes('Elementalista') && elementalistaTypes.length > 0 && (
@@ -20809,33 +20942,33 @@ function App() {
                 )}
               </div>
               <div className="flex-1">
-                <h3 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>{currentUser.username}</h3>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Nível: {level}</span>
+                <h3 className={`text-2xl sm:text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>{currentUser.username}</h3>
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <span className={`text-base sm:text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Nível: {level}</span>
                   <button onClick={() => setLevel(Math.max(0, Math.min(50, level - 1)))} className="p-1 bg-red-500 text-white rounded hover:bg-red-600"><Minus size={16} /></button>
-                  <button onClick={() => { setTempLevel(level.toString()); setShowLevelModal(true) }} className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm font-semibold">Lvl</button>
+                  <button onClick={() => { setTempLevel(level.toString()); setShowLevelModal(true) }} className="px-2 py-1 sm:px-3 bg-blue-500 text-white rounded hover:bg-blue-600 text-xs sm:text-sm font-semibold">Lvl</button>
                   <button onClick={() => setLevel(Math.max(0, Math.min(50, level + 1)))} className="p-1 bg-green-500 text-white rounded hover:bg-green-600"><Plus size={16} /></button>
                 </div>
                 <div className="mb-4">
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-2">
                     <span className={`text-sm font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>HP: {currentHP}/{maxHP}</span>
-                    <div className="flex gap-2">
-                      <button onClick={() => sendTrainerToBattle()} className="flex items-center gap-1 px-3 py-1 bg-cyan-500 text-white rounded hover:bg-cyan-600 text-sm" title="Adicionar a Batalha Treinador"><PlusCircle size={14} /></button>
-                      <button onClick={() => setShowHPModal(true)} className="flex items-center gap-1 px-3 py-1 bg-purple-500 text-white rounded hover:bg-purple-600 text-sm"><Sword size={14} /><Heart size={14} />Dano/Cura</button>
+                    <div className="flex flex-wrap gap-2">
+                      <button onClick={() => sendTrainerToBattle()} className="flex items-center gap-1 px-2 py-1 sm:px-3 bg-cyan-500 text-white rounded hover:bg-cyan-600 text-xs sm:text-sm" title="Adicionar a Batalha Treinador"><PlusCircle size={14} /></button>
+                      <button onClick={() => setShowHPModal(true)} className="flex items-center gap-1 px-2 py-1 sm:px-3 bg-purple-500 text-white rounded hover:bg-purple-600 text-xs sm:text-sm"><Sword size={14} /><Heart size={14} /><span className="hidden xs:inline">Dano/Cura</span><span className="xs:hidden">HP</span></button>
                     </div>
                   </div>
                   <div className="w-full bg-gray-300 rounded-full h-6">
                     <div className={`h-6 rounded-full transition-all ${currentHP < 0 ? 'bg-red-700' : 'bg-green-500'}`} style={{ width: `${Math.min(100, Math.max(0, hpPercent))}%` }}></div>
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <div className="bg-blue-100 px-4 py-2 rounded-lg text-center"><div className="text-xs text-blue-600">Capturados</div><div className="text-lg font-bold text-blue-800">{capturedCount}</div></div>
-                  <div className="bg-yellow-100 px-4 py-2 rounded-lg text-center"><div className="text-xs text-yellow-600">Pokédex</div><div className="text-lg font-bold text-yellow-800">{scannedCount}</div></div>
-                  <div className="bg-green-100 px-4 py-2 rounded-lg text-center"><div className="text-xs text-green-600">PC</div><div className="text-lg font-bold text-green-800">{pcPokemon.length}/1000</div></div>
+                <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3 md:gap-4">
+                  <div className="bg-blue-100 px-2 py-2 sm:px-3 md:px-4 rounded-lg text-center"><div className="text-xs text-blue-600">Capturados</div><div className="text-base sm:text-lg font-bold text-blue-800">{capturedCount}</div></div>
+                  <div className="bg-yellow-100 px-2 py-2 sm:px-3 md:px-4 rounded-lg text-center"><div className="text-xs text-yellow-600">Pokédex</div><div className="text-base sm:text-lg font-bold text-yellow-800">{scannedCount}</div></div>
+                  <div className="bg-green-100 px-2 py-2 sm:px-3 md:px-4 rounded-lg text-center"><div className="text-xs text-green-600">PC</div><div className="text-base sm:text-lg font-bold text-green-800">{pcPokemon.length}/1000</div></div>
                   {classes.includes('Colecionador') && (
-                    <div className="bg-orange-100 px-4 py-2 rounded-lg text-center" title="MV + Grupos de 8 (Shiny=8pts, Lendário=8pts, Normal=1pt)">
+                    <div className="bg-orange-100 px-2 py-2 sm:px-3 md:px-4 rounded-lg text-center" title="MV + Grupos de 8 (Shiny=8pts, Lendário=8pts, Normal=1pt)">
                       <div className="text-xs text-orange-600">Contagem</div>
-                      <div className="text-lg font-bold text-orange-800">{calcularContagem()}</div>
+                      <div className="text-base sm:text-lg font-bold text-orange-800">{calcularContagem()}</div>
                     </div>
                   )}
                 </div>
@@ -20844,8 +20977,8 @@ function App() {
 
             {/* CLASSES */}
             <div className="mb-8">
-              <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Classes & Subclasses</h4>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Classes & Subclasses</h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                 {classes.map((cls, idx) => {
                   const ci = allClasses.find(c => c.name === cls)
                   return <div key={idx} className="relative">
@@ -20875,16 +21008,16 @@ function App() {
                 {/* ESTILIZADOR POLICIAL - apenas para Policiais */}
                 {classes.includes('Policial') ? (
                   <>
-                    <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4 text-center`}>Estilizador Policial</h4>
-                    <div className={`p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}>
-                      <div className="flex items-center justify-center gap-6">
+                    <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4 text-center`}>Estilizador Policial</h4>
+                    <div className={`p-3 sm:p-5 md:p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}>
+                      <div className="flex items-center justify-center gap-3 sm:p-5 md:p-6">
                         {/* Catador - à esquerda da Pedra do Trovão se Ladrão estiver selecionado */}
                         {classes.includes('Ladrão') && (
                           <div className="flex-shrink-0">
                             <img
                               src="/catador.png"
                               alt="Catador"
-                              className="w-20 h-20 object-contain"
+                              className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 object-contain"
                               onError={(e) => {
                                 e.target.style.display = 'none'
                               }}
@@ -20974,7 +21107,7 @@ function App() {
                         </div>
 
                         {/* Controles */}
-                        <div className="flex gap-4">
+                        <div className="flex gap-2 sm:gap-3 md:gap-4">
                           <button
                             onClick={() => setEstilizadorPolicialBattery(Math.max(0, estilizadorPolicialBattery - 1))}
                             className={`p-3 rounded-lg ${darkMode ? 'bg-red-600 hover:bg-red-700' : 'bg-red-500 hover:bg-red-600'} text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
@@ -20998,16 +21131,16 @@ function App() {
                 ) : (
                   /* ESTILIZADOR - apenas para Rangers */
                   <>
-                    <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4 text-center`}>Estilizador</h4>
-                    <div className={`p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}>
-                      <div className="flex items-center justify-center gap-8">
+                    <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4 text-center`}>Estilizador</h4>
+                    <div className={`p-3 sm:p-5 md:p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}>
+                      <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-3 sm:p-5 md:p-8">
                         {/* Catador - à esquerda do Estilizador se Ladrão estiver selecionado */}
                         {classes.includes('Ladrão') && (
                           <div className="flex-shrink-0">
                             <img
                               src="/catador.png"
                               alt="Catador"
-                              className="w-20 h-20 object-contain"
+                              className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 object-contain"
                               onError={(e) => {
                                 e.target.style.display = 'none'
                               }}
@@ -21056,7 +21189,7 @@ function App() {
                         </div>
 
                         {/* Controles */}
-                        <div className="flex gap-4">
+                        <div className="flex gap-2 sm:gap-3 md:gap-4">
                           <button
                             onClick={() => setEstilizadorBattery(Math.max(0, estilizadorBattery - 1))}
                             className={`p-3 rounded-lg ${darkMode ? 'bg-red-600 hover:bg-red-700' : 'bg-red-500 hover:bg-red-600'} text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
@@ -21084,8 +21217,8 @@ function App() {
             {/* CATADOR - para Ladrão sem Ranger ou Policial */}
             {classes.includes('Ladrão') && !classes.includes('Ranger') && !classes.includes('Policial') && (
               <div className="mb-8">
-                <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4 text-center`}>Catador</h4>
-                <div className={`p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}>
+                <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4 text-center`}>Catador</h4>
+                <div className={`p-3 sm:p-5 md:p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}>
                   <div className="flex items-center justify-center">
                     <div className="flex-shrink-0">
                       <img
@@ -21104,7 +21237,7 @@ function App() {
 
             {/* TABELA DE ATRIBUTOS */}
             <div className="mb-8">
-              <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Atributos</h4>
+              <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Atributos</h4>
               <div className="overflow-x-auto">
                 <table className={`w-full border-collapse ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
                   <thead><tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
@@ -21145,9 +21278,9 @@ function App() {
             </div>
 
             {/* DESLOCAMENTOS E EVASÃO */}
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-2 sm:gap-3 md:gap-3 sm:p-5 md:p-8 mb-8">
               <div>
-                <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Deslocamentos</h4>
+                <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Deslocamentos</h4>
                 <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                   <div className="mb-2"><span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Terrestre:</span> <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{displacement.terrestre}</span></div>
                   <div className="mb-2"><span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Natação:</span> <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{displacement.natacao}</span></div>
@@ -21155,7 +21288,7 @@ function App() {
                 </div>
               </div>
               <div>
-                <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Evasão</h4>
+                <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Evasão</h4>
                 <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                   <div className="mb-2"><span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Física:</span> <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{evasion.fisica}</span></div>
                   <div className="mb-2"><span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Especial:</span> <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{evasion.especial}</span></div>
@@ -21166,17 +21299,18 @@ function App() {
 
             {/* TIME PRINCIPAL - COLUNA ÚNICA */}
             <div className="mb-8">
-              <div className="flex justify-between items-center mb-4">
-                <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Time Principal ({mainTeam.length}/6)</h4>
-                <div className="flex gap-2">
-                  <button onClick={healAllPokemon} className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 shadow-lg" title="Curar todos os Pokémon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+                <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Time Principal ({mainTeam.length}/6)</h4>
+                <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+                  <button onClick={healAllPokemon} className="flex items-center gap-1 sm:gap-2 px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 shadow-lg text-xs sm:text-sm md:text-base" title="Curar todos os Pokémon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="sm:w-5 sm:h-5">
                       <path d="M12 2v20M2 12h20"/>
                     </svg>
-                    <span>EstagiAyla Joy</span>
+                    <span className="hidden xs:inline">EstagiAyla Joy</span>
+                    <span className="xs:hidden">Curar</span>
                   </button>
-                  <button onClick={() => setShowAddPokemonModal(true)} className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg font-semibold hover:opacity-90 shadow-lg border-2 border-gray-300">
-                    <img src="/pokeball-icon.png" alt="Pokébola" className="w-6 h-6" />
+                  <button onClick={() => setShowAddPokemonModal(true)} className="flex items-center gap-1 sm:gap-2 px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 bg-white rounded-lg font-semibold hover:opacity-90 shadow-lg border-2 border-gray-300 text-xs sm:text-sm md:text-base">
+                    <img src="/pokeball-icon.png" alt="Pokébola" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                     <span className="text-gray-800">Adicionar Pkm</span>
                   </button>
                 </div>
@@ -21217,7 +21351,7 @@ function App() {
                         setDragPokemonIndex(null)
                         setDragOverPokemonIndex(null)
                       }}
-                      className={`p-4 rounded-lg border-2 transition-all ${
+                      className={`p-2 sm:p-3 md:p-4 rounded-lg border-2 transition-all ${
                         dragOverPokemonIndex === idx ? 'border-purple-500 border-dashed bg-purple-100 bg-opacity-20 scale-[1.02]' :
                         dragPokemonIndex === idx ? 'opacity-50' :
                         pokemon ? (pokemon.shiny || pokemon.legendary) ? (pokemon.shiny ? 'border-yellow-500' : 'border-orange-500') : darkMode ? 'bg-gray-700 border-blue-500' : 'bg-blue-50 border-blue-300' : darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-100 border-gray-300'
@@ -21246,12 +21380,12 @@ function App() {
                       {pokemon ? (
                         <div>
                           {/* Botões no canto direito superior */}
-                          <div className="flex justify-end gap-2 mb-4">
-                            <button onClick={() => openImageModal(pokemon)} className="bg-gray-500 text-white p-2 rounded hover:bg-gray-600" title="Adicionar Imagem">
-                              <Camera size={18} />
+                          <div className="grid grid-cols-4 sm:grid-cols-6 md:flex md:justify-end gap-1 sm:gap-1.5 md:gap-2 mb-3 sm:mb-4">
+                            <button onClick={() => openImageModal(pokemon)} className="bg-gray-500 text-white p-1.5 sm:p-2 rounded hover:bg-gray-600" title="Adicionar Imagem">
+                              <Camera size={16} className="sm:w-[18px] sm:h-[18px]" />
                             </button>
-                            <button onClick={() => openTempHPModal(pokemon, idx)} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600" title="HP Temporário Pkm">
-                              <ShieldPlus size={18} />
+                            <button onClick={() => openTempHPModal(pokemon, idx)} className="bg-blue-500 text-white p-1.5 sm:p-2 rounded hover:bg-blue-600" title="HP Temporário Pkm">
+                              <ShieldPlus size={16} className="sm:w-[18px] sm:h-[18px]" />
                             </button>
                             <button
                               onClick={() => {
@@ -21259,62 +21393,62 @@ function App() {
                                 setNameRaterNickname(pokemon.nickname)
                                 setShowNameRaterModal(true)
                               }}
-                              className="bg-orange-500 text-white p-2 rounded hover:bg-orange-600"
+                              className="bg-orange-500 text-white p-1.5 sm:p-2 rounded hover:bg-orange-600"
                               title="Name Rater"
                             >
-                              <Edit size={18} />
+                              <Edit size={16} className="sm:w-[18px] sm:h-[18px]" />
                             </button>
-                            <button onClick={() => handleOpenTutoria(pokemon, 'team')} className="bg-indigo-500 text-white p-2 rounded hover:bg-indigo-600" title="Tutoria de Golpes">
-                              <BookOpenText size={18} />
+                            <button onClick={() => handleOpenTutoria(pokemon, 'team')} className="bg-indigo-500 text-white p-1.5 sm:p-2 rounded hover:bg-indigo-600" title="Tutoria de Golpes">
+                              <BookOpenText size={16} className="sm:w-[18px] sm:h-[18px]" />
                             </button>
-                            <button onClick={() => handleOpenHabilidades(pokemon, 'team')} className="bg-teal-500 text-white p-2 rounded hover:bg-teal-600" title="Habilidades">
-                              <BookA size={18} />
+                            <button onClick={() => handleOpenHabilidades(pokemon, 'team')} className="bg-teal-500 text-white p-1.5 sm:p-2 rounded hover:bg-teal-600" title="Habilidades">
+                              <BookA size={16} className="sm:w-[18px] sm:h-[18px]" />
                             </button>
                             <button
                               onClick={() => handleOpenPokeballModal(pokemon, 'team')}
-                              className="bg-purple-500 text-white p-2 rounded hover:bg-purple-600 animate-pulse"
+                              className="bg-purple-500 text-white p-1.5 sm:p-2 rounded hover:bg-purple-600 animate-pulse"
                               title="Pokébola de Captura"
                               style={{
                                 animation: 'colorCycle 3s linear infinite'
                               }}
                             >
-                              <CircleDot size={18} />
+                              <CircleDot size={16} className="sm:w-[18px] sm:h-[18px]" />
                             </button>
                             <button
                               onClick={() => handleOpenHeldItemModal(pokemon, 'team')}
-                              className="bg-gray-400 text-white p-2 rounded hover:bg-gray-500"
+                              className="bg-gray-400 text-white p-1.5 sm:p-2 rounded hover:bg-gray-500"
                               title="Held Item"
                             >
-                              <Webhook size={18} />
+                              <Webhook size={16} className="sm:w-[18px] sm:h-[18px]" />
                             </button>
-                            <button onClick={() => openEvolutionModal(pokemon, 'team', idx)} className="bg-emerald-500 text-white px-3 py-2 rounded hover:bg-emerald-600 text-sm font-semibold flex items-center gap-1" title="Evoluir Pokémon">
-                              <Sparkles size={16} /> Evo
+                            <button onClick={() => openEvolutionModal(pokemon, 'team', idx)} className="bg-emerald-500 text-white px-1.5 py-1.5 sm:px-2 sm:py-2 md:px-3 md:py-2 rounded hover:bg-emerald-600 text-xs sm:text-sm font-semibold flex items-center gap-0.5 sm:gap-1" title="Evoluir Pokémon">
+                              <Sparkles size={14} className="sm:w-4 sm:h-4" /> <span className="hidden sm:inline">Evo</span>
                             </button>
-                            <button onClick={() => openEditPokemonModal(pokemon, 'team', idx)} className="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-600 text-sm font-semibold" title="Editar Pokémon">
-                              Edição Pkm
+                            <button onClick={() => openEditPokemonModal(pokemon, 'team', idx)} className="bg-blue-500 text-white px-1.5 py-1.5 sm:px-2 sm:py-2 md:px-3 md:py-2 rounded hover:bg-blue-600 text-xs sm:text-sm font-semibold" title="Editar Pokémon">
+                              <span className="hidden sm:inline">Edição Pkm</span><span className="sm:hidden">Edit</span>
                             </button>
-                            <button onClick={() => openPokemonHPModal(pokemon, idx)} className="bg-yellow-500 text-white px-3 py-2 rounded hover:bg-yellow-600 text-sm font-semibold" title="Dano/Cura">
-                              Dano/Cura
+                            <button onClick={() => openPokemonHPModal(pokemon, idx)} className="bg-yellow-500 text-white px-1.5 py-1.5 sm:px-2 sm:py-2 md:px-3 md:py-2 rounded hover:bg-yellow-600 text-xs sm:text-sm font-semibold" title="Dano/Cura">
+                              <span className="hidden sm:inline">Dano/Cura</span><span className="sm:hidden">HP</span>
                             </button>
-                            <button onClick={() => { setSelectedPokemonIndex(idx); setShowXPModal(true) }} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 text-sm font-semibold">
-                              + XP
+                            <button onClick={() => { setSelectedPokemonIndex(idx); setShowXPModal(true) }} className="bg-green-500 text-white px-1.5 py-1.5 sm:px-2 sm:py-2 md:px-3 md:py-2 lg:px-4 rounded hover:bg-green-600 text-xs sm:text-sm font-semibold">
+                              +XP
                             </button>
-                            <button onClick={() => openHappinessModal(pokemon, idx)} className="bg-pink-500 text-white p-2 rounded hover:bg-pink-600" title="Felicidade">
-                              <Smile size={18} />
+                            <button onClick={() => openHappinessModal(pokemon, idx)} className="bg-pink-500 text-white p-1.5 sm:p-2 rounded hover:bg-pink-600" title="Felicidade">
+                              <Smile size={16} className="sm:w-[18px] sm:h-[18px]" />
                             </button>
-                            <button onClick={() => moveToPc(idx)} className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 text-sm font-semibold" title="Mover para o PC">
-                              ⬇️ PC
+                            <button onClick={() => moveToPc(idx)} className="bg-purple-500 text-white px-1.5 py-1.5 sm:px-2 sm:py-2 md:px-3 md:py-2 lg:px-4 rounded hover:bg-purple-600 text-xs sm:text-sm font-semibold" title="Mover para o PC">
+                              <span className="hidden sm:inline">⬇️ PC</span><span className="sm:hidden">PC</span>
                             </button>
-                            <button onClick={() => handleDeletePokemon(idx)} className="bg-red-500 text-white p-2 rounded hover:bg-red-600">
-                              <Trash2 size={18} />
+                            <button onClick={() => handleDeletePokemon(idx)} className="bg-red-500 text-white p-1.5 sm:p-2 rounded hover:bg-red-600">
+                              <Trash2 size={16} className="sm:w-[18px] sm:h-[18px]" />
                             </button>
                           </div>
 
                           {/* Informações principais e barras */}
-                          <div className="flex items-center gap-4 mb-4">
+                          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4">
                             <div className="flex flex-col items-center gap-2">
                               {pokemonImages[sanitizeFirebaseKey(pokemon.id)] && (
-                                <img src={pokemonImages[sanitizeFirebaseKey(pokemon.id)]} alt={pokemon.nickname} className="w-20 h-20 object-cover rounded-lg border-2 border-blue-500" />
+                                <img src={pokemonImages[sanitizeFirebaseKey(pokemon.id)]} alt={pokemon.nickname} className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 object-cover rounded-lg border-2 border-blue-500" />
                               )}
                               {pokemon.pokeball && (
                                 <img
@@ -21326,9 +21460,9 @@ function App() {
                               )}
                             </div>
                             <div className="flex-1">
-                              <div className="flex items-center gap-3 mb-2 flex-wrap">
+                              <div className="flex items-center gap-2 sm:gap-3 mb-2 flex-wrap">
                                 <span
-                                  className={`px-3 py-1 rounded-lg font-bold text-lg cursor-pointer hover:underline ${pokemon.shiny ? 'bg-yellow-500 text-gray-900 hover:text-blue-900 border-2 border-yellow-700' : darkMode ? 'bg-gray-600 text-white hover:text-blue-400 border-2 border-gray-500' : 'bg-blue-100 text-gray-800 hover:text-blue-600 border-2 border-blue-300'}`}
+                                  className={`px-2 py-1 sm:px-3 rounded-lg font-bold text-base sm:text-lg cursor-pointer hover:underline ${pokemon.shiny ? 'bg-yellow-500 text-gray-900 hover:text-blue-900 border-2 border-yellow-700' : darkMode ? 'bg-gray-600 text-white hover:text-blue-400 border-2 border-gray-500' : 'bg-blue-100 text-gray-800 hover:text-blue-600 border-2 border-blue-300'}`}
                                   onClick={() => openPokemonInfoModal(pokemon)}
                                 >
                                   {pokemon.nickname}
@@ -21506,7 +21640,7 @@ function App() {
 
                               {/* Slots de Golpes */}
                               <div className="mt-4">
-                                <div className="grid grid-cols-4 gap-2">
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                                   {[...Array(8)].map((_, slotIdx) => {
                                     const golpe = pokemon.golpes && pokemon.golpes[slotIdx]
                                     const golpeNome = golpe?.nome
@@ -21516,12 +21650,13 @@ function App() {
                                       <button
                                         key={slotIdx}
                                         onClick={() => golpeNome && handleOpenGolpeDetail(golpeNome)}
-                                        className={`p-2 rounded text-xs font-semibold transition-all ${
+                                        className={`p-2 rounded text-xs font-semibold transition-all truncate ${
                                           golpeNome
                                             ? `${golpeColor || (darkMode ? 'bg-orange-600' : 'bg-orange-500')} text-white hover:opacity-80 cursor-pointer`
                                             : `${darkMode ? 'bg-gray-600 text-gray-400' : 'bg-gray-200 text-gray-500'} cursor-default`
                                         }`}
                                         disabled={!golpeNome}
+                                        title={golpeNome || 'Seu pokémon quer aprender...'}
                                       >
                                         {golpeNome || 'Seu pokémon quer aprender...'}
                                       </button>
@@ -21558,15 +21693,15 @@ function App() {
                               <div className="ml-4">
                                 <h6 className={`text-xs font-bold mb-2 ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>Bônus Elemental</h6>
                                 <div className={`text-center p-3 rounded ${darkMode ? 'bg-gray-600' : 'bg-purple-100'} min-w-[80px]`}>
-                                  <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-purple-600'}`}>{calculateElementalBonus(pokemon)}</div>
+                                  <div className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-purple-600'}`}>{calculateElementalBonus(pokemon)}</div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       ) : (
-                        <div className={`text-center py-6 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-                          <span className="text-3xl">○</span>
+                        <div className={`text-center py-3 sm:py-5 md:py-6 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                          <span className="text-2xl sm:text-3xl">○</span>
                           <p className="text-sm mt-2">Slot {idx + 1}</p>
                         </div>
                       )}
@@ -21580,25 +21715,25 @@ function App() {
 
         {/* MODAIS (mantidos iguais) */}
         {showLevelModal && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowLevelModal(false)}>
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Definir Nível (0-50)</h3>
+              <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Definir Nível (0-50)</h3>
               <button onClick={() => setShowLevelModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
             </div>
-            <input type="number" min="0" max="50" value={tempLevel} onChange={e => setTempLevel(e.target.value)} className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-2xl font-bold ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
+            <input type="number" min="0" max="50" value={tempLevel} onChange={e => setTempLevel(e.target.value)} className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base mb-4 text-center text-xl sm:text-2xl font-bold ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
             <button onClick={() => { const n = parseInt(tempLevel); if (n >= 0 && n <= 50) { setLevel(n); setShowLevelModal(false); setTempLevel('') } }} className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold">Confirmar</button>
           </div>
         </div>}
 
         {showHPModal && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowHPModal(false); cancelDamageTypeSelection(); }}>
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Dano/Cura Treinador</h3>
+              <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Dano/Cura Treinador</h3>
               <button onClick={() => { setShowHPModal(false); cancelDamageTypeSelection(); }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
             </div>
-            <input type="number" min="1" max="1000" value={hpValue} onChange={e => setHpValue(e.target.value)} placeholder="Valor (1-1000)" className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} disabled={showDamageTypeButtons && pendingDamageContext === 'trainer'} />
+            <input type="number" min="1" max="1000" value={hpValue} onChange={e => setHpValue(e.target.value)} placeholder="Valor (1-1000)" className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base mb-4 text-center text-lg sm:text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} disabled={showDamageTypeButtons && pendingDamageContext === 'trainer'} />
             {!showDamageTypeButtons || pendingDamageContext !== 'trainer' ? (
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                 <button onClick={() => { const v = parseInt(hpValue) || 0; const newHP = Math.min(currentHP + v, maxHP); setCurrentHP(newHP); setBattleTrainersList(prev => prev.map(t => t.nome === currentUser?.username ? { ...t, hp: newHP } : t)); setHpValue(''); setShowHPModal(false) }} className="bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 font-semibold flex items-center justify-center gap-2"><Heart size={20} />Curar</button>
                 <button onClick={() => { const v = parseInt(hpValue) || 0; if (v > 0) { initiateDamageWithType(v, 'trainer'); } }} className="bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 font-semibold flex items-center justify-center gap-2"><Sword size={20} />Dano</button>
               </div>
@@ -21643,9 +21778,9 @@ function App() {
         {/* MODAL DE IMAGEM DO TREINADOR */}
         {showTrainerImageModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowTrainerImageModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Adicionar Foto do Treinador
                 </h3>
                 <button onClick={() => setShowTrainerImageModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -21773,9 +21908,9 @@ function App() {
 
         {showImageModal && selectedPokemonForImage && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowImageModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Adicionar Imagem - {selectedPokemonForImage.nickname}
                 </h3>
                 <button onClick={() => setShowImageModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -21859,9 +21994,9 @@ function App() {
         )}
 
         {showClassModal && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowClassModal(false)}>
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Selecionar Classe/Subclasse</h3>
+              <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Selecionar Classe/Subclasse</h3>
               <button onClick={() => setShowClassModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
             </div>
             <div className="relative mb-4">
@@ -21877,9 +22012,9 @@ function App() {
         {/* MODAL DE EVOLUÇÃO */}
         {showEvolutionModal && selectedPokemonForEvolution && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEvolutionModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   <Sparkles className="inline mr-2" size={24} />
                   Evoluir Pokémon
                 </h3>
@@ -21891,7 +22026,7 @@ function App() {
               {/* Info do Pokémon atual */}
               <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                 <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Pokémon atual:</p>
-                <p className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <p className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedPokemonForEvolution.nickname} ({selectedPokemonForEvolution.species})
                 </p>
               </div>
@@ -21954,7 +22089,7 @@ function App() {
               {selectedEvolutionSpecies && (
                 <div className={`mb-4 p-4 rounded-lg ${darkMode ? 'bg-emerald-900' : 'bg-emerald-100'}`}>
                   <p className={`text-sm ${darkMode ? 'text-emerald-300' : 'text-emerald-700'}`}>Evoluir para:</p>
-                  <p className={`text-xl font-bold ${darkMode ? 'text-emerald-100' : 'text-emerald-800'}`}>
+                  <p className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-emerald-100' : 'text-emerald-800'}`}>
                     {selectedEvolutionSpecies.nome}
                     {selectedEvolutionSpecies.isExotic && ' (Exótico)'}
                   </p>
@@ -21995,9 +22130,9 @@ function App() {
 
         {/* MODAL ADICIONAR POKÉMON */}
         {showAddPokemonModal && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAddPokemonModal(false)}>
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Adicionar Pokémon</h3>
+              <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Adicionar Pokémon</h3>
               <button onClick={() => setShowAddPokemonModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
             </div>
             
@@ -22071,9 +22206,9 @@ function App() {
         {/* MODAL XP */}
         {/* MODAL DE XP */}
         {showXPModal && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowXPModal(false)}>
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Adicionar XP</h3>
+              <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Adicionar XP</h3>
               <button onClick={() => setShowXPModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
             </div>
             {mainTeam[selectedPokemonIndex] && (
@@ -22084,8 +22219,8 @@ function App() {
                 <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Progresso no nível: <strong>{getCurrentLevelXP(mainTeam[selectedPokemonIndex])}/{getXPForNextLevel(mainTeam[selectedPokemonIndex].level)}</strong></p>
               </div>
             )}
-            <input type="number" min="1" value={xpToAdd} onChange={e => setXpToAdd(e.target.value)} placeholder="Quantidade de XP" className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
-            <input type="text" value={xpBonus} onChange={e => setXpBonus(e.target.value)} placeholder="Bônus XP (ex: 50% ou 100)" className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
+            <input type="number" min="1" value={xpToAdd} onChange={e => setXpToAdd(e.target.value)} placeholder="Quantidade de XP" className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base mb-4 text-center text-lg sm:text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
+            <input type="text" value={xpBonus} onChange={e => setXpBonus(e.target.value)} placeholder="Bônus XP (ex: 50% ou 100)" className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base mb-4 text-center text-lg sm:text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
             {(() => {
               const baseXp = parseInt(xpToAdd) || 0
               let bonusXp = 0
@@ -22111,7 +22246,7 @@ function App() {
                         Bônus: +{bonusXp}
                       </p>
                     )}
-                    <p className={`text-xl font-bold ${darkMode ? 'text-cyan-400' : 'text-cyan-600'} mt-2 pt-2 border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                    <p className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-cyan-400' : 'text-cyan-600'} mt-2 pt-2 border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
                       Total: {totalXp} XP
                     </p>
                   </div>
@@ -22126,9 +22261,9 @@ function App() {
         {/* MODAL DE FELICIDADE */}
         {showHappinessModal && mainTeam[selectedPokemonHappinessIndex] && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowHappinessModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Felicidade</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Felicidade</h3>
                 <button onClick={() => setShowHappinessModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
               </div>
               <div className="mb-4">
@@ -22141,7 +22276,7 @@ function App() {
                 value={happinessAmount}
                 onChange={e => setHappinessAmount(e.target.value)}
                 placeholder="Quantidade"
-                className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base mb-4 text-center text-lg sm:text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
               />
               <div className="flex gap-3">
                 <button onClick={handleDecreaseHappiness} className="flex-1 bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold">
@@ -22158,9 +22293,9 @@ function App() {
         {/* MODAL NAME RATER - TIME PRINCIPAL */}
         {showNameRaterModal && nameRaterIndex !== null && mainTeam[nameRaterIndex] && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowNameRaterModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-orange-400' : 'text-orange-600'}`}>Name Rater</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-orange-400' : 'text-orange-600'}`}>Name Rater</h3>
                 <button onClick={() => setShowNameRaterModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
                   <X size={24} />
                 </button>
@@ -22174,7 +22309,7 @@ function App() {
                   value={nameRaterNickname}
                   onChange={e => setNameRaterNickname(e.target.value)}
                   placeholder="Novo nome do Pokémon"
-                  className={`w-full px-4 py-3 border-2 rounded-lg text-center text-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'border-gray-300'}`}
+                  className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base text-center text-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'border-gray-300'}`}
                   maxLength={30}
                 />
               </div>
@@ -22204,9 +22339,9 @@ function App() {
         {showHeldItemDetailModal && selectedHeldItemForDetail && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowHeldItemDetailModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-xl w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
                     {selectedHeldItemForDetail.name}
                   </h3>
                   <button onClick={() => setShowHeldItemDetailModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -22238,9 +22373,9 @@ function App() {
         {/* MODAL DE DANO/CURA */}
         {showPokemonHPModal && selectedPokemonHP && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPokemonHPModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Dano/Cura</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Dano/Cura</h3>
                 <button onClick={() => setShowPokemonHPModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
               </div>
               <div className="mb-4">
@@ -22257,7 +22392,7 @@ function App() {
                   ></div>
                 </div>
               </div>
-              <input type="number" min="1" value={hpAmount} onChange={e => setHpAmount(e.target.value)} placeholder="Quantidade de HP" className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
+              <input type="number" min="1" value={hpAmount} onChange={e => setHpAmount(e.target.value)} placeholder="Quantidade de HP" className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base mb-4 text-center text-lg sm:text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
 
               {/* Multiplicadores de Dano */}
               <div className={`p-3 rounded-lg mb-4 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
@@ -22291,9 +22426,9 @@ function App() {
         {/* MODAL DE HP TEMPORÁRIO */}
         {showTempHPModal && selectedPokemonForTempHP && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowTempHPModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>HP Temporário Pkm</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>HP Temporário Pkm</h3>
                 <button onClick={() => setShowTempHPModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
               </div>
               <div className="mb-4">
@@ -22306,7 +22441,7 @@ function App() {
                 value={tempHPAmount} 
                 onChange={e => setTempHPAmount(e.target.value)} 
                 placeholder="Valor de HP Temporário" 
-                className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} 
+                className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base mb-4 text-center text-lg sm:text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} 
               />
               <button onClick={handleSaveTempHP} className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold">Salvar HP Temporário</button>
             </div>
@@ -22316,9 +22451,9 @@ function App() {
         {/* MODAL DE DADOS EXÓTICOS */}
         {showExoticDataModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Dados do Pokémon Exótico: {pokemonForm.exoticSpecies}
                 </h3>
                 <button onClick={() => setShowExoticDataModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -22327,7 +22462,7 @@ function App() {
               </div>
 
               <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   <div>
                     <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Número da Pokédex</label>
                     <input type="number" value={exoticDataForm.dexNumber} onChange={(e) => setExoticDataForm({...exoticDataForm, dexNumber: e.target.value})} className={`w-full px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
@@ -22338,7 +22473,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   <div>
                     <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Altura (m) *</label>
                     <input type="number" step="0.1" value={exoticDataForm.altura} onChange={(e) => setExoticDataForm({...exoticDataForm, altura: e.target.value})} className={`w-full px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
@@ -22404,7 +22539,7 @@ function App() {
                   <button onClick={() => setExoticDataForm({...exoticDataForm, habitats: [...exoticDataForm.habitats, '']})} className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 text-sm"><Plus size={16} className="inline" /> Adicionar Habitat</button>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   <div>
                     <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Catch Rate</label>
                     <input type="number" value={exoticDataForm.catchRate} onChange={(e) => setExoticDataForm({...exoticDataForm, catchRate: e.target.value})} className={`w-full px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
@@ -22481,10 +22616,10 @@ function App() {
         {/* MODAL DE EDIÇÃO DE POKÉMON */}
         {showEditPokemonModal && editingPokemon && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditPokemonModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Edição de {editingPokemon.nickname}
                   </h3>
                   <button onClick={() => setShowEditPokemonModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -22501,7 +22636,7 @@ function App() {
                     onChange={(e) => setPokemonEditForm({...pokemonEditForm, shiny: e.target.checked})}
                     className="w-5 h-5 cursor-pointer"
                   />
-                  <label htmlFor="shiny-checkbox" className="text-2xl font-bold cursor-pointer select-none" style={{
+                  <label htmlFor="shiny-checkbox" className="text-xl sm:text-2xl font-bold cursor-pointer select-none" style={{
                     background: 'linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -22520,7 +22655,7 @@ function App() {
                     onChange={(e) => setPokemonEditForm({...pokemonEditForm, legendary: e.target.checked})}
                     className="w-5 h-5 cursor-pointer"
                   />
-                  <label htmlFor="legendary-checkbox" className="text-2xl font-bold cursor-pointer select-none" style={{
+                  <label htmlFor="legendary-checkbox" className="text-xl sm:text-2xl font-bold cursor-pointer select-none" style={{
                     background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6347 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -22662,7 +22797,7 @@ function App() {
                 </div>
 
                 {/* 3 e 4. SABORES */}
-                <div className="grid md:grid-cols-2 gap-4 mb-6">
+                <div className="grid md:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-6">
                   <div>
                     <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>3. Sabor Predileto</label>
                     <input
@@ -22701,7 +22836,7 @@ function App() {
                 {/* 6. DESLOCAMENTO */}
                 <div className="mb-6">
                   <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>6. Deslocamento</label>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
                     {['terrestre', 'nadar', 'voar', 'cavar', 'submerso'].map(type => (
                       <div key={type}>
                         <label className={`block text-xs mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'} capitalize`}>{type}</label>
@@ -22720,7 +22855,7 @@ function App() {
                 </div>
 
                 {/* 7. PESO E ALTURA */}
-                <div className="grid md:grid-cols-2 gap-4 mb-6">
+                <div className="grid md:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-6">
                   <div>
                     <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>7. Peso (Kg)</label>
                     <input
@@ -22759,7 +22894,7 @@ function App() {
                   <label className={`block text-sm font-bold mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>9. Capacidades</label>
 
                   {/* Força, Inteligência, Salto */}
-                  <div className="grid md:grid-cols-3 gap-4 mb-4">
+                  <div className="grid md:grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-4">
                     <div>
                       <label className={`block text-xs font-semibold mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Força (1-10)</label>
                       <input
@@ -22887,9 +23022,9 @@ function App() {
         {showPokemonInfoModal && viewingPokemon && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`}>
-              <div className={`sticky top-0 ${darkMode ? 'bg-gray-700' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-6 rounded-t-2xl`}>
+              <div className={`sticky top-0 ${darkMode ? 'bg-gray-700' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-3 sm:p-5 md:p-6 rounded-t-2xl`}>
                 <div className="flex justify-between items-center">
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">
                     {viewingPokemon.nickname || viewingPokemon.species}
                   </h3>
                   <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="text-white hover:text-gray-300">
@@ -22898,7 +23033,7 @@ function App() {
                 </div>
               </div>
 
-              <div className={`p-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              <div className={`p-3 sm:p-5 md:p-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 {/* Informações Básicas */}
                 <div className="mb-6">
                   <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Informações Básicas</h4>
@@ -22920,23 +23055,23 @@ function App() {
                 {viewingPokemon.capacities && (viewingPokemon.capacities.forca || viewingPokemon.capacities.inteligencia || viewingPokemon.capacities.salto) && (
                   <div className="mb-6">
                     <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Capacidades</h4>
-                    <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 text-sm">
                       {viewingPokemon.capacities.forca && (
                         <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
                           <div className="font-semibold text-blue-600">Força</div>
-                          <div className="text-2xl font-bold">{viewingPokemon.capacities.forca}</div>
+                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.forca}</div>
                         </div>
                       )}
                       {viewingPokemon.capacities.inteligencia && (
                         <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'}`}>
                           <div className="font-semibold text-purple-600">Inteligência</div>
-                          <div className="text-2xl font-bold">{viewingPokemon.capacities.inteligencia}</div>
+                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.inteligencia}</div>
                         </div>
                       )}
                       {viewingPokemon.capacities.salto && (
                         <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-green-50'}`}>
                           <div className="font-semibold text-green-600">Salto</div>
-                          <div className="text-2xl font-bold">{viewingPokemon.capacities.salto}</div>
+                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.salto}</div>
                         </div>
                       )}
                     </div>
@@ -23023,7 +23158,7 @@ function App() {
               </div>
 
               <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-b-2xl flex justify-end`}>
-                <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 font-semibold">
+                <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="bg-gray-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-gray-600 font-semibold">
                   Fechar
                 </button>
               </div>
@@ -23034,10 +23169,10 @@ function App() {
         {/* Modal de Tutoria de Golpes */}
         {showTutoriaModal && selectedPokemonForTutoria && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowTutoriaModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Tutoria de Golpes - {selectedPokemonForTutoria.nickname}
                   </h3>
                   <button onClick={() => setShowTutoriaModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -23141,9 +23276,9 @@ function App() {
         {showGolpeDetailModal && selectedGolpeForDetail && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowGolpeDetailModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6 border-b border-gray-700">
+              <div className="p-3 sm:p-5 md:p-6 border-b border-gray-700">
                 <div className="flex justify-between items-center">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {selectedGolpeForDetail}
                   </h3>
                   <button onClick={() => setShowGolpeDetailModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -23152,9 +23287,9 @@ function App() {
                 </div>
               </div>
 
-              <div className="overflow-y-auto flex-1 p-6">
+              <div className="overflow-y-auto flex-1 p-3 sm:p-5 md:p-6">
                 <div className={`space-y-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                     <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                       <div className={`text-sm font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Tipo</div>
                       <div className="text-lg font-bold">{GOLPES_DATA[selectedGolpeForDetail].tipo}</div>
@@ -23195,7 +23330,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="p-6 border-t border-gray-700">
+              <div className="p-3 sm:p-5 md:p-6 border-t border-gray-700">
                 <button
                   onClick={() => setShowGolpeDetailModal(false)}
                   className={`w-full py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
@@ -23211,9 +23346,9 @@ function App() {
         {showHeldItemModal && selectedPokemonForHeldItem && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowHeldItemModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
                     Held Item - {selectedPokemonForHeldItem.nickname}
                   </h3>
                   <button onClick={() => setShowHeldItemModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -23268,10 +23403,10 @@ function App() {
         {/* MODAL DE HABILIDADES - TIME PRINCIPAL */}
         {showHabilidadesModal && selectedPokemonForHabilidades && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowHabilidadesModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-teal-400' : 'text-teal-700'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-teal-400' : 'text-teal-700'}`}>
                     Selecionar Habilidades - {selectedPokemonForHabilidades.nickname}
                   </h3>
                   <button onClick={() => setShowHabilidadesModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -23399,9 +23534,9 @@ function App() {
         {showPokeballModal && selectedPokemonForPokeball && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPokeballModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
                     Pokébola de Captura - {selectedPokemonForPokeball.nickname}
                   </h3>
                   <button onClick={() => setShowPokeballModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -23479,9 +23614,9 @@ function App() {
         {showCustomPokeballOptions && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60] p-4" onClick={handleCancelCustomPokeball}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl max-w-md w-full shadow-2xl`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
                     Custom Pokeball
                   </h3>
                   <button onClick={handleCancelCustomPokeball} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -23576,9 +23711,9 @@ function App() {
         {/* Modal de Detalhes da Habilidade - Treinador */}
         {showHabilidadeDetailModal && selectedHabilidadeForDetail && HABILIDADES_DATA?.[selectedHabilidadeForDetail] && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowHabilidadeDetailModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-teal-400' : 'text-teal-700'}`}>{selectedHabilidadeForDetail}</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-teal-400' : 'text-teal-700'}`}>{selectedHabilidadeForDetail}</h3>
                 <button onClick={() => setShowHabilidadeDetailModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
                   <X size={24} />
                 </button>
@@ -23643,7 +23778,7 @@ function App() {
               <div className="flex justify-end mt-6">
                 <button
                   onClick={() => setShowHabilidadeDetailModal(false)}
-                  className="bg-teal-500 text-white px-6 py-2 rounded-lg hover:bg-teal-600 font-semibold"
+                  className="bg-teal-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-teal-600 font-semibold"
                 >
                   Fechar
                 </button>
@@ -23655,9 +23790,9 @@ function App() {
         {/* Modal de Informação de Capacidade - Treinador */}
         {showCapacityInfoModal && selectedCapacityForInfo && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowCapacityInfoModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedCapacityForInfo}</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedCapacityForInfo}</h3>
                 <button onClick={() => setShowCapacityInfoModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
                   <X size={24} />
                 </button>
@@ -23720,7 +23855,7 @@ function App() {
               <div className="flex justify-end mt-6">
                 <button
                   onClick={() => setShowCapacityInfoModal(false)}
-                  className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 font-semibold"
+                  className="bg-blue-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-blue-600 font-semibold"
                 >
                   Fechar
                 </button>
@@ -23733,9 +23868,9 @@ function App() {
         {showPokemonTypeEditModal && selectedPokemonForTypeEdit && pokemonTypeEditSource === 'team' && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPokemonTypeEditModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-orange-400' : 'text-orange-700'} flex items-center gap-2`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-orange-400' : 'text-orange-700'} flex items-center gap-2`}>
                     <Flame size={28} />
                     Editar Tipos - {selectedPokemonForTypeEdit.nickname}
                   </h3>
@@ -23894,23 +24029,24 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>PC ({pcPokemon.length}/1000)</h2>
-              <div className="flex gap-2">
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>PC ({pcPokemon.length}/1000)</h2>
+              <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'PC' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'PC' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
             <div className="flex justify-between items-center mb-6">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon Armazenados</h3>
+              <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon Armazenados</h3>
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowSwapPokemonModal(true)}
@@ -23926,7 +24062,7 @@ function App() {
                     setSelectedSedexPkm(null)
                     setSelectedSedexPkmTrainer('')
                   }}
-                  className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-6 py-2 rounded-lg hover:from-green-700 hover:to-emerald-800 font-semibold flex items-center gap-2"
+                  className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:from-green-700 hover:to-emerald-800 font-semibold flex items-center gap-2"
                 >
                   📦 Sedex Pkm
                 </button>
@@ -23982,7 +24118,7 @@ function App() {
                 <p className="text-lg">Nenhum Pokémon armazenado no PC</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
                 {pcPokemon.filter(pokemon => {
                   // Filtro de pesquisa por nome ou espécie
                   const matchesSearch = !pcSearchQuery ||
@@ -24019,7 +24155,7 @@ function App() {
                       } : {}
                     }
                   >
-                    <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4">
                       {pokemonImages[sanitizeFirebaseKey(pokemon.id)] && (
                         <div className="flex flex-col items-center gap-2">
                           <img src={pokemonImages[sanitizeFirebaseKey(pokemon.id)]} alt={pokemon.nickname} className="w-16 h-16 object-cover rounded-lg border-2 border-purple-500" />
@@ -24192,9 +24328,9 @@ function App() {
         {/* Modal de Adicionar Imagem PC */}
         {showImagePCModal && selectedPokemonForImage && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowImagePCModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Adicionar Imagem PC - {selectedPokemonForImage.nickname}
                 </h3>
                 <button onClick={() => setShowImagePCModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -24281,9 +24417,9 @@ function App() {
         {showPokemonInfoModal && viewingPokemon && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`}>
-              <div className={`sticky top-0 ${darkMode ? 'bg-gray-700' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-6 rounded-t-2xl`}>
+              <div className={`sticky top-0 ${darkMode ? 'bg-gray-700' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-3 sm:p-5 md:p-6 rounded-t-2xl`}>
                 <div className="flex justify-between items-center">
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">
                     {viewingPokemon.nickname || viewingPokemon.species}
                   </h3>
                   <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="text-white hover:text-gray-300">
@@ -24292,7 +24428,7 @@ function App() {
                 </div>
               </div>
 
-              <div className={`p-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              <div className={`p-3 sm:p-5 md:p-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 {/* Informações Básicas */}
                 <div className="mb-6">
                   <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Informações Básicas</h4>
@@ -24314,23 +24450,23 @@ function App() {
                 {viewingPokemon.capacities && (viewingPokemon.capacities.forca || viewingPokemon.capacities.inteligencia || viewingPokemon.capacities.salto) && (
                   <div className="mb-6">
                     <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Capacidades</h4>
-                    <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 text-sm">
                       {viewingPokemon.capacities.forca && (
                         <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
                           <div className="font-semibold text-blue-600">Força</div>
-                          <div className="text-2xl font-bold">{viewingPokemon.capacities.forca}</div>
+                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.forca}</div>
                         </div>
                       )}
                       {viewingPokemon.capacities.inteligencia && (
                         <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'}`}>
                           <div className="font-semibold text-purple-600">Inteligência</div>
-                          <div className="text-2xl font-bold">{viewingPokemon.capacities.inteligencia}</div>
+                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.inteligencia}</div>
                         </div>
                       )}
                       {viewingPokemon.capacities.salto && (
                         <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-green-50'}`}>
                           <div className="font-semibold text-green-600">Salto</div>
-                          <div className="text-2xl font-bold">{viewingPokemon.capacities.salto}</div>
+                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.salto}</div>
                         </div>
                       )}
                     </div>
@@ -24417,7 +24553,7 @@ function App() {
               </div>
 
               <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-b-2xl flex justify-end`}>
-                <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 font-semibold">
+                <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="bg-gray-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-gray-600 font-semibold">
                   Fechar
                 </button>
               </div>
@@ -24428,10 +24564,10 @@ function App() {
         {/* Modal de Tutoria de Golpes */}
         {showTutoriaModal && selectedPokemonForTutoria && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowTutoriaModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Tutoria de Golpes - {selectedPokemonForTutoria.nickname}
                   </h3>
                   <button onClick={() => setShowTutoriaModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -24535,9 +24671,9 @@ function App() {
         {showPCGolpesModal && selectedPokemonForPCGolpes && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPCGolpesModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Golpes - {selectedPokemonForPCGolpes.nickname}
                   </h3>
                   <button onClick={() => setShowPCGolpesModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -24608,7 +24744,7 @@ function App() {
                         )
                       })
                   ) : (
-                    <div className={`p-8 text-center ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                    <div className={`p-3 sm:p-5 md:p-8 text-center ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                       Nenhum golpe selecionado. Use a Tutoria para adicionar golpes!
                     </div>
                   )}
@@ -24630,10 +24766,10 @@ function App() {
         {/* MODAL DE EDIÇÃO DE POKÉMON - PC */}
         {showEditPokemonPCModal && editingPokemon && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditPokemonPCModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Edição de {editingPokemon.nickname} (PC)
                   </h3>
                   <button onClick={() => setShowEditPokemonPCModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -24650,7 +24786,7 @@ function App() {
                     onChange={(e) => setPokemonEditForm({...pokemonEditForm, shiny: e.target.checked})}
                     className="w-5 h-5 cursor-pointer"
                   />
-                  <label htmlFor="shiny-checkbox" className="text-2xl font-bold cursor-pointer select-none" style={{
+                  <label htmlFor="shiny-checkbox" className="text-xl sm:text-2xl font-bold cursor-pointer select-none" style={{
                     background: 'linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -24669,7 +24805,7 @@ function App() {
                     onChange={(e) => setPokemonEditForm({...pokemonEditForm, legendary: e.target.checked})}
                     className="w-5 h-5 cursor-pointer"
                   />
-                  <label htmlFor="legendary-checkbox" className="text-2xl font-bold cursor-pointer select-none" style={{
+                  <label htmlFor="legendary-checkbox" className="text-xl sm:text-2xl font-bold cursor-pointer select-none" style={{
                     background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6347 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -24810,7 +24946,7 @@ function App() {
                 </div>
 
                 {/* 3 e 4. SABORES */}
-                <div className="grid md:grid-cols-2 gap-4 mb-6">
+                <div className="grid md:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-6">
                   <div>
                     <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>3. Sabor Predileto</label>
                     <input
@@ -24849,7 +24985,7 @@ function App() {
                 {/* 6. DESLOCAMENTO */}
                 <div className="mb-6">
                   <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>6. Deslocamento</label>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
                     {['terrestre', 'nadar', 'voar', 'cavar', 'submerso'].map(type => (
                       <div key={type}>
                         <label className={`block text-xs mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'} capitalize`}>{type}</label>
@@ -24868,7 +25004,7 @@ function App() {
                 </div>
 
                 {/* 7. PESO E ALTURA */}
-                <div className="grid md:grid-cols-2 gap-4 mb-6">
+                <div className="grid md:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-6">
                   <div>
                     <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>7. Peso (Kg)</label>
                     <input
@@ -24906,7 +25042,7 @@ function App() {
                 <div className="mb-6">
                   <label className={`block text-sm font-bold mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>9. Capacidades</label>
 
-                  <div className="grid md:grid-cols-3 gap-4 mb-4">
+                  <div className="grid md:grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-4">
                     <div>
                       <label className={`block text-xs font-semibold mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Força (1-10)</label>
                       <input
@@ -25032,9 +25168,9 @@ function App() {
         {showHeldItemPCModal && selectedPokemonForHeldItem && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowHeldItemPCModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
                     Held Item - {selectedPokemonForHeldItem.nickname} (PC)
                   </h3>
                   <button onClick={() => setShowHeldItemPCModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -25090,9 +25226,9 @@ function App() {
         {showCustomPokeball2Options && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60] p-4" onClick={handleCancelCustomPokeball2}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl max-w-md w-full shadow-2xl`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
                     Custom Pokeball
                   </h3>
                   <button onClick={handleCancelCustomPokeball2} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -25188,9 +25324,9 @@ function App() {
         {showPokeballPCModal && selectedPokemonForPokeball && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPokeballPCModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
                     Pokébola de Captura PC - {selectedPokemonForPokeball.nickname}
                   </h3>
                   <button onClick={() => setShowPokeballPCModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -25267,10 +25403,10 @@ function App() {
         {/* MODAL DE HABILIDADES - PC */}
         {showHabilidadesPCModal && selectedPokemonForHabilidades && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowHabilidadesPCModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-teal-400' : 'text-teal-700'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-teal-400' : 'text-teal-700'}`}>
                     Selecionar Habilidades - {selectedPokemonForHabilidades.nickname} (PC)
                   </h3>
                   <button onClick={() => setShowHabilidadesPCModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -25398,9 +25534,9 @@ function App() {
         {/* MODAL NAME RATER PC */}
         {showNameRaterPCModal && nameRaterPCIndex !== null && pcPokemon[nameRaterPCIndex] && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowNameRaterPCModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>Name Rater PC</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>Name Rater PC</h3>
                 <button onClick={() => setShowNameRaterPCModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
                   <X size={24} />
                 </button>
@@ -25414,7 +25550,7 @@ function App() {
                   value={nameRaterPCNickname}
                   onChange={e => setNameRaterPCNickname(e.target.value)}
                   placeholder="Novo nome do Pokémon"
-                  className={`w-full px-4 py-3 border-2 rounded-lg text-center text-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'border-gray-300'}`}
+                  className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base text-center text-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'border-gray-300'}`}
                   maxLength={30}
                 />
               </div>
@@ -25443,9 +25579,9 @@ function App() {
         {/* Modal de Detalhes da Habilidade - PC */}
         {showHabilidadeDetailModal && selectedHabilidadeForDetail && HABILIDADES_DATA?.[selectedHabilidadeForDetail] && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowHabilidadeDetailModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-teal-400' : 'text-teal-700'}`}>{selectedHabilidadeForDetail}</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-teal-400' : 'text-teal-700'}`}>{selectedHabilidadeForDetail}</h3>
                 <button onClick={() => setShowHabilidadeDetailModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
                   <X size={24} />
                 </button>
@@ -25510,7 +25646,7 @@ function App() {
               <div className="flex justify-end mt-6">
                 <button
                   onClick={() => setShowHabilidadeDetailModal(false)}
-                  className="bg-teal-500 text-white px-6 py-2 rounded-lg hover:bg-teal-600 font-semibold"
+                  className="bg-teal-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-teal-600 font-semibold"
                 >
                   Fechar
                 </button>
@@ -25522,9 +25658,9 @@ function App() {
         {/* Modal de Informação de Capacidade - PC */}
         {showCapacityInfoModal && selectedCapacityForInfo && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowCapacityInfoModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedCapacityForInfo}</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedCapacityForInfo}</h3>
                 <button onClick={() => setShowCapacityInfoModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
                   <X size={24} />
                 </button>
@@ -25587,7 +25723,7 @@ function App() {
               <div className="flex justify-end mt-6">
                 <button
                   onClick={() => setShowCapacityInfoModal(false)}
-                  className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 font-semibold"
+                  className="bg-blue-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-blue-600 font-semibold"
                 >
                   Fechar
                 </button>
@@ -25606,9 +25742,9 @@ function App() {
             setSelectedSwapPc(null)
           }}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Move Pokémon
                   </h3>
                   <button onClick={() => {
@@ -25637,7 +25773,7 @@ function App() {
                           setSelectedSwapMainTeam(null)
                         }}
                         placeholder="Pesquisar no time principal..."
-                        className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                        className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       />
                       {swapMainTeamSearch && !selectedSwapMainTeam && (
                         <div className={`absolute z-10 w-full mt-1 max-h-40 overflow-y-auto rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
@@ -25694,7 +25830,7 @@ function App() {
                           setSelectedSwapPc(null)
                         }}
                         placeholder="Pesquisar no PC..."
-                        className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                        className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       />
                       {swapPcSearch && !selectedSwapPc && (
                         <div className={`absolute z-10 w-full mt-1 max-h-40 overflow-y-auto rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
@@ -25775,10 +25911,10 @@ function App() {
               className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     📦 Sedex Pkm
                   </h3>
                   <button
@@ -25799,7 +25935,7 @@ function App() {
                     value={sedexPkmSearch}
                     onChange={(e) => setSedexPkmSearch(e.target.value)}
                     placeholder="Buscar por nickname..."
-                    className={`w-full px-4 py-3 border-2 rounded-lg mb-4 ${
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base mb-4 ${
                       darkMode
                         ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
                         : 'border-gray-300 placeholder-gray-400'
@@ -25811,7 +25947,7 @@ function App() {
                     darkMode ? 'border-gray-600' : 'border-gray-300'
                   }`}>
                     {pcPokemon.length === 0 ? (
-                      <p className={`text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                      <p className={`text-center py-3 sm:py-5 md:py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                         Nenhum Pokémon no PC
                       </p>
                     ) : (
@@ -25925,9 +26061,9 @@ function App() {
         {showPokemonTypeEditModal && selectedPokemonForTypeEdit && pokemonTypeEditSource === 'pc' && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPokemonTypeEditModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-orange-400' : 'text-orange-700'} flex items-center gap-2`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-orange-400' : 'text-orange-700'} flex items-center gap-2`}>
                     <Flame size={28} />
                     Editar Tipos - {selectedPokemonForTypeEdit.nickname}
                   </h3>
@@ -26077,9 +26213,9 @@ function App() {
         {/* MODAL DE EVOLUÇÃO (PC) */}
         {showEvolutionModal && selectedPokemonForEvolution && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEvolutionModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   <Sparkles className="inline mr-2" size={24} />
                   Evoluir Pokémon
                 </h3>
@@ -26090,7 +26226,7 @@ function App() {
 
               <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                 <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Pokémon atual:</p>
-                <p className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <p className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedPokemonForEvolution.nickname} ({selectedPokemonForEvolution.species})
                 </p>
               </div>
@@ -26150,7 +26286,7 @@ function App() {
               {selectedEvolutionSpecies && (
                 <div className={`mb-4 p-4 rounded-lg ${darkMode ? 'bg-emerald-900' : 'bg-emerald-100'}`}>
                   <p className={`text-sm ${darkMode ? 'text-emerald-300' : 'text-emerald-700'}`}>Evoluir para:</p>
-                  <p className={`text-xl font-bold ${darkMode ? 'text-emerald-100' : 'text-emerald-800'}`}>
+                  <p className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-emerald-100' : 'text-emerald-800'}`}>
                     {selectedEvolutionSpecies.nome}
                     {selectedEvolutionSpecies.isExotic && ' (Exótico)'}
                   </p>
@@ -26200,100 +26336,103 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokédex ({pokedex.length})</h2>
-              <div className="flex gap-2">
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokédex ({pokedex.length})</h2>
+              <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Pokédex' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Pokédex' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-            <div className="flex justify-between items-center mb-6">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon Registrados</h3>
-              <div className="flex items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4 md:mb-6">
+              <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon Registrados</h3>
+              <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
                 <button
                   onClick={() => setShowScanPokemonModal(true)}
-                  className={`p-2 rounded-lg transition-all hover:scale-110 ${darkMode ? 'bg-blue-900/50 hover:bg-blue-800' : 'bg-blue-100 hover:bg-blue-200'}`}
+                  className={`p-1.5 sm:p-2 rounded-lg transition-all hover:scale-110 ${darkMode ? 'bg-blue-900/50 hover:bg-blue-800' : 'bg-blue-100 hover:bg-blue-200'}`}
                   title="Escanear"
                 >
-                  <img src="/pokedexpq.png" alt="Escanear" className="w-5 h-5" />
+                  <img src="/pokedexpq.png" alt="Escanear" className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
                 <button
                   onClick={() => setShowExoticConfigModal(true)}
-                  className={`p-2 rounded-lg transition-all hover:scale-110 ${darkMode ? 'bg-purple-900/50 text-purple-400 hover:bg-purple-800' : 'bg-purple-100 text-purple-600 hover:bg-purple-200'}`}
+                  className={`p-1.5 sm:p-2 rounded-lg transition-all hover:scale-110 ${darkMode ? 'bg-purple-900/50 text-purple-400 hover:bg-purple-800' : 'bg-purple-100 text-purple-600 hover:bg-purple-200'}`}
                   title="Configuração Pokémon Exótico"
                 >
-                  <ListTree size={20} />
+                  <ListTree size={18} className="sm:w-5 sm:h-5" />
                 </button>
-                <div className={`flex gap-4 text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  <span className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-blue-900/30 border border-blue-500' : 'bg-blue-50 border border-blue-400'} ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
-                    Escaneados: {pokedex.length}
+                <div className={`flex gap-2 text-xs sm:text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  <span className={`px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-lg ${darkMode ? 'bg-blue-900/30 border border-blue-500' : 'bg-blue-50 border border-blue-400'} ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                    <span className="hidden xs:inline">Escaneados: </span>{pokedex.length}
                   </span>
-                  <span className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-green-900/30 border border-green-500' : 'bg-green-50 border border-green-400'} ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
-                    Capturados: {pokedex.filter(p => p.isCaptured).length}
+                  <span className={`px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-lg ${darkMode ? 'bg-green-900/30 border border-green-500' : 'bg-green-50 border border-green-400'} ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
+                    <span className="hidden xs:inline">Capturados: </span>{pokedex.filter(p => p.isCaptured).length}
                   </span>
                 </div>
               </div>
             </div>
 
             {pokedex.length > 0 && (
-              <div className="mb-6 space-y-4">
+              <div className="mb-4 sm:mb-5 md:mb-6 space-y-3 sm:space-y-4">
                 {/* Barra de Pesquisa */}
                 <div className="relative">
-                  <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} size={20} />
+                  <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} size={18} />
                   <input
                     type="text"
                     value={pokedexSearchQuery}
                     onChange={e => setPokedexSearchQuery(e.target.value)}
                     placeholder="Pesquisar por espécie..."
-                    className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 placeholder-gray-500'}`}
+                    className={`w-full pl-10 pr-4 py-2 sm:py-2.5 md:py-3 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 placeholder-gray-500'}`}
                   />
                 </div>
 
                 {/* Filtro de Tipo */}
-                <div className="flex items-center gap-2">
-                  <label className={`font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                  <label className={`font-semibold text-sm sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Filtrar por tipo:
                   </label>
-                  <select
-                    value={pokedexTypeFilter}
-                    onChange={e => setPokedexTypeFilter(e.target.value)}
-                    className={`px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
-                  >
-                    <option value="">Todos os tipos</option>
-                    {Object.keys(TYPE_COLORS).map(type => (
-                      <option key={type} value={type}>{type}</option>
-                    ))}
-                  </select>
-                  {(pokedexSearchQuery || pokedexTypeFilter) && (
-                    <button
-                      onClick={() => {
-                        setPokedexSearchQuery('')
-                        setPokedexTypeFilter('')
-                      }}
-                      className={`px-3 py-2 rounded-lg ${darkMode ? 'bg-red-600 hover:bg-red-700' : 'bg-red-500 hover:bg-red-600'} text-white font-semibold`}
+                  <div className="flex flex-wrap gap-2">
+                    <select
+                      value={pokedexTypeFilter}
+                      onChange={e => setPokedexTypeFilter(e.target.value)}
+                      className={`flex-1 sm:flex-initial px-3 py-2 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                     >
-                      Limpar Filtros
-                    </button>
-                  )}
+                      <option value="">Todos os tipos</option>
+                      {Object.keys(TYPE_COLORS).map(type => (
+                        <option key={type} value={type}>{type}</option>
+                      ))}
+                    </select>
+                    {(pokedexSearchQuery || pokedexTypeFilter) && (
+                      <button
+                        onClick={() => {
+                          setPokedexSearchQuery('')
+                          setPokedexTypeFilter('')
+                        }}
+                        className={`px-3 py-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-red-600 hover:bg-red-700' : 'bg-red-500 hover:bg-red-600'} text-white font-semibold`}
+                      >
+                        Limpar
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
 
             {pokedex.length === 0 ? (
-              <div className={`text-center py-12 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                <p className="text-lg">Nenhum Pokémon registrado ainda</p>
-                <p className="text-sm mt-2">Adicione ou escaneie Pokémon para preencher sua Pokédex</p>
+              <div className={`text-center py-8 sm:py-10 md:py-12 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                <p className="text-base sm:text-lg">Nenhum Pokémon registrado ainda</p>
+                <p className="text-xs sm:text-sm mt-2">Adicione ou escaneie Pokémon para preencher sua Pokédex</p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3">
                 {pokedex.filter(entry => {
                   // Filtro de pesquisa por espécie
                   const matchesSearch = !pokedexSearchQuery ||
@@ -26312,24 +26451,24 @@ function App() {
                 }).sort((a, b) => a.species.localeCompare(b.species)).map((entry, idx) => {
                   const fullData = entry.isExotic ? entry.exoticData : fullPokedexData.find(p => p.nome === entry.species)
                   return (
-                    <div key={idx} className={`p-3 rounded-lg border-2 transition-all hover:shadow-lg relative ${entry.isCaptured ? (darkMode ? 'bg-green-900/30 border-green-500' : 'bg-green-50 border-green-400') : (darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300')}`}>
+                    <div key={idx} className={`p-2 sm:p-3 rounded-lg border-2 transition-all hover:shadow-lg relative ${entry.isCaptured ? (darkMode ? 'bg-green-900/30 border-green-500' : 'bg-green-50 border-green-400') : (darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300')}`}>
                       <button
                         onClick={() => removeFromPokedex(entry.species)}
-                        className={`absolute top-1 right-1 p-1 rounded-full transition-all hover:scale-110 ${darkMode ? 'bg-red-900/50 text-red-400 hover:bg-red-800' : 'bg-red-100 text-red-600 hover:bg-red-200'}`}
+                        className={`absolute top-1 right-1 p-0.5 sm:p-1 rounded-full transition-all hover:scale-110 ${darkMode ? 'bg-red-900/50 text-red-400 hover:bg-red-800' : 'bg-red-100 text-red-600 hover:bg-red-200'}`}
                         title="Remover da Pokédex"
                       >
-                        <Trash2 size={14} />
+                        <Trash2 size={12} className="sm:w-[14px] sm:h-[14px]" />
                       </button>
-                      <div className="flex flex-col items-center gap-2">
+                      <div className="flex flex-col items-center gap-1 sm:gap-2">
                         <button
                           onClick={() => !entry.isCaptured && openCaptureModal(entry.species)}
-                          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${entry.isCaptured ? 'cursor-default' : 'hover:scale-110 cursor-pointer'}`}
+                          className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all ${entry.isCaptured ? 'cursor-default' : 'hover:scale-110 cursor-pointer'}`}
                           title={entry.isCaptured ? 'Capturado' : 'Capturar Pokémon'}
                         >
                           <img
                             src="/pokeball-icon.png"
                             alt="Pokébola"
-                            className={`w-8 h-8 ${!entry.isCaptured ? 'grayscale opacity-50' : ''}`}
+                            className={`w-6 h-6 sm:w-8 sm:h-8 ${!entry.isCaptured ? 'grayscale opacity-50' : ''}`}
                           />
                         </button>
                         <button
@@ -26337,12 +26476,14 @@ function App() {
                             setSelectedPokedexEntry({ ...entry, fullData })
                             setShowPokedexDetailModal(true)
                           }}
-                          className={`font-bold text-sm text-center hover:underline ${darkMode ? 'text-white' : 'text-gray-800'}`}
+                          className={`font-bold text-xs sm:text-sm text-center hover:underline truncate max-w-full px-1 ${darkMode ? 'text-white' : 'text-gray-800'}`}
+                          title={entry.species}
                         >
                           {entry.species}
                         </button>
-                        <p className={`text-xs ${entry.isCaptured ? (darkMode ? 'text-green-400' : 'text-green-600') : (darkMode ? 'text-gray-400' : 'text-gray-500')}`}>
-                          {entry.isCaptured ? '✓ Capturado' : '○ Escaneado'}
+                        <p className={`text-[10px] sm:text-xs ${entry.isCaptured ? (darkMode ? 'text-green-400' : 'text-green-600') : (darkMode ? 'text-gray-400' : 'text-gray-500')}`}>
+                          <span className="hidden xs:inline">{entry.isCaptured ? '✓ Capturado' : '○ Escaneado'}</span>
+                          <span className="xs:hidden">{entry.isCaptured ? '✓' : '○'}</span>
                         </p>
                       </div>
                     </div>
@@ -26355,86 +26496,86 @@ function App() {
 
         {/* MODAL DE DETALHES DA POKÉDEX */}
         {showPokedexDetailModal && selectedPokedexEntry && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPokedexDetailModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowPokedexDetailModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-6 rounded-2xl shadow-2xl max-w-sm sm:max-w-lg md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-3 sm:mb-4 md:mb-6">
+                <h3 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} truncate pr-2`}>
                   {selectedPokedexEntry.fullData ? `#${String(selectedPokedexEntry.fullData.dexNumber).padStart(3, '0')} - ` : ''}{selectedPokedexEntry.species}
                 </h3>
                 <button onClick={() => setShowPokedexDetailModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                  <X size={24} />
+                  <X size={20} className="sm:w-6 sm:h-6" />
                 </button>
               </div>
 
               {selectedPokedexEntry.fullData ? (
-                <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                  <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className={`p-2 sm:p-4 md:p-6 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <div className="grid grid-cols-2 gap-2 mb-3 sm:mb-4">
                     <div>
-                      <h4 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Altura</h4>
-                      <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{selectedPokedexEntry.fullData.altura}m</p>
+                      <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Altura</h4>
+                      <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedPokedexEntry.fullData.altura}m</p>
                     </div>
                     <div>
-                      <h4 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Peso</h4>
-                      <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{selectedPokedexEntry.fullData.peso}kg</p>
+                      <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Peso</h4>
+                      <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedPokedexEntry.fullData.peso}kg</p>
                     </div>
                   </div>
 
-                  <div className="mb-4">
-                    <h4 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Tipos</h4>
-                    <div className="flex gap-2">
+                  <div className="mb-3 sm:mb-4">
+                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Tipos</h4>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {selectedPokedexEntry.fullData.tipos.map((tipo, i) => (
-                        <span key={i} className={`px-3 py-1 rounded-full text-sm font-semibold ${darkMode ? 'bg-blue-600 text-white' : 'bg-blue-200 text-blue-800'}`}>
+                        <span key={i} className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold ${darkMode ? 'bg-blue-600 text-white' : 'bg-blue-200 text-blue-800'}`}>
                           {tipo}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  <div className="mb-4">
-                    <h4 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Habitats</h4>
-                    <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
+                  <div className="mb-3 sm:mb-4">
+                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Habitats</h4>
+                    <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       {selectedPokedexEntry.fullData.habitats.join(', ')}
                     </p>
                   </div>
 
-                  <div className="mb-4">
-                    <h4 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Catch Rate</h4>
-                    <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{selectedPokedexEntry.fullData.catchRate}</p>
+                  <div className="mb-3 sm:mb-4">
+                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Catch Rate</h4>
+                    <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedPokedexEntry.fullData.catchRate}</p>
                   </div>
 
-                  <div className="mb-4">
-                    <h4 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Experiência Base</h4>
-                    <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{selectedPokedexEntry.fullData.baseExp}</p>
+                  <div className="mb-3 sm:mb-4">
+                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Experiência Base</h4>
+                    <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedPokedexEntry.fullData.baseExp}</p>
                   </div>
 
-                  <div className="mb-4">
-                    <h4 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Status Base</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
+                  <div className="mb-3 sm:mb-4">
+                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Status Base</h4>
+                    <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
+                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
                         <span className="font-semibold">Saúde:</span> {selectedPokedexEntry.fullData.statusBasais.saude}
                       </div>
-                      <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
+                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
                         <span className="font-semibold">Ataque:</span> {selectedPokedexEntry.fullData.statusBasais.ataque}
                       </div>
-                      <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
+                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
                         <span className="font-semibold">Defesa:</span> {selectedPokedexEntry.fullData.statusBasais.defesa}
                       </div>
-                      <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
+                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
                         <span className="font-semibold">Atq. Esp.:</span> {selectedPokedexEntry.fullData.statusBasais.ataqueEspecial}
                       </div>
-                      <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
+                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
                         <span className="font-semibold">Def. Esp.:</span> {selectedPokedexEntry.fullData.statusBasais.defesaEspecial}
                       </div>
-                      <div className={`p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
+                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
                         <span className="font-semibold">Velocidade:</span> {selectedPokedexEntry.fullData.statusBasais.velocidade}
                       </div>
                     </div>
                   </div>
 
                   {selectedPokedexEntry.fullData.evolucao && (
-                    <div className="mb-4">
-                      <h4 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Evolução</h4>
-                      <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
+                    <div className="mb-3 sm:mb-4">
+                      <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Evolução</h4>
+                      <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                         Evolui para {fullPokedexData.find(p => p.dexNumber === selectedPokedexEntry.fullData.evolucao)?.nome || '?'}
                         {selectedPokedexEntry.fullData.evolucaoNivel && ` no nível ${selectedPokedexEntry.fullData.evolucaoNivel}`}
                         {selectedPokedexEntry.fullData.evolucaoItem && ` usando ${selectedPokedexEntry.fullData.evolucaoItem}`}
@@ -26442,9 +26583,9 @@ function App() {
                     </div>
                   )}
 
-                  <div className="mb-4">
-                    <h4 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Status</h4>
-                    <p className={`font-semibold ${selectedPokedexEntry.isCaptured ? (darkMode ? 'text-green-400' : 'text-green-600') : (darkMode ? 'text-gray-400' : 'text-gray-500')}`}>
+                  <div className="mb-3 sm:mb-4">
+                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Status</h4>
+                    <p className={`font-semibold text-xs sm:text-base ${selectedPokedexEntry.isCaptured ? (darkMode ? 'text-green-400' : 'text-green-600') : (darkMode ? 'text-gray-400' : 'text-gray-500')}`}>
                       {selectedPokedexEntry.isCaptured ? '✓ Capturado' : '○ Escaneado'}
                     </p>
                   </div>
@@ -26455,15 +26596,15 @@ function App() {
                         setShowPokedexDetailModal(false)
                         openCaptureModal(selectedPokedexEntry.species)
                       }}
-                      className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 font-semibold mt-4"
+                      className="w-full bg-green-500 text-white py-2 sm:py-2.5 md:py-3 rounded-lg hover:bg-green-600 font-semibold mt-2 sm:mt-3 md:mt-4 text-sm sm:text-base"
                     >
                       Capturar este Pokémon
                     </button>
                   )}
                 </div>
               ) : (
-                <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                  <p className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <div className={`p-2 sm:p-4 md:p-6 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <p className={`text-center text-xs sm:text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                     Carregando informações...
                   </p>
                 </div>
@@ -26475,9 +26616,9 @@ function App() {
         {/* MODAL DE CAPTURA */}
         {showCaptureModal && pokemonToCapture && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowCaptureModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Capturar {pokemonToCapture}</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Capturar {pokemonToCapture}</h3>
                 <button onClick={() => setShowCaptureModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
                   <X size={24} />
                 </button>
@@ -26525,9 +26666,9 @@ function App() {
         {/* MODAL DE DADOS EXÓTICOS */}
         {showExoticDataModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Dados do Pokémon Exótico: {pokemonForm.exoticSpecies}
                 </h3>
                 <button onClick={() => setShowExoticDataModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -26536,7 +26677,7 @@ function App() {
               </div>
 
               <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   <div>
                     <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Número da Pokédex</label>
                     <input type="number" value={exoticDataForm.dexNumber} onChange={(e) => setExoticDataForm({...exoticDataForm, dexNumber: e.target.value})} className={`w-full px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
@@ -26547,7 +26688,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   <div>
                     <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Altura (m) *</label>
                     <input type="number" step="0.1" value={exoticDataForm.altura} onChange={(e) => setExoticDataForm({...exoticDataForm, altura: e.target.value})} className={`w-full px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
@@ -26613,7 +26754,7 @@ function App() {
                   <button onClick={() => setExoticDataForm({...exoticDataForm, habitats: [...exoticDataForm.habitats, '']})} className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 text-sm"><Plus size={16} className="inline" /> Adicionar Habitat</button>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   <div>
                     <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Catch Rate</label>
                     <input type="number" value={exoticDataForm.catchRate} onChange={(e) => setExoticDataForm({...exoticDataForm, catchRate: e.target.value})} className={`w-full px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`} />
@@ -26690,11 +26831,11 @@ function App() {
         {/* MODAL DE CONFIGURAÇÃO DE POKÉMON EXÓTICO */}
         {showExoticConfigModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowExoticConfigModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Configuração de Pokémon Exótico
                   </h3>
                   <button onClick={() => {
@@ -26774,13 +26915,13 @@ function App() {
 
                 {/* Edit Form - Only show when species is selected */}
                 {selectedExoticConfig && (
-                  <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <div className={`p-3 sm:p-5 md:p-6 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                     <h4 className={`text-lg font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                       Editando: {selectedExoticConfig}
                     </h4>
 
                     {/* Basic Info */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-4">
                       <div>
                         <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Número da Dex</label>
                         <input type="number" value={exoticConfigForm.dexNumber} onChange={(e) => setExoticConfigForm({...exoticConfigForm, dexNumber: e.target.value})} placeholder="000" className={`w-full px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'border-gray-300'}`} />
@@ -26859,7 +27000,7 @@ function App() {
                     </div>
 
                     {/* Evolution Info */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-4">
                       <div>
                         <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Nível Mínimo para Captura</label>
                         <input type="number" value={exoticConfigForm.minimoLevel} onChange={(e) => setExoticConfigForm({...exoticConfigForm, minimoLevel: e.target.value})} placeholder="5" className={`w-full px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'border-gray-300'}`} />
@@ -26874,7 +27015,7 @@ function App() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                       <div>
                         <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Evolução De</label>
                         <input type="text" value={exoticConfigForm.evolucaoDe} onChange={(e) => setExoticConfigForm({...exoticConfigForm, evolucaoDe: e.target.value})} placeholder="Nome do pokémon anterior" className={`w-full px-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'border-gray-300'}`} />
@@ -26923,9 +27064,9 @@ function App() {
             setSelectedScanPokemon(null)
           }}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Escanear Pokémon
                   </h3>
                   <button onClick={() => {
@@ -26951,7 +27092,7 @@ function App() {
                           setSelectedScanPokemon(null)
                         }}
                         placeholder="Pesquisar espécie..."
-                        className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                        className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       />
                       {scanSearch && !selectedScanPokemon && (
                         <div className={`absolute z-10 w-full mt-1 max-h-60 overflow-y-auto rounded-lg shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
@@ -27034,33 +27175,34 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Mochila</h2>
-              <div className="flex gap-2">
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Mochila</h2>
+              <div className="flex gap-2 items-center">
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Mochila' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Mochila' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:py-5 md:py-6">
           {/* Pokémoedas */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
-            <div className="flex justify-between items-center">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémoedas</h3>
-              <div className="flex items-center gap-3">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-4 sm:mb-5 md:mb-6`}>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémoedas</h3>
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                 {/* Botão Pokecaixinha */}
                 <button
                   onClick={() => setShowPokecaixinhaModal(true)}
-                  className="flex items-center justify-center p-2 bg-gray-300 hover:bg-gray-400 rounded-lg shadow-lg transition-all"
+                  className="flex items-center justify-center p-1.5 sm:p-2 bg-gray-300 hover:bg-gray-400 rounded-lg shadow-lg transition-all"
                   title="Pokecaixinha - Depositar"
                 >
-                  <img src="/pokecofrinho.png" alt="Pokecaixinha" className="w-8 h-8" />
+                  <img src="/pokecofrinho.png" alt="Pokecaixinha" className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
                 </button>
 
                 {/* Botão Dia do Saque */}
@@ -27081,15 +27223,15 @@ function App() {
                       alert('A Pokecaixinha está vazia!')
                     }
                   }}
-                  className="flex items-center justify-center p-2 bg-gray-300 hover:bg-gray-400 rounded-lg shadow-lg transition-all"
+                  className="flex items-center justify-center p-1.5 sm:p-2 bg-gray-300 hover:bg-gray-400 rounded-lg shadow-lg transition-all"
                   title="Dia do Saque - Retirar tudo"
                 >
-                  <img src="/pokecofrinhoquebrado.png" alt="Dia do Saque" className="w-8 h-8" />
+                  <img src="/pokecofrinhoquebrado.png" alt="Dia do Saque" className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
                 </button>
 
                 <button
                   onClick={() => setShowPokemonedasModal(true)}
-                  className={`text-4xl font-bold ${darkMode ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-600 hover:text-yellow-700'} transition-colors cursor-pointer`}
+                  className={`text-2xl sm:text-3xl md:text-4xl font-bold ${darkMode ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-600 hover:text-yellow-700'} transition-colors cursor-pointer`}
                   title="Clique para editar Pokémoedas"
                 >
                   ₽{pokemonedas.toLocaleString()}
@@ -27099,12 +27241,12 @@ function App() {
 
             {/* Saldo da Pokecaixinha */}
             {pokecaixinha > 0 && (
-              <div className="mt-3 pt-3 border-t border-gray-600">
+              <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-600">
                 <div className="flex items-center justify-between">
-                  <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <span className={`text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                     💰 Pokecaixinha:
                   </span>
-                  <span className={`text-lg font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
+                  <span className={`text-base sm:text-lg font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
                     ₽{pokecaixinha.toLocaleString()}
                   </span>
                 </div>
@@ -27113,10 +27255,10 @@ function App() {
           </div>
 
           {/* Itens Chave */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
-            <div className="flex justify-between items-center mb-4">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Itens Chave ({keyItems.length + pokeovoList.length})</h3>
-              <div className="flex gap-3">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-4 sm:mb-5 md:mb-6`}>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Itens Chave ({keyItems.length + pokeovoList.length})</h3>
+              <div className="flex flex-wrap gap-2">
                 {currentUser?.type === 'treinador' && (
                   <>
                     <button
@@ -27124,22 +27266,22 @@ function App() {
                       className="p-0 hover:opacity-80 transition-opacity flex items-center justify-center"
                       title="Será que veio shiny?"
                     >
-                      <img src="/seraqueveioshiny.png" alt="Shiny Check" className="w-10 h-10" />
+                      <img src="/seraqueveioshiny.png" alt="Shiny Check" className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10" />
                     </button>
                     <button
                       onClick={handleOpenSedexModal}
-                      className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-6 py-2 rounded-lg hover:from-green-700 hover:to-emerald-800 font-semibold flex items-center gap-2"
+                      className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-2 py-1.5 sm:px-3 sm:py-2 md:px-5 md:py-2 rounded-lg hover:from-green-700 hover:to-emerald-800 font-semibold flex items-center gap-1 sm:gap-2 text-xs sm:text-sm md:text-base"
                     >
-                      📦 Sedex Item
+                      📦 <span className="hidden xs:inline">Sedex Item</span><span className="xs:hidden">Sedex</span>
                     </button>
                   </>
                 )}
                 <button
                   onClick={() => setShowAddKeyItemModal(true)}
-                  className="bg-gradient-to-r from-blue-600 to-purple-700 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-800 font-semibold flex items-center gap-2"
+                  className="bg-gradient-to-r from-blue-600 to-purple-700 text-white px-2 py-1.5 sm:px-3 sm:py-2 md:px-5 md:py-2 rounded-lg hover:from-blue-700 hover:to-purple-800 font-semibold flex items-center gap-1 sm:gap-2 text-xs sm:text-sm md:text-base"
                 >
-                  <Plus size={20} />
-                  Adicionar Item
+                  <Plus size={16} className="sm:w-[18px] sm:h-[18px] md:w-5 md:h-5" />
+                  <span className="hidden xs:inline">Adicionar Item</span><span className="xs:hidden">Add</span>
                 </button>
               </div>
             </div>
@@ -27159,28 +27301,28 @@ function App() {
               const emptySlots = ITEMS_PER_PAGE - pageItems.length
 
               return allKeyItems.length === 0 ? (
-                <div className={`text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                  <p>Nenhum item chave na mochila</p>
+                <div className={`text-center py-4 sm:py-5 md:py-6 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  <p className="text-sm sm:text-base">Nenhum item chave na mochila</p>
                 </div>
               ) : (
                 <>
-                  <div className="grid grid-cols-8 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 sm:gap-3">
                     {pageItems.map((entry, idx) => {
                       if (entry.type === 'pokeovo') {
                         const pokeovo = entry.data
                         return (
                           <div
                             key={`pokeovo-${pokeovo.id}`}
-                            className={`flex flex-col items-center p-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-pink-500' : 'bg-pink-50 border-pink-400'} relative group`}
+                            className={`flex flex-col items-center p-1.5 sm:p-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-pink-500' : 'bg-pink-50 border-pink-400'} relative group`}
                           >
                             <button
                               onClick={() => setPokeovoList(pokeovoList.filter(p => p.id !== pokeovo.id))}
-                              className="absolute top-1 right-1 text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                              className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
                               title="Excluir Pokeovo"
                             >
-                              <Trash2 size={14} />
+                              <Trash2 size={12} className="sm:w-[14px] sm:h-[14px]" />
                             </button>
-                            <div className="w-12 h-12 mb-1 flex items-center justify-center">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 mb-1 flex items-center justify-center">
                               <img
                                 src={POKEOVO_IMAGES[pokeovo.imageIndex]}
                                 alt={pokeovo.displayName}
@@ -27188,12 +27330,12 @@ function App() {
                                 onError={(e) => { e.target.style.display = 'none' }}
                               />
                             </div>
-                            <h4 className={`font-bold text-xs text-center mb-1 ${darkMode ? 'text-white' : 'text-gray-800'} truncate w-full`}>
+                            <h4 className={`font-bold text-[10px] sm:text-xs text-center mb-1 ${darkMode ? 'text-white' : 'text-gray-800'} truncate w-full`} title={pokeovo.displayName}>
                               {pokeovo.displayName}
                             </h4>
                             <button
                               onClick={() => handleHatchEgg(pokeovo)}
-                              className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white px-2 py-0.5 rounded text-xs font-semibold hover:from-yellow-600 hover:to-orange-700"
+                              className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white px-1.5 py-0.5 sm:px-2 rounded text-[10px] sm:text-xs font-semibold hover:from-yellow-600 hover:to-orange-700"
                             >
                               Chocar
                             </button>
@@ -27204,14 +27346,14 @@ function App() {
                         return (
                           <div
                             key={`shiny-charm-${idx}`}
-                            className={`flex flex-col items-center p-2 rounded-lg border-2 ${darkMode ? 'bg-gradient-to-br from-yellow-900 to-amber-800 border-yellow-600' : 'bg-gradient-to-br from-yellow-100 to-amber-100 border-yellow-400'} relative group`}
+                            className={`flex flex-col items-center p-1.5 sm:p-2 rounded-lg border-2 ${darkMode ? 'bg-gradient-to-br from-yellow-900 to-amber-800 border-yellow-600' : 'bg-gradient-to-br from-yellow-100 to-amber-100 border-yellow-400'} relative group`}
                           >
                             <button
                               onClick={() => handleOpenDeleteConfirm(item.name, 'keyItem')}
-                              className="absolute top-1 right-1 text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                              className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
                               title="Excluir item"
                             >
-                              <Trash2 size={14} />
+                              <Trash2 size={12} className="sm:w-[14px] sm:h-[14px]" />
                             </button>
                             <button
                               onClick={() => {
@@ -27219,12 +27361,12 @@ function App() {
                                 setShinyCharmLuckyNumber(item.luckyNumber?.toString() || '')
                                 setShowEditShinyCharmModal(true)
                               }}
-                              className="absolute top-1 left-1 text-blue-500 hover:text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                              className="absolute top-0.5 left-0.5 sm:top-1 sm:left-1 text-blue-500 hover:text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"
                               title="Editar número da sorte"
                             >
-                              <Pencil size={14} />
+                              <Pencil size={12} className="sm:w-[14px] sm:h-[14px]" />
                             </button>
-                            <div className="w-12 h-12 mb-1 flex items-center justify-center">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 mb-1 flex items-center justify-center">
                               <img
                                 src="/pokeballs/shinycharm.png"
                                 alt={item.name}
@@ -27232,10 +27374,10 @@ function App() {
                                 onError={(e) => { e.target.style.display = 'none' }}
                               />
                             </div>
-                            <h4 className={`font-bold text-xs text-center mb-0.5 ${darkMode ? 'text-yellow-300' : 'text-yellow-700'} truncate w-full`}>
+                            <h4 className={`font-bold text-[10px] sm:text-xs text-center mb-0.5 ${darkMode ? 'text-yellow-300' : 'text-yellow-700'} truncate w-full`} title={item.name}>
                               ✨ {item.name}
                             </h4>
-                            <span className={`text-xs ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+                            <span className={`text-[10px] sm:text-xs ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
                               Nº: {item.luckyNumber}
                             </span>
                           </div>
@@ -27245,16 +27387,16 @@ function App() {
                         return (
                           <div
                             key={`item-${item.name}-${idx}`}
-                            className={`flex flex-col items-center p-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'} relative group`}
+                            className={`flex flex-col items-center p-1.5 sm:p-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'} relative group`}
                           >
                             <button
                               onClick={() => handleOpenDeleteConfirm(item.name, 'keyItem')}
-                              className="absolute top-1 right-1 text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                              className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
                               title="Excluir item"
                             >
-                              <Trash2 size={14} />
+                              <Trash2 size={12} className="sm:w-[14px] sm:h-[14px]" />
                             </button>
-                            <div className="w-12 h-12 mb-1 flex items-center justify-center">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 mb-1 flex items-center justify-center">
                               <img
                                 src={getItemImage(item.name)}
                                 alt={item.name}
@@ -27262,7 +27404,7 @@ function App() {
                                 onError={(e) => { e.target.style.display = 'none' }}
                               />
                             </div>
-                            <h4 className={`font-bold text-xs text-center mb-1 ${darkMode ? 'text-white' : 'text-gray-800'} truncate w-full`}>
+                            <h4 className={`font-bold text-[10px] sm:text-xs text-center mb-1 ${darkMode ? 'text-white' : 'text-gray-800'} truncate w-full`} title={item.name}>
                               {item.name}
                             </h4>
                             <div className="flex items-center gap-0.5">
@@ -27271,11 +27413,11 @@ function App() {
                                 className={`p-0.5 rounded ${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-300 hover:bg-gray-400'}`}
                                 title="Diminuir quantidade"
                               >
-                                <Minus size={12} />
+                                <Minus size={10} className="sm:w-3 sm:h-3" />
                               </button>
                               <span
                                 onClick={() => handleOpenEditKeyItemQuantity(item)}
-                                className={`font-bold text-sm cursor-pointer ${darkMode ? 'text-white' : 'text-gray-800'} px-1 rounded ${darkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-200'} min-w-[28px] text-center`}
+                                className={`font-bold text-xs sm:text-sm cursor-pointer ${darkMode ? 'text-white' : 'text-gray-800'} px-1 rounded ${darkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-200'} min-w-[24px] sm:min-w-[28px] text-center`}
                                 title="Clique para editar quantidade"
                               >
                                 {item.quantity}
@@ -27285,7 +27427,7 @@ function App() {
                                 className={`p-0.5 rounded ${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-300 hover:bg-gray-400'}`}
                                 title="Aumentar quantidade"
                               >
-                                <Plus size={12} />
+                                <Plus size={10} className="sm:w-3 sm:h-3" />
                               </button>
                             </div>
                           </div>
@@ -27296,27 +27438,27 @@ function App() {
                     {Array.from({ length: emptySlots }).map((_, idx) => (
                       <div
                         key={`empty-${idx}`}
-                        className={`flex flex-col items-center p-2 rounded-lg border-2 border-dashed ${darkMode ? 'border-gray-600' : 'border-gray-300'} min-h-[120px]`}
+                        className={`flex flex-col items-center p-1.5 sm:p-2 rounded-lg border-2 border-dashed ${darkMode ? 'border-gray-600' : 'border-gray-300'} min-h-[100px] sm:min-h-[120px]`}
                       />
                     ))}
                   </div>
                   {/* Paginação */}
                   {totalPages > 1 && (
-                    <div className="flex justify-center items-center gap-3 mt-4">
+                    <div className="flex justify-center items-center gap-2 sm:gap-3 mt-3 sm:mt-4">
                       <button
                         onClick={() => setKeyItemsPage(Math.max(0, currentPage - 1))}
                         disabled={currentPage === 0}
-                        className={`px-3 py-1 rounded font-semibold ${currentPage === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:opacity-80'} ${darkMode ? 'bg-gray-600 text-white' : 'bg-gray-300 text-gray-800'}`}
+                        className={`px-2 py-1 sm:px-3 rounded font-semibold text-sm sm:text-base ${currentPage === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:opacity-80'} ${darkMode ? 'bg-gray-600 text-white' : 'bg-gray-300 text-gray-800'}`}
                       >
                         ◀
                       </button>
-                      <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                      <span className={`font-bold text-sm sm:text-base ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                         {currentPage + 1} / {totalPages}
                       </span>
                       <button
                         onClick={() => setKeyItemsPage(Math.min(totalPages - 1, currentPage + 1))}
                         disabled={currentPage === totalPages - 1}
-                        className={`px-3 py-1 rounded font-semibold ${currentPage === totalPages - 1 ? 'opacity-40 cursor-not-allowed' : 'hover:opacity-80'} ${darkMode ? 'bg-gray-600 text-white' : 'bg-gray-300 text-gray-800'}`}
+                        className={`px-2 py-1 sm:px-3 rounded font-semibold text-sm sm:text-base ${currentPage === totalPages - 1 ? 'opacity-40 cursor-not-allowed' : 'hover:opacity-80'} ${darkMode ? 'bg-gray-600 text-white' : 'bg-gray-300 text-gray-800'}`}
                       >
                         ▶
                       </button>
@@ -27328,30 +27470,30 @@ function App() {
           </div>
 
           {/* Seção Fotografias */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
-            <div className="flex justify-between items-center mb-4">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Fotografias</h3>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-4 sm:mb-5 md:mb-6`}>
+            <div className="flex justify-between items-center mb-3 sm:mb-4">
+              <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Fotografias</h3>
               <button onClick={() => setShowFotografiaModal(true)}
-                className="p-2 rounded-lg transition-all hover:opacity-70"
+                className="p-1.5 sm:p-2 rounded-lg transition-all hover:opacity-70"
                 title="Revelar foto">
-                <img src="/revelarpokemon.png" alt="Revelar foto" className="w-8 h-8 object-contain" />
+                <img src="/revelarpokemon.png" alt="Revelar foto" className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain" />
               </button>
             </div>
             {fotografias.length === 0 ? (
-              <p className={`text-center text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Nenhuma fotografia revelada.</p>
+              <p className={`text-center text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Nenhuma fotografia revelada.</p>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
                 {fotografias.map((foto) => (
                   <div key={foto.id} className={`rounded-xl overflow-hidden shadow-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                     <div className="relative" style={{ aspectRatio: '4/3' }}>
                       <img src={foto.url} alt="Fotografia" className="absolute inset-0 w-full h-full object-cover" style={{ padding: '6%', paddingBottom: '18%' }} />
                       <img src="/fotografiatemplate.png" alt="" className="absolute inset-0 w-full h-full object-fill pointer-events-none" />
                     </div>
-                    <div className={`px-2 py-1 text-center text-sm font-bold ${darkMode ? 'text-yellow-300' : 'text-yellow-700'}`}>
-                      {foto.nome && <span className={`block ${darkMode ? 'text-white' : 'text-gray-800'}`}>{foto.nome}</span>}
+                    <div className={`px-1 py-0.5 sm:px-2 sm:py-1 text-center text-xs sm:text-sm font-bold ${darkMode ? 'text-yellow-300' : 'text-yellow-700'}`}>
+                      {foto.nome && <span className={`block ${darkMode ? 'text-white' : 'text-gray-800'} truncate`} title={foto.nome}>{foto.nome}</span>}
                       ₽{foto.preco}
                     </div>
-                    <div className="flex justify-center gap-2 pb-2">
+                    <div className="flex justify-center gap-1 sm:gap-2 pb-1 sm:pb-2">
                       <button onClick={() => {
                         setFotografiaNome(foto.nome || '')
                         setFotografiaUrl(foto.url)
@@ -27397,14 +27539,14 @@ function App() {
             if (!hasCriarPokebola && !hasRepararPokebola) return null
 
             return (
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>🔧 Pokéoficina</h3>
-                <div className={`p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'}`}>
-                  <div className="flex flex-wrap gap-4 mb-4">
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-4 sm:mb-5 md:mb-6`}>
+                <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-3 sm:mb-4`}>🔧 Pokéoficina</h3>
+                <div className={`p-2 sm:p-4 md:p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'}`}>
+                  <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-4">
                     {hasCriarPokebola && (
                       <button
                         onClick={handleCriarPokebola}
-                        className="flex-1 min-w-[200px] bg-gradient-to-r from-blue-600 to-cyan-700 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-cyan-800 font-semibold shadow-lg transition-all"
+                        className="flex-1 min-w-[160px] sm:min-w-[200px] bg-gradient-to-r from-blue-600 to-cyan-700 text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-lg hover:from-blue-700 hover:to-cyan-800 font-semibold shadow-lg transition-all text-sm sm:text-base"
                       >
                         🎲 Criar Pokébola
                       </button>
@@ -27412,14 +27554,14 @@ function App() {
                     {hasRepararPokebola && (
                       <button
                         onClick={handleRepararPokebola}
-                        className="flex-1 min-w-[200px] bg-gradient-to-r from-orange-600 to-red-700 text-white px-6 py-3 rounded-lg hover:from-orange-700 hover:to-red-800 font-semibold shadow-lg transition-all"
+                        className="flex-1 min-w-[160px] sm:min-w-[200px] bg-gradient-to-r from-orange-600 to-red-700 text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-lg hover:from-orange-700 hover:to-red-800 font-semibold shadow-lg transition-all text-sm sm:text-base"
                       >
                         🔧 Reparar Pokébola
                       </button>
                     )}
                   </div>
-                  <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
-                    <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  <div className={`p-2 sm:p-3 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
+                    <p className={`text-xs sm:text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       {hasCriarPokebola && (
                         <>
                           <strong>Criar Pokébola:</strong> Rola 1d20 + Mod. Velocidade. Resultado 1-14: Pokeball | 15-19: Greatball | 20+: Ultraball
@@ -27439,40 +27581,40 @@ function App() {
           })()}
 
           {/* Itens Customizados */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-            <div className="flex justify-between items-center mb-4">
-              <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Itens Customizados ({customItems.length})</h3>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Itens Customizados ({customItems.length})</h3>
               <button
                 onClick={() => setShowAddCustomItemModal(true)}
-                className="bg-gradient-to-r from-green-600 to-teal-700 text-white px-6 py-2 rounded-lg hover:from-green-700 hover:to-teal-800 font-semibold flex items-center gap-2"
+                className="bg-gradient-to-r from-green-600 to-teal-700 text-white px-2 py-1.5 sm:px-3 sm:py-2 md:px-5 md:py-2 rounded-lg hover:from-green-700 hover:to-teal-800 font-semibold flex items-center gap-1 sm:gap-2 text-xs sm:text-sm md:text-base"
               >
-                <Plus size={20} />
-                Criar Item
+                <Plus size={16} className="sm:w-[18px] sm:h-[18px] md:w-5 md:h-5" />
+                <span className="hidden xs:inline">Criar Item</span><span className="xs:hidden">Criar</span>
               </button>
             </div>
 
             {customItems.length === 0 ? (
-              <div className={`text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                <p>Nenhum item customizado criado</p>
+              <div className={`text-center py-4 sm:py-5 md:py-6 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                <p className="text-sm sm:text-base">Nenhum item customizado criado</p>
               </div>
             ) : (
-              <div className="overflow-x-auto">
-                <table className={`w-full ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              <div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0">
+                <table className={`w-full min-w-[600px] ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   <thead>
                     <tr className={`border-b-2 ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
-                      <th className="p-3 text-left font-bold">Nome</th>
-                      <th className="p-3 text-center font-bold">Quantidade</th>
-                      <th className="p-3 text-left font-bold">Descrição</th>
-                      <th className="p-3 text-center font-bold">Bolso</th>
-                      <th className="p-3 text-center font-bold">Editar</th>
-                      <th className="p-3 text-center font-bold">Excluir</th>
+                      <th className="p-2 sm:p-3 text-left font-bold text-xs sm:text-sm">Nome</th>
+                      <th className="p-2 sm:p-3 text-center font-bold text-xs sm:text-sm">Qtd</th>
+                      <th className="p-2 sm:p-3 text-left font-bold text-xs sm:text-sm">Descrição</th>
+                      <th className="p-2 sm:p-3 text-center font-bold text-xs sm:text-sm">Bolso</th>
+                      <th className="p-2 sm:p-3 text-center font-bold text-xs sm:text-sm">Editar</th>
+                      <th className="p-2 sm:p-3 text-center font-bold text-xs sm:text-sm">Excluir</th>
                     </tr>
                   </thead>
                   <tbody>
                     {customItems.map((item, idx) => (
                       <tr key={idx} className={`border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                        <td className="p-3">
-                          <div className="flex items-center gap-2">
+                        <td className="p-2 sm:p-3">
+                          <div className="flex items-center gap-1 sm:gap-2">
                             <button
                               onClick={() => {
                                 setSelectedItemToGive(item)
@@ -27481,19 +27623,19 @@ function App() {
                               className={`${darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'}`}
                               title="Dar item para Pokémon"
                             >
-                              <ArrowBigLeftDash size={20} />
+                              <ArrowBigLeftDash size={16} className="sm:w-5 sm:h-5" />
                             </button>
-                            <span className="font-semibold">{item.name}</span>
+                            <span className="font-semibold text-xs sm:text-sm truncate">{item.name}</span>
                           </div>
                         </td>
-                        <td className="p-3 text-center">
-                          <span className={`font-bold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{item.quantity}</span>
+                        <td className="p-2 sm:p-3 text-center">
+                          <span className={`font-bold text-xs sm:text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{item.quantity}</span>
                         </td>
-                        <td className="p-3">
-                          <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{item.description}</span>
+                        <td className="p-2 sm:p-3">
+                          <span className={`text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} line-clamp-2`}>{item.description}</span>
                         </td>
-                        <td className="p-3 text-center">
-                          <div className="flex flex-col items-center gap-1">
+                        <td className="p-2 sm:p-3 text-center">
+                          <div className="flex flex-col items-center gap-0.5 sm:gap-1">
                             <button
                               onClick={() => {
                                 if (idx === 0) return
@@ -27504,7 +27646,7 @@ function App() {
                                 setCustomItems(newItems)
                               }}
                               disabled={idx === 0}
-                              className={`text-sm font-bold ${idx === 0 ? 'text-gray-400 cursor-not-allowed' : (darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700')}`}
+                              className={`text-xs sm:text-sm font-bold ${idx === 0 ? 'text-gray-400 cursor-not-allowed' : (darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700')}`}
                               title="Mover para cima"
                             >
                               ▲
@@ -27519,29 +27661,29 @@ function App() {
                                 setCustomItems(newItems)
                               }}
                               disabled={idx === customItems.length - 1}
-                              className={`text-sm font-bold ${idx === customItems.length - 1 ? 'text-gray-400 cursor-not-allowed' : (darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700')}`}
+                              className={`text-xs sm:text-sm font-bold ${idx === customItems.length - 1 ? 'text-gray-400 cursor-not-allowed' : (darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700')}`}
                               title="Mover para baixo"
                             >
                               ▼
                             </button>
                           </div>
                         </td>
-                        <td className="p-3 text-center">
+                        <td className="p-2 sm:p-3 text-center">
                           <button
                             onClick={() => handleOpenEditCustomItem(item, idx)}
                             className={`${darkMode ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-600 hover:text-yellow-700'}`}
                             title="Editar item"
                           >
-                            <Wrench size={18} />
+                            <Wrench size={16} className="sm:w-[18px] sm:h-[18px]" />
                           </button>
                         </td>
-                        <td className="p-3 text-center">
+                        <td className="p-2 sm:p-3 text-center">
                           <button
                             onClick={() => handleOpenDeleteConfirm(idx, 'customItem')}
                             className="text-red-500 hover:text-red-600"
                             title="Excluir item"
                           >
-                            <Trash2 size={18} />
+                            <Trash2 size={16} className="sm:w-[18px] sm:h-[18px]" />
                           </button>
                         </td>
                       </tr>
@@ -27557,8 +27699,8 @@ function App() {
         {/* Modal Adicionar Item Chave */}
         {showAddKeyItemModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAddKeyItemModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Adicionar Item Chave</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Adicionar Item Chave</h3>
 
               <input
                 type="text"
@@ -27616,8 +27758,8 @@ function App() {
         {/* Modal Adicionar Item Customizado */}
         {showAddCustomItemModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAddCustomItemModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Criar Item Customizado</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Criar Item Customizado</h3>
 
               <div className="mb-4">
                 <label className={`block mb-2 font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Nome do Item</label>
@@ -27673,8 +27815,8 @@ function App() {
         {/* Modal Selecionar Espécie do Pokeovo */}
         {showPokeovoSpeciesModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPokeovoSpeciesModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Selecionar Espécie do Pokeovo</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Selecionar Espécie do Pokeovo</h3>
 
               <input
                 type="text"
@@ -27739,8 +27881,8 @@ function App() {
         {/* Modal Adicionar Shiny Charm */}
         {showShinyCharmModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowShinyCharmModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>✨ Shiny Charm</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>✨ Shiny Charm</h3>
 
               <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Insira seu número da sorte (1 a 1365):
@@ -27781,8 +27923,8 @@ function App() {
         {/* Modal Reparar Pokébola */}
         {showRepairPokeballModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowRepairPokeballModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>🔧 Reparar Pokébola</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>🔧 Reparar Pokébola</h3>
 
               <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Escolha o tipo de pokébola para reparar:
@@ -27848,8 +27990,8 @@ function App() {
         {/* Modal Editar Shiny Charm */}
         {showEditShinyCharmModal && shinyCharmToEdit && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditShinyCharmModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>✨ Editar Shiny Charm</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>✨ Editar Shiny Charm</h3>
 
               <p className={`mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Número da sorte atual: <strong>{shinyCharmToEdit.luckyNumber}</strong>
@@ -27893,8 +28035,8 @@ function App() {
         {/* Modal Sedex Item */}
         {showSedexItemModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowSedexItemModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>📦 Sedex Item</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>📦 Sedex Item</h3>
 
               <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Envie um item da sua mochila para outro treinador:
@@ -28050,8 +28192,8 @@ function App() {
         {/* Modal Chocar Ovo Misterioso */}
         {showHatchMysteryEggModal && selectedPokeovoToHatch && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowHatchMysteryEggModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Qual Pokémon está no ovo?</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full max-h-[80vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Qual Pokémon está no ovo?</h3>
 
               <input
                 type="text"
@@ -28108,8 +28250,8 @@ function App() {
         {/* Modal Editar Quantidade */}
         {showEditKeyItemQuantityModal && selectedKeyItemForEdit && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditKeyItemQuantityModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Editar Quantidade - {selectedKeyItemForEdit.name}
               </h3>
 
@@ -28145,8 +28287,8 @@ function App() {
         {/* Modal Confirmar Exclusão */}
         {showDeleteConfirmModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowDeleteConfirmModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Confirmar Exclusão</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Confirmar Exclusão</h3>
 
               <p className={`mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Tem certeza que deseja excluir este item?
@@ -28173,8 +28315,8 @@ function App() {
         {/* Modal Dar Item para Pokémon */}
         {showGiveItemModal && selectedItemToGive && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowGiveItemModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Dar Item - {selectedItemToGive.name}
               </h3>
 
@@ -28245,8 +28387,8 @@ function App() {
         {/* Modal Editar Item Customizado */}
         {showEditCustomItemModal && selectedCustomItemForEdit !== null && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditCustomItemModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Editar Item Customizado</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Editar Item Customizado</h3>
 
               <div className="mb-4">
                 <label className={`block mb-2 font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Nome do Item</label>
@@ -28308,8 +28450,8 @@ function App() {
         {/* Modal Pokémoedas */}
         {showPokemonedasModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPokemonedasModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Gerenciar Pokémoedas
               </h3>
 
@@ -28371,10 +28513,10 @@ function App() {
         {/* Modal Pokecaixinha - Depositar */}
         {showPokecaixinhaModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPokecaixinhaModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex items-center gap-3 mb-4">
                 <img src="/pokecofrinho.png" alt="Pokecaixinha" className="w-12 h-12" />
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
                   Pokecaixinha
                 </h3>
               </div>
@@ -28452,8 +28594,8 @@ function App() {
         {/* Modal Revelar Fotografia */}
         {showFotografiaModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowFotografiaModal(false); setFotografiaNome(''); setFotografiaUrl(''); setFotografiaPreco(''); setEditingFotografiaId(null) }}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-lg w-full`} onClick={e => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>{editingFotografiaId ? 'Editar Fotografia' : 'Revelar Fotografia'}</h3>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-lg w-full`} onClick={e => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>{editingFotografiaId ? 'Editar Fotografia' : 'Revelar Fotografia'}</h3>
 
               <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Nome</label>
               <input type="text" value={fotografiaNome} onChange={e => setFotografiaNome(e.target.value)}
@@ -28529,26 +28671,27 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center gap-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>PokéLoja</h2>
-                <span className={`text-xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+              <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>PokéLoja</h2>
+                <span className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
                   ₽{pokemonedas.toLocaleString()}
                 </span>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 items-center">
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Pokéloja' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Pokéloja' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
           {Object.entries(POKELOJA_DATA).map(([corredor, items]) => {
             // Filtrar itens ocultos
             const visibleItems = items.filter(item => !hiddenItems.includes(item.name))
@@ -28561,9 +28704,9 @@ function App() {
               {/* Header do Corredor */}
               <button
                 onClick={() => toggleCorredor(corredor)}
-                className={`w-full p-6 flex justify-between items-center ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-50'} transition-colors`}
+                className={`w-full p-3 sm:p-5 md:p-6 flex justify-between items-center ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-50'} transition-colors`}
               >
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {corredor}
                 </h3>
                 {expandedCorredores[corredor] ? (
@@ -28575,7 +28718,7 @@ function App() {
 
               {/* Items do Corredor */}
               {expandedCorredores[corredor] && (
-                <div className="p-6 pt-0">
+                <div className="p-3 sm:p-5 md:p-6 pt-0">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                     {visibleItems.map((item, idx) => (
                       <div
@@ -28633,7 +28776,7 @@ function App() {
         {/* Modal Descrição do Item */}
         {showItemDescriptionModal && selectedItemForDescription && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowItemDescriptionModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               {/* Imagem */}
               <div className="w-full h-32 mb-4 flex items-center justify-center">
                 <img
@@ -28643,11 +28786,11 @@ function App() {
                 />
               </div>
 
-              <h3 className={`text-2xl font-bold mb-2 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-2 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 {selectedItemForDescription.name}
               </h3>
 
-              <p className={`text-center mb-4 text-xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+              <p className={`text-center mb-4 text-lg sm:text-xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
                 ₽{(customPrices[selectedItemForDescription.name] !== undefined ? customPrices[selectedItemForDescription.name] : selectedItemForDescription.price).toLocaleString()}
               </p>
 
@@ -28682,8 +28825,8 @@ function App() {
           const totalPrice = itemPrice * buyItemQuantity
           return (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowBuyItemModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Comprar {selectedItemToBuy.name}
               </h3>
 
@@ -28710,7 +28853,7 @@ function App() {
                     min="1"
                     value={buyItemQuantity}
                     onChange={(e) => setBuyItemQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className={`flex-1 p-3 rounded-lg text-center font-bold text-xl ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-800'}`}
+                    className={`flex-1 p-3 rounded-lg text-center font-bold text-lg sm:text-xl ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-800'}`}
                   />
                   <button
                     onClick={() => setBuyItemQuantity(buyItemQuantity + 1)}
@@ -28723,7 +28866,7 @@ function App() {
 
               <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                 <p className={`text-center text-lg ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  Total: <span className={`font-bold text-2xl ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+                  Total: <span className={`font-bold text-xl sm:text-2xl ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
                     ₽{totalPrice.toLocaleString()}
                   </span>
                 </p>
@@ -28780,13 +28923,14 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Insígnias</h2>
-                <div className="flex gap-2">
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Insígnias</h2>
+                <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -28795,15 +28939,15 @@ function App() {
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
               {/* Botões de Regiões */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-8">
                 {regions.map(region => (
                   <button
                     key={region}
                     onClick={() => setSelectedRegion(region)}
-                    className={`flex items-center justify-center gap-2 px-6 py-4 rounded-lg font-bold text-lg transition-all ${
+                    className={`flex items-center justify-center gap-2 px-3 sm:px-5 md:px-6 py-4 rounded-lg font-bold text-lg transition-all ${
                       selectedRegion === region
                         ? 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-lg scale-105'
                         : `${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`
@@ -28818,7 +28962,7 @@ function App() {
               {/* Grid de Insígnias */}
               {selectedRegion && (
                 <div className="mt-8">
-                  <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Insígnias de {selectedRegion}
                   </h3>
 
@@ -28848,7 +28992,7 @@ function App() {
                         >
                           {(selectedRegion === 'Unova' ? (index !== 4 && index !== 9) : index !== 4) && (
                             <div className="flex items-center justify-center h-full">
-                              <span className="text-2xl">{collected ? '✓' : '?'}</span>
+                              <span className="text-xl sm:text-2xl">{collected ? '✓' : '?'}</span>
                             </div>
                           )}
                         </button>
@@ -28939,27 +29083,28 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Características & Talentos</h2>
-              <div className="flex gap-2">
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Características & Talentos</h2>
+              <div className="flex gap-2 items-center">
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Características & Talentos' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Características & Talentos' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6 md:py-8">
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
 
             {/* LEGENDA DE SÍMBOLOS */}
-            <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'} border ${darkMode ? 'border-gray-600' : 'border-blue-200'}`}>
-              <h3 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-300' : 'text-blue-800'}`}>Legenda de Ações</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+            <div className={`mb-6 p-3 sm:p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'} border ${darkMode ? 'border-gray-600' : 'border-blue-200'}`}>
+              <h3 className={`text-base sm:text-lg font-bold mb-3 ${darkMode ? 'text-blue-300' : 'text-blue-800'}`}>Legenda de Ações</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3 text-xs sm:text-sm">
                 <div className={`flex items-center gap-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                   <span className="font-bold text-blue-600">C</span>
                   <span>= Contínuo</span>
@@ -28993,23 +29138,23 @@ function App() {
 
             {/* CARACTERÍSTICAS */}
             <div className="mb-8">
-              <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Características de Classe</h3>
+              <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Características de Classe</h3>
 
               {/* Características Selecionadas */}
               {caracteristicasSelected.length > 0 && (
                 <div className="mb-4">
-                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Características Selecionadas ({caracteristicasSelected.length})
                   </label>
-                  <div className={`p-4 rounded-lg flex flex-wrap gap-2 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <div className={`p-3 sm:p-4 rounded-lg flex flex-wrap gap-2 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                     {caracteristicasSelected.map((carac, idx) => (
-                      <div key={idx} className={`flex items-center gap-2 px-3 py-2 rounded ${darkMode ? 'bg-purple-600 text-white' : 'bg-purple-500 text-white'}`}>
+                      <div key={idx} className={`flex items-center gap-2 px-2 py-1.5 sm:px-3 sm:py-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-purple-600 text-white' : 'bg-purple-500 text-white'}`}>
                         <span className="font-semibold">{typeof carac === 'string' ? carac : (carac.nome || 'Sem nome')}</span>
                         <button
                           onClick={() => setCaracteristicasSelected(caracteristicasSelected.filter((_, i) => i !== idx))}
                           className="hover:bg-red-500 rounded p-1"
                         >
-                          <X size={16} />
+                          <X size={14} className="sm:w-4 sm:h-4" />
                         </button>
                       </div>
                     ))}
@@ -29017,7 +29162,7 @@ function App() {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                 {(() => {
                   // Obter características das classes/subclasses do usuário
                   const userCaracteristicas = []
@@ -29031,7 +29176,7 @@ function App() {
 
                   if (userCaracteristicas.length === 0) {
                     return (
-                      <div className={`col-span-2 text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                      <div className={`col-span-2 text-center py-4 sm:py-6 md:py-8 text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                         <p>Nenhuma classe selecionada. Selecione suas classes na área "Treinador" para ver as características disponíveis.</p>
                       </div>
                     )
@@ -29058,19 +29203,19 @@ function App() {
                                 setExpandedCaracteristicas([...newExpanded, idx])
                               }
                             }}
-                            className={`flex-1 p-4 flex items-center justify-between hover:opacity-80 transition-opacity rounded-lg`}
+                            className={`flex-1 p-3 sm:p-4 flex items-center justify-between hover:opacity-80 transition-opacity rounded-lg`}
                           >
-                            <div className="flex items-center gap-3">
-                              {isExpanded ? <ChevronDown size={20} className={darkMode ? 'text-blue-400' : 'text-blue-600'} /> : <ChevronRight size={20} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
-                              <span className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>{carac.name}</span>
-                              <span className={`text-xs px-2 py-1 rounded ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'}`}>{carac.className}</span>
+                            <div className="flex items-center gap-2 sm:gap-3">
+                              {isExpanded ? <ChevronDown size={18} className={`sm:w-5 sm:h-5 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} /> : <ChevronRight size={18} className={`sm:w-5 sm:h-5 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`} />}
+                              <span className={`font-bold text-sm sm:text-base md:text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>{carac.name}</span>
+                              <span className={`text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'}`}>{carac.className}</span>
                             </div>
-                            <span className={`text-sm font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{carac.frequencia}</span>
+                            <span className={`text-xs sm:text-sm font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{carac.frequencia}</span>
                           </button>
                         </div>
                         {isExpanded && (
-                          <div className={`px-4 pb-4 border-t ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                            <div className="mt-3 space-y-2">
+                          <div className={`px-3 pb-3 sm:px-4 sm:pb-4 border-t ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                            <div className="mt-2 sm:mt-3 space-y-1 sm:space-y-2 text-xs sm:text-sm">
                               <div>
                                 <span className={`font-semibold ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>Referência: </span>
                                 <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{carac.referencia}</span>
@@ -29102,45 +29247,47 @@ function App() {
             </div>
 
             {/* BOTÕES DE TALENTOS E BOLSA */}
-            <div className="flex gap-4 mb-6 items-center">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 mb-6 items-start sm:items-center">
               <button
                 onClick={() => setShowTalentosModal(true)}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-lg font-semibold hover:opacity-90 shadow-lg"
+                className="flex items-center gap-2 px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-lg font-semibold hover:opacity-90 shadow-lg text-sm sm:text-base w-full sm:w-auto"
               >
-                <Plus size={20} />
+                <Plus size={18} className="sm:w-5 sm:h-5" />
                 <span>Talento</span>
               </button>
-              <button
-                onClick={() => setShowBolsaTalentoModal(true)}
-                className="p-3 bg-gradient-to-r from-blue-600 to-cyan-700 text-white rounded-lg font-semibold hover:opacity-90 shadow-lg"
-                title="Bolsa de Talento"
-              >
-                <Sparkles size={20} />
-              </button>
-              <div className="flex items-center gap-2">
-                <span className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{bolsaTalento}</span>
-                <div className="flex flex-col gap-1">
-                  <button
-                    onClick={() => setBolsaTalento(bolsaTalento + 1)}
-                    className={`p-1 rounded ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
-                  >
-                    <CornerRightUp size={16} />
-                  </button>
-                  <button
-                    onClick={() => setBolsaTalento(Math.max(0, bolsaTalento - 1))}
-                    className={`p-1 rounded ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
-                  >
-                    <CornerLeftDown size={16} />
-                  </button>
+              <div className="flex gap-2 items-center w-full sm:w-auto">
+                <button
+                  onClick={() => setShowBolsaTalentoModal(true)}
+                  className="p-2.5 sm:p-3 bg-gradient-to-r from-blue-600 to-cyan-700 text-white rounded-lg font-semibold hover:opacity-90 shadow-lg"
+                  title="Bolsa de Talento"
+                >
+                  <Sparkles size={18} className="sm:w-5 sm:h-5" />
+                </button>
+                <div className="flex items-center gap-2">
+                  <span className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{bolsaTalento}</span>
+                  <div className="flex flex-col gap-1">
+                    <button
+                      onClick={() => setBolsaTalento(bolsaTalento + 1)}
+                      className={`p-1 rounded ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                    >
+                      <CornerRightUp size={14} className="sm:w-4 sm:h-4" />
+                    </button>
+                    <button
+                      onClick={() => setBolsaTalento(Math.max(0, bolsaTalento - 1))}
+                      className={`p-1 rounded ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                    >
+                      <CornerLeftDown size={14} className="sm:w-4 sm:h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
               {classes.includes('Elementalista') && (
                 <button
                   onClick={() => setShowElementalistaTypesModal(true)}
-                  className="flex items-center justify-center p-3 bg-black text-white rounded-lg font-semibold hover:opacity-90 shadow-lg"
+                  className="flex items-center justify-center p-2.5 sm:p-3 bg-black text-white rounded-lg font-semibold hover:opacity-90 shadow-lg w-full sm:w-auto"
                   title="Tipo de Escolha (Elementalista)"
                 >
-                  <img src="/logodeelemento.png" alt="Tipo de Escolha" className="w-12 h-12" />
+                  <img src="/logodeelemento.png" alt="Tipo de Escolha" className="w-10 h-10 sm:w-12 sm:h-12" />
                 </button>
               )}
             </div>
@@ -29148,8 +29295,8 @@ function App() {
             {/* TALENTOS SELECIONADOS */}
             {talentosSelected.length > 0 && (
               <div className="mb-6">
-                <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Talentos Selecionados</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                <h3 className={`text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Talentos Selecionados</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
                   {talentosSelected.map((talentoItem, idx) => {
                     const isExpanded = expandedTalentos.includes(idx)
 
@@ -29187,7 +29334,7 @@ function App() {
                         key={idx}
                         className={`rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}
                       >
-                        <div className={`p-3 flex items-start justify-between gap-2`}>
+                        <div className={`p-2 sm:p-3 flex items-start justify-between gap-2`}>
                           <button
                             onClick={() => {
                               if (isExpanded) {
@@ -29205,12 +29352,12 @@ function App() {
                             }}
                             className="flex-1 text-left"
                           >
-                            <div className="flex items-center gap-2 mb-1">
-                              {isExpanded ? <ChevronDown size={16} className={darkMode ? 'text-green-400' : 'text-green-600'} /> : <ChevronRight size={16} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
-                              <span className={`font-bold text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{talentoNome}</span>
+                            <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
+                              {isExpanded ? <ChevronDown size={14} className={`sm:w-4 sm:h-4 ${darkMode ? 'text-green-400' : 'text-green-600'}`} /> : <ChevronRight size={14} className={`sm:w-4 sm:h-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`} />}
+                              <span className={`font-bold text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{talentoNome}</span>
                             </div>
                             {talentoClasse && (
-                              <span className={`text-xs px-2 py-1 rounded ml-6 ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'}`}>
+                              <span className={`text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded ml-5 sm:ml-6 ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'}`}>
                                 {talentoClasse}
                               </span>
                             )}
@@ -29219,13 +29366,13 @@ function App() {
                             onClick={() => setTalentosSelected(talentosSelected.filter((_, i) => i !== idx))}
                             className={`flex-shrink-0 hover:opacity-70 ${darkMode ? 'text-red-400' : 'text-red-600'}`}
                           >
-                            <X size={16} />
+                            <X size={14} className="sm:w-4 sm:h-4" />
                           </button>
                         </div>
 
                         {isExpanded && talentoData && (
-                          <div className={`px-3 pb-3 border-t ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                            <div className="mt-2 space-y-1 text-xs">
+                          <div className={`px-2 pb-2 sm:px-3 sm:pb-3 border-t ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                            <div className="mt-1.5 sm:mt-2 space-y-1 text-[11px] sm:text-xs">
                               {talentoData.requisitos && (
                                 <div>
                                   <span className={`font-semibold ${darkMode ? 'text-green-400' : 'text-green-700'}`}>Requisitos: </span>
@@ -29272,10 +29419,10 @@ function App() {
         {/* MODAL DE TALENTOS */}
         {showTalentosModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowTalentosModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
                     Gerenciar Talentos
                   </h3>
                   <button onClick={() => setShowTalentosModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -29285,23 +29432,23 @@ function App() {
 
                 {/* TALENTOS SELECIONADOS */}
                 <div className="mb-6">
-                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Talentos Selecionados ({talentosSelected.length})
                   </label>
                   {talentosSelected.length === 0 ? (
-                    <div className={`p-4 rounded-lg text-center ${darkMode ? 'bg-gray-700 text-gray-400' : 'bg-gray-100 text-gray-500'}`}>
+                    <div className={`p-3 sm:p-4 rounded-lg text-center text-xs sm:text-sm ${darkMode ? 'bg-gray-700 text-gray-400' : 'bg-gray-100 text-gray-500'}`}>
                       Nenhum talento selecionado
                     </div>
                   ) : (
-                    <div className={`p-4 rounded-lg flex flex-wrap gap-2 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                    <div className={`p-3 sm:p-4 rounded-lg flex flex-wrap gap-2 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                       {talentosSelected.map((talento, idx) => (
-                        <div key={idx} className={`flex items-center gap-2 px-3 py-2 rounded ${darkMode ? 'bg-green-600 text-white' : 'bg-green-500 text-white'}`}>
+                        <div key={idx} className={`flex items-center gap-2 px-2 py-1.5 sm:px-3 sm:py-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-green-600 text-white' : 'bg-green-500 text-white'}`}>
                           <span className="font-semibold">{typeof talento === 'string' ? talento : talento.nome}</span>
                           <button
                             onClick={() => setTalentosSelected(talentosSelected.filter((_, i) => i !== idx))}
                             className="hover:bg-red-500 rounded p-1"
                           >
-                            <X size={16} />
+                            <X size={14} className="sm:w-4 sm:h-4" />
                           </button>
                         </div>
                       ))}
@@ -29311,16 +29458,16 @@ function App() {
 
                 {/* BUSCA DE TALENTOS */}
                 <div className="mb-4">
-                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Buscar Talentos
                   </label>
                   <div className="relative">
-                    <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} size={20} />
+                    <Search className={`absolute left-2.5 sm:left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} size={18} />
                     <input
                       type="text"
                       value={talentosSearch}
                       onChange={(e) => setTalentosSearch(e.target.value)}
-                      className={`w-full pl-10 pr-4 py-2 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 md:py-3 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Digite o nome do talento..."
                     />
                   </div>
@@ -29328,7 +29475,7 @@ function App() {
 
                 {/* FILTROS DE TALENTOS */}
                 <div className="mb-4">
-                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Filtrar por Classe
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -29340,7 +29487,7 @@ function App() {
                           setTalentosFilterSelected([...talentosFilterSelected, 'Geral'])
                         }
                       }}
-                      className={`px-3 py-1 rounded-lg text-sm font-semibold transition-all ${
+                      className={`px-2 py-1 sm:px-3 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
                         talentosFilterSelected.includes('Geral')
                           ? 'bg-green-500 text-white'
                           : darkMode ? 'bg-gray-600 text-gray-300 hover:bg-gray-500' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -29357,7 +29504,7 @@ function App() {
                             setTalentosFilterSelected([...talentosFilterSelected, classes[0]])
                           }
                         }}
-                        className={`px-3 py-1 rounded-lg text-sm font-semibold transition-all ${
+                        className={`px-2 py-1 sm:px-3 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
                           talentosFilterSelected.includes(classes[0])
                             ? 'bg-blue-500 text-white'
                             : darkMode ? 'bg-gray-600 text-gray-300 hover:bg-gray-500' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -29375,7 +29522,7 @@ function App() {
                             setTalentosFilterSelected([...talentosFilterSelected, classes[1]])
                           }
                         }}
-                        className={`px-3 py-1 rounded-lg text-sm font-semibold transition-all ${
+                        className={`px-2 py-1 sm:px-3 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
                           talentosFilterSelected.includes(classes[1])
                             ? 'bg-purple-500 text-white'
                             : darkMode ? 'bg-gray-600 text-gray-300 hover:bg-gray-500' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -29393,7 +29540,7 @@ function App() {
                             setTalentosFilterSelected([...talentosFilterSelected, classes[2]])
                           }
                         }}
-                        className={`px-3 py-1 rounded-lg text-sm font-semibold transition-all ${
+                        className={`px-2 py-1 sm:px-3 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
                           talentosFilterSelected.includes(classes[2])
                             ? 'bg-orange-500 text-white'
                             : darkMode ? 'bg-gray-600 text-gray-300 hover:bg-gray-500' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -29411,7 +29558,7 @@ function App() {
                             setTalentosFilterSelected([...talentosFilterSelected, classes[3]])
                           }
                         }}
-                        className={`px-3 py-1 rounded-lg text-sm font-semibold transition-all ${
+                        className={`px-2 py-1 sm:px-3 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
                           talentosFilterSelected.includes(classes[3])
                             ? 'bg-red-500 text-white'
                             : darkMode ? 'bg-gray-600 text-gray-300 hover:bg-gray-500' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -29425,10 +29572,10 @@ function App() {
 
                 {/* TALENTOS DISPONÍVEIS */}
                 <div className="mb-6">
-                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Talentos Disponíveis
                   </label>
-                  <div className={`max-h-96 overflow-y-auto rounded-lg p-4 space-y-2 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <div className={`max-h-96 overflow-y-auto rounded-lg p-3 sm:p-4 space-y-2 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                     {(() => {
                       // Filtrar talentos por classe do usuário + talentos gerais
                       const availableTalentos = []
@@ -29457,23 +29604,23 @@ function App() {
 
                       if (filtered.length === 0) {
                         return (
-                          <div className={`text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                          <div className={`text-center py-4 sm:py-6 md:py-8 text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                             {talentosSearch ? 'Nenhum talento encontrado' : 'Nenhuma classe selecionada. Selecione suas classes na área "Treinador".'}
                           </div>
                         )
                       }
 
                       return filtered.map((talento, idx) => (
-                        <div key={idx} className={`p-3 rounded transition-colors ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
-                          <div className="flex items-start justify-between gap-3">
+                        <div key={idx} className={`p-2 sm:p-3 rounded transition-colors ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
+                          <div className="flex items-start justify-between gap-2 sm:gap-3">
                             <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1">
-                                <span className={`font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{talento.nome}</span>
-                                <span className={`text-xs px-2 py-1 rounded ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'}`}>
+                              <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
+                                <span className={`font-bold text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{talento.nome}</span>
+                                <span className={`text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'}`}>
                                   {talento.classe}
                                 </span>
                               </div>
-                              <div className={`text-xs space-y-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                              <div className={`text-[11px] sm:text-xs space-y-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                                 {talento.requisitos && (
                                   <div>
                                     <span className="font-semibold">Requisitos: </span>
@@ -29508,9 +29655,9 @@ function App() {
                             </div>
                             <button
                               onClick={() => setTalentosSelected([...talentosSelected, talento])}
-                              className={`flex-shrink-0 p-2 rounded text-white ${darkMode ? 'bg-green-600 hover:bg-green-700' : 'bg-green-500 hover:bg-green-600'}`}
+                              className={`flex-shrink-0 p-1.5 sm:p-2 rounded text-white ${darkMode ? 'bg-green-600 hover:bg-green-700' : 'bg-green-500 hover:bg-green-600'}`}
                             >
-                              <Plus size={20} />
+                              <Plus size={18} className="sm:w-5 sm:h-5" />
                             </button>
                           </div>
                         </div>
@@ -29535,10 +29682,10 @@ function App() {
         {/* MODAL BOLSA DE TALENTO */}
         {showBolsaTalentoModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowBolsaTalentoModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
                     Bolsa de Talento
                   </h3>
                   <button onClick={() => setShowBolsaTalentoModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -29562,7 +29709,7 @@ function App() {
                       min="0"
                       value={bolsaTalento}
                       onChange={(e) => setBolsaTalento(Math.max(0, parseInt(e.target.value) || 0))}
-                      className={`flex-1 px-4 py-3 text-center text-2xl font-bold border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`flex-1 px-4 py-3 text-center text-xl sm:text-2xl font-bold border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                     />
                     <button
                       onClick={() => setBolsaTalento(bolsaTalento + 1)}
@@ -29589,11 +29736,11 @@ function App() {
         {/* MODAL TIPO DE ESCOLHA (ELEMENTALISTA) */}
         {showElementalistaTypesModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowElementalistaTypesModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-orange-400' : 'text-orange-700'} flex items-center gap-2`}>
-                    <img src="/logodeelemento.png" alt="Tipo" className="w-7 h-7" />
+                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-orange-400' : 'text-orange-700'} flex items-center gap-2`}>
+                    <img src="/logodeelemento.png" alt="Tipo" className="w-6 h-6 sm:w-7 sm:h-7" />
                     Tipo de Escolha
                   </h3>
                   <button onClick={() => setShowElementalistaTypesModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -29608,21 +29755,21 @@ function App() {
                     placeholder="Buscar tipo..."
                     value={elementalistaTypesSearch}
                     onChange={(e) => setElementalistaTypesSearch(e.target.value)}
-                    className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 placeholder-gray-500'}`}
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 placeholder-gray-500'}`}
                   />
                 </div>
 
                 {/* Tipos Selecionados */}
                 {elementalistaTypes.length > 0 && (
                   <div className="mb-6">
-                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <h4 className={`text-base sm:text-lg font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Tipos Selecionados ({elementalistaTypes.length})
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {elementalistaTypes.map((type, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-white text-sm shadow-md"
+                          className="flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg font-semibold text-white text-xs sm:text-sm shadow-md"
                           style={{
                             background: TYPE_STYLES[type]?.gradient || 'linear-gradient(135deg, #718096 0%, #4A5568 100%)',
                           }}
@@ -29632,7 +29779,7 @@ function App() {
                             onClick={() => setElementalistaTypes(elementalistaTypes.filter((_, i) => i !== idx))}
                             className="hover:bg-black/20 rounded-full p-0.5"
                           >
-                            <X size={16} />
+                            <X size={14} className="sm:w-4 sm:h-4" />
                           </button>
                         </div>
                       ))}
@@ -29642,10 +29789,10 @@ function App() {
 
                 {/* Grid de Tipos Disponíveis */}
                 <div className="mb-6">
-                  <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <h4 className={`text-base sm:text-lg font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Tipos Disponíveis
                   </h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                     {POKEMON_TYPES.filter(type =>
                       type.toLowerCase().includes(elementalistaTypesSearch.toLowerCase())
                     ).map((type) => {
@@ -29660,7 +29807,7 @@ function App() {
                               setElementalistaTypes([...elementalistaTypes, type])
                             }
                           }}
-                          className={`px-4 py-3 rounded-lg font-semibold text-white shadow-md transition-all ${
+                          className={`px-3 py-2 sm:px-4 sm:py-3 rounded-lg font-semibold text-white shadow-md transition-all text-xs sm:text-sm ${
                             isSelected ? 'ring-4 ring-yellow-400 ring-opacity-60' : 'hover:opacity-80'
                           }`}
                           style={{
@@ -29707,16 +29854,17 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Enciclopédia</h2>
-              <div className="flex gap-2">
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Enciclopédia</h2>
+              <div className="flex gap-2 items-center">
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Enciclopédia' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Enciclopédia' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
@@ -29744,11 +29892,11 @@ function App() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
           {/* Golpedex */}
           {encyclopediaSection === 'Golpedex' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <h3 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Golpedex
               </h3>
               <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -29756,7 +29904,7 @@ function App() {
               </p>
 
               {/* Grid 4x2 de Barras de Pesquisa */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-5 md:p-6 mb-8">
                 {golpedexSearches.map((search, index) => (
                   <div key={index} className="relative">
                     <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -29881,8 +30029,8 @@ function App() {
 
           {/* Descritordex */}
           {encyclopediaSection === 'Descritordex' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <h3 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Descritordex
               </h3>
               <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -29890,7 +30038,7 @@ function App() {
               </p>
 
               {/* Grid 5x4 de Descritores */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                 {DESCRITORES_DATA.map((descritor) => (
                   <div key={descritor.nome} className="relative">
                     <button
@@ -29948,7 +30096,7 @@ function App() {
                             } />
                           </div>
                           <div className="flex-1">
-                            <h5 className={`font-bold text-xl mb-2 ${
+                            <h5 className={`font-bold text-lg sm:text-xl mb-2 ${
                               darkMode ? 'text-purple-200' : 'text-purple-900'
                             }`}>
                               {descritor.nome}
@@ -29975,8 +30123,8 @@ function App() {
 
           {/* Tag de Concursodex */}
           {encyclopediaSection === 'Tag de Concursodex' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <h3 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Tag de Concursodex
               </h3>
               <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -29984,7 +30132,7 @@ function App() {
               </p>
 
               {/* Grid 5x4 de Tags de Concurso */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                 {TAGS_CONCURSO_DATA.map((tag) => (
                   <div key={tag.nome} className="relative">
                     <button
@@ -30051,7 +30199,7 @@ function App() {
                             } />
                           </div>
                           <div className="flex-1">
-                            <h5 className={`font-bold text-xl mb-1 ${
+                            <h5 className={`font-bold text-lg sm:text-xl mb-1 ${
                               darkMode ? 'text-pink-200' : 'text-pink-900'
                             }`}>
                               {tag.nome}
@@ -30088,8 +30236,8 @@ function App() {
 
           {/* Períciadex */}
           {encyclopediaSection === 'Períciadex' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <h3 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Períciadex
               </h3>
               <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -30097,7 +30245,7 @@ function App() {
               </p>
 
               {/* Coluna de 6 Atributos */}
-              <div className="space-y-4 max-w-4xl mx-auto">
+              <div className="space-y-4 max-w-sm sm:max-w-2xl md:max-w-4xl mx-auto">
                 {ATRIBUTOS_PERICIAS_DATA.map((atributo) => (
                   <div key={atributo.nome} className="relative">
                     <button
@@ -30120,7 +30268,7 @@ function App() {
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <h4 className={`font-bold text-2xl mb-2 ${
+                          <h4 className={`font-bold text-xl sm:text-2xl mb-2 ${
                             expandedAtributo === atributo.nome
                               ? darkMode ? 'text-blue-200' : 'text-blue-800'
                               : darkMode ? 'text-white' : 'text-gray-800'
@@ -30150,7 +30298,7 @@ function App() {
 
                     {/* Perícias expandidas em coluna */}
                     {expandedAtributo === atributo.nome && (
-                      <div className={`mt-4 p-6 rounded-lg border-2 ${
+                      <div className={`mt-4 p-3 sm:p-5 md:p-6 rounded-lg border-2 ${
                         darkMode
                           ? 'bg-gray-750 border-blue-600'
                           : 'bg-blue-50 border-blue-400'
@@ -30163,7 +30311,7 @@ function App() {
                               darkMode ? 'text-blue-300' : 'text-blue-700'
                             } />
                           </div>
-                          <h5 className={`font-bold text-xl ${
+                          <h5 className={`font-bold text-lg sm:text-xl ${
                             darkMode ? 'text-blue-200' : 'text-blue-900'
                           }`}>
                             Perícias de {atributo.nome}
@@ -30269,8 +30417,8 @@ function App() {
 
           {/* Habilidadedex */}
           {encyclopediaSection === 'Habilidadedex' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <h3 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Habilidadedex
               </h3>
               <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -30278,7 +30426,7 @@ function App() {
               </p>
 
               {/* Grid 4x2 de Barras de Pesquisa */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-5 md:p-6 mb-8">
                 {habilidadedexSearches.map((search, index) => (
                   <div key={index} className="relative">
                     <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -30397,8 +30545,8 @@ function App() {
 
           {/* Capacidadex */}
           {encyclopediaSection === 'Capacidadex' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <h3 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Capacidadex
               </h3>
               <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -30406,7 +30554,7 @@ function App() {
               </p>
 
               {/* Grid 4x2 de Barras de Pesquisa */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:p-5 md:p-6 mb-8">
                 {capacidadexSearches.map((search, index) => (
                   <div key={index} className="relative">
                     <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -30526,8 +30674,8 @@ function App() {
 
           {/* Condiçõesdex */}
           {encyclopediaSection === 'Condiçõesdex' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <h3 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Condiçõesdex
               </h3>
               <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -30535,7 +30683,7 @@ function App() {
               </p>
 
               {/* Lista de Condições em coluna única */}
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-2 sm:gap-3 md:gap-4">
                 {condicoes.map((condicao) => {
                   const isExpanded = expandedCondicoes.includes(condicao.nome)
 
@@ -30569,7 +30717,7 @@ function App() {
                       </button>
 
                       {isExpanded && (
-                        <div className={`p-6 ${darkMode ? 'bg-gray-750' : 'bg-white'} border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                        <div className={`p-3 sm:p-5 md:p-6 ${darkMode ? 'bg-gray-750' : 'bg-white'} border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
                           <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed mb-4`}>
                             {condicao.descricao}
                           </p>
@@ -30633,8 +30781,8 @@ function App() {
 
           {/* Itendex */}
           {encyclopediaSection === 'Itendex' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <h3 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Itendex
               </h3>
               <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -30657,7 +30805,7 @@ function App() {
                         }}
                         className={`w-full p-4 text-left flex justify-between items-center ${darkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-200'} transition-colors`}
                       >
-                        <h4 className={`text-xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
+                        <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
                           Corredor de {corredor}
                           <span className={`ml-2 text-sm font-normal ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                             ({itens.length} itens)
@@ -30672,11 +30820,11 @@ function App() {
 
                       {isExpanded && (
                         <div className={`p-4 border-t ${darkMode ? 'border-gray-600 bg-gray-750' : 'border-gray-300 bg-white'}`}>
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
                             {itens.map((item) => (
                               <div
                                 key={item.name}
-                                className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 flex gap-4`}
+                                className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 flex gap-2 sm:gap-3 md:gap-4`}
                               >
                                 <img
                                   src={item.image}
@@ -30712,7 +30860,7 @@ function App() {
           {/* Progressão de nível */}
           {encyclopediaSection === 'Progressão de nível' && (
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}
               onClick={(e) => {
                 // Limpar destaques se clicar fora da tabela
                 if (!e.target.closest('table')) {
@@ -30720,7 +30868,7 @@ function App() {
                 }
               }}
             >
-              <h3 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Progressão de nível
               </h3>
               <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -30884,16 +31032,17 @@ function App() {
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Progressão</h2>
-              <div className="flex gap-2">
+              <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Progressão</h2>
+              <div className="flex gap-2 items-center">
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Progressão' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+              {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Progressão' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
             </div>
           </div>
         </div>
@@ -31002,12 +31151,12 @@ function App() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
           {/* VIVÊNCIAS */}
           {progressaoSection === 'Vivências' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 mb-4 sm:mb-6">
+                <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Vivências
                 </h3>
                 <button
@@ -31020,20 +31169,20 @@ function App() {
                     setNovaVivenciaEfeito('')
                     setShowNovaVivenciaModal(true)
                   }}
-                  className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-lg hover:from-green-700 hover:to-emerald-700 font-semibold flex items-center gap-2 shadow-lg"
+                  className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-lg hover:from-green-700 hover:to-emerald-700 font-semibold flex items-center justify-center gap-2 shadow-lg text-sm sm:text-base"
                 >
-                  <Plus size={20} />
+                  <Plus size={18} className="sm:w-5 sm:h-5" />
                   Nova Vivência
                 </button>
               </div>
 
               {vivencias.length === 0 ? (
-                <div className={`text-center py-12 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                  <p className="text-lg">Nenhuma vivência cadastrada</p>
-                  <p className="text-sm mt-2">Clique em "Nova Vivência" para adicionar</p>
+                <div className={`text-center py-8 sm:py-12 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  <p className="text-base sm:text-lg">Nenhuma vivência cadastrada</p>
+                  <p className="text-xs sm:text-sm mt-2">Clique em "Nova Vivência" para adicionar</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                   {vivencias.map((vivencia) => (
                     <div key={vivencia.id} className={`rounded-lg border-2 transition-all ${
                       expandedVivencia === vivencia.id
@@ -31044,12 +31193,12 @@ function App() {
                         ? 'bg-gray-700 border-gray-600 hover:border-gray-500'
                         : 'bg-white border-gray-300 hover:border-gray-400'
                     }`}>
-                      <div className="flex items-center justify-between p-4">
+                      <div className="flex items-center justify-between p-3 sm:p-4">
                         <button
                           onClick={() => setExpandedVivencia(expandedVivencia === vivencia.id ? null : vivencia.id)}
                           className="flex-1 text-left"
                         >
-                          <h4 className={`font-bold text-lg ${
+                          <h4 className={`font-bold text-base sm:text-lg ${
                             expandedVivencia === vivencia.id
                               ? darkMode ? 'text-green-400' : 'text-green-700'
                               : darkMode ? 'text-white' : 'text-gray-800'
@@ -31067,12 +31216,12 @@ function App() {
                             setNovaVivenciaEfeito(vivencia.efeito || '')
                             setShowNovaVivenciaModal(true)
                           }}
-                          className={`ml-2 p-1 rounded hover:bg-yellow-500 hover:text-white transition-colors ${
+                          className={`ml-2 p-1 sm:p-1.5 rounded hover:bg-yellow-500 hover:text-white transition-colors ${
                             darkMode ? 'text-gray-400' : 'text-gray-500'
                           }`}
                           title="Editar vivência"
                         >
-                          <Pencil size={18} />
+                          <Pencil size={16} className="sm:w-[18px] sm:h-[18px]" />
                         </button>
                         <button
                           onClick={() => {
@@ -31083,17 +31232,17 @@ function App() {
                               }
                             }
                           }}
-                          className={`ml-2 p-1 rounded hover:bg-red-500 hover:text-white transition-colors ${
+                          className={`ml-2 p-1 sm:p-1.5 rounded hover:bg-red-500 hover:text-white transition-colors ${
                             darkMode ? 'text-gray-400' : 'text-gray-500'
                           }`}
                           title="Excluir vivência"
                         >
-                          <X size={20} />
+                          <X size={18} className="sm:w-5 sm:h-5" />
                         </button>
                       </div>
 
                       {expandedVivencia === vivencia.id && (
-                        <div className={`px-4 pb-4 space-y-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <div className={`px-3 sm:px-4 pb-3 sm:pb-4 space-y-2 sm:space-y-3 text-sm sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                           {vivencia.frequencia && (
                             <div>
                               <span className="font-semibold">Frequência:</span> {vivencia.frequencia}
@@ -31123,13 +31272,13 @@ function App() {
 
           {/* DIÁRIO DA JORNADA */}
           {progressaoSection === 'Diário da Jornada' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 mb-4 sm:mb-6">
+                <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Diário da Jornada
                 </h3>
                 {!selectedDiarioTrainer && (
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
                     <button
                       onClick={() => {
                         setConquistaEditando(null)
@@ -31138,9 +31287,9 @@ function App() {
                         setNovaConquistaDescricao('')
                         setShowNovaConquistaModal(true)
                       }}
-                      className="bg-gradient-to-r from-amber-600 to-yellow-600 text-white px-6 py-3 rounded-lg hover:from-amber-700 hover:to-yellow-700 font-semibold flex items-center gap-2 shadow-lg"
+                      className="bg-gradient-to-r from-amber-600 to-yellow-600 text-white px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-lg hover:from-amber-700 hover:to-yellow-700 font-semibold flex items-center justify-center gap-2 shadow-lg text-sm sm:text-base w-full sm:w-auto"
                     >
-                      <Plus size={20} />
+                      <Plus size={18} className="sm:w-5 sm:h-5" />
                       Conquistas
                     </button>
                     <button
@@ -31148,7 +31297,7 @@ function App() {
                         setFimCicloVerdade('')
                         setShowFimCicloModal(true)
                       }}
-                      className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold flex items-center gap-2 shadow-lg"
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold flex items-center justify-center gap-2 shadow-lg text-sm sm:text-base w-full sm:w-auto"
                     >
                       Fim do Ciclo
                     </button>
@@ -31158,13 +31307,13 @@ function App() {
 
               {/* Dropdown para selecionar treinador */}
               <div className="mb-6">
-                <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                   Ver Diário de:
                 </label>
                 <select
                   value={selectedDiarioTrainer}
                   onChange={(e) => setSelectedDiarioTrainer(e.target.value)}
-                  className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white text-gray-800'}`}
+                  className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white text-gray-800'}`}
                 >
                   <option value="">Meu Diário</option>
                   {users.filter(u => u.type === 'treinador' && u.username !== currentUser.username).map(trainer => (
@@ -31174,7 +31323,7 @@ function App() {
               </div>
 
               {/* Linha do Tempo com Ciclos */}
-              <div className="flex gap-6">
+              <div className="flex flex-col md:flex-row gap-3 md:gap-4">
                 {/* Coluna de Ciclos - à esquerda */}
                 {(() => {
                   // Determinar quais ciclos exibir
@@ -31186,13 +31335,13 @@ function App() {
                   if (ciclosToDisplay.length === 0) return null
 
                   return (
-                    <div className="flex flex-col gap-3 pt-12 min-w-[120px]">
-                      <p className={`text-sm font-bold ${darkMode ? 'text-gray-400' : 'text-gray-500'} mb-2`}>Ciclos</p>
+                    <div className="flex flex-col gap-2 sm:gap-3 pt-0 md:pt-12 mb-6 md:mb-0 min-w-0 md:min-w-[120px]">
+                      <p className={`text-xs sm:text-sm font-bold ${darkMode ? 'text-gray-400' : 'text-gray-500'} mb-1 sm:mb-2`}>Ciclos</p>
                       {ciclosToDisplay.map((ciclo, index) => (
                         <div key={ciclo.id} className="flex items-center gap-1">
                           <button
                             onClick={() => setSelectedCiclo(ciclo)}
-                            className={`px-3 py-2 rounded-l-lg text-sm font-semibold transition-all hover:scale-105 ${
+                            className={`flex-1 px-2 py-1.5 sm:px-3 sm:py-2 rounded-l-lg text-xs sm:text-sm font-semibold transition-all hover:scale-105 ${
                               darkMode
                                 ? 'bg-purple-900 hover:bg-purple-800 text-purple-200 border border-purple-700 border-r-0'
                                 : 'bg-purple-100 hover:bg-purple-200 text-purple-800 border border-purple-300 border-r-0'
@@ -31212,14 +31361,14 @@ function App() {
                                   setCiclos(ciclos.filter(c => c.id !== ciclo.id))
                                 }
                               }}
-                              className={`px-2 py-2 rounded-r-lg text-sm transition-all hover:scale-105 ${
+                              className={`px-1.5 py-1.5 sm:px-2 sm:py-2 rounded-r-lg transition-all hover:scale-105 ${
                                 darkMode
                                   ? 'bg-purple-900 hover:bg-red-700 text-purple-200 border border-purple-700 border-l-0'
                                   : 'bg-purple-100 hover:bg-red-200 text-purple-800 border border-purple-300 border-l-0'
                               }`}
                               title="Desfazer fim de ciclo"
                             >
-                              <RotateCw size={14} />
+                              <RotateCw size={12} className="sm:w-[14px] sm:h-[14px]" />
                             </button>
                           )}
                         </div>
@@ -31242,10 +31391,10 @@ function App() {
                     return (
                       <>
                         {/* Ponto Inicial */}
-                        <div className="relative mb-16">
+                        <div className="relative mb-12 sm:mb-16">
                           <div className="flex items-center justify-center">
-                            <div className={`${darkMode ? 'bg-gray-700 border-gray-500' : 'bg-white border-gray-400'} border-4 rounded-full px-6 py-3 shadow-lg z-10`}>
-                              <p className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                            <div className={`${darkMode ? 'bg-gray-700 border-gray-500' : 'bg-white border-gray-400'} border-2 sm:border-4 rounded-full px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 shadow-lg z-10`}>
+                              <p className={`font-bold text-sm sm:text-base md:text-lg ${darkMode ? 'text-white' : 'text-gray-800'} text-center`}>
                                 Qual o nome do meu neto?
                               </p>
                             </div>
@@ -31267,7 +31416,7 @@ function App() {
                       {conquistasToDisplay.map((conquista, index) => (
                         <div
                           key={conquista.id}
-                          className={`relative mb-16 ${index % 2 === 0 ? 'text-right pr-[52%]' : 'text-left pl-[52%]'} ${
+                          className={`relative mb-12 sm:mb-16 text-center ${index % 2 === 0 ? 'md:text-right md:pr-[52%]' : 'md:text-left md:pl-[52%]'} ${
                             !selectedDiarioTrainer ? 'cursor-grab active:cursor-grabbing' : ''
                           } ${draggingConquistaId === conquista.id ? 'opacity-50' : ''}`}
                           draggable={!selectedDiarioTrainer}
@@ -31300,11 +31449,11 @@ function App() {
                         >
                           <div className="relative inline-block">
                             {/* Ponto na linha do tempo */}
-                            <div className={`absolute top-1/2 ${index % 2 === 0 ? '-right-6' : '-left-6'} transform -translate-y-1/2 w-4 h-4 rounded-full ${
+                            <div className={`hidden md:block absolute top-1/2 ${index % 2 === 0 ? 'md:-right-6' : 'md:-left-6'} transform -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 rounded-full ${
                               conquista.levelUp
                                 ? 'bg-gradient-to-r from-yellow-400 to-amber-500'
                                 : 'bg-gradient-to-r from-blue-500 to-indigo-600'
-                            } border-4 ${darkMode ? 'border-gray-800' : 'border-white'} z-10`}></div>
+                            } border-2 sm:border-4 ${darkMode ? 'border-gray-800' : 'border-white'} z-10`}></div>
 
                             {/* Botão de Editar - só aparece se estiver vendo o próprio diário */}
                             {!selectedDiarioTrainer && (
@@ -31317,10 +31466,10 @@ function App() {
                                   setNovaConquistaDescricao(conquista.descricao || '')
                                   setShowNovaConquistaModal(true)
                                 }}
-                                className="absolute -top-2 -right-10 w-6 h-6 bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center justify-center z-20 transition-colors shadow-lg"
+                                className="absolute -top-1 -right-8 sm:-top-2 sm:-right-10 w-5 h-5 sm:w-6 sm:h-6 bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center justify-center z-20 transition-colors shadow-lg"
                                 title="Editar conquista"
                               >
-                                <Edit size={14} />
+                                <Edit size={12} className="sm:w-[14px] sm:h-[14px]" />
                               </button>
                             )}
 
@@ -31336,21 +31485,21 @@ function App() {
                                     }
                                   }
                                 }}
-                                className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center z-20 transition-colors shadow-lg"
+                                className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center z-20 transition-colors shadow-lg"
                                 title="Excluir conquista"
                               >
-                                <X size={14} />
+                                <X size={12} className="sm:w-[14px] sm:h-[14px]" />
                               </button>
                             )}
 
                             {/* Caixa da Conquista */}
                             <button
                               onClick={() => setSelectedConquista(conquista)}
-                              className={`relative inline-block px-6 py-4 rounded-lg shadow-lg transition-all hover:shadow-xl hover:scale-105 ${
+                              className={`relative inline-block px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 rounded-lg shadow-lg transition-all hover:shadow-xl hover:scale-105 ${
                                 conquista.levelUp
                                   ? 'bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900'
                                   : 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white'
-                              } font-bold text-lg border-2 ${
+                              } font-bold text-sm sm:text-base md:text-lg border-2 ${
                                 conquista.levelUp ? 'border-yellow-600' : 'border-blue-700'
                               }`}
                             >
@@ -31361,10 +31510,10 @@ function App() {
                       ))}
 
                         {/* Ponto Final */}
-                        <div className="relative mt-8">
+                        <div className="relative mt-6 sm:mt-8">
                           <div className="flex items-center justify-center">
-                            <div className={`${darkMode ? 'bg-gray-700 border-gray-500' : 'bg-white border-gray-400'} border-4 rounded-full px-6 py-3 shadow-lg z-10`}>
-                              <p className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                            <div className={`${darkMode ? 'bg-gray-700 border-gray-500' : 'bg-white border-gray-400'} border-2 sm:border-4 rounded-full px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 shadow-lg z-10`}>
+                              <p className={`font-bold text-sm sm:text-base md:text-lg ${darkMode ? 'text-white' : 'text-gray-800'} text-center`}>
                                 Acordei do coma?
                               </p>
                             </div>
@@ -31380,29 +31529,29 @@ function App() {
 
           {/* BACKGROUND */}
           {progressaoSection === 'Background' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 mb-4 sm:mb-6">
+                <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Background
                 </h3>
                 <button
                   onClick={() => setShowBackgroundModal(true)}
-                  className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-indigo-700 font-semibold flex items-center gap-2 shadow-lg"
+                  className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-lg hover:from-purple-700 hover:to-indigo-700 font-semibold flex items-center justify-center gap-2 shadow-lg text-sm sm:text-base"
                 >
-                  <Edit size={20} />
+                  <Edit size={18} className="sm:w-5 sm:h-5" />
                   Conte sua história
                 </button>
               </div>
 
               {/* Dropdown para selecionar treinador */}
-              <div className="mb-6">
-                <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              <div className="mb-4 sm:mb-6">
+                <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                   Ver Background de:
                 </label>
                 <select
                   value={selectedBackgroundTrainer}
                   onChange={(e) => setSelectedBackgroundTrainer(e.target.value)}
-                  className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white text-gray-800'}`}
+                  className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white text-gray-800'}`}
                 >
                   <option value="">Meu Background</option>
                   {users.filter(u => u.type === 'treinador' && u.username !== currentUser.username).map(trainer => (
@@ -31412,8 +31561,8 @@ function App() {
               </div>
 
               {/* Conteúdo do Background */}
-              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-6 min-h-[400px]`}>
-                <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-4 sm:p-5 md:p-6 min-h-[300px] sm:min-h-[400px]`}>
+                <h4 className={`text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
                   {selectedBackgroundTrainer || currentUser.username}
                 </h4>
                 {(() => {
@@ -31422,11 +31571,11 @@ function App() {
                     : background
 
                   return displayBackground ? (
-                    <p className={`whitespace-pre-wrap ${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed`}>
+                    <p className={`whitespace-pre-wrap text-sm sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed`}>
                       {displayBackground}
                     </p>
                   ) : (
-                    <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic`}>
+                    <p className={`text-center text-xs sm:text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic`}>
                       {selectedBackgroundTrainer
                         ? 'Este treinador ainda não escreveu sua história.'
                         : 'Você ainda não escreveu sua história. Clique em "Conte sua história" para começar.'}
@@ -31439,9 +31588,9 @@ function App() {
 
           {/* XP & CAPTURAS */}
           {progressaoSection === 'XP & Capturas' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 mb-4 sm:mb-6">
+                <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   XP & Capturas
                 </h3>
                 <button
@@ -31454,38 +31603,38 @@ function App() {
                       }
                     }
                   }}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 font-semibold flex items-center gap-2"
+                  className="w-full sm:w-auto bg-red-500 text-white px-3 py-2 sm:px-4 rounded-lg hover:bg-red-600 font-semibold flex items-center justify-center gap-2 text-sm sm:text-base"
                 >
-                  <Trash2 size={18} />
+                  <Trash2 size={16} className="sm:w-[18px] sm:h-[18px]" />
                   Limpar listas
                 </button>
               </div>
 
               {/* Grid com Lista de XP e Lista de Captura */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 {/* Lista de XP (Esquerda) */}
-                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-4`}>
-                  <div className="flex justify-between items-center mb-4">
-                    <h4 className={`text-xl font-bold ${darkMode ? 'text-cyan-400' : 'text-cyan-700'}`}>
+                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-3 sm:p-4`}>
+                  <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center gap-2 xs:gap-0 mb-3 sm:mb-4">
+                    <h4 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-cyan-400' : 'text-cyan-700'}`}>
                       Lista de XP
                     </h4>
                     <button
                       onClick={() => setShowAddXpModal(true)}
-                      className="bg-cyan-500 text-white px-3 py-1 rounded-lg hover:bg-cyan-600 text-sm font-semibold flex items-center gap-1"
+                      className="w-full xs:w-auto bg-cyan-500 text-white px-3 py-1.5 sm:py-1 rounded-lg hover:bg-cyan-600 text-xs sm:text-sm font-semibold flex items-center justify-center gap-1"
                     >
-                      <Plus size={16} />
+                      <Plus size={14} className="sm:w-4 sm:h-4" />
                       Listar XP
                     </button>
                   </div>
 
                   {xpList.length === 0 ? (
-                    <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-8`}>
+                    <p className={`text-center text-xs sm:text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-6 sm:py-8`}>
                       Nenhuma XP listada ainda.
                     </p>
                   ) : (
                     <div className="space-y-2 max-h-[400px] overflow-y-auto">
                       {xpList.map((xp, index) => (
-                        <div key={index} className={`flex justify-between items-center p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm`}>
+                        <div key={index} className={`flex justify-between items-center p-2 sm:p-2.5 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm`}>
                           <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                             {index + 1}. {xp.value} XP {xp.species && <span className={xp.fromNpc ? 'text-red-500 font-semibold' : `${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>({xp.species})</span>}
                           </span>
@@ -31496,10 +31645,10 @@ function App() {
                                 setEditXpValue(xp.value.toString())
                                 setShowEditXpModal(true)
                               }}
-                              className="text-blue-500 hover:text-blue-600 p-1"
+                              className="text-blue-500 hover:text-blue-600 p-0.5 sm:p-1"
                               title="Editar XP"
                             >
-                              <Pencil size={16} />
+                              <Pencil size={14} className="sm:w-4 sm:h-4" />
                             </button>
                             <button
                               onClick={async () => {
@@ -31509,10 +31658,10 @@ function App() {
                                   await saveXpCapturas(currentUser.username, { xpList: newList, capturaList })
                                 }
                               }}
-                              className="text-red-500 hover:text-red-600 p-1"
+                              className="text-red-500 hover:text-red-600 p-0.5 sm:p-1"
                               title="Remover XP"
                             >
-                              <Trash2 size={16} />
+                              <Trash2 size={14} className="sm:w-4 sm:h-4" />
                             </button>
                           </div>
                         </div>
@@ -31522,8 +31671,8 @@ function App() {
 
                   {/* Total de XP */}
                   {xpList.length > 0 && (
-                    <div className={`mt-4 pt-4 border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
-                      <p className={`text-lg font-bold ${darkMode ? 'text-cyan-400' : 'text-cyan-700'}`}>
+                    <div className={`mt-3 sm:mt-4 pt-3 sm:pt-4 border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                      <p className={`text-base sm:text-lg font-bold ${darkMode ? 'text-cyan-400' : 'text-cyan-700'}`}>
                         Total: {xpList.reduce((sum, xp) => sum + (xp.value || 0), 0)} XP
                       </p>
                     </div>
@@ -31531,32 +31680,34 @@ function App() {
                 </div>
 
                 {/* Lista de Captura (Direita) */}
-                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-4`}>
-                  <h4 className={`text-xl font-bold mb-4 ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-3 sm:p-4`}>
+                  <h4 className={`text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
                     Lista de Captura
                   </h4>
 
                   {capturaList.length === 0 ? (
-                    <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-8`}>
+                    <p className={`text-center text-xs sm:text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} italic py-6 sm:py-8`}>
                       Nenhum Pokémon na lista de captura.
                     </p>
                   ) : (
                     <div className="space-y-2 max-h-[400px] overflow-y-auto">
                       {capturaList.map((pokemon, index) => (
-                        <div key={index} className={`flex justify-between items-center p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm ${
+                        <div key={index} className={`flex justify-between items-center p-2 sm:p-2.5 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'} shadow-sm ${
                           pokemon.status === 'capturado' ? 'border-l-4 border-green-500' :
                           pokemon.status === 'batalha' ? 'border-l-4 border-orange-500' :
                           pokemon.status === 'block' ? 'border-l-4 border-red-500' : ''
                         }`}>
-                          <div className="flex-1">
-                            <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                              {pokemon.species}
-                            </span>
-                            <span className={`ml-2 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                              Nv. {pokemon.level} | Captura: {pokemon.captureValue}
-                            </span>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-1">
+                              <span className={`font-semibold text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                                {pokemon.species}
+                              </span>
+                              <span className={`text-[10px] sm:text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                Nv. {pokemon.level} | Cap: {pokemon.captureValue}
+                              </span>
+                            </div>
                             {pokemon.status && (
-                              <span className={`ml-2 text-xs px-2 py-0.5 rounded ${
+                              <span className={`inline-block mt-1 text-[10px] px-1.5 py-0.5 rounded ${
                                 pokemon.status === 'capturado' ? 'bg-green-500 text-white' :
                                 pokemon.status === 'batalha' ? 'bg-orange-500 text-white' :
                                 'bg-red-500 text-white'
@@ -31566,7 +31717,7 @@ function App() {
                               </span>
                             )}
                           </div>
-                          <div className="flex gap-1">
+                          <div className="flex gap-1 ml-2">
                             <button
                               onClick={() => {
                                 setEditingCapturaIndex(index)
@@ -31577,10 +31728,10 @@ function App() {
                                 })
                                 setShowEditCapturaModal(true)
                               }}
-                              className="text-blue-500 hover:text-blue-600 p-1"
+                              className="text-blue-500 hover:text-blue-600 p-0.5 sm:p-1"
                               title="Editar Captura"
                             >
-                              <Pencil size={16} />
+                              <Pencil size={14} className="sm:w-4 sm:h-4" />
                             </button>
                             <button
                               onClick={async () => {
@@ -31590,10 +31741,10 @@ function App() {
                                   await saveXpCapturas(currentUser.username, { xpList, capturaList: newList })
                                 }
                               }}
-                              className="text-red-500 hover:text-red-600 p-1"
+                              className="text-red-500 hover:text-red-600 p-0.5 sm:p-1"
                               title="Remover Captura"
                             >
-                              <Trash2 size={16} />
+                              <Trash2 size={14} className="sm:w-4 sm:h-4" />
                             </button>
                           </div>
                         </div>
@@ -31605,17 +31756,17 @@ function App() {
 
               {/* Capturas da Narração - NOVO */}
               {gridCapturaConfig && gridCapturaConfig.pokemons && (
-                <div className={`mt-6 ${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-6`}>
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
+                <div className={`mt-4 sm:mt-6 ${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-3 sm:p-4 md:p-6`}>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 mb-3 sm:mb-4">
+                    <h4 className={`text-base sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>
                       Capturas da Narração
                     </h4>
-                    <div className={`px-4 py-2 rounded-lg ${
+                    <div className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg ${
                       gridCapturaConfig.trainer === currentUser.username
                         ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white'
                         : 'bg-gradient-to-r from-gray-600 to-gray-700 text-gray-300'
                     }`}>
-                      <span className="text-sm font-semibold">
+                      <span className="text-xs sm:text-sm font-semibold">
                         {gridCapturaConfig.trainer === currentUser.username
                           ? '🎯 Você pode interagir!'
                           : `🔒 Grid de ${gridCapturaConfig.trainer}`}
@@ -31624,10 +31775,10 @@ function App() {
                   </div>
 
                   {/* Botões de Estado */}
-                  <div className="flex gap-3 mb-4 justify-center">
+                  <div className="flex flex-col xs:flex-row gap-2 xs:gap-3 mb-3 sm:mb-4 justify-center">
                     <button
                       onClick={() => setSelectedGridState(selectedGridState === 'bloqueado' ? null : 'bloqueado')}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${
+                      className={`flex items-center justify-center gap-2 px-3 py-2 sm:px-4 rounded-lg font-semibold transition-all text-xs sm:text-sm ${
                         selectedGridState === 'bloqueado'
                           ? 'bg-red-600 text-white shadow-lg scale-105'
                           : darkMode
@@ -31635,12 +31786,12 @@ function App() {
                             : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                       }`}
                     >
-                      <img src="/xdebloqueio.png" alt="Bloqueado" className="w-6 h-6" />
+                      <img src="/xdebloqueio.png" alt="Bloqueado" className="w-5 h-5 sm:w-6 sm:h-6" />
                       <span>Bloqueado</span>
                     </button>
                     <button
                       onClick={() => setSelectedGridState(selectedGridState === 'capturado' ? null : 'capturado')}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${
+                      className={`flex items-center justify-center gap-2 px-3 py-2 sm:px-4 rounded-lg font-semibold transition-all text-xs sm:text-sm ${
                         selectedGridState === 'capturado'
                           ? 'bg-green-600 text-white shadow-lg scale-105'
                           : darkMode
@@ -31648,12 +31799,12 @@ function App() {
                             : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                       }`}
                     >
-                      <img src="/pokeball-icon.png" alt="Capturado" className="w-6 h-6" />
+                      <img src="/pokeball-icon.png" alt="Capturado" className="w-5 h-5 sm:w-6 sm:h-6" />
                       <span>Capturado</span>
                     </button>
                     <button
                       onClick={() => setSelectedGridState(selectedGridState === 'vencido' ? null : 'vencido')}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all ${
+                      className={`flex items-center justify-center gap-2 px-3 py-2 sm:px-4 rounded-lg font-semibold transition-all text-xs sm:text-sm ${
                         selectedGridState === 'vencido'
                           ? 'bg-blue-600 text-white shadow-lg scale-105'
                           : darkMode
@@ -31661,16 +31812,16 @@ function App() {
                             : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                       }`}
                     >
-                      <img src="/xpbatalhou.png" alt="Vencido" className="w-6 h-6" />
+                      <img src="/xpbatalhou.png" alt="Vencido" className="w-5 h-5 sm:w-6 sm:h-6" />
                       <span>Vencido</span>
                     </button>
                   </div>
 
                   <div
-                    className="grid gap-3"
+                    className="grid gap-2 sm:gap-3"
                     style={{
                       gridTemplateColumns: `repeat(${gridCapturaConfig.cols}, minmax(0, 1fr))`,
-                      maxWidth: `${gridCapturaConfig.cols * 130}px`,
+                      maxWidth: `${gridCapturaConfig.cols * 110}px`,
                       margin: '0 auto'
                     }}
                   >
@@ -31724,17 +31875,17 @@ function App() {
                           }`}
                         >
                           {isRevealed ? (
-                            <div className="flex flex-col items-center justify-center h-full p-2">
+                            <div className="flex flex-col items-center justify-center h-full p-1 sm:p-2">
                               {pokemon.imageUrl && (
-                                <img src={pokemon.imageUrl} alt={pokemon.species} className="w-20 h-20 object-contain mb-1" />
+                                <img src={pokemon.imageUrl} alt={pokemon.species} className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain mb-0.5 sm:mb-1" />
                               )}
-                              <p className={`text-sm font-bold text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                              <p className={`text-[10px] sm:text-xs md:text-sm font-bold text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                                 {pokemon.species}
                               </p>
-                              <p className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                              <p className={`text-[9px] sm:text-[10px] md:text-xs ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                                 Nv.{pokemon.level}
                               </p>
-                              <p className={`text-xs font-semibold ${darkMode ? 'text-cyan-400' : 'text-cyan-600'}`}>
+                              <p className={`text-[9px] sm:text-[10px] md:text-xs font-semibold ${darkMode ? 'text-cyan-400' : 'text-cyan-600'}`}>
                                 Cap: {pokemon.captureValue}
                               </p>
                             </div>
@@ -31750,7 +31901,7 @@ function App() {
 
                           {/* Ícone de Estado */}
                           {cardState && (
-                            <div className="absolute top-1 right-1 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center p-1">
+                            <div className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-white rounded-full shadow-lg flex items-center justify-center p-0.5 sm:p-1">
                               <img
                                 src={
                                   cardState === 'bloqueado' ? '/xdebloqueio.png' :
@@ -31770,25 +31921,25 @@ function App() {
               )}
 
               {/* Chat de XP & Capturas */}
-              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-2xl shadow-lg p-6 mt-6`}>
-                <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-2xl shadow-lg p-3 sm:p-4 md:p-6 mt-4 sm:mt-6`}>
+                <h3 className={`text-base sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Chat
                 </h3>
 
                 {/* Menu de Rolagem Rápida */}
-                <div className={`${darkMode ? 'bg-gray-600' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
-                  <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                <div className={`${darkMode ? 'bg-gray-600' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 mb-3 sm:mb-4`}>
+                  <h4 className={`text-xs sm:text-sm font-bold mb-2 sm:mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Rolagem Rápida
                   </h4>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <div className="flex items-center gap-2">
-                      <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
-                      <div className="flex gap-1">
+                  <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-2 sm:gap-3">
+                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                      <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Qtd:</span>
+                      <div className="flex gap-1 flex-wrap">
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                           <button
                             key={num}
                             onClick={() => setQuickRollNumDice(num)}
-                            className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                               quickRollNumDice === num
                                 ? 'bg-blue-600 text-white'
                                 : darkMode
@@ -31801,14 +31952,14 @@ function App() {
                         ))}
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
-                      <div className="flex gap-1">
+                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                      <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
+                      <div className="flex gap-1 flex-wrap">
                         {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
                           <button
                             key={dice}
                             onClick={() => setQuickRollDiceType(dice)}
-                            className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                            className={`px-2 sm:px-3 h-7 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                               quickRollDiceType === dice
                                 ? 'bg-green-600 text-white'
                                 : darkMode
@@ -31845,57 +31996,57 @@ function App() {
                           })().catch(err => console.error('Erro ao salvar mensagem:', err))
                         }
                       }}
-                      className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                      className="w-full sm:w-auto px-4 sm:px-5 md:px-6 h-7 sm:h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors text-xs sm:text-sm"
                     >
                       🎲 Rolar
                     </button>
                   </div>
                 </div>
 
-                <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-4 space-y-1`}>
-                  <p>Use /r ou /roll para rolar dados. Exemplo: /r 1d20+5, /roll 2d6</p>
-                  <p>Use comandos @ para referenciar seus atributos: <span className="font-mono">1d20+@MAE</span>, <span className="font-mono">2d6+@MA+@MV</span></p>
-                  <p className="text-[10px]">Comandos: @MA @MD @MAE @MDE @MV @MS @At @Dt @AEt @DEt @Vt @St @Cont</p>
+                <div className={`text-[10px] sm:text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-3 sm:mb-4 space-y-1`}>
+                  <p>Use /r ou /roll para rolar dados. Ex: /r 1d20+5, /roll 2d6</p>
+                  <p className="hidden sm:block">Use comandos @ para referenciar seus atributos: <span className="font-mono">1d20+@MAE</span>, <span className="font-mono">2d6+@MA+@MV</span></p>
+                  <p className="text-[9px] sm:text-[10px]">Comandos: @MA @MD @MAE @MDE @MV @MS @At @Dt @AEt @DEt @Vt @St @Cont</p>
                 </div>
 
                 {/* Área de Mensagens */}
-                <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
+                <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-3 sm:p-4 h-64 sm:h-80 md:h-96 overflow-y-auto mb-3 sm:mb-4`}>
                   {chatMessages.length === 0 ? (
-                    <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                    <p className={`text-center text-xs sm:text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8 sm:py-12`}>
                       Nenhuma mensagem ainda. Seja o primeiro a falar!
                     </p>
                   ) : (
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       {chatMessages.map((msg, idx) => (
-                        <div key={idx} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3`}>
+                        <div key={idx} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-2 sm:p-3`}>
                           <div className="flex justify-between items-start mb-1">
-                            <span className={`font-bold text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+                            <span className={`font-bold text-xs sm:text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
                               {msg.username}
                             </span>
-                            <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                            <span className={`text-[10px] sm:text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
                               {msg.timestamp}
                             </span>
                           </div>
                           {msg.isDiceRoll ? (
                             <div>
-                              <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                              <p className={`text-xs sm:text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                                 {msg.text}
                               </p>
-                              <div className={`mt-2 p-2 rounded ${darkMode ? 'bg-green-900' : 'bg-green-100'}`}>
-                                <p className={`font-bold text-lg ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
+                              <div className={`mt-1 sm:mt-2 p-1.5 sm:p-2 rounded ${darkMode ? 'bg-green-900' : 'bg-green-100'}`}>
+                                <p className={`font-bold text-sm sm:text-base md:text-lg ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
                                   Resultado: {msg.diceResult}
                                 </p>
-                                <p className={`text-xs ${darkMode ? 'text-green-300' : 'text-green-600'}`}>
+                                <p className={`text-[10px] sm:text-xs ${darkMode ? 'text-green-300' : 'text-green-600'}`}>
                                   {msg.diceDetails}
                                 </p>
                               </div>
                             </div>
                           ) : msg.isAction ? (
-                            <p className={`text-sm font-semibold text-yellow-500`}>
+                            <p className={`text-xs sm:text-sm font-semibold text-yellow-500`}>
                               {msg.text}
                             </p>
                           ) : (
-                            <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            <p className={`text-xs sm:text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                               {msg.text}
                             </p>
                           )}
@@ -31916,8 +32067,8 @@ function App() {
                         handleSendMessage()
                       }
                     }}
-                    placeholder="Digite sua mensagem, 1d20+@MAE, ou /r 1d20..."
-                    className={`flex-1 px-4 py-3 rounded-lg border-2 ${
+                    placeholder="Digite sua mensagem ou /r 1d20..."
+                    className={`flex-1 px-3 py-2 sm:px-4 sm:py-3 rounded-lg border-2 text-sm sm:text-base ${
                       darkMode
                         ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500'
                         : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'
@@ -31925,7 +32076,7 @@ function App() {
                   />
                   <button
                     onClick={handleSendMessage}
-                    className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
+                    className="px-3 sm:px-5 md:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold text-sm sm:text-base"
                   >
                     Enviar
                   </button>
@@ -31939,27 +32090,27 @@ function App() {
         {/* Modal Adicionar XP */}
         {showAddXpModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAddXpModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-4 sm:p-5 md:p-6">
+                <div className="flex justify-between items-center mb-4 sm:mb-6">
+                  <h3 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Listar XP
                   </h3>
                   <button onClick={() => setShowAddXpModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                    <X size={24} />
+                    <X size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Quantidade de XP
                     </label>
                     <input
                       type="number"
                       value={addXpValue}
                       onChange={(e) => setAddXpValue(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Ex: 100"
                     />
                   </div>
@@ -31977,7 +32128,7 @@ function App() {
                       }
                     }}
                     disabled={!addXpValue || parseInt(addXpValue) <= 0}
-                    className="w-full bg-cyan-500 text-white py-3 rounded-lg hover:bg-cyan-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-cyan-500 text-white py-2.5 sm:py-3 rounded-lg hover:bg-cyan-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                   >
                     Adicionar XP
                   </button>
@@ -31990,27 +32141,27 @@ function App() {
         {/* Modal Editar XP */}
         {showEditXpModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditXpModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-4 sm:p-5 md:p-6">
+                <div className="flex justify-between items-center mb-4 sm:mb-6">
+                  <h3 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Editar XP
                   </h3>
                   <button onClick={() => setShowEditXpModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                    <X size={24} />
+                    <X size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Quantidade de XP
                     </label>
                     <input
                       type="number"
                       value={editXpValue}
                       onChange={(e) => setEditXpValue(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Ex: 100"
                     />
                   </div>
@@ -32031,7 +32182,7 @@ function App() {
                       }
                     }}
                     disabled={!editXpValue || parseInt(editXpValue) <= 0}
-                    className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-blue-500 text-white py-2.5 sm:py-3 rounded-lg hover:bg-blue-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                   >
                     Salvar Alterações
                   </button>
@@ -32044,53 +32195,53 @@ function App() {
         {/* Modal Editar Captura */}
         {showEditCapturaModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditCapturaModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-4 sm:p-5 md:p-6">
+                <div className="flex justify-between items-center mb-4 sm:mb-6">
+                  <h3 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Editar Captura
                   </h3>
                   <button onClick={() => setShowEditCapturaModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                    <X size={24} />
+                    <X size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Espécie
                     </label>
                     <input
                       type="text"
                       value={editCapturaData.species}
                       onChange={(e) => setEditCapturaData({ ...editCapturaData, species: e.target.value })}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Ex: Pikachu"
                     />
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Nível
                     </label>
                     <input
                       type="number"
                       value={editCapturaData.level}
                       onChange={(e) => setEditCapturaData({ ...editCapturaData, level: e.target.value })}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Ex: 5"
                     />
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Valor de Captura
                     </label>
                     <input
                       type="number"
                       value={editCapturaData.captureValue}
                       onChange={(e) => setEditCapturaData({ ...editCapturaData, captureValue: e.target.value })}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Ex: 100"
                     />
                   </div>
@@ -32116,7 +32267,7 @@ function App() {
                       }
                     }}
                     disabled={!editCapturaData.species || !editCapturaData.level || !editCapturaData.captureValue}
-                    className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-blue-500 text-white py-2.5 sm:py-3 rounded-lg hover:bg-blue-600 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                   >
                     Salvar Alterações
                   </button>
@@ -32129,99 +32280,99 @@ function App() {
         {/* Modal Nova/Editar Vivência */}
         {showNovaVivenciaModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowNovaVivenciaModal(false); setEditingVivenciaId(null) }}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-4 sm:p-5 md:p-6">
+                <div className="flex justify-between items-center mb-4 sm:mb-6">
+                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {editingVivenciaId ? 'Editar Vivência' : 'Nova Vivência'}
                   </h3>
                   <button onClick={() => { setShowNovaVivenciaModal(false); setEditingVivenciaId(null) }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                    <X size={24} />
+                    <X size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {/* Nome */}
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Nome <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
                       value={novaVivenciaNome}
                       onChange={(e) => setNovaVivenciaNome(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Nome da vivência"
                     />
                   </div>
 
                   {/* Frequência */}
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Frequência
                     </label>
                     <input
                       type="text"
                       value={novaVivenciaFrequencia}
                       onChange={(e) => setNovaVivenciaFrequencia(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Ex: Diária, Semanal, etc."
                     />
                   </div>
 
                   {/* Alvo */}
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Alvo
                     </label>
                     <input
                       type="text"
                       value={novaVivenciaAlvo}
                       onChange={(e) => setNovaVivenciaAlvo(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Alvo da vivência"
                     />
                   </div>
 
                   {/* Gatilho */}
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Gatilho
                     </label>
                     <input
                       type="text"
                       value={novaVivenciaGatilho}
                       onChange={(e) => setNovaVivenciaGatilho(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Gatilho da vivência"
                     />
                   </div>
 
                   {/* Efeito */}
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Efeito <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       value={novaVivenciaEfeito}
                       onChange={(e) => setNovaVivenciaEfeito(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Efeito da vivência"
                       rows={4}
                     />
                   </div>
                 </div>
 
-                <div className="flex gap-3 mt-6">
+                <div className="flex gap-3 mt-4 sm:mt-6">
                   <button
                     onClick={() => { setShowNovaVivenciaModal(false); setEditingVivenciaId(null) }}
-                    className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                    className={`flex-1 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
                   >
                     Cancelar
                   </button>
                   <button
                     onClick={handleAddVivencia}
-                    className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 rounded-lg hover:from-green-700 hover:to-emerald-700 font-semibold"
+                    className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2.5 sm:py-3 rounded-lg hover:from-green-700 hover:to-emerald-700 font-semibold text-sm sm:text-base"
                   >
                     {editingVivenciaId ? 'Salvar' : 'Adicionar'}
                   </button>
@@ -32234,31 +32385,31 @@ function App() {
         {/* Modal Nova Conquista */}
         {showNovaConquistaModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowNovaConquistaModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {conquistaEditando ? 'Editar Conquista' : 'Nova Conquista'}
                   </h3>
                   <button onClick={() => {
                     setShowNovaConquistaModal(false)
                     setConquistaEditando(null)
                   }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                    <X size={24} />
+                    <X size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
                 <div className="space-y-4">
                   {/* Nome */}
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Nome
                     </label>
                     <input
                       type="text"
                       value={novaConquistaNome}
                       onChange={(e) => setNovaConquistaNome(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Nome da conquista"
                     />
                   </div>
@@ -32270,22 +32421,22 @@ function App() {
                       id="levelUpCheckbox"
                       checked={novaConquistaLevelUp}
                       onChange={(e) => setNovaConquistaLevelUp(e.target.checked)}
-                      className="w-5 h-5 rounded cursor-pointer"
+                      className="w-4 h-4 sm:w-5 sm:h-5 rounded cursor-pointer"
                     />
-                    <label htmlFor="levelUpCheckbox" className={`text-sm font-bold cursor-pointer ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label htmlFor="levelUpCheckbox" className={`text-xs sm:text-sm font-bold cursor-pointer ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Lvl Up
                     </label>
                   </div>
 
                   {/* Descrição */}
                   <div>
-                    <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Descrição
                     </label>
                     <textarea
                       value={novaConquistaDescricao}
                       onChange={(e) => setNovaConquistaDescricao(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                       placeholder="Descrição da conquista"
                       rows={4}
                     />
@@ -32301,7 +32452,7 @@ function App() {
                       setNovaConquistaLevelUp(false)
                       setNovaConquistaDescricao('')
                     }}
-                    className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                    className={`flex-1 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
                   >
                     Cancelar
                   </button>
@@ -32341,7 +32492,7 @@ function App() {
                       setNovaConquistaLevelUp(false)
                       setNovaConquistaDescricao('')
                     }}
-                    className="flex-1 bg-gradient-to-r from-amber-600 to-yellow-600 text-white py-3 rounded-lg hover:from-amber-700 hover:to-yellow-700 font-semibold"
+                    className="flex-1 bg-gradient-to-r from-amber-600 to-yellow-600 text-white py-2.5 sm:py-3 rounded-lg hover:from-amber-700 hover:to-yellow-700 font-semibold text-sm sm:text-base"
                   >
                     {conquistaEditando ? 'Salvar' : 'Adicionar'}
                   </button>
@@ -32354,27 +32505,27 @@ function App() {
         {/* Modal Detalhes da Conquista */}
         {selectedConquista && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setSelectedConquista(null)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-xl md:max-w-2xl w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {selectedConquista.nome}
                   </h3>
                   <button onClick={() => setSelectedConquista(null)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                    <X size={24} />
+                    <X size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
                 {selectedConquista.levelUp && (
                   <div className="mb-4">
-                    <span className="inline-block px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900 font-bold">
+                    <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900 font-bold text-sm sm:text-base">
                       Level Up!
                     </span>
                   </div>
                 )}
 
                 <div className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  <p className="text-base leading-relaxed whitespace-pre-wrap">
+                  <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
                     {selectedConquista.descricao || 'Sem descrição'}
                   </p>
                 </div>
@@ -32382,7 +32533,7 @@ function App() {
                 <div className="flex justify-end mt-6">
                   <button
                     onClick={() => setSelectedConquista(null)}
-                    className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-indigo-700 font-semibold"
+                    className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg hover:from-blue-700 hover:to-indigo-700 font-semibold text-sm sm:text-base"
                   >
                     Fechar
                   </button>
@@ -32395,30 +32546,30 @@ function App() {
         {/* Modal Fim do Ciclo */}
         {showFimCicloModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowFimCicloModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-lg w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-md md:max-w-lg w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Fim do Ciclo
                   </h3>
                   <button onClick={() => setShowFimCicloModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                    <X size={24} />
+                    <X size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
-                <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                <p className={`mb-4 text-xs sm:text-sm md:text-base ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   Ao encerrar o ciclo, todas as conquistas atuais serão arquivadas e a linha do tempo será limpa para um novo começo.
                 </p>
 
                 <div className="mb-6">
-                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Verdade <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
                     value={fimCicloVerdade}
                     onChange={(e) => setFimCicloVerdade(e.target.value)}
-                    className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                     placeholder="Escreva a verdade deste ciclo..."
                   />
                 </div>
@@ -32426,7 +32577,7 @@ function App() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setShowFimCicloModal(false)}
-                    className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                    className={`flex-1 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
                   >
                     Cancelar
                   </button>
@@ -32455,7 +32606,7 @@ function App() {
                       setShowFimCicloModal(false)
                       setFimCicloVerdade('')
                     }}
-                    className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold"
+                    className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2.5 sm:py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold text-sm sm:text-base"
                   >
                     Encerrar Ciclo
                   </button>
@@ -32468,29 +32619,29 @@ function App() {
         {/* Modal Visualizar Ciclo */}
         {selectedCiclo && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setSelectedCiclo(null)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {selectedCiclo.verdade}
                   </h3>
                   <button onClick={() => setSelectedCiclo(null)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                    <X size={24} />
+                    <X size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
-                <p className={`mb-4 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                <p className={`mb-4 text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                   Encerrado em: {new Date(selectedCiclo.dataFim).toLocaleDateString('pt-BR')}
                 </p>
 
-                <div className="space-y-4">
-                  <h4 className={`font-bold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                <div className="space-y-3 sm:space-y-4">
+                  <h4 className={`font-bold text-sm sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Conquistas ({selectedCiclo.conquistas.length})
                   </h4>
                   {selectedCiclo.conquistas.map((conquista) => (
                     <div
                       key={conquista.id}
-                      className={`p-4 rounded-lg ${
+                      className={`p-3 sm:p-4 rounded-lg ${
                         conquista.levelUp
                           ? 'bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900'
                           : darkMode
@@ -32498,14 +32649,14 @@ function App() {
                             : 'bg-gray-100 text-gray-800'
                       }`}
                     >
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="font-bold">{conquista.nome}</span>
+                      <div className="flex flex-wrap items-center gap-2 mb-1 sm:mb-2">
+                        <span className="font-bold text-sm sm:text-base">{conquista.nome}</span>
                         {conquista.levelUp && (
-                          <span className="text-xs px-2 py-1 bg-yellow-600 text-white rounded">Level Up!</span>
+                          <span className="text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 bg-yellow-600 text-white rounded">Level Up!</span>
                         )}
                       </div>
                       {conquista.descricao && (
-                        <p className={`text-sm ${conquista.levelUp ? 'text-gray-800' : darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        <p className={`text-xs sm:text-sm ${conquista.levelUp ? 'text-gray-800' : darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                           {conquista.descricao}
                         </p>
                       )}
@@ -32516,7 +32667,7 @@ function App() {
                 <div className="flex justify-end mt-6">
                   <button
                     onClick={() => setSelectedCiclo(null)}
-                    className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold"
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold"
                   >
                     Fechar
                   </button>
@@ -32529,19 +32680,19 @@ function App() {
         {/* Modal Background */}
         {showBackgroundModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowBackgroundModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm sm:max-w-xl md:max-w-3xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+              <div className="p-4 sm:p-5 md:p-6">
+                <div className="flex justify-between items-center mb-4 sm:mb-6">
+                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Conte sua história
                   </h3>
                   <button onClick={() => setShowBackgroundModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                    <X size={24} />
+                    <X size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
-                <div className="mb-6">
-                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                <div className="mb-4 sm:mb-6">
+                  <label className={`block text-xs sm:text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     História do seu personagem
                   </label>
                   <textarea
@@ -32551,11 +32702,11 @@ function App() {
                         setBackground(e.target.value)
                       }
                     }}
-                    className={`w-full px-4 py-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                     placeholder="Escreva a história do seu personagem..."
-                    rows={12}
+                    rows={10}
                   />
-                  <p className={`text-xs mt-2 ${background.length > 1900 ? 'text-red-500' : darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  <p className={`text-[10px] sm:text-xs mt-2 ${background.length > 1900 ? 'text-red-500' : darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                     {background.length}/2000 caracteres
                   </p>
                 </div>
@@ -32563,7 +32714,7 @@ function App() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setShowBackgroundModal(false)}
-                    className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                    className={`flex-1 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
                   >
                     Cancelar
                   </button>
@@ -32571,7 +32722,7 @@ function App() {
                     onClick={() => {
                       setShowBackgroundModal(false)
                     }}
-                    className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-indigo-700 font-semibold"
+                    className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-2.5 sm:py-3 rounded-lg hover:from-purple-700 hover:to-indigo-700 font-semibold text-sm sm:text-base"
                   >
                     Salvar
                   </button>
@@ -32595,25 +32746,26 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Batalha Pkm</h2>
-                <div className="flex gap-2">
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Batalha Pkm</h2>
+                <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Batalha Pkm' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+                {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Batalha Pkm' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
               </div>
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {/* Navegação Mapa/Rolagens (Treinador) */}
-            <div className="mb-6 flex gap-4 justify-center">
+            <div className="mb-6 flex gap-2 sm:gap-3 md:gap-4 justify-center">
               <button
                 onClick={() => setBattleView('mapa')}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+                className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-semibold transition-all ${
                   battleView === 'mapa'
                     ? 'bg-gradient-to-r from-green-600 to-teal-600 text-white shadow-lg'
                     : darkMode
@@ -32625,7 +32777,7 @@ function App() {
               </button>
               <button
                 onClick={() => setBattleView('rolagens')}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+                className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-semibold transition-all ${
                   battleView === 'rolagens'
                     ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white shadow-lg'
                     : darkMode
@@ -32639,8 +32791,8 @@ function App() {
 
             {/* ÁREA DO MAPA (VTT) - TREINADOR */}
             {battleView === 'mapa' && (
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-                <h3 className={`text-3xl font-bold mb-6 text-center ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+                <h3 className={`text-2xl sm:text-3xl font-bold mb-6 text-center ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
                   Mapa de Batalha
                 </h3>
 
@@ -32652,6 +32804,13 @@ function App() {
                     </span>
                   </div>
                 )}
+
+                {/* Aviso Mobile */}
+                <div className={`mb-4 p-3 rounded-lg md:hidden ${darkMode ? 'bg-yellow-900 border border-yellow-700' : 'bg-yellow-100 border border-yellow-400'}`}>
+                  <p className={`text-sm text-center ${darkMode ? 'text-yellow-200' : 'text-yellow-800'}`}>
+                    ⚠️ O mapa funciona melhor em telas maiores. Use pinça para zoom e arraste para navegar.
+                  </p>
+                </div>
 
                 {/* Container com scroll para o Canvas */}
                 <div
@@ -32711,7 +32870,7 @@ function App() {
                     )}
                     {!vttMapImage && (
                       <div className={`flex items-center justify-center h-full ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-                        <p className="text-xl">Aguardando o mestre configurar o mapa</p>
+                        <p className="text-lg sm:text-xl">Aguardando o mestre configurar o mapa</p>
                       </div>
                     )}
 
@@ -32896,11 +33055,11 @@ function App() {
 
             {/* Layout Superior: Duas Colunas */}
             {battleView === 'rolagens' && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-6">
 
               {/* PARTE 1: Em Batalha (Esquerda) */}
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-                <h3 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 text-center ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
                   Treinadores em Batalha
                 </h3>
                 <div className={`p-4 rounded-lg border-2 min-h-[250px] max-h-[400px] overflow-y-auto ${darkMode ? 'bg-gray-700 border-blue-500' : 'bg-blue-50 border-blue-300'}`}>
@@ -32959,7 +33118,7 @@ function App() {
                 </div>
 
                 {/* Em Batalha - Pokémon */}
-                <h3 className={`text-2xl font-bold mb-6 mt-8 text-center ${darkMode ? 'text-red-400' : 'text-red-600'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 mt-8 text-center ${darkMode ? 'text-red-400' : 'text-red-600'}`}>
                   Pokémon em Batalha
                 </h3>
                 <div className={`p-4 rounded-lg border-2 min-h-[250px] max-h-[400px] overflow-y-auto ${darkMode ? 'bg-gray-700 border-red-500' : 'bg-red-50 border-red-300'}`}>
@@ -33174,7 +33333,7 @@ function App() {
               </div>
 
               {/* PARTE 2: Time Principal e Detalhes (Direita) */}
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
                 {/* Seção do Treinador */}
                 <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 mb-4`}>
                   <div className="flex items-center gap-2">
@@ -33511,7 +33670,7 @@ function App() {
                   )}
                 </div>
 
-                <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Seu Time
                 </h3>
 
@@ -33598,7 +33757,7 @@ function App() {
                     )}
                   </div>
                   {!selectedTeamPokemon ? (
-                    <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                    <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                       Selecione um Pokémon para ver seus detalhes
                     </p>
                   ) : (
@@ -33873,8 +34032,8 @@ function App() {
 
             {/* SEÇÃO: Imagens do Treinador e Pokémon */}
             {battleView === 'rolagens' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
-              <div className="grid grid-cols-2 gap-4">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                 {/* Imagem do Treinador */}
                 <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 flex flex-col items-center justify-center`}>
                   <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -33964,12 +34123,12 @@ function App() {
 
             {/* PARTE NOVA: Modificadores */}
             {battleView === 'rolagens' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
               <div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => setShowModifiersSection(!showModifiersSection)}
               >
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Modificadores
                 </h3>
                 <div className="flex items-center gap-2">
@@ -34048,12 +34207,12 @@ function App() {
 
             {/* SEÇÃO TALENTOS EM JOGO */}
             {battleView === 'rolagens' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
               <div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => setShowTalentosSection(!showTalentosSection)}
               >
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Talentos em Jogo
                 </h3>
                 <div className="flex items-center gap-2">
@@ -34134,12 +34293,12 @@ function App() {
 
             {/* SEÇÃO LIMITES DE USO */}
             {battleView === 'rolagens' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
               <div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => setShowLimitesUsoSection(!showLimitesUsoSection)}
               >
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Limites de Uso
                 </h3>
                 <div className="flex items-center gap-2">
@@ -34233,7 +34392,7 @@ function App() {
                               <Minus size={16} />
                             </button>
 
-                            <span className={`text-2xl font-bold ${
+                            <span className={`text-xl sm:text-2xl font-bold ${
                               item.atual === 0
                                 ? darkMode ? 'text-red-400' : 'text-red-600'
                                 : darkMode ? 'text-white' : 'text-gray-800'
@@ -34260,12 +34419,12 @@ function App() {
 
             {/* SEÇÃO DE CAPTURA */}
             {battleView === 'rolagens' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
               <div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => setShowCaptureSection(!showCaptureSection)}
               >
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Lançar Pokébola
                 </h3>
                 {showCaptureSection ? <ChevronUp size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
@@ -34278,7 +34437,7 @@ function App() {
                     Nenhuma pokébola disponível
                   </p>
                 ) : (
-                  <div className="grid grid-cols-4 md:grid-cols-6 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                     {/* Customball sempre aparece primeiro */}
                     <button
                       onClick={() => handleOpenCaptureModal('Customball')}
@@ -34294,7 +34453,7 @@ function App() {
                           e.target.nextSibling.style.display = 'flex'
                         }}
                       />
-                      <div className="w-12 h-12 hidden items-center justify-center text-2xl">
+                      <div className="w-12 h-12 hidden items-center justify-center text-xl sm:text-2xl">
                         ❓
                       </div>
                       <span className={`text-[10px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -34322,7 +34481,7 @@ function App() {
                               e.target.nextSibling.style.display = 'flex'
                             }}
                           />
-                          <div className="w-12 h-12 hidden items-center justify-center text-2xl">
+                          <div className="w-12 h-12 hidden items-center justify-center text-xl sm:text-2xl">
                             ⚪
                           </div>
                           <span className={`text-[10px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -34341,12 +34500,12 @@ function App() {
             )}
 
             {/* SEÇÃO DE CURA EM BATALHA */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
               <div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => setShowHealingSection(!showHealingSection)}
               >
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Cura em Batalha
                 </h3>
                 {showHealingSection ? <ChevronUp size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronDown size={24} className={darkMode ? 'text-gray-400' : 'text-gray-600'} />}
@@ -34374,7 +34533,7 @@ function App() {
                     }
 
                     return (
-                      <div className="grid grid-cols-4 md:grid-cols-6 gap-3">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                         {healingItems.map((item, idx) => {
                           const curaItem = POKELOJA_DATA['Cura']?.find(i => i.name === item.name)
                           return (
@@ -34396,7 +34555,7 @@ function App() {
                                   e.target.nextSibling.style.display = 'flex'
                                 }}
                               />
-                              <div className="w-12 h-12 hidden items-center justify-center text-2xl">
+                              <div className="w-12 h-12 hidden items-center justify-center text-xl sm:text-2xl">
                                 💊
                               </div>
                               <span className={`text-[10px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -34417,26 +34576,26 @@ function App() {
 
             {/* PARTE 3: Chat (Embaixo) */}
             {battleView === 'rolagens' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Chat de Batalha
               </h3>
 
               {/* Menu de Rolagem Rápida */}
-              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 mb-4`}>
                 <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                   Rolagem Rápida
                 </h4>
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
                   {/* Primeira Parte: Número de dados */}
-                  <div className="flex items-center gap-2">
-                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
-                    <div className="flex gap-1">
+                  <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Quantidade:</span>
+                    <div className="flex flex-wrap gap-1">
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                         <button
                           key={num}
                           onClick={() => setQuickRollNumDice(num)}
-                          className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                          className={`w-7 h-7 sm:w-8 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                             quickRollNumDice === num
                               ? 'bg-blue-600 text-white'
                               : darkMode
@@ -34451,14 +34610,14 @@ function App() {
                   </div>
 
                   {/* Segunda Parte: Tipo de dado */}
-                  <div className="flex items-center gap-2">
-                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
-                    <div className="flex gap-1">
+                  <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Dado:</span>
+                    <div className="flex flex-wrap gap-1">
                       {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
                         <button
                           key={dice}
                           onClick={() => setQuickRollDiceType(dice)}
-                          className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                          className={`px-2.5 h-7 sm:px-3 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                             quickRollDiceType === dice
                               ? 'bg-green-600 text-white'
                               : darkMode
@@ -34497,7 +34656,7 @@ function App() {
                         })().catch(err => console.error('Erro ao salvar mensagem:', err))
                       }
                     }}
-                    className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                    className="px-3 sm:px-5 md:px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
                   >
                     🎲 Rolar
                   </button>
@@ -34513,7 +34672,7 @@ function App() {
               {/* Área de Mensagens */}
               <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
                 {chatMessages.length === 0 ? (
-                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                     Nenhuma mensagem ainda. Seja o primeiro a falar!
                   </p>
                 ) : (
@@ -34569,7 +34728,7 @@ function App() {
                     }
                   }}
                   placeholder="Digite sua mensagem, 1d20+@MAE, ou /r 1d20..."
-                  className={`flex-1 px-4 py-3 rounded-lg border-2 ${
+                  className={`flex-1 px-3 py-2 sm:px-4 sm:py-3 rounded-lg border-2 text-sm sm:text-base ${
                     darkMode
                       ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500'
                       : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'
@@ -34577,7 +34736,7 @@ function App() {
                 />
                 <button
                   onClick={handleSendMessage}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
+                  className="px-3 sm:px-5 md:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold text-sm sm:text-base"
                 >
                   Enviar
                 </button>
@@ -34594,11 +34753,11 @@ function App() {
             onClick={() => setShowBattleMoveModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-[95vw] sm:max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedBattleMove}
                 </h3>
                 <button
@@ -34617,7 +34776,7 @@ function App() {
 
                 return (
                   <div className="space-y-3">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                       <div>
                         <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Tipo:</span>
                         <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.tipo}</p>
@@ -34671,11 +34830,11 @@ function App() {
             onClick={() => setShowBattleAbilityModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-[95vw] sm:max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedBattleAbility}
                 </h3>
                 <button
@@ -34713,7 +34872,7 @@ function App() {
 
                     <button
                       onClick={() => handleSendAbilityToChat(selectedBattleAbility)}
-                      className="w-full mt-4 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-semibold"
+                      className="w-full mt-4 bg-green-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-green-700 font-semibold"
                     >
                       Enviar no Chat
                     </button>
@@ -34731,11 +34890,11 @@ function App() {
             onClick={() => setShowModifierModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-md w-full`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-md w-full`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {editingModifierIndex !== null ? 'Editar Modificador' : 'Adicionar Modificador'}
                 </h3>
                 <button
@@ -34755,7 +34914,7 @@ function App() {
                     type="text"
                     value={modifierForm.nome}
                     onChange={(e) => setModifierForm({ ...modifierForm, nome: e.target.value })}
-                    className={`w-full px-4 py-2 rounded-lg border-2 ${
+                    className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${
                       darkMode
                         ? 'bg-gray-700 border-gray-600 text-white'
                         : 'bg-white border-gray-300 text-gray-800'
@@ -34772,7 +34931,7 @@ function App() {
                     type="text"
                     value={modifierForm.mod}
                     onChange={(e) => setModifierForm({ ...modifierForm, mod: e.target.value })}
-                    className={`w-full px-4 py-2 rounded-lg border-2 ${
+                    className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${
                       darkMode
                         ? 'bg-gray-700 border-gray-600 text-white'
                         : 'bg-white border-gray-300 text-gray-800'
@@ -34791,7 +34950,7 @@ function App() {
                   <textarea
                     value={modifierForm.descricao}
                     onChange={(e) => setModifierForm({ ...modifierForm, descricao: e.target.value })}
-                    className={`w-full px-4 py-2 rounded-lg border-2 ${
+                    className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${
                       darkMode
                         ? 'bg-gray-700 border-gray-600 text-white'
                         : 'bg-white border-gray-300 text-gray-800'
@@ -34810,7 +34969,7 @@ function App() {
                     min="0"
                     value={modifierForm.usosACadaXLvl}
                     onChange={(e) => setModifierForm({ ...modifierForm, usosACadaXLvl: e.target.value === '' ? '' : parseInt(e.target.value) || '' })}
-                    className={`w-full px-4 py-2 rounded-lg border-2 ${
+                    className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${
                       darkMode
                         ? 'bg-gray-700 border-gray-600 text-white'
                         : 'bg-white border-gray-300 text-gray-800'
@@ -34867,14 +35026,14 @@ function App() {
                 <div className="flex gap-2">
                   <button
                     onClick={handleSaveModifier}
-                    className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
+                    className="flex-1 bg-blue-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
                     disabled={!modifierForm.nome || !modifierForm.mod}
                   >
                     {editingModifierIndex !== null ? 'Salvar' : 'Adicionar'}
                   </button>
                   <button
                     onClick={() => setShowModifierModal(false)}
-                    className={`px-6 py-3 rounded-lg font-semibold ${
+                    className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-semibold ${
                       darkMode
                         ? 'bg-gray-700 text-white hover:bg-gray-600'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -34895,11 +35054,11 @@ function App() {
             onClick={() => setShowTalentinhoModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full p-6`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-[95vw] sm:max-w-xl md:max-w-2xl w-full p-3 sm:p-5 md:p-6`}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              <div className="flex justify-between items-center mb-4 sm:mb-6">
+                <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {editingTalentinhoIndex !== null ? 'Editar Talentinho' : 'Adicionar Talentinho'}
                 </h3>
                 <button
@@ -34920,7 +35079,7 @@ function App() {
                     type="text"
                     value={talentinhoForm.nome}
                     onChange={(e) => setTalentinhoForm({ ...talentinhoForm, nome: e.target.value })}
-                    className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                     placeholder="Ex: Ataque Rápido"
                   />
                 </div>
@@ -34934,7 +35093,7 @@ function App() {
                     type="text"
                     value={talentinhoForm.expressao}
                     onChange={(e) => setTalentinhoForm({ ...talentinhoForm, expressao: e.target.value })}
-                    className={`w-full px-4 py-3 border-2 rounded-lg font-mono ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base font-mono ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                     placeholder="Ex: 1d20 + @MA + 2"
                   />
                   <p className={`text-xs mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -35024,7 +35183,7 @@ function App() {
                     min="0"
                     value={talentinhoForm.usosACadaXLvl}
                     onChange={(e) => setTalentinhoForm({ ...talentinhoForm, usosACadaXLvl: e.target.value === '' ? '' : parseInt(e.target.value) || '' })}
-                    className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                     placeholder="Ex: 5 (ganha +1 uso a cada 5 níveis)"
                   />
                   <p className={`text-xs mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -35035,14 +35194,14 @@ function App() {
                 <div className="flex gap-2">
                   <button
                     onClick={handleSaveTalentinho}
-                    className="flex-1 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-semibold"
+                    className="flex-1 bg-purple-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-purple-700 font-semibold"
                     disabled={!talentinhoForm.nome || !talentinhoForm.expressao}
                   >
                     {editingTalentinhoIndex !== null ? 'Salvar' : 'Adicionar'}
                   </button>
                   <button
                     onClick={() => setShowTalentinhoModal(false)}
-                    className={`px-6 py-3 rounded-lg font-semibold ${
+                    className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-semibold ${
                       darkMode
                         ? 'bg-gray-700 text-white hover:bg-gray-600'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -35063,11 +35222,11 @@ function App() {
             onClick={() => setShowAddLimiteUsoModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full p-6`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full p-3 sm:p-5 md:p-6`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Adicionar Limite de Uso
                 </h3>
                 <button
@@ -35088,7 +35247,7 @@ function App() {
                     type="text"
                     value={limiteUsoForm.nome}
                     onChange={(e) => setLimiteUsoForm({ ...limiteUsoForm, nome: e.target.value })}
-                    className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                     placeholder="Ex: Investida, Escudo Protetor"
                   />
                 </div>
@@ -35103,7 +35262,7 @@ function App() {
                     min="1"
                     value={limiteUsoForm.usosACadaXLvl}
                     onChange={(e) => setLimiteUsoForm({ ...limiteUsoForm, usosACadaXLvl: e.target.value === '' ? '' : parseInt(e.target.value) || '' })}
-                    className={`w-full px-4 py-3 border-2 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                     placeholder="Ex: 5 (ganha +1 uso a cada 5 níveis)"
                   />
                   <p className={`text-xs mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -35116,7 +35275,7 @@ function App() {
                   <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     Fonte do Limite
                   </label>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4">
                     <label className={`flex items-center gap-2 cursor-pointer ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       <input
                         type="checkbox"
@@ -35153,14 +35312,14 @@ function App() {
                 <div className="flex gap-2">
                   <button
                     onClick={adicionarLimiteUsoPersonalizado}
-                    className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
+                    className="flex-1 bg-blue-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold"
                     disabled={!limiteUsoForm.nome || !limiteUsoForm.usosACadaXLvl}
                   >
                     Adicionar
                   </button>
                   <button
                     onClick={() => setShowAddLimiteUsoModal(false)}
-                    className={`px-6 py-3 rounded-lg font-semibold ${
+                    className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-semibold ${
                       darkMode
                         ? 'bg-gray-700 text-white hover:bg-gray-600'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -35181,11 +35340,11 @@ function App() {
             onClick={() => setShowTalentinhoDetailModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full p-6`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full p-3 sm:p-5 md:p-6`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedTalentinhoDetail.nome}
                 </h3>
                 <button
@@ -35242,7 +35401,7 @@ function App() {
                     handleRollTalentinho(selectedTalentinhoDetail)
                     setShowTalentinhoDetailModal(false)
                   }}
-                  className="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-semibold flex items-center justify-center gap-2"
+                  className="w-full bg-green-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-green-700 font-semibold flex items-center justify-center gap-2"
                 >
                   <Send size={20} />
                   Enviar no Chat
@@ -35259,11 +35418,11 @@ function App() {
             onClick={() => setShowModifierDetailsModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-md w-full`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-md w-full`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedModifier.nome}
                 </h3>
                 <button
@@ -35302,11 +35461,11 @@ function App() {
             onClick={() => setShowCaptureModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-md w-full`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-md w-full`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedPokeball}
                 </h3>
                 <button
@@ -35341,7 +35500,7 @@ function App() {
                       type="text"
                       value={customPokeballModifier}
                       onChange={(e) => setCustomPokeballModifier(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${
                         darkMode
                           ? 'bg-gray-700 border-gray-600 text-white'
                           : 'bg-white border-gray-300 text-gray-800'
@@ -35360,7 +35519,7 @@ function App() {
                     <select
                       value={selectedPokeballModifier}
                       onChange={(e) => setSelectedPokeballModifier(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${
                         darkMode
                           ? 'bg-gray-700 border-gray-600 text-white'
                           : 'bg-white border-gray-300 text-gray-800'
@@ -35383,7 +35542,7 @@ function App() {
 
                 <button
                   onClick={handleThrowPokeball}
-                  className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-blue-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={selectedPokeball === 'Customball' && !customPokeballModifier}
                 >
                   Pokébolaaa, vaaai!
@@ -35400,11 +35559,11 @@ function App() {
             onClick={() => setShowHealingModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-md w-full`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-md w-full`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedHealingItem.name}
                 </h3>
                 <button
@@ -35416,7 +35575,7 @@ function App() {
               </div>
 
               <div className="space-y-4">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                   <img
                     src={selectedHealingItem.image}
                     alt={selectedHealingItem.name}
@@ -35487,7 +35646,7 @@ function App() {
 
                     setShowHealingModal(false)
                   }}
-                  className="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-semibold"
+                  className="w-full bg-green-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-green-700 font-semibold"
                 >
                   Curar?
                 </button>
@@ -35499,9 +35658,9 @@ function App() {
         {/* MODAL DANO/CURA BATALHA PKM */}
         {showBattleHPModal && selectedBattlePokemon && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowBattleHPModal(false); cancelDamageTypeSelection(); }}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Dano/Cura - {selectedBattlePokemon.nickname || selectedBattlePokemon.species}
                 </h3>
                 <button onClick={() => { setShowBattleHPModal(false); cancelDamageTypeSelection(); }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -35515,11 +35674,11 @@ function App() {
                 value={battleHpValue}
                 onChange={e => setBattleHpValue(e.target.value)}
                 placeholder="Valor (1-1000)"
-                className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base mb-4 text-center text-lg sm:text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                 disabled={showDamageTypeButtons && pendingDamageContext === 'battlePokemon'}
               />
               {!showDamageTypeButtons || pendingDamageContext !== 'battlePokemon' ? (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   <button
                     onClick={() => {
                       const v = parseInt(battleHpValue) || 0;
@@ -35626,9 +35785,9 @@ function App() {
         {showTrainerBattleDamageModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowTrainerBattleDamageModal(false); cancelDamageTypeSelection(); }}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Dano/Cura - {currentUser?.username || 'Treinador'}
                   </h3>
                   <button onClick={() => { setShowTrainerBattleDamageModal(false); cancelDamageTypeSelection(); }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -35639,7 +35798,7 @@ function App() {
                 {/* Informação de HP Atual */}
                 <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                   <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>HP Atual</p>
-                  <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <p className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {currentHP} / {getMaxHP()}
                   </p>
                 </div>
@@ -35654,7 +35813,7 @@ function App() {
                     value={trainerBattleDamageAmount}
                     onChange={(e) => setTrainerBattleDamageAmount(e.target.value)}
                     placeholder="Digite a quantidade..."
-                    className={`w-full px-4 py-3 border-2 rounded-lg text-lg ${
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base text-lg ${
                       darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 placeholder-gray-400'
                     }`}
                     min="1"
@@ -35696,7 +35855,7 @@ function App() {
                     {/* Multiplicadores de Dano */}
                     <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                       <p className={`text-xs font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Multiplicadores:</p>
-                      <div className="grid grid-cols-4 gap-2">
+                      <div className="grid grid-cols-2 xs:grid-cols-4 gap-2">
                         {['x2', 'x4', '/2', '/4'].map(mult => (
                           <label key={mult} className={`flex items-center justify-center gap-1 px-2 py-1 rounded cursor-pointer transition-colors ${
                             damageMultiplier === mult
@@ -35718,22 +35877,22 @@ function App() {
                     <p className={`text-center text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Selecione o tipo de dano:
                     </p>
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 xs:grid-cols-3 gap-2 sm:gap-3">
                       <button
                         onClick={() => applyDamageWithType('fisico')}
-                        className="flex items-center justify-center gap-2 bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-orange-500 text-white py-2 sm:py-3 rounded-lg hover:bg-orange-600 font-semibold text-sm sm:text-base"
                       >
                         <Sword size={18} />Físico
                       </button>
                       <button
                         onClick={() => applyDamageWithType('puro')}
-                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-gray-500 text-white py-2 sm:py-3 rounded-lg hover:bg-gray-600 font-semibold text-sm sm:text-base"
                       >
                         <Minus size={18} />Puro
                       </button>
                       <button
                         onClick={() => applyDamageWithType('especial')}
-                        className="flex items-center justify-center gap-2 bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600 font-semibold"
+                        className="flex items-center justify-center gap-2 bg-purple-500 text-white py-2 sm:py-3 rounded-lg hover:bg-purple-600 font-semibold text-sm sm:text-base"
                       >
                         <Zap size={18} />Especial
                       </button>
@@ -35773,20 +35932,21 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari</h2>
-                <div className="flex gap-2">
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari</h2>
+                <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Safari' ? 'bg-gradient-to-r from-green-600 to-emerald-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+                {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Safari' ? 'bg-gradient-to-r from-green-600 to-emerald-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
               </div>
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {/* Subáreas */}
             <div className="flex gap-2 mb-6">
               {(() => {
@@ -35809,9 +35969,9 @@ function App() {
             {safariSubarea === 'Mapa Safari' && (
               <div>
                 {/* Run Safari Buttons */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
                   <div className="flex items-center gap-3 mb-4">
-                    <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Zona Safari</h3>
+                    <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Zona Safari</h3>
                     <button onClick={() => setShowMapaSafariCompletoModal(true)}
                       className={`p-2 rounded-lg transition-all ${darkMode ? 'bg-green-700 hover:bg-green-600 text-white' : 'bg-green-100 hover:bg-green-200 text-green-800'}`}
                       title="Mapa Safari Completo">
@@ -35846,13 +36006,13 @@ function App() {
                 {/* Grid do Safari (Run Ativo) */}
                 {safariActiveRun && safariGridData && (
                   <div>
-                    <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+                    <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
                       <div className="flex justify-between items-center mb-4">
                         <div>
-                          <h3 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-green-700'}`}>{safariCurrentArea}</h3>
+                          <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-green-400' : 'text-green-700'}`}>{safariCurrentArea}</h3>
                           <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Run Safari {safariActiveRun} {!myRunPermission && <span className="text-red-400">(Somente visualização)</span>}</p>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                           <span className={`font-bold text-lg ${myTimer <= 0 ? 'text-red-500' : darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>⏰ {formatSafariTimer(myTimer)}</span>
                           {myRunPermission && (
                             <button
@@ -35936,8 +36096,8 @@ function App() {
                     </div>
 
                     {/* Chat */}
-                    <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-                      <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat Safari</h3>
+                    <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+                      <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat Safari</h3>
 
                       {/* Menu de Rolagem Rápida */}
                       <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
@@ -36009,7 +36169,7 @@ function App() {
                                 })().catch(err => console.error('Erro ao salvar mensagem:', err))
                               }
                             }}
-                            className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                            className="px-3 sm:px-5 md:px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
                           >
                             🎲 Rolar
                           </button>
@@ -36025,7 +36185,7 @@ function App() {
                       {/* Área de Mensagens */}
                       <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
                         {chatMessages.length === 0 ? (
-                          <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                          <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                             Nenhuma mensagem ainda. Seja o primeiro a falar!
                           </p>
                         ) : (
@@ -36065,7 +36225,7 @@ function App() {
                           placeholder="Digite sua mensagem, 1d20+@MAE, ou /r 1d20..."
                           className={`flex-1 px-4 py-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'} focus:outline-none focus:border-blue-500`}
                         />
-                        <button onClick={handleSendMessage} className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold">Enviar</button>
+                        <button onClick={handleSendMessage} className="px-3 sm:px-5 md:px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold">Enviar</button>
                       </div>
                     </div>
                   </div>
@@ -36077,12 +36237,12 @@ function App() {
             {safariSubarea === 'Encontro Safari' && (
               <div>
                 {/* Pokémons do Safari - imagem e tipo, com checkbox */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
-                  <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémons do Safari</h3>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
+                  <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémons do Safari</h3>
                   {myRunEncounters.length === 0 ? (
                     <p className={`text-center py-4 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Nenhum pokémon no encontro ainda. Explore o grid no Mapa Safari.</p>
                   ) : (
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                       {myRunEncounters.map((npc, npcIndex) => {
                         const isSelected = safariSelectedPokemon.has(npc.id)
 
@@ -36132,8 +36292,8 @@ function App() {
                 </div>
 
                 {/* Safari Mod Captura */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
-                  <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari Mod Captura</h3>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
+                  <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari Mod Captura</h3>
                   {(() => {
                     const currentUserModifiers = userBattleModifiers[currentUser.username] || []
                     const captureModifiers = currentUserModifiers.filter(mod => mod.aplicarCaptura)
@@ -36185,11 +36345,11 @@ function App() {
                 </div>
 
                 {/* Ações Safari Treinador */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
-                  <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Ações Safari Treinador</h3>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
+                  <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Ações Safari Treinador</h3>
 
                   {/* Status */}
-                  <div className="flex flex-wrap gap-4 mb-6">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 mb-6">
                     <div className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-blue-900' : 'bg-blue-100'}`}>
                       <span className={`text-sm font-bold ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
                         Selecionados: {safariSelectedPokemon.size}
@@ -36203,20 +36363,20 @@ function App() {
                   </div>
 
                   {/* Botões */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
                     <button onClick={handleSafariIsca}
                       disabled={safariSelectedPokemon.size === 0}
-                      className={`px-4 py-3 rounded-lg font-semibold transition-all ${safariSelectedPokemon.size > 0 ? 'bg-yellow-600 text-white hover:bg-yellow-700' : darkMode ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}>
+                      className={`px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-semibold transition-all text-sm sm:text-base ${safariSelectedPokemon.size > 0 ? 'bg-yellow-600 text-white hover:bg-yellow-700' : darkMode ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}>
                       🍖 Jogar Isca
                     </button>
                     <button onClick={handleSafariSurpresa}
                       disabled={safariSelectedPokemon.size === 0}
-                      className={`px-4 py-3 rounded-lg font-semibold transition-all ${safariSelectedPokemon.size > 0 ? 'bg-purple-600 text-white hover:bg-purple-700' : darkMode ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}>
+                      className={`px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-semibold transition-all text-sm sm:text-base ${safariSelectedPokemon.size > 0 ? 'bg-purple-600 text-white hover:bg-purple-700' : darkMode ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}>
                       💥 Ação Surpresa
                     </button>
                     <button onClick={handleSafariBall}
                       disabled={safariballCount === 0}
-                      className={`px-4 py-3 rounded-lg font-semibold transition-all ${
+                      className={`px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-semibold transition-all text-sm sm:text-base ${
                         safariballCount > 0
                           ? 'bg-green-600 text-white hover:bg-green-700'
                           : darkMode ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -36224,30 +36384,30 @@ function App() {
                       🎯 Safariball ({safariballCount})
                     </button>
                     <button onClick={handleSafariFuga}
-                      className="px-4 py-3 rounded-lg font-semibold bg-red-600 text-white hover:bg-red-700 transition-all">
+                      className="px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-semibold bg-red-600 text-white hover:bg-red-700 transition-all text-sm sm:text-base">
                       🏃 {skills.ataque && skills.ataque.includes('Corrida') ? 'Correria' : 'Fuga'}
                     </button>
                   </div>
                 </div>
 
                 {/* Chat */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-                  <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat Safari</h3>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat Safari</h3>
 
                   {/* Menu de Rolagem Rápida */}
-                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 mb-4`}>
                     <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Rolagem Rápida
                     </h4>
-                    <div className="flex flex-wrap items-center gap-3">
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
-                        <div className="flex gap-1">
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
+                      <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Quantidade:</span>
+                        <div className="flex flex-wrap gap-1">
                           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                             <button
                               key={num}
                               onClick={() => setQuickRollNumDice(num)}
-                              className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                              className={`w-7 h-7 sm:w-8 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                                 quickRollNumDice === num
                                   ? 'bg-blue-600 text-white'
                                   : darkMode
@@ -36260,14 +36420,14 @@ function App() {
                           ))}
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
-                        <div className="flex gap-1">
+                      <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Dado:</span>
+                        <div className="flex flex-wrap gap-1">
                           {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
                             <button
                               key={dice}
                               onClick={() => setQuickRollDiceType(dice)}
-                              className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                              className={`px-2 sm:px-3 h-7 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                                 quickRollDiceType === dice
                                   ? 'bg-green-600 text-white'
                                   : darkMode
@@ -36304,7 +36464,7 @@ function App() {
                             })().catch(err => console.error('Erro ao salvar mensagem:', err))
                           }
                         }}
-                        className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                        className="w-full sm:w-auto px-3 sm:px-5 md:px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors text-sm"
                       >
                         🎲 Rolar
                       </button>
@@ -36320,7 +36480,7 @@ function App() {
                   {/* Área de Mensagens */}
                   <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
                     {chatMessages.length === 0 ? (
-                      <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                      <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                         Nenhuma mensagem ainda. Seja o primeiro a falar!
                       </p>
                     ) : (
@@ -36358,9 +36518,9 @@ function App() {
                       onChange={(e) => setChatInput(e.target.value)}
                       onKeyPress={(e) => { if (e.key === 'Enter') handleSendMessage() }}
                       placeholder="Digite sua mensagem, 1d20+@MAE, ou /r 1d20..."
-                      className={`flex-1 px-4 py-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'} focus:outline-none focus:border-blue-500`}
+                      className={`flex-1 px-3 py-2 sm:px-4 sm:py-3 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'} focus:outline-none focus:border-blue-500`}
                     />
-                    <button onClick={handleSendMessage} className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold">Enviar</button>
+                    <button onClick={handleSendMessage} className="px-3 sm:px-5 md:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold text-sm sm:text-base">Enviar</button>
                   </div>
                 </div>
               </div>
@@ -36370,8 +36530,8 @@ function App() {
             {safariSubarea === 'Espectador' && (
               <div>
                 {/* Botões para assistir cada run */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
-                  <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Assistir Runs</h3>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
+                  <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Assistir Runs</h3>
                   <p className={`mb-4 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                     Selecione uma run para assistir os encontros de outros jogadores.
                   </p>
@@ -36401,8 +36561,8 @@ function App() {
                   const spectatorRunKey = `run-${safariSpectatorRun}`
                   const spectatorEncounters = safariRunEncounters[spectatorRunKey] || []
                   return (
-                    <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
-                      <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
+                      <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                         Run Safari {safariSpectatorRun} {safariRunAreas[spectatorRunKey] ? `- ${safariRunAreas[spectatorRunKey]}` : ''}
                       </h3>
                       {spectatorEncounters.length === 0 ? (
@@ -36410,7 +36570,7 @@ function App() {
                           Nenhum pokémon no encontro desta run ainda.
                         </p>
                       ) : (
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                           {spectatorEncounters.map((npc, npcIndex) => {
                             // Array de cores para os cards Safari NPC (mesmo do mestre e treinador)
                             const safariCardColors = [
@@ -36452,23 +36612,23 @@ function App() {
                 })()}
 
                 {/* Chat do Espectador */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-                  <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat</h3>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+                  <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat</h3>
 
                   {/* Menu de Rolagem Rápida */}
-                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 mb-4`}>
                     <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Rolagem Rápida
                     </h4>
-                    <div className="flex flex-wrap items-center gap-3">
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
-                        <div className="flex gap-1">
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
+                      <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Quantidade:</span>
+                        <div className="flex flex-wrap gap-1">
                           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                             <button
                               key={num}
                               onClick={() => setQuickRollNumDice(num)}
-                              className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                              className={`w-7 h-7 sm:w-8 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                                 quickRollNumDice === num
                                   ? 'bg-blue-600 text-white'
                                   : darkMode
@@ -36481,14 +36641,14 @@ function App() {
                           ))}
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
-                        <div className="flex gap-1">
+                      <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Dado:</span>
+                        <div className="flex flex-wrap gap-1">
                           {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
                             <button
                               key={dice}
                               onClick={() => setQuickRollDiceType(dice)}
-                              className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                              className={`px-2 sm:px-3 h-7 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                                 quickRollDiceType === dice
                                   ? 'bg-green-600 text-white'
                                   : darkMode
@@ -36525,7 +36685,7 @@ function App() {
                             })().catch(err => console.error('Erro ao salvar mensagem:', err))
                           }
                         }}
-                        className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                        className="w-full sm:w-auto px-3 sm:px-5 md:px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors text-sm"
                       >
                         🎲 Rolar
                       </button>
@@ -36541,7 +36701,7 @@ function App() {
                   {/* Área de Mensagens */}
                   <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
                     {chatMessages.length === 0 ? (
-                      <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                      <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                         Nenhuma mensagem ainda. Seja o primeiro a falar!
                       </p>
                     ) : (
@@ -36597,7 +36757,7 @@ function App() {
                         }
                       }}
                       placeholder="Digite sua mensagem, 1d20+@MAE, ou /r 1d20..."
-                      className={`flex-1 px-4 py-3 rounded-lg border-2 ${
+                      className={`flex-1 px-3 py-2 sm:px-4 sm:py-3 rounded-lg border-2 text-sm sm:text-base ${
                         darkMode
                           ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500'
                           : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'
@@ -36605,7 +36765,7 @@ function App() {
                     />
                     <button
                       onClick={handleSendMessage}
-                      className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
+                      className="px-3 sm:px-5 md:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold text-sm sm:text-base"
                     >
                       Enviar
                     </button>
@@ -36620,8 +36780,8 @@ function App() {
         {showAreaNavigationModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAreaNavigationModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
-                <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Avançar para...</h3>
+              <div className="p-3 sm:p-5 md:p-6">
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Avançar para...</h3>
                 <div className="space-y-3">
                   {connections.map(area => (
                     <button key={area} onClick={() => handleSafariNavigate(area)}
@@ -36640,14 +36800,14 @@ function App() {
         )}
 
         {showMapaSafariCompletoModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50" onClick={() => { setShowMapaSafariCompletoModal(false); setSafariMapSelectedArea(null) }}>
-            <div className={`relative ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4 flex gap-4 max-w-6xl max-h-[90vh]`} onClick={e => e.stopPropagation()}>
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => { setShowMapaSafariCompletoModal(false); setSafariMapSelectedArea(null) }}>
+            <div className={`relative ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-4 flex flex-col md:flex-row gap-2 sm:gap-3 md:gap-4 max-w-[95vw] sm:max-w-3xl md:max-w-4xl lg:max-w-6xl max-h-[90vh] overflow-y-auto md:overflow-y-visible`} onClick={e => e.stopPropagation()}>
               <button onClick={() => { setShowMapaSafariCompletoModal(false); setSafariMapSelectedArea(null) }}
                 className={`absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center font-bold z-10 ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>
                 X
               </button>
-              <div className="relative flex-shrink-0">
-                <img src="/mapasafaricompleto.png" alt="Mapa Safari Completo" className="max-h-[80vh] rounded-lg object-contain" />
+              <div className="relative flex-shrink-0 w-full md:w-auto">
+                <img src="/mapasafaricompleto.png" alt="Mapa Safari Completo" className="w-full md:max-h-[80vh] rounded-lg object-contain" />
                 {[
                   { area: 'Área Norte', top: '5%', left: '49%', w: '18%', h: '4%' },
                   { area: 'Área Noroeste', top: '36%', left: '16%', w: '20%', h: '5%' },
@@ -36664,14 +36824,14 @@ function App() {
                 ))}
               </div>
               {safariMapSelectedArea && (
-                <div className={`w-72 flex-shrink-0 overflow-y-auto max-h-[80vh] rounded-xl p-3 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                  <h4 className={`text-lg font-bold mb-3 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>{safariMapSelectedArea}</h4>
+                <div className={`w-full md:w-72 flex-shrink-0 overflow-y-auto max-h-[40vh] md:max-h-[80vh] rounded-xl p-3 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <h4 className={`text-base sm:text-lg font-bold mb-3 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>{safariMapSelectedArea}</h4>
                   {['Grama', 'Água'].map(terrain => {
                     const encounters = SAFARI_ENCOUNTERS.filter(e => e.area === safariMapSelectedArea && e.terrain === terrain)
                     if (encounters.length === 0) return null
                     return (
                       <div key={terrain} className="mb-3">
-                        <h5 className={`text-sm font-bold mb-2 px-2 py-1 rounded ${terrain === 'Grama' ? 'bg-green-600 text-white' : 'bg-blue-600 text-white'}`}>
+                        <h5 className={`text-xs sm:text-sm font-bold mb-2 px-2 py-1 rounded ${terrain === 'Grama' ? 'bg-green-600 text-white' : 'bg-blue-600 text-white'}`}>
                           {terrain === 'Grama' ? '🌿' : '🌊'} {terrain}
                         </h5>
                         <div className="space-y-1">
@@ -36703,14 +36863,15 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns</h2>
-                <div className="flex gap-2">
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns</h2>
+                <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Árvore de Apricorns' ? 'bg-gradient-to-r from-green-600 to-emerald-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+                {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Árvore de Apricorns' ? 'bg-gradient-to-r from-green-600 to-emerald-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
               </div>
             </div>
           </div>
@@ -36738,15 +36899,15 @@ function App() {
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {/* Subárea: Árvores */}
             {apricornSubarea === 'Árvores' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-              <h4 className={`font-bold mb-4 text-xl ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvores</h4>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <h4 className={`font-bold mb-4 text-lg sm:text-xl ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvores</h4>
 
               <button
                 onClick={() => setShowPlantTreeModal(true)}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg mb-4 font-semibold"
+                className="bg-green-600 hover:bg-green-700 text-white px-3 sm:px-4 py-2 rounded-lg mb-4 font-semibold text-sm sm:text-base w-full sm:w-auto"
               >
                 🌱 Plantar Árvore
               </button>
@@ -36754,16 +36915,16 @@ function App() {
               {/* Generated Trees from Master */}
               <div className="mb-6">
                 <h5 className={`font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Árvores Disponíveis (Geradas pelo Mestre)</h5>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
                   {generatedApricornTrees
                     .filter(tree => tree.hasFruit)
                     .map(tree => (
-                      <div key={tree.id} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg text-center`}>
-                        <img src={tree.image} alt={tree.name} className="w-20 h-20 mx-auto mb-2" />
-                        <p className={`font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>{tree.name}</p>
+                      <div key={tree.id} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 rounded-lg text-center`}>
+                        <img src={tree.image} alt={tree.name} className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-2" />
+                        <p className={`font-semibold mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{tree.name}</p>
                         <button
                           onClick={() => handleColherArvore(tree)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded"
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-4 py-1 rounded text-xs sm:text-sm"
                         >
                           🍎 Colher (1d6)
                         </button>
@@ -36778,9 +36939,9 @@ function App() {
               {/* Planted Trees */}
               <div>
                 <h5 className={`font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Árvores Plantadas</h5>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
                   {plantedTrees.map(tree => (
-                    <div key={tree.id} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg text-center relative group`}>
+                    <div key={tree.id} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 rounded-lg text-center relative group`}>
                       <button
                         onClick={() => handleExcluirArvore(tree.id)}
                         className="absolute top-2 right-2 text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -36791,19 +36952,19 @@ function App() {
                       <img
                         src={tree.isMatured ? tree.image : '/mudadeapricorn.png'}
                         alt={tree.name}
-                        className="w-20 h-20 mx-auto mb-2"
+                        className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-2"
                       />
-                      <p className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{tree.name}</p>
-                      <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Local: {tree.location}</p>
+                      <p className={`font-semibold text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{tree.name}</p>
+                      <p className={`text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Local: {tree.location}</p>
 
                       {!tree.isMatured && (
                         <>
-                          <p className="text-yellow-400 text-sm mt-1">Dias restantes: {tree.daysRemaining}</p>
-                          <div className="flex gap-2 mt-2">
+                          <p className="text-yellow-400 text-xs sm:text-sm mt-1">Dias restantes: {tree.daysRemaining}</p>
+                          <div className="flex flex-col xs:flex-row gap-2 mt-2">
                             <button
                               onClick={() => handlePassarDia(tree)}
                               disabled={tree.daysRemaining === 0}
-                              className={`flex-1 px-3 py-1 rounded text-sm ${
+                              className={`w-full xs:flex-1 px-2 sm:px-3 py-1 rounded text-xs sm:text-sm ${
                                 tree.daysRemaining === 0
                                   ? 'bg-gray-500 cursor-not-allowed'
                                   : 'bg-yellow-600 hover:bg-yellow-700'
@@ -36814,7 +36975,7 @@ function App() {
                             <button
                               onClick={() => handleAmadurecerArvore(tree)}
                               disabled={tree.daysRemaining > 0}
-                              className={`flex-1 px-3 py-1 rounded text-sm ${
+                              className={`w-full xs:flex-1 px-2 sm:px-3 py-1 rounded text-xs sm:text-sm ${
                                 tree.daysRemaining > 0
                                   ? 'bg-gray-500 cursor-not-allowed'
                                   : 'bg-green-600 hover:bg-green-700'
@@ -36829,7 +36990,7 @@ function App() {
                       {tree.isMatured && (
                         <button
                           onClick={() => handleColherArvore(tree)}
-                          className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded"
+                          className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-4 py-1 rounded text-xs sm:text-sm"
                         >
                           🍎 Colher Novamente (1d6)
                         </button>
@@ -36846,23 +37007,23 @@ function App() {
 
             {/* Subárea: Bonsais */}
             {apricornSubarea === 'Bonsais' && (
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-              <h4 className={`font-bold mb-4 text-xl ${darkMode ? 'text-white' : 'text-gray-800'}`}>Bonsais</h4>
-              <div className="grid grid-cols-4 gap-4">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <h4 className={`font-bold mb-4 text-lg sm:text-xl ${darkMode ? 'text-white' : 'text-gray-800'}`}>Bonsais</h4>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
                 {keyItems
                   .filter(item => item.name?.startsWith('Bonsai'))
                   .map(bonsai => (
-                    <div key={bonsai.name} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg text-center`}>
+                    <div key={bonsai.name} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 rounded-lg text-center`}>
                       <img
                         src={getItemImage(bonsai.name)}
                         alt={bonsai.name}
-                        className="w-16 h-16 mx-auto mb-2"
+                        className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2"
                       />
-                      <p className={`font-semibold mb-1 ${darkMode ? 'text-white' : 'text-gray-800'}`}>{bonsai.name}</p>
-                      <p className={`text-sm mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade: {bonsai.quantity || 1}</p>
+                      <p className={`font-semibold mb-1 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{bonsai.name}</p>
+                      <p className={`text-xs sm:text-sm mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade: {bonsai.quantity || 1}</p>
                       <button
                         onClick={() => handleColetarBonsai(bonsai)}
-                        className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded text-sm"
+                        className="bg-purple-600 hover:bg-purple-700 text-white px-2 sm:px-3 py-1 rounded text-xs sm:text-sm"
                       >
                         🌿 Coletar (1d3)
                       </button>
@@ -36879,9 +37040,9 @@ function App() {
 
         {/* Plant Tree Modal */}
         {showPlantTreeModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto`}>
-              <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Plantar Árvore</h3>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-6 rounded-lg max-w-[95vw] sm:max-w-md md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`}>
+              <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Plantar Árvore</h3>
 
               {/* Local do Plantio */}
               <div className="mb-4">
@@ -36908,7 +37069,7 @@ function App() {
               </div>
 
               {/* Tree Selection */}
-              <div className="grid grid-cols-3 gap-3 mb-4 max-h-60 overflow-y-auto">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-4 max-h-60 overflow-y-auto">
                 {APRICORN_TREES
                   .filter(tree => tree.fruit !== null)
                   .filter(tree =>
@@ -36918,20 +37079,20 @@ function App() {
                     <button
                       key={tree.name}
                       onClick={() => setSelectedTreeToPlant(tree)}
-                      className={`p-3 rounded text-center transition-colors ${
+                      className={`p-2 sm:p-3 rounded text-center transition-colors ${
                         selectedTreeToPlant?.name === tree.name
                           ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
                           : darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
                       }`}
                     >
-                      <img src={tree.image} alt={tree.name} className="w-12 h-12 mx-auto mb-1" />
-                      <p className="text-sm">{tree.name}</p>
+                      <img src={tree.image} alt={tree.name} className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-1" />
+                      <p className="text-xs sm:text-sm">{tree.name}</p>
                     </button>
                   ))}
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4">
                 <button
                   onClick={() => {
                     setShowPlantTreeModal(false)
@@ -36939,13 +37100,13 @@ function App() {
                     setSelectedTreeToPlant(null)
                     setTreeSearchQuery('')
                   }}
-                  className={`flex-1 px-4 py-2 rounded ${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-300 hover:bg-gray-400'} text-white`}
+                  className={`w-full sm:flex-1 px-3 sm:px-4 py-2 rounded text-sm sm:text-base ${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-300 hover:bg-gray-400'} text-white`}
                 >
                   Cancelar
                 </button>
                 <button
                   onClick={handlePlantarArvore}
-                  className="flex-1 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                  className="w-full sm:flex-1 bg-green-600 hover:bg-green-700 text-white px-3 sm:px-4 py-2 rounded text-sm sm:text-base"
                 >
                   Plantar
                 </button>
@@ -36967,31 +37128,32 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Interlúdio
                 </h2>
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
                   <button onClick={() => setShowRegrasInterludioModal(true)} className={`px-4 py-2 rounded-lg font-semibold ${darkMode ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}>
                     Regras Interlúdio
                   </button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Interlúdio' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+                {treinadorAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Interlúdio' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
               </div>
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {/* PARTE 1: Ação do Jogador e Time Principal */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-8">
               {/* Coluna Esquerda: Ação do Jogador */}
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-                <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Ação do Jogador
                 </h3>
 
@@ -37011,7 +37173,7 @@ function App() {
                       </h4>
 
                       {/* Checkboxes JN e RT */}
-                      <div className="flex gap-4 mb-4">
+                      <div className="flex gap-2 sm:gap-3 md:gap-4 mb-4">
                         <label className="flex items-center gap-2 cursor-pointer">
                           <input
                             type="checkbox"
@@ -37100,7 +37262,7 @@ function App() {
               </div>
 
               {/* Coluna Direita: Treinador e Time Principal */}
-              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
                 {/* Seção do Treinador */}
                 <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
                   <div className="flex items-center justify-between mb-3">
@@ -37241,7 +37403,7 @@ function App() {
             </div>
 
             {/* MENUS DE INTERLÚDIO */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-8">
               {/* Menu Int. Talentos */}
               <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4`}>
                 <div
@@ -37407,7 +37569,7 @@ function App() {
                                   <Minus size={14} />
                                 </button>
 
-                                <span className={`text-xl font-bold ${
+                                <span className={`text-lg sm:text-xl font-bold ${
                                   item.atual === 0
                                     ? darkMode ? 'text-red-400' : 'text-red-600'
                                     : darkMode ? 'text-white' : 'text-gray-800'
@@ -37451,7 +37613,7 @@ function App() {
                       Nenhuma pokébola disponível
                     </p>
                   ) : (
-                    <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                       {/* Customball sempre aparece primeiro */}
                       <button
                         onClick={() => handleOpenCaptureModal('Customball')}
@@ -37467,7 +37629,7 @@ function App() {
                             e.target.nextSibling.style.display = 'flex'
                           }}
                         />
-                        <div className="w-10 h-10 hidden items-center justify-center text-xl">
+                        <div className="w-10 h-10 hidden items-center justify-center text-lg sm:text-xl">
                           ?
                         </div>
                         <span className={`text-[9px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -37495,7 +37657,7 @@ function App() {
                                 e.target.nextSibling.style.display = 'flex'
                               }}
                             />
-                            <div className="w-10 h-10 hidden items-center justify-center text-xl">
+                            <div className="w-10 h-10 hidden items-center justify-center text-lg sm:text-xl">
                               O
                             </div>
                             <span className={`text-[9px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -37546,7 +37708,7 @@ function App() {
                       }
 
                       return (
-                        <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                           {healingItems.map((item, idx) => {
                             const curaItem = POKELOJA_DATA['Cura']?.find(i => i.name === item.name)
                             return (
@@ -37568,7 +37730,7 @@ function App() {
                                     e.target.nextSibling.style.display = 'flex'
                                   }}
                                 />
-                                <div className="w-10 h-10 hidden items-center justify-center text-xl">
+                                <div className="w-10 h-10 hidden items-center justify-center text-lg sm:text-xl">
                                   +
                                 </div>
                                 <span className={`text-[9px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -37589,16 +37751,16 @@ function App() {
             </div>
 
             {/* PARTE 2: Apps de Interlúdio */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 mb-8`}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8 mb-8`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Apps de Interlúdio
               </h3>
 
               {/* Botões para selecionar o app */}
-              <div className="flex gap-4 mb-6 justify-center">
+              <div className="flex gap-2 sm:gap-3 md:gap-4 mb-6 justify-center">
                 <button
                   onClick={() => setInterludioApp(interludioApp === 'combate' ? null : 'combate')}
-                  className={`px-6 py-3 rounded-lg font-bold text-lg transition-all ${
+                  className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-bold text-lg transition-all ${
                     interludioApp === 'combate'
                       ? 'bg-red-600 text-white shadow-lg scale-105'
                       : darkMode
@@ -37610,7 +37772,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => setInterludioApp(interludioApp === 'concurso' ? null : 'concurso')}
-                  className={`px-6 py-3 rounded-lg font-bold text-lg transition-all ${
+                  className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-bold text-lg transition-all ${
                     interludioApp === 'concurso'
                       ? 'bg-purple-600 text-white shadow-lg scale-105'
                       : darkMode
@@ -37624,14 +37786,14 @@ function App() {
 
               {/* App de Combate */}
               {interludioApp === 'combate' && (
-                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-6`}>
+                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-3 sm:p-5 md:p-6`}>
                   <CombateInterludioApp darkMode={darkMode} />
                 </div>
               )}
 
               {/* App de Concurso */}
               {interludioApp === 'concurso' && (
-                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-6`}>
+                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-3 sm:p-5 md:p-6`}>
                   <ConcursoInterludioApp darkMode={darkMode} />
                 </div>
               )}
@@ -37645,26 +37807,26 @@ function App() {
             </div>
 
             {/* PARTE 3: Chat com Sistema de Dados */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Chat & Rolagem de Dados
               </h3>
 
               {/* Menu de Rolagem Rápida */}
-              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 mb-4`}>
                 <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                   Rolagem Rápida
                 </h4>
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
                   {/* Primeira Parte: Número de dados */}
-                  <div className="flex items-center gap-2">
-                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
-                    <div className="flex gap-1">
+                  <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Quantidade:</span>
+                    <div className="flex flex-wrap gap-1">
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                         <button
                           key={num}
                           onClick={() => setQuickRollNumDice(num)}
-                          className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                          className={`w-7 h-7 sm:w-8 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                             quickRollNumDice === num
                               ? 'bg-blue-600 text-white'
                               : darkMode
@@ -37679,14 +37841,14 @@ function App() {
                   </div>
 
                   {/* Segunda Parte: Tipo de dado */}
-                  <div className="flex items-center gap-2">
-                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
-                    <div className="flex gap-1">
+                  <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Dado:</span>
+                    <div className="flex flex-wrap gap-1">
                       {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
                         <button
                           key={dice}
                           onClick={() => setQuickRollDiceType(dice)}
-                          className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                          className={`px-2.5 h-7 sm:px-3 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                             quickRollDiceType === dice
                               ? 'bg-green-600 text-white'
                               : darkMode
@@ -37725,7 +37887,7 @@ function App() {
                         })().catch(err => console.error('Erro ao salvar mensagem:', err))
                       }
                     }}
-                    className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                    className="px-3 sm:px-5 md:px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
                   >
                     🎲 Rolar
                   </button>
@@ -37739,7 +37901,7 @@ function App() {
               {/* Área de Mensagens */}
               <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
                 {chatMessages.length === 0 ? (
-                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                     Nenhuma mensagem ainda. Seja o primeiro a falar!
                   </p>
                 ) : (
@@ -37795,7 +37957,7 @@ function App() {
                     }
                   }}
                   placeholder="Digite sua mensagem, 1d20+@MAE, ou /r 1d20..."
-                  className={`flex-1 px-4 py-3 rounded-lg border-2 ${
+                  className={`flex-1 px-3 py-2 sm:px-4 sm:py-3 rounded-lg border-2 text-sm sm:text-base ${
                     darkMode
                       ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500'
                       : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'
@@ -37803,7 +37965,7 @@ function App() {
                 />
                 <button
                   onClick={handleSendMessage}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
+                  className="px-3 sm:px-5 md:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold text-sm sm:text-base"
                 >
                   Enviar
                 </button>
@@ -37819,11 +37981,11 @@ function App() {
             onClick={() => setShowCaptureModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-md w-full`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-md w-full`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedPokeball}
                 </h3>
                 <button
@@ -37858,7 +38020,7 @@ function App() {
                       type="text"
                       value={customPokeballModifier}
                       onChange={(e) => setCustomPokeballModifier(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${
                         darkMode
                           ? 'bg-gray-700 border-gray-600 text-white'
                           : 'bg-white border-gray-300 text-gray-800'
@@ -37877,7 +38039,7 @@ function App() {
                     <select
                       value={selectedPokeballModifier}
                       onChange={(e) => setSelectedPokeballModifier(e.target.value)}
-                      className={`w-full px-4 py-2 rounded-lg border-2 ${
+                      className={`w-full px-3 py-2 sm:px-4 rounded-lg border-2 text-sm sm:text-base ${
                         darkMode
                           ? 'bg-gray-700 border-gray-600 text-white'
                           : 'bg-white border-gray-300 text-gray-800'
@@ -37900,7 +38062,7 @@ function App() {
 
                 <button
                   onClick={handleThrowPokeball}
-                  className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-blue-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={selectedPokeball === 'Customball' && !customPokeballModifier}
                 >
                   Pokébolaaa, vaaai!
@@ -37917,11 +38079,11 @@ function App() {
             onClick={() => setShowHealingModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-md w-full`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-md w-full`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedHealingItem.name}
                 </h3>
                 <button
@@ -37933,7 +38095,7 @@ function App() {
               </div>
 
               <div className="space-y-4">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                   <img
                     src={selectedHealingItem.image}
                     alt={selectedHealingItem.name}
@@ -38004,7 +38166,7 @@ function App() {
 
                     setShowHealingModal(false)
                   }}
-                  className="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-semibold"
+                  className="w-full bg-green-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-green-700 font-semibold"
                 >
                   Curar?
                 </button>
@@ -38020,11 +38182,11 @@ function App() {
             onClick={() => setShowTalentinhoDetailModal(false)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full p-6`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full p-3 sm:p-5 md:p-6`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-6">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   {selectedTalentinhoDetail.nome}
                 </h3>
                 <button
@@ -38081,7 +38243,7 @@ function App() {
                     handleRollTalentinho(selectedTalentinhoDetail)
                     setShowTalentinhoDetailModal(false)
                   }}
-                  className="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-semibold flex items-center justify-center gap-2"
+                  className="w-full bg-green-600 text-white px-3 sm:px-5 md:px-6 py-3 rounded-lg hover:bg-green-700 font-semibold flex items-center justify-center gap-2"
                 >
                   <Send size={20} />
                   Enviar no Chat
@@ -38094,9 +38256,9 @@ function App() {
         {/* Modal de Dano/Cura Pokémon Interlúdio */}
         {showInterludioPokemonDamageModal && selectedInterludioPokemon && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowInterludioPokemonDamageModal(false); cancelDamageTypeSelection(); }}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-8 rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Dano/Cura - {selectedInterludioPokemon.nickname || selectedInterludioPokemon.species}
                 </h3>
                 <button onClick={() => { setShowInterludioPokemonDamageModal(false); cancelDamageTypeSelection(); }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -38110,11 +38272,11 @@ function App() {
                 value={interludioPokemonDamageAmount}
                 onChange={e => setInterludioPokemonDamageAmount(e.target.value)}
                 placeholder="Valor (1-1000)"
-                className={`w-full px-4 py-3 border-2 rounded-lg mb-4 text-center text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
+                className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base mb-4 text-center text-lg sm:text-xl ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`}
                 disabled={showDamageTypeButtons && pendingDamageContext === 'interludioPokemon'}
               />
               {!showDamageTypeButtons || pendingDamageContext !== 'interludioPokemon' ? (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   <button
                     onClick={() => {
                       const v = parseInt(interludioPokemonDamageAmount) || 0;
@@ -38240,9 +38402,9 @@ function App() {
         {showInterludioTrainerDamageModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowInterludioTrainerDamageModal(false); cancelDamageTypeSelection(); }}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-              <div className="p-6">
+              <div className="p-3 sm:p-5 md:p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     Dano/Cura - {currentUser?.username || 'Treinador'}
                   </h3>
                   <button onClick={() => { setShowInterludioTrainerDamageModal(false); cancelDamageTypeSelection(); }} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
@@ -38253,7 +38415,7 @@ function App() {
                 {/* Informação de HP Atual */}
                 <div className={`mb-6 p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                   <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>HP Atual</p>
-                  <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  <p className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {currentHP} / {getMaxHP()}
                   </p>
                 </div>
@@ -38268,7 +38430,7 @@ function App() {
                     value={interludioTrainerDamageAmount}
                     onChange={(e) => setInterludioTrainerDamageAmount(e.target.value)}
                     placeholder="Digite a quantidade..."
-                    className={`w-full px-4 py-3 border-2 rounded-lg text-lg ${
+                    className={`w-full px-3 py-2 sm:px-4 sm:py-3 border-2 rounded-lg text-sm sm:text-base text-lg ${
                       darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 placeholder-gray-400'
                     }`}
                     min="1"
@@ -38389,11 +38551,11 @@ function App() {
             }}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 max-w-md w-full`}
+              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-md w-full`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Ação Customizada ({customActionType === 'jn' ? 'JN' : 'RT'})
                 </h3>
                 <button
@@ -38483,9 +38645,9 @@ function App() {
         {/* MODAL DE REGRAS DO INTERLÚDIO - Área Treinador */}
         {showRegrasInterludioModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowRegrasInterludioModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-6 rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6 sticky top-0 pb-4 border-b ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Regras do Interlúdio</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Regras do Interlúdio</h3>
                 <button onClick={() => setShowRegrasInterludioModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
               </div>
 
@@ -38678,19 +38840,19 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari Staff</h2>
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari Staff</h2>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Safari Staff' ? 'bg-gradient-to-r from-green-600 to-emerald-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Safari Staff' ? 'bg-gradient-to-r from-green-600 to-emerald-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
               </div>
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {/* Subáreas */}
             <div className="flex gap-2 mb-6">
               {['Mapa Safari Staff', 'Encontro Safari Staff'].map(sub => (
@@ -38705,9 +38867,9 @@ function App() {
             {safariStaffSubarea === 'Mapa Safari Staff' && (
               <div>
                 {/* Controles */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
                   <div className="flex justify-between items-center mb-4">
-                    <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Runs do Safari</h3>
+                    <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Runs do Safari</h3>
                     <button onClick={handleResetSafari}
                       className="px-4 py-2 rounded-lg font-semibold bg-red-600 text-white hover:bg-red-700">
                       Resetar Safari
@@ -38749,7 +38911,7 @@ function App() {
                 </div>
 
                 {/* Grid Run 1-5 Buttons */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
                   <h3 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Visualizar Grid</h3>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {[1, 2, 3, 4, 5].map(num => {
@@ -38804,24 +38966,24 @@ function App() {
                 </div>
 
                 {/* Chat */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-                  <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat Safari</h3>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat Safari</h3>
 
                   {/* Menu de Rolagem Rápida */}
-                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 mb-4`}>
                     <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Rolagem Rápida
                     </h4>
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
                       {/* Primeira Parte: Número de dados */}
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
-                        <div className="flex gap-1">
+                      <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Quantidade:</span>
+                        <div className="flex flex-wrap gap-1">
                           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                             <button
                               key={num}
                               onClick={() => setQuickRollNumDice(num)}
-                              className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                              className={`w-7 h-7 sm:w-8 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                                 quickRollNumDice === num
                                   ? 'bg-blue-600 text-white'
                                   : darkMode
@@ -38836,14 +38998,14 @@ function App() {
                       </div>
 
                       {/* Segunda Parte: Tipo de dado */}
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
-                        <div className="flex gap-1">
+                      <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Dado:</span>
+                        <div className="flex flex-wrap gap-1">
                           {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
                             <button
                               key={dice}
                               onClick={() => setQuickRollDiceType(dice)}
-                              className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                              className={`px-2 sm:px-3 h-7 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                                 quickRollDiceType === dice
                                   ? 'bg-green-600 text-white'
                                   : darkMode
@@ -38882,7 +39044,7 @@ function App() {
                             })().catch(err => console.error('Erro ao salvar mensagem:', err))
                           }
                         }}
-                        className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                        className="w-full sm:w-auto px-3 sm:px-5 md:px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors text-sm"
                       >
                         🎲 Rolar
                       </button>
@@ -38894,7 +39056,7 @@ function App() {
                   </div>
                   <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
                     {chatMessages.length === 0 ? (
-                      <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>Nenhuma mensagem ainda.</p>
+                      <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>Nenhuma mensagem ainda.</p>
                     ) : (
                       <div className="space-y-3">
                         {chatMessages.map((msg, idx) => (
@@ -38925,8 +39087,8 @@ function App() {
                     <input type="text" value={chatInput} onChange={(e) => setChatInput(e.target.value)}
                       onKeyPress={(e) => { if (e.key === 'Enter') handleSendMessage() }}
                       placeholder="Digite sua mensagem ou /r 1d20..."
-                      className={`flex-1 px-4 py-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'} focus:outline-none focus:border-blue-500`} />
-                    <button onClick={handleSendMessage} className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold">Enviar</button>
+                      className={`flex-1 px-3 py-2 sm:px-4 sm:py-3 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'} focus:outline-none focus:border-blue-500`} />
+                    <button onClick={handleSendMessage} className="px-3 sm:px-5 md:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold text-sm sm:text-base">Enviar</button>
                   </div>
                 </div>
               </div>
@@ -38936,7 +39098,7 @@ function App() {
             {safariStaffSubarea === 'Encontro Safari Staff' && (
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Encontros Safari Staff</h3>
+                  <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Encontros Safari Staff</h3>
                   <button onClick={handleEquipeLimpeza}
                     className="px-4 py-2 rounded-lg font-semibold bg-red-600 text-white hover:bg-red-700">
                     🧹 Equipe de Limpeza
@@ -38944,7 +39106,7 @@ function App() {
                 </div>
 
                 {/* Run Pkm 1-5 Buttons */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-6`}>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-6`}>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {[1, 2, 3, 4, 5].map(num => {
                       const rKey = `run-${num}`
@@ -38977,7 +39139,7 @@ function App() {
                         {activeRunEnc.length === 0 ? (
                           <p className={`text-center py-4 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Nenhum pokémon encontrado nesta run.</p>
                         ) : (
-                          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
                             {activeRunEnc.map((pokemon, pokemonIndex) => {
                               const isExpanded = expandedSafariNpcCards.includes(pokemon.id)
                               const conds = pokemon.conditions || {}
@@ -39197,24 +39359,24 @@ function App() {
                 </div>
 
                 {/* Chat Safari Staff */}
-                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-                  <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat Safari</h3>
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat Safari</h3>
 
                   {/* Menu de Rolagem Rápida */}
-                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+                  <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 mb-4`}>
                     <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Rolagem Rápida
                     </h4>
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
                       {/* Primeira Parte: Número de dados */}
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
-                        <div className="flex gap-1">
+                      <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Quantidade:</span>
+                        <div className="flex flex-wrap gap-1">
                           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                             <button
                               key={num}
                               onClick={() => setQuickRollNumDice(num)}
-                              className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                              className={`w-7 h-7 sm:w-8 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                                 quickRollNumDice === num
                                   ? 'bg-blue-600 text-white'
                                   : darkMode
@@ -39229,14 +39391,14 @@ function App() {
                       </div>
 
                       {/* Segunda Parte: Tipo de dado */}
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
-                        <div className="flex gap-1">
+                      <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Dado:</span>
+                        <div className="flex flex-wrap gap-1">
                           {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
                             <button
                               key={dice}
                               onClick={() => setQuickRollDiceType(dice)}
-                              className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                              className={`px-2 sm:px-3 h-7 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                                 quickRollDiceType === dice
                                   ? 'bg-green-600 text-white'
                                   : darkMode
@@ -39275,7 +39437,7 @@ function App() {
                             })().catch(err => console.error('Erro ao salvar mensagem:', err))
                           }
                         }}
-                        className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                        className="w-full sm:w-auto px-3 sm:px-5 md:px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors text-sm"
                       >
                         🎲 Rolar
                       </button>
@@ -39287,7 +39449,7 @@ function App() {
                   </div>
                   <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
                     {chatMessages.length === 0 ? (
-                      <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>Nenhuma mensagem ainda.</p>
+                      <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>Nenhuma mensagem ainda.</p>
                     ) : (
                       <div className="space-y-3">
                         {chatMessages.map((msg, idx) => (
@@ -39318,8 +39480,8 @@ function App() {
                     <input type="text" value={chatInput} onChange={(e) => setChatInput(e.target.value)}
                       onKeyPress={(e) => { if (e.key === 'Enter') handleSendMessage() }}
                       placeholder="Digite sua mensagem ou /r 1d20..."
-                      className={`flex-1 px-4 py-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'} focus:outline-none focus:border-blue-500`} />
-                    <button onClick={handleSendMessage} className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold">Enviar</button>
+                      className={`flex-1 px-3 py-2 sm:px-4 sm:py-3 rounded-lg border-2 text-sm sm:text-base ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500' : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'} focus:outline-none focus:border-blue-500`} />
+                    <button onClick={handleSendMessage} className="px-3 sm:px-5 md:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold text-sm sm:text-base">Enviar</button>
                   </div>
                 </div>
 
@@ -39329,9 +39491,9 @@ function App() {
                 {showSafariNpcDamageModal && selectedSafariNpcPokemon && (
                   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowSafariNpcDamageModal(false); setSafariNpcDamageAmount('') }}>
                     <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={(e) => e.stopPropagation()}>
-                      <div className="p-6">
+                      <div className="p-3 sm:p-5 md:p-6">
                         <div className="flex justify-between items-center mb-6">
-                          <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Dano/Cura - {selectedSafariNpcPokemon.species}</h3>
+                          <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Dano/Cura - {selectedSafariNpcPokemon.species}</h3>
                           <button onClick={() => { setShowSafariNpcDamageModal(false); setSafariNpcDamageAmount('') }} className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'}`}>✕</button>
                         </div>
                         <p className={`text-sm mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
@@ -39353,13 +39515,13 @@ function App() {
                 {showSendToTrainerModal && pokemonToSend && (
                   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowSendToTrainerModal(false)}>
                     <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-                      <div className="p-6">
+                      <div className="p-3 sm:p-5 md:p-6">
                         <div className="flex justify-between items-center mb-6">
-                          <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Enviar Pokémon para Treinador</h3>
+                          <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Enviar Pokémon para Treinador</h3>
                           <button onClick={() => setShowSendToTrainerModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'}`}>✕</button>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-6">
                           {SAFARI_TRAINERS.map(trainer => (
                             <button key={trainer} onClick={() => sendPokemonToTrainer(trainer)}
                               className={`px-4 py-3 rounded-lg font-semibold transition-all ${darkMode ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-blue-500 text-white hover:bg-blue-600'}`}>
@@ -39378,9 +39540,9 @@ function App() {
                   return golpeData ? (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowGolpeDetailModal(false)}>
                       <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full`} onClick={(e) => e.stopPropagation()}>
-                        <div className="p-6">
+                        <div className="p-3 sm:p-5 md:p-6">
                           <div className="flex justify-between items-center mb-4">
-                            <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedGolpeForDetail}</h3>
+                            <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedGolpeForDetail}</h3>
                             <button onClick={() => setShowGolpeDetailModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'}`}>✕</button>
                           </div>
                           <div className="space-y-3">
@@ -39405,9 +39567,9 @@ function App() {
                   return abilityData ? (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAbilityModal(false)}>
                       <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full`} onClick={(e) => e.stopPropagation()}>
-                        <div className="p-6">
+                        <div className="p-3 sm:p-5 md:p-6">
                           <div className="flex justify-between items-center mb-4">
-                            <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{abilityData.nome}</h3>
+                            <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{abilityData.nome}</h3>
                             <button onClick={() => setShowAbilityModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'}`}>✕</button>
                           </div>
                           <div className="space-y-3">
@@ -39436,46 +39598,46 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns M</h2>
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns M</h2>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Árvore de Apricorns M' ? 'bg-gradient-to-r from-green-600 to-emerald-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Árvore de Apricorns M' ? 'bg-gradient-to-r from-green-600 to-emerald-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
               </div>
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
-              <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns M</h3>
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
+              <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns M</h3>
 
-              <div className="flex gap-4 mb-6">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 mb-6">
                 <button
                   onClick={handleProcurarArvores}
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold"
+                  className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg font-semibold text-sm sm:text-base"
                 >
                   🔍 Procurar Árvores (1d6+1)
                 </button>
                 <button
                   onClick={handleLimparArvores}
-                  className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold"
+                  className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg font-semibold text-sm sm:text-base"
                 >
                   🗑️ Limpar Árvores
                 </button>
               </div>
 
-              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-lg`}>
-                <h4 className={`font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvores Geradas ({generatedApricornTrees.length})</h4>
-                <div className="grid grid-cols-3 gap-4">
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-3 sm:p-4 rounded-lg`}>
+                <h4 className={`font-bold mb-4 text-base sm:text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvores Geradas ({generatedApricornTrees.length})</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
                   {generatedApricornTrees.map(tree => (
-                    <div key={tree.id} className={`${darkMode ? 'bg-gray-600' : 'bg-white'} p-4 rounded-lg text-center shadow`}>
-                      <img src={tree.image} alt={tree.name} className="w-24 h-24 mx-auto mb-2" />
-                      <p className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{tree.name}</p>
-                      {tree.hasFruit && <p className="text-green-400">🍎 Com frutos</p>}
-                      {!tree.hasFruit && <p className="text-gray-400">❌ Sem frutos</p>}
+                    <div key={tree.id} className={`${darkMode ? 'bg-gray-600' : 'bg-white'} p-3 sm:p-4 rounded-lg text-center shadow`}>
+                      <img src={tree.image} alt={tree.name} className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto mb-2" />
+                      <p className={`font-semibold text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{tree.name}</p>
+                      {tree.hasFruit && <p className="text-green-400 text-xs sm:text-sm">🍎 Com frutos</p>}
+                      {!tree.hasFruit && <p className="text-gray-400 text-xs sm:text-sm">❌ Sem frutos</p>}
                     </div>
                   ))}
                   {generatedApricornTrees.length === 0 && (
@@ -39528,7 +39690,7 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   Interlúdio M 👑
                 </h2>
                 <div className="flex gap-2">
@@ -39538,19 +39700,19 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-4 py-2 rounded-lg text-sm font-semibold ${area === 'Interlúdio M' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
+                {mestreAreas.map(area => <button key={area} onClick={() => setCurrentArea(area)} className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-semibold ${area === 'Interlúdio M' ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{area}</button>)}
               </div>
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {/* Botões de Seleção de Treinador */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6 mb-8`}>
-              <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6 mb-8`}>
+              <h3 className={`text-lg sm:text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Selecionar Treinador
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -39558,7 +39720,7 @@ function App() {
                   <button
                     key={trainer.username}
                     onClick={() => setInterludioMSelectedTrainer(interludioMSelectedTrainer === trainer.username ? null : trainer.username)}
-                    className={`px-6 py-3 rounded-lg font-bold transition-all ${
+                    className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-bold transition-all ${
                       interludioMSelectedTrainer === trainer.username
                         ? 'bg-gradient-to-r from-blue-600 to-purple-700 text-white shadow-lg scale-105'
                         : darkMode
@@ -39576,9 +39738,9 @@ function App() {
             {interludioMSelectedTrainer && interludioMTrainerData && (
               <>
                 {/* Treinador Info e Time Principal */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-8">
                   {/* Coluna Esquerda: Treinador */}
-                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
                     <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4`}>
                       <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                         {interludioMSelectedTrainer} <span className={`ml-2 text-sm font-normal ${darkMode ? 'text-green-400' : 'text-green-600'}`}>HP: {interludioMTrainerData.currentHP !== undefined ? interludioMTrainerData.currentHP : calculateTrainerMaxHP(interludioMTrainerData)}/{calculateTrainerMaxHP(interludioMTrainerData)}</span>
@@ -39624,7 +39786,7 @@ function App() {
                   </div>
 
                   {/* Coluna Direita: Time Principal */}
-                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-6`}>
+                  <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-6`}>
                     <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                       Time Principal
                     </h4>
@@ -39662,7 +39824,7 @@ function App() {
                 </div>
 
                 {/* MENUS DE INTERLÚDIO M */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-8">
                   {/* Menu Int. Talentos */}
                   <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-4`}>
                     <div
@@ -39847,7 +40009,7 @@ function App() {
                           }
 
                           return (
-                            <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                               {pokeballs.map((item, idx) => (
                                 <div
                                   key={idx}
@@ -39863,7 +40025,7 @@ function App() {
                                       e.target.nextSibling.style.display = 'flex'
                                     }}
                                   />
-                                  <div className="w-10 h-10 hidden items-center justify-center text-xl">
+                                  <div className="w-10 h-10 hidden items-center justify-center text-lg sm:text-xl">
                                     O
                                   </div>
                                   <span className={`text-[9px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -39913,7 +40075,7 @@ function App() {
                           }
 
                           return (
-                            <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                               {healingItems.map((item, idx) => {
                                 const curaItem = POKELOJA_DATA['Cura']?.find(i => i.name === item.name)
                                 return (
@@ -39931,7 +40093,7 @@ function App() {
                                         e.target.nextSibling.style.display = 'flex'
                                       }}
                                     />
-                                    <div className="w-10 h-10 hidden items-center justify-center text-xl">
+                                    <div className="w-10 h-10 hidden items-center justify-center text-lg sm:text-xl">
                                       +
                                     </div>
                                     <span className={`text-[9px] font-semibold text-center mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -39954,16 +40116,16 @@ function App() {
             )}
 
             {/* Apps de Interlúdio M */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8 mb-8`}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8 mb-8`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Apps de Interlúdio M
               </h3>
 
               {/* Botões para selecionar o app */}
-              <div className="flex gap-4 mb-6 justify-center">
+              <div className="flex gap-2 sm:gap-3 md:gap-4 mb-6 justify-center">
                 <button
                   onClick={() => setInterludioMApp(interludioMApp === 'combate' ? null : 'combate')}
-                  className={`px-6 py-3 rounded-lg font-bold text-lg transition-all ${
+                  className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-bold text-lg transition-all ${
                     interludioMApp === 'combate'
                       ? 'bg-red-600 text-white shadow-lg scale-105'
                       : darkMode
@@ -39975,7 +40137,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => setInterludioMApp(interludioMApp === 'concurso' ? null : 'concurso')}
-                  className={`px-6 py-3 rounded-lg font-bold text-lg transition-all ${
+                  className={`px-3 sm:px-5 md:px-6 py-3 rounded-lg font-bold text-lg transition-all ${
                     interludioMApp === 'concurso'
                       ? 'bg-purple-600 text-white shadow-lg scale-105'
                       : darkMode
@@ -39989,14 +40151,14 @@ function App() {
 
               {/* App de Combate */}
               {interludioMApp === 'combate' && (
-                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-6`}>
+                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-3 sm:p-5 md:p-6`}>
                   <CombateInterludioApp darkMode={darkMode} />
                 </div>
               )}
 
               {/* App de Concurso */}
               {interludioMApp === 'concurso' && (
-                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-6`}>
+                <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-xl p-3 sm:p-5 md:p-6`}>
                   <ConcursoInterludioApp darkMode={darkMode} />
                 </div>
               )}
@@ -40010,26 +40172,26 @@ function App() {
             </div>
 
             {/* Chat */}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-8`}>
-              <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Chat & Rolagem de Dados
               </h3>
 
               {/* Menu de Rolagem Rápida */}
-              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-4 mb-4`}>
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg p-3 sm:p-4 mb-4`}>
                 <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                   Rolagem Rápida
                 </h4>
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
                   {/* Primeira Parte: Número de dados */}
-                  <div className="flex items-center gap-2">
-                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Quantidade:</span>
-                    <div className="flex gap-1">
+                  <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Quantidade:</span>
+                    <div className="flex flex-wrap gap-1">
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                         <button
                           key={num}
                           onClick={() => setQuickRollNumDice(num)}
-                          className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                          className={`w-7 h-7 sm:w-8 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                             quickRollNumDice === num
                               ? 'bg-blue-600 text-white'
                               : darkMode
@@ -40044,14 +40206,14 @@ function App() {
                   </div>
 
                   {/* Segunda Parte: Tipo de dado */}
-                  <div className="flex items-center gap-2">
-                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dado:</span>
-                    <div className="flex gap-1">
+                  <div className="flex flex-col xs:flex-row xs:items-center gap-2">
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap`}>Dado:</span>
+                    <div className="flex flex-wrap gap-1">
                       {['d4', 'd6', 'd8', 'd10', 'd12', 'd20'].map(dice => (
                         <button
                           key={dice}
                           onClick={() => setQuickRollDiceType(dice)}
-                          className={`px-3 h-8 rounded text-sm font-bold transition-colors ${
+                          className={`px-2.5 h-7 sm:px-3 sm:h-8 rounded text-xs sm:text-sm font-bold transition-colors ${
                             quickRollDiceType === dice
                               ? 'bg-green-600 text-white'
                               : darkMode
@@ -40090,7 +40252,7 @@ function App() {
                         })().catch(err => console.error('Erro ao salvar mensagem:', err))
                       }
                     }}
-                    className="px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
+                    className="px-3 sm:px-5 md:px-6 h-8 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors"
                   >
                     🎲 Rolar
                   </button>
@@ -40104,7 +40266,7 @@ function App() {
               {/* Área de Mensagens */}
               <div ref={chatContainerRef} className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} rounded-lg p-4 h-96 overflow-y-auto mb-4`}>
                 {chatMessages.length === 0 ? (
-                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-8`}>
+                  <p className={`text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'} py-3 sm:py-5 md:py-8`}>
                     Nenhuma mensagem ainda. Seja o primeiro a falar!
                   </p>
                 ) : (
@@ -40160,7 +40322,7 @@ function App() {
                     }
                   }}
                   placeholder="Digite sua mensagem, 1d20+@MAE, ou /r 1d20..."
-                  className={`flex-1 px-4 py-3 rounded-lg border-2 ${
+                  className={`flex-1 px-3 py-2 sm:px-4 sm:py-3 rounded-lg border-2 text-sm sm:text-base ${
                     darkMode
                       ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-500'
                       : 'bg-white border-gray-300 text-gray-800 placeholder-gray-400'
@@ -40168,7 +40330,7 @@ function App() {
                 />
                 <button
                   onClick={handleSendMessage}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
+                  className="px-3 sm:px-5 md:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold text-sm sm:text-base"
                 >
                   Enviar
                 </button>
@@ -40180,9 +40342,9 @@ function App() {
         {/* MODAL DE REGRAS DO INTERLÚDIO - Área Mestre */}
         {showRegrasInterludioModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowRegrasInterludioModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-6 rounded-2xl shadow-2xl max-w-sm sm:max-w-2xl md:max-w-4xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6 sticky top-0 pb-4 border-b ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}">
-                <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Regras do Interlúdio</h3>
+                <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Regras do Interlúdio</h3>
                 <button onClick={() => setShowRegrasInterludioModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}><X size={24} /></button>
               </div>
 
