@@ -1,0 +1,139 @@
+Características de Detetive
+Arsenal
+Referência: L, X
+Frequência: Uso Único. A cada 10 Níveis, receba um uso adicional.
+Efeito: quando você ativa esta Característica de Classe, escolha um das 
+seguintes Habilidades: Bisbilhoteiro, Desatenção, Foco Interior, Gatuno, Infiltração, Insônia, Premonição, Tensão, Visão Aguçada. Você ganha permanentemente a Habilidade escolhida.
+
+Criminologia
+Referência: C, V
+Frequência:Constante.
+Efeito: quando lidando com um suspeito de um crime ou um criminoso, aumente todos os seus Modificadores em 1.
+
+Talentos de Detetive
+
+Auxiliar
+Requisitos: Treinamento Investigativo.
+Referência: P, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu que já recebeu 
+Treinamento Investigativo.
+Efeito: usar este Talento consome sua Ação de 
+Comando da rodada. Você comanda seu pokémon para que 
+ajude você em suas ações, o que faz com que você receba 
+um bônus de +3 a quaisquer rolagens relacionadas a algum 
+Talento de Detetive. O bônus só se mantém ativo enquanto 
+o pokémon alvo for capaz de agir e estiver próximo.
+Se usar este Talento enquanto o benefício por 
+Criminologia está ativo, o bônus de Auxiliar é aplicado a 
+todas as suas rolagens, em vez que apenas aquelas 
+relacionadas a Talentos de Detetive.
+
+Detector de Mentiras
+Requisitos: ter solucionado um caso.
+Referência: P, X
+Frequência: À Vontade.
+Gatilho: você ouve algo que você suspeita ser uma 
+mentira.
+Efeito: especifique qual sentença dita pela pessoa 
+você quer avaliar. Você saberá se aquela sentença é uma
+inteiramente verdade ou não. Apenas mentiras contadas 
+deliberadamente são reconhecíveis como mentiras.
+Este Talento pode ser usado tanto ouvindo alguém 
+diretamente quanto em gravações de áudios ou vídeos.
+
+Disfarce
+Referência: E, X
+Frequência: À Vontade.
+Efeito: após dez minutos se arrumando, você cria 
+um disfarce, tornando sua identidade irreconhecível. Este 
+disfarce não imita alguém específico.
+
+Fala Mansa
+Referência: C, V
+Frequência: Constante.
+Efeito: adicione +5 aos resultados de testes que 
+envolvam seu MAE ou seu MDE.
+
+Mestre do Disfarce
+Referência: E, X
+Requisitos: Disfarce.
+Frequência: À Vontade.
+Efeito: após uma hora de preparação, você cria um 
+disfarce que é idêntico a alguém específico. Quando vestir o 
+disfarce preparado (um processo que demora dez minutos), 
+este Talento permite que você se disfarce não apenas como 
+outra pessoa, mas como pokémons e até mesmo objetos 
+inanimados do mesmo tamanho que você. Você não será 
+reconhecido como outra coisa além daquilo que quer 
+parecer. Você pode carregar consigo até dois disfarces e 
+pode manter uma coleção guardada onde você quiser.
+
+O Que Foi Aquilo?
+Referência: P, X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: uma pessoa que não está em combate e não 
+é hostil a você (ela não precisa estar ciente da sua 
+presença).
+Efeito: role 1d20 + MA ou MV. Você tem sucesso 
+em chamar a atenção do alvo a outra coisa mediante um 
+truque ou uma distração se o resultado for maior a um dos 
+seguintes Atributos dele: Ataque Especial ou Defesa 
+Especial. Os efeitos deste Talento duram um número de 
+minutos igual à diferença entre o resultado da rolagem e o 
+Atributo mais baixo do alvo entre Ataque Especial e Defesa 
+Especial. Se o alvo possuir assuntos urgentes ou estiver 
+alerta por alguma razão, ele parará o que quer que esteja 
+fazendo mais cedo, senão imediatamente.
+
+Parado Aí!
+Referência: L, X
+Frequência: Diária. 
+Gatilho: você está perseguindo alguém que está 
+fugindo ou está em combate contra um inimigo o qual você 
+andou procurando.
+Efeito: adicione metade de seu MA à sua 
+Velocidade e adicione seu MV ao seu Atributo Ataque por 
+cinco minutos. Diferente do padrão, estas adições não 
+afetam os Modificadores dos Atributos.
+
+Procurar Evidências
+Referência: P, X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: uma área (normalmente a cena de um crime, 
+a casa de um suspeito ou o local de trabalho de um 
+suspeito).
+Efeito: role 1d20 + MA ou MV. Se o resultado for 
+15 ou mais, você acha uma evidência (se houver) 
+relacionada com o que você está procurando, mesmo que a 
+relevância da pista não seja imediatamente óbvia.
+Como um benefício constante, receba +5 a todas as 
+rolagens da Perícia Investigação.
+
+Treinamento Intuitivo
+Requisitos: Treinamento Investigativo.
+Referência: P, X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu que já recebeu 
+Treinamento Investigativo.
+Efeito: o alvo recebe uma Habilidade pokémon que 
+você tenha obtido mediante Arsenal Investigativo. Isso não 
+interfere com as Habilidades que ele já possui e dura até o 
+pokémon voltar para a pokébola ou até descansar por 
+aquele dia.
+
+Treinamento Investigativo 
+Referência: P, X
+Requisitos: um pokémon com Lealdade 3.
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional.
+Alvo: um pokémon seu com Lealdade 3 ou mais ou 
+um Parceiro.
+Efeito: o alvo tem sua Inteligência aumentada para 
+4. Em vez disso, se ele já possuía Inteligência 4 ou mais, ele 
+recebe +1 à Inteligência. Ele também recebe uma das 
+seguintes Capacidades: Faro, Ininteligível, Silêncio.

@@ -1,0 +1,118 @@
+Características Inquebrável
+
+Incansável
+Referência: C,V
+Frequência: Constante.
+Efeito: seus pokémons só 
+atingem a inconsciência quando 
+atingem -25% de seus Pontos de Vida, em vez de ficarem
+inconscientes aos 0 Pontos de Vida, como normalmente 
+acontece. Contudo, um pokémon consciente em virtude 
+desta Característica de Classe não pode usar nenhum dos 
+seguintes Golpes: Autodestruição, Esforço, Explosão, 
+Mangual, Reversão, Sofrimento Mútuo. Esta Característica 
+de Classe não interfere em quando seu pokémon deve fazer 
+um teste de morte. Pokémons Sem Alma não podem se 
+beneficiar de Incansável.
+
+Saúde Inquebrável
+Referência: C,V
+Frequência: Constante.
+Efeito: quando um pokémon seu sobe de nível, 
+você pode adicionar pontos de Atributos à Saúde, 
+ignorando a Relação Basal.
+
+Talentos Inquebrável
+
+Ainda de Pé!
+Requisitos: Ataque 18, Ataque Especial 16.
+Referência: I,P,X
+Frequência: Constante.
+Efeito: você ainda por comandar seus pokémons 
+mesmo enquanto inconsciente. Se você escolher fazê-lo e 
+for reduzido a -100% de seus PV, você não poderá fazer um 
+teste de morte.
+
+Ainda de Pé! +
+Requisitos: Ainda de Pé!.
+Referência: C,X
+Frequência: Constante.
+Efeito: você ainda por comandar seus pokémons 
+mesmo enquanto inconsciente. Isso não interfere em 
+quando você deve fazer um teste de morte. Este Talento 
+substitui Ainda de Pé!
+
+Amigo é pra Essas Coisas!
+Referência: C,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um de seus pokémons adjacente a você é 
+acertado por um Golpe.
+Efeito: após aplicar a Defesa ou a Defesa Especial 
+do seu pokémon, você sofre metade do dano que ele 
+sofreria no lugar dele.
+
+Aparar
+Requisitos: Ataque 15.
+Referência: C,X
+Frequência: Constante.
+Efeito: adicione seu MA à sua Defesa e à sua 
+Defesa Especial para fins de diminuir o dano que você 
+sofreria quando é atacado.
+
+Aparar +
+Requisitos: Aparar.
+Referência: C,X
+Frequência: Constante.
+Efeito: adicione o dobro de seu MA à sua Defesa e 
+à sua Defesa Especial para fins de diminuir o dano que você 
+sofreria quando é atacado. Este Talento substitui Aparar.
+
+Consciente
+Referência: C,X
+Frequência: Constante.
+Efeito: enquanto dorme, você mantêm ciência 
+sobre o ambiente externo usando seus sentidos 
+normalmente como se estivesse acordado, salvo para a 
+visão. Você instintivamente reage a perigos enquanto 
+dorme, acordando imediatamente. Enquanto dorme, você 
+não recebe penalidades a testes envolvendo percepção. Se 
+você estiver sob a Condição Sono, você simplesmente 
+ignora todos os efeitos a ela associados.
+
+Mantenha a Linha!
+Requisitos: três pokémons com Defesa Especial 25.
+Referência: I,P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você é atingido por um Golpe especial (ou 
+por um humano usando Armas se for considerado um 
+ataque especial) e perderia mais do que 25 PV por isso.
+Efeito: reduza a perda de Pontos de Vida a 25.
+
+Proteção
+Requisitos: um pokémon com Proteção.
+Referência: I,P,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Gatilho: você é atingido por um Golpe.
+Efeito: você usa o Golpe Proteção.
+
+Resistência
+Requisitos: um pokémon com Resistência.
+Referência: I,P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você é atingido por um Golpe.
+Efeito: você usa o Golpe Resistência.
+
+Segure Firme!
+Requisitos: três pokémons com Defesa 25.
+Referência: I,P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você é atingido por um Golpe físico ou por 
+um humano usando Armas (mas não se por algum motivo, 
+este é considerado um ataque especial) e perderia mais do 
+que 25 PV por isso.
+Efeito: reduza a perda de Pontos de Vida a 25.

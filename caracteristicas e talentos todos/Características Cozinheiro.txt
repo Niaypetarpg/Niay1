@@ -1,0 +1,150 @@
+Características Cozinheiro
+
+Alimento da Alma
+Referência: E,X
+Frequência: À Vontade.
+Alvo: um pokémon.
+Efeito: após cozinhar por trinta minutos (com 
+ingredientes e equipamento adequado), você cria um Prato 
+que serve até dez criaturas (pessoas ou pokémons). 
+Pokémons que se alimentem desta comida ficam muito 
+felizes, portanto não perderão lealdade se consumirem 
+Ervas logo antes ou logo depois.
+
+Explosão de Energia
+Referência: E,X
+Frequência: Diária.
+Efeito: após cozinhar por quinze minutos (com 
+ingredientes e equipamento adequado), você cria uma 
+Bebida Energética que provê Pontos de Vida temporários 
+em quantidade igual ao quíntuplo de seu MD. Pontos de 
+Vida temporários desaparecem após um encontro ou ao 
+serem consumidos (eles são consumidos antes dos Pontos 
+de Vida normais quando se sofre dano).
+
+Talentos Cozinheiro 
+
+Arremessar Isca
+Requisitos: Isca.
+Referência: E,X
+Frequência: Diária.
+Alvo: um pokémon selvagem.
+Efeito: desde que você tenha criado uma Isca 
+naquele mesmo dia, você pode arremessar um pedaço dela 
+(que foi reservado do todo prévio) para um pokémon 
+selvagem. Role 1d20 + MD. Se o resultado for 13 ou mais, o 
+pokémon abdica de uma ação dele para provar a comida. Se 
+o resultado for 25 ou mais, ele sacrificará as próximas duas 
+ações dele para comê-la completamente.
+
+Calórico
+Requisitos: Defesa 16.
+Referência: E,X
+Frequência: Diária.
+Efeito: após cozinhar por quinze minutos (com 
+ingredientes e equipamento adequado), você cria um Prato 
+que serve até dez criaturas (pessoas ou pokémons) que provê a pokémons Pontos de Vida Temporários igual ao 
+dobro de seu MD. Pontos de Vida temporários 
+desaparecem após um encontro ou ao serem consumidos 
+(eles são consumidos antes dos Pontos de Vida normais 
+quando se sofre dano).
+
+Envenenamento
+Requisitos: Defesa Especial 17.
+Referência: L,X
+Frequência: À Vontade.
+Alvo: um Prato ou uma Isca que você está criando.
+Efeito: escolha entre Paralisia, Sono ou Veneno. 
+Quando o Prato ou a Isca é consumido, ele inflige a 
+Condição sobre quem comer.
+
+Herbalismo
+Referência: E,X
+Frequência: Diária.
+Efeito: após cozinhar por uma hora (com 
+ingredientes e equipamento adequado), você cria um 
+Polvilho Curativo ou um Polvilho Energizante.
+
+Isca
+Referência: E,X
+Frequência: Diária.
+Efeito: após cozinhar por uma hora (com 
+ingredientes e equipamento adequado), você cria uma 
+comida e a coloca em algum ambiente selvagem. Então, se 
+você se escondeu apropriadamente, após uma quantidade 
+de tempo entre quinze minutos e uma hora, o Narrador 
+deve fazer um pokémon selvagem aparecer em busca da 
+Isca. Role 1d20 + MD. Se o resultado for 15 ou mais, um 
+pokémon de Nível pelo menos igual ao seu pokémon leal de 
+Nível mais alto aparecerá. Se a rolagem exceder 19, o 
+pokémon terá 5 Níveis a mais que seu pokémon leal de 
+Nível mais alto. Um pokémon capturado mediante este 
+Talento não é considerado válido para determinar os Níveis 
+dos futuros pokémons atraídos pela Isca.
+
+Liquidificador
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um Suco.
+Efeito: adicione seu MD ao valor do Suco.
+
+Papinha de Bebê
+Referência: E,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Efeito: após cozinhar por trinta minutos (com 
+ingredientes e equipamento adequado), você cria um Prato 
+que serve até dez criaturas (pessoas ou pokémons) que, 
+quando comido por um pokémon com Nível até 25, faz o 
+pokémon receber 25% de experiência extra pelo resto do 
+dia.
+
+Refeição Proteica
+Requisitos: Defesa 18.
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Efeito: após cozinhar por uma hora (com 
+ingredientes e equipamento adequado), você cria uma 
+Refeição Proteica, que provê humanos com energia 
+suficiente para passarem um dia sem dormir. Após 48 horas 
+insones, aquele que consumiu o item perde 10 Pontos de 
+Vida a cada hora que não dormir. Enquanto sob os efeitos 
+de uma Refeição Proteica, o humano é imune a Sono: se 
+receberia esta Condição, ele começará a sentir os efeitos 
+que sentiria só após 48 horas sem dormir com duas horas 
+de antecipação (isso é acumulativo: a cada vez que 
+receberia a Condição Sono, reduza duas horas).
+
+Tempero Original
+Requisitos: Defesa 14.
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um Tempero que está sendo criado.
+Efeito: adicione seu MD ao valor do Tempero.
+
+Vitaminas e Sais Minerais
+Requisitos: Defesa Especial 20.
+Referência: E,X
+Frequência: Semanal.
+Efeito: após cozinhar por três horas (com 
+ingredientes e equipamento adequado), você cria uma 
+Vitamina. Role 1d6 para determinar qual:
+Resultado; Vitamina
+1; Imunizante
+2; Proteína
+3; Ferro
+4; Cálcio
+5; Zinco
+6; Carburante
+
+Vitaminas e Sais Minerais +
+Requisitos: Vitaminas e Sais Minerais.
+Referência: E,X
+Frequência: Semanal.
+Efeito: após cozinhar por três horas (com 
+ingredientes e equipamento adequado), você cria um dos 
+seguintes à sua escolha: Imunizante, Proteína, Ferro, Cálcio, 
+Zinco ou Carburante. Este Talento substitui Vitaminas.

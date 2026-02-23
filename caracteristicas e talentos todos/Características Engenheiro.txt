@@ -1,0 +1,145 @@
+Características Engenheiro
+
+Braço Mecânico
+Referência: C,X
+Frequência: Constante.
+Efeito: você constrói uma 
+prótese mecânica para seu braço 
+direito ou para seu braço esquerdo. Ela adiciona +2 a seu Atributo 
+Ataque. O Braço Mecânico pesa 
+20 kg, mas possui um sistema 
+acoplador de modo que você não 
+se cansa em carregá-lo.
+
+Radar
+Referência: C,X
+Frequência: Constante.
+Efeito: você legalmente altera sua própria 
+pokéagenda para que ela adquira a função de Radar, ou 
+seja, para que ela não precise ser direcionada para um 
+pokémon para avaliá-lo, achando automaticamente 
+qualquer pokémon que esteja parado dentro do alcance do 
+Radar, mas não os pokémons em movimento. Você pode 
+alterar o alcance do Radar a qualquer momento para 
+qualquer valor de 5 metros a 15 metros.
+
+Talentos Engenheiro
+
+Alinhar Curva
+Referência: P,V
+Frequência: Diária.
+Efeito: aumente seu MAE ou seu MDE por um valor 
+igual ao número de espécies diferentes de pokémons 
+possuídas dividido por dez.
+
+Arma Acoplada
+Referência: C,X
+Frequência: Constante.
+Efeito: após doze horas de trabalho, você pode 
+acoplar ao seu Braço Mecânico uma arma criada por um 
+Artífice com matérias-primas especiais ou não. Você sempre 
+é considerado possuindo o Talento Arma de Escolha para a 
+arma que estiver atualmente acoplada a seu Braço 
+Mecânico e nunca poderá ser desarmado de sua Arma 
+Acoplada. Se preferir, a Arma Acoplada pode ser retrátil se 
+encolhendo para dentro de seu Braço Mecânico quando 
+você determinar. Com sua Arma Acoplada, você pode 
+adicionar sua Velocidade às rolagens de dano em 
+substituição a seu Ataque.
+
+Armadilhas para Pokébolas
+Referência: C,X
+Frequência: Constante.
+Efeito: a qualquer momento, você pode ter uma 
+quantidade de suas pokébolas igual a seu MV para serem 
+usadas em armadilhas. Aplicar ou remover as modificações 
+necessárias para tornar uma pokébola usável em uma 
+armadilha requer dez minutos. Você deve instalar a pokébola em um lugar onde quer deixar a armadilha. 
+Posteriormente, você poderá, usando uma Ação Padrão, 
+disparar o gatilho deixado na Armadilha para Pokébola 
+tanto para capturar um pokémon adjacente (se a pokébola 
+estava vazia) quanto para liberar seu pokémon (se a 
+pokébola contém um pokémon). 
+
+Canhão de Pokébolas
+Referência: C,X
+Frequência: Constante.
+Efeito: seu Braço Mecânico pode agora atirar 
+pokébolas tanto para enviar seus pokémons à batalha 
+quanto para capturar pokébolas selvagens. Quando atirar 
+um pokébola em um pokémon selvagem, subtraia 12 do 
+resultado do Teste de Captura. Além disso, a pokébola 
+causa 1d8 de dano ao pokémon selvagem, que não pode 
+reduzir este dano usando Defesa ou Defesa Especial.
+
+Hacker
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode acessar qualquer computador ou 
+rede sem a necessidade de um teste de Perícia. Para 
+qualquer outra rolagem da Perícia Programação, receba +5.
+
+Meteoro
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Meteoro.
+
+Óculos Digitalizadores
+Referência: C,V
+Frequência: Constante.
+Alvo: uma vez por rodada, você pode ver uma 
+porcentagem quando olha para um pokémon. Esta 
+porcentagem representa quantos Pontos de Vida ele possui 
+remanescentes.
+
+Perfuração
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Perfuração.
+
+Propulsor
+Referência: C,X
+Frequência: Constante.
+Efeito: após doze horas de trabalho, seu Braço 
+Mecânico agora é flutuante e possui um compartimento 
+que revela um propulsor concedendo a você Deslocamentos 
+de Natação 8 e Subaquático 6.
+
+Robô
+Referência: E,X
+Frequência: Semanal.
+Efeito: após dez horas de trabalho cansativo 
+(consumindo 40 PV), você consegue construir um pequeno 
+robô em formato de um pokémon controlado 
+remotamente. O robô possui até 50 centímetros de altura e 
+pode ser de qualquer espécie que possua até este tamanho, 
+e sua aparência pode variar. Ele possui Deslocamento 
+Terrestre 5 e pode ter um Item Mantido próprio (ele pode 
+segurar qualquer pequeno objeto). Ele pode ser controlado 
+remotamente a até 25 metros por um dispositivo que 
+consta em seu Braço Mecânico. Pokémons seus com a 
+Capacidade Virtualidade podem possuir um robô seu sem 
+precisar fazer rolagens. Um robô possui 20 Pontos de Vida e 
+recebe dano superefetivo por Eletricidade, Fogo, Terra e 
+Pedra, a menos que esteja possuído por um Pokémon com 
+Virtualidade, caso em que ele é considerado do Tipo do 
+pokémon em questão.
+Após dez horas de trabalho cansativo (consumindo 
+40 PV), você consegue atualizar um robô seu para que ele 
+ganhe uma das seguintes funções: receber 20 Pontos de 
+Vida extras, poder usar o Golpe Brasa uma vez diária, poder 
+usar o Golpe Choque do Trovão uma vez diária, possuir um 
+gravador e reprodutor de áudio, possuir uma câmera, 
+receber Deslocamento Aéreo de Voo 5, poder ser 
+controlado remotamente a até 200 metros.
+
+Soco Bala
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Soco Bala.
+

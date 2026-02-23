@@ -1,0 +1,138 @@
+Características Bandido
+
+Ludibriar
+Referência: P,X
+Frequência: Constante.
+Alvo: um pokémon ou um humano.
+Efeito: escolha um dos seguintes Golpes: Adulação, 
+Bravata ou Provocação. Você usa o Golpe escolhido. Este 
+Talento não pode ser usado mais de uma vez contra o 
+mesmo durante o mesmo combate, mesmo que um Golpe 
+diferente fosse escolhido.
+
+Psique
+Referência: I,P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Pelas Costas.
+
+Talentos Bandido
+
+Afiar
+Referência: P,X
+Frequência: Diária. 
+Alvo: uma de suas armas.
+Efeito: role 1d20 + MA. Se o resultado for 12 ou 
+mais, a arma alvo causa 1d10 de dano adicional até o fim do 
+combate. Este Talento deve ser declarado no início do 
+combate, e indica que você preparou aquela arma 
+previamente.
+
+Ataque Furtivo
+Requisitos: Arma de Escolha para uma arma pequena e real (não ataque desarmado).
+Referência: C,X
+Frequência: Constante.
+Efeito: outros não são conscientes que você 
+carrega sua Arma de Escolha consigo. Quando você usa pela 
+primeira vez sua Arma de Escolha para atacar em um 
+combate, a Dificuldade de Acurácia é de apenas 2 e você 
+ignora a Evasão do alvo. Além disso, se você acertar, você 
+causa dano dobrado.
+
+Desarme
+Requisitos: seis Talentos de Bandido (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária.
+Gatilho: você ataca um humano com um ataque de 
+Armas e tem sucesso.
+Efeito: role 1d20 + MA. Se o resultado for 16 ou 
+mais, uma pokébola contendo um pokémon que o alvo do 
+ataque possui (determinada aleatoriamente se houver mais 
+de uma) é danificada, e não pode ter seu pokémon liberado. 
+Pokébolas danificadas desta forma podem ser reparadas 
+instantaneamente por um Captor ou em um Centro 
+Pokémon, numa Pokéloja ou em qualquer estabelecimento policial.
+
+Desespero
+Requisitos: Ataque 18.
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Último Recurso. Só é 
+possível usar este Talento se você já usou pelo menos 
+quatro Talentos de Bandido no combate atual.
+
+Encare!
+Referência: P,X
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Cabeçada.
+
+Lágrimas de Crocodilo
+Referência: P,X
+Frequência: À Vontade. 
+Gatilho: você faz um Teste de Acurácia para atacar 
+um pokémon ou um humano que causou dano a você na 
+última ação dele.
+Efeito: reduza em 5 a Dificuldade de Acurácia. Este 
+Talento não pode ser usado mais de uma contra o mesmo 
+inimigo no mesmo combate. Além disso, os efeitos deste 
+Talento não se acumulam com os efeitos de Pensa Rápido!
+
+No Saco!
+Requisitos: Ataque 17.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um humano.
+Efeito: você usa o Golpe Megachute. Se o resultado 
+do Teste de Acurácia for 14 ou mais, o alvo está Paralisado.
+
+Olha Lá!
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: o alvo role 1d20 + MAE se for um humano 
+ou 1d20 + Inteligência se for um pokémon. Se a rolagem for 
+menor que 13, o alvo perde a Ação Padrão da rodada atual 
+se for humano ou a Ação de Golpe da rodada atual se for 
+pokémon. Este Talento não pode ser usado mais de uma 
+contra o mesmo alvo no mesmo combate.
+
+Pensa Rápido!
+Referência: C,X
+Frequência: Constante.
+Gatilho: você erra um ataque de Armas.
+Efeito: reduza em 3 a Dificuldade de Acurácia se 
+atacar o mesmo alvo novamente na próxima rodada.
+
+Riposta
+Requisitos: Arma de Escolha.
+Referência: I,P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Gatilho: você recebe um ataque de Armas usando 
+uma arma real (não ataque desarmado).
+Efeito: role 1d20 + MA. Se o resultado for 16 ou 
+mais, o ataque falha e a arma do inimigo é arremessada em 
+5 metros para longe. Pegar uma arma do chão consome 
+uma Ação Padrão. Riposta só pode ser usada uma vez por 
+rodada.
+
+Roubo
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Roubo. Se você acertar um 
+humano, você pode tirar dele qualquer coisa que possa ser 
+vista, salvo roupas.
+
+Você Vai Pagar por Isso!
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Retribuição.

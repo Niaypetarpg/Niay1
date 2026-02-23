@@ -1,0 +1,153 @@
+Características Observador
+
+Busca pela Família 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: P, X 
+Alvo: um pokémon selvagem. 
+Efeito: role 1d20 + MAE + MDE. Se o resultado for 
+16 ou mais, você rastreia onde aquele pokémon vive 
+naquela região. Se há outros da mesma espécie ou da 
+mesma família evolutiva, você os encontrará ou achará 
+pistas de onde possam estar. Se o resultado for 21 ou mais, 
+você localiza fontes de comida e outros recursos que 
+pokémons da família do pokémon selvagem precisam, 
+incluindo frutas, vegetação, fontes de água e outras coisas 
+semelhantes. 
+
+Ver de Perto 
+Frequência: Diária. A cada 3 Níveis, receba um uso 
+diário adicional. 
+Referência: P, X
+Alvo: um pokémon selvagem. 
+Efeito: o alvo não percebe você a menos que se 
+aproxime mais do que o triplo de seu MDE. Se você 
+anunciar sua presença, ele não será provocado.
+
+Talentos Observador
+
+Busca pelo Brilho 
+Frequência: Diária. A cada 20 Níveis, receba um 
+uso diário adicional. 
+Referência: P, X
+Alvo: um local não urbano. 
+Efeito: role 1d100. Se o resultado for menor que o 
+triplo de seu MDE, um pokémon shiny aparece no próximo 
+encontro com pokémons selvagens. 
+
+Busca pelo Tipo 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: P, X
+Alvo: um pokémon selvagem. 
+Efeito: role 1d20 + MDE. Se o resultado for 14 ou 
+mais, você acha pistas que indicam que outros pokémons 
+do mesmo Tipo vivem na área. Você ainda deve usar outros 
+meios para achá-los. Se o resultado for 21 ou mais, você 
+localiza fontes de comida e outros recursos que pokémons 
+do Tipo do pokémon selvagem precisam, incluindo frutas, 
+vegetação, fontes de água e outras coisas semelhantes. 
+
+
+
+
+
+
+Conhecedor de Frutos 
+Frequência: Constante. 
+Referência: C, V
+Efeito: você pode identificar qualquer Fruta, suas 
+propriedades e seus sabores (portanto como ela influencia 
+Aptidões). Receba +2 às rolagens para produzir Sucos ou 
+Temperos. Quando seu pokémon come uma Fruta cujo 
+sabor ele gosta, quaisquer ganhos de lealdade são 
+dobrados. 
+
+De Antemão! 
+Requisitos: Planejamento. 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: C, V
+Gatilho: você começa um encontro com um 
+pokémon selvagem. 
+Efeito: você pode, como uma Ação Livre, usar 
+Planejamento, Planejamento Perfeito ou Sabotagem no 
+início do encontro antes de quaisquer ações serem feitas 
+por quaisquer criaturas (pokémons ou humanos). Usar este 
+Talento consome tanto um uso diário de De Antemão! 
+quanto um uso diário do Talento escolhido. 
+
+De Antemão! + 
+Requisitos: Planejamento. 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: L, X
+Gatilho: você começa um encontro. 
+Efeito: você pode, como uma Ação Livre, usar 
+Planejamento, Planejamento Perfeito ou Sabotagem no 
+início do encontro antes de quaisquer ações serem feitas 
+por quaisquer criaturas (pokémons ou humanos). Usar este 
+Talento consome tanto um uso diário de De Antemão! 
+quanto um uso diário do Talento escolhido. Este Talento 
+substitui De Antemão! 
+
+Encontre Isso! 
+Requisitos: Rastreador. 
+Referência: P, V
+Frequência: Diária. 
+Alvo: um pokémon que está subindo de Nível. 
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, o alvo aprende o Golpe Farejar.
+ 
+Escrutínio 
+Requisitos: Defesa Especial 16. 
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon. 
+Efeito: role 1d20 + MDE. Se o resultado for 11 ou 
+mais, você identifica se o alvo possui algum Tipo, 
+Habilidade, Capacidade ou Golpe que não é típico de sua 
+espécie. Se o resultado for 21 ou mais, você sabe especificar 
+cada característica dessas que o alvo tenha. 
+
+
+
+Estudo Silencioso 
+Requisitos: Defesa Especial 18. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: se você está usando Ver de Perto, você 
+pode se aproximar a até 3 metros do pokémon selvagem 
+sem alertá-lo, a menos que queira.
+
+Pinceladas 
+Requisitos: Defesa Especial 16. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: você é um pintor e desenhista veloz. É 
+necessário para você menor de um minuto para fazer um 
+esboço de qualquer coisa que veja. Você pode adicionar os 
+detalhes em 30 minutos. 
+Após uma hora de trabalho, você desenha 
+qualquer coisa que tenha visto nas últimas 24 horas com 
+detalhes maravilhosos. 
+
+Psicologia 
+Frequência: À Vontade. 
+Referência: P, V
+Gatilho: você ouve algo que você suspeita ser uma 
+mentira. 
+Efeito: especifique qual sentença dita pela pessoa 
+você quer avaliar. Você saberá se aquela sentença é uma 
+inteiramente verdade ou não. Apenas mentiras contadas 
+deliberadamente são reconhecíveis como mentiras. 
+Este Talento pode ser usado tanto ouvindo alguém 
+diretamente quanto em gravações de áudios ou vídeos. 
+
+Rastreador 
+Requisitos: um pokémon com a Capacidade Faro. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: quando um pokémon seu faz um teste para 
+usar a Capacidade Faro, adicione +5 à rolagem.

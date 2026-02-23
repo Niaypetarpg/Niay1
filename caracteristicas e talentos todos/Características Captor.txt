@@ -1,0 +1,149 @@
+Características Captor
+
+No Ponto Fraco! 
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Referência: P, X
+Gatilho: você arremessa uma pokébola. 
+Efeito: você causa ao alvo da pokébola uma 
+quantidade de dano igual a seu MV que não pode ser 
+reduzido pela Defesa ou Defesa Especial. Este Talento pode 
+ser usado quando fizer uma rolagem para Captura ou 
+quando arremessar uma pokébola para causar dano ao alvo 
+usando-a como uma arma de arremesso conforme Armas.
+
+Ponto de Captura 
+Frequência: Constante. 
+Referência: C, X
+Gatilho: você arremessa uma pokébola. 
+Efeito: subtraia metade de seu MV das rolagens de 
+d100 feitas quando jogar uma pokébola.
+
+Talentos Captor
+
+Captura Adiantada 
+Requisitos: Velocidade 16. 
+Referência: P, X
+Frequência: Por Encontro. 
+Gatilho: um pokémon ou humano obtém um 
+resultado de 17 a 20 em um Teste de Acurácia contra um 
+pokémon selvagem. 
+Efeito: você pode imediatamente arremessar uma 
+pokébola contra o pokémon selvagem após o ataque ser 
+resolvido.
+
+Captura Chocante 
+Requisitos: Velocidade 18. 
+Referência: C, X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Gatilho: você usa No Ponto Fraco! 
+Efeito: caso o pokémon não seja capturado, role 
+1d20 + MV. Se o resultado for 15 ou mais, o pokémon está 
+Atordoado ao sair da pokébola. 
+
+Cartão com Descontos 
+Frequência: Constante. 
+Referência: E, X
+Efeito: você recebe 20% de desconto em produtos 
+regulares de pokélojas. Quando você gasta 2000 créditos ou 
+mais em uma só compra, você recebe uma Pokébola 
+Premiada de brinde. 
+
+
+
+
+
+
+Criar Pokébola 
+Requisitos: Reparar Pokébola. 
+Referência: E, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Efeito: após uma hora de trabalho mecânico, role 
+1d20 + MV. Você cria uma pokébola de acordo com o 
+resultado: ultado okébola Criada 
+Até 14 ; Pokébola Básica 
+15 a 19; Superbola 
+20 ou mais; Ultrabola 
+
+Jogar Rede 
+Frequência: À Vontade. 
+Referência: P, X
+Alvo: um pokémon ou um humano. 
+Efeito: você faz um Teste de Acurácia com 
+Dificuldade 4 contra o alvo, que deve estar a até 4 metros. 
+Se acertar, você arremessa uma rede de captura sobre ele 
+para diminuir em 6 todos os Deslocamentos dele. O alvo 
+pode gastar um turno para rolar 1d20 + Força (se for um 
+pokémon) ou 1d20 + metade de seu Ataque (se for 
+humano). Se o resultado for 12 ou mais, ele se liberta da 
+rede. 
+
+Ponto de Captura + 
+Requisitos: Velocidade 16. 
+Referência: C, X
+Frequência: Constante. 
+Gatilho: você arremessa uma pokébola. 
+Efeito: subtraia seu MV das rolagens de d100 feitas 
+quando jogar uma pokébola. Este Talento substitui Ponto 
+de Captura. 
+
+Ponto de Captura ++ 
+Requisitos: Velocidade 18, Ponto de Captura +. 
+Referência: C, X
+Frequência: Constante. 
+Gatilho: você arremessa uma pokébola. 
+Efeito: subtraia o dobro de seu MV das rolagens de 
+d100 feitas quando jogar uma pokébola. Este Talento 
+substitui Ponto de Captura +. 
+
+Professor de Cortes Falsos i 
+Requisitos: um pokémon com Corte Falso. 
+Referência: P, X
+Frequência: Diária. 
+Gatilho: um pokémon sobe de Nível para um Nível 
+múltiplo de 5. 
+Efeito: role 1d20 + MV. Se o resultado for 16 ou 
+mais, o pokémon que está subindo de Nível para o Nível 
+múltiplo de cinco aprende o Golpe Corte Falso
+. 
+Rastreador Informado 
+Frequência: Diária. 
+Referência: P, X
+Alvo: um local não urbano. 
+Efeito: você identifica os habitantes da área, 
+sabendo quais pokémons comumente habitam a região e 
+quais Abricós crescem nela. 
+Rastreador Informado + 
+Requisitos: Rastreador Informado. 
+Referência: P, X
+Frequência: Diária. 
+Alvo: um local não urbano. 
+Efeito: você identifica os habitantes da área, 
+sabendo quais pokémons comumente habitam a região e 
+quais Abricós crescem nela. Se você tiver capturado pelo 
+menos três pokémons na área, você sabe sobre qualquer 
+pokémon raro que se diz habitar o local e subtrai 10 de 
+quaisquer rolagens de Captura feitas na área pelo resto do 
+dia. Este Talento substitui Rastreador Informado. 
+
+Reparar Pokébola 
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Referência: E, X
+Alvo: uma pokébola que falhou em capturar um 
+pokémon e quebrou. 
+Efeito: após quinze minutos de trabalho, role 1d20 
++ MV. Se o resultado for 16 ou mais, a pokébola é 
+consertada e pode ser usada. 
+
+Trabalho Manual 
+Requisitos: Reparar Pokébola.
+Referência: E, X 
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Alvo: um Abricó. 
+Efeito: após trinta minutos de trabalho mecânico 
+cansativo (consumindo 20 PV), você transforma o Abricó 
+alvo em uma Pokébola Básica.

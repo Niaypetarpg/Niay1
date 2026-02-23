@@ -1,0 +1,116 @@
+Características Evolucionista
+
+Escultor de Megapedras
+Referência: E,X
+Frequência: Mensal.
+Alvo: um pokémon seu totalmente evoluído com 
+lealdade pelo menos 2.
+Efeito: após quinze horas de foco e trabalho 
+conjunto com o alvo, você cria uma Megapedra para uso 
+exclusivo no alvo. Esta Megapedra exclusiva permite que o 
+alvo acesse uma megaevolução única, não idêntica a uma 
+megaevolução descrita (o pokémon nem precisa ter uma 
+megaevolução descrita). Quando o pokémon megaevolui 
+usando esta Megapedra, você adiciona 10 pontos aos 
+Atributos Basais dele, mas nenhum Atributo Basal pode 
+receber mais do que +4. A Saúde do pokémon não pode 
+receber nenhum bônus e nenhum Atributo Basal pode ser 
+reduzido. Discuta com seu Narrador como a megaevolução 
+particular afeta o Tipo e a Habilidade de seu pokémon.
+
+Evolução Precoce
+Referência: C,V
+Frequência: Constante.
+Efeito: Subtraia seu MD do Nível mínimo 
+necessário que um pokémon precisa atingir para evoluir. 
+Outros requerimentos de evolução não são afetados por 
+esta Característica de Classe.
+
+Talentos Evolucionista
+
+Aperfeiçoar Pedra-Chave
+Requisitos: Pedra-Chave Elemental, Recarregar Pedra-Chave, Sobrecarga da Pedra-Chave.
+Referência: P,V
+Frequência: Diária.
+Alvo: dois pokémons seus com Megapedras.
+Efeito: megaevolua dois pokémons seus 
+simultaneamente. Você não pode usar este Talento se já 
+megaevoluiu um pokémon hoje. Após usar Aperfeiçoar
+Pedra-Chave, você não pode megaevoluir nenhum 
+pokémon pelo resto do dia.
+
+Conhecedor de Megaevoluções
+Referência: C,V
+Frequência: Constante.
+Efeito: você pode identificar se qualquer pokémon possui uma Megapedra que ele pode usar 
+para evoluir só de olhar para ela.
+
+Desbloquear Potencial
+Requisitos: Defesa 16, Defesa Especial 18.
+Referência: C,V
+Frequência: Constante.
+Efeito: se você possui uma Megapedra que 
+corresponde a uma Megaevolução padrão (que aparece no 
+Livro dos Pokémons, não uma Megapedra exclusiva 
+produzida para um pokémon), você pode usá-la para 
+megaevoluir para a forma megaevoluída um pokémon que 
+ainda não está em sua última forma evolutiva. Por exemplo, 
+você pode usar uma Blazikenita para megaevoluir um 
+Torchic ou um Combusken a um Mega Blaziken.
+
+Evolução Elemental
+Requisitos: Defesa 16, ter evoluído um pokémon usando uma Pedra Elemental.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon aliado (não necessariamente 
+seu) que pode evoluir mediante o uso de uma Pedra 
+Elemental
+Efeito: role 1d20 + MD. Se o resultado for 19 ou 
+mais, o pokémon evolui espontaneamente. Se você falhar 
+no teste, o pokémon perde dois Níveis (não altere a 
+quantidade de experiência que ele possui). Reduza os 
+Atributos e os Golpes de acordo com a perda de Níveis.
+
+Evolução Precoce +
+Requisitos: Defesa 16.
+Referência: C,V
+Frequência: Constante.
+Efeito: Subtraia o dobro de seu MD do Nível 
+mínimo necessário que um pokémon precisa atingir para 
+evoluir. Outros requerimentos de evolução não são 
+afetados por este Talento. Este Talento substitui Evolução 
+Precoce.
+
+Involua!
+Requisitos: Defesa Especial 20.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon adjacente ao qual você causou 
+dano.
+Efeito: role 1d20 + MDE. Se o resultado for 22 ou 
+mais e o alvo possui menos de 10% de seus PV máximos, ele 
+regride para o estágio evolutivo anterior. Ajuste os 
+Atributos de acordo, mas seus Golpes não são alterados. Se 
+o Nível do pokémon for 50 ou menos, ele deverá esperar 
+obter cinco Níveis antes de evoluir novamente.
+
+Pedra-Chave Elemental
+Referência: C,V
+Frequência: Constante.
+Efeito: seus pokémons megaevoluídos recebem +2 
+a seus Bônus Elementais, mas sofrem dano igual a 1d20 –
+MD a cada vez que usarem isso.
+
+Recarregar Pedra-Chave
+Referência: C,V
+Frequência: Constante.
+Efeito: você pode ativar uma mesma Pedra-Chave 
+duas vezes diárias. Você não pode ter como alvo o mesmo 
+pokémon duas vezes no mesmo dia. Sua Pedra-Chave só 
+pode megaevoluir um pokémon de cada vez.
+
+Sobrecarga da Pedra-Chave
+Referência: C,V
+Frequência: Constante.
+Efeito: suas megaevoluções duram por até meia 
+hora ou até o pokémon megaevoluído ficar inconsciente.

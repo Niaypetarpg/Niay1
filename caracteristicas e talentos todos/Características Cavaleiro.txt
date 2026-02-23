@@ -1,0 +1,114 @@
+Características Cavaleiro
+
+Aderência
+Referência: C, X
+Frequência: Constante.
+Efeito: você obtém sucesso automático em testes 
+feitos para permanecer montado. Você pode continuar 
+montado mesmo que esteja agarrado na lateral da sua 
+montaria, de cabeça para baixo, fazendo pirueta ou de 
+qualquer outra forma estranha de se ficar em cima da 
+montaria. Em todos estes casos, você é considerado 
+cavalgando normalmente.
+
+Montaria de Guerra
+Referência: L, X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Gatilho: você é acertado por um ataque enquanto 
+montado.
+Efeito: sua montaria é acertada pelo ataque em vez 
+de você. Se o ataque havia acertado ambos, sua montaria 
+recebe ambas as rolagens de dano e você não recebe 
+nenhuma.
+
+Talentos Cavaleiro
+
+Cavalaria
+Referência: L, X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Efeito: você pode montar um pokémon voluntário 
+usando apenas uma Ação Livre, e isso não consome a Ação 
+de Movimento nem a Ação de Golpe do pokémon.
+
+Equitação Leve
+Referência: C, X
+Frequência: Constante.
+Efeito: enquanto você está montado e você for a 
+única pessoa sobre sua montaria, a montaria não sofre 
+nenhuma penalidade aos seus Deslocamentos nem perde 
+Fases de Velocidade. Além disso, enquanto você está 
+montado, sua montaria pode carregar uma pessoa extra do 
+que poderia, independente de sua Força ou do formato de 
+seu corpo.
+
+Grande o Bastante
+Referência: C, X
+Requisitos: Ranger.
+Frequência: Constante.
+Efeito: quando usar um Talento de Ranger ou 
+mesmo de qualquer Classe Avançada do Ranger para fazer 
+um pokémon selvagem aparecer, você pode especificar que 
+este pokémon possa ser montado.
+
+Hipismo
+Referência: C, X
+Requisitos: um pokémon com Deslocamento 
+Terrestre 8.
+Frequência: Constante.
+Efeito: enquanto você está montado, sua montaria 
+aumenta os Deslocamentos dela por um número igual a seu 
+MV e também recebe +1 à Capacidade Salto.
+
+Já!
+Referência: P, X
+Frequência: Diária. A cada 25 Níveis, receba um 
+uso diário adicional.
+Efeito: enquanto você está montado, todos os 
+ataques causadores de dano físico feitos por você possuem 
+o Descritor Impacto e causar dano adicional igual ao 
+Deslocamento que sua montaria está usando no momento.
+
+Mobilidade
+Referência: C, X
+Frequência: Constante.
+Efeito: você pode usar a Velocidade da sua 
+montaria no lugar da sua para determinar sua Iniciativa.
+
+Montaria Adaptável
+Referência: C, X
+Requisitos: um pokémon com uma das 
+Capacidades a seguir: Geleira, Intangibilidade, Silêncio, 
+Térreo.
+Frequência: Constante.
+Efeito: enquanto você está montado, sua montaria 
+ignora os efeitos de Terreno Acidentado e é considerada 
+possuindo a Capacidade Geleira.
+
+Salto de Selas
+Referência: C, X
+Frequência: Constante.
+Efeito: você pode trocar o pokémon sobre o qual 
+você está montado por outro sem desmontar, convocando 
+o pokémon de volta para a pokébola e substituindo por 
+outro de outra pokébola que ocupará o lugar do anterior.
+
+Veja e Aprenda!
+Referência: P, X
+Requisitos: cinco Talentos de Cavaleiro (desconte 
+as Características de Classe para este cálculo).
+Frequência: À Vontade.
+Alvo: um humano aliado que está montado, mas 
+que não é Cavaleiro.
+Efeito: enquanto se mantiver a até 3 metros de 
+você, o alvo pode se beneficiar de até dois Talentos de 
+Cavaleiro cujas Frequências são Constantes. Você só pode 
+possuir um aliado se beneficiando por este Talento.
+
+Velocidade Pura
+Referência: C, X
+Requisitos: um pokémon com Velocidade 25.
+Frequência: Constante.
+Efeito: enquanto for montado por você, o 
+pokémon eleva duas Fases de Velocidade.

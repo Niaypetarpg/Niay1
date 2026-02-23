@@ -1,0 +1,137 @@
+Características Estrategista
+
+Batedor
+Referência: P,V
+Frequência: Diária. A cada 5 Níveis, receba um uso diário adicional.
+Alvo: um pokémon seu.
+Efeito: na próxima 
+rodada, o alvo pode usar o Golpe Giro 
+Rápido, e adiciona seu MA ao dano causado por este 
+Giro Rápido.
+
+Maestria sobre o Terreno
+Referência: P,V
+Frequência: Diária. A cada 5 Níveis, receba um uso diário adicional.
+Alvo: seus pokémons.
+Efeito: Pelo resto do encontro, nenhum de seus 
+pokémons recebe penalidades aos seus deslocamentos por 
+Terreno Acidentado nem sofre penalidades de Acurácia 
+quando tiverem alvos em Terreno Acidentado.
+
+Talentos Estrategista
+
+Barreiras Pessoais
+Referência: L,V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Gatilho: um pokémon seu usa um Golpe com o
+Descritor Barreira.
+Efeito: em vez de criar uma Barreira, o Golpe cria 
+uma Cobertura com os efeitos da Barreira. O efeito, assim, 
+possuirá um só alvo, e seu pokémon pode ter um aliado, um 
+inimigo ou a si mesmo como alvo do efeito. A Cobertura 
+durará até o fim do encontro ou até o alvo ser convocado 
+de volta à pokébola.
+
+Configurar Terreno
+Requisitos: Ataque Especial 16.
+Referência: L,V
+Frequência: Diária.
+Gatilho: um pokémon seu usa uma Capacidade que 
+afeta o Terreno ou um Golpe com um dos seguintes 
+Descritores: Ameaça, Barreira, Clima, Cobertura.
+Efeito: seu pokémon pode imediatamente usar 
+uma Capacidade que afeta o Terreno (mas não a mesma 
+Capacidade) ou um Golpe com um dos seguintes 
+Descritores (mas não o mesmo Golpe): Ameaça, Barreira, 
+Clima, Cobertura.
+
+Explosão Adaptativa
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu usa um Golpe não 
+causador de dano para elevar a Fase dele em um ou mais 
+Atributos.
+Efeito: eleve uma Fase de um Atributo que não 
+teve sua Fase elevada pelo Golpe.
+
+Intenção Arriscada
+Referência: C,V
+Frequência: Constante.
+Efeito: quando um pokémon seu está colocando 
+Ameaças, ele pode aumentar a área das Ameaças em um 
+número de metros igual a seu MA. Todos os metros extras 
+devem ser adjacentes à área original. Se seus pokémons 
+colocarem Ameaças em uma área ocupada por um inimigo,este imediatamente sofre os efeitos da Ameaça ao se 
+deslocar.
+
+Potencial Elevado
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu faz um teste para uma 
+Capacidade.
+Efeito: adicione seu MA ao teste do pokémon (isso 
+pode reduzir a Dificuldade de Acurácia da Capacidade 
+Fiação).
+
+Prioridades
+Requisitos: Ataque 14.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu usa um Golpe que tem 
+como alvo(s) apenas um ou mais aliados.
+Efeito: o pokémon recupera.
+
+Reconhecimento de Técnica
+Requisitos: seis Talentos de Estrategista (desconte 
+as Características de Classe para este cálculo).
+Referência: C,V
+Frequência: Constante.
+Efeito: quando um pokémon de um oponente usa 
+um Golpe que ele já usou antes naquele encontro, a 
+Dificuldade de Acurácia dele aumenta em 4.
+
+Táticas do Terreno
+Referência: C,V
+Frequência: Constante.
+Alvo: um pokémon seu com pelo menos uma das 
+seguintes Capacidades: Congelação, Manancial, 
+Materialização, Rebento ou Térreo.
+Efeito: o alvo pode, em vez de executar um Golpe 
+durante seu turno, afetar uma área de um número de 
+metros quadrados igual à metade de seu MA somada à 
+Força ou à Inteligência do próprio pokémon. A extremidade 
+da área não deve estar mais longe do pokémon do que 6 
+metros. Esta habilidade pode ser limitada pelo terreno 
+natural ao redor: por exemplo, um pokémon com 
+Manancial pode transformar areia em lama para criar 
+Terreno Acidentado, mas não poderá criar Terreno 
+Acidentado a partir de concreto.
+
+Versatilidade
+Requisitos: Ataque 14, Ataque Especial 18.
+Referência: P,V
+Frequência: Diária.
+Alvo: um pokémon seu.
+Efeito: o alvo pode abdicar do uso de um Golpe 
+cuja frequência é por Encontro para recuperar um uso de 
+um Golpe diferente cuja frequência também é por 
+Encontro. Alternativamente, o alvo pode abdicar do uso de 
+um Golpe cuja Frequência é Diária para recuperar um uso 
+de um Golpe diferente cuja Frequência é Por Encontro ou 
+Diária.
+
+Vórtice Climático
+Referência: L,V
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu usa um Golpe com o
+Descritor Clima.
+Efeito: o seu pokémon não afeta todo o campo e 
+nem substitui as condições climáticas existentes. Em vez 
+disso, ele afeta uma área de Explosão 4 centrada À 
+Distância 8. O Golpe climático só afeta aquela área, agindo 
+da maneira usual dentro dela.

@@ -1,0 +1,127 @@
+Características Ardente
+
+Controle de Fogo
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você pode redirecionar chamas que não 
+estejam mais distante que um número de metros igual ao 
+quíntuplo de seu MAE. Você também pode usar este 
+Talento tendo como alvo o próprio ar para produzir fogo.
+Seu MAE nunca pode ser reduzido abaixo de 1 para 
+esta Característica de Classe. 
+
+Controle de Luz
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você pode gerar iluminação a partir do 
+próprio ar ou pode remover a iluminação presente em uma 
+área. Você controla quão clara ou escura está toda a área a 
+até um número de metros ao seu redor igual ao quíntuplo 
+de seu MAE.
+Seu MAE nunca pode ser reduzido abaixo de 1 para 
+esta Característica de Classe.
+
+Talentos Ardente
+
+Bruma de Lava
+Requisitos: dois pokémons de Fogo.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Bruma de Lava.
+O uso deste Talento consome 10 Pontos de Vida.
+
+Clarão
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Clarão.
+O uso deste Talento consome 5 Pontos de Vida.
+
+Dia de Sol
+Requisitos: quatro Talentos de Ardente (desconte 
+as Características de Classe para este cálculo).
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Dia de Sol.
+O uso deste Talento consome 20 Pontos de Vida.
+
+Esfera de Sombras
+Requisitos: dois pokémons Fantasmas ou de Noturnos.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Esfera de Sombras.
+O uso deste Talento consome 15 Pontos de Vida.
+
+Espiral de Fogo
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Espiral de Fogo.
+O uso deste Talento consome 10 Pontos de Vida.
+
+Explosão de Fogo
+Requisitos: Nível 15, Bruma de Lava.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Explosão de Fogo.
+O uso deste Talento consome 25 Pontos de Vida.
+
+Invisibilidade
+Requisitos: um pokémon com a Capacidade Invisibilidade.
+Referência: C,X
+Frequência: Constante.
+Efeito: você ganha a Capacidade Invisibilidade, mas 
+ativar esta Capacidade requer o consumo de 15 Pontos de 
+Vida. Não é possível usar Talentos que causem dano 
+enquanto invisível (seja mediante um Golpe ou 
+diretamente).
+
+Miragem
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você cria uma ilusão visual. Você deve 
+permanecer a até 10 metros de Miragem e se concentrar 
+para manter e controlar a ilusão. Em nenhuma dimensão 
+(comprimento, largura e altura), a ilusão deve exceder um 
+número de metros igual a seu MAE, e a ilusão dura um 
+número de minutos igual a seu MAE. 
+Você só pode possuir uma ilusão de cada vez.
+O uso deste Talento consome 20 Pontos de Vida, 
+mas você pode pagar o custo novamente para manter uma 
+ilusão criada por igual período de tempo.
+
+Multiplicar
+Requisitos: um pokémon que conhece o Golpe 
+Multiplicar.
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Multiplicar. Você não 
+pode possuir mais do que três cópias simultâneas de você. 
+Cada cópia dura dez minutos.
+O uso deste Talento consome 25 Pontos de Vida.
+
+Ofuscação 
+Requisitos: Nível 10, Esfera de Sombras.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Ofuscação.
+O uso deste Talento consome 20 Pontos de Vida.
+
+Sudário Cintilante
+Referência: C,X
+Frequência: Constante.
+Efeito: quando um Golpe usado mediante um 
+Talento de Ardente modificar a Dificuldade de Acurácia, ele
+altera a Dificuldade em 1 a mais do que alteraria 
+normalmente.
+
+Visão no Escuro
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode enxergar o espectro 
+infravermelho, permitindo rapidamente enxergar fontes de 
+calor.

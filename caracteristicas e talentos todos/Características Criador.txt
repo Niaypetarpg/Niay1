@@ -1,0 +1,161 @@
+Características Criador
+
+Cuidado Parental
+Referência: L,X
+Frequência: Diária.
+Gatilho: um ovo seu está chocando.
+Efeito: adicione metade de seu MD a um Atributo 
+Basal do pokémon que nascer e metade de seu MDE a outro 
+Atributo Basal dele. O bônus concedido a cada Atributo 
+Basal não pode exceder 6.
+
+Fábrica de Ovos
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode fazer até sete Testes de 
+Procriação diários. As chances de sucesso em Testes de 
+Procriação aumentam de 25 para 35 se os dois pokémons 
+não pertencem à mesma família e de 50 para 70 se ambos 
+pertencem à mesma família. Subtraia seu MD ou seu MDE 
+do resultado do Teste de Procriação. É necessário que os 
+pokémons passem apenas seis horas juntos para tentarem 
+procriar, em vez de 8 horas. Analisando um ovo, você pode 
+identificar qual é o pokémon que nascerá.
+
+Talentos Criador
+
+Amor e Carinho
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um número de pokémons igual a seu MD ou 
+seu MDE.
+Efeito: após quatro horas cuidando dos alvos, eles 
+são recuperados em todos os seus Pontos de Vida e são 
+removidas quaisquer Condições deles. Não são recuperadas 
+outras características.
+
+Chocadeira
+Referência: C,X
+Frequência: Constante.
+Alvo: ovos em sua posse.
+Efeito: os ovos que você carrega consigo chocam 
+em apenas 80% do tempo que precisariam.
+
+Chocadeira +
+Requisitos: Chocadeira, Defesa Especial 19.
+Referência: C,X
+Frequência: Constante.
+Alvo: ovos em sua posse.
+Efeito: os ovos que você carrega consigo chocam 
+em apenas 70% do tempo que precisariam. Este Talento 
+substitui Chocadeira.
+
+Começo Promissor
+Referência: L,X
+Frequência: À Vontade.
+Gatilho: um ovo seu está chocando.
+Efeito: role 1d20 + MDE. Se o resultado for 12 ou 
+mais, o pokémon que nascer sabe todos os Golpes que 
+seriam aprendidos até um Nível igual à sua Defesa Especial.
+
+Comida Caseira
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Efeito: após uma hora cozinhando, role 1d4 + MDE. 
+O resultado representa a quantidade de porções de 
+alimentos que você produz, que podem ser consumidos 
+tanto por pokémons quanto por humanos, alimentando-os 
+igualmente por um dia inteiro. Pokémons que comerem sua 
+comida têm sua lealdade aumentada. Você sabe 
+exatamente quais são as necessidades dietéticas de um 
+pokémon seu.
+
+Cuidado Parental +
+Requisitos: Defesa 16, Defesa Especial 18.
+Referência: L,X
+Frequência: Diária.
+Gatilho: um ovo seu está chocando.
+Efeito: adicione seu MD a um Atributo Basal do 
+pokémon que nascer seu MDE a outro Atributo Basal dele. 
+O bônus concedido a cada Atributo Basal não pode exceder 
+6. Este Talento substitui Cuidado Parental.
+
+Cuidarei Bem Dele!
+Requisitos: Defesa Especial 18.
+Referência: P,X
+Frequência: Diária.
+Alvo: uma fêmea pokémon não hostil com um ou 
+mais ovos.
+Efeito: role 1d100 - MD. Se o resultado for inferior 
+à Chance de Captura do alvo, você pode receber dela um 
+ovo. Esta rolagem pode ser modificada pelo Narrador 
+conforme a disposição do alvo em relação a você. Uma 
+falha neste teste tornará a fêmea hostil.
+
+Ninhada
+Requisitos: um pokémon que já produziu pelo menos dois ovos.
+Referência: E,X
+Frequência: Semanal.
+Alvo: pokémons que estão procriando.
+Efeito: role 1d4. O resultado é o número de ovos 
+que são produzidos se houver sucesso na procriação.
+
+Ninhada +
+Requisitos: Ninhada, um pokémon que já produziu pelo menos quatro ovos.
+Referência: E,X
+Frequência: Semanal.
+Alvo: pokémons que estão procriando.
+Efeito: role 1d6 +1. O resultado é o número de 
+ovos que são produzidos se houver sucesso na procriação. 
+Este Talento substitui Ninhada.
+
+Nunca Teria Acontecido!
+Requisitos: seis Talentos de Criador (desconte as Características de Classe para este cálculo).
+Referência: E,X
+Frequência: Diária.
+Alvo: dois pokémons de sexos opostos que não 
+compartilham um Grupo Reprodutivo.
+Efeito: role 1d20 + MD e MDE. Se o resultado for 
+23 ou mais, eles são autorizados a se reproduzir, mas ainda 
+devem fazer um Teste de Procriação.
+
+Potencial Latente
+Requisitos: Defesa 17.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu sobe de Nível para um 
+Nível múltiplo de 5.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, este pokémon aprende um Golpe de sua lista de 
+Golpes para um Nível anterior ao Nível atual.
+
+Progressão Natural
+Requisito: Defesa 18.
+Referência: C,X
+Frequência: Constante.
+Gatilho: um pokémon seu sobe de Nível para um 
+Nível múltiplo de 5.
+Efeito: o pokémon recebe +1 a dois Atributos 
+Basais diferentes. Todas as vezes que este bônus for 
+aplicado subsequentemente, os mesmos dois Atributos 
+devem ser beneficiados e se o pokémon recebeu os 
+benefícios de Cuidado Parental ou Cuidado Parental +, os 
+mesmos Atributos beneficiados por Cuidado Parental ou 
+Cuidado Parental + devem ser aqueles beneficiados por 
+Progressão Natural. Finalmente, o bônus concedido a cada 
+Atributo Basal não pode exceder 6 quando somados os 
+bônus concedidos por Cuidado Parental, Cuidado Parental + 
+e Progressão Natural. Este Talento não beneficia seus 
+pokémons retroativamente.
+
+Zootecnista
+Requisitos: Defesa Especial 18.
+Referência: E,X
+Frequência: Diária.
+Alvo: dois pokémons compatíveis para reprodução 
+conforme seus Grupos Reprodutivos.
+Efeito: dando 8 horas juntos aos dois pokémons, 
+você garante que um ovo será produzido.

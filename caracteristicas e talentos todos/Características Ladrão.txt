@@ -1,0 +1,146 @@
+Características Ladrão
+
+Aferir Lealdade
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon não selvagem.
+Efeito: apontando um Catador a um pokémon, 
+você pode determinar a Lealdade daquele pokémon. A 
+Lealdade é mensurada de 0 a 4. Pokémons com Lealdade 0 
+odeiam seus donos e/ou são comumente usados para 
+atacar pokémons ou pessoas em situações degradantes ou 
+indefesas. Pokémons com Lealdade 1 foram capturados 
+recentemente, eles eram previamente selvagens e não 
+confiam em seus humanos e/ou são usados para cometer 
+crimes. Um pokémon com Lealdade 2 gosta de seu dono ou 
+foi trocado para um novo dono, mas já era domesticado 
+(não selvagem). Pokémons com Lealdade 3 amam seus 
+donos e/ou foram chocados por eles. Finalmente, 
+pokémons com Lealdade 4 possuam laços inquebráveis com 
+seus donos.
+
+Furto
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon não selvagem com Lealdade 
+igual ou menor a 1.
+Efeito: você atira uma pokébola usando seu
+Catador como se o alvo fosse um pokémon selvagem. Você 
+faz todo o processo da rolagem de Captura, e subtrai 5 do 
+resultado do Teste de Captura. O pokémon é 
+completamente desconfiado em relação a você, começando 
+com Lealdade 0, a menos que você o tenha salvado de um 
+perigo iminente (caso em que ele possuirá Lealdade 2).
+
+Talento Ladrão
+
+Buscar o Ódio
+Referência: C,X
+Frequência: Constante.
+Efeito: quando você usa Furto ou Furto +, subtraia 
+3 do resultado do Teste de Captura se a Lealdade do alvo 
+for 1; ou subtraia 10 do resultado do Teste de Captura se a 
+Lealdade do alvo for 0.
+
+Calafrios de Sombras
+Requisitos: ter um pokémon de Gelo capturado mediante Furto ou Furto +.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon seu com Lealdade menor que 3.
+Efeito: o alvo imediatamente usa o Golpe Raio de 
+Gelo, mas, para fins de Tipo, o Golpe é considerado sem 
+Tipo (ele causa dano neutro a todos os seres, ignorando 
+resistências, imunidades e vulnerabilidades). O alvo não 
+pode usar outro Golpe nesta rodada. Usar Calafrios de 
+Sombras torna o pokémon menos propício a gostar de você.
+
+Esmagamento de Sombras 
+Requisitos: ter um pokémon Lutador capturado mediante Furto ou Furto +.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon seu com Lealdade menor que 3.
+Efeito: o alvo imediatamente usa o Golpe Quebra 
+Telha, mas, para fins de Tipo, o Golpe é considerado sem 
+Tipo (ele causa dano neutro a todos os seres, ignorando 
+resistências, imunidades e vulnerabilidades). O alvo não 
+pode usar outro Golpe nesta rodada. Usar Esmagamento de 
+Sombras torna o pokémon menos propício a gostar de você.
+
+Explosão de Sombras
+Requisitos: ter um pokémon de Fogo capturado mediante Furto ou Furto +.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon seu com Lealdade menor que 3.
+Efeito: o alvo imediatamente usa o Golpe LançaChamas, mas, para fins de Tipo, o Golpe é considerado sem 
+Tipo (ele causa dano neutro a todos os seres, ignorando 
+resistências, imunidades e vulnerabilidades). O alvo não 
+pode usar outro Golpe nesta rodada. Usar Explosão de 
+Sombras torna o pokémon menos propício a gostar de você.
+
+Fúria de Sombras
+Requisitos: ter um pokémon capturado mediante Furto ou Furto +.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon seu com Lealdade menor que 3.
+Efeito: o alvo imediatamente usa o Golpe 
+Submissão, mas, para fins de Tipo, o Golpe é considerado 
+sem Tipo (ele causa dano neutro a todos os seres, 
+ignorando resistências, imunidades e vulnerabilidades). O 
+alvo não pode usar outro Golpe nesta rodada. Usar Fúria de 
+Sombras torna o pokémon mais propício a desgostar de 
+você.
+
+Furto +
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon não selvagem com Lealdade 
+igual ou menor a 1.
+Efeito: você atira uma pokébola usando seu
+Catador como se o alvo fosse um pokémon selvagem. Você 
+faz todo o processo da rolagem de Captura, e subtrai 5 do 
+resultado do Teste de Captura. O pokémon é 
+completamente desconfiado em relação a você, começando 
+com Lealdade 0, a menos que você o tenha salvado de um 
+perigo iminente (caso em que ele possuirá Lealdade 2). Este 
+Talento substitui Furto.
+
+Produto de Resgate
+Requisitos: ter um pokémon com Lealdade 4 capturado mediante Furto ou Furto +.
+Referência: C,X
+Frequência: Constante.
+Alvo: todos os seus pokémons com Lealdade 4 
+capturados mediante Furto ou Furto +.
+Efeito: some seu MV às rolagens de dano causado 
+pelos alvos.
+
+Raio de Sombras
+Requisitos: ter um pokémon Elétrico capturado mediante Furto ou Furto +.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon seu com Lealdade menor que 3.
+Efeito: o alvo imediatamente usa o Golpe 
+Relâmpago, mas, para fins de Tipo, o Golpe é considerado 
+sem Tipo (ele causa dano neutro a todos os seres, 
+ignorando resistências, imunidades e vulnerabilidades). O 
+alvo não pode usar outro Golpe nesta rodada. Usar Raio de 
+Sombras torna o pokémon menos propício a gostar de você.
+
+Resgate!
+Referência: C,X
+Requisitos: ter um pokémon com Lealdade 3 
+capturado mediante Furto ou Furto +.
+Frequência: Constante.
+Efeito: quando você captura mediante Furto ou 
+Furto + um pokémon com Lealdade 0 ou 1, a Lealdade dele 
+em relação a você começa em no mínimo 1.
+
+Rompimento do Vínculo
+Requisitos: ter um pokémon capturado mediante Furto ou Furto +.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon seu com Lealdade 2.
+Efeito: role 1d20 + MV. Se o resultado for 20 ou 
+mais, você pode ter o alvo como alvo de Furto ou de Furto + 
+mesmo tendo Lealdade 2, desde que o Furto aconteça em 
+até 2 rodadas após o Rompimento do Vínculo.

@@ -1,0 +1,122 @@
+Características Célio
+
+Controle de Ar
+Referência: P,X
+Frequência: À Vontade.
+Alvo: uma massa de ar que não esteja mais 
+distante que um número de metros igual ao triplo de seu 
+MAE.
+Efeito: você pode mover a massa de ar usando a 
+força da mente para produzir um fluxo de vento que pode 
+alcançar uma velocidade máxima em km/h igual ao 
+quíntuplo de seu MAE em qualquer direção.
+Seu MAE nunca pode ser reduzido abaixo de 1 para 
+esta Característica de Classe. 
+
+Controle de Eletricidade
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você pode redirecionar eletricidade que não 
+esteja mais distante que um número de metros igual ao 
+quíntuplo de seu MAE. 
+Você também pode usar este Talento para produzir 
+eletricidade a partir do próprio ar.
+Seu MAE nunca pode ser reduzido abaixo de 1 para 
+esta Característica de Classe.
+
+Talento Célio
+
+Aerodinâmico
+Requisitos: Desanuviar, um pokémon com 
+Velocidade 20.
+Referência: C,X
+Frequência: Constante.
+Efeito: enquanto o clima estiver ameno, você é 
+tratado como se sua Velocidade fosse igual a 1 + o humano 
+que antecederia você na ordem de iniciativa, mas apenas 
+para fins de determinar a Iniciativa.
+
+Carga
+Referência: P,X
+Frequência: À Vontade.
+Alvo: si.
+Efeito: você usa o Golpe Carga.
+O uso deste Talento consome 5 Pontos de Vida.
+
+Cauda de Vento
+Requisitos: dois Talentos que concedem usos de 
+Golpes Voadores.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: área.
+Efeito: você usa o Golpe Cauda de Vento.
+O uso deste Talento consome 10 Pontos de Vida.
+
+Corte Aéreo
+Requisitos: dois pokémons Voadores.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Corte Aéreo.
+O uso deste Talento consome 15 Pontos de Vida.
+
+Desanuviar
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Desanuviar.
+O uso deste Talento consome 10 Pontos de Vida.
+
+Descarga
+Requisitos: dois pokémons Elétricos.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Descarga.
+O uso deste Talento consome 10 Pontos de Vida.
+Furacão
+Requisitos: Nível 15, Corte Aéreo.
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Furacão.
+O uso deste Talento consome 30 Pontos de Vida.
+
+Levitação
+Requisitos: Voo.
+Referência: C,X
+Frequência: Constante.
+Alvo: um número de voluntários (pokémons e/ou 
+humanos) igual a seu MAE. Nenhum alvo pode ser mais 
+pesado que você.
+Efeito: enquanto você está usando Voo, você pode 
+reduzir a quantidade de seu Deslocamento de Voo pela 
+metade para levitar alvos voluntários.
+O uso deste Talento consome 5 Pontos de Vida por 
+rodada. 
+
+Onda Trovão
+Requisitos: dois Talentos que concedem usos de 
+Golpes Elétricos.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Onda Trovão.
+O uso deste Talento consome 20 Pontos de Vida.
+
+Relâmpago
+Requisitos: Nível 10, Descarga.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Relâmpago.
+O uso deste Talento consome 20 Pontos de Vida.
+Voo
+Requisitos: um pokémon com Deslocamento de 
+
+Voo.
+Referência: C,X
+Frequência: Constante.
+Efeito: você recebe Deslocamento de Voo igual a 
+seu MAE.
+O uso deste Talento em combate consome 2 
+Pontos de Vida por rodada. O uso deste Talento fora de 
+combate consome 5 Pontos de Vida por minuto.

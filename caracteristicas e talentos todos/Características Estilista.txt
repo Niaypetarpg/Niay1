@@ -1,0 +1,142 @@
+Características Estilista
+
+Acessório Discreto
+Referência: E,X
+Frequência: Diária.
+Efeito: após vinte minutos de trabalho, você cria 
+um Acessório que concede +1 à Pontuação de aparência 
+durante a Apresentação de um Concurso. 
+Pokémons e humanos podem se beneficiar de até 
+três Acessórios. Peças de Vestuário são Acessórios, mas só 
+podem ser equipados e ativados por humanos. Itens 
+Mantidos, ao contrário, só podem ser equipados e ativados 
+por pokémons, a menos que também sejam considerados 
+Peças de Vestuário, e apenas um item Mantido é aceito em 
+batalhas porque apenas um item é levado para dentro da
+pokébola com o pokémon.
+ 
+Personalização
+Referência: C,V
+Frequência: Constante.
+Gatilho: um pokémon seu entra em um Concurso.
+Efeito: adicione o número de Acessórios feitos por 
+você usados pelo pokémon à Pontuação de aparência 
+durante a Apresentação de um Concurso.
+
+Talentos Estilista
+Referência: E,X
+Acessório Personalizado
+Frequência: Semanal.
+Efeito: após quatro horas de trabalho, escolha uma 
+Aptidão. Você cria um Acessório Estiloso, que concede +1 às 
+rolagens de Apelação de quaisquer Golpes associados 
+àquela Aptidão. Não é possível combinar mais de um 
+Acessório Estiloso para beneficiar a mesma Aptidão.
+
+Alfaiataria Personalizada
+Referência: E,X
+Frequência: Semanal.
+Efeito: após uma hora de trabalho, escolha uma 
+Aptidão. Você cria uma Peça Estilosa, que é uma Peça de 
+Vestuário para humanos, associada à Aptidão escolhida. A 
+Peça Estilosa possui um valor igual a seu MDE no momento 
+da criação dela. Quando o usuário da Peça Estilosa usá-la 
+em um Concurso que usa aquela Aptidão, ele pode Apelar a 
+pontos da Peça Estilosa quando poderia apelas à Aptidão, 
+mas apenas se estiver ativando algum Talento ou Acessório. 
+Não é possível combinar mais de uma Peça Estilosa para 
+beneficiar a mesma Aptidão. Além disso, aquele que estiver 
+usando a Peça Estilosa recebe +1 às rolagens de Defesa Especial. 
+
+Alfaiataria Prática
+Referência: E,X
+Frequência: Semanal.
+Efeito: após uma hora de trabalho, escolha um 
+Atributo. Você cria uma Peça Prática, que é uma Peça de 
+Vestuário para humanos, associada ao Atributo escolhido. A 
+Peça Prática pode ser ativada pelo usuário para adicionar +1 
+ao Modificador daquele Atributo por cinco minutos. Uma 
+vez que tenha sido ativada pela terceira vez, ela perde suas 
+habilidades, mas não se quebra. Não é possível combinar 
+mais de uma Peça Prática para beneficiar o mesmo Atributo. 
+
+Alfaiataria Primorosa
+Requisitos: Defesa Especial 16.
+Referência: E,X
+Frequência: À Vontade.
+Efeito: após cinco horas de trabalho, você cria uma 
+Peça Primorosa, que é uma Peça de Vestuário para 
+humanos. A Peça da Sorte pode ser ativada pelo usuário 
+para adicionar +1d8 ao resultado de uma rolagem qualquer 
+feita por ele. Uma vez que tenha sido ativada pela terceira 
+vez, ela quebra. Não é possível ativá-la mais de uma vez na 
+mesma rodada. Além disso, aquele que estiver usando a 
+Peça Primorosa recebe +1 às rolagens de Defesa Especial.
+
+Design de Capacitação
+Referência: E,X
+Frequência: Semanal.
+Efeito: após duas horas de trabalho, escolha uma 
+Capacidade com um valor numérico ou um Deslocamento. 
+Você cria um item Mantido que pode ser ativado uma vez 
+diária para conceder, durante cinco minutos, +2 à 
+Capacidade designada ou ao Deslocamento designado do 
+pokémon. Se você escolher Força ou Inteligência, o bônus é 
+de apenas +1. Uma vez que o item seja ativado pela terceira 
+vez, ele se quebra.
+
+Design de Habilitação
+Requisitos: Defesa Especial 18.
+Referência: E,X
+Frequência: Semanal.
+Efeito: após duas horas de trabalho, escolha uma 
+Habilidade que um dos seus pokémons possui (mas não a 
+Habilidade Sem Alma). Você cria um item Mantido que 
+pode ser ativado uma vez diária para conceder, por duas 
+rodadas, a Habilidade escolhida ao pokémon.
+
+Design de Técnica
+Referência: E,X
+Frequência: Semanal.
+Efeito: após quatro horas de trabalho, escolha um 
+Golpe que um dos seus pokémons conhece. Você cria um 
+Acessório que pode ser ativado uma vez diária para simular 
+aquele Golpe em Concursos. Uma vez que tenha sido 
+ativado pela terceira vez, o Acessório perde suas 
+habilidades, mas não se quebra.
+
+Design Estável
+Requisitos: Design Volátil.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando você cria um Acessório ou uma 
+Peça de Vestuário que possui um número de usos limitado 
+antes de quebrar, você pode passar três horas a mais 
+trabalhando no objeto para que ele seja permanente. 
+Acessórios e Peças de Vestuário permanentes não quebram 
+por número de usos, mas só podem ser ativados uma vez 
+diária.
+
+Design Volátil
+Requisitos: ter criado 10 itens com Talentos de Estilista.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando você cria um Acessório ou uma 
+Peça de Vestuário que possui um número de usos limitado 
+antes de quebrar, você pode passar três horas a mais 
+trabalhando no objeto para que ele seja semipermanente. 
+Acessórios e Peças de Vestuário semipermanentes não 
+quebram por número de usos, mas, a cada vez que são 
+ativados, o usuário rola 1d20. Se a rolagem for 4 ou menos, 
+o Acessório ou a Peça de Vestuário perdem os benefícios 
+que conferem.
+
+Estilização
+Referência: E,X
+Frequência: À Vontade.
+Alvo: um item.
+Efeito: após trinta minutos de trabalho, o item alvo 
+passa a adicionar +1 à Pontuação de aparência durante a 
+Apresentação de um Concurso se estiver equipado. Se item 
+alvo não era um Acessório, ele se torna um Acessório. Um 
+mesmo item não pode receber Estilização mais de uma vez.

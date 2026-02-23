@@ -1,0 +1,140 @@
+Características Pacturário
+
+Símbolo da Cura
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: role 2d20 + MA. O alvo recupera um 
+número de Pontos de Vida igual ao resultado da rolagem.
+O uso deste Talento consome uma Carga da bateria 
+de seu Estilizador.
+
+Símbolo da Proteção
+Referência: L,X
+Frequência: Diária. A cada 2 Níveis, receba um uso 
+diário adicional.
+Gatilho: você sofreu dano por um Golpe.
+Efeito: escolha um Símbolo. Você é considerado 
+do(s) mesmo(s) Tipo(s) que o patrono do Símbolo escolhido.
+
+Talentos Pactuário
+
+Símbolo da Coragem
+Requisitos: ter um Parceiro consigo há pelo menos 
+duas semanas.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon Prestativo que está prestes a 
+deixar de ser Prestativo.
+Efeito: o alvo imediatamente executa um Golpe 
+cuja Frequência é À Vontade.
+O uso deste Talento consome uma Carga da bateria 
+de seu Estilizador.
+
+Símbolo da Destruição
+Referência: P,X
+Frequência: Constante.
+Efeito: quando você faz um ataque de Armas, você 
+pode ativar um Símbolo. O ataque é considerado do mesmo 
+Tipo que o patrono do Símbolo escolhido. Se o patrono 
+possui mais de um Tipo, você pode escolher qual Tipo o 
+ataque assume.
+
+Símbolo da Fé
+Requisitos: ter um Parceiro consigo há pelo menos 
+duas semanas.
+Referência: P,X
+Frequência: Diária.
+Alvo: um Parceiro que está com você há pelo 
+menos duas semanas.
+Efeito: escolha um Símbolo. O Parceiro usa um 
+Golpe conhecido pelo patrono, mas que não consta na 
+tabela do Talento Símbolo Sagrado. Isso conta como uma 
+Ação de Comando e só pode ser feito uma vez por rodada.
+O uso deste Talento consome duas Cargas da 
+bateria de seu Estilizador.
+
+Símbolo da Grandeza
+Referência: P,X
+Frequência: Diária. A cada 6 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon Prestativo.
+Efeito: o próximo Golpe causador de dano usado 
+pelo alvo causa dano adicional igual a seu MA + seu MV. Só 
+é possível usar este Talento uma vez por rodada.
+de seu Estilizador.
+O uso deste Talento consome uma Carga da bateria 
+
+Símbolo da Invocação
+Requisitos: oito Talentos de Pactuário (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Semanal. 
+Alvo: um espaço adjacente e vazio.
+Efeito: escolha um Símbolo. Ao seu lado, uma 
+forma astral do seu patrono aparece. Ela é de tamanho 
+médio e possui uma quantidade de Pontos de Vida igual ao 
+quíntuplo de seu Ataque, mas salvo por isso, ela é idêntica 
+ao patrono em todas as demais características (incluindo 
+Capacidades, Habilidades e Golpes). Ela é considerada 
+Prestativa a você. A cada vez que a forma astral muda de 
+ambiente, é acertada por um ataque, é fortemente 
+distraída ou ajuda você de maneira significativa (incluindo 
+atacar), ela recebe um contador. Quando ela atingir dez 
+contadores, ela desaparece.
+O uso deste Talento consome três Cargas da 
+bateria de seu Estilizador e você não poderá usar seu 
+Estilizador para mais nada até o fim do encontro.
+
+Símbolo da Justiça
+Requisitos: ter se aliado com dois Lendários.
+Referência: P,X
+Frequência: Diária. 
+Efeito: todos os aliados dentro do alcance da visão 
+podem escolher um Atributo (salvo Saúde). Eleve duas 
+Fases do Atributo escolhido de cada aliado.
+O uso deste Talento consome uma Carga da bateria 
+de seu Estilizador.
+
+Símbolo da Rapidez
+Requisitos: ter um Parceiro consigo há pelo menos 
+duas semanas.
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon Prestativo.
+Efeito: você pode dar um comando imediatamente 
+ao alvo, mesmo que você já tenha comandado outro 
+pokémon durante aquela rodada.
+
+Símbolo da Verdade
+Referência: P,X
+Frequência: Diária. A cada 3 Níveis, receba um uso 
+diário adicional.
+Gatilho: você usou Contenção com sucesso.
+Efeito: você sabe quatro Golpes (escolhidos pelo 
+Narrador) conhecidos pelo pokémon que se tornou 
+Prestativo (se o pokémon conhece menos que quatro 
+Golpes, você sabe todos os Golpes que ele conhece).
+
+Símbolo da Vida
+Requisitos: Ataque 16.
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon ou um humano.
+Efeito: role 3d20 + o triplo de seu MA. O alvo 
+recupera um número de PV igual ao resultado da rolagem.
+O uso deste Talento consome uma Carga da bateria 
+de seu Estilizador.
+
+Símbolo Sagrado
+Requisitos: Ataque 18, Símbolo da Fé.
+Referência: P,X
+Frequência: Diária.
+Alvo: um Parceiro que está com você há pelo 
+menos um mês.
+Efeito: escolha um Símbolo. O Parceiro usa o Golpe 
+que é a Assinatura do patrono. Isso conta como uma Ação 
+de Comando.
+O uso deste Talento consome duas Cargas da 
+bateria de seu Estilizador.

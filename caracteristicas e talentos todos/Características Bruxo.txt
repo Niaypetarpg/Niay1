@@ -1,0 +1,151 @@
+Características Bruxo
+
+Ofuscar
+Referência: C,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Ofuscar. Isso deixa resíduo 
+psíquico no alvo.
+O uso deste Talento consome 15 Pontos de Vida.
+
+Sugestão
+Referência: C,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: role 1d20 + MAE. Se o resultado for 20 ou 
+mais, você pode implantar na mente do alvo uma sugestão. 
+Não há garantia de que ele agirá de modo a seguir a 
+sugestão, mas ele pensa nela como genuinamente dele, 
+apesar de poder refletir sobre a razão pela qual pensou 
+naquilo.
+
+Talento Bruxo
+
+Choro
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Choro.
+O uso deste Talento consome 8 Pontos de Vida.
+
+Dança das Penas
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Dança das Penas.
+O uso deste Talento consome 8 Pontos de Vida.
+
+Devorar Sonhos
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon dormindo ou um humano 
+dormindo.
+Efeito: você usa o Golpe Devorar Sonhos. Isso deixa 
+resíduo psíquico no alvo.
+
+Domínio
+Requisitos: Nível 18, Ataque Especial 26, Encantamento.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você controla completamente o alvo. Você 
+sabe qualquer informação que ele saiba e pode comandá-lo 
+para fazer qualquer coisa que ele pode fazer. Isso deixa 
+resíduo psíquico no alvo.
+Uma vez por rodada, como uma Ação Livre, um 
+alvo pode tentar se libertar do Domínio, fazendo uma 
+rolagem de 1d20 + MAE. Se o resultado for maior que a 
+diferença entre o Ataque Especial do Bruxo e o Ataque 
+Especial do alvo, ele se liberta e não pode ser alvo deste 
+Talento de novo pelo mesmo Bruxo por 48 horas. 
+O uso deste Talento consome 25 Pontos de Vida 
+por rodada (ou seja, a cada 6 segundos). A partir da sexta 
+rodada seguida que usar este Talento (ou seja, quando 
+ultrapassar 30 segundos), o custo aumenta para 40 Pontos 
+de Vida por rodada. Se o alvo se libertar, o Bruxo não 
+precisa pagar o custo naquela rodada.
+
+Encantamento
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: role 1d20 + MAE. Se o resultado for 16 ou 
+mais, o alvo agirá conforme a sugestão que você 
+determinar. Se a sugestão é completamente contraditória 
+ao comportamento regular do alvo, ele hesitará claramente 
+durante todo o processo, mas ainda cumprirá o 
+Encantamento. Se é impossível executar a sugestão, o alvo 
+falhará tentando. Isso deixa resíduo psíquico no alvo.
+Durante o cumprimento da sugestão, o alvo terá 
+direito a um único teste para tentar evitar a execução da 
+sugestão, fazendo uma rolagem de 1d20 + MAE. Se o resultado dele for 17 ou mais, ele se liberta do Encantamento.
+O uso deste Talento consome 35 Pontos de Vida.
+
+Feitiço
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Feitiço.
+O uso deste Talento consome 15 Pontos de Vida.
+
+Fogo-Fátuo
+Requisitos: seis Talentos de Bruxo (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Fogo-Fátuo.
+O uso deste Talento consome 15 Pontos de Vida.
+
+Gás Venenoso
+Requisitos: três Talentos de Bruxo (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Gás Venenoso.
+O uso deste Talento consome 15 Pontos de Vida.
+
+Hipnose
+Requisitos: três Talentos de Bruxo (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Hipnose.
+O uso deste Talento consome 30 Pontos de Vida.
+
+Inaptidão
+Requisitos: quatro Talentos de Bruxo (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: À Vontade.
+Alvo: uma rolagem em que houve sucesso.
+Efeito: a rolagem é refeita. A cada vez que usar 
+este Talento (mas não na primeira vez que usar este Talento 
+a cada dia), o Narrador recebe um Ponto de Paradoxo. O 
+Narrador pode a qualquer momento no futuro gastar um 
+Ponto de Paradoxo para obrigar você a refazer uma 
+rolagem, desde que não seja uma rolagem que você 
+influenciou usando Controlar Probabilidade.
+O uso deste Talento consome 25 Pontos de Vida.
+
+Maldição
+Requisitos: um pokémon que conhece Maldição.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Maldição como se fosse do Tipo 
+Fantasma. Isso deixa resíduo psíquico no alvo.
+
+Raio de Confusão
+Requisitos: um pokémon que conhece Raio de Confusão.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Raio de Confusão. Isso 
+deixa resíduo psíquico no alvo.
+O uso deste Talento consome 20 Pontos de Vida.

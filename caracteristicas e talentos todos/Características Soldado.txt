@@ -1,0 +1,116 @@
+Características Soldado
+
+Armado
+Referência: C,X
+Frequência: Constante.
+Efeito: as Dificuldades de Acurácia para seus 
+ataques de Armas com sua(s) Arma(s) de Escolha são de 
+apenas 2. Isso não pode beneficiar um ataque desarmado.
+
+Ataque Poderoso
+Referência: L,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você acerta um ataque de Armas com uma 
+Arma de Escolha.
+Efeito: aumente a Categoria de Dano Basal da arma 
+em 2.
+
+Talentos Soldado
+
+Abrir Caminhos
+Referência: L,X
+Frequência: Diária. A cada 10 Níveis, receba um uso diário adicional.
+Gatilho: você declara um ataque de Armas.
+Efeito: se sua arma é Corpo a Corpo, seu ataque 
+ganha o Descritor Investida. Se sua arma é de Alcance, o 
+ataque atinge uma área em linha com um metro de largura 
+e 15 metros de comprimento.
+Um Golpe beneficiado por Abrir Caminhos não 
+pode receber o benefício dos seguintes Talentos: Ferimento 
+Profundo, Manobra Infalível, Matador, Sangramento, Tiro Múltiplo.
+
+Égide
+Referência: C,X
+Frequência: Constante.
+Efeito: enquanto empunhar uma arma, receba +5 à 
+sua Defesa para fins de reduzir dano sofrido.
+
+Ferimento Profundo
+Requisitos: Ataque 18.
+Referência: L,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Gatilho: você obtém um resultado maior que 15 
+em um Teste de Acurácia para um ataque de Armas.
+Efeito: o ataque é um Crítico.
+Um Golpe beneficiado por Sangramento não pode 
+receber o benefício dos seguintes Talentos: Abrir Caminhos, 
+Manobra Infalível, Matador, Sangramento, Tiro Múltiplo.
+
+Foco Kiai
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Focar Energia.
+
+Kata
+Requisitos: quatro Talentos de Soldado (desconte as Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Dança das Espadas e seu 
+próximo ataque de Armas possuirá o Descritor Saraivada.
+
+Manobra Infalível
+Requisitos: Ataque 16, cinco Talentos de Soldado (desconte as Características de Classe para este cálculo).
+Referência: L,X
+Frequência: Diária. A cada 20 Níveis, receba um 
+uso diário adicional.
+Gatilho: você declara um ataque de Armas.
+Efeito: seu ataque acerta automaticamente o alvo, 
+que deve usar a Defesa Especial – não a Defesa – para 
+reduzir o dano.
+Um Golpe beneficiado por Manobra Infalível não 
+pode receber o benefício dos seguintes Talentos: Abrir 
+Caminhos, Ferimento Profundo, Matador, Sangramento, 
+Tiro Múltiplo.
+
+Matador
+Referência: L,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Gatilho: você obtém um resultado maior que 15 
+em um Teste de Acurácia para um ataque de Armas.
+Efeito: o alvo do ataque fica Confuso.
+Um Golpe beneficiado por Sangramento não pode 
+receber o benefício dos seguintes Talentos: Ferimento 
+Profundo, Manobra Infalível, Matador, Sangramento, Tiro 
+Múltiplo.
+
+Sangramento
+Requisitos: Ataque 16.
+Referência: L,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você obtém um resultado maior que 15 
+em um Teste de Acurácia para um ataque de Armas.
+Efeito: o alvo do ataque perde uma Fase de Defesa 
+e de Defesa Especial.
+Um Golpe beneficiado por Sangramento não pode 
+receber o benefício dos seguintes Talentos: Abrir Caminhos, 
+Ferimento Profundo, Manobra Infalível, Matador, Tiro Múltiplo.
+
+Tiro Múltiplo
+Requisitos: Ataque 17, quatro Talentos de Soldado (desconte as Características de Classe para este cálculo).
+Referência: L,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você declara um ataque de Armas feito 
+com uma arma de Alcance (curto ou longo).
+Efeito: seu ataque ganha o Descritor Explosão com 
+um número de metros igual à metade de seu MA.
+Um Golpe beneficiado por Tiro Múltiplo não pode 
+receber o benefício dos seguintes Talentos: Abrir Caminhos, 
+Ferimento Profundo, Manobra Infalível, Matador, 
+Sangramento

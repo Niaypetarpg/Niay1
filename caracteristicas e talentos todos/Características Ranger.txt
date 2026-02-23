@@ -1,0 +1,213 @@
+Características Ranger
+
+Contenção 
+Frequência: À Vontade.
+Referência: P, X 
+Alvo: um pokémon. 
+Efeito: Usando seu próprio Estilizador, um Ranger 
+pode fazer um teste de Contenção, para o qual ele rola 
+1d100 -20. Se o resultado for igual ou inferior à Chance de 
+Captura do pokémon alvo, este se torna Prestativo (como 
+pelas regras descritas na Capacidade Hierarquia). Um 
+pokémon selvagem deixa de ser Prestativo se acontecer 
+uma das seguintes coisas: se for retirado de seu ambiente 
+padrão, se for acertado por um ataque, se for fortemente 
+distraído, se ajudar o Ranger de alguma forma significativa 
+(incluindo atacar). Um pokémon de alguém deixa de ser 
+Prestativo se atacar com sucesso, se for convocado de volta 
+para a pokébola. Se ele possuir Lealdade 2 ou mais, ele 
+também deixa de ser Prestativo se for o Ranger tentar 
+forçá-lo a atacar o dono ou qualquer aliado do dono. 
+O Ranger não pode possuir mais de um pokémon 
+Prestativo mediante este Talento. O uso deste Talento 
+consome uma Carga da bateria de seu Estilizador. 
+
+Parceria 
+Frequência: À Vontade. 
+Referência: P, X
+Alvo: um pokémon Prestativo que é selvagem. 
+Efeito: O alvo perde a Condição Prestativo e passa 
+a ser considerado Parceiro. O Parceiro começa com 
+Lealdade 2 e será obediente e amistoso ao Ranger, 
+independente de quaisquer condições que antecediam à 
+Parceria. Ele ganha pontos de experiência e Níveis 
+exatamente da mesma maneira que qualquer pokémon 
+capturado, e conta como um pokémon possuído para 
+quaisquer finalidades, mesmo que nunca tenha sido 
+colocado dentro de uma pokébola. Um Parceiro não pode 
+participar de Concursos, pois seria fraude. Você não pode 
+possuir mais de um Parceiro. Apesar de não ter sido 
+exatamente capturado, o Parceiro agirá em combate 
+conforme as ordens do Ranger, como se fosse dele.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Talentos Ranger
+
+Ajuda 
+Requisitos: Nível 10, uma das Classes a seguir: 
+Aventureiro, Cavaleiro, Detetive, Espião, Guia, Oficial, 
+Pactuário. 
+Referência: P, X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon Parceiro ou Prestativo. 
+Efeito: por um número de rodadas igual à metade 
+de seu MA ou de seu MV, o alvo age de maneira 
+independente em combate. Como Prestativo ou Parceiro, 
+ele agirá nos melhores interesses do Ranger, mas não segue 
+as ordens do Ranger. Ele não foge ou recua enquanto este 
+Talento durar. 
+O Ranger não pode possuir mais de um pokémon 
+sob os efeitos deste Talento. Este Talento não pode ser 
+usado se o Talento Você Isso e Você Aquilo! estiver em uso.
+
+Ambientalista 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: P, X
+Gatilho: você tem sucesso em usar Contenção em 
+um pokémon selvagem. 
+Efeito: o pokémon selvagem tem sucesso 
+automático em fugir. Role 1d20 + MA + MV. Se o resultado 
+for 20 ou mais, todos os pokémons selvagens aliados do 
+pokémon selvagem original e de Nível menor que ele 
+também tem sucesso automático em fugir. 
+
+Amigos 
+Requisitos: ter usado Contenção em um pokémon 
+com a Capacidade de Escolha. 
+Referência: P, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um local. 
+Efeito: Ao usar este Talento, role 1d20 + MA ou 
+MV. Se o resultado for 15 ou mais, um pokémon com a 
+Capacidade de Escolha aparece. Qualquer tentativa de 
+atacar ou capturar este pokémon o faz ter sucesso 
+automático em fugir. 
+Quando obtiver este Talento, você deve selecionar 
+uma Capacidade da lista a seguir: Afundamento, Amorfia, 
+Calor, Combustão, Congelação, Encolhimento, Fiação, Frio, 
+Geleira, Guelras, Luminar, Magnetismo, Manancial, 
+Rebento, Sedução, Térreo, Tumefação, Vento. A Capacidade 
+é selecionada não pode ser alterada. Ela é chamada de 
+Capacidade de Escolha. 
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos não se acumulam. A cada vez que é 
+escolhido, ele se aplica a uma Capacidade diferente. 
+
+
+
+
+
+
+
+
+
+Arma de Choque 
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Referência: P, X
+Alvo: um pokémon ou um humano. 
+Efeito: role 1d20 + MV. Se o resultado for 15 ou 
+mais, o alvo está Confuso. 
+O uso deste Talento consome uma Carga da bateria 
+de seu Estilizador. 
+
+Autoridade 
+Requisitos: reconhecido pela execução de um 
+serviço distintivo. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: você assume as responsabilidades como um 
+Ranger de alta patente. Você pode dar ordens a Rangers 
+sem este Talento e possui maior poder decisório e 
+encontros com outros indivíduos de alta patente 
+governamental, particularmente policial e militar. Quando 
+requisitar auxílio de uma Estação Ranger em um assunto 
+importante, ela é obrigada a dar algum tipo de auxílio, salvo 
+nas circunstâncias mais extraordinárias. Se você é Policial, 
+este Talento também se aplica a Policiais e Postos Policiais. 
+
+Contenção Aprimorada 
+Frequência: Constante. 
+Referência: C, X
+Efeito: quando usar Contenção, o teste é feito 
+usando 1d100 -30 (em vez de apenas -20). 
+Você agora pode possuir dois pokémons 
+Prestativos mediante Contenção. 
+
+Contenção Aprimorada + 
+Requisitos: Contenção Aprimorada. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: quando usar Contenção, o teste é feito 
+usando 1d100 -40 (em vez de apenas -30). 
+Você agora pode possuir cinco pokémons 
+Prestativos mediante Contenção. 
+Este Talento substitui Contenção Aprimorada. 
+
+Prática Perfeita 
+Requisitos: Velocidade 15. 
+Referência: I, X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Alvo: uma rolagem de Contenção. 
+Efeito: subtraia o triplo de seu MA ou o triplo de 
+seu MV da rolagem de Contenção. Este Talento só pode ser 
+usado uma vez por rolagem de Contenção. Se tiver sucesso 
+em usar Contenção aplicando este Talento, você recebe 
+uma lista parcial dos Golpes conhecidos pelo pokémon e 
+sabe todas as Capacidades dele. 
+
+
+Recursos 
+Requisitos: Autoridade. 
+Referência: P, X
+Frequência: Semanal. 
+Alvo: si. 
+Efeito: você convoca apoio de pelo menos um 
+Ranger na área. Este Ranger irá até você diretamente para 
+encontrá-lo pessoalmente assim que possível e auxiliará 
+você em assuntos urgentes, mas não abandonará 
+completamente as atividades dele a menos que ordenado 
+por uma Autoridade superior (um Oficial). 
+
+Santuário 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: P, X
+Alvo: um local não urbano. 
+Efeito: role 1d20 + MA + MV. Se o resultado for 21 
+ou mais, você pode atravessar o local alvo sem encontros 
+hostis de quaisquer pokémons selvagens normais. Isso dura 
+para o local alvo por um dia. 
+
+Time de Resgate 
+Requisitos: ter um Parceiro consigo há pelo menos 
+dois meses. 
+Referência: E, X
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional. 
+Alvo: um Parceiro que está com você há pelo 
+menos um mês. 
+Efeito: você passa uma hora conversando e 
+negociando com o alvo. Depois disso, ele concorda em ser 
+capturado por você. Após capturá-lo, ele ainda será 
+considerado seu Parceiro para fins de quaisquer Talentos, 
+mas não conta para seu número máximo de Parceiros.

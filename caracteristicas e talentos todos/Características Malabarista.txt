@@ -1,0 +1,137 @@
+Características Malabarista
+
+Arremessador
+Referência: C,X
+Frequência: Constante.
+Efeito: você recebe o Talento Arma de Escolha 
+para todas as armas de arremesso de curto alcance. Você pode arremessar armas de curto alcance e pokébolas a um número de metros adicionais igual a seu MV.
+
+Prestidigitação de Pokébolas
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba 
+um uso diário adicional.
+Gatilho: seu pokémon fica inconsciente ou um 
+oponente envia um pokémon ao combate.
+Efeito: você pode retornar um pokémon à 
+pokébola e enviar outro pokémon no lugar como uma Ação 
+Livre. Se for seu turno, você pode usar esta Característica de 
+Classe mesmo que o Gatilho não seja satisfeito.
+
+Talentos Malabarista
+
+Bumerangue
+Referência: C,X
+Requisitos: Ricochete.
+Frequência: Constante.
+Gatilho: acertar o segundo alvo usando Ricochete.
+Efeito: o objeto arremessado ricocheteia de volta 
+para sua mão.
+
+Como um Raio!
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você coloca um pokémon seu para fora da 
+pokébola.
+Efeito: use o Golpe Clarão com centro da Explosão
+no local onde o pokémon saiu da pokébola. Na rodada 
+atual, adicione seu MV ao Atributo Velocidade do pokémon 
+para fins de determinar a Iniciativa.
+
+Continue o que Ele Estava Fazendo!
+Requisitos: Velocidade 18.
+Referência: L,V
+Frequência: Diária.
+Gatilho: você chama um pokémon de volta para a 
+pokébola.
+Efeito: o pokémon que está voltando para a 
+pokébola não é meramente trocado, ele usa Passar o 
+Bastão imediatamente.
+
+Lançamento
+Requisitos: Velocidade 18.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Lançamento, e qualquer 
+item em sua posse pode ser considerado o Item Mantido 
+para fins deste Golpe.
+
+O Primeiro Golpe!
+Requisitos: Como um Raio!
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você coloca um pokémon seu para fora da 
+pokébola.
+Efeito: seu pokémon pode usar um Golpe com o 
+Descritor Impacto imediatamente assim que sair da 
+pokébola como uma Ação de Interrupção. Golpes usados 
+desta forma possuem o efeito extra de empurrar o alvo em cinco metros. Isso consome sua Ação de Comando da 
+rodada.
+
+Prestidigitação de Pokébolas +
+Referência: L,V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Gatilho: seu pokémon fica inconsciente ou um 
+oponente envia um pokémon ao combate.
+Efeito: você pode retornar um pokémon à 
+pokébola e enviar outro pokémon no lugar como uma Ação 
+Livre. Se for seu turno, você pode usar este Talento mesmo 
+que o Gatilho não seja satisfeito. Este Talento substitui 
+Prestidigitação de Pokébolas.
+
+Ricochete
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Gatilho: um objeto (possivelmente uma arma ou 
+uma pokébola) arremessado por você atinge o alvo.
+Efeito: o objeto ricocheteia se movendo um 
+número de metros igual a seu MV a uma direção à sua 
+escolha. Se isso o faz atingir um segundo alvo, faça um novo 
+Teste de Acurácia para atingir este alvo. Mediante este 
+Talento, é possível expandir ainda mais o alcance de 
+arremessos simplesmente ricocheteando em objetos 
+inanimados (como paredes).
+
+Saída de Emergência
+Referência: I,P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Efeito: você envia um pokémon a partir de uma 
+pokébola como uma Ação de Interrupção.
+
+Saque Rápido
+Referência: L,V
+Frequência: Por Encontro.
+Efeito: você pode usar um item em si ou em um 
+aliado (humano ou pokémon) como uma Ação Livre.
+
+Sem as Mãos!
+Referência: C,V
+Frequência: Constante.
+Efeito: você pode manter consigo até três objetos 
+de tamanho igual ou menor que uma pokébola de maneira 
+que sejam indetectáveis em uma revista. Você pode ativar 
+pokébolas contendo seus pokémons sem usar as mãos.
+
+Uma Rodada é uma Jornada!
+Requisitos: quatro Talentos de Malabarista (desconte as Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária.
+Gatilho: um pokémon seu usa um Golpe.
+Efeito: você imediatamente troca seu pokémon 
+que acabou de usar um Golpe por outro pokémon ativo, 
+mas não pode dar comandos a este pokémon ainda nesta 
+rodada.
+
+Voleio de Pokébolas
+Referência: C,V
+Frequência: Constante.
+Alvo: seus pokémons
+Efeito: seus pokémons adicionam metade de seu 
+MV aos valores de Velocidade deles para fins de calcular a 
+Iniciativa no turno que eles saem das pokébolas.

@@ -1,0 +1,124 @@
+Características Colecionador
+
+Contagem
+Referência: C,X
+Frequência: Constante.
+Efeito: de agora em diante, você recebe um Nível
+para cada 8 espécies diferentes de pokémons possuídas, em 
+vez de para cada 10 espécies diferentes. Você tem uma 
+estatística chamada Contagem, que é igual a seu MV 
+somado ao número de Níveis que ganhou devido ao 
+número de espécies diferentes de pokémons possuídas.
+
+Maníaco por Captura
+Referência: L,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você faz um Teste de Captura.
+Efeito: subtraia sua Contagem do resultado do 
+Teste de Captura.
+
+Talento Colecionador
+
+Assistência
+Requisitos: Ponto de Captura ++.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um aliado faz uma rolagem de Captura.
+Efeito: seu aliado pode subtrair sua Contagem do 
+resultado do Teste de Captura e se beneficia de seu Talento 
+Ponto de Captura ++.
+
+Camuflagem
+Requisitos: Peregrino Silencioso.
+Referência: P,X
+Frequência: Diária.
+Efeito: por um número de rodadas igual a seu MV, 
+você recebe a Capacidade Pokémon Camuflagem, desde 
+que você se desloque no máximo metade de seu 
+Deslocamento Terrestre durante seu turno.
+
+Compulsão
+Requisitos: Velocidade 16.
+Referência: I,P,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Gatilho: você falha em um Teste de Captura.
+Efeito: você joga outra pokébola imediatamente.
+
+Cosplay
+Referência: E,X
+Frequência: Semanal.
+Efeito: após vinte e quatro horas ininterruptas de 
+trabalho cansativo (consumindo 60 PV), você cria um 
+Disfarce próprio. Você pode usá-lo para se disfarçar como 
+uma espécie de pokémon para se aproximar de pokémons 
+selvagens de Inteligência 4 ou menos. O pokémon reagirá a 
+você enquanto disfarçado como reagiria a um pokémon 
+daquela espécie. Você pode tentar se amigar com o 
+pokémon selvagem se não o provocar. Estes disfarces são 
+para suas medidas, não servindo em outras pessoas. Sua 
+coleção pode ser guardada onde você quiser.
+
+Inabalável
+Referência: C,V
+Frequência: Constante.
+Efeito: você e seus pokémons são imunes a efeitos 
+que os obrigariam a fugir ou a trocar o pokémon ativo.
+
+Maníaco por Captura +
+Requisitos: Velocidade 16.
+Referência: L,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você faz um Teste de Captura.
+Efeito: subtraia o dobro de sua Contagem do 
+resultado do Teste de Captura.
+
+Peregrino Silencioso
+Requisitos: ter capturado pokémons em quatro biomas diferentes.
+Referência: C,X
+Frequência: Constante.
+Alvo: um local não urbano.
+Efeito: você não faz barulho, como se tivesse 
+sucesso em usar a Perícia Furtividade, desde que você se 
+desloque no máximo metade de seu Deslocamento 
+Terrestre durante seu turno.
+
+Pokébola Múltipla
+Requisitos: Velocidade 16.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Efeito: você pode atirar duas pokébolas ao mesmo 
+tempo como uma Ação Padrão. Você deve ter como alvo 
+um pokémon diferente para cada pokébola.
+
+Prêmio Raro
+Referência: C,X
+Frequência: Constante.
+Efeito: qualquer pokémon shiny ou Lendário conta 
+como oito novas espécies para propósitos de sua Contagem 
+e de subir de Nível.
+
+Rastreador
+Requisitos: Rastreador Informado +.
+Referência: P,X
+Frequência: Diária.
+Alvo: role 1d20 + MV. Se o resultado for 21 ou 
+mais, você inicia um encontro com um pokémon selvagem 
+que você sabe existir naquela área. Se o resultado for 25 ou 
+mais, você pode designar uma espécie de pokémon que 
+ainda não capturou.
+
+Zelo
+Requisitos: Velocidade 18.
+Referência: P,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Gatilho: você faz um Teste de Captura em uma 
+pokémon cuja espécie não possuída.
+Efeito: subtraia sua Contagem do resultado do 
+Teste de Captura (em adição aos efeitos de Maníaco por 
+Captura, se aplicar os dois Talentos).

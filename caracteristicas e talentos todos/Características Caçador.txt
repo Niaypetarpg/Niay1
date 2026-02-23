@@ -1,0 +1,150 @@
+Características Caçador
+
+Assalto Torrencial
+Referências: I,P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon ou um humano tem sucesso 
+em fugir ou um humano chama o pokémon dele de volta 
+para a pokébola.
+Efeito: você pode fazer seu pokémon ativo fazer 
+um ataque contra o pokémon ou o humano que ativaram o 
+gatilho antes que escapem ou que o pokémon retorne à 
+pokébola. Se você estiver atacando um pokémon que 
+desmaiou e você reduzi-lo a -100% Pontos de Vida, ele não 
+precisa fazer um teste de morte.
+
+Sem Escapatória
+Referências: C,X
+Frequência: Constante.
+Efeito: quando humanos ou pokémons tentam 
+fugir durante um encontro em que você participa e o 
+deslocamento deles for igual ou maior do que o seu ou o do 
+seu pokémon, eles devem rolar 1d20 e adicionar seus 
+próprios MV. Se eles conseguirem um resultado maior do 
+que 10 + seu MA, eles conseguem escapar. Caso contrário, 
+você consegue manter seu rastro. Se o inimigo estiver 
+usando a Habilidade Fuga, ele é imune a esta Característica 
+de Classe.
+
+Talentos Caçador
+
+Arranque
+Requisitos: Ataque Especial 16, um pokémon com 
+Velocidade 20.
+Referências: C,V
+Frequência: Constante.
+Efeito: quando um pokémon seu sobe de nível, 
+você pode adicionar pontos de Atributos à Velocidade, 
+ignorando a Relação Basal.
+
+Alta Natural
+Requisitos: Afirmação
+Referências: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu nocauteia um inimigo.
+Efeito: eleve uma Fase do Atributo à sua escolha 
+(mas não Saúde) de seu pokémon.
+
+Emoção da Caça
+Referências: C,X
+Frequência: Constante.
+Efeito: quando seu pokémon nocauteia um inimigo 
+usando Perseguição, devido a um Talento de Caçador ou após tê-lo rastreado depois de ele ter escapado, este 
+pokémon recebe 25% de experiência extra.
+
+
+Finalize-o!
+Requisitos: Sede de Sangue.
+Referências: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu usando um Golpe que 
+causa dano.
+Efeito: se o Golpe usado deixar o alvo com 5% de 
+seus PV ou menos, ele fica inconsciente.
+
+Não Pare!
+Requisitos: Ataque 16.
+Referências: L,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: seu pokémon deixa inconsciente um 
+oponente.
+Efeito: o seu pokémon pode se deslocar 
+novamente e usar outro Golpe na mesma rodada. Você só 
+pode usar este Talento uma vez por encontro por pokémon.
+
+Peguei Você!
+Referências: L, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Efeito: quando seu Pokémon usa um Golpe com o 
+Descritor Armadilha, você pode escolher maximizar a 
+duração, em vez de rolá-la.
+
+Perseguição
+Requisitos: Ataque 18.
+Referências: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Perseguição.
+
+Perseguição Imprevisível
+Requisitos: Perseguição.
+Referências: C,X
+Frequência: Constante.
+Efeito: Quando obtiver este Talento, escolha um 
+Tipo. Quando você ou um pokémon seu usar Perseguição, 
+este Golpe pode ser usado do tipo escolhido, em vez de ser 
+do Tipo Trevas. Uma vez escolhido o tipo, isso não pode ser 
+mudado, mas você e seus pokémons ainda podem usar 
+Perseguição como um Golpe de Trevas a seu critério.
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos não se acumulam. Cada vez que ele é 
+escolhido, ele é aplicado a um Tipo diferente.
+
+Sede de Sangue
+Requisitos: Ataque Especial 18.
+Referências: C,V
+Frequência: Constante.
+Efeito: você sabe se alguém está com menos da 
+metade dos Pontos de Vida. Alguém disso, quando uma 
+criatura hostil está abaixo de 50% dos PV, seu pokémon 
+ativo eleva uma Fase de Velocidade. Esta elevação 
+desaparece quando nenhuma criatura hostil estiver com 
+menos da metade dos PV, e não se acumula se houver mais 
+de um inimigo com menos de 50% de PV presente.
+
+Sem Escapatória +
+Requisitos: Ataque 16, Ataque Especial 14
+Referências: C, X
+Frequência: Constante.
+Efeito: quando humanos ou pokémons tentam 
+fugir durante um encontro em que você participa e o 
+deslocamento deles for igual ou maior do que o seu ou o do 
+seu pokémon, eles devem rolar 1d20 e adicionar seus 
+próprios MV. Se eles conseguirem um resultado maior do 
+que 15 + seu MA, eles conseguem escapar. Caso contrário, 
+você consegue manter seu rastro. Mesmo que o inimigo 
+venha a escapar (obter sucesso neste teste), para fins de 
+rastreá-lo e persegui-lo, seus pokémons e você adicionam 
++4 metros aos seus deslocamentos por 10 minutos. Se o 
+inimigo estiver usando a Habilidade Fuga, ele é imune a este 
+Talento. Este Talento substitui Sem Escapatória.
+Técnicas de Caça
+Requisitos: dois pokémons com Farejar, Olhar 
+
+Paralisante, Perseguição.
+Referências: E,X
+Frequência: Diária.
+Alvo: um pokémon.
+Efeito: você deve passar dez minutos ensinando 
+um pokémon auxiliado por um pokémon seu que conhece 
+Farejar, Olhar Paralisante ou Perseguição. Role 1d20 + MA. 
+Se o resultado for 15 ou mais, o alvo aprende Farejar, Olhar 
+Paralisante ou Perseguição (conforme o pokémon que está 
+auxiliando você, e se ele souber mais de um destes Golpes, 
+você pode escolher qual está ensinando).

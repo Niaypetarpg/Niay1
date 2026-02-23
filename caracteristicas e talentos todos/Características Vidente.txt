@@ -1,0 +1,124 @@
+Características Vidente
+
+Passado Recente
+Referência: P,X
+Frequência: À Vontade.
+Alvo: o local onde você se encontra ou um objeto.
+Efeito: você pode ver o sumário psíquico do que 
+aconteceu com o item ou na área desde a última hora. 
+Infelizmente, as informações recebidas são misturadas e 
+podem não seguir uma ordem cronológica.
+O uso deste Talento consome 5 Pontos de Vida.
+
+Tecer Imagem
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: uma imagem vista enquanto você lia o 
+passado de um objeto.
+Efeito: role 1d20 + MAE. Se o resultado for 16 ou 
+mais, você pode seguir uma parte do passado do objeto na 
+forma de uma imagem fantasmagórica retirada das visões 
+originais e manifesta no mundo real, mas vista apenas por 
+você. A imagem pode ser de qualquer coisa – uma pessoa, 
+uma pokémon ou outro objeto – que entrou em contato 
+com o objeto cujo passado você estava lendo. Se a imagem 
+fantasmagórica se deslocar para mais longe do que 1,6 
+quilômetro do local onde ela apareceu, ela é dissipada.
+
+Talentos Vidente
+
+Buscador de Almas
+Requisitos: Buscador de Formas.
+Referência: P,X
+Frequência: Diária.
+Alvo: uma pessoa que você já conheceu e tocou.
+Efeito: role 1d20 + MAE. Se o resultado for 16 ou 
+mais, você sabe a direção dela.
+
+Buscador de Almas +
+Requisitos: Buscador de Almas.
+Referência: P,X
+Frequência: Diária.
+Alvo: uma pessoa que você já conheceu e tocou.
+Efeito: role 1d20 + MAE. Se o resultado for 16 ou 
+mais, você sabe a direção dela e a distância aproximada até 
+ela. Este Talento substitui Buscador de Almas.
+
+Buscador de Formas
+Referência: P,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: o local onde você está.
+Efeito: escolha um objeto que serve como foco de 
+concentração para você. Concentrando-se nele, você pode 
+fazer uma rolagem de 1d20 + MAE. Se o resultado for 21 ou 
+mais, você será guiado ao tesouro (um item de qualquer 
+categoria) mais próximo, que depende do local onde você está.
+
+Clariaudiência
+Requisitos: Ataque Especial 17.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando você usa Passado Recente, Passado 
+ou Passado +, você também ouve os sons ocorridos.
+Você sabe automaticamente se alguém está 
+deliberadamente mentindo para você.
+
+Clarividência
+Requisitos: Ataque Especial 16.
+Referência: C,X
+Frequência: Constante.
+Efeito: receba +3 a todas as rolagens envolvidas 
+com fazer um ataque.
+Você pode ver através de ilusões. Uma ilusão é 
+qualquer habilidade que permite criar imagens visuais que
+não existem, incluindo Golpes como Multiplicar.
+
+Dissipar Ilusão
+Requisitos: Clariaudiência, Clarividência.
+Referência: P,X
+Frequência: Diária.
+Alvo: uma ilusão.
+Efeito: você elimina a ilusão automaticamente 
+tocando a área onde ela está projetada.
+Como um benefício constante, você pode ver 
+através de disfarces mundanos e através de ilusões.(além 
+de ver através de ilusórios, como concedido por 
+Clarividência). Um exemplo de um disfarce mundano é uma 
+mudança de forma real, que esconde a verdadeira 
+identidade de alguém, incluindo a transformação de um 
+Ditto.
+
+Passado
+Referência: P,X
+Frequência: Diária.
+Alvo: o local onde você se encontra ou um objeto.
+Efeito: você pode ver o sumário psíquico do que 
+aconteceu com o item ou na área desde o dia anterior. 
+Infelizmente, as informações recebidas são misturadas e 
+podem não seguir uma ordem cronológica.
+O uso deste Talento consome 15 Pontos de Vida.
+
+Passado +
+Requisitos: Passado, Ataque Especial 19.
+Referência: P,X
+Frequência: Diária.
+Alvo: o local onde você se encontra ou um objeto.
+Efeito: você pode ver o sumário psíquico do que 
+aconteceu com o item ou na área desde a semana anterior. 
+Infelizmente, as informações recebidas são misturadas e 
+podem não seguir uma ordem cronológica. Se o item ou o 
+local tiverem importância histórica dentro da última 
+década, você sabe disso, mas não recebe informações 
+exatas são o ocorrido para que seja importante.
+O uso deste Talento consome 24 Pontos de Vida.
+
+Psicometria
+Referência: C,X
+Frequência: Constante.
+Efeito: escolha um objeto que serve como foco de 
+concentração para você. Concentrando-se nele, você sabe o 
+propósito de qualquer objeto que você tocar. Você sabe 
+exatamente todas as propriedades especiais do item e 
+como ativar o objeto.

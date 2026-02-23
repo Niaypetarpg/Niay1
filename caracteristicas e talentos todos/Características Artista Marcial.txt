@@ -1,0 +1,127 @@
+Características Artista Marcial
+
+Corpo a Corpo
+Referência: P,X
+Frequência: Diária. 
+Efeito: você usa o Golpe Corpo a Corpo.
+
+Sensei
+Referência: C,X
+Frequência: Constante.
+Alvo: pokémons e humanos.
+Efeito: escolha uma Arte Marcial específica (como 
+caratê, judô, etc.). Você é um mestre neste estilo de arte 
+marcial, podendo executar feitos performáticos 
+relacionados a ela sem testes. Quando usar sua arte 
+marcial, seus ataques desarmados possuem Dificuldade de
+Acurácia de apenas 2, e você pode causar dano do Tipo 
+Normal ou do Tipo Lutador a seu critério.
+
+Talentos Artista Marcial
+
+Amortecer
+Requisitos: Arrojado.
+Referência: C,X
+Frequência: Constante. 
+Gatilho: você sofre dano por um Golpe que você já 
+sofreu antes na vida.
+Efeito: reduza o dano sofrido por seu MA e por seu 
+MD. Isso não reduz dano causado a si mesmo por Golpes.
+
+Arremesso Circular
+Requisitos: Vá para Longe!
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Arremesso Circular.
+
+Arrojado
+Requisitos: Defesa 18.
+Referência: C,X
+Frequência: Constante.
+Efeito: receba a Habilidade Imprudência.
+
+Calejar +
+Requisitos: Calejar.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando sofrer dano (mas não dano causado 
+a si mesmo), reduza o dano sofrido pelo seu MA e pelo seu 
+MD. Obviamente, isso não afeta danos irredutíveis.
+
+Chute Giratório
+Requisitos: ter sofrido o Golpe Soco de Fogo.
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Chute Giratório.
+
+Defesa Aberta
+Requisitos: Durão.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Defesa Aberta.
+
+Faca de Dois Gumes
+Requisitos: Ataque 20.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Faca de Dois Gumes.
+
+Fortão
+Referência: C,V
+Frequência: Constante.
+Efeito: quando você faz um teste que adiciona seu
+MA, adicione +3 à rolagem.
+
+Múltiplos Estilos
+Referência: C,X
+Frequência: Constante.
+Alvo: pokémons e humanos.
+Efeito: escolha outra Arte Marcial específica (como 
+caratê, judô, etc.). Você é um mestre neste estilo de arte 
+marcial, podendo executar feitos performáticos 
+relacionados a ela sem testes. Quando usar sua arte 
+marcial, seus ataques desarmados possuem Dificuldade de 
+Acurácia de apenas 2, e você pode causar dano do Tipo 
+Normal ou do Tipo Lutador a seu critério.
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos não se acumulam. A cada vez que é 
+escolhido, ele se aplica a uma arte marcial distinta.
+
+Pontapé
+Requisitos: Chute Giratório.
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Pontapé.
+
+Soco Rápido
+Requisitos: ter sofrido o Golpe Soco Rápido.
+Referência: I,P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Soco Rápido.
+
+Supervoadora
+Requisitos: Voadora.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Supervoadora.
+
+Vá para Longe!
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você empurra o alvo um número de metros 
+igual a seu MA. Se o alvo for empurrado a um Terreno 
+Bloqueador, ele sofre 2d10 de dano. Caso ele seja 
+Empurrado em direção a outra criatura, tanto esta quanto o 
+ele sofrem 1d10 de dano.

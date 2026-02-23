@@ -415,6 +415,74 @@ export const subscribeToChatMessages = (callback) => {
   })
 }
 
+// --- BATALHA GAME BOY ---
+
+export const saveGBBattle = async (data) => {
+  return saveToFirebase('gbBattle', removeUndefined(data))
+}
+
+export const loadGBBattle = async () => {
+  return loadFromFirebase('gbBattle', {})
+}
+
+export const subscribeToGBBattle = (callback) => {
+  return subscribeToFirebase('gbBattle', (data) => {
+    callback(data || {})
+  })
+}
+
+export const saveGBChatMessages = async (messages) => {
+  return saveToFirebase('gbChat/messages', messages)
+}
+
+export const subscribeToGBChatMessages = (callback) => {
+  return subscribeToFirebase('gbChat/messages', (data) => {
+    callback(data || [])
+  })
+}
+
+// --- TIMES NPC ---
+
+export const saveNpcTeams = async (teams) => {
+  return saveToFirebase('npcTeams', removeUndefined(teams))
+}
+
+export const loadNpcTeams = async () => {
+  return loadFromFirebase('npcTeams', [])
+}
+
+export const subscribeToNpcTeams = (callback) => {
+  return subscribeToFirebase('npcTeams', (data) => {
+    callback(data || [])
+  })
+}
+
+// --- CENÁRIOS DA SESSÃO ---
+
+export const saveSessionScenarios = async (scenarios) => {
+  return saveToFirebase('sessionScenarios', removeUndefined(scenarios))
+}
+
+export const loadSessionScenarios = async () => {
+  return loadFromFirebase('sessionScenarios', [])
+}
+
+export const subscribeToSessionScenarios = (callback) => {
+  return subscribeToFirebase('sessionScenarios', (data) => {
+    callback(data || [])
+  })
+}
+
+export const saveScenarioDisplay = async (display) => {
+  return saveToFirebase('scenarioDisplay', display)
+}
+
+export const subscribeToScenarioDisplay = (callback) => {
+  return subscribeToFirebase('scenarioDisplay', (data) => {
+    callback(data)
+  })
+}
+
 // --- INTERLÚDIO ---
 
 // Salvar dados do interlúdio
@@ -555,6 +623,52 @@ export const subscribeToVTT = (callback) => {
   })
 }
 
+// --- HUB DE TROCA ---
+
+// Salvar dados do Hub de Troca
+export const saveTradeHub = async (data) => {
+  try {
+    const basePath = 'tradeHub'
+    const cleanedData = removeUndefined(data)
+    const sanitizedData = sanitizeKeysRecursive(cleanedData)
+
+    const results = await Promise.allSettled(
+      Object.entries(sanitizedData).map(async ([key, value]) => {
+        try {
+          await set(ref(database, `${basePath}/${key}`), value)
+        } catch (err) {
+          const size = JSON.stringify(value).length
+          const sizeMB = (size / (1024 * 1024)).toFixed(2)
+          console.error(`[Firebase TradeHub] ERRO ao salvar campo "${key}" (${sizeMB} MB):`, err.message || err)
+          throw err
+        }
+      })
+    )
+
+    const failed = results.filter(r => r.status === 'rejected')
+    if (failed.length > 0) {
+      console.error(`[Firebase TradeHub] ${failed.length} campo(s) falharam ao salvar`)
+      return false
+    }
+    return true
+  } catch (error) {
+    console.error('Erro ao salvar Hub de Troca:', error)
+    return false
+  }
+}
+
+// Carregar dados do Hub de Troca
+export const loadTradeHub = async () => {
+  return loadFromFirebase('tradeHub', { trades: [], completedTrades: {} })
+}
+
+// Escutar mudanças no Hub de Troca (tempo real)
+export const subscribeToTradeHub = (callback) => {
+  return subscribeToFirebase('tradeHub', (data) => {
+    callback(data || { trades: [], completedTrades: {} })
+  })
+}
+
 // --- APRICORN TREES ---
 
 // Salvar árvores de apricorn geradas
@@ -663,4 +777,66 @@ export const subscribeToBackups = (callback) => {
     }
     callback(backups)
   })
+}
+
+// --- QUESTS (Central Niaypeta Rio Corp™) ---
+
+export const saveQuests = async (quests) => {
+  return saveToFirebase('quests', removeUndefined(quests))
+}
+
+export const loadQuests = async () => {
+  return loadFromFirebase('quests', [])
+}
+
+export const subscribeToQuests = (callback) => {
+  return subscribeToFirebase('quests', (data) => {
+    callback(data || [])
+  })
+}
+
+// --- SMART POKEFONE ---
+
+export const saveSmartPokefoneMessages = async (username, messages) => {
+  return saveToFirebase(`smartPokefone/${username}`, messages)
+}
+
+export const loadSmartPokefoneMessages = async (username) => {
+  return loadFromFirebase(`smartPokefone/${username}`, [])
+}
+
+export const subscribeToSmartPokefoneMessages = (username, callback) => {
+  return subscribeToFirebase(`smartPokefone/${username}`, (data) => {
+    callback(data || [])
+  })
+}
+
+// --- TRIUNFOS ---
+
+export const saveTriunfosGerais = async (triunfos) => {
+  return saveToFirebase('triunfos/gerais', removeUndefined(triunfos))
+}
+
+export const subscribeToTriunfosGerais = (callback) => {
+  return subscribeToFirebase('triunfos/gerais', (data) => {
+    callback(Array.isArray(data) ? data : Object.values(data || {}))
+  })
+}
+
+export const saveTriunfosIndividuais = async (individuais) => {
+  return saveToFirebase('triunfos/individuais', removeUndefined(individuais))
+}
+
+export const subscribeToTriunfosIndividuais = (callback) => {
+  return subscribeToFirebase('triunfos/individuais', (data) => {
+    callback(data || {})
+  })
+}
+
+export const saveMostrarTriunfos = async (data) => {
+  return saveToFirebase('triunfos/mostrar', data)
+}
+
+export const subscribeToMostrarTriunfos = (callback) => {
+  return subscribeToFirebase('triunfos/mostrar', callback)
 }

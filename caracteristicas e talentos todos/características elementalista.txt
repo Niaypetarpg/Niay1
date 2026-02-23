@@ -1,0 +1,150 @@
+Característica Elementalista
+
+Aprimorar Golpes Elementais
+Frequência: Constante. 
+Referência:  C, V
+Gatilho: um pokémon seu acerta um Golpe do Tipo 
+de Escolha. 
+Efeito: adicione metade de seu MA ao dano 
+causado. 
+
+Treinamento Elemental 
+Frequência: Constante. 
+Referência: C, V
+Efeito: seus pokémons do Tipo de Escolha recebem 
+30% de pontos de experiência adicionais a cada vez que 
+receberem pontos de experiência.
+
+Talentos Elementalista
+
+Alma Elemental 
+Frequência: Constante. 
+Referência: C, V
+Efeito: você se sente continuamente obrigado a 
+estar na presença do Tipo de Escolha, devendo possuir pelo 
+menos quatro pokémons do seu Tipo de Escolha seus 
+consigo em sua equipe. Você pode sentir pokémons do Tipo 
+de Escolha a até um número de metros igual ao quíntuplo 
+de seu MAE. Além disso, nesta mesma área, você pode 
+sentir se um pokémon conhece algum Golpe de seu Tipo de 
+Escolha. 
+
+Aprimorar Golpes Elementais +
+Requisitos: Ataque Especial 16. 
+Referência: C, V
+Frequência: Constante. 
+Gatilho: um pokémon seu acerta um Golpe do Tipo 
+de Escolha. 
+Efeito: adicione seu MA ao dano causado. Este 
+Talento substitui Aprimorar Golpes Elementais. 
+
+Com os Elementos 
+Frequência: Diária. 
+Referência: P, X
+Gatilho: você decide batalhar pokémons selvagens. 
+Efeito: role 1d20 + MAE. Se o resultado for 15 ou 
+mais e a área contiver pelo menos um pokémon de seu Tipo 
+de Escolha, você encontrará pelo menos um pokémon de 
+uma espécie de seu Tipo de Escolha. 
+
+
+
+
+
+
+
+
+
+
+
+
+Conexão com Tipo 
+Requisitos: Alma Elemental. 
+Referência: P, X
+Frequência: À Vontade. 
+Alvo: um pokémon selvagem hostil ou indiferente 
+de seu Tipo de Escolha. 
+Efeito: Role 1d20 + MA. Se o resultado for 15 ou 
+mais, este pokémon se torna mais amistoso. Se ele era 
+indiferente, ele agora demonstra interesse por você. Se for 
+hostil, ele decidirá não atacar, mas ainda pode decidir fugir 
+ou permanecer cauteloso. A atitude permanecerá até que 
+algo a mude. Um mesmo pokémon não pode ser alo deste 
+Talento mais de uma vez diária. 
+
+Conversão 
+Requisitos: Mudança de Tipo. 
+Referência: E, X
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional. 
+Alvo: um pokémon seu. 
+Efeito: este Talento requer levar o pokémon alvo a 
+um ambiente com profundas características associadas ao 
+seu Tipo de Escolha e passar pelo menos 10 horas em 
+treinamento neste lugar. O pokémon alvo recebe 
+permanentemente o Tipo de Escolha. Se ele já possuía dois 
+Tipos, substitua permanentemente um de seus Tipos. A 
+aparência do pokémon é alterada de acordo com seu novo 
+Tipo (como acontece com Vulpix adaptado às condições 
+árticas ou um Geodude que vive cercado por campos 
+elétricos, por exemplo). 
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos se acumulam. 
+
+Elementalismo 
+Requisitos: Mudança Elemental. 
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Gatilho: um pokémon seu usa um Golpe. 
+Efeito: o Golpe é considerado de seu Tipo de 
+Escolha. 
+
+Golpe Elemental 
+Requisitos: Elementalismo.
+Referência: E, X 
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional. 
+Alvo: um pokémon seu. 
+Efeito: este Talento requer levar o pokémon alvo a 
+um ambiente com profundas características associadas ao 
+seu Tipo de Escolha e passar pelo menos 5 horas em 
+treinamento neste lugar. Um Golpe do pokémon alvo se 
+torna permanentemente do Tipo de Escolha. 
+
+
+
+
+
+
+
+Mudança de Tipo 
+Requisitos: Ataque Especial 15. 
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon. 
+Efeito: o alvo recebe seu Tipo de Escolha por um 
+número de rodadas igual a seu MA (cada rodada equivale a 
+seis segundos). Se ele já possuía dois Tipos, substitua 
+temporariamente um de seus Tipos. Ao fim do combate, 
+como ele foi (mesmo que temporariamente) do Tipo de 
+Escolha, seu Treinamento Elemental é aplicado. 
+
+Sou Superior no Meu Tipo! 
+Requisitos: Alma Elemental. 
+Referência: C, V
+Frequência: Constante. 
+Gatilho: um inimigo usa um Golpe do Tipo de 
+Escolha contra um ou mais pokémons seus também do Tipo 
+de Escolha. 
+Efeito: o inimigo não adiciona Bônus Elemental e 
+não pode obter Críticos nem causar Testes de Morte contra 
+seus pokémons do Tipo de Escolha. 
+
+Treinamento de Resistência 
+Requisitos: Alma Elemental. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: você é resistente ao dano do Tipo de 
+Escolha.

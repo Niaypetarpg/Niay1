@@ -1,0 +1,139 @@
+Características Parrudo
+
+Vantagem do Parrudo 
+Referência: C,V
+Frequência: Constante.
+Efeito: Adicione seu MD à Pontuação de aparência durante a Apresentação de um Concurso de Fisiculturismo. Seus pokémons com Lealdade 2 ou mais são vigorosos: eles são considerados com pelo menos um 
+prêmio em um Concurso de Fisiculturismo para fins de seus 
+Talentos. Todos os seus pokémons podem possuir até 20 
+pontos na Aptidão Vigor, e podem Apelar a até 5 pontos de 
+Aptidão quando poderiam Apelar ao Vigor.
+
+Vigor
+Referência: C,V
+Frequência: Constante.
+Efeito: quando um pokémon seu com pelo menos 
+um prêmio em Concurso de Fisiculturismo sobe de nível, 
+você pode adicionar pontos de Atributos ao Defesa, 
+ignorando a Relação Basal.
+
+Talentos Parrudo
+
+Aliados do Parrudo
+Requisitos: 1 prêmios em Concurso de Beleza ou de Fofura.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fisiculturismo ou um pokémon 
+aliado com pelo menos um prêmio em Concurso de 
+Fisiculturismo.
+Efeito: adicione seu MD à Dificuldade de Acurácia 
+de um Golpe que tenha o seu pokémon como alvo. Isso não 
+pode ser feito mais de uma vez por combate.
+Em Concursos, o efeito deste Talento é outro: 
+quando o alvo usar um Golpe de Beleza ou Ternura, o Golpe 
+pode não reduzir a Expectativa.
+
+Arrebatar pelo Vigor
+Requisitos: 1 prêmios em Gincana ou Espetáculo.
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Referência: L,V
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fisiculturismo ou um pokémon 
+aliado com pelo menos um prêmio em Concurso de 
+Fisiculturismo. Efeito: reduza em 2 a Dificuldade de Acurácia de 
+um Golpe cuja Categoria de Concursos é Vigor. Isso não 
+pode ser feito mais de uma vez por combate.
+Em Concursos, o efeito deste Talento é outro: 
+quando o alvo usar um Golpe de Estilo ou Perspicácia, o 
+Golpe aumenta a Expectativa.
+
+Corpulento
+Requisitos: um pokémon com Vigor 5.
+Referência: P,V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon com Vigor 5.
+Efeito: o alvo recebe uma quantidade de Pontos de 
+Vida temporários igual ao dobro de seu Vigor. Pontos de 
+Vida temporários desaparecem após um encontro ou ao 
+serem consumidos (eles são consumidos antes dos Pontos 
+de Vida normais quando se sofre dano).
+
+Couro Duro
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fisiculturismo ou um pokémon 
+aliado com pelo menos um prêmio em Concurso de 
+Fisiculturismo.
+Efeito: o alvo ganha a Habilidade Áspero até ser 
+convocado de volta à pokébola.
+
+Impassível
+Requisitos: um pokémon com Vigor 15.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu com Vigor 15 usa um 
+Golpe com a Categoria Vigor.
+Efeito: eleve uma Fase de Defesa do pokémon.
+Em Concursos, o efeito deste Talento é outro: o 
+alvo rola 1d4 adicional.
+
+Impenetrável
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fisiculturismo ou um pokémon 
+aliado com pelo menos um prêmio em Concurso de 
+Fisiculturismo.
+Efeito: o alvo ganha a Habilidade Armadura até ser 
+convocado de volta à pokébola.
+
+Musculação
+Referência: E,X
+Frequência: Semanal.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fisiculturismo ou um pokémon 
+aliado com pelo menos um prêmio em Concurso de 
+Fisiculturismo.
+Efeito: após dez horas de treinamento, o alvo 
+ganha permanentemente +1 à Capacidade Força. Isso não 
+pode elevar a Força do pokémon além de 7. Os efeitos 
+deste Talento são bem visíveis.
+
+Postura Robusta
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fisiculturismo ou um pokémon 
+aliado com pelo menos um prêmio em Concurso de 
+Fisiculturismo.
+Efeito: o alvo ganha os efeitos da Habilidade 
+Bicudo até ser convocado de volta à pokébola.
+
+Potência Muscular
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fisiculturismo ou um pokémon 
+aliado com pelo menos um prêmio em Concurso de 
+Fisiculturismo.
+Efeito: o alvo ganha a Habilidade Imprudência até 
+ser convocado de volta à pokébola.
+
+Teimosia
+Requisitos: Defesa 16.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon seu ou um pokémon aliado.
+Efeito: role 1d20 + MD. Se o resultado for 16 ou 
+mais, você pode mudar a Natureza do alvo para uma que 
+beneficie a Defesa à sua escolha.

@@ -1,0 +1,129 @@
+Características Atleta
+
+Porradaria
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Porrada. Se você tiver 
+sucesso em acertar o alvo, o próximo aliado que tentar 
+atacar o alvo pode ignorar toda a Evasão do alvo.
+
+Rapidez
+Referência: L,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Efeito: adicione seu MA aos seus Deslocamentos 
+Terrestre, de Natação e Subaquático até o final da rodada. 
+Rapidez não pode ser ativada mais de uma vez por rodada e 
+só pode ser ativada no início da rodada.
+
+Talento Atleta
+
+Esquiva
+Requisitos: Defesa 18.
+Referência: I,P,X
+Frequência: Diária.
+Efeito: você usa o Golpe Detecção.
+
+Explosão Muscular
+Referência: C,X
+Frequência: Constante.
+Efeito: a qualquer momento que você usaria seu 
+MV, você pode usar seu MA no lugar.
+
+Hora Extra
+Requisitos: Ataque 26.
+Referência: L,X
+Frequência: Diária. 
+Gatilho: você é reduzido a inconsciente (0 PV ou 
+menos), mas não a -100% de seus PV ou menos.
+Efeito: antes de desmaiar, você pode se deslocar 
+uma vez e executar uma Ação Padrão tendo como alvo um 
+inimigo.
+
+Jogo Duplo
+Requisitos: um pokémon com Força 5.
+Referência: L,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu acerta um Golpe Corpo a 
+Corpo causador de dano em um inimigo ao qual você já 
+causou dano na rodada atual.
+Efeito: o seu pokémon causa uma quantidade de 
+dano extra igual à Força dele e empurra o alvo uma 
+quantidade de metros igual à Força dele. Se o inimigo 
+atingido for Empurrado a um Terreno Bloqueador, ele sofre 
+2d12 de dano extra. Caso ele seja Empurrado em direção a 
+outra criatura, tanto esta quanto o inimigo original sofrem 
+1d12 de dano.
+
+Na Zona
+Requisitos: Ataque 16.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando você usa Rapidez, você pode usar 
+seu Ataque ou sua Defesa no lugar de sua Velocidade para 
+fins de calcular sua Iniciativa e sua Evasão até o fim da 
+próxima rodada.
+
+Precisa ser Rápido
+Requisitos: Ataque 18.
+Referência: I,P,X
+Frequência: Diária. 
+Efeito: você usa o Golpe Extrema Velocidade.
+
+Protegendo as Costas
+Requisitos: Ataque 18.
+Referência: I,P,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu é acertado por um 
+ataque.
+Efeito: se você ainda não se moveu na rodada, 
+você pode tentar interceptar o ataque direcionado ao seu 
+pokémon. Se seu Ataque for 20 ou menos, você rola 1d20 e 
+tem sucesso se o resultado for 11 ou mais. Se seu Ataque 
+for de 21 a 30, você rola 1d20 e tem sucesso se o resultado 
+for 6 ou mais. Se seu Ataque for maior que 30, você não 
+precisa fazer nenhuma rolagem para ativar este Talento. 
+Não é possível usar este Talento mais de uma vez por 
+rodada.
+
+Resultado do Esforço
+Requisitos: Trabalhe este Corpo!
+Referência: L,X
+Frequência: À Vontade.
+Gatilho: um pokémon com Força pelo menos 5 
+está subindo de Nível para um Nível múltiplo de 5.
+Efeito: role 1d20 + MA. Se o resultado for 16 ou 
+mais, o pokémon aprende o Golpe Superforça.
+
+Ringue
+Referência: L,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você usa o Golpe Porrada.
+Efeito: a Dificuldade de Acurácia da Porrada se 
+torna 4. Se você tiver sucesso em acertar com a Porrada um 
+inimigo que causou dano a um aliado na rodada atual ou na 
+rodada anterior, na próxima vez que um aliado (não 
+necessariamente o mesmo) causar dano a ele, o dano é 
+aumentado em um número de d6s igual à metade de seu MA.
+
+Trabalhe este Corpo!
+Referência: E,X
+Frequência: Semanal.
+Alvo: um pokémon seu.
+Efeito: após dez horas de treinamento, o alvo 
+ganha permanentemente +1 à Capacidade Força ou a um de 
+seus Deslocamentos. Isso não pode elevar a Força do 
+pokémon além de 7. Um dado Deslocamento não pode ser 
+beneficiado mais de três vezes por este Talento. Se o valor 
+numérico da Força ou do Deslocamento escolhido for 
+menor que 4, ele não pode ser melhorado por este Talento. 
+
+Você vai Ver!
+Referência: P,X
+Frequência: Diária.
+Efeito: você usa o Golpe Retaliação.

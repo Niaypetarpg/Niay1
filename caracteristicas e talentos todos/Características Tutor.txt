@@ -1,0 +1,157 @@
+Características Tutor
+
+Introjeção
+Referência: C,X
+Frequência: Constante.
+Gatilho: um de seus pokémons aprende um Golpe 
+por Registro ou Tutor.
+Efeito: você pode posicionar o Golpe aprendido na 
+lista de Golpes que são aprendidos por aquele pokémon 
+naturalmente subindo de Nível. Isso só pode ser feito até 
+duas vezes por pokémon.
+
+Tutorial
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon.
+Efeito: após quinze minutos treinando e instruindo 
+o alvo, role 1d20 + MDE. Se o resultado for 16 ou mais, 
+escolha um Golpe que ele pode aprender a partir de um 
+Tutor. O alvo aprende este Golpe. Uma vez que tenha usado 
+esta Característica de Classe em um pokémon, ela jamais 
+poderá ser usada novamente para aquele pokémon.
+Este Talento consome dois Pontos de Tutoria.
+
+Talentos Tutor
+
+Desbloqueio Elemental
+Requisitos: Defesa Especial 20.
+Referência: E,X
+Frequência: Uso Único.
+Alvo: um pokémon.
+Efeito: após quinze minutos treinando e instruindo 
+o alvo, escolha um Tipo. O alvo poderá aprender todos os 
+Golpes daquele Tipo a partir de Registros. Uma vez que tenha usado este Talento em um pokémon, ele jamais 
+poderá ser usado novamente para aquele pokémon.
+Este Talento consome três Pontos de Tutoria.
+Especial: Este Talento pode ser escolhido até três 
+vezes.
+
+Ensinar Capacidades
+Requisitos: Defesa Especial 16.
+Referência: E,X
+Frequência: Diária.
+Alvo: um pokémon.
+Efeito: após quinze minutos treinando e instruindo 
+o alvo, escolha um Golpe de qualquer lista do alvo, desde 
+que o Golpe garanta ao alvo uma Capacidade (salvo Aura) 
+ou modifique alguma Capacidade (novamente salvo Aura). 
+O pokémon ganha aquela usado este Talento em um pokémon, ele jamais poderá ser Capacidade. Uma vez que tenha 
+usado novamente para aquele pokémon. Este Talento consome um Ponto de Tutoria.
+
+Imortalizar o Conhecimento
+Requisitos: Defesa Especial 20.
+Referência: E,X
+Frequência: Mensal.
+Alvo: um Registro.
+Efeito: após quatro horas de trabalho diligente, 
+você converte um Registro de uso único a um Registro 
+Permanente.
+
+Instrução de Efeito
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon.
+Efeito: após quinze minutos treinando e instruindo 
+o alvo, role 1d20 + MDE. Se o resultado for 16 ou mais, 
+escolha um Golpe que ele pode aprender a partir de um 
+Registro e que não usa nem Ataque nem Ataque Especial. O 
+alvo aprende este Golpe. Uma vez que tenha usado este 
+Talento em um pokémon, ele jamais poderá ser usado 
+novamente para aquele pokémon.
+Este Talento consome quatro Pontos de Tutoria.
+
+Instrução Especial
+Requisitos: um pokémon com Ataque Especial 30.
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon.
+Efeito: após quinze minutos treinando e instruindo 
+o alvo, role 1d20 + MDE. Se o resultado for 16 ou mais, 
+escolha um Golpe que ele pode aprender a partir de um 
+Registro e que usa o Ataque Especial. O alvo aprende este 
+Golpe. Uma vez que tenha usado este Talento em um 
+pokémon, ele jamais poderá ser usado novamente para 
+aquele pokémon.
+Este Talento consome quatro Pontos de Tutoria.
+
+Instrução Física
+Requisitos: um pokémon com Ataque 30.
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon.
+Efeito: após quinze minutos treinando e instruindo 
+o alvo, role 1d20 + MDE. Se o resultado for 16 ou mais, 
+escolha um Golpe que ele pode aprender a partir de um 
+Registro e que usa o Ataque. O alvo aprende este Golpe. 
+Uma vez que tenha usado este Talento em um pokémon, 
+ele jamais poderá ser usado novamente para aquele 
+pokémon.
+Este Talento consome quatro Pontos de Tutoria.
+
+Inventor de Técnicas
+Requisitos: Recordador.
+Referência: E,X
+Frequência: Diária.
+Efeito: após quatro horas de trabalho diligente, 
+role 1d20 + MDE. Se o resultado for 21 ou mais, escolha um 
+Golpe que um dos seus pokémons conhece, mas para o qual 
+não existe um Registro normalmente. Você cria um Registro 
+não permanente contendo o Golpe. Não é possível criar o 
+mesmo Registro mais de uma vez com este Talento.
+
+Recordador
+Requisitos: Defesa Especial 17, ter usado a Característica de Classe Tutorial três vezes com sucesso.
+Referência: E,X
+Frequência: Semanal.
+Alvo: um pokémon.
+Efeito: após quatro horas de trabalho diligente, 
+role 1d20 + MDE. Se o resultado for 21 ou mais, escolha um 
+Golpe que você já ensinou mediante Tutorial. Você cria um 
+Registro contendo o Golpe. Não é possível criar o mesmo
+Registro mais de uma vez com este Talento.
+
+Sabedoria de Eras
+Requisitos: Recordador, Inventor de Técnicas.
+Referência: C,X
+Frequência: Constante.
+Alvo: um pokémon.
+Efeito: você pode agora criar o mesmo Registro 
+quantas vezes desejar usando Recordador e Inventor de 
+Técnicas e também pode escolher o mesmo Golpe inúmeras 
+vezes com Sabedoria Didática.
+
+Sabedoria Didática
+Requisitos: Defesa Especial 16 e um dos seguintes- Instrução de Efeito, Instrução Especial ou Instrução Física.
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon.
+Efeito: após quinze minutos treinando e instruindo 
+o alvo, role 1d20 + MDE. Se o resultado for 16 ou mais, 
+escolha um Golpe que ele pode aprender a partir de um 
+Registro. O alvo aprende este Golpe. Uma vez que tenha 
+usado este Talento em um pokémon, ele jamais poderá ser 
+usado novamente para aquele Golpe.
+Este Talento consome quatro Pontos de Tutoria.
+
+Tutor Excepcional
+Requisitos: ter usado a Característica de Classe Tutorial cinco vezes.
+Referência: C,X
+Frequência: Constante.
+Efeito: você agora pode usar Tutorial várias vezes 
+em um mesmo pokémon.

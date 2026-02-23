@@ -1,0 +1,126 @@
+Características Guardião
+
+Refletor
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Refletor e pode, se quiser, 
+tornar a Barreira do Refletor um Terreno Bloqueador.
+
+Tela de Luz
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Tela de Luz e pode, se 
+quiser, tornar a Barreira da Tela de Luz um Terreno 
+Bloqueador.
+
+Talentos Guardião
+
+Aqui!
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: se o alvo usar um Golpe ou um Talento que 
+possui uma rolagem de dano na próxima ação dele, ele 
+deve ter você como alvo. Este Talento só pode ser usado 
+uma vez por rodada.
+
+Bênção do Guardião
+Requisitos: Salvaguarda.
+Referência: C,X
+Frequência: Constante.
+Alvo: um pokémon ou um humano (possivelmente 
+si mesmo).
+Efeito: você pode usar Refletor, Salvaguarda e Tela 
+de Luz como uma Cobertura – em vez de como uma 
+Barreira – no alvo. Neste caso, ela durará até o fim do 
+encontro ou até o alvo ser convocado de volta à pokébola.
+
+Desgaste da Guerra
+Requisitos: Pelo Time!, cinco outros Talentos de 
+Guardião (desconte as Características de Classe para este 
+cálculo).
+Referência: I,X
+Frequência: Diária. A cada 20 Níveis, receba um 
+uso diário adicional.
+Gatilho: você usa Guarda-Costas ou Pelo Time!
+Efeito: subtraia seu Ataque do dano que sofreria. 
+Isso é uma exceção à regra de Defender.
+
+Guarda-Costas
+Referência: I,X
+Frequência: À Vontade.
+Gatilho: um aliado (pokémon ou humano) 
+adjacente é acertado por um ataque.
+Efeito: você sofre metade do dano que seria 
+causado ao aliado e ele só sofre a outra metade. Nem você 
+nem o aliado podem usar Defesa, Defesa Especial ou 
+qualquer habilidade ou Talento para reduzir ainda mais o 
+dano sofrido.
+
+Já foi o Bastante!
+Requisitos: ter usado Contra-Ataque mediante 
+Referência: P,X
+Permissão ou ter um pokémon leal que sabe ContraAtaque.
+Frequência: Diária.
+Alvo: si.
+Efeito: você usa o Golpe Contra-Ataque.
+
+Mártir
+Requisitos: sete Talentos de Guardião (desconte as 
+Características de Classe para este cálculo).
+Referência: L,X
+Frequência: Diária. A cada 25 Níveis, receba um 
+uso diário adicional.
+Alvo: si.
+Efeito: você pode usar qualquer Talento que tenha 
+só possa ter você mesmo como alvo consumindo apenas 
+uma Ação Livre.
+
+Não Tão Rápido!
+Requisitos: Salvaguarda.
+Referência: I,X
+Frequência: À Vontade.
+Efeito: você pode usar Refletor, Salvaguarda e Tela 
+de Luz como uma Ação de Interrupção. Se possuir o Talento 
+Substituição, inclua-o nesta lista.
+
+Reflexos
+Requisitos: Místico.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você ou um pokémon canalizado é 
+acertado por um ataque superefetivo e você está 
+canalizando pelo menos um pokémon que é resistente ou 
+imune ao ataque.
+Efeito: a rolagem de ataque causa dano neutro, 
+não dano superefetivo.
+
+Repelir!
+Requisitos: ter usado Escudo Espelho mediante 
+Permissão ou ter um pokémon leal que sabe Escudo Espelho.
+Referência: P,X
+Frequência: Diária.
+Alvo: si.
+Efeito: você usa o Golpe Escudo Espelho.
+
+Salvaguarda
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Salvaguarda.
+
+Substituição
+Requisitos: cinco Talentos de Guardião (desconte 
+as Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Substituição. Não é 
+possível usar este Talento mais de uma vez por encontro.

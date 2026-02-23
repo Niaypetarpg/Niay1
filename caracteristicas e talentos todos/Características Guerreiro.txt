@@ -1,0 +1,101 @@
+Características Guerreiro
+
+Foco Combativo
+Referência: C,X
+Frequência: Constante.
+Efeito: adicione seus MA e MD às rolagens de dano 
+causado por você.
+
+Resistência Marcial
+Referência: C,X
+Frequência: Constante. 
+Efeito: some as metades de seus MA e MD e 
+multiplique esta soma por 5. Adicione o resultado deste 
+cálculo ao seus Pontos de Vida máximos.
+
+Talento Guerreiro
+
+Calejar
+Referência: C,X
+Frequência: Constante.
+Efeito: quando sofrer dano (inclusive por dano 
+causado a si mesmo), reduza o dano sofrido por seu MA. 
+Obviamente, isso não afeta danos irredutíveis.
+
+Chute Duplo
+Requisitos: ter um pokémon que conhece o Golpe Chute Duplo.
+Referência: P,X
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Chute Duplo.
+
+Fachada
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Fachada.
+
+Foco Combativo +
+Requisitos: Ataque 15, Defesa 15.
+Referência: C,X
+Frequência: Constante.
+Efeito: adicione o dobro de seu MA e o dobro de 
+seu MD às rolagens de dano causado por você. Este 
+Talentos substitui Foco Combativo.
+
+Golpe de Caratê
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Golpe de Caratê.
+
+Megassoco
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Megassoco.
+
+Nada Pode me Parar!
+Requisitos: Velocidade 18.
+Referência: L,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: si.
+Efeito: escolha uma Condição que está afligindo 
+você (como Paralisia, Sono ou Veneno, por exemplo). Você 
+se cura desta Condição.
+
+Quebra Telha
+Requisitos: seis Talentos de Guerreiro (desconte as Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Quebra Telha.
+
+Resistência Marcial +
+Requisitos: Ataque 14, Defesa 14.
+Referência: C,X
+Frequência: Constante. 
+Efeito: some seus MA e MD e multiplique esta 
+soma por 5. Adicione o resultado deste cálculo ao seus 
+Pontos de Vida máximos. Este Talento substitui Resistência 
+Marcial.
+
+Soco Focalizado
+Requisitos: Ataque 18.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Soco Focalizado.
+
+Voadora
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Voadora.

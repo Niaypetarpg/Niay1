@@ -1,0 +1,129 @@
+Características Descolado
+
+Estilo
+Referência: C,V
+Frequência: Constante.
+Efeito: quando um pokémon seu com pelo menos 
+um prêmio em Espetáculo sobe de nível, você pode 
+adicionar pontos de Atributos ao Ataque, ignorando a 
+Relação Basal.
+
+Vantagem do Descolado
+Referência: C,V
+Frequência: Constante.
+Efeito: Adicione seu MDE à Pontuação de 
+aparência durante a Apresentação de um Espetáculo. Seus 
+pokémons com Lealdade 2 ou mais são descolados: eles são 
+considerados com pelo menos um prêmio em um 
+Espetáculo para fins de seus Talentos. Todos os seus 
+pokémons podem possuir até 20 pontos na Aptidão Estilo, e 
+podem Apelar a até 5 pontos de Aptidão quando poderiam 
+Apelar ao Estilo.
+
+Talentos Descolado
+
+Acha que é Inalcançável?
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Espetáculo ou um pokémon aliado com pelo 
+menos um prêmio em Espetáculo.
+Efeito: o alvo ganha a Habilidade Quebra Moldes 
+até ser convocado de volta à pokébola.
+
+Aliados do Descolado
+Requisitos: 1 prêmios em Gincana ou Concurso de Fofura.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Espetáculo ou um pokémon aliado com pelo menos um prêmio em Espetáculo.
+Efeito: adicione seu MDE à Dificuldade de Acurácia 
+de um Golpe que tenha o seu pokémon como alvo. Isso não 
+pode ser feito mais de uma vez por combate.
+Em Concursos, o efeito deste Talento é outro: 
+quando o alvo usar um Golpe de Perspicácia ou Ternura, o 
+Golpe pode não reduzir a Expectativa.
+
+Arrebatar pelo Estilo
+Requisitos: 1 prêmio em Concurso de Beleza ou de Fisiculturismo.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Espetáculo ou um pokémon aliado com pelo 
+menos um prêmio em Espetáculo.
+Efeito: reduza em 2 a Dificuldade de Acurácia de 
+um Golpe cuja Categoria de Concursos é Estilo. Isso não 
+pode ser feito mais de uma vez por combate.
+Em Concursos, o efeito deste Talento é outro: 
+quando o alvo usar um Golpe de Beleza ou Vigor, o Golpe 
+aumenta a Expectativa.
+
+Atitude Radical!
+Requisitos: Defesa Especial 16.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon seu ou um pokémon aliado.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, você pode mudar a Natureza do alvo para uma que 
+beneficie o Ataque Especial à sua escolha.
+
+Desafiador
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Espetáculo ou um pokémon aliado com pelo 
+menos um prêmio em Espetáculo.
+Efeito: o alvo ganha a Habilidade Agonista até ser 
+convocado de volta à pokébola.
+
+Fitar
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Espetáculo ou um pokémon aliado com pelo 
+menos um prêmio em Espetáculo.
+Efeito: o alvo ganha a Habilidade Intimidar até ser 
+convocado de volta à pokébola.
+
+Liderança
+Referência: C,V
+Frequência: Constante.
+Efeito: todos os seus pokémons com pelo menos 
+um prêmio em Espetáculo e Estilo 10 possuem a 
+Capacidade Hierarquia. 
+
+Minúcia
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Espetáculo ou um pokémon aliado com pelo 
+menos um prêmio em Espetáculo.
+Efeito: o alvo ganha a Habilidade Franco-Atirador 
+até ser convocado de volta à pokébola.
+
+Original
+Requisitos: um pokémon com Estilo 15.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu com Estilo 15 usa um 
+Golpe com a Categoria Estilo.
+Efeito: eleve uma Fase de Ataque do pokémon.
+Em Concursos, o efeito deste Talento é outro: o 
+alvo rola 1d4 adicional.
+
+Único
+Requisitos: Defesa Especial 18, 3 prêmios em Concurso de Beleza ou de Fisiculturismo.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu com Estilo 15 usa um 
+Golpe com a Categoria Estilo.
+Efeito: o Golpe não pode ser interceptado por 
+outro alvo nem interrompido por nada.

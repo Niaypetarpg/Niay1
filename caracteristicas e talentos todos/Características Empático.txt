@@ -1,0 +1,154 @@
+Características Empático
+
+Cura Menor
+Referência: P,X
+Frequência: Diária. A cada 4 
+Níveis, receba um uso diário adicional.
+Alvo: um pokémon ou um 
+humano.
+Efeito: você cura o alvo em 
+uma quantidade de Pontos de Vida 
+igual a 1d12 +6 + o dobro de seu 
+MAE. Isso deixa resíduo psíquico 
+no alvo. 
+
+Vibração Calmante
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você restaura Confusão. Esta Característica 
+de Classe acalma em geral o alvo, o que cura fúria, uma 
+mente distorcida e neutraliza paranoia e pânico. Isso deixa 
+resíduo psíquico no alvo.
+O uso deste Talento consome 7 Pontos de Vida. 
+Além disso, você precisa estar em um estado mental calmo 
+para usá-lo.
+
+Talento Empático
+
+As Profundezas da Alma
+Requisitos: As Profundezas da Mente.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você pode projetar seus pensamentos 
+superficiais ao alvo e pode ler os pensamentos superficiais 
+dele, bem como ler os pensamentos e as memórias dele 
+desde o dia anterior no passado. Isso deixa resíduo psíquico 
+no alvo.
+
+As Profundezas da Mente
+Requisitos: Psíquico, Ataque Especial 16.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando usar Telepatia, você pode ler os 
+pensamentos e as memórias de alguém desde a última hora 
+no passado. Isso deixa resíduo psíquico no alvo.
+
+Compartilhar Sofrimento
+Referência: P,X
+Frequência: À Vontade.
+Gatilho: um pokémon ou um humano sofre dano.
+Efeito: você sofre metade do dano que o alvo 
+sofreria no lugar dele.
+O uso deste Talento consome 5 Pontos de Vida, 
+mas não no primeiro uso dele em um dia.
+
+Conexão
+Requisitos: quatro pokémons seus já subiram pelo 
+menos 15 Níveis com você.
+Referência: C,V
+Frequência: Constante.
+Alvo: seus pokémons.
+Efeito: você entende os pensamentos dos seus 
+pokémons.
+
+Conexão +
+Requisitos: Conexão, Ataque Especial 18.
+Referência: C,V
+Frequência: Constante.
+Alvo: pokémons.
+Efeito: você entende os pensamentos dos 
+pokémons. Este Talento substitui Conexão.
+
+Cura Maior
+Requisitos: Cura Média, Ataque Especial 18.
+Referência: P,X
+Frequência: Diária. A cada 12 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você cura o alvo em uma quantidade de 
+Pontos de Vida igual a 3d12 +18 + o dobro de seu MAE. Isso 
+deixa resíduo psíquico no alvo. 
+
+Cura Máxima
+Requisitos: Cura Maior, Ataque Especial 20.
+Referência: P,X
+Frequência: Diária. A cada 12 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você cura o alvo em uma quantidade de 
+Pontos de Vida igual a 4d12 +24 + o dobro de seu MAE. Isso 
+deixa resíduo psíquico no alvo. 
+
+Cura Média
+Referência: P,X
+Frequência: Diária. A cada 6 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você cura o alvo em uma quantidade de 
+Pontos de Vida igual a 2d12 +12 + o dobro de seu MAE. Isso 
+deixa resíduo psíquico no alvo. 
+
+Desejo
+Requisitos: Cura Maior.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Desejo. Isso deixa resíduo 
+psíquico no alvo.
+
+Repouso
+Requisitos: um pokémon com um Golpe que 
+recupera Pontos de Vida.
+Referência: P,X
+Frequência: Diária.
+Alvo: si.
+Efeito: após dez minutos, recupere todos os seus 
+Pontos de Vida.
+
+Sofrimento Mútuo
+Requisitos: Ataque Especial 16, Compartilhar 
+Sofrimento.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Sofrimento Mútuo. Isso 
+deixa resíduo psíquico no alvo.
+
+Tratar a Alma
+Requisitos: Ataque Especial 16, ter curado Paralisia 
+e/ou Sono três vezes usando itens ou Talentos.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você restaura Paralisia e Sono. Isso deixa 
+resíduo psíquico no alvo.
+
+Tratar o Corpo
+Requisitos: Ataque Especial 16, ter curado Queimadura e/ou Veneno três vezes usando itens ou Talentos.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você restaura Queimadura e Veneno. Isso 
+deixa resíduo psíquico no alvo.
+
+Vínculo
+Requisitos: Conexão.
+Referência: C,X
+Frequência: Constante.
+Efeito: enquanto você está inconsciente, seus 
+pokémons podem agir como se você não estivesse 
+inconsciente.

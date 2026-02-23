@@ -1,0 +1,125 @@
+Características Cientista
+
+Poções
+Referência: E,X
+Frequência: Diária.
+Efeito: após certa quantidade de trabalho químico, 
+você cria um Item:
+Tempo; Dedicado Item
+1; hora Poção
+2; horas Superpoção
+4; horas Hiperpoção
+
+Repelentes
+Referência: E,X
+Frequência: Diária.
+Efeito: após certa quantidade de trabalho químico, 
+você cria um Item:
+Tempo Dedicado Item
+1; hora Repel
+2; horas Super Repel
+4; horas Max Repel
+
+Talentos Cientista
+
+Concentrados
+Referência: E,X
+Frequência: Diária.
+Efeito: após uma hora de trabalho químico, escolha 
+uma das seguintes frutas: romã (Pomeg), alga (Kelpsy), pera 
+(Qualot), candalupo (Hondew), uva (Grepa). Você cria um 
+item com os mesmos efeitos da fruta escolhida.
+
+Éteres
+Referência: E,X
+Frequência: Diária.
+Efeito: após quatro horas de trabalho químico, 
+você cria um Éter.
+
+Elixires
+Requisitos: Éteres.
+Referência: E,X
+Frequência: Diária.
+Efeito: após quatro horas de trabalho químico, 
+você cria um Elixir.
+
+Magnificadores
+Requisitos: Suplementos Defensivos, Suplementos 
+Explosivos, Suplementos Ofensivos.
+Referência: E,X
+Frequência: Mensal. A cada 15 Níveis, receba um 
+uso mensal adicional.
+Efeito: após dez horas de trabalho químico, você 
+cria um Magnificador.
+
+Suplementos Explosivos
+Requisitos: um pokémon com Saúde ou Velocidade 
+20.
+Referência: E,X
+Frequência: Diária.
+Efeito: após quatro horas de trabalho químico, 
+você cria um Imunizante ou um Carburante.
+
+Suplementos Ofensivos
+Requisitos: um pokémon com Ataque ou Ataque 
+Especial 20.
+Referência: E,X
+Frequência: Diária.
+Efeito: após quatro horas de trabalho químico, 
+você cria uma Proteína ou um Cálcio.
+
+Suplementos Defensivos
+Requisitos: um pokémon com Defesa ou Defesa 
+Especial 20.
+Referência: E,X
+Frequência: Diária.
+Efeito: após quatro horas de trabalho químico, 
+você cria um Ferro ou um Zinco.
+
+Melhoradores de Performance 
+Requisitos: Defesa Especial 14.
+Referência: E,X
+Frequência: Diária.
+Efeito: após trinta minutos de trabalho químico, 
+você rola 1d8 e cria um item conforme o resultado:
+Resultado; Item
+1; X-Ataque
+2; X-Defesa
+3; X-Ataque Especial
+4; X-Defesa Especial
+5; X-Velocidade
+6; X-Acurácia
+7; Golpe Atroz
+8; Guarda Especial
+
+Melhoradores de Performance + 
+Requisitos: ter usado Melhoradores de 
+Performance três vezes.
+Referência: E,X
+Frequência: Diária.
+Efeito: após uma hora de trabalho químico, você 
+cria um dos seguintes itens à sua escolha: X-Ataque, XDefesa, X-Ataque Especial, X-Defesa Especial, X-Velocidade, 
+X-Acurácia, Golpe Atroz, Guarda Especial. Este Talento 
+substitui Melhoradores de Performance. 
+
+Remédios
+Referência: E,X
+Frequência: Diária.
+Efeito: após trinta minutos de trabalho químico, 
+você rola 1d6 e cria um item conforme o resultado:
+Resultado; Item
+1; Antídoto
+2; Despertador
+3; Pomada
+4; Anticongelante
+5; Antiparalisante
+6; Panaceia
+
+Remédios +
+Requisitos: ter usado Remédios três vezes.
+Frequência: Diária.
+Referência: E,X
+Efeito: após uma hora de trabalho químico, você 
+cria um dos seguintes itens à sua escolha: Antídoto, 
+Despertador, Pomada, Anticongelante, Antiparalisante. Este 
+Talento substitui Remédios.

@@ -1,0 +1,150 @@
+Características Médium
+
+Acupunturista
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Acupuntura.
+
+Empoderamento
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon canalizado.
+Efeito: você perde todas as Fases positivas que 
+possuía, de modo a anulá-las. Elas são transferidas ao alvo 
+nos mesmos Atributos como estavam afetando você.
+Empoderamento exaure 10 Pontos de Vida.
+
+Talentos Médium
+
+Agilidade
+Requisitos: ter usado Agilidade ou Polimento mediante Permissão.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Agilidade.
+
+Amnésia
+Requisitos: ter usado Amnésia mediante Permissão.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Amnésia.
+
+Aumento de Massa
+Requisitos: ter usado dois Golpes que elevam 
+Fases de Ataque ou Defesa mediante Permissão.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Aumento de Massa.
+
+Conspiração
+Requisitos: ter usado Brilho ou Conspiração 
+mediante Permissão.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Conspiração.
+
+Dança das Espadas
+Requisitos: ter usado Dança das Espadas mediante Permissão.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Dança das Espadas.
+
+Defesa de Ferro
+Requisitos: ter usado um dos seguintes Golpes 
+mediante Permissão: Armadura Ácida, Barreira ou Defesa 
+de Ferro.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Defesa de Ferro.
+
+Magia Natural
+Requisitos: já ter comido uma das seguintes frutas: 
+damasco (Apicot), lichia (Liechi), longana (Ganlon), pitaia 
+(Petaya), salak (Salac).
+Referência: E,X
+Frequência: À Vontade.
+Alvo: uma fruta.
+Efeito: escolha uma fruta entre damasco (Apicot), 
+lichia (Liechi), longana (Ganlon), pitaia (Petaya) e salak 
+(Salac). Após cinco minutos encantando a fruta alvo, ela 
+perde as propriedades normais dela e ganha as 
+propriedades da fruta escolhida. Ela mantém o sabor e a 
+aparência que possuía antes.
+Magia Natural exaure 5 Pontos de Vida.
+
+Mente Calma
+Requisitos: ter usado dois Golpes que elevam 
+Fases de Ataque Especial ou Defesa Especial mediante Permissão.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Mente Calma.
+
+Poder Cósmico
+Requisitos: ter usado dois Golpes que elevam 
+Fases de Defesa ou Defesa Especial mediante Permissão.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: si.
+Efeito: você usa o Golpe Poder Cósmico.
+
+Preparação
+Requisitos: cinco Talentos de Médium (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Efeito: escolha dois Talentos de Médium que 
+elevam Fases. Você usa os dois ao mesmo tempo e sem 
+consumir usos diários deles.
+
+Presença
+Requisitos: seis Talentos de Médium (desconte as 
+Características de Classe para este cálculo).
+Referência: C,X
+Frequência: Constante.
+Gatilho: usando um Talento de Médium, você 
+eleva uma ou mais Fases de um pokémon de modo que, no 
+total, ele possui um saldo de pelo menos seis Fases 
+positivas somando todas as Fases em todos os Atributos.
+Efeito: todos os pokémons canalizados por você 
+elevam uma Fase de um Atributo à sua escolha. 
+Este Talento não pode ativar a si mesmo.
+
+Supremacia
+Requisitos: oito Talentos de Médium (desconte as 
+Características de Classe para este cálculo).
+Referência: C,X
+Frequência: Constante.
+Gatilho: usando um Talento de Médium, você 
+eleva uma ou mais Fases de um pokémon de modo que, no 
+total, ele possui um saldo de pelo menos oito Fases 
+positivas somando todas as Fases em todos os Atributos.
+Efeito: todos os inimigos a até 10 metros perdem 
+uma Fase de um Atributo à sua escolha individualmente 
+para cada inimigo.
+
+Vegetarianismo
+Requisitos: Defesa Especial 16.
+Referência: C,X
+Frequência: Constante.
+Gatilho: você come uma das seguintes frutas: 
+damasco (Apicot), lichia (Liechi), longana (Ganlon), pitaia 
+(Petaya) ou salak (Salac).
+Efeito: você terá duas Fases elevadas do Atributo, 
+em vez de apenas uma.

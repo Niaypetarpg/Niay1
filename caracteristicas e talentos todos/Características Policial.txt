@@ -1,0 +1,134 @@
+Características Policial
+
+Escâner
+Referência: C,X
+Frequência: Constante.
+Alvo: um pokémon.
+Efeito: quando olha para um pokémon, você vê 
+uma barra que representa a porcentagem de Pontos de 
+Vida de um pokémon em relação aos PV máximos.
+
+Estilizador Policial
+
+Frequência: Constante.
+Efeito: a bateria de seu Estilizador é aprimorada 
+para possuir agora um máximo de trinta Cargas.
+
+Talentos Policial
+
+Armadura
+Requisitos: Colete.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando sofrer dano por ataques, reduza o 
+dano em 15. A Armadura é aparente, não podendo ser 
+ocultada por vestimentas. Não é possível usar a Armadura 
+em conjunção com o Colete.
+
+Bobina Retrátil
+Referência: C,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Constrição com um 
+alcance de 4 metros.
+O uso deste Talento consome quatro Cargas da 
+bateria de seu Estilizador.
+Alternativamente, você pode usar este Talento 
+para acionar um motor que dispara um cabo a partir do seu 
+Estilizador. O cabo possui um comprimento de 40 metros e 
+pode terminar com um gancho, com um peso magnético ou 
+com uma solução adesiva. Uma vez que a ponta esteja 
+aderida, o cabo pode puxar você até ela. O peso máximo 
+que o cabo suporta é de 100 kg. Este uso deste Talento 
+consome três, e não quatro, Cargas da bateria de seu 
+Estilizador.
+
+Disparador
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa um dos Golpes a seguir com um 
+alcance de 5 metros: Esporos Paralisantes ou Teia de 
+Aranha.
+O uso deste Talento consome três Cargas da 
+bateria de seu Estilizador.
+
+Catalizador
+Referência: C,X
+Frequência: Constante.
+Efeito: uma Pedra Elemental é inserida em seu 
+Estilizador. Uma vez inserida, a pedra perde a capacidade 
+de evoluir pokémons, pois tem sua radiação canalizada para 
+o aparelho e aproveitada de outras formas. Só é possível 
+possuir uma Pedra Elemental atada ao seu Estilizador, e é 
+necessário um minuto para trocar a Pedra do espaço 
+destinado a ela.
+Cada Pedra Elemental concede uma Capacidade 
+diferente a você. Todas as vezes que usar a Capacidade, são 
+consumidas cinco Cargas da bateria de seu Estilizador.
+Pedra Elemental; Capacidade
+Pedra Brilhante; Luminar
+Pedra da Água; Manancial
+Pedra da Alvorada; Luminar
+Pedra da Folha; Secreção
+Pedra da Lua; Silêncio
+Pedra do Crepúsculo; Ininteligível
+Pedra do Fogo; Combustão
+Pedra do Sol; Sedução
+Pedra do Trovão; *
+* Diferente das outras Pedras Elementais, a Pedra do 
+Trovão não concede nenhuma Capacidade, portanto não 
+há consumo de bateria associada a ela. Em vez disso, ela 
+serve de bateria extra, aprimorando em dez Cargas o 
+máximo de Cargas do Estilizador.
+
+Colete
+Referência: C,X
+Frequência: Constante.
+Efeito: quando sofrer dano por ataques, reduza o 
+dano em 5. Este Colete não é aparente, pois pode ser 
+ocultado abaixo de outras vestimentas.
+
+Derrubada
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Derrubada.
+
+Proteção
+Requisitos: Colete.
+Referência: I,P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você é atingido por um Golpe.
+Efeito: você usa o Golpe Proteção.
+
+Pulverizador
+Referência: P,X
+Frequência: Diária. A cada 6 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa um dos Golpes a seguir com um 
+alcance de 4 metros: Cortina de Fumaça ou Pó Sonífero.
+O uso deste Talento consome três Cargas da 
+bateria de seu Estilizador.
+
+Resistência
+Requisitos: Colete.
+Referência: I,P,X
+Frequência: Diária. 
+Alvo: si.
+Efeito: você usa o Golpe Resistência.
+
+Respirador
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: si.
+Efeito: você ativa o Respirador, que permite 
+respirar embaixo d’água por 45 minutos depois de ativado. 
+Após estes 45 minutos, o Respirador deve ser secado e não 
+poderá ser ativado de novo dentro de duas horas.

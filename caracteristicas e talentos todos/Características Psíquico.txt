@@ -1,0 +1,127 @@
+Características Psíquico
+
+Psicocinese
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um objeto cujo peso máximo em quilos não 
+exceda o quíntuplo do seu MAE que não esteja mais distante que um número de metros igual ao triplo de seu MAE.
+Efeito: você move o alvo sem tocá-lo um número 
+máximo de metros igual ao dobro de seu MAE, mas não 
+pode movê-lo para mais longe do que um número de 
+metros igual ao triplo de seu MAE. Você sempre deve poder 
+manter o alvo dentro de seu campo visual.
+
+Telepatia
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um humano ou um pokémon seu.
+Efeito: você pode projetar seus pensamentos 
+superficiais ao alvo. Se o alvo é um humano, você também 
+pode ler os pensamentos superficiais dele.
+O uso deste Talento deixa resíduo psíquico.
+
+Talentos Psíquico
+
+Adaptação
+Requisitos: Ataque Especial 15.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Adaptação.
+O uso deste Talento consome 8 Pontos de Vida.
+
+Controlar Probabilidade
+Requisitos: Ataque Especial 16.
+Referência: L,X
+Frequência: À Vontade.
+Alvo: uma rolagem própria ou de um aliado.
+Efeito: a rolagem é refeita. A cada vez que usar 
+este Talento (mas não na primeira vez que usar este Talento 
+a cada dia), o Narrador recebe um Ponto de Paradoxo. O 
+Narrador pode a qualquer momento no futuro gastar um 
+Ponto de Paradoxo para obrigar você a refazer uma 
+rolagem, desde que não seja uma rolagem que você 
+influenciou usando Controlar Probabilidade.
+O uso deste Talento consome 15 Pontos de Vida.
+
+Extrassensorial
+Requisitos: Ataque Especial 16.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Extrassensorial.
+O uso deste Talento consome 10 Pontos de Vida.
+
+Gravidade
+Requisitos: Sala de Truques.
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Gravidade.
+O uso deste Talento consome 20 Pontos de Vida.
+
+Mentalismo
+Requisitos: Ataque Especial 16.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você pode identificar se a mente do alvo foi 
+afetada ou invadida por algum humano ou algum pokémon, 
+e pode encontrar resíduos dentro dela.
+Além disso, quando usar um Talento que deixa 
+resíduo psíquico, você pode rolar 1d20 + MAE. Se o 
+resultado for 16 ou mais, você não deixa resíduo.
+
+Paranormal
+Requisitos: Ataque Especial 16.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Paranormal.
+O uso deste Talento consome 10 Pontos de Vida.
+
+Psicocinese +
+Requisitos: Ataque Especial 15.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um objeto cujo peso máximo em quilos não 
+exceda o quíntuplo do seu MAE que não esteja mais distante que um número de metros igual ao triplo de seu MAE.
+Efeito: você move o alvo sem tocá-lo um número 
+máximo de metros igual ao dobro de seu MAE, mas não 
+pode movê-lo para mais longe do que um número de 
+metros igual ao triplo de seu MAE. Este Talento substitui Psicocinese.
+
+Refletor
+Requisitos: um pokémon que conhece o Golpe Refletor.
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Refletor.
+O uso deste Talento consome 5 Pontos de Vida.
+
+Sala de Truques
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Sala de Truques.
+O uso deste Talento consome 20 Pontos de Vida.
+
+Sala Mágica
+Requisitos: Sala de Truques.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Sala Mágica.
+O uso deste Talento consome 20 Pontos de Vida.
+
+Tela de Luz
+Requisitos: Ataque Especial 15, um pokémon que 
+conhece o Golpe Tela de Luz.
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Tela de Luz.
+O uso deste Talento consome 5 Pontos de Vida.
+
+Teletransporte
+Referência: P,X
+Frequência: À Vontade.
+Alvo: si.
+Efeito: você usa o Golpe Teletransporte.
+O uso deste Talento consome 25 Pontos de Vida.

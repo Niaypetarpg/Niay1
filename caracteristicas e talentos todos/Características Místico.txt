@@ -1,0 +1,144 @@
+Características Místico
+
+Canalizar
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon 
+selvagem ou um pokémon aliado.
+Efeito: faça um Teste de 
+Captura para o pokémon alvo 
+subtraindo sua Defesa do resultado da rolagem. Se o 
+resultado final for menor que a Chance de Captura do 
+pokémon alvo, você o canalizou. O pokémon é considerado 
+Prestativo (como pelas regras descritas na Capacidade 
+Hierarquia). Até que ele seja atacado ou muito distraído, ele 
+ouvirá as suas sugestões e seguirá você (um pokémon 
+selvagem só o fará dentro do território dele). Você tem 
+conhecimento sobre as Habilidades, as Capacidades e o 
+Golpes do pokémon canalizado e acessa as memórias dele 
+ocorridas a até uma hora. Vocês dois podem se comunicar 
+telepaticamente. Enquanto o pokémon é canalizado, ele é 
+imune a capturas, e se você tentar fazer isso, ele tem 
+sucesso automático em fugir. O pokémon canalizado segue 
+as suas sugestões por amizade: considere que ele obedece 
+você, mas não se houver um combate, caso em que age por 
+conta própria (se você está canalizando um pokémon que já 
+é seu, ele o obedece durante o combate normalmente).
+Você só pode canalizar um pokémon. A canalização 
+é rompida se o pokémon se afastar de você mais distante 
+que um número de metros igual ao dobro de seu MD.
+Canalizar exaure 10 Pontos de Vida.
+
+Permissão
+Referência: P,X
+Frequência: Diária.
+Efeito: escolha um Golpe conhecido pelo pokémon 
+que você está canalizando. Você pode usar o Golpe 
+selecionado uma vez dentro de 24 horas, mesmo que não 
+esteja mais canalizando o pokémon.
+
+Talento Místico
+
+Ancestral
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode identificar as funções e as 
+habilidades de itens inorgânicos não eletrônicos e sabe 
+como os ativar e usar.
+
+Canalizar Amigo
+Requisitos: um pokémon com Lealdade 4.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando usar Canalizar em um pokémon seu 
+com Lealdade 2 ou mais, você obtém sucesso automático.
+
+Canalizar Amigo +
+Requisitos: Canalizar Amigo, Defesa 17.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando usar Canalizar em um pokémon seu 
+com Lealdade 2 ou mais, você obtém sucesso automático e 
+não perde Pontos de Vida.
+Quando usar Canalizar em um pokémon de alguém 
+com Lealdade 2 ou mais, você obtém sucesso automático se 
+houver permissão de ambos humano e pokémon.
+Agora você pode canalizar dois pokémons 
+simultaneamente.
+Este Talento substitui Canalizar Amigo.
+
+Clérigo
+Requisitos: Nível 10.
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode canalizar até três pokémons 
+simultaneamente.
+
+Compartilhar Mente
+Referência: C,X
+Frequência: Constante.
+Efeito: todos os pokémons que você está 
+canalizando são tratados como se suas Inteligências fossem 
+a Inteligência do pokémon com mais alta Inteligência que 
+você está canalizando no momento. Alternativamente, 
+todos os pokémons que você está canalizando são tratados 
+como se suas Inteligências fossem iguais a seu MA ou seu 
+MAE. Em nenhum caso a Inteligência de um pokémon pode 
+exceder 6 por este Talento.
+
+Compartilhar Percepção
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode ver através dos olhos de um 
+pokémon canalizado, e pode ouvir qualquer coisa que ele 
+estiver ouvindo. Se canalizar mais de um pokémon, você 
+pode trocar os sentidos de um pokémon para outro uma 
+vez por rodada.
+
+Druida
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode falar com plantas que possuam 
+pelo menos vinte anos. Elas podem responder de maneira 
+limitada para informar algumas coisas: sobre qualquer coisa 
+que as tocou nas últimas 24 horas, sobre frutos delas ou 
+sobre pokémons que vivem nas redondezas a visitando com 
+frequência.
+
+Esponja
+Requisitos: ter usado Permissão para usar um 
+Golpe de um pokémon seu leal que já subiu pelo menos 20 
+Níveis com você.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando usar Permissão ou Empréstimo, 
+você obtém três Golpes, em vez de apenas um (e não é 
+possível selecionar o mesmo Golpe mais de uma vez).
+
+Grunhidos e Piados
+Requisitos: Canalizar Amigo.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon adjacente.
+Efeito: você ativa este Talento exaurindo 10 Pontos 
+de Vida. Pelas próximas quatro horas, você poderá falar 
+com os pokémons da espécie do pokémon adjacente.
+
+Misticismo
+Referência: C,X
+Frequência: Constante.
+Efeito: adicione o triplo de seu MD a seus Pontos 
+de Vida máximos. Isso só se aplica ao seu corpo humano.
+
+Profeta
+Referência: C,X
+Frequência: Constante.
+Efeito: você tem o conhecimento relacionado a 
+qualquer Lendário local.
+
+Vodu
+Requisitos: Clérigo.
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode fazer duas tentativas de 
+Canalizar em uma mesma Ação Padrão.

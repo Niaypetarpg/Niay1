@@ -1,0 +1,154 @@
+Características Orador
+
+Visão dos Deuses
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Efeito: por cinco minutos, você poderá ver através 
+dos olhos de qualquer Lendário que você já canalizou ou 
+possuiu. Além disso, você sabe a direção e distância destes 
+pokémons em relação a você.
+
+Voz dos Deuses
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Vozeirão.
+Voz dos Deuses drena 100 PV de cada Lendário já 
+canalizado pelo Orador. Para cada 100 Pontos de Vida 
+drenados, ela causa +2d10 de dano.
+Voz dos Deuses não poderá ser usado de novo por 
+2 dias.
+
+Talentos Orador
+
+Adeus Frígido
+Requisitos: ter usado um dos seguintes Golpes 
+mediante Permissão ou Empréstimo: Nevasca, Raio de Gelo 
+ou Zero Absoluto.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Zero Absoluto.
+Adeus Frígido drena 100 PV de cada pokémon 
+Lendário já canalizado pelo Orador. Para cada 200 Pontos 
+de Vida drenados, subtraia 1 da Dificuldade de Acurácia.
+Adeus Frígido não poderá ser usada de novo por 5 
+dias e você não poderá usar Talentos, dar comandos a poké-
+mons e nem mesmo se deslocar por 1 minuto (6 rodadas).
+
+Ajoelhe-se!
+Requisitos: já ter consumido 5000 PV de Lendários 
+usando seus Talentos de Orador.
+Referência: P,X
+Frequência: Semanal.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Olhar Paralisante. Além disso, o
+alvo não poderá se deslocar por cinco rodadas, durante as 
+quais ele não pode causar dano a você (se causaria algum 
+dano a você, você não sofre nenhum dano).
+
+Atrocidade
+Requisitos: ter usado um dos seguintes Golpes 
+mediante Permissão ou Empréstimo: Açoite, Investida do 
+Dragão, Ultraje.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Ultraje, mas o Golpe não 
+se mantém ativo nas rodadas subsequentes e não causa 
+Confusão em você.
+Atrocidade drena 25 PV de cada Lendário já 
+canalizado pelo Orador. 
+Atrocidade não poderá ser usada de novo por 3 
+dias.
+
+Escudo da Fé
+Requisitos: já ter consumido 1000 PV de Lendários 
+usando seus Talentos de Orador.
+Referência: I,P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Proteção.
+
+Incêndio
+Requisitos: ter usado um dos seguintes Golpes 
+mediante Permissão ou Empréstimo: Erupção, Explosão de 
+Fogo, Superaquecimento.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Superaquecimento.
+Incêndio drena 25 PV de cada Lendário já 
+canalizado pelo Orador. 
+Incêndio não poderá ser usado de novo por 2 dias.
+
+Louvor
+Requisitos: já ter consumido 500 PV de Lendários
+usando seus Talentos de Orador.
+Referência: C,X
+Frequência: Constante.
+Efeito: pokémons canalizados por você podem o 
+Golpe Mão Amiga tendo você como alvo. Um pokémon só 
+pode fazer isso mediante Louvor uma vez diária.
+
+Mímica
+Requisitos: já ter consumido 300 PV de Lendários 
+usando seus Talentos de Orador.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Espelho.
+
+Parasitismo
+Requisitos: ter usado um dos seguintes Golpes 
+mediante Permissão ou Empréstimo: Absorção, Gigadreno, 
+Megadreno.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Gigadreno.
+Parasitismo drena 25 PV de cada Lendário já 
+canalizado pelo Orador. 
+Parasitismo não poderá ser usado de novo por 2 
+dias.
+
+Punição Divina
+Requisitos: ter usado um dos seguintes Golpes 
+mediante Permissão ou Empréstimo: Canhão Elétrico, 
+Relâmpago, Trovão.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Canhão Elétrico.
+Punição Divina drena 25 PV de cada Lendário já 
+canalizado pelo Orador. 
+Punição Divina não poderá ser usada de novo por 3 
+dias.
+
+Raio de Vida
+Requisitos: ter usado Hiper-Raio mediante 
+Permissão ou Empréstimo.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Hiper-Raio.
+Raio de Vida drena 100 PV de cada Lendário já 
+canalizado pelo Orador. 
+Adeus Frígido não poderá ser usada de novo por 4 
+dias e você não poderá usar Talentos, dar comandos a poké-
+mons e nem mesmo se deslocar por 1 minuto (6 rodadas).
+
+Tremor
+Requisitos: ter usado um dos seguintes Golpes 
+mediante Permissão ou Empréstimo: Deslizamento de 
+Rochas, Magnitude, Terremoto.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Terremoto, mas a 
+Explosão pode ser centrada À Distância 5.
+Tremor drena 25 PV de cada Lendário já canalizado 
+pelo Orador. 
+Tremor não poderá ser usado de novo por 3 dias.

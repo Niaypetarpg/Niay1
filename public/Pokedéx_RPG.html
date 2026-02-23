@@ -855,9 +855,9 @@ select option {
           <label><input type="checkbox" name="nivel" value="96-100" class="nivel-cb"> 96 – 100</label>
         </div>
         <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ccc;">
-          <label for="nivelEspecifico" style="display: block; margin-bottom: 8px; font-weight: bold;">Definir Nível Específico:</label>
-          <input type="number" id="nivelEspecifico" min="1" max="100" placeholder="Ex: 50" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #999; font-size: 14px;">
-          <small style="display: block; margin-top: 5px; color: #666;">Se preenchido, o gerador usará este nível. Deixe vazio para usar os intervalos acima.</small>
+          <label for="nivelEspecifico" style="display: block; margin-bottom: 8px; font-weight: bold;">Definir Nível ou Intervalo Específico:</label>
+          <input type="text" id="nivelEspecifico" placeholder="Ex: 50 ou 13-25" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #999; font-size: 14px;">
+          <small style="display: block; margin-top: 5px; color: #666;">Se preenchido, o gerador usará este nível ou sorteará dentro do intervalo. Deixe vazio para usar os intervalos acima.</small>
         </div>
       </div>
     </details>
@@ -1727,13 +1727,20 @@ async function gerarPokemonIndividual(i = 0) {
     
     let nivel;
     
-    // Verificar se foi definido um nível específico
+    // Verificar se foi definido um nível específico ou intervalo
     const nivelEspecificoElem = document.getElementById('nivelEspecifico');
-    const nivelEspecifico = nivelEspecificoElem ? parseInt(nivelEspecificoElem.value) : null;
-    
-    if (nivelEspecifico && nivelEspecifico >= 1 && nivelEspecifico <= 100) {
+    const nivelEspecificoVal = nivelEspecificoElem ? nivelEspecificoElem.value.trim() : '';
+    const nivelIntervaloMatch = nivelEspecificoVal.match(/^(\d+)\s*-\s*(\d+)$/);
+    const nivelFixo = nivelIntervaloMatch ? null : parseInt(nivelEspecificoVal);
+
+    if (nivelIntervaloMatch) {
+        // Intervalo: sortear entre min e max
+        const minInt = Math.min(parseInt(nivelIntervaloMatch[1]), parseInt(nivelIntervaloMatch[2]));
+        const maxInt = Math.max(parseInt(nivelIntervaloMatch[1]), parseInt(nivelIntervaloMatch[2]));
+        nivel = Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
+    } else if (nivelFixo && nivelFixo >= 1 && nivelFixo <= 100) {
         // Usar o nível específico definido pelo usuário
-        nivel = nivelEspecifico;
+        nivel = nivelFixo;
     } else if (niveisSelecionados.length === 1 && niveisSelecionados[0] !== "Todos") {
         let partes = niveisSelecionados[0].split("-");
         let min = parseInt(partes[0]);

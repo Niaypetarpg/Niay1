@@ -1,0 +1,115 @@
+Características Bardo
+
+Vontade.
+Referência: P,X
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Quando usar Tom Fatigante três rodadas 
+seguidos, você usa o Golpe Canção.
+
+Melodia
+Referência: P,X
+Frequência: Diária.
+Alvo: um Lendário que você possa ver.
+Efeito: o alvo recupera 100 PV.
+
+Talentos Bardo
+
+Cântico
+Referência: P,X
+Frequência: À Vontade.
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Quando usar Cântico quatro rodadas seguidos, 
+você usa um dos Golpes a seguir a seu critério: Dança da 
+Chuva, Dia de Sol, Granizo.
+
+Cantiga
+Referência: P,X
+Frequência: À Vontade.
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Quando usar Cantiga três rodadas seguidas, 
+você usa o Golpe Aromaterapia.
+
+Concerto
+Requisitos: sete Talentos de Bardo (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: role 1d20 + MD. Se o resultado for 16 ou 
+mais, o alvo recupera 100 PV.
+
+Coro
+Requisitos: cinco Talentos de Bardo (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: À Vontade.
+Gatilho: você usou Balada, Cântico, Cantiga, Hino, 
+Lamento, Opera, Poema, Ritual ou Verso na rodada 
+anterior.
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Coro conta como um uso do Talento usado na 
+rodada anterior para fins do Talento que ativou o Gatilho. 
+Além disso, durante as três próximas rodadas, se você usar 
+outro Talento de Bardo, o uso deste outro Talento conta 
+como um uso do Talento que ativou o Gatilho.
+
+Épica
+Referência: P,X
+Frequência: À Vontade.
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Quando usar Épica três rodadas seguidas, você 
+usa o Golpe Rajada de Vento.
+
+Hino
+Requisitos: cinco Talentos de Bardo (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: À Vontade.
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Quando usar Hino sete rodadas seguidas, cada 
+aliado adjacente escolhe um Atributo e eleva duas Fases 
+daquele Atributo. Na rodada seguinte, se o Hino for 
+mantido, os aliados adjacentes não são beneficiados (sejam 
+os mesmos ou outros), mas aqueles que estavam 
+adjacentes na hora que receberam o benefício o mantêm. 
+Depois de três rodadas em efeito, Hino novamente elevará 
+duas Fases de Atributos dos aliados que estiverem 
+adjacentes no momento (sejam eles os mesmos ou não). 
+Assim continuará de três em três rodadas.
+
+Lamento
+Referência: P,X
+Frequência: À Vontade.
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Quando usar Locução duas rodadas seguidas, 
+um pokémon a até 10 metros perde uma Fase para o 
+Atributo à sua escolha (salvo Saúde) até o fim da rodada.
+
+Opera
+Referência: P,X
+Frequência: À Vontade.
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Quando usar Opera quatro rodadas seguidos, 
+você usa um dos Golpes a seguir a seu critério: Gravidade, 
+Sala de Truques, Sala Mágica.
+
+Réquiem
+Referência: P,X
+Frequência: À Vontade.
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Quando usar Poema quatro rodadas seguidas, 
+você usa o Golpe Réquiem.
+
+Ritual
+Referência: P,X
+Frequência: À Vontade.
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Quando usar Nota quatro rodadas seguidas, 
+você usa o Golpe Dança Caótica.
+
+Verso
+Referência: P,X
+Frequência: À Vontade.
+Efeito: assim que declarar o uso deste Talento, seu 
+turno acaba. Quando usar Verso duas rodadas seguidas, 
+você usa o Golpe Olhar Paralisante.

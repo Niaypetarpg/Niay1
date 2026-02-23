@@ -1,0 +1,198 @@
+Características Pokébolista
+
+Design Avançado 
+Frequência: Semanal. A cada 5 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Efeito: após quinze minutos de trabalho cansativo 
+(consumindo 20 PV), você cria uma pokébola de um dos ti
+pos a seguir: Curativa, Ligeira, Luxuosa, de Mergulho, de NInho, de Penumbra, de Repetição, de Teia ou Temporizada. 
+
+Vantagem Condicional 
+Frequência: Constante. 
+Referência: C, X
+Gatilho: você arremessa uma pokébola. 
+Efeito: se você estiver usando uma pokébola que 
+condiciona a subtração de um número da rolagem de 
+captura dentro de determinadas condições e estiver 
+satisfazendo as condições adequadas (por exemplo, se usar 
+uma Pokébola de Penumbra durante a noite), você subtrai 
+também seu MV da rolagem de captura.
+
+
+
+
+Talento Pokébolista
+
+A Pokébola do Salvador 
+Requisitos: Trabalho Manual.
+Referência:E, X
+Frequência: Semanal. 
+Alvo: sete Abricós sendo um de cada cor. 
+Efeito: após três horas de trabalho mecânico 
+cansativo (consumindo 25 PV), você combina um Abricó de 
+cada cor (um branco, um rosado, um vermelho, um 
+amarelo, um verde, um azul e um preto) para fazer uma 
+pokébola chamada Pokébola do Salvador. Uma Pokébola do 
+Salvador pode capturar um pokémon que foi deixado 
+inconsciente na rodada anterior. Ela não possui bônus ou 
+penalidades para captura. 
+
+Ferreiro de Abricós 
+Requisitos: Ferreiro de Pokébolas. 
+Referência: E, X
+Frequência: Diária. 
+Alvo: dois Abricós. 
+Efeito: combine os dois Abricós alvos em outro 
+Abricó de sua escolha. 
+
+Ferreiro de Pokébolas 
+Requisitos: Trabalho Manual. 
+Referência: E, X
+Frequência: À Vontade. 
+Alvo: um Abricó. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), role 1d20 +MV. Se o 
+resultado for 13 ou mais, você converte um Abricó em uma 
+pokébola de um tipo específico, conforme o Abricó: 
+Amarelo; Lunar 
+Azul; Atrativa 
+Branco; Rápida 
+Preto; Pesada 
+Rosa; Do Amor 
+Verde; Amigável 
+Vermelho; De Nível 
+
+Mais Poder para o Pokémon i 
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Alvo: uma Pokébola de Ninho. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), role 1d20 + MV. Se o 
+resultado for 15 ou mais, quando a Pokébola de Ninho alvo 
+for usada para capturar um pokémon, o pokémon sobe 1d4 
+Níveis ao ser capturado. Se o resultado for 25 ou mais, o 
+pokémon recebe 2d4 Níveis, em vez de apenas 1d4.
+
+
+
+
+
+
+
+
+Melhoria de Aptidão 
+Frequência: À Vontade. 
+Referência: E, X
+Alvo: qualquer pokébola. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV) e custoso (consumindo 500 
+créditos), você aplica uma Melhoria em uma pokébola. 
+Escolha uma Aptidão. Um pokémon capturado em uma 
+pokébola com Melhoria de Competência recebe +1d2 de 
+bônus à Aptidão escolhida. 
+Uma pokébola só pode possuir uma Melhoria, a 
+menos que você possua o Talento Quebrar Cela, que 
+permite fazer amplas alterações na mecânica de uma 
+pokébola até que ela permita três Modificações. Neste 
+caso, é possível aplicar Melhoria de Competência mais de 
+uma vez na mesma pokébola, para a mesma Aptidão ou não. 
+
+Melhoria de Capacidade 
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Alvo: qualquer pokébola. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), você aplica uma Melhoria 
+em uma pokébola. Escolha uma Capacidade Pokémon ou 
+um Deslocamento Pokémon. Se escolher um Deslocamento, 
+o pokémon mantido dentro da pokébola com Melhoria de 
+Capacidade recebe +2 àquele Deslocamento. Se escolher 
+uma Capacidade (como Inteligência, Força ou Salto), o 
+pokémon mantido dentro da pokébola com Melhoria de 
+Capacidade recebe +1 àquela Capacidade. 
+Uma pokébola só pode possuir uma Melhoria, a 
+menos que você possua o Talento Quebrar Cela, que 
+permite fazer amplas alterações na mecânica de uma 
+pokébola até que ela permita três Melhorias. Neste caso, é 
+possível aplicar Melhoria de Capacidade mais de uma vez na 
+mesma pokébola, mas não para a mesma Capacidade nem 
+para o mesmo Deslocamento. 
+
+Melhoria de Combate 
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Alvo: qualquer pokébola. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), você aplica uma Melhoria 
+em uma pokébola. Escolha um Atributo. Sempre que o 
+pokémon mantido dentro da pokébola com Melhoria de 
+Atributo sai de sua pokébola, ele eleva uma Fase do 
+Atributo selecionado. 
+Uma pokébola só pode possuir uma Melhoria de 
+Batalha, mesmo que você possua Quebrar Cela. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pokébola para cada Habitat i 
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Alvo: uma Pokébola de Mergulho. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), você altera o ambiente 
+dentro do qual a Pokébola de Mergulho facilita a captura 
+para um dos biomas a seguir à sua escolha (no lugar de 
+funcionar enquanto em ambiente subaquático e 
+subterrâneo): Água Doce, Ártico, Caverna, Cidade, Deserto, 
+Floresta, Montanha, Pântano, Planície, Praia, Selva, Taiga ou 
+Tundra. Altere o nome da pokébola em conformidade com 
+sua nova função. 
+
+Pokébola para cada Tipo 
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Referência: E, X
+Alvo: uma Pokébola de Teia. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), você altera a Pokébola de 
+Teia para trocar quais Tipos de pokémons ela facilita a 
+captura. O novo nome da pokébola e os tipos cuja captura 
+ela facilita estão listados na tabela abaixo: okébola 
+Aérea; Gelo e Voador 
+Assombrosa; Fantasma e Trevas 
+Encantadora; Fada e Normal 
+Limosa; Lutador e Venenoso 
+Mística; Dragão e Psíquico 
+Quente; Elétrico e Fogo 
+Sólida; Metal e Pedra 
+Terrena; Planta e Terra 
+
+Quebrar Cela 
+Frequência: Diária. 
+Referência: E, X
+Alvo: qualquer pokébola. 
+Efeito: após quinze minutos de trabalho mecânico 
+cansativo (consumindo 10 PV), você faz amplas alterações 
+em uma pokébola. Uma pokébola comum pode receber 
+uma Melhoria. Após este Talento ser usado, uma pokébola 
+poderá receber uma Melhoria adicional. Ainda é possível 
+usá-lo novamente para possibilitar uma terceira Melhoria 
+na mesma pokébola. Três Modificações são o máximo que 
+se pode ter. Também é possível usar este Talento para 
+desativar uma Melhoria anteriormente vigente em uma 
+determinada pokébola para abrir espaço para outra 
+Melhoria em seu lugar.

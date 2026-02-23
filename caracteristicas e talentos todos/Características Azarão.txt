@@ -1,0 +1,157 @@
+Características Azarão
+
+Buscador de Pedras Eternas
+Referência: P,X
+Frequência: Semanal.
+Alvo: um local não urbano.
+Efeito: role 1d20 + MAE. Se o resultado for 15 ou 
+mais, você encontra uma Pedra do Sempre.
+
+Força Oculta
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu que possui pelo menos um 
+estágio evolutivo não alcançado.
+Efeito: escolha um Golpe do mesmo Tipo do alvo 
+que uma de suas formas evolutivas pode aprender subindo 
+de Nível. O alvo usa este Golpe. O Golpe escolhido não pode 
+ser aprendido em um Nível maior do que o Nível atual do 
+alvo somado à metade de seu MA ou de seu MAE.
+
+Talentos Azarão
+
+Altamente Capaz
+Requisitos: Capaz
+Referência: P,V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu que possui pelo menos um 
+estágio evolutivo não alcançado.
+Efeito: aumente em dois todas as Capacidades 
+numéricas e Deslocamentos do alvo por um número de 
+minutos igual a seu MAE.
+Aprimorar Pedra do Sempre i
+Requisitos: Ataque Especial 22, Lapidar Pedra do 
+
+Sempre.
+Referência: E,X
+Frequência: Semanal.
+Alvo: uma Pedra do Sempre.
+Efeito: após vinte minutos trabalhando na Pedra 
+do Sempre alvo, role 1d20 + MAE. Se o resultado for 20 ou 
+mais, você cria uma Eviolita que possui adicionalmente os 
+efeitos de uma Pedra do Sempre.
+
+Campeão em Treinamento
+Requisitos: ter evitado a evolução de um pokémon 
+cuja forma final evolui no Nível 40 ou maior.
+Referência: P,V
+Frequência: Diária.
+Alvo: um pokémon seu que possui pelo menos um 
+estágio evolutivo não alcançado.
+Efeito: escolha um Atributo. Pelo resto do 
+encontro, o alvo tem seu Atributo aumentado por uma 
+quantidade idêntica ao Atributo Basal de sua última forma 
+evoluída.
+
+Capaz
+Requisitos: Ataque Especial 16.
+Referência: C,V
+Frequência: Constante.
+Alvo: um pokémon seu que possui pelo menos um 
+estágio evolutivo não alcançado.
+Efeito: aumente em um todas as Capacidades 
+numéricas e Deslocamentos do alvo. Este Talento é aplicado 
+a um pokémon por vez. Trocar o pokémon alvo dele 
+consome uma Ação Padrão.
+
+Força Oculta +
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu que possui pelo menos um 
+estágio evolutivo não alcançado.
+Efeito: escolha um Golpe que uma de suas formas 
+evolutivas pode aprender subindo de Nível. O alvo usa este 
+Golpe. O Golpe escolhido não pode ser aprendido em um 
+Nível maior do que o Nível atual do alvo somado a seu MA 
+ou a seu MAE. Este Talento substitui Força Oculta.
+
+Força Oculta ++
+Requisitos: Ataque 16, Ataque Especial 16, Força 
+Oculta +.
+Referência: P,V
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu que possui pelo menos um 
+estágio evolutivo não alcançado.
+Efeito: escolha um Golpe que uma de suas formas 
+evolutivas pode aprender subindo de Nível ou por um 
+Tutor. O alvo usa este Golpe. O Golpe escolhido não pode 
+ser aprendido em um Nível maior do que o Nível atual do 
+alvo somado ao dobro de seu MA ou de seu MAE. Este 
+Talento substitui Força Oculta +.
+
+Incrivelmente Capaz
+Requisitos: Altamente Capaz
+Referência: P,V
+Frequência: Diária.
+Alvo: um pokémon seu que possui pelo menos um 
+estágio evolutivo não alcançado.
+Efeito: o alvo recebe uma Capacidade de uma de 
+suas formas mais evoluídas, com o valor numérico possuído 
+como se fosse daquela forma, caso haja um valor associado.
+
+Lapidar Pedra do Sempre
+Referência: E,X
+Frequência: Diária.
+Alvo: uma Pedra do Sempre.
+Efeito: após vinte minutos trabalhando na Pedra 
+do Sempre alvo, role 1d20 + MAE. Se o resultado for 20 ou 
+mais, designe um Tipo. De agora em diante, quando esta 
+Pedra do Sempre é mantida por um pokémon do Tipo 
+designado que possui pelo menos um estágio evolutivo não 
+alcançado ou que é um pokémon de uma só forma (não 
+evolui e não é evolução de ninguém), este pokémon recebe 
++1 a seu Bônus Elemental.
+
+Qualquer Coisa que Você Possa Fazer!
+Requisitos: três Talentos de Azarão (desconte as 
+Características de Classe para este cálculo).
+Referência: P,V
+Frequência: Diária. A cada 6 Níveis,
+receba um uso diário adicional.
+Alvo: um pokémon seu que possui pelo menos um 
+estágio evolutivo não alcançado de um Tipo diferente de 
+seu estágio evolutivo atual.
+Efeito: o alvo substitui seu(s) tipo(s) por um dos 
+Tipos de suas formas evoluídas por um número de rodadas 
+igual a seu MA.
+
+Quanto Maior, Maior a Queda!
+Referência: C,V
+Frequência: Constante.
+Alvo: um pokémon seu que possui pelo 
+menos um estágio evolutivo não alcançado.
+Efeito: quando um pokémon seu luta contra um de 
+suas formas mais evoluídas, para cada número de evoluções 
+pelas quais ele teria que passar para atingir a forma contra 
+a qual ele está lutando, adicione seu MA ou seu MAE às 
+rolagens de dano dele.
+
+Técnica Evoluída
+Referência: C,V
+Frequência: Constante.
+Alvo: seus pokémons que possuem pelo menos um 
+estágio evolutivo não alcançado.
+Efeito: os alvos recebem Bônus Elemental como se 
+possuíssem 10 Níveis a mais.
+
+Técnica Versátil
+Referência: C,V
+Frequência: Constante.
+Alvo: todos os seus pokémons.
+Efeito: seus pokémons recebem Bônus Elemental 
+como se pertencessem a todos os Tipos de quaisquer de 
+suas formas evoluídas.

@@ -1,0 +1,151 @@
+Características Hipnólogo
+
+Máquina dos Sonhos
+Referência: C,X
+Frequência: Constante.
+Efeito: você possui uma 
+Máquina dos Sonhos, comparável em 
+tamanho a um computador portátil. 
+Quando ela é usada em um pokémon 
+que está dormindo, ela permitirá que 
+você assista os sonhos do pokémon 
+mediante o visor por até oito horas, 
+depois das quais o pokémon acordará. 
+Se ele for perturbado durante seu sono, 
+ele deve fazer o teste comum para 
+acordar (como pela Condição Sono). 
+Sonhos mostrarão desejos 
+subconscientes do pokémon, contudo o 
+verdadeiro significado de um sonho 
+pode ser confuso ou obscuro. Um pokémon específico só 
+pode ter seus sonhos observados por uma Máquina dos 
+Sonhos a cada três dias.
+
+Materialização Onírica
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon que está dormindo há pelo 
+menos quatro horas.
+Efeito: desde que você tenha pelo menos um 
+pokémon com Onirismo trabalhando com você nos sonhos 
+do alvo, role 1d20 + MDE. Se o resultado for 18 ou mais, 
+quando o alvo acordar, ele trará de seu sonho um objeto 
+com o qual sonhou. Só é possível a um pokémon sonhar 
+com um objeto se ele já o teve consigo (como um item 
+Mantido). O item sonhado é decidido pelo Narrador.
+
+Talentos Hipnólogo
+
+Habilidade Inconsciente
+Requisitos: Defesa Especial 17.
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon que está sonhando há pelo 
+menos oito horas.
+Efeito: role 1d20 + MDE. Se o resultado for 17 ou 
+mais, o pokémon recebe permanentemente uma 
+Habilidade, escolhida entre as Altas Habilidades do 
+pokémon. Um pokémon não pode receber uma terceira 
+Habilidade mediante este Talento. Se o alvo já possui duas 
+Habilidades, substitua uma das Habilidades dele.
+Habilidade Inconsciente jamais poderá ser usada 
+novamente no mesmo pokémon.
+
+Habilidade Inconsciente +
+Requisitos: Habilidade Inconsciente.
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon que está sonhando há pelo 
+menos oito horas.
+Efeito: role 1d20 + MDE. Se o resultado for 17 ou 
+mais, o pokémon recebe permanentemente uma 
+Habilidade, escolhida entre as Altas Habilidades do 
+pokémon. Um pokémon não pode receber uma quarta 
+Habilidade mediante este Talento. Se o alvo já possui três 
+Habilidades, substitua uma das Habilidades dele.
+Habilidade Inconsciente + jamais poderá ser usada 
+novamente no mesmo pokémon.
+Este Talento substitui Habilidade Inconsciente.
+
+Habilidade Oculta
+Requisitos: Habilidade Inconsciente.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon que teve seu sonho avaliado 
+alguma vez nesta semana.
+Efeito: determine aleatoriamente uma Habilidade 
+que o alvo possui. Ele perde a Habilidade por uma hora. 
+Depois, determine aleatoriamente uma Habilidade que 
+consta na lista de possíveis Habilidades dele, mas que ele 
+não possui no momento. Ele ganha esta Habilidade durante 
+o mesmo período de tempo. Repare que é possível que a 
+Habilidade removida seja a mesma concedida.
+
+Introjeção
+Requisitos: ter usando com sucesso Materialização 
+Onírica cinco vezes.
+Referência: P,X
+Frequência: Semanal.
+Alvo: o pokémon que está dormindo e sendo 
+avaliado pela Máquina dos Sonhos.
+Efeito: role 1d20 + MDE. Se o resultado for 20 ou 
+mais, declare o nome de um item que o alvo já viu e usou 
+antes. O pokémon sonhará com o item e este será o item 
+materializado se a Materialização Onírica tiver sucesso.
+
+Sonho Lúcido
+Requisitos: Habilidade Inconsciente, 
+Reprogramação Mental.
+Referência: C,X
+Frequência: Constante.
+Alvo: o pokémon que está dormindo e sendo 
+avaliado pela Máquina dos Sonhos.
+Efeito: você pode dar ao pokémon alvo um item 
+Mantido que o mantém sendo avaliado continuamente pela 
+Máquina dos Sonhos, mesmo sendo convocado de volta à 
+pokébola. O item manterá o alvo em sonho consciente. 
+Enquanto neste estado, ele ganha 500 pontos de 
+experiência a cada 24 horas que permanecer com você 
+dentro da pokébola. Estes pontos de experiência são 
+concedidos quando o pokémon sai da pokébola próximo à 
+sua Máquina dos Sonhos pronta. Se ele for enviado para 
+fora da pokébola antes das 24 horas se completarem, ele 
+perde os benefícios por aquelas 24 horas. Enquanto a 
+Máquina dos Sonhos avalia o sonho deste pokémon, ela não 
+pode ser usada para mais nada.
+
+Regressão
+Requisitos: Introjeção.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: o pokémon que está dormindo e sendo 
+avaliado pela Máquina dos Sonhos.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, você pode entender a razão pela qual um pokémon 
+está angustiado, qual a fonte da infelicidade dele e o que é 
+necessário no mundo real para consertar isso. Você pode 
+fazer questões para o pokémon que está dormindo, e as 
+respostas serão manifestas no sonho do pokémon que é 
+visível para você através da Máquina dos Sonhos.
+
+Reprogramação Mental
+Referência: P,X
+Frequência: Semanal. 
+Alvo: um pokémon que está sonhando há pelo 
+menos sete horas.
+Efeito: role 1d20 + MDE. Se o resultado for 20 ou 
+mais, você pode remover um número de pontos igual à 
+metade de seu MDE de um Atributo Basal do pokémon para 
+adicionar a outro Atributo Basal do pokémon. Se isso mudar 
+a Relação Basal de um pokémon, distribua seus Pontos de 
+Atributos quando ele subir de Nível conforme a nova 
+Relação Basal. 
+Reprogramação Mental jamais poderá ser usada 
+novamente no mesmo pokémon.
+
+Vivência
+Referência: C,X
+Frequência: Constante.
+Efeito: receba +3 a quaisquer testes feitos para 
+usar um Talento em um pokémon que está sonhando.

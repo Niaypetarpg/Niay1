@@ -1,0 +1,141 @@
+Características Beldade
+
+Beleza
+Referência: C,V
+Frequência: Constante.
+Efeito: quando um pokémon seu 
+com pelo menos um prêmio em Desfile de 
+Beleza sobe de nível, você pode adicionar 
+pontos de Atributos ao Ataque Especial, 
+ignorando a Relação Basal.
+
+Vantagem da Beldade
+Referência: C,V
+Frequência: Constante.
+Efeito: Adicione seu MDE à 
+Pontuação de aparência durante a 
+Apresentação de um Desfile de Beleza. 
+Seus pokémons com Lealdade 2 ou mais 
+são belos: eles são considerados com pelo menos um 
+prêmio em um Desfile de Beleza para fins de seus Talentos. 
+Todos os seus pokémons podem possuir até 20 pontos na 
+Aptidão Beleza, e podem Apelar a até 5 pontos de Aptidão 
+quando poderiam Apelar à Beleza.
+
+Talentos Beldade
+
+Aliados da Beldade
+Requisitos: 1 prêmios em Gincana ou Fisiculturismo.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Desfile de Beleza ou um pokémon aliado com 
+pelo menos um prêmio em Desfile de Beleza.
+Efeito: adicione seu MDE à Dificuldade de Acurácia 
+de um Golpe que tenha o seu pokémon como alvo. Isso não 
+pode ser feito mais de uma vez por combate.
+Em Concursos, o efeito deste Talento é outro: 
+quando o alvo usar um Golpe de Perspicácia ou Vigor, o 
+Golpe pode não reduzir a Expectativa.
+
+Arrebatar pela Beleza
+Requisitos: 1 prêmios em Concurso de Fofura ou Espetáculo.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Desfile de Beleza ou um pokémon aliado com 
+pelo menos um prêmio em Desfile de Beleza.
+Efeito: reduza em 2 a Dificuldade de Acurácia de 
+um Golpe cuja Categoria de Concursos é Beleza. Isso não 
+pode ser feito mais de uma vez por combate.
+Em Concursos, o efeito deste Talento é outro: 
+quando o alvo usar um Golpe de Estilo ou Ternura, o Golpe 
+aumenta a Expectativa.
+
+Beleza Estonteante
+Requisitos: 2 prêmios em Desfiles de Beleza.
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Desfile de Beleza ou um pokémon aliado com 
+pelo menos um prêmio em Desfile de Beleza.
+Efeito: o alvo ganha a Habilidade Identificação até 
+ser convocado de volta à pokébola.
+
+Classe e Finura
+Requisitos: Defesa Especial 16.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon seu ou um pokémon aliado.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, você pode mudar a Natureza do alvo para uma que 
+beneficie o Ataque Especial à sua escolha.
+
+Elegância
+Requisitos: um pokémon com Beleza 15.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu com Beleza 15 usa um 
+Golpe com a Categoria Beleza.
+Efeito: eleve uma Fase de Ataque Especial do 
+pokémon.
+Em Concursos, o efeito deste Talento é outro: o 
+alvo rola 1d4 adicional.
+
+Encantadora
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Desfile de Beleza ou um pokémon aliado com 
+pelo menos um prêmio em Desfile de Beleza.
+Efeito: o alvo ganha a Habilidade Proteção Mágica 
+até ser convocado de volta à pokébola.
+
+Fabulosa
+Requisitos: Defesa Especial 18.
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu com Beleza 15 usa um 
+Golpe com a Categoria Beleza.
+Efeito: o Golpe recebe o Descritor Explosão 2, que 
+será centrada em si se ele for Corpo a Corpo ou será 
+centrada dentro do alcance se ele for À Distância. Se o 
+Golpe já possui este Descritor, aumente a área da Explosão 
+em 2.
+
+Graça
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Desfile de Beleza ou um pokémon aliado com 
+pelo menos um prêmio em Desfile de Beleza.
+Efeito: o alvo ganha a Habilidade Graça Serena até 
+ser convocado de volta à pokébola.
+
+Pele Maravilhosa
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Desfile de Beleza ou um pokémon aliado com 
+pelo menos um prêmio em Desfile de Beleza.
+Efeito: o alvo ganha a Habilidade Escama 
+Maravilhosa até ser convocado de volta à pokébola.
+
+Sedução
+Requisitos: Defesa Especial 17.
+Referência: C,V
+Frequência: Constante.
+Efeito: todos os seus pokémons com pelo menos 
+um prêmio em Desfile de Beleza possuem a Capacidade 
+Sedução. Quando alguém (qualquer um) estiver atacando 
+um pokémon selvagem que atacou um dos seus pokémons 
+com Sedução na mesma rodada ou na rodada anterior, a 
+Dificuldade de Acurácia é reduzida em 2.

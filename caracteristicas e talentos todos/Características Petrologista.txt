@@ -1,0 +1,170 @@
+Características Petrologista
+
+Arqueologia
+Referência: P,X
+Frequência: Diária.
+Alvo: um local não urbano.
+Efeito: após trinta minutos de trabalho minucioso, 
+role 1d20 + MAE. Se o resultado for 16 ou mais, você acha 
+pistas de fósseis que existam nas proximidades ou encontra 
+evidências da história do lugar (conforme definido pelo 
+Narrador). Se o resultado dor 21 ou mais, você determina se 
+encontra um fóssil ou uma informação histórica, em vez de 
+o Narrador determinar, contudo após esta escolha todas as 
+demais informações ficam a cargo do Narrador.
+
+Procurar Pedras
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um local não urbano.
+Efeito: após trinta minutos de busca, role 1d20 + 
+MAE. Se o resultado for 21 ou mais, você encontra uma 
+Pedra Elemental escolhida pelo Narrador.
+
+Talentos Petrologista
+
+Armadilha Elemental
+Requisitos: Cavar e Cavar.
+Referência: E,X
+Frequência: Diária. 
+Alvo: uma armadilha de fosso sua.
+Efeito: após dois minutos modificando sua 
+armadilha de fosso, você pulveriza uma Pedra Elemental 
+(destruindo-a) dentro da armadilha para garantir que a 
+vítima que cair na armadilha sofra o Golpe Deslizamento de 
+Rochas, mas o dano é do Tipo conforme a tabela a seguir:
+Pedra Elemental; Tipo do Dano
+Pedra da Água; Água
+Pedra da Folha; Planta
+Pedra do Fogo; Fogo
+Pedra do Frio; Gelo
+Pedra do Trovão; Elétrico
+Além das pedras listadas na tabela acima, é 
+possível usar as Pedras Evolutivas criadas mediante 
+Cinzelamento, que causam dano conforme o Tipo escolhido 
+ao criá-las.
+
+Caçador de Tesouros
+Referência: E,X
+Frequência: Constante.
+Efeito: você sabe sobre regiões históricas 
+academicamente. Você pode doar ou vender artefatos 
+arqueológicos que encontrar mediante Arqueologia para 
+museus por um preço igual a trinta vezes a seguinte 
+rolagem: 1d20 + MAE.
+
+Cavar e Cavar
+Referência: E,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um local não urbano.
+Efeito: após cinco minutos cavando, você produz 
+uma armadilha de fosso com 5 metros de largura e dois de 
+profundidade. Esta armadilha pode ser coberta por 
+camuflagem para que pokémons e humanos não a 
+distingam dos arredores. Você pode escolher poder ativar a 
+armadilha puxando uma corda se estiver próximo ou 
+preferir que ela seja ativada sozinha se algo pesando pelo 
+menos 50 kg passar por cima da camuflagem.
+
+Cinzelamento
+Requisitos: Condensação.
+Referência: E,X
+Frequência: Mensal.
+Alvo: uma pedra ordinária.
+Efeito: após dez horas de trabalho, você 
+transforma uma pedra comum em uma Pedra Evolutiva. 
+Escolha um Tipo. Quando o item criado por este Talento 
+toca um pokémon que possua o Tipo escolhido, o pokémon 
+evoluirá desde que tenha cumprido o requisito de Nível 
+para evoluir, ignorando quaisquer outros requisitos e até 
+mesmo a vontade do pokémon.
+
+Condensação
+Referência: P,X
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional.
+Alvo: uma Pedra Elemental.
+Efeito: a pedra ganha um segundo uso antes de ser 
+destruída. Não é possível que a pedra ganhe um terceiro 
+uso mediante este Talento.
+
+Demolição
+Referência: E,X
+Frequência: Diária.
+Alvo: uma caverna.
+Efeito: após três horas de trabalho no subsolo, 
+você prepara uma detonação para uma área de até 30 
+metros. As criaturas a até 5 metros da área (mas não 
+aquelas dentro da área) recebem o Golpe Explosão de Fogo. 
+Role 1d10 para determinar os efeitos da detonação:
+Resultado da Rolagem; Efeito
+1;Desmoronamento: todos dentro da área são automaticamente acertados pelo Golpe Tumba de Pedra.
+2; Impeditivo: se está abrindo um novo túnel, ele é parcialmente bloqueado por algo natural, como uma caverna de areia, uma fonte de água subterrânea, lava ou um pokémon.
+3; Destruição Gratuita: quaisquer itens, fósseis ou pokémons são destruídos, mortos ou dispersos.
+4 a 9; Demolição: há sucesso em demolir.
+10; Descoberta: você encontra um sítio arqueológico, cujos detalhes ficam a cargo do Narrador.
+
+Espeleologia
+Requisitos: ter visitado três cavernas diferentes.
+Referência: C,X
+Frequência: Constante.
+Efeito: enquanto no subsolo, você sabe se há 
+outras saídas viáveis à superfície ou se há áreas instáveis 
+geologicamente. Você também pode achar áreas que 
+garantam +3 às rolagens de Arqueologia e Procurar Pedras.
+
+Gneisse Arruinado
+Requisitos: Cavar e Cavar.
+Referência: E,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: uma armadilha de fosso sua.
+Efeito: após dez minutos modificando sua 
+armadilha de fosso, você garante que a vítima que cair na 
+armadilha sofra o Golpe Deslizamento de Rochas.
+
+Poeira na Cara
+Requisitos: Cavar e Cavar.
+Referência: E,X
+Frequência: À Vontade.
+Alvo: uma armadilha de fosso sua.
+Efeito: após dois minutos modificando sua 
+armadilha de fosso, você garante que a vítima que cair na 
+armadilha sofra o Golpe Ataque de Areia.
+
+Reanimador
+Referência: E,X
+Frequência: Diária.
+Alvo: um fóssil sendo reanimado.
+Efeito: após cinco horas de trabalho, você constrói 
+um Reanimador de uso único. Você poderá fazer um teste 
+de Reanimação adicionando +3 à rolagem. Reanimadores 
+produzidos por este Talento não precisam de um 
+laboratório especializado, mas precisarão de um 
+suprimento de energia elétrica. Se o Reanimador não for 
+usado dentro de 24 horas, ele não poderá mais ser usado.
+
+Ressurreição
+Requisitos: Reanimador.
+Referência: E,X
+Frequência: Mensal.
+Alvo: um pokémon falecido nas últimas 24 horas.
+Efeito: após cinco horas de trabalho, role 1d20 + 
+MAE. Se o resultado for 21 ou mais, você cria um fóssil 
+artificial a partir do cadáver do pokémon. O fóssil artificial 
+age como um fóssil natural. Não é possível ter um Lendário 
+como alvo deste Talento.
+
+Soterramento
+Requisitos: Cavar e Cavar.
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: uma armadilha de fosso sua.
+Efeito: após dez minutos modificando sua 
+armadilha de fosso, você garante que a vítima que cair na 
+armadilha sofra o Golpe Tumba de Areia. A menos que a 
+vítima possua Deslocamento de Escavação, ela está Presa 
+no buraco por 1d4 rodadas.

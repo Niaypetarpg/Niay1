@@ -1,0 +1,143 @@
+Características Terrulento
+
+Controle de Plantas 
+Referência: P,X
+Frequência: À Vontade.
+Alvo: uma planta cujo peso 
+máximo em quilos não exceda dez vezes 
+seu MAE que não esteja mais distante que 
+um número de metros igual ao triplo de 
+seu MAE.
+Efeito: você move o alvo sem 
+tocá-lo um número máximo de metros 
+igual ao dobro de seu MAE, mas não pode 
+movê-lo para mais longe do que um 
+número de metros igual ao triplo de seu MAE. Você sempre 
+deve poder manter o alvo dentro de seu campo visual, a 
+menos que possua o Talento Psicocinese +.
+Seu MAE nunca pode ser reduzido abaixo de 1 para 
+esta Característica de Classe. 
+Além disso, você pode fazer plantas crescerem 
+instantaneamente em até 45 centímetros por rodada, mas 
+isso consome 10 Pontos de Vida seus.
+
+Controle de Terra
+Referência: P,X
+Frequência: À Vontade.
+Alvo: uma porção de areia, de solo ou de rocha 
+cujo peso máximo em quilos não exceda dez vezes seu MAE 
+que não esteja mais distante que um número de metros 
+igual ao triplo de seu MAE.
+Efeito: você move o alvo sem tocá-lo um número 
+máximo de metros igual ao dobro de seu MAE, mas não 
+pode movê-lo para mais longe do que um número de 
+metros igual ao triplo de seu MAE. Você sempre deve poder 
+manter o alvo dentro de seu campo visual, a menos que 
+possua o Talento Psicocinese +.
+Seu MAE nunca pode ser reduzido abaixo de 1 para 
+esta Característica de Classe. 
+Você também pode usar este Talento para, se o 
+alvo for rochoso ou de outra forma rígido, quebrá-lo da 
+forma que preferir ou até pulverizá-lo em grãos de areia.
+Finalmente, como um benefício constante, 
+enquanto você estiver consciente, nem você nem humanos 
+aliados a até 10 metros de você sofrem dano por 
+Tempestade de Areia.
+
+Talentos Terrulento
+
+Aromaterapia
+Requisitos: dois Talentos que concedem usos de 
+Golpes de Planta.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Aromaterapia.
+O uso deste Talento consome 15 Pontos de Vida.
+
+Ataque de Areia
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Ataque de Areia.
+O uso deste Talento consome 5 Pontos de Vida.
+
+Deslizamento de Rochas
+Requisitos: dois pokémons de Pedra.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Deslizamento de Rochas.
+O uso deste Talento consome 10 Pontos de Vida.
+
+Escavação
+Requisitos: um pokémon com um Deslocamento 
+de Escavação.
+Referência: C,X
+Frequência: Constante.
+Efeito: você recebe Deslocamento de Escavação 
+igual a seu MAE.
+O uso deste Talento em combate consome 2 
+Pontos de Vida por rodada. O uso deste Talento fora de 
+combate consome 5 Pontos de Vida por minuto.
+
+Esporos de Algodão
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon.
+Efeito: você usa o Golpe Esporos de Algodão.
+O uso deste Talento consome 5 Pontos de Vida.
+
+Tumba de Areia
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Tumba de Areia.
+O uso deste Talento consome 7 Pontos de Vida.
+
+Gigadreno
+Requisitos: dois pokémons de Planta.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Gigadreno.
+O uso deste Talento consome 15 Pontos de Vida.
+
+Materialização
+Requisitos: um pokémon com Materialização.
+Referência: C,X
+Frequência: Constante.
+Efeito: você recebe a Capacidade Materialização.
+
+Obelisco
+Requisitos: Nível 10, Deslizamento de Rochas.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Obelisco.
+O uso deste Talento consome 25 Pontos de Vida.
+
+Tempestade de Areia
+Requisitos: cinco Talentos de Terrulento (desconte 
+as Características de Classe para este cálculo).
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Tempestade de Areia.
+O uso deste Talento consome 20 Pontos de Vida.
+
+Tempestade de Folhas
+Requisitos: Nível 15, Gigadreno.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Tempestade de Folhas.
+O uso deste Talento consome 25 Pontos de Vida.
+
+Transparência
+Requisitos: Nível 10, Materialização.
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode enxergar através de areia, terra, 
+solo e rochas como se não estivessem lá. O alcance máximo 
+deste poder é de um número de metros igual ao triplo de 
+seu MAE.

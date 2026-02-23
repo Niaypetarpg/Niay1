@@ -1,0 +1,128 @@
+Características Oficial
+
+Encorajamento
+Referência:
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Gatilho: um humano aliado causa dano a um 
+inimigo ao qual você causou dano na sua última ação.
+Efeito: o aliado causa dano extra igual ao seu MA 
+ou ao seu MV.
+
+Status
+Referência: C, V
+Frequência: Constante.
+Efeito: suas experiências sob forte estresse e em 
+situações de crise tornam você um líder natural. Quando 
+você faz um teste relacionado a se comunicar com outros, 
+adicione +5 à rolagem.
+
+Talentos Oficial
+
+Ao Meu Sinal!
+Referência: L, X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Gatilho: você causa dano a um inimigo dentro do 
+campo de visão de pelo menos um aliado (humano ou 
+pokémon).
+Efeito: se o aliado fizer um Teste de Acurácia no 
+próximo turno dele, adicione metade de seu MA ao 
+resultado do teste.
+
+Contenção Aprimorada ++
+Referência: C, X
+Requisitos: Contenção Aprimorada +.
+Frequência: Constante.
+Efeito: quando usar Contenção, o teste é feito 
+usando 1d100 -40 (em vez de apenas -30).
+Você agora pode possuir sete pokémons 
+Prestativos mediante Contenção.
+Este Talento substitui Contenção Aprimorada +.
+
+Inspiração
+Referência: P, X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Gatilho: você causa dano a um inimigo dentro do 
+campo de visão de pelo menos um humano aliado.
+Efeito: um humano aliado recebe Pontos de Vida 
+temporários igual ao dobro de seu MV. Pontos de Vida 
+temporários desaparecem após um encontro ou ao serem 
+consumidos (eles são consumidos antes dos Pontos de Vida 
+normais quando se sofre dano).
+
+Levante-se!
+Requisitos: seis Talentos de Oficial (desconte as 
+Características de Classe para este cálculo).
+Referência: I, X
+Frequência: Diária.
+Gatilho: um aliado humano que estava com mais 
+de 1 PV tem seus Pontos de Vida reduzidos a zero ou 
+menos.
+Efeito: os Pontos de Vida do aliado humano são 
+reduzidos a 1 PV, em vez de a menos que isso.
+
+Orientação
+Referência: P, X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: um humano aliado.
+Ação Padrão para usar um Talento que pode ser usado À 
+Efeito: o alvo pode imediatamente executar uma 
+Vontade.
+
+Pastoreio
+Referência: P, X
+Frequência: Constante.
+Efeito: quando usar Contenção, você pode ter 
+como alvo dois pokémons adjacentes.
+Reagrupamento
+Frequência: Diária.
+Efeito: se houver pelo menos um Ranger além de 
+você no seu campo de visão, todos os humanos aliados que 
+possam ver e ouvir você recebem +3 a todos os seus 
+Modificadores por um número de rodadas igual a seu MA. 
+Os bônus deste Talento não são acumulativos, 
+mesmo que um segundo Oficial o ative.
+
+Socorro
+Referência: P, X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: um local.
+Efeito: role 1d20 + MA. Se o resultado for 14 ou 
+mais, escolha uma Capacidade ou um Deslocamento. Você 
+localiza um pokémon com a Capacidade escolhida ou com o 
+Deslocamento escolhido. Se a Capacidade possui um valor 
+numérico associado, este será no máximo 6. Para 
+Deslocamentos, o valor máximo associado é 12. Se o 
+resultado da rolagem for 19 ou mais, você pode escolher 
+duas Capacidades, dois Deslocamentos ou uma Capacidade 
+e um Deslocamento. O pokémon localizado possuirá ambas 
+as escolhas. Qualquer tentativa de atacar ou capturar este 
+pokémon o faz ter sucesso automático em fugir.
+
+Supere Isso!
+Referência: L, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um aliado faz uma rolagem devido a 
+possuir uma Condição.
+Efeito: o aliado em questão recebe um bônus igual 
+a seu MA às rolagens que ele fizer devido a uma das 
+seguintes Condições: Confusão, Congelamento, Paixão, 
+Paralisia, Sono.
+
+Tática
+Referência: P, X
+Requisitos: Ao Meu Sinal!, Inspiração, Orientação.
+Frequência: Diária. A cada 25 Níveis, receba um 
+uso diário adicional.
+Alvo: um humano aliado.
+Efeito: escolha dois dentre os seguintes Talentos:
+Ao Meu Sinal!, Encorajamento, Inspiração, Orientação. O 
+alvo recebe os efeitos dos dois Talentos escolhidos, contudo 
+isso consome tanto um uso diário de Tática quanto um uso 
+diário dos Talentos escolhidos.
+

@@ -1,0 +1,125 @@
+Características Nerd
+
+Perspicácia
+Referência: C,V 
+Frequência: Constante.
+Efeito: quando um pokémon seu com pelo menos 
+um prêmio em Gincana sobe de nível, você pode adicionar 
+pontos de Atributos à Defesa Especial, ignorando a Relação 
+Basal.
+
+Vantagem do Nerd
+Referência: C,V 
+Frequência: Constante.
+Efeito: Adicione seu MDE à Pontuação de 
+aparência durante a Apresentação de uma Gincana. Seus 
+pokémons com Lealdade 2 ou mais são perspicazes: eles são 
+considerados com pelo menos um prêmio em uma Gincana 
+para fins de seus Talentos. Todos os seus pokémons podem 
+possuir até 20 pontos na Aptidão Perspicácia, e podem 
+Apelar a até 5 pontos de Aptidão quando poderiam Apelar à 
+Perspicácia.
+
+Talentos Nerd
+
+Aliados do Nerd
+Requisitos: 1 prêmios em Concurso de Beleza ou Espetáculo.
+Referência: L,V 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um prêmio em Gincana ou um pokémon aliado com pelo menos um prêmio em Gincana.
+Efeito: adicione seu MDE à Dificuldade de Acurácia 
+de um Golpe que tenha o seu pokémon como alvo. Isso não 
+pode ser feito mais de uma vez por combate.
+Em Concursos, o efeito deste Talento é outro: 
+quando o alvo usar um Golpe de Beleza ou Estilo, o Golpe 
+pode não reduzir a Expectativa.
+
+Arrebatar pela Perspicácia
+Requisitos: 1 prêmios em Concurso de Fofura ou de Fisiculturismo.
+Referência: L,V 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Gincana ou um pokémon aliado com pelo menos 
+um prêmio em Gincana.
+Efeito: reduza em 2 a Dificuldade de Acurácia de 
+um Golpe cuja Categoria de Concursos é Perspicácia. Isso 
+não pode ser feito mais de uma vez por combate.
+Em Concursos, o efeito deste Talento é outro: 
+quando o alvo usar um Golpe de Ternura ou Vigor, o Golpe 
+aumenta a Expectativa.
+
+Aula de Idiomas
+Referência: E,X 
+Frequência: Mensal.
+Alvo: um pokémon seu com Lealdade elevada e 
+Inteligência 6.
+Efeito: após 20 horas de ensino, o alvo agora pode 
+falar idiomas humanos. Logo após Lição de Idiomas, o alvo 
+poderá ter conversas incipientes com seres humanos, mas 
+dentro de uma semana ele já poderá ter conversas tão 
+complexas quanto um falante daquela linguagem. Lição de 
+Idiomas pode ter como alvo um mesmo pokémon mais de 
+uma vez, para ensinar outro idioma humano àquele 
+pokémon.
+
+Detalhista
+Referência: P,V 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Gincana ou um pokémon aliado com pelo menos 
+um prêmio em Gincana.
+Efeito: o alvo ganha a Habilidade Antecipação até 
+ser convocado de volta à pokébola.
+
+Escolaridade
+Referência: E,X 
+Frequência: Semanal.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Gincana.
+Efeito: após dez horas de ensino, o alvo ganha 
+permanentemente +1 à Capacidade Inteligência. Isso não 
+pode elevar a Inteligência do pokémon além de 6.
+
+Intelectualizar
+Requisitos: Defesa Especial 16.
+Referência: P,X 
+Frequência: Diária.
+Alvo: um pokémon seu ou um pokémon aliado.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, você pode mudar a Natureza do alvo para uma que 
+beneficie a Defesa Especial à sua escolha.
+
+Jogos Online
+Referência: P,V 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Gincana ou um pokémon aliado com pelo menos 
+um prêmio em Gincana.
+Efeito: o alvo ganha a Habilidade Download até ser 
+convocado de volta à pokébola.
+
+Potencial Mental
+Requisitos: um pokémon com Perspicácia 15.
+Referência: P,V 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu com Perspicácia 15 usa 
+um Golpe com a Categoria Perspicácia.
+Efeito: eleve uma Fase de Defesa Especial do 
+pokémon.
+Em Concursos, o efeito deste Talento é outro: o 
+alvo rola 1d4 adicional.
+
+Sabe Tudo
+Referência: P,V 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Gincana ou um pokémon aliado com pelo menos 
+um prêmio em Gincana.
+Efeito: o alvo ganha a Habilidade Adaptabilidade 
+até ser convocado de volta à pokébola.

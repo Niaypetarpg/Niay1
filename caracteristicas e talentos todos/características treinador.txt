@@ -1,0 +1,158 @@
+Características Treinador
+
+Ataques Aprimorados 
+Frequência: Constante.
+Referência: C, V  
+Gatilho: seu pokémon acerta um ataque causador 
+de dano em um oponente. 
+Efeito: quando calcular o dano causado ao inimigo, 
+adicione metade de seu MA ou de seu MAE antes que o 
+alvo subtraia o valor de Defesa dele. 
+
+Treinamento Aprimorado 
+Frequência: Constante. 
+Referência: C, V
+Efeito: seus pokémons recebem 20% de pontos de 
+experiência adicionais a cada vez que receberem pontos de 
+experiência.
+
+Talentos Treinador
+
+Afirmação 
+Requisitos: Ataque 14. 
+Referência: C, V
+Frequência: Constante. 
+Gatilho: seu pokémon vence um inimigo ou obtém 
+um Crítico. 
+Efeito: seu pokémon ganha Pontos de Vida 
+temporários igual ao dobro do seu MA. Pontos de Vida 
+temporários desaparecem após um encontro ou ao serem 
+consumidos (eles são consumidos antes dos Pontos de Vida 
+normais quando se sofre dano). 
+
+Ataques Aprimorados + 
+Requisitos: Ataque 16, Ataque Especial 16. 
+Referência: C, V
+Frequência: Constante. 
+Gatilho: seu pokémon acerta um ataque causador 
+de dano em um oponente. 
+Efeito: quando calcular o dano causado ao inimigo, 
+adicione seu MA ou seu MAE antes que o alvo subtraia o 
+valor de Defesa dele. Este Talento substitui Ataques 
+Aprimorados.
+
+Ataques Aprimorados ++ 
+Requisitos: Ataque 18, Ataque Especial 18, Ataques 
+Aprimorados +. 
+Referência: C, V
+Frequência: Constante. 
+Gatilho: seu pokémon acerta um ataque causador 
+de dano em um oponente. 
+Efeito: quando calcular o dano causado ao inimigo, 
+adicione seu MA e seu MAE antes que o alvo subtraia o 
+valor de Defesa dele. Este Talento substitui Ataques 
+Aprimorados +. 
+
+
+
+
+Capataz 
+Requisitos: Pressão +.
+Referência: C, X 
+Frequência: Constante. 
+Efeito: quando você usa Pressão, Pressão + ou 
+Pressão Positiva em um alvo, remova as Condições 
+Confusão e Atordoamento do alvo se aplicável. Além disso, 
+neutralize qualquer Fase prejudicial que estava sob efeito 
+no alvo. 
+
+Crítica Construtiva 
+Requisitos: Ataque Especial 15. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu, cujo ataque na ação 
+anterior não acertou nenhum inimigo. 
+Efeito: reduza em três todas as Dificuldades de 
+Acurácia do alvo até o fim do encontro. 
+
+Exercício Brutal 
+Requisitos: Ataque 15. 
+Referência: L, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu que acabou de derrotar um 
+oponente. 
+Efeito: o pokémon perde metade de seus Pontos 
+de Vida atuais, mas ganha o dobro do número de pontos de 
+experiência que ganharia. 
+
+Foco 
+Requisitos: Crítica Construtiva. 
+Referência: P, V
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: na próxima vez que seu pokémon usar um 
+Golpe que não causa dano, reduza pela metade de seu MAE 
+a Dificuldade de Acurácia. Este Talento não pode ser usado 
+para Golpes que automaticamente derrubam os Pontos de 
+Vida do inimigo a zero. 
+
+Intimidar 
+Requisitos: Ataque 16, Ataque Especial 14. 
+Referência: P, X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon. 
+Efeito: você usa a Habilidade Intimidar no alvo. 
+
+
+
+
+
+
+
+
+
+Mestre das Feras 
+Requisitos: 8 insígnias. 
+Referência: C, V
+Frequência: Constante. 
+Alvo: seu pokémon. 
+Efeito: seus pokémons não contestam seus 
+comandos. A menos que sejam Lendários, eles não podem 
+desobedecer você. Este Talento não afeta a lealdade de 
+pokémons. 
+
+Pressão 
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Referência: P, X
+Alvo: um pokémon seu adjacente. 
+Efeito: cause dano ao seu pokémon igual a um 
+quinto dos Pontos de Vida máximos dele. Eleve uma Fase de 
+um Atributo dele à sua escolha. Se você usar Pressão mais 
+de uma vez diária no mesmo pokémon, isso afetará a 
+lealdade dele. 
+
+Pressão + 
+Requisito: Pressão. 
+Referência: P, X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon seu adjacente. 
+Efeito: cause dano ao seu pokémon igual a um 
+quarto dos Pontos de Vida máximos dele empregando uma 
+arma para feri-lo. Eleve duas Fases de um Atributo dele à 
+sua escolha. Se você usar Pressão + mais de uma vez diária 
+no mesmo pokémon, isso afetará a lealdade dele. 
+
+Transpassar 
+Requisitos: Ataque Especial 16. 
+Referência: L, V
+Frequência: Diária. 
+Gatilho: seu pokémon acerta um ataque causador 
+de dano em um oponente. 
+Efeito: o ataque causa o dano neutro, ignorando 
+imunidades, resistências e vulnerabilidades.

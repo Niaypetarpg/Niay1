@@ -1,0 +1,165 @@
+Características Ilusionista
+
+Imitação
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um humano.
+Efeito: role 1d20 + MD. Se o 
+resultado for maior que a Defesa ou a 
+Defesa Especial do alvo (use o menor 
+entre a Defesa ou a Defesa Especial), 
+você conseguiu imitar o alvo. Enquanto 
+imitando o alvo, você é igual a ele na 
+aparência e no comportamento, que 
+vem a você instintivamente. A sua aura, 
+contudo, permanece sua. Pelas próximas 24 horas ou até 
+você dormir ou ficar inconsciente, você pode usar esta 
+Imitação à vontade. Você pode trocar livremente entre sua 
+forma verdadeira e a forma de qualquer um ao qual teve 
+sucesso em usar Imitação nas últimas 24 horas e antes de 
+dormir. A troca de forma requer apenas uma Ação Padrão. 
+Se você falhar em usar Imitação em um alvo, ele é imune à 
+sua Imitação por 24 horas.
+A Imitação é uma ilusão, portanto qualquer um que 
+possa ver através de ilusões poderá ver sua verdadeira 
+forma.
+Impostor consome 10 Pontos de Vida.
+
+Indiscernível
+Referência: P,X
+Frequência: Diária.
+Alvo: o humano cuja forma você está imitando no 
+momento.
+Efeito: escolha um Talento do alvo. Pelas próximas 
+24 horas, enquanto você não abandonar a forma do alvo, 
+você pode usar o Talento na frequência padrão para aquele 
+Talento (usando o seu Nível, não o do alvo, caso seja 
+relevante). Não é possível escolher um Talento de Uso 
+Único.
+
+Talentos Ilusionista
+
+Caça Talentos
+Requisitos: três Talentos de Ilusionista (desconte 
+as Características de Classe para este cálculo).
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode usar Indiscernível três vezes 
+diárias, mas só uma vez por indivíduo.
+
+Gosto deste Corpo!
+Requisitos: Mais um Pouquinho!
+Referência: P,X
+Frequência: À Vontade.
+Alvo: o humano cuja forma você está imitando há 
+pelo menos 72 horas.
+Efeito: você cria uma ligação entre o seu corpo e o 
+do alvo. Você pode abdicar desta ligação quando quiser 
+como uma Ação Livre durante seu turno. Enquanto a ligação 
+for mantida, você pode usar Imitação no alvo independente 
+da distância e da necessidade de ele estar dentro do seu 
+campo visual. 
+Você só pode possuir uma ligação. A cada 25 
+Níveis, receba uma ligação adicional. 
+
+Identidade
+Requisitos: ter usar Imitação em cinco pessoas que 
+não eram suas aliadas.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando você usa Imitação, você pode 
+duplicar também o equipamento e o vestuário do alvo. 
+Diferente de sua aparência, estes objetos não são ilusões, 
+mas são réplicas físicas reais. Contudo nenhum destes 
+objetos oferece qualquer bônus ou efeito especial que ele 
+pudesse possuir. Se um destes itens é consumível e for 
+usado, ele simplesmente não funciona. Assim, haverá de 
+fato um frasco contendo um líquido colorido e diversos 
+adereços, mas nenhum deles tem função estatística. 
+Quando você usa Imitação em alguém, você copia 
+também a aura dele, mascarando a sua própria aura.
+
+Mais Um Pouquinho
+Requisitos: três Talentos de Ilusionista (desconte 
+as Características de Classe para este cálculo).
+Referência: C,X
+Frequência: Constante.
+Efeito: você não perde mais acesso a uma Imitação 
+por dormir ou por inconsciência. Você ainda perde o acesso 
+depois de 24 horas, a menos que reduza seus Pontos de 
+Vida máximos por 10 para escolher automaticamente 
+manter a forma que você está por mais 24 horas.
+Manter uma forma não é a mesma coisa que usar 
+uma Imitação de novo, de modo que não serve para 
+gatilhos que envolvem usar ativamente a Imitação.
+
+Mórfico
+Referência: C,X
+Frequência: Constante.
+Efeito: quando você usa Imitação, você pode reter 
+sua forma atual, sem mudar para a forma do alvo 
+automaticamente, mas ainda a considerando dentro de sua 
+lista de opções dentro das próximas 24 horas.
+
+Parecidíssimo com Você!
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você tem sucesso em usar Imitação.
+Efeito: escolha um Atributo. Se o Modificador do 
+Atributo da pessoas que você está imitando é maior que o 
+seu Modificador daquele Atributo, o seu Modificador 
+aumenta para ser igual ao da pessoa imitada -1 enquanto 
+você não abandonar a forma dela. Isso não muda o seu 
+Atributo, apenas o Modificador.
+
+Ressonância
+Requisitos: Defesa 18.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando usar Imitação em um aliado, você 
+obtém sucesso automático, e não perde Pontos de Vida. 
+Se possuir o Talento Um Pouquinho Mais!, você 
+pode acessar até três Imitações diárias em aliados antes 
+que seus Pontos de Vida máximos sejam reduzidos.
+
+Só Meu!
+Referência: P,X
+Frequência: À Vontade.
+Alvo: o Talento que você obteve mediante 
+Indiscernível.
+Efeito: ninguém pode usar o Talento alvo na sua 
+presença por dez minutos. Depois deste período, você 
+perde o acesso ao Talento.
+
+Talentoso
+Requisitos: cinco Talentos de Ilusionista (desconte 
+as Características de Classe para este cálculo).
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode usar os Talentos obtidos por 
+Indiscernível em qualquer forma imitada ou na sua própria 
+forma.
+
+Transeunte
+Requisitos: Defesa 18.
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você muda sua aparência para uma forma 
+genérica, alguém bastante comum e discreto. Você não 
+pode designar uma característica (como altura, tipo físico 
+ou mesmo gênero), assumindo simplesmente um aspecto 
+muito mundano, nunca parecido com alguém específico.
+Transeunte consome 10 Pontos de Vida.
+
+Voz
+Referência: P,X
+Frequência: À Vontade.
+Gatilho: você tem sucesso em usar Imitação.
+Efeito: você aprende a fazer ilusões sonoras, assim 
+quando tiver sucesso em usar Imitação, você pode copiar a 
+voz do alvo de Imitação. Uma vez que tenha copiado a voz, 
+você pode falar usando a voz daquela pessoa quando quiser 
+para sempre no futuro, desde que esteja forma dela ou em 
+sua forma verdadeira (não na forma de outra pessoa). 
+Voz consome 50 Pontos de Vida.

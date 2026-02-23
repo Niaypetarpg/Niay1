@@ -1,0 +1,152 @@
+Características Artífice
+
+Empoderador Elemental
+Referência: E,X
+Frequência: Semanal.
+Efeito: após quatro horas 
+de trabalho cansativo (consumindo 20 PV) com os materiais adequados, você cria um Empoderador Elemental para um Tipo à sua 
+escolha. Você pode dar a ele o 
+formato e o nome que quiser.
+
+Forja
+Referência: E,X
+Frequência: Semanal.
+Efeito: após dez horas de 
+trabalho com os materiais adequados, você cria uma arma. Faça o 
+seguinte cálculo para descobrir o 
+Nível da Arma (cujo máximo é 100): seu Nível + um número 
+de d6 igual a seu MV. A arma concede um bônus às rolagens de dano feitas com ela idêntico ao Bônus Elemental 
+que um pokémon receberia no Nível igual ao Nível da Arma. 
+Você pode usar até duas matérias-primas durante a forja da 
+arma. A pokémons, uma arma é um item Mantido.
+
+Talentos Artífice
+
+Armamento Elemental
+Referência: C,X
+Requisitos: ter forjado três armas.
+Frequência: Constante.
+Efeito: você pode usar um Empoderador Elemental 
+como matéria-prima quando criar uma arma para que o 
+dano causado por aquela arma passe a ser do Tipo do 
+Empoderador Elemental usado. Infelizmente, isso reduz a 
+Categoria de Dano Basal da arma em 1. Não é possível usar 
+mais de um Empoderador Elemental como matéria-prima 
+para uma arma.
+
+Armeiro
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode usar as pedras listadas abaixo como matérias-primas quando criar armas. Uma vez diária, 
+quando você faz um Teste de Acurácia para atacar com uma 
+arma criada com uma destas pedras e o resultado é maior 
+que 15, você pode ativar o poder da pedra como uma Ação 
+Livre para usar o efeito descrito adiante no alvo do seu 
+ataque. Se, em virtude de algum Talento ou outra 
+característica sua, seu ataque de Armas pode acertar mais 
+de um alvo, apenas o primeiro alvo sofre o efeito da pedra.
+Matéria-Prima; Efeito
+Pedra Brilhante; Crítico
+Pedra da Água; Confusão
+Pedra da Folha; Veneno
+Pedra do Fogo; Queimadura
+Pedra do Sempre; Perde uma Fase de Defesa
+Pedra do Trovão; Paralisia
+
+Aprendiz
+Referência: E,X
+Frequência: Semanal.
+Efeito: após cinco horas de trabalho cansativo 
+(consumindo 20 PV), role 1d20 + MV. Se o resultado for 20 
+ou mais, você cria um dos seguintes objetos à sua escolha: 
+Argila, Garra Rápida, Orbe Ardente ou Orbe Tóxico. Se o 
+resultado for menor que 20, você ainda cria um destes 
+objetos, mas qual objeto é determinado aleatoriamente.
+
+Artesão
+Requisitos: Aprendiz.
+Referência: E,X
+Frequência: Semanal.
+Efeito: após cinco horas de trabalho cansativo 
+(consumindo 20 PV), role 1d20 + MV. Se o resultado for 20 
+ou mais, você cria um dos seguintes objetos à sua escolha: 
+Cinturão do Campeão, Lente Larga, Polvilho Brilhante ou 
+Sino de Conchas. Se o resultado for menor que 20, você 
+ainda cria um destes objetos, mas qual objeto é 
+determinado aleatoriamente.
+
+Empoderador Potencial
+Referência: E,X
+Frequência: Semanal.
+Efeito: após dez horas de trabalho cansativo 
+(consumindo 20 PV), você cria um Item que, ao ser 
+Mantido, eleva uma Fase de um Atributo à sua escolha. 
+Você pode dar a ele o formato e o nome que quiser.
+
+Ferraria
+Referência: E,X
+Frequência: Semanal.
+Efeito: após dez horas de trabalho cansativo 
+(consumindo 20 PV), você cria um objeto que pode ser 
+ativado uma vez diária. Quando ativado, ele garante ao 
+humano que o use uma Habilidade por uma hora. Criar este 
+objeto exige o sacrifício de um item. A Habilidade que ele 
+concederá depende do item usado para produzi-lo. O 
+objeto frequentemente é uma armadura, mas pode assumir 
+outras formas, de acordo com sua criatividade e se o 
+Narrador julgar que a forma é apropriada.
+Objeto; Destruído Habilidade
+Armadura; Robustez
+Eletrizante; Elasticidade
+Escama de Dragão; Espírito Vigoroso
+Escama Marinha; Revestimento Aquoso
+Garra Afiada; Armadura
+Pedra do Rei; Foco Interior
+Pedra Oval; Obtusidade
+Presa Marinha; Revestimento Aquoso
+Revestimento; Metálico Metabolização
+Rocha Magmática; Revestimento Magmático
+Traje do Ceifador; Ritmo Próprio
+
+Instrumental
+Referência: E,X
+Frequência: Mensal.
+Efeito: após dez horas de trabalho cansativo 
+(consumindo 20 PV), escolha uma Condição entre Confusão, 
+Paixão ou Sono. Você cria um instrumento musical que, 
+quando tocado, cura a Condição escolhida de todos os 
+pokémons e humanos a até três metros. Este efeito do 
+instrumento musical pode ser ativado até uma vez diária.
+
+Mestre da Armaria
+Requisitos: Armeiro.
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode usar as pedras listadas adiante 
+como matérias-primas para criar armas. Uma vez diária, 
+você pode ativar o poder da pedra.
+Matéria-Prima; Ativação; Efeito
+Pedra da Alvorada; A qualquer momento com a arma;Ataca um alvo adjacente com a arma reduzindo a Categoria de Dano  Basal em 2.
+Pedra da Lua; Ao atacar com a arma; Ignore a Evasão do alvo e também os Golpes Detecção e Proteção.
+Pedra do Crepúsculo; Ao obter um Crítico com a arma; Recebe a Habilidade Franco-Atirador para aquele Crítico.
+Pedra do Frio; Ao obter um Crítico com a arma; Congelamento ao alvo.
+Pedra do Sol; Ao acertar um ataque com a arma; Causar dano Especial, em vez de dano Físico.
+
+Mestre do Artesanato
+Requisitos: Artesão.
+Referência: E,X
+Frequência: Semanal.
+Efeito: após cinco horas de trabalho cansativo 
+(consumindo 20 PV), role 1d20 + MV. Se o resultado for 20 
+ou mais, você cria um dos seguintes objetos à sua escolha: 
+Bandana, Faixa Meditativa ou Orbe Vital. Se o resultado for 
+menor que 20, você ainda cria um destes objetos, mas qual 
+objeto é determinado aleatoriamente.
+
+Perfumaria
+Referência: E,X
+Frequência: Semanal.
+Efeito: após seis horas de trabalho cansativo 
+(consumindo 20 PV), você cria um Incenso Relaxante, um 
+Incenso Intenso ou um Incenso Místico.
+

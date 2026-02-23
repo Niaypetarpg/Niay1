@@ -1,0 +1,128 @@
+Características Ocultista
+
+Exaltação
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um Lendário.
+Efeito: role 1d20 + MAE + MDE. Se o resultado for 
+16 ou mais, o alvo hesitará em atacar você e seus 
+pokémons. Ele tenderá a favorecer você mais que antes.
+
+Mitologia
+Referência: C,V
+Frequência: Constante.
+Efeito: você sabe qualquer informação sobre 
+pokémons Lendários que já encontrou. Isso inclui Tipo, lista 
+de Golpes, métodos de evolução, Habilidades, altura, peso e 
+habitats.
+
+Talentos Ocultistas
+
+Bênção
+Requisitos: ter se aliado a um Lendário.
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: role 1d20 + o dobro do seu MDE. O alvo 
+recupera uma quantidade de Pontos de Vida igual ao 
+resultado da rolagem. Só é possível usar este Talento 
+enquanto mantiver boas relações com algum Lendário.
+
+Bênção Lendária
+Requisitos: Defesa Especial 18, Bênção.
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon ou um humano.
+Efeito: role 2d20 + o triplo do seu MDE. O alvo 
+recupera uma quantidade de Pontos de Vida igual ao 
+resultado da rolagem. Só é possível usar este Talento 
+enquanto mantiver boas relações com algum Lendário.
+
+Idioma Sagrado
+Requisitos: Professor, Linguista.
+Referência: C,V
+Frequência: Constante.
+Efeito: você pode falar com todos os Lendários e 
+entendê-los.
+
+Incorporação
+Requisitos: Vinculação, estar vinculado a um Lendário.
+Referência: P,X
+Frequência: Semanal. A cada 10 Níveis, receba um
+uso semanal adicional.
+Alvo: um pokémon leal.
+Efeito: o alvo usa um Golpe conhecido pelo 
+Lendário vinculado. Isso conta como uma Ação de Comando 
+e só pode ser feito uma vez por rodada. Os Golpes 
+conhecidos como Assinaturas não podem ser usados desta 
+forma.
+
+Invocação
+Requisitos: Vinculação, estar vinculado a um Lendário.
+Referência: P,X
+Frequência: Mensal. A cada 15 Níveis, receba um 
+uso mensal adicional.
+Alvo: um Lendário aliado.
+Efeito: você invoca o Lendário de onde ele estiver.
+
+Milagre
+Requisitos: ter se aliado a um Lendário.
+Referência: L,X
+Frequência: Semanal. A cada 8 Níveis, receba um 
+uso semanal adicional.
+Gatilho: um aliado (pokémon ou humano) falha em 
+um Teste de Morte.
+Efeito: o alvo pode refazer aquele Teste de Morte. 
+Ele subtrai 5 da rolagem se for humano ou 25 se for 
+pokémon.
+
+Moral
+Requisitos: Coordenação.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: pokémons aliados a até um número de 
+metros igual a seu MDE.
+Efeito: escolha um Atributo (salvo Saúde). Eleve 
+uma Fase do Atributo selecionado dos alvos até o fim do 
+encontro.
+
+Presságio
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso mensal adicional.
+Alvo: um lugar não urbano.
+Efeito: role 1d20 + MDE. Se o resultado for 11 ou 
+mais, você descobre a última vez que um Lendário esteve 
+na área.
+
+Saudação
+Requisitos: ter usado Exaltação uma vez.
+Referência: P,X
+Frequência: Diária. 
+Alvo: a área de residência de um Lendário que você 
+já encontrou.
+Efeito: role 1d20 + MDE. Se o resultado for 21 ou 
+mais, o Lendário aparecerá. Ele não necessariamente virá 
+até você, mas será possível percebê-lo.
+
+Sexto Sentido
+Requisitos: Vinculação, estar vinculado a um 
+Lendário.
+Referência: P,X
+Frequência: Diária.
+Alvo: um Lendário vinculado.
+Efeito: role 1d20 + MDE. Se o resultado for 14 ou 
+mais, você sabe a direção do alvo. Se o resultado for 18 ou 
+mais, você também sabe a distância até ele.
+
+Vinculação
+Requisitos: ter usado Exaltação uma vez.
+Referência: P,X
+Frequência: Diária.
+Alvo: um Lendário aliado.
+Efeito: o Lendário está vinculado a você, o que 
+significa que você saberá se ele estiver em perigo 
+independentemente da distância.

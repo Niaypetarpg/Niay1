@@ -1,0 +1,166 @@
+Características Fotógrafo
+
+Arte Fotográfica
+Referência: P,V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: uma criatura ou um lugar.
+Efeito: role 1d20 + MDE. Você tira uma fotografia 
+que pode ser vendida no valor de vinte vezes o resultado da 
+rolagem.
+
+Fotografia Rara
+Referência: P,V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Gatilho: você ou um aliado é atacado por um 
+pokémon usando um Golpe.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, você tira uma fotografia do Golpe, que pode ser 
+vendida no valor de trinta vezes o resultado da rolagem.
+
+Talentos Fotógrafo
+
+Avaliação
+Referência: L,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Gatilho: você usa Arte Fotográfica em um 
+pokémon ou em um humano.
+Efeito: você pode usar o Golpe Revelação no 
+mesmo alvo de Arte Fotográfica como uma Ação Livre.
+Alternativamente, você pode usar Revelação como 
+uma Ação Padrão se estiver avaliando uma fotografia já 
+obtida do alvo. 
+
+Bola de Aporrinhar
+Referência: P,X
+Requisitos: Incômodo ou Provocação.
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon.
+Efeito: desde que não tenha feito nenhuma ação 
+nas duas rodadas passadas, role 1d20 + MDE. Se o resultado 
+for 11 ou mais, você usa ambos os seguintes Golpes no alvo: 
+Ataque de Areia e Gás Venenoso. 
+Este Talento não pode ter como alvo um pokémon 
+que já foi alvo de qualquer dos seguintes Talentos ainda 
+neste encontro: Bola de Aporrinhar, Incômodo, Provocação.
+
+Estúdio de Batalha
+Referência: C,V
+Frequência: Constante.
+Efeito: enquanto você possuir uma Fotografia Rara 
+retratando um Golpe específico, qualquer tentativa de usar 
+aquele Golpe contra um pokémon seu ou contra você tem a 
+Dificuldade de Acurácia aumentada em 2.
+
+Flash
+Referência: L,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Clarão. Você pode usar 
+este Talento como uma Ação Livre quando usar Arte 
+Fotográfica, Fotografia Rara ou Fotografia Rara +, mas 
+ambos os Talentos devem ter o mesmo alvo. 
+Após usar Flash, você não poderá usar Flash de 
+novo nas próximas duas rodadas.
+
+Fotografia Rara +
+Requisitos: Defesa Especial 17.
+Referência: P,V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Gatilho: você ou um aliado é atacado por um 
+pokémon usando um Golpe.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, você tira uma fotografia do Golpe, que pode ser 
+vendida no valor de quarenta e cinco vezes o resultado da 
+rolagem. Este Talento substitui Fotografia Rara.
+
+Incômodo
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon.
+Efeito: desde que não tenha feito nenhuma ação 
+na rodada passada, role 1d20 + MDE. Se o resultado for 16 
+ou mais, você usa o Golpe Supersônico no alvo.
+Este Talento não pode ter como alvo um pokémon 
+que já foi alvo de qualquer dos seguintes Talentos ainda 
+neste encontro: Bola de Aporrinhar, Incômodo, Provocação.
+ 
+Pesquisa Fotográfica
+Requisitos: Pesquisa.
+Referência: P,V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Efeito: escolha uma fotografia de um pokémon, de 
+um humano ou de um local tirada usando Arte Fotográfica. 
+Você recebe um Ponto de Pesquisa para o alvo da 
+fotografia, como se tivesse usado Pesquisa sobre ele. 
+Múltiplas fotos podem aumentar esta quantidade, mas a 
+uma determinada fotografia só concede um Ponto de 
+Pesquisa. 
+
+Provocação
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon.
+Efeito: desde que não tenha feito nenhuma ação 
+na rodada passada, role 1d20 + MDE. Se o resultado for 16 
+ou mais, você usa o Golpe Provocação no alvo.
+Este Talento não pode ter como alvo um pokémon 
+que já foi alvo de qualquer dos seguintes Talentos ainda 
+neste encontro: Bola de Aporrinhar, Incômodo, Provocação. 
+
+Registro Fotográfico
+Requisitos: cinco Talentos de Ardente (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: uma fotografia obtida por Fotografia Rara ou 
+Fotografia Rara +.
+Efeito: role 1d20 + MDE. Se o resultado for 21 ou 
+mais, a fotografia é tratada como um Registro podendo 
+ensinar pokémons que podem aprender o Golpe 
+fotografado não apenas a pokémons que podem aprender 
+aquele Golpe por Registro, mas também a pokémons que 
+podem aprendê-lo subindo de Nível e por um Tutor.
+Um determinado pokémon só pode aprender um 
+Golpe mediante fotografias beneficiadas por este Talento.
+
+Registro Fotográfico +
+Requisitos: Registro Fotográfico.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: uma fotografia obtida por Fotografia Rara ou 
+
+Fotografia Rara +.
+Referência: C,X
+Efeito: role 1d20 + MDE. Se o resultado for 21 ou 
+mais, a fotografia é tratada como um Registro podendo 
+ensinar pokémons que podem aprender o Golpe 
+fotografado não apenas a pokémons que podem aprender 
+aquele Golpe por Registro, mas também a pokémons que 
+podem aprendê-lo subindo de Nível e por um Tutor.
+Um determinado pokémon só pode aprender um 
+Golpe mediante fotografias beneficiadas por este Talento, 
+mas, se for um pokémon seu, ele pode aprender até três 
+Golpes mediante Registros Fotográficos. Se posteriormente 
+você vier a trocar um pokémon que aprendeu mais de um 
+Golpe mediante Registros Fotográficos, o novo dono dele 
+não conseguirá manter a memória do pokémon tão vívida, 
+portanto ele só manterá um Golpe memorizado dentre os 
+dois ou três.
+
+Vida Selvagem
+Requisitos: Defesa Especial 16.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando usar Arte Fotográfica em um 
+pokémon selvagem, em vez de multiplicar a rolagem por 20 
+para definir o valor da fotografia, multiplique por 45.

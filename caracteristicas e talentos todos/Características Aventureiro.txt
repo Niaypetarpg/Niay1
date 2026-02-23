@@ -1,0 +1,127 @@
+Características Aventureiro
+
+Caça e Coleta
+Referência: P, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um local não urbano.
+Efeito: role 1d20 + MV. Se o resultado for 13 ou 
+mais, você acha água e comida suficientes para até sete 
+criaturas (humanos ou pokémons).
+
+Sentidos Aguçados
+Referência: C, X
+Frequência: Constante.
+Efeito: você sempre sabe as seguintes informações: 
+para qual lado fica o norte, a hora estimada e como será o 
+clima do dia.
+
+Talentos Aventureiro
+
+Arquearia
+Referência: C, X
+Requisitos: Nível 10, Arma de Escolha para uma 
+arma À Distância.
+Frequência: Constante.
+Efeito: os alvos dos seus ataques de Armas feitos 
+com armas À Distância não se beneficiam de Evasão por 
+Velocidade nem por terreno ou clima. Eles também não se 
+beneficiam por Golpes que dificultam o seu Teste de 
+Acurácia para atacá-los.
+Seus ataques de Armas feitos com armas À 
+Distância possuem alcance adicional igual à metade da sua 
+Velocidade e causam dano adicional igual à metade da sua 
+Velocidade. Isso só é válido se você não pertence a 
+nenhuma das seguintes Classes: Artista Marcial, Atleta, 
+Áugure, Bandido, Guerreiro, Monge, Ninja ou Soldado.
+
+Chuva Ácida
+Referência: P, X
+Frequência: Diária.
+Gatilho: um pokémon usa um Golpe com o 
+Descritor Clima.
+Efeito: em vez de substituir o Clima que estava em 
+vigência anteriormente, os efeitos do Clima designado pelo 
+novo Golpe se somam ao Clima anterior, coexistindo 
+simultaneamente. No máximo dois Climas podem coexistir.
+
+De Olho no Céu
+Referência: P, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: há um efeito climático vigente.
+Efeito: role 1d20 + MV. Se o resultado for 11, você 
+recebe a Habilidade Carapaça. Se o resultado for 16 ou 
+mais, todos os seus pokémons também ganham Carapaça. 
+Se o resultado for 25 ou mais, todos os seus aliados 
+humanos e pokémons também ganham Carapaça.
+Se o clima mudar ou se Chuva Ácida for usada, os 
+efeitos deste Talento acabam até que você gaste uma Ação 
+Padrão readaptando seu refúgio, mas não é preciso gastar 
+um novo uso do Talento se for durante o mesmo encontro.
+
+É o Fim!
+Referência: L, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você declara um ataque de Armas com 
+uma arma À Distância.
+Efeito: se você acertar o ataque, o alvo está 
+Paralisado. Se você obtiver mais do que 15 no Teste de 
+Acurácia, ele também está Atordoado.
+
+Escalada
+Referência: C, X
+Frequência: Constante.
+Efeito: você não precisa fazer testes enquanto se 
+deslocar através de Terreno Acidentado nem sofre 
+penalidades aos seus Deslocamentos por Terreno 
+Acidentado. Além disso, você nunca precisa fazer testes 
+para escalar: você pode escalar usando seu Deslocamento 
+Terrestre reduzido em 3.
+
+Intuição
+Referência: P, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um local não urbano.
+Efeito: role 1d20 + MV. Se o resultado for 18 ou 
+mais, designe um dos seguintes Golpes: Dança da Chuva, 
+Desanuviar, Dia de Sol, Granizo, Tempestade de Areia. Você 
+localiza um pokémon que conhece o Golpe escolhido.
+Qualquer tentativa de atacar ou capturar este pokémon o 
+faz ter sucesso automático em fugir.
+
+Natureza Amiga
+Referência: C, X
+Frequência: Constante.
+Efeito: quando você descansa em ambiente 
+selvagem por pelo menos 8 horas, você acorda com todos 
+os seus Pontos de Vida recuperados e é curado de 
+quaisquer Condições. As únicas coisas que não serão 
+recuperadas são doenças, fraturas ósseas e feridas abertas.
+
+Pacifismo
+Referência: L, X
+Requisitos: Ranger, Velocidade 16.
+Frequência: Diária. A cada 6 Níveis, receba um uso 
+diário adicional.
+Alvo: uma rolagem de Contenção.
+Efeito: você se compromete a não usar o pokémon 
+a se tornar Prestativo para atacar. Isso reduz em 15 a 
+dificuldade do Teste de Contenção.
+
+Sobrevivente
+Referência: P, X
+Frequência: À Vontade.
+Alvo: qualquer material (como madeiro, plástico, 
+osso, etc.).
+Efeito: role 1d20 + MA + MV. Se o resultado for 18 
+ou mais e você possui uma faca, você cria uma ferramenta 
+não tecnológica. Você é um mestre da inventividade e pode 
+criar soluções engenhosas para resolver seus problemas. 
+Alternativamente, você pode produzir um abrigo secreto 
+para até cinco criaturas (humanos ou pokémons) que 
+durará por um número de dias igual a seu MV. É possível 
+produzir mais de um abrigo próximo um ao outro, mas, 
+neste caso, eles não poderão ser secretos, serão expostos.

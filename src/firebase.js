@@ -1,6 +1,7 @@
 // Firebase Configuration
 import { initializeApp } from 'firebase/app'
 import { getDatabase } from 'firebase/database'
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check'
 
 const firebaseConfig = {
   apiKey: "AIzaSyA3UDvrycqj7YhtxerpguJcrAe0yHaRJ1E",
@@ -14,6 +15,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
+
+// Initialize App Check (reCAPTCHA v3 clássico — gratuito)
+initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('6LfNRHUsAAAAAFiSc5PutMx4B3MTele3XMhE4UPP'),
+  isTokenAutoRefreshEnabled: true
+})
 
 // Initialize Realtime Database
 export const database = getDatabase(app)

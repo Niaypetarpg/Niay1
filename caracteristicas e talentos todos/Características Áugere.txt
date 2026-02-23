@@ -1,0 +1,143 @@
+Características Áugere
+
+Leitura de Auras
+Referência: C,V
+Frequência: Constante.
+Alvo: pokémons e humanos.
+Efeito: você pode ler a aura do alvo. Todos os 
+pokémons e humanos possuem auras, mas a maioria não 
+pode acessá-las. Auras variam em coloração: quanto mais 
+vívida é a cor (ou seja, menos clara e transparente), mais 
+emoção domina aquela pessoa naquele momento; e quanto 
+mais escura, mais intenções ruins aquela pessoa possui. A 
+Leitura de Auras não permite ler mentes, mas auras são 
+pessoais e visíveis mesmo na escuridão.
+Você pode tornar sua própria aura aparente em 
+coloração para outros, indicando sua intenção a pokémons 
+e humanos, que instintivamente receberão as mesmas 
+informações como se estivesse lendo a sua aura. 
+
+Onda de Vácuo
+Referência: P,X
+Frequência: Diária. A cada 6 Níveis, receba um uso 
+diário adicional.
+Efeito: você usa o Golpe Onda de Vácuo, mas use 
+seu Ataque, e não seu Ataque Especial, para definir o dano.
+
+Talento Áugere
+
+Corpo e Alma
+Requisitos: quatro Talentos de Áugure (desconte as Características de Classe para este cálculo), Ataque 18.
+Referência: C,X
+Frequência: Constante.
+Efeito: no momento que escolher este Talento, 
+escolha um Tipo elemental. Todas as vezes que fizer um 
+ataque de Armas, você pode causar dano daquele Tipo a 
+seu critério.
+
+Esfera da Aura
+Requisitos: ter visto o Golpe Esfera da Aura ser usado.
+Referência: P,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Efeito: você usa o Golpe Esfera da Aura.
+
+Expansão da Aura
+Requisitos: ter sofrido o Golpe Expansão da Aura.
+Referência: P,X
+Frequência: Semanal. A cada 15 Níveis, receba um 
+uso semanal adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Expansão da Aura, mas 
+use seu Ataque, e não seu Ataque Especial, para definir o dano.
+
+Intenções na Aura
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um uso diário adicional.
+Alvo: pokémons e humanos.
+Efeito: após se concentrar por dez minutos, você 
+sabe o curso geral de ações que o alvo pretende fazer. 
+Exemplos são “encontrar um sócio”, “combater seu 
+inimigo”, “destruir este lugar”, “impressionar seu amigo”. 
+Estas intenções são vagas, e podem ser mal interpretadas, 
+mas nunca são literalmente mentiras. Por exemplo, você 
+pode ler “lutar contra o vizinho” e achar que há uma rixa ou 
+desentendimento, enquanto a realidade é que pode ser 
+uma competição amigável. Estas intenções são aparentes 
+para você pela aura, e não pela leitura da mente, portanto 
+não podem ser ocultadas pelo Talento Meditação nem pela 
+Capacidade Ininteligível.
+
+Pulso d’Água
+Requisitos: ter sofrido o Golpe Pulso d’Água.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Pulso d’Água, mas use seu 
+Ataque, e não seu Ataque Especial, para definir o dano.
+
+Pulso do Dragão
+Requisitos: ter sofrido o Golpe Pulso do Dragão.
+Referência: P,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Pulso do Dragão, mas use 
+seu Ataque, e não seu Ataque Especial, para definir o dano.
+
+Pulso Sombrio
+Requisitos: ter sofrido o Golpe Pulso Sombrio.
+Referência: P,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Pulso Sombrio, mas use 
+seu Ataque, e não seu Ataque Especial, para definir o dano.
+
+Soco de Drenagem
+Requisitos: um pokémon que conhece o Golpe Soco de Drenagem.
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Soco de Drenagem.
+
+Soco de Fogo
+Requisitos: ter sofrido o Golpe Soco de Fogo.
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Soco de Fogo.
+
+Soco de Gelo
+Requisitos: ter sofrido o Golpe Soco de Gelo.
+Referência: P,X
+Frequência: Diária. A cada 18Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Soco de Gelo.
+
+Soco do Trovão
+Requisitos: ter sofrido o Golpe Soco do Trovão.
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Soco do Trovão.
+
+Soco Sombrio
+Requisitos: ter sofrido o Golpe Soco Sombrio.
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Soco Sombrio.
+
+Tela de Luz
+Requisitos: um pokémon que conhece o Golpe Tela de Luz.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: si mesmo.
+Efeito: você usa o Golpe Tela de Luz.

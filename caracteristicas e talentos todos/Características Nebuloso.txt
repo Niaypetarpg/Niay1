@@ -1,0 +1,152 @@
+Características Nebuloso
+
+Controle de Água
+Referência: P,X
+Frequência: À Vontade.
+Alvo: uma quantidade de líquido cujo peso máximo 
+em quilos não exceda dez vezes seu MAE que não esteja 
+mais distante que um número de metros igual ao triplo de 
+seu MAE.
+Efeito: você move o alvo sem tocá-lo um número 
+máximo de metros igual ao dobro de seu MAE, mas não 
+pode movê-lo para mais longe do que um número de 
+metros igual ao triplo de seu MAE. Você sempre deve poder 
+manter o alvo dentro de seu campo visual, a menos que 
+possua o Talento Psicocinese +.
+Seu MAE nunca pode ser reduzido abaixo de 1 para 
+esta Característica de Classe. 
+Você também pode usar este Talento para produzir 
+água a partir do próprio ar.
+
+Controle de Gelo
+Referência: P,X
+Frequência: À Vontade.
+Alvo: uma porção de gelo cujo peso máximo em 
+quilos não exceda dez vezes seu MAE que não esteja mais 
+distante que um número de metros igual ao triplo de seu 
+MAE.
+Efeito: você move o alvo sem tocá-lo um número 
+máximo de metros igual ao dobro de seu MAE, mas não 
+pode movê-lo para mais longe do que um número de 
+metros igual ao triplo de seu MAE. Você sempre deve poder
+manter o alvo dentro de seu campo visual, a menos que 
+possua o Talento Psicocinese +.
+Seu MAE nunca pode ser reduzido abaixo de 1 para 
+esta Característica de Classe. 
+Você também pode usar este Talento para 
+congelar água instantaneamente.
+Finalmente, como um benefício constante, 
+enquanto você estiver consciente, nem você nem humanos 
+aliados a até 10 metros de você sofrem dano por Granizo.
+
+Talentos Nebuloso
+
+Ambiente Aquoso
+Requisitos: Dança da Chuva ou Granizo.
+Referência: C,X
+Frequência: Constante.
+Efeito: se o clima estiver de Chuva ou Granizo, ou 
+se você estiver próximo a um grande corpo de água (a partir 
+do tamanho de um lago) com profundidade suficiente para 
+um pokémon de tamanho Pequeno submergir, você pode 
+fazer seus Golpes de Água ou de Gelo se originarem da água 
+natural presente nas redondezas.
+
+Cascata
+Requisitos: dois pokémons de Água.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Cascata.
+O uso deste Talento consome 10 Pontos de Vida.
+
+Dança da Chuva
+Requisitos: cinco Talentos de Nebuloso (desconte 
+as Características de Classe para este cálculo).
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Dança da Chuva.
+O uso deste Talento consome 20 Pontos de Vida.
+
+Estabilizar a Superfície
+Referência: C,X
+Frequência: Constante.
+Efeito: receba a Capacidade Geleira.
+Além disso, você pode andar sobre a água, seja 
+água parada ou corrente.
+
+Estaca de Gelo
+Requisitos: dois pokémon de Gelo.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Estaca de Gelo.
+O uso deste Talento consome 10 Pontos de Vida.
+
+Granizo
+Requisitos: cinco Talentos de Nebuloso (desconte 
+as Características de Classe para este cálculo).
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Granizo.
+O uso deste Talento consome 20 Pontos de Vida.
+
+Nadador
+Requisitos: um pokémon com Deslocamento de 
+Referência: C,X
+Natação e Subaquático.
+Frequência: Constante.
+Efeito: adicione seu MAE aos seus Deslocamentos 
+de Natação e Subaquático.
+Além disso, durante um número de minutos igual a 
+seu Ataque Especial distribuídos a cada hora, você pode 
+respirar embaixo d’água.
+
+Neblina
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Neblina.
+O uso deste Talento consome 8 Pontos de Vida.
+
+Nevasca
+Requisitos: Nível 15, Estaca de Gelo.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Nevasca.
+O uso deste Talento consome 25 Pontos de Vida.
+
+Nevoeiro
+Referência: P,X
+Frequência: À Vontade.
+Efeito: você usa o Golpe Nevoeiro.
+O uso deste Talento consome 8 Pontos de Vida.
+
+Redemoinho
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Redemoinho.
+O uso deste Talento consome 7 Pontos de Vida.
+
+Respingos
+Referência: L,X
+Frequência: À Vontade.
+Gatilho: você usa um Golpe de Água ou de Gelo.
+Efeito: o Golpe acerta um alvo adicional. Se ele 
+tinha apenas um alvo, ele acerta outro adjacente ao 
+original. Se o Golpe já atingia uma área, escolha um alvo 
+adjacente à área de efeito. Só é possível adicionar um alvo 
+por Golpe usando Respingos. 
+O uso deste Talento consome 10 Pontos de Vida. 
+Esta quantidade é reduzida para 5 se estiver usando um 
+Golpe de Água durante Chuva ou se estiver usando um 
+Golpe de Gelo durante Granizo. 
+
+Surfe
+Requisitos: Nível 10, Cascata.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Surfe.
+O uso deste Talento consome 20 Pontos de Vida.

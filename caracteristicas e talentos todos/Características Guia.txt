@@ -1,0 +1,137 @@
+Características Guia
+
+Mais Força!
+Referência: P, V
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu.
+Efeito: a Capacidade Força de seu pokémon é 
+aumentada por seu MA por uma rodada se estiver em 
+combate, ou por um minuto se estiver fora de combate.
+
+Mais Longe!
+Referência: P, V
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu.
+Efeito: os Deslocamentos do alvo são aumentados 
+por seu MV até o fim do encontro.
+
+Talentos Guia
+
+Agora Mais Que Nunca!
+Requisitos: cinco Talentos de Guia (desconte as 
+Características de Classe para este cálculo).
+Referência: P, V
+Frequência: Diária.
+Efeito: por uma rodada, os Talentos Você pode 
+fazer Melhor!, Robusto! e Rápido! poderão ser usados para 
+elevar três Fases, em vez de apenas duas Fases.
+Por esta mesma rodada, Talentos de Guia que 
+aumentam Deslocamentos concedem bônus dobrados.
+
+Espertinho!
+Requisitos: um pokémon com Inteligência 5.
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu.
+Efeito: o alvo pode ignorar as penalidades por 
+Terreno Acidentado ou Gelado, e pode se mover através do 
+espaço ocupado por pokémons ou humanos hostis. Isso 
+dura por uma rodada se estiver em combate, ou por um 
+minuto se estiver fora de combate.
+
+Faça Dar Certo!
+Referência: P, V
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu.
+Efeito: por uma rodada, todos os Golpes 
+causadores de dano dos seus pokémons ganham o Descritor 
+Empurrão, empurrando alvos um número de metros igual à 
+Força do pokémon – se o Golpe usa Ataque – ou à 
+Inteligência dele – se o Golpe usa Ataque Especial.
+
+Fortaleza!
+Requisitos: Ataque 18.
+Referência: P, V
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu que deixou inconsciente 
+algum humano ou pokémon nas últimas três rodadas.
+Efeito: o maior Atributo de seu pokémon é 
+aumentado por metade de seu MA por uma rodada. Se o 
+Atributo em questão for Saúde, os Pontos de Vida ganhos 
+por isso são Pontos de Vida temporários. Estes Pontos de 
+Vida temporários desaparecem ao serem consumidos (eles 
+são consumidos antes dos Pontos de Vida normais quando 
+se sofre dano) ou quando a Saúde voltar ao valor padrão.
+
+Fortinho!
+Requisitos: um pokémon com Força 5.
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu.
+Efeito: por uma rodada, o alvo pode ignorar 
+quaisquer reduções de Atributos ou Fases perdidas 
+causados por Condições.
+
+Jamais Derrotado!
+Requisitos: Fortaleza!
+Referência: C, V
+Frequência: Constante.
+Alvo: um pokémon seu.
+Efeito: se os Pontos de Vida do alvo forem 
+reduzidos a zero ou menos, ele ainda pode agir e se 
+deslocar, mas não pode usar Golpes. Se os Pontos de Vida 
+forem reduzidos abaixo de -50% dos Pontos de Vida, o alvo 
+deve fazer um Teste de Morte e os efeitos deste Talento 
+são cancelados.
+
+Mais Alto!
+Requisitos: um pokémon com Salto 4.
+Referência: P, V
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu.
+Efeito: a Capacidade Salto de seu pokémon é 
+aumentada por metade de seu MA por uma rodada se 
+estiver em combate, ou por um minuto se estiver fora de 
+combate.
+
+Rápido!
+Referência: P, V
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu sob efeito de Mais Longe!
+Efeito: por uma rodada, eleva uma Fase de 
+Velocidade do alvo.
+É possível gastar mais de um uso deste Talento de 
+uma só vez. O máximo que é possível conceder ao pokémon 
+alvo são duas Fases em Velocidade.
+
+Robusto!
+Requisitos: Fortinho!
+Referência: P, V
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu sob efeito de Fortinho!
+Efeito: por uma rodada, eleva uma Fase de Ataque 
+ou de Defesa do alvo.
+É possível gastar mais de um uso deste Talento de 
+uma só vez. O máximo que é possível conceder ao pokémon 
+alvo são duas Fases em cada Atributo envolvido.
+
+Você pode fazer Melhor!
+Requisitos: Espertinho!
+Referência: P, V
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon seu sob efeito de Espertinho!
+Efeito: por uma rodada, eleva uma Fase de Ataque 
+Especial ou de Defesa Especial do alvo.
+É possível gastar mais de um uso deste Talento de 
+uma só vez. O máximo que é possível conceder ao pokémon 
+alvo são duas Fases em cada Atributo envolvido.

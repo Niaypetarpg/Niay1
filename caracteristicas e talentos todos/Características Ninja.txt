@@ -1,0 +1,125 @@
+Características Ninja
+
+Envenenamento
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Pó Venenoso. Você pode 
+escolher usá-lo como um Golpe Corpo a Corpo sem o 
+Descritor Explosão.
+
+Vivacidade
+Referência: C,X
+Frequência: Constante.
+Efeito: para fins de fazer feitos acrobáticos, 
+adicione metade de seu MA à sua Velocidade e aos seus 
+Deslocamentos e trate Terreno Acidentado como Terreno 
+Normal. Além disso, você pode correr em superfícies 
+verticais por uma quantidade de metros igual a seu MA 
+antes de ter que saltar. Finalmente, você pode se mover 
+silenciosamente sem a necessidade de fazer testes.
+
+Talentos Ninja
+
+Antídotos
+Referência: P,V
+Frequência: À Vontade.
+Alvo: uma criatura adjacente Envenenada.
+Efeito: role 1d20 + MD. Se o resultado for 13 ou 
+mais, o alvo é curado do Veneno. Se o veneno foi infligido 
+por você, o alvo é automaticamente curado sem 
+necessidade de rolagem.
+
+Armas Untadas
+Requisitos: um pokémon Venenoso.
+Referência: C,X
+Frequência: Constante.
+Efeito: receba a Habilidade Toque Tóxico.
+
+Bomba de Fumaça
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Efeito: você usa o Golpe Cortina de Fumaça.
+Além disso, como um efeito constante, suas 
+Dificuldades de Acurácia nunca são afetadas por Cortinas de 
+Fumaça.
+
+Borrão
+Referência: P,X
+Frequência: Diária. 
+Alvo: si.
+Efeito: ataques que o tenham como alvo e que por 
+qualquer razão acertam automaticamente (dispensando 
+Teste de Acurácia) agora requerem um Teste de Acurácia 
+cuja Dificuldade é 2 + seu MD. Este efeito perfura até o fim 
+do encontro.
+
+Desaparecer
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode se misturar ao ambiente muito 
+facilmente. Se for de sua vontade, enquanto você estiver 
+parado, você está invisível. Se você se mover, demora 6 
+segundos parado para que sua camuflagem volte a 
+funcionar.
+
+Do Céu
+Requisitos: Ataque 16.
+Referência: P,X
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Golpe Aéreo.
+
+Farpas
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso diário adicional.
+Alvo: um lugar.
+Efeito: você usa o Golpe Espinhos ou o Golpe 
+Espinhos Venenosos a seu critério.
+
+Injetar Veneno
+Requisitos: um pokémon Venenoso.
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Injetar Veneno.
+
+Mortífero
+Requisitos: cinco Talentos de Ninja (desconte as Características de Classe para este cálculo).
+Referência: L,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Gatilho: você Envenena um alvo.
+Efeito: em vez de apenas Envenenado, o alvo está 
+com Veneno Mortal.
+
+Multiplicar
+Requisitos: Borrão, Velocidade 15.
+Referência: P,X
+Frequência: Diária.
+Efeito: você usa o Golpe Multiplicar.
+
+Sonífero
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Pó Sonífero, mas como 
+Corpo a Corpo e sem o Descritor Explosão.
+
+Trocar de Lugar
+Requisitos: Ataque 18.
+Referência: I,P,X
+Frequência: Diária.
+Alvo: um aliado a até 5 metros a quem você possui 
+linha de visão
+Efeito: você usa o Golpe Trocar de Lugar.
+
+Venochoque
+Referência: P,X
+Frequência: Diária.
+Efeito: você usa o Golpe Venochoque.

@@ -1,0 +1,115 @@
+Características Monge
+
+Ataque Atordoante
+Referência: P,X
+Frequência: Diária. A cada 
+10 Níveis, receba um uso diário adicional.
+Gatilho: você acerta um ataque 
+desarmado.
+Efeito: o alvo está Atordoado. Este 
+Talento não pode ser usado mais de uma vez 
+contra o mesmo alvo durante um mesmo 
+combate.
+
+Ioga
+Referência: E,X
+Frequência: À Vontade.
+Alvo: um pokémon.
+Efeito: após cinco minutos de meditação, o alvo 
+estará com Lealdade completa temporariamente e chamará 
+mais atenção. Se ele subir de Nível sem nenhum incidente 
+negativo dentro de uma hora após esta preparação e 
+possuir todos os outros requisitos para evolução, o requisito 
+de Lealdade será suprido e ele poderá evoluir, mesmo que a 
+Lealdade dele retorne ao valor padrão depois (a Lealdade 
+retorna ao padrão após uma hora)
+
+Talentos Monge
+
+Alongamento
+Requisitos: Exercícios Revigorantes.
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um
+uso diário adicional.
+Gatilho: você usa Ioga.
+Efeito: o alvo de Ioga recebe a Habilidade
+Elasticidade até o fim do próximo encontro naquele dia.
+
+Contorcionismo
+Referência: C,X
+Frequência: Constante.
+Efeito: você é imune a Paralisia.
+
+Estímulo
+Requisitos: Técnica Milenar.
+Referência: P,X
+Frequência: Diária. A cada 15 Níveis, receba um
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Estímulo.
+
+Exercícios Revigorantes
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um
+uso diário adicional.
+Gatilho: você usa Ioga.
+Efeito: o alvo de Ioga recebe um número de Pontos 
+de Vida temporários igual à sua Defesa. Pontos de Vida 
+temporários desaparecem após um encontro ou ao serem 
+consumidos (eles são consumidos antes dos Pontos de Vida 
+normais quando se sofre dano).
+Você pode agora usar Ioga em humanos.
+
+Iluminação
+Referência: C,X
+Frequência: Constante.
+Efeito: quando você faz qualquer rolagem que 
+requer a adição de seu MV, adicione +5 ao resultado.
+
+Liberdade de Movimento
+Requisitos: Contorcionismo.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: uma criatura adjacente Atordoada ou 
+Paralisada.
+Efeito: o alvo é curado do Atordoamento ou da 
+Paralisia.
+
+Relaxamento
+Requisitos: Exercícios Revigorantes.
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você usa Ioga.
+Efeito: o alvo de Ioga recebe a Habilidade Foco 
+Interior até o fim do próximo encontro naquele dia.
+
+Técnica Milenar
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: você usa o Golpe Golpes de Braço. Se o alvo 
+for atingido quatro ou mais vezes por este Golpe, ele fica 
+Paralisado.
+
+Terapia
+Requisitos: Exercícios Revigorantes.
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você usa Ioga em um humano.
+Efeito: escolha um Atributo. O humano recebe +2 
+ao Atributo escolhido por doze horas. Um humano só pode 
+ter um Atributo beneficiado por Terapia.
+
+Tratamento
+Requisitos: Defesa 16.
+Referência: E,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: após dez minutos de práticas de iluminação 
+e cura, o alvo cura uma quantidade de PV igual a 2d12 +10 + 
+seu MD.

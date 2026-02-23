@@ -1,0 +1,184 @@
+Características Rúnico
+
+Convocação
+Referência: P,X
+Frequência: Diária.
+Efeito: role 1d20. Se o resultado for 11 ou mais, um 
+Unown aparece a até 5 metros de você. Se a rolagem for 20, 
+você pode escolher a letra do Unown. O Unown não é 
+hostil. Como um benefício constante, cada letra de 
+Unown conta como um pokémon diferente para determinar 
+seu Nível por captura de pokémons.
+
+Soletrar
+Referência: P,X
+Frequência: À Vontade.
+Alvo: até seis Unown.
+Efeito: você pode combinar até seis Unown 
+separados em um pokémon só, que deve formar uma 
+palavra. Cada Poder Oculto conhecido pelos Unown letras 
+que compõem o novo Unown palavra conta como um Golpe 
+diferente para ele. Além disso, pode escolher se usará 
+Poder Oculto com Ataque ou com Ataque Especial. Cada 
+Poder Oculto deve ser definido como usando Ataque ou 
+Ataque Especial no momento da formação da palavra, e 
+esta escolha é permanente.
+Para definir os Atributos do Unown combinado, 
+escolha um Unown como sendo o líder. Use os Atributos 
+dele e, para cada Unown adicionado a ele, adicione +3 a um 
+Atributo dele.
+O Unown palavra – como o Unown letra – é um pokémon só: ele é mantido em uma pokébola. Ao formar uma 
+palavra, não é possível separar as unidades mais, mas é 
+possível adicionar uma letra se for possível adicionar letras.
+
+Talentos Rúnico
+
+Arma Rúnica
+Requisitos: cinco Talentos de Rúnico (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária. A cada 20 Níveis, receba um 
+uso diário adicional.
+Alvo: um Unown palavra.
+Efeito: o alvo se transforma em uma arma à sua 
+escolha, cheia de inscritos rúnicos. Quando esta arma é 
+usada para atacar, ela causa dano adicional igual ao Bônus 
+Elemental que o Unown palavra possui.
+O usuário de uma Arma Rúnica pode usá-la para 
+automaticamente se defender de um ataque, caso em que 
+o Unown palavra sofre o dano do ataque no lugar dele.
+A Arma Rúnica permanece por até 24 horas, e desaparece se o Unown palavra ficar inconsciente ou for 
+convocado de volta à pokébola. Neste estado, o Unown 
+palavra não pode usar Capacidades nem Golpes.
+
+Banimento
+Requisitos: 21 Unown.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: role 1d20 + MD. Se o resultado for 16 ou 
+mais, o alvo é transportado para um espaço extradimensional conhecido como Espaço Unown até o fim do seu próximo turno, quando o alvo volta exatamente no mesmo ponto onde estava. O alvo sequer sente a passagem temporal, ele simplesmente não nota que foi alvo de Banimento.
+Não é possível usar Banimento em uma mesma 
+criatura mais de uma vez por encontro, mas é possível sacrificar usos de Banimento para aumentar o número de rodadas que o alvo fica no Espaço Unown. Cada uso sacrificado 
+aumenta em uma rodada o tempo que ele fica fora.
+
+Dicionário
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode entender qualquer idioma 
+escrito. Você conhece os significados de todas as palavras 
+que lê, e pode fluentemente ler qualquer trecho escrito, 
+mesmo que não saiba falar aquele idioma.
+
+Força Oculta
+Referência: C,V
+Frequência: Constante.
+Efeito: quando você ou qualquer Unown palavra 
+seu usar Poder Oculto, você pode escolher que o Golpe 
+tome a forma de uma Coluna com um metro de largura e 15 
+de comprimento, em vez de uma Explosão. 
+Quando um Unown palavra seu usa Poder Oculto, 
+ele ganha +1 de Bônus Elemental, mesmo que o Poder 
+Oculto não seja do Tipo do Unown.
+
+Olhos Satélites
+Referência: C,V
+Frequência: Constante.
+Efeito: para cada pokémon canalizado além do 
+primeiro, adicione +1 à sua Evasão ou à Evasão dos 
+pokémons canalizados por você.
+
+Poder Oculto
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: o pokémon que você está canalizando.
+Efeito: escolha uma forma de Poder Oculto na lista 
+de Golpes do alvo. Você pode usar o Poder Oculto escolhido 
+imediatamente. 
+
+Ponto Final
+Requisitos: 14 Unown.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano.
+Efeito: Escolha três Condições entre Confusão, 
+Paralisia, Queimadura, Sono ou Veneno. É possível escolher 
+a mesma condição mais de uma vez. Para cada escolha, faça 
+um Teste de Acurácia com Dificuldade 5 contra o alvo. Cada 
+ataque inflige a Condição escolhida no alvo.
+Você só pode usar este Talento se estiver com pelo 
+menos 14 Unown consigo, espalhados em diferentes 
+Unown palavras.
+
+Portal
+Requisitos: 14 Unown.
+Referência: P,X
+Frequência: Semanal. A cada 25 Níveis, receba um 
+uso semanal adicional.
+Alvo: uma área adjacente desocupada.
+Efeito: escolha um local que você já visitou não 
+mais que um ano atrás. Um portal aparece na área alvo e, 
+quando ele é atravessado, ele conduz diretamente ao local 
+designado, não importa o quão longe seja. Este portal só 
+permite a travessia neste sentido, não é possível vir do 
+outro lado para o original. Este teletransporte garante que 
+você chegue a um local desocupado ou à área desocupada 
+mais próxima do que você desejava. Qualquer um pode 
+atravessar o portal. Ele permanece por até 5 minutos, mas 
+você pode fechá-lo antes disso se desejar (tenha ou não 
+atravessado).
+
+Reescrever
+Referência: P,X
+Frequência: Semanal. A cada 15 Níveis, receba um 
+uso semanal adicional.
+Alvo: um Unown palavra.
+Efeito: após cinco minutos em um ritual ou em 
+pesquisa literária, escolha uma das formas de Poder Oculto 
+do alvo. Você pode refazer a rolagem que definiu o Tipo do 
+Poder Oculto escolhido ou a rolagem que definiu o dano do 
+Poder Oculto escolhido.
+
+Runa
+Referência: P,X
+Frequência: Diária.
+Efeito: você inscreve uma Runa na escrita Unown. 
+A qualquer momento você pode fechar seus olhos se 
+concentrando na Runa para ver e ouvir através dela, e 
+também projetar sua voz através dela. A Runa pode ser tão 
+pequena ou tão grande quanto você desejar, e a sua 
+habilidade de perceber o mundo e de projetar sua voz será 
+proporcional ao tamanho dela. Por exemplo, uma runa que 
+preencha uma enorme parede terá uma voz estrondosa e 
+magnânima enquanto uma runa pequena e discreta soará 
+como um sussurro; uma Runa miúda só permitirá que você 
+enxergue como se através de uma fechadura enquanto que 
+uma ruína antiga totalmente escrita permitirá observar o 
+local inteiro de múltiplos ângulos. 
+Você pode possuir um número máximo de Runas 
+ativas igual a seu MD.
+Quando uma Runa é destruída, você se torna 
+imediatamente consciente disso, não importa o quão 
+distante esteja. Se múltiplas Runas são destruídas, você é 
+avisado sobre cada uma delas individualmente.
+
+Selo
+Requisitos: Poder Oculto.
+Referência: P,X
+Frequência: Diária.
+Gatilho: você usa o Talento Poder Oculto.
+Efeito: em vez de usar o Poder Oculto 
+imediatamente, você escreve um Selo na escrita Unown e 
+designa uma condição. Quando a condição é satisfeita, o 
+Selo explode causando dano na quantidade e no Tipo 
+conforme o Poder Oculto que seria usado.
+Você pode possuir um número máximo de Selos 
+ativos igual a seu MD.
+Não é possível colocar muitos Selos circunvizinhos, 
+eles devem ter pelo menos 5 metros de distância.
+Quando um Selo é detonado, você se torna 
+imediatamente consciente disso, não importa o quão 
+distante esteja. Se múltiplos Selos são detonados, você é 
+avisado sobre cada um deles individualmente.

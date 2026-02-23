@@ -1,0 +1,138 @@
+Características Professor
+
+Classificação Infalível
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon.
+Efeito: role 1d20 + MAE + MDE. Se o resultado for 
+16 ou mais, você sabe qual Atributo é o maior e qual 
+Atributo é o menor no alvo. Se o resultado for 21 ou mais, 
+você sabe quais são os valores destes dois Atributos.
+
+Enciclopédia +
+Referência: C,V
+Frequência: Constante.
+Efeito: diferente dos demais Jogadores, você pode 
+conferir o Livro dos Pokémons irrestritamente como o 
+Narrador, salvo que não acessa informações de Lendários. 
+Este Talento substitui Enciclopédia.
+
+Talentos Professor
+
+Ânimo
+Requisitos: Coordenação.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: pokémons aliados a até um número de 
+metros igual a seu MAE.
+Efeito: escolha um Atributo (salvo Saúde). Eleve 
+uma Fase do Atributo selecionado dos alvos até o fim do 
+encontro.
+
+Autoconfiança
+Requisitos: Ânimo.
+Referência: P,V
+Frequência: Diária. 
+Alvo: pokémons aliados a até um número de 
+metros igual a seu MAE.
+Efeito: escolha um Atributo (salvo Saúde). O 
+Atributo de todos os alvos é aumentado por uma 
+quantidade igual a seu MAE até o fim do encontro.
+
+Aviso Crítico
+Requisitos: Nível 10, Coordenação.
+Referência: P,V
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: aliados.
+Efeito: durante a próxima rodada do encontro, 
+todos os ataques (Golpes ou ataques de Armas) dos aliados 
+obtêm Críticos em resultados de Acurácia de 16 a 20. Esta 
+chance não pode ser melhorada além disso.
+
+Desmoralização
+Requisitos: Coordenação.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: pokémons inimigos a até um número de 
+metros igual a seu MAE.
+Efeito: escolha um Atributo (salvo Saúde). Os alvos 
+perdem uma Fase do Atributo selecionado até o fim do 
+encontro.
+
+Eficiência
+Requisitos: Nível 10, Coordenação.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: aliados.
+Efeito: durante a próxima rodada do encontro, 
+qualquer ação executada por um aliado que requeira uma 
+rolagem de 1d20 adiciona seu MAE à rolagem. As exceções 
+a este benefício são os Golpes que reduzem alvos a 
+quantidades fixas de Pontos de Vida.
+
+Lendo a Luta
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um humano.
+Efeito: role 1d20 + MAE + MDE. Se o resultado for 
+16 ou mais, o Narrador deve dizer seis espécies de 
+pokémons, dentre as quais quatro são possuídas pelo alvo. 
+Se o alvo possui menos que quatro pokémons, o Narrador 
+dirá a você dois pokémons, ambos possuídos pelo alvo.
+
+Linguista
+Referência: C,V
+Frequência: Constante. 
+Efeito: escolha uma família de pokémons (o que 
+inclui todas as espécies relacionadas por evolução entre si). 
+Você pode falar os pokémons desta família e entendê-los.
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos não se acumulam. Cada vez que ele é 
+escolhido, ele é aplicado a uma família diferente.
+
+Manobra Coordenada
+Requisitos: Técnica Coordenada.
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Gatilho: um pokémon seu teve sucesso em usar 
+um Golpe.
+Efeito: role 1d20 + MAE. Se o resultado for 16 ou 
+mais, um pokémon de um aliado pode executar 
+instantaneamente um Golpe cuja Frequência é À Vontade 
+ou Rodada Sim Rodada Não, mesmo se ele já usou um 
+Golpe nesta rodada e mesmo se você já tiver dado uma 
+Ação de Comando. Além disso, este pokémon poderá se 
+deslocar, mesmo que já tenha se deslocado esta rodada. 
+Você deve ter linha de visão ao pokémon que está se 
+beneficiando deste Talento.
+
+Sabotagem
+Requisitos: Planejamento.
+Referência: P,X
+Frequência: Diária.
+Alvo: os pokémons selvagens.
+Efeito: role 1d20 + MAE. Se o resultado for 16 ou 
+mais, desloque todos os pokémons selvagens um número 
+de metros igual a seu MAE ou a seu MDE.
+
+Técnica Coordenada
+Requisitos: Coordenação.
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Gatilho: um pokémon seu teve sucesso em usar 
+um Golpe.
+Efeito: role 1d20 + MAE. Se o resultado for 16 ou 
+mais, um pokémon de um aliado pode executar 
+instantaneamente um Golpe cuja Frequência é À Vontade, 
+mesmo se ele já usou um Golpe nesta rodada e mesmo se 
+você já tiver dado uma Ação de Comando. Você deve ter 
+linha de visão ao pokémon que está se beneficiando deste 
+Talento.

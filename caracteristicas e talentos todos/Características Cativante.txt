@@ -1,0 +1,138 @@
+Características Cativante
+
+Ternura
+Referência: C,V
+Frequência: Constante.
+Efeito: quando um pokémon seu com pelo menos 
+um prêmio em Concurso de Fofura sobe de nível, você pode 
+adicionar pontos de Atributos à Velocidade, ignorando a 
+Relação Basal.
+
+Vantagem do Cativante
+Referência: C,V
+Frequência: Constante.
+Efeito: Adicione seu MDE à Pontuação de 
+aparência durante a Apresentação de um Concurso de 
+Fofura. Seus pokémons com Lealdade 2 ou mais são 
+fofinhos: eles são considerados com pelo menos um prêmio 
+em um Concurso de Fofura para fins de seus Talentos. 
+Todos os seus pokémons podem possuir até 20 pontos na 
+Aptidão Ternura, e podem Apelar a até 5 pontos de Aptidão 
+quando poderiam Apelar à Ternura. 
+
+Talentos Cativante
+
+Aliados do Cativante
+Requisitos: 1 prêmios em Espetáculo ou Fisiculturismo.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fofura ou um pokémon aliado com 
+pelo menos um prêmio em Concurso de Fofura.
+Efeito: adicione seu MDE à Dificuldade de Acurácia 
+de um Golpe que tenha o seu pokémon como alvo. Isso não 
+pode ser feito mais de uma vez por combate.
+Em Concursos, o efeito deste Talento é outro: 
+quando o alvo usar um Golpe de Estilo ou Vigor, o Golpe 
+pode não reduzir a Expectativa.
+Arrebatar pela Ternura
+Requisitos: 1 prêmios em Concurso de Beleza ou 
+
+Gincana.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fofura ou um pokémon aliado com 
+pelo menos um prêmio em Concurso de Fofura.
+Efeito: reduza em 2 a Dificuldade de Acurácia de 
+um Golpe cuja Categoria de Concursos é Ternura. Isso não 
+pode ser feito mais de uma vez por combate.
+Em Concursos, o efeito deste Talento é outro: 
+quando o alvo usar um Golpe de Beleza ou Perspicácia, o 
+Golpe aumenta a Expectativa.
+
+Atenção para não Cair
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fofura ou um pokémon aliado com 
+pelo menos um prêmio em Concurso de Fofura.
+Efeito: o alvo ganha a Habilidade Catagem até ser 
+convocado de volta à pokébola.
+
+Brincadeiras
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com um prêmio em 
+Concurso de Fofura.
+Efeito: desde que o pokémon ainda não tenha 
+executado um Golpe nesta rodada do combate, ele 
+imediatamente executa um dos seguintes Golpes: Cativar, 
+Charme, Choro ou Cócegas.
+
+Delicadeza
+Requisitos: um pokémon com Ternura 15.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon seu com Ternura 15 usa um 
+Golpe com a Categoria Ternura.
+Efeito: eleve uma Fase da Velocidade do pokémon.
+Em Concursos, o efeito deste Talento é outro: o 
+alvo rola 1d4 adicional.
+
+Fofo Demais
+Requisitos: 3 prêmios em Concursos de Fofura.
+Referência: P,V
+Frequência: Diária.
+Gatilho: um pokémon seu um prêmio em Concurso 
+de Fofura é alvo de um ataque.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, seu pokémon convence o atacante a ter como alvo 
+um pokémon diferente. O atacante ainda executará o 
+mesmo Golpe e fará o mesmo Teste de Acurácia, mas deve 
+escolher outro alvo válido. Caso não haja outro alvo válido, 
+este Talento tem seu uso desperdiçado. 
+
+Infantilização
+Requisitos: Defesa Especial 16.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon seu ou um pokémon aliado.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, você pode mudar a Natureza do alvo para uma que 
+beneficie a Velocidade à sua escolha.
+
+Miúdo
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fofura ou um pokémon aliado com 
+pelo menos um prêmio em Concurso de Fofura.
+Efeito: o alvo ganha a Habilidade Ligeiro até ser 
+convocado de volta à pokébola.
+
+Subestimado
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fofura ou um pokémon aliado com 
+pelo menos um prêmio em Concurso de Fofura.
+Efeito: o alvo ganha a Habilidade Sorte até ser 
+convocado de volta à pokébola.
+
+Tadinho de Mim!
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu com pelo menos um 
+prêmio em Concurso de Fofura ou um pokémon aliado com 
+pelo menos um prêmio em Concurso de Fofura.
+Efeito: o alvo ganha a Habilidade Tentação até ser 
+convocado de volta à pokébola.

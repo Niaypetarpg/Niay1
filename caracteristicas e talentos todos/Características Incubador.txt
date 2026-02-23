@@ -1,0 +1,136 @@
+Características Incubador
+
+Assim que se Faz!
+Referência: C,V
+Frequência: Constante.
+Alvo: um pokémon que você chocou, a até 20 
+metros de um de seus progenitores.
+Efeito: quando o progenitor ganha Pontos de Experiência, ele pode transferir metade dos pontos de 
+experiência que receberia para o alvo. Se ambos os 
+progenitores receberem pontos de experiência 
+simultaneamente, apenas um pode transferir para o alvo.
+
+Vantagem da Ascendência
+Referência: C,V
+Frequência: Diária.
+Gatilho: um ovo seu está chocando.
+Efeito: o pokémon que nascer saberá um número 
+de Golpes Herdados igual a seu MDE. Os Golpes Herdados 
+deverão constar na lista de Golpes de seus progenitores que 
+podem ser aprendidos subindo de Nível naturalmente ou 
+por Tutor. Você não escolhe quais os Golpes que serão 
+passados adiante ao pokémon, eles são determinados 
+aleatoriamente. Se seu MDE é maior do que o número de 
+Golpes aplicáveis, ele aprende todos os possíveis.
+
+Talento Incubador
+
+Ainda Não!
+Referência: C,V
+Frequência: Constante.
+Gatilho: um ovo está chocando.
+Efeito: se um ovo que você (ou um humano aliado) 
+possui está chocando, você pode atrasar o nascimento por 
+48 horas. Se você não é o dono do ovo, você precisará de 
+permissão deste para usar este Talento.
+
+Chocadeira ++
+Requisitos: Defesa Especial 16.
+Referência: C,V
+Frequência: Constante.
+Alvo: ovos em sua posse.
+Efeito: os ovos que você carrega consigo chocam 
+em apenas 50% do tempo que precisariam. Este Talento 
+substitui Chocadeira e até mesmo Chocadeira +.
+
+Direito de Nascença
+Requisitos: Defesa Especial 16.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um ovo seu está chocando.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, escolha qual a Habilidade do pokémon que nascer 
+dentre as possibilidades normais para ele.
+
+Herança Infundida
+Requisitos: Defesa Especial 16.
+Referência: L,V
+Frequência: Constante.
+Efeito: Golpes Herdados e Golpes Naturais (aqueles 
+aprendidos subindo de Nível) também são considerados 
+dentro das listas de Golpes que podem ser aprendidos por 
+TM ou Tutor para os seus pokémons.
+
+Hiperlexia Parental
+Referência: C,V
+Frequência: Constante.
+Alvo: seus pokémons acima do Nível 15 chocados 
+por você.
+Efeito: você entende os alvos como se estivessem 
+falando seu idioma e eles também entendem você através 
+de linguagem corporal como se você estivesse falando com 
+eles.
+
+Nascimento Poderoso
+Requisitos: Defesa 16.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um ovo seu está chocando.
+Efeito: role 1d20 + MDE. Se o resultado for 13 ou 
+mais, o pokémon nasce com +1 a todos os seus 
+Deslocamentos e também à Capacidade Força. Estes 
+benefícios continuam válidos a seus próximos estágios 
+evolutivos, mas isso não pode elevar a Força de um 
+pokémon além de 7.
+
+Paleta de Atitudes
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um ovo seu está chocando.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, escolha 6 Naturezas. O pokémon que nascer possuirá 
+uma destas seis Naturezas definindo aleatoriamente.
+
+Paleta de Atitudes +
+Requisitos: Defesa Especial 18, Paleta de Atitudes.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um ovo seu está chocando.
+Efeito: role 1d20 + MDE. Se o resultado for 16 ou 
+mais, escolha a Natureza do pokémon que nascer. Este 
+Talento substitui Paleta de Atitudes.
+
+Procriação Minuciosa
+Referência: C,V
+Frequência: Constante.
+Alvo: seus pokémons que você chocou que são 
+filhos de pelo menos um pokémon seu que você também 
+chocou.
+Efeito: os alvos recebem 50% de pontos de 
+experiência adicionais a cada vez que receberem pontos de 
+experiência.
+
+Protetor da Prole
+Referência: I,P,X
+Frequência: Por Encontro.
+Gatilho: um pokémon que você chocou é acertado 
+por um Golpe e está dentro do alcance do seu 
+Deslocamento.
+Efeito: você pode se deslocar imediatamente para 
+interceptar o Golpe. Você sofre o dano e os efeitos do 
+Golpe e, se ele causar dano, você subtrai do dano que 
+sofreria seu MD e seu MDE.
+
+Tutor de Golpes Herdados
+Requisitos: Defesa Especial 20.
+Referência: E,X
+Frequência: Diária.
+Alvo: um pokémon que você chocou.
+Efeito: role 1d20 + MDE. Se o resultado for 23 ou 
+mais, você pode ensinar ao alvo um Golpe Herdado que ele 
+não conhecia. Isso pode ser feito até quatro vezes para cada 
+pokémon.

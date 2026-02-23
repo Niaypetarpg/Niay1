@@ -1,0 +1,125 @@
+Características Especialista
+
+Subversão Estatística
+Referência: P,V
+Frequência: À Vontade.
+Alvo: um pokémon inimigo.
+Efeito: o alvo perde uma Fase do Atributo de 
+Escolha. Uma vez que tenha afetado um pokémon, você 
+não pode afetar o mesmo pokémon ou outro pokémon 
+novamente naquele mesmo combate, a menos que o 
+primeiro alvo tenha ficado inconsciente.
+
+Treinamento de Especialista 
+Referência: C,V
+Frequência: Constante.
+Alvo: o Atributo de Escolha de todos os seus 
+pokémons.
+Efeito: adicione metade de seu MA ou de seu MAE 
+ao Atributo Basal de todos os seus pokémons. Se isso mudar 
+a Relação Basal de um pokémon, distribua seus Pontos de 
+Atributos quando ele subir de Nível conforme a nova 
+Relação Basal.
+
+Talento Especialista
+
+Abundância
+Requisitos: Pressão + ou Pressão Positiva.
+Frequência: Diária.
+Referência: P,V
+Alvo: um pokémon.
+Efeito: seu pokémon perde metade de seus PV 
+máximos e não pode executar um Golpe na rodada atual. 
+Eleve a Fase dele de seu Atributo de Escolha para o máximo 
+possível.
+
+Buscador de Talentos
+Requisitos: dois pokémons com Naturezas que 
+beneficiam o Atributo de Escolha.
+Referência: P,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon selvagem encontrado.
+Efeito: role 1d20 + MA. Se o resultado for 15 ou 
+mais, a Natureza do alvo – em vez de ser determinada 
+aleatoriamente entre todas as Naturezas – será 
+determinada aleatoriamente apenas entre as Naturezas que 
+beneficiam o Atributo de Escolha. Se o resultado da rolagem 
+exceder 25, você pode escolher a Natureza, desde que ela 
+beneficie seu Atributo de Escolha.
+
+Competência Fixa
+Requisitos: Ataque Especial 18.
+Referência: C,V
+Frequência: Constante.
+Efeito: seus pokémons não podem perder Fases de 
+seu Atributo de Escolha.
+
+Desbloquear Atributo
+Requisitos: um pokémon com Atributo de Escolha 
+30.
+Referência: C,V
+Frequência: Constante.
+Efeito: quando um pokémon seu sobe de nível, 
+você pode adicionar pontos de Atributos ao Atributo de 
+Escolha, ignorando a Relação Basal.
+
+Explosão de Atributo
+Requisitos: Nível 10.
+Referência: P,V
+Frequência: Diária.
+Alvo: um pokémon seu.
+Efeito: pelo resto do encontro, o alvo recebe a 
+Habilidade Explosão de Velocidade. Se seu Atributo de 
+Escolha não é Velocidade, ele recebe uma Habilidade 
+análoga denominada Explosão de Ataque, Explosão de 
+Defesa, Explosão de Ataque Especial ou Explosão de Defesa 
+Especial, conforme o seu Atributo de Escolha beneficiando o 
+Atributo de Escolha no lugar de Velocidade.
+
+Pressão Positiva
+Requisitos: Ataque 15, Pressão.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon seu adjacente.
+Efeito: cause dano ao pokémon igual a 20% de seus 
+PV máximos com uma arma. Eleve duas Fases do Atributo 
+de Escolha do pokémon.
+
+Subversão Estatística +
+Requisitos: Ataque Especial 15.
+Referência: P,V
+Frequência: À Vontade.
+Alvo: um pokémon inimigo.
+Efeito: o pokémon alvo perde duas Fases do 
+Atributo de Escolha. Uma vez que tenha afetado um 
+pokémon, você não pode afetar o mesmo pokémon ou 
+outro pokémon novamente naquele mesmo combate, a 
+menos que o primeiro alvo tenha ficado inconsciente. Este 
+Talento substitui Subversão Estatística.
+
+Superioridade
+Requisitos: cinco insígnias ou equivalentes.
+Referência: P,V
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon inimigo.
+Efeito: se o Atributo de Escolha do seu pokémon 
+ativo é maior do que o Atributo de Escolha do pokémon 
+oponente, este perde uma Fase do Atributo de Escolha.
+
+Treinamento de Especialista +
+Requisitos: 3 insígnias ou equivalentes.
+Referência: C,V
+Frequência: Constante.
+Alvo: o Atributo de Escolha de todos os seus 
+pokémons.
+Efeito: adicione seu MA ou seu MAE ao Atributo 
+Basal de todos os seus pokémons. Se isso mudar a Relação 
+Basal de um pokémon, distribua seus Pontos de Atributos 
+quando ele subir de Nível conforme a nova Relação Basal. 
+Além disso, para cada 10 Níveis que você possua, 
+seus pokémons ganham +1 extra ao Atributo Basal de seu 
+Atributo de Escolha.
+Este Talento substitui Treinamento de Especialista.

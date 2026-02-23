@@ -1,0 +1,182 @@
+Características Botânico
+
+Procurar Frutos Curativos
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um local não urbano.
+Efeito: role 1d20 + MDE. Se o resultado for 15 ou 
+mais, você encontra uma Fruta. Para determinar qual fruta, 
+role 1d10 e consulte a tabela abaixo:
+Resultado; Fruta 
+1; Cereja (Cheri) 
+2; Castanha (Chesto) 
+3; Pêssego (Pecha) 
+4; Morango (Rawst) 
+5; Pera (Aspear) 
+6; Maçã (Leppa)
+7; Laranja (Oran)
+8; Caqui (Persim)
+9; Ameixa (Lum)
+10; Toranja (Sitrus)
+
+Semeador
+Referência: C,X
+Frequência: Constante.
+Efeito: você carrega consigo um vaso portátil usado 
+como uma pequena horta para plantar e produzir plantas, 
+que podem gerar Frutas ou Abricós. Ao plantar uma Fruta 
+ou um Abricó em sua Horta, role 1d4 +1. A planta germinará e frutificará em um número de dias igual ao resultado. 
+Quando pronta para colher, role 1d4 para determinar 
+quantas Frutas ou Abricós são produzidos por aquela 
+planta. Você pode ter crescendo em sua Horta portátil até 
+duas plantas simultaneamente. Você não pode trocar qual a 
+planta que está crescendo antes de colher suas Frutas ou 
+seus Abricós abrindo espaço na terra para outro semeio. A 
+Horta portátil pode ser feita dos materiais que você 
+preferir, mas pesa 7 kg e possui as seguintes dimensões: 45 
+centímetros por 30 centímetros por 15 centímetros, 
+tornando impossível carregar mais de uma consigo.
+
+Talentos Botânico
+
+Busca Mundana
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um local não urbano.
+Efeito: role 1d20 + MDE. Se o resultado for 15 ou 
+mais, você encontra uma Fruta à sua escolha que não 
+possui qualquer efeito.
+
+Busca Rara
+Referência: P,X
+Requisitos: já ter colhido uma das seguintes frutas 
+em sua Horta: carambola (Starf), Enigma, fruta milagrosa 
+(Micle), jabuticaba (Jaboca), jambo (Rowap), pinha (Custap).
+Alvo: um local não urbano.
+Efeito: role 1d20 + MDE. Se o resultado for 20 ou 
+mais, você encontra uma Fruta. Para determinar qual fruta, 
+role 1d6 e consulte a tabela abaixo:
+Resultado; Fruto
+1; Langsat (Lansat)
+2; Carambola (Starf)
+3; Enigma
+4; Fruta Milagrosa (Micle)
+5;Pinha (Custap)
+6; Jabuticaba (Jaboca)
+
+Busca Saborosa
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um local não urbano.
+Efeito: role 1d20 + MDE. Se o resultado for 15 ou 
+mais, você encontra uma Fruta. Para determinar qual fruta, 
+role 1d6 e consulte a tabela abaixo:
+Resultado; Fruto 
+1; Figo (Figy) 
+2; Kiwi (Wiki)  
+3; Manga (Mago) 
+4; Goiaba (Aguav)
+5; Mamão (Iapapa)
+6; Role novamente
+
+Coma Agora!
+Referência: P,V
+Frequência: Diária. A cada 7 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon aliado.
+Efeito: o alvo imediatamente consome e se 
+beneficia dos efeitos da fruta que ele carrega, ignorando 
+fatores ativadores (como estar a menos da metade dos PV).
+
+Conhecedor de Frutos
+Referência: C,V
+Frequência: Constante.
+Efeito: você pode identificar qualquer Fruta, suas 
+propriedades e seus sabores (portanto como ela influencia 
+Aptidões). Receba +2 às rolagens para produzir Sucos ou 
+Temperos. Quando seu pokémon come uma Fruta cujo 
+sabor ele gosta, quaisquer ganhos de lealdade são 
+dobrados. 
+
+Eficiência da Fruta
+Referência: C,V
+Frequência: Constante.
+Gatilho: um pokémon se alimenta de uma fruta.
+Efeito: o alvo não consumirá a fruta, mas ainda 
+receberá seus benefícios. Na segunda vez que aquela fruta 
+conceder seus benefícios, ela será consumida normalmente.
+
+Fundir Frutas
+Requisitos: Defesa Especial 18.
+Referência: P,X
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional.
+Alvo: cinco frutas iguais.
+Efeito: você usa as cinco frutas para produzir um 
+Item que, ao ser Mantido, possui os mesmos efeitos das 
+Frutas usadas para produzi-lo, mas que não é consumido ao 
+ser usado enquanto Mantido. Se o item for usado mais de 
+uma vez diária, ele se quebra, tornando-se lixo. Você pode 
+chamar o item pelo nome que quiser e pode usar sua 
+criatividade para dizer como ele é. Ele não é mais uma 
+Fruta.
+
+Hibridização
+Requisitos: já ter colhido dez frutos em sua Horta.
+Referência: P,X
+Frequência: À Vontade.
+Alvo: frutos.
+Efeito: quando plantar um fruto em sua Horta, 
+você pode plantar dois frutos de modo a gerarem uma 
+planta híbrida. Ela dará frutas mestiças que possuem os
+efeitos de ambas as frutas plantadas. Quando consumida, 
+se ambos os efeitos da fruta híbrida não são aplicáveis, 
+aplica-se somente o relevante. Frutas híbridas não podem 
+ser usadas para Hibridização.
+
+Nutrientes Especiais
+Referência: P,X
+Frequência: Semanal.
+Alvo: frutas plantadas.
+Efeito: escolha uma fruta plantada. Ela crescerá e 
+frutificará em 24 horas, subtraindo um número de horas 
+igual a seu MDE.
+
+Procura Alterada
+Requisitos: quatro Talentos de Botânico (desconte as Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um local não urbano.
+Efeito: role 1d20 + MDE. Se o resultado for 20 ou 
+mais, você pode escolher um pokémon seu com pelo menos 
+um Atributo 20. Você encontra uma Fruta que reduz o 
+Atributo selecionado.
+
+Procura Eficiente
+Requisitos: Defesa Especial 16.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um local não urbano.
+Efeito: role 1d20 + MDE. Se o resultado for 20 ou 
+mais, você pode escolher um pokémon seu. Você encontra 
+uma Fruta que reduz o dano sofrido por um Golpe ao qual o 
+pokémon escolhido é vulnerável. Você pode 
+alternativamente não escolher um pokémon seu, caso em 
+que encontrará um sininho (Chilan).
+
+Procura Melhorada
+Requisitos: um pokémon com um Atributo 30.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um local não urbano.
+Efeito: role 1d20 + MDE. Se o resultado for 15 ou 
+mais, você pode escolher um pokémon seu com pelo menos 
+um Atributo 20. Você encontra uma Fruta que aumenta 
+uma Fase naquele Atributo quando o pokémon está com 
+menos da metade dos PV.

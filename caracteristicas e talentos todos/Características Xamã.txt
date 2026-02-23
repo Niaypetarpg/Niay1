@@ -1,0 +1,145 @@
+Características Xamã
+
+Empréstimo
+Referência: P,X
+Frequência: Diária.
+Gatilho: você deixa uma 
+possessão para voltar para seu corpo.
+Efeito: escolha um Golpe 
+conhecido pelo pokémon que você estava possuindo. Você 
+pode usar o Golpe selecionado uma vez dentro de 24 horas, 
+mesmo que não esteja mais possuindo o pokémon. 
+
+Possessão
+Referência: P,X
+Frequência: À Vontade.
+Alvo: um pokémon.
+Efeito: faça um Teste de Captura para o pokémon 
+alvo subtraindo metade de sua Defesa do resultado da 
+rolagem. Se o resultado final for menor que a Chance de 
+Captura do pokémon alvo, você o possuiu. Você está em 
+total controle do pokémon possuído e designa cada ação 
+dele. Você tem conhecimento sobre as Habilidades, as 
+Capacidades e o Golpes do pokémon possuído.
+Enquanto você está possuindo um pokémon, seu 
+corpo original está inconsciente: ele não pode fazer 
+nenhum teste por conta própria, falhando se necessário.
+Você ainda pode executar uma Ação Padrão por 
+rodada, pode – mediante seu corpo pokémon – comandar 
+seus pokémons e se desloca, mas o deslocamento é feito 
+com o corpo do pokémon possuído e usa os Deslocamentos 
+dele. Neste estado de transferência mental para o 
+pokémon, usar um Golpe do pokémon consome a sua Ação 
+Padrão. A menos que um Talento diga o contrário, você não 
+pode ativar Talentos humanos enquanto possuir um 
+pokémon, salvo por Talentos que permitem o uso de 
+Golpes, caso em que você usa as estatísticas do pokémon 
+possuído em vez de as suas próprias. Se você usar algo que 
+envolve sacrifício de Pontos de Vida, os PV perdidos são do 
+pokémon possuído, não do seu corpo humano.
+Você pode deixar o pokémon possuído durante o 
+seu turno como humano consumindo sua Ação Padrão. Se o 
+pokémon que você está possuindo desmaiar, você 
+imediatamente retorna ao seu corpo. Se o pokémon 
+possuído morrer, você morre. Se o pokémon possuído for 
+capturado ou retornado à pokébola enquanto você o 
+possui, a sua mente está trancada dentro da pokébola junto 
+com o corpo do pokémon possuído até que ele seja liberado 
+da pokébola.
+Golpes adquiridos mediante Empréstimo e 
+Permissão não podem ser usados durante a Possessão.
+Você só pode possuir um pokémon.
+Usar Possessão exaure 35 Pontos de Vida.
+
+Talentos Xamã
+
+Canalizar Força
+Referência: C,X
+Frequência: Constante.
+Efeito: enquanto possuindo um pokémon, para 
+cada pokémon depois do primeiro que você estiver 
+canalizando adicione +1d6 às rolagens de danos dos 
+pokémons canalizados.
+
+Comunhão
+Referência: L,X
+Frequência: Por Encontro.
+Efeito: se você estiver possuindo um pokémon e 
+ele receber pontos de experiência, você pode sacrificar 10 
+Pontos de Vida para que o pokémon receba 25% de pontos 
+de experiência adicionais. 
+
+Dois se Tornam Um
+Requisitos: seis Talentos de Xamã (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária.
+Efeito: enquanto você possui um pokémon, o Nível 
+do pokémon é aumentado por seu Nível para fins de definir 
+quais Golpes ele conhece.
+
+Empréstimo Duradouro
+Referência: C,X
+Frequência: Constante.
+Efeito: você pode usar Golpes adquiridos mediante 
+Empréstimo ou Permissão enquanto possui outro pokémon.
+
+Ferocidade
+Referência: C,X
+Frequência: Constante.
+Efeito: quando um pokémon possuído por você usa 
+um Golpe causador de dano, adicione seu MD ao dano.
+
+Mente Dominante
+Requisitos: quatro Talentos de Xamã (desconte as 
+Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Gatilho: o pokémon que você está possuindo é 
+afligido com Confusão, Paixão ou Sono.
+Efeito: role 1d20 + MD. Se o resultado for 11 ou 
+mais, o pokémon não foi afligido com a Condição.
+
+Misticismo +
+Referência: C,X
+Frequência: Constante.
+Efeito: adicione dez vezes seu MD a seus Pontos de 
+Vida máximos. Isso só se aplica ao seu corpo humano. Este 
+Talento substitui Misticismo.
+
+Natureza Amiga
+Requisitos: um pokémon leal que já evoluiu pelo 
+menos uma vez com você.
+Referência: C,X
+Frequência: Constante.
+Efeito: quando o alvo da sua Possessão é um 
+pokémon seu leal, você automaticamente tem sucesso em 
+possuí-lo.
+
+Presas
+Referência: L,X
+Frequência: Diária.
+Gatilho: você acerta um Golpe Corpo a Corpo em 
+sua forma humana ou pokémon.
+Efeito: recupere um número de PV igual à metade 
+do dano causado.
+
+Primitivo
+Referência: C,X
+Frequência: Constante.
+Efeito: o pokémon possuído por você tem seus 
+Deslocamentos aumentados pela metade de seu MD.
+
+Seleção
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Gatilho: você deixa uma possessão para voltar para 
+seu corpo.
+Efeito: escolha uma das seguintes Capacidades: 
+Aura, Calor, Combustão, Congelação, Eletricidade, 
+Encolhimento, Faro, Fiação, Frio, Geleira, Hierarquia, 
+Ininteligível, Luminar, Magnetismo, Manancial, 
+Materialização, Onirismo, Rebento, Sedução, Silêncio, 
+Térreo, Tumefação, Vento.

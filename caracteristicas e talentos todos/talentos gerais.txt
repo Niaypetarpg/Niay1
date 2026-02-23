@@ -1,0 +1,337 @@
+Talentos Gerais 
+Acredito em Você! 
+Requisitos: Defesa Especial 15. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: pelo resto do combate atual, seu pokémon 
+causa dano extra a cada vez que usar um Golpe. O dano 
+extra é igual a um número de d6 igual a seu MDE. 
+
+Aguento Outra! 
+Requisitos: Saúde 13. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: quando sofrer dano, reduza em 5 o dano 
+sofrido. Isso não reduz o custo de ativar Talentos. 
+
+Aguento Outra! + 
+Requisitos: Saúde 17. 
+Referência: C, X
+Frequência: Constante. 
+Efeito: Quando sofrer dano por qualquer razão, 
+reduza em 10 o dano sofrido. Isso não reduz o custo de 
+ativar Talentos. Este Talento substitui Aguento Outra!. 
+
+Ainda Não! 
+Requisitos: Defesa 17. 
+Referência: L, V
+Frequência: Diária. 
+Gatilho: um pokémon seu cai a 0 Pontos de Vida 
+ou menos, mas não a menos que uma quantidade de 
+Pontos de Vida negativos igual a 100% de seus Pontos de 
+Vida máximos. 
+Efeito: antes de desmaiar, o pokémon alvo pode 
+executar uma única ação, que pode ser usada para um 
+Golpe ou para se mover, e então ele desmaia. Os seguintes 
+Golpes não são permitidos para tanto: Autodestruição, 
+Esforço, Explosão, Mangual, Reversão, Sofrimento Mútuo. 
+
+Arma de Escolha 
+Referência: P, X
+Frequência: Constante. 
+Efeito: Escolha um tipo de arma específico (como 
+ataque desarmado, espada longa, besta, etc.). Quando usar 
+a Arma de Escolha, sua Dificuldade de Acurácia é de apenas 
+4 e sua tabela de dano de Armas não é aquela apresentada 
+no Talento Armas, sendo substituída pela seguinte:Dano 
+* ; 1; 1d10 +4 Físico 
+1 a 6 ; 2; 1d12+6 Físico 
+*; 3; 2d8+6 Físico 
+7 a 14; 4; 2d10+8 Físico 
+*; 5; 3d8+10 Físico 
+15 ou mai; 6; 3d10+12 Físico 
+*; 7; 3d12+14 Físico 
+*; 8; 4d12+16 Físico 
+* Talentos, Características e outros podem alterar seu Dano Basal.
+
+Cuidado! 
+Requisitos: Velocidade 14. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: Durante esta rodada, se seu pokémon alvo 
+for atacado, jogue uma moeda várias vezes, até sair cara, e 
+não coroa. Quando o inimigo for fazer o Teste de Acurácia, 
+ele deve obter um resultado maior que o número de vezes 
+que a moeda foi jogada ou ele errará. 
+
+Dê Tudo de Si! 
+Referência: L, V
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional. 
+Alvo: um Golpe de um dos seus pokémons. 
+Efeito: Este Golpe acerta e é Crítico. 
+
+Deixa Ajudar com Isso! 
+Referência: P, X
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional. 
+Gatilho: um humano aliado está fazendo um teste. 
+Efeito: o aliado recebe +2 ao teste. 
+
+Deixa Ajudar Agora! 
+Requisitos: Nível 10, Deixa Ajudar com Isso! 
+Referência: P, X
+Frequência: Diária. A cada 7 Níveis, receba um uso 
+diário adicional. 
+Gatilho: um humano aliado está fazendo um teste. 
+Efeito: o aliado recebe +5 ao teste. 
+
+Dê-Me Espaço! 
+Referência: L, V
+Frequência: Uso Único. A cada 10 Níveis, receba 
+um uso adicional. 
+Gatilho: um pokémon seu foi alvo de um ataque. 
+Efeito: seu pokémon imediatamente se desloca. Se 
+ele se mover para fora da área do ataque original, ele não 
+sofre os efeitos daquele ataque. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Filiação à Liga Oficial 
+Requisitos: 12 insígnias ou equivalentes, Nível 20, 
+um Ginásio ou equivalente no valor de pelo menos 380000 
+créditos. 
+Referência: C, V
+Frequência: Constante. 
+Efeito: Receba +2 à sua Defesa Especial. Você assu
+me as responsabilidades de um Líder de Ginásio ou equiva
+lente (como Cérebro da Fronteira, por exemplo) e deve 
+aceitar desafios pelo menos semanais. Se você perder, você 
+deve dar ao vencedor uma insígnia (ou equivalente, como 
+uma Medalha de Fronteira dada pelos Cérebros de Frontei
+ra). Você não precisa estar fisicamente presente em seu 
+Ginásio para aceitar desafios o tempo todo, mas precisar 
+deixar claro à população geral que está disponível para ser 
+desafiado e dedicar um tempo para as batalhas oficiais dos 
+desafiantes. Semanalmente, desde que você aceite pelo 
+menos três desafios, você receberá 2000 créditos por seus 
+serviços como membro da Liga. Você deve criar insígnias em 
+seu próprio Ginásio (elas só podem ser criadas oficialmente 
+lá) para dá-las aos possíveis treinadores que vencerem você 
+(você não deve ficar sem insígnias) e criar cada uma custa 
+1050 créditos. Você só pode ocupar um cargo oficial na Liga, 
+mesmo que se qualifique para mais de um. 
+
+Já Ouvi Falar! 
+Requisitos: Ataque Especial 14 ou Defesa Especia 14. 
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: qualquer coisa que você esteja percebendo, 
+até mesmo uma ideia ou frase. 
+Efeito: role 1d20 + MAE e MDE. Se o resultado for 
+14 ou mais, você sabe algo sobre o alvo, contudo, se o alvo 
+for um pokémon, você já deve tê-lo tido como alvo de sua 
+pokéagenda antes para poder usar este Talento nele. 
+
+Karma do Ash 
+Requisitos: ter libertado três pokémons leais 
+totalmente evoluídos. 
+Referência: L, V
+Frequência: Diária. 
+Alvo: uma rolagem. 
+Efeito: você rola novamente um dado da rolagem. 
+
+
+
+
+
+
+
+
+Meditação 
+Requisitos: um entre Saúde 12, Ataque Especial 12 
+ou Defesa Especial 12 
+Referência: L, V
+Frequência: À Vontade. 
+Gatilho: um humano ou pokémon tenta ler sua 
+mente. 
+Efeito: Role 1d20 + MAE ou MDE. Se o resultado 
+for 13 ou mais, você mantém sua mente se concentrando 
+em um tópico único à sua escolha (ou em nada). A criatura 
+que tentar ler sua mente não obterá nenhuma informação 
+sobre seus pensamentos ou seus conhecimentos. Ao ativar 
+este Talento sua mente está segura contra tentativas de ler 
+mentes por uma hora. 
+
+Mega! 
+Requisitos: todos os Atributos 10, uma Pedra
+Chave. 
+Referência: P, V
+Frequência: Diária. 
+Alvo: um pokémon com uma Megapedra. 
+Efeito: o pokémon alvo megaevolui por 10 minutos 
+ou até atingir 0 Pontos de Vida.
+
+Mire no Chifre! 
+Requisitos: Ataque Especial 13.
+Referência: P, V
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional. 
+Gatilho: seu pokémon está executando um Golpe. 
+Efeito: se o resultado do Teste de Acurácia for 19 
+ou 20, o ataque do seu pokémon causará dano neutro, 
+ignorando todas as resistências e imunidades.
+
+Mire no Chifre! + 
+Requisitos: Ataque Especial 16, Mire no Chifre. 
+Referência: P, V
+Frequência: Diária. A cada 4 Níveis, receba um uso 
+diário adicional. 
+Gatilho: seu pokémon está executando um Golpe. 
+Efeito: Se o resultado do Teste de Acurácia for 16 
+ou mais, o ataque do seu pokémon causará dano neutro, 
+ignorando todas as resistências e imunidades. Este Talento substitui Mire no Chifre.  
+
+Multitarefa 
+Requisitos: todos os Atributos 12, Nível 10.
+Referência: C, V 
+Frequência: Constante. 
+Efeito: você pode executar duas Ações Padrões por 
+rodada. Você ainda não poderá usar ativar mais de uma vez 
+por rodada Talentos (mesmo diferentes) que requerem 
+Ações Padrões. 
+
+
+
+
+
+
+
+
+
+
+Não se Meta Comigo! 
+Requisitos: Defesa Especial 13. 
+Referência: P, X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Gatilho: um humano desafia você para uma 
+batalha não oficial. 
+Efeito: role 1d20 + MDE. Se o resultado for maior 
+que 10, o humano é intimidado e recua de seu desafio. 
+
+O Escolhido 
+Requisitos: Nível 20. 
+Referência: L, V
+Frequência: Diária. 
+Gatilho: você falha em um teste que não é de um 
+pokémon. 
+Efeito: você tem sucesso no teste. 
+
+Rotina de Estudos 
+Requisitos: ter comprado um livro pelo menos uma 
+vez. 
+Referência: C, V
+Frequência: Constante. 
+Efeito: você deve comprar um livro em uma loja a 
+cada cidade que visite. Se você não tiver pelo menos 70 
+créditos para comprar um livro quando chegar numa 
+cidade, você perde os benefícios deste Talento até ser capaz 
+de comprar o livro. Este Talento aumenta em um seu 
+Ataque Especial ou sua Defesa Especial. 
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos se acumulam. Você precisa comprar 
+apenas um livro para manter funcional este Talento mesmo 
+que o possua várias vezes. 
+
+Rotina de Exercícios 
+Requisitos: ter se exercitado pelo menos uma vez.
+Referência: C, V 
+Frequência: Constante. 
+Efeito: você deve se exercitar pelo menos uma vez 
+a cada três dias. Uma prática de exercícios deve consumir 
+pelo menos 30 minutos e ela lhe faz perder 10 PV. Se você 
+não se exercitar pelo menos a cada três dias, você perde os 
+benefícios deste Talento até ser capaz de retomar sua 
+rotina de exercícios, fazendo exercício – neste caso – por 
+dois dias consecutivos. Este Talento aumenta em um sua 
+Saúde, seu Ataque, sua Defesa ou sua Velocidade. 
+Especial: este Talento pode ser escolhido diversas 
+vezes. Seus efeitos se acumulam. Você não precisa 
+aumentar sua quantidade de exercícios para manter 
+funcional este Talento mesmo que o possua várias vezes. 
+
+
+
+
+
+
+
+
+Socorrista 
+Requisitos: um entre Ataque Especial 13 ou Defesa Especial 13.
+Referência: P, X 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um humano. 
+Efeito: role 1d20 + MAE ou MDE. Cure um número 
+de Pontos de Vida do alvo igual ao resultado da rolagem. 
+
+Sorte do Ash 
+Requisitos: ter libertado um pokémon leal 
+totalmente evoluído. 
+Referência: L, V
+Frequência: Diária. 
+Alvo: uma rolagem. 
+Efeito: ao custo de 15 Pontos de Vida (este 
+sacrifício não pode ser ignorado de forma alguma), você 
+pode rolar novamente um dado da rolagem. 
+
+Vai Abrir! 
+Requisitos: Ataque Especial 15. 
+Referência: P, X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: 
+uma fechadura ou trava não 
+computadorizada. 
+Efeito: role 1d20 + MAE. Se o resultado for maior 
+que 15, a fechadura ou a trava são arrombadas, e não 
+haverá sinais de arrombamento. 
+
+Você Isso e Você Aquilo! 
+Requisitos: Nível 10, todos os Atributos 12. 
+Referência: C, V
+Frequência: Constante. 
+Efeito: você pode controlar dois pokémons 
+simultaneamente. Ambos os pokémons entram na ordem 
+da iniciativa. Você ainda possui apenas uma Ação Padrão 
+por rodada, mas pode usá-la para dar ordens a dois 
+pokémons ao mesmo tempo. Este Talento não pode ser 
+usado se o Talento Multitarefa estiver em uso.
+

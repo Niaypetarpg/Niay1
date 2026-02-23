@@ -1,0 +1,105 @@
+Características Médico
+
+Relaxantes Musculares
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano Paralisado.
+Efeito: restaura a Paralisia.
+
+Tratar Ferimentos Mínimos 
+Referência: P,X
+Frequência: Diária. A cada 7 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: o alvo recupera 20 Pontos de Vida.
+
+Talentos Médico
+
+Analgésicos
+Requisitos: Defesa 15.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano Envenenado ou 
+Queimado.
+Efeito: restaura a Queimadura ou o Veneno.
+
+Alta Medicina
+Requisitos: Defesa 18.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon.
+Efeito: o pokémon recupera todos os usos de 
+Golpes cujas Frequências são Diárias.
+
+Médico Especialista
+Referência: C,V
+Frequência: Constante.
+Efeito: quando você usa um item restaurativo (por 
+exemplo: uma Poção ou um item que restaura Condições, 
+como um Antídoto), ele cura uma quantidade de PV extras 
+igual à sua Defesa.
+
+Não Morrerá Comigo Aqui!
+Requisitos: Defesa 20.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano que falhou em 
+um Teste de Morte há menos de cinco minutos.
+Efeito: o alvo pode refazer o Teste de Morte falho. 
+Ele subtrai 5 de sua rolagem se for humano ou 25 se for um 
+pokémon.
+
+Não Morrerá Comigo Aqui! +
+Requisitos: Não Morrerá Comigo Aqui!.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon ou um humano que falhou em 
+um Teste de Morte há menos de cinco minutos.
+Efeito: o alvo pode refazer o Teste de Morte falho. 
+Ele subtrai sua Defesa de sua rolagem se for humano ou a 
+soma de sua Defesa e sua Defesa Especial se for um 
+pokémon. Este Talento substitui Não Morrerá Comigo Aqui!
+
+Sobreviveu Graças à Medicina!
+Requisitos: quatro Talentos de Médico (desconte as Características de Classe para este cálculo).
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Efeito: você pode usar dois itens restaurativos ou 
+dois Talentos de Médico em uma mesma Ação Padrão. 
+Alternativamente, você pode usar um item restaurativo e 
+um Talento de Médico em uma mesma Ação Padrão.
+
+Terapia de Choque
+Requisitos: Analgésicos.
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano Congelado ou 
+Sonolento.
+Efeito: restaura o Congelamento ou o Sono.
+
+Tratar Ferimentos Críticos
+Requisitos: Defesa 18.
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: o alvo recupera 80 Pontos de Vida.
+
+Tratar Ferimentos Graves
+Requisitos: Defesa 16.
+Referência: P,X
+Frequência: Diária. A cada 9 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: o alvo recupera 60 Pontos de Vida.
+
+Tratar Ferimentos Leves
+Referência: P,X
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: o alvo recupera 40 Pontos de Vida.

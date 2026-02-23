@@ -1,0 +1,201 @@
+Características Síncrono
+
+Espírito de Equipe
+Referência: C,V
+Frequência: Constante.
+Alvo: dois pokémons ativos seus.
+Efeito: seus dois pokémons ativos elevam 
+suas Fases de um Atributo, que deve ser o maior 
+Atributo Basal do outro pokémon, salvo Saúde. 
+Sempre que mudar um pokémon ativo ou ambos, 
+Espírito de Equipe não mais eleva as Fases 
+conforme os pokémons anteriores (eles perdem as 
+Fases ganhas) para fazê-lo conforme os novos 
+pokémons ativos e seus Atributos respectivos. Se 
+houver dois Atributos Basais empatados, você pode 
+escolher qual será usado para esta Característica de Classe.
+
+Juntos!
+Referência: P,V
+Frequência: Diária.
+Alvo: dois pokémons ativos seus.
+Efeito: os alvos podem combinar dois Golpes se 
+estes compartilharem o mesmo Tipo e puderem ter o 
+mesmo alvo (por exemplo, um Golpe que tem como alvo 
+uma ou duas criaturas e um Golpe que tem como alvo uma 
+criatura podem ser combinados afetando uma só criatura, 
+mas um Golpe que tem como alvo um humano ou uma área 
+não poderá ser combinado a um Golpe que tem como alvo 
+um pokémon). Além disso, ambos os Golpes devem usar o 
+mesmo Atributo (Ataque ou Ataque Especial, não podendo 
+nenhum dos dois ser de Campo ou Efeito) e nenhum dos 
+Golpes deve possuir o Descritor Saraivada.
+Golpes combinados acontecem na ação do 
+pokémon mais lento (o pokémon mais rápido espera para 
+agir em sincronia com o outro, e só se desloca no momento 
+da ação do outro). Só é feito um Teste de Acurácia, usando 
+a média das Dificuldades de Acurácia. A rolagem de dano é 
+a soma das rolagens dos danos dos Golpes. Cada Golpe tem 
+sua Frequência impactada como se tivesse sido usado 
+separadamente. Quaisquer descrições e Efeitos que um 
+Golpe possua se aplicarão ao novo Golpe combinado como
+se ambos os Golpes fossem um só.
+
+Talentos Síncrono
+
+Apoio!
+Referência: C,V
+Frequência: Constante.
+Alvo: dois pokémons ativos seus ou um pokémon 
+ativo seu e si.
+Efeito: Enquanto seus dois pokémons ativos 
+estiverem adjacentes um ao outro, nenhum dos dois pode 
+ser Empurrado, portanto também não sofre dano por 
+Empurrão. Você não pode ser Empurrado nem sofrer dano 
+por Empurrão se estiver adjacente a um pokémon seu.
+
+Assalto Duplo
+Requisitos: Interferência.
+Referência: P,V
+Frequência: Diária. A cada 8 Níveis, receba um uso 
+diário adicional.
+Gatilho: um pokémons seu causa dano a um 
+oponente que também sofreu dano de outro pokémon 
+ativo seu nesta mesma rodada.
+Efeito: o oponente perde uma Fase do Atributo 
+mais alto de um de seus dois pokémons.
+
+Com Eles!
+Referência: L,V
+Frequência: Diária.
+Alvo: seu pokémon ativo enquanto você está em 
+uma batalha dupla ao lado de um aliado que possui o outro 
+pokémon ativo aliado da batalha dupla.
+Efeito: seu pokémon pode combinar um Golpe 
+com o pokémon do seu aliado se os dois Golpes 
+compartilharem o mesmo Tipo e puderem ter o mesmo alvo 
+(por exemplo, um Golpe que tem como alvo uma ou duas 
+criaturas e um Golpe que tem como alvo uma criatura 
+podem ser combinados afetando uma só criatura, mas um 
+Golpe que tem como alvo um humano ou uma área não poderá ser combinado a um Golpe que tem como alvo um 
+pokémon). Além disso, ambos os Golpes devem usar o 
+mesmo Atributo (Ataque ou Ataque Especial, não podendo 
+nenhum dos dois ser de Campo ou Efeito) e nenhum dos 
+Golpes deve possuir o Descritor Saraivada.
+Golpes combinados acontecem na ação do 
+pokémon mais lento (o pokémon mais rápido espera para 
+agir em sincronia com o outro, e só se desloca no momento 
+da ação do outro). Só é feito um Teste de Acurácia, usando 
+a média das Dificuldades de Acurácia. A rolagem de dano é 
+a soma das rolagens dos danos dos Golpes. Cada Golpe tem 
+sua Frequência impactada como se tivesse sido usado 
+separadamente. Quaisquer descrições e Efeitos que um 
+Golpe possua se aplicarão ao novo Golpe combinado como 
+se ambos os Golpes fossem um só.
+
+Combo!
+Requisitos: Defesa 22.
+Referência: P,V
+Frequência: Diária.
+Alvo: dois pokémons ativos seus.
+Efeito: os alvos podem combinar dois Golpes que 
+podem ter o mesmo alvo (por exemplo, um Golpe que tem 
+como alvo uma ou duas criaturas e um Golpe que tem como 
+alvo uma criatura podem ser combinados afetando uma só 
+criatura, mas um Golpe que tem como alvo um humano ou 
+uma área não poderá ser combinado a um Golpe que tem 
+como alvo um pokémon). Além disso, ambos os Golpes 
+devem usar o mesmo Atributo (Ataque ou Ataque Especial, 
+não podendo nenhum dos dois ser de Campo ou Efeito) e 
+nenhum dos Golpes deve possuir o Descritor Saraivada.
+Golpes combinados acontecem na ação do poké-
+mon mais lento (o pokémon mais rápido espera para agir 
+em sincronia com o outro, e só se desloca no momento da 
+ação do outro). Se forem de Tipos diferentes, eles serão 
+considerados sem um tipo específico, ignorando quaisquer 
+resistências, vulnerabilidades e imunidades. Só é feito um 
+Teste de Acurácia, usando a média das Dificuldades de Acurácia. A rolagem de dano é a soma das rolagens dos danos 
+dos Golpes. Cada Golpe tem sua Frequência impactada como se tivesse sido usado separadamente. Quaisquer descri-
+ções e Efeitos que um Golpe possua se aplicarão ao novo 
+Golpe combinado como se ambos os Golpes fossem um só.
+
+Impulso Sincronizado
+Requisitos: Interferência.
+Referência: L,V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Gatilho: um pokémons seu causa dano a um 
+oponente que também sofreu dano de outro pokémon 
+ativo seu nesta mesma rodada.
+Efeito: o pokémon inimigo é Empurrado um 
+número de metros em uma direção à sua escolha igual à 
+soma das Forças de seus pokémons ativos.
+
+Interferência
+Referência: C,V
+Frequência: Constante.
+Alvo: um pokémon que foi acertado por dois 
+pokémons seus nesta rodada.
+Efeito: a Dificuldade da Acurácia do alvo aumenta 
+em 2 no turno dele se tiver como alvo(s) seu(s) pokémon(s).
+
+Por um Amigo
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um de seus dois pokémons adjacentes é 
+alvo de um Golpe.
+Efeito: role 1d20 + MA. Se o resultado for 16 ou 
+mais, o pokémon ativo que não havia sido o alvo original do 
+Golpe pode interceptá-lo se tornando o alvo no lugar do 
+pokémon que originalmente sofreria o Golpe. Se o Golpe 
+tem como alvo uma área que inclui ambos os pokémons, 
+um de seus pokémons pode escolher sofrer todo o dano, 
+recebendo os efeitos do Golpe duas vezes.
+
+Por um Amigo +
+Requisitos: Por um Amigo.
+Referência: L,V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um de seus dois pokémons adjacentes é 
+alvo de um Golpe.
+Efeito: role 1d20 + MA. Se o resultado for 11 ou 
+mais, o pokémon ativo que não havia sido o alvo original do 
+Golpe pode interceptá-lo se tornando o alvo no lugar do 
+pokémon que originalmente sofreria o Golpe. Se o Golpe 
+tem como alvo uma área que inclui ambos os pokémons, 
+um de seus pokémons pode escolher sofrer todo o dano, 
+recebendo os efeitos do Golpe duas vezes. Este Talento 
+substitui Treinamento de Especialista.
+
+Tentem Isso!
+Requisitos: Combo!
+Referência: P,V
+Frequência: Diária.
+Alvo: dois pokémons ativos seus.
+Efeito: os alvos podem combinar dois Golpes não 
+causadores de dano se ambos puderem ter o mesmo alvo 
+(por exemplo, um Golpe que tem como alvo uma ou duas 
+criaturas e um Golpe que tem como alvo uma criatura 
+podem ser combinados afetando uma só criatura, mas um 
+Golpe que tem como alvo um humano ou uma área não poderá ser combinado a um Golpe que tem como alvo um pokémon). Nenhum dos Golpes podem copiar outros Golpes, 
+afetar Pontos de Vida nem possuir o Descritor Barreira.
+Golpes combinados acontecem na ação do 
+pokémon mais lento (o pokémon mais rápido espera para 
+agir em sincronia com o outro, e só se desloca no momento 
+da ação do outro). Só é feito um Teste de Acurácia, usando 
+a média das Dificuldades de Acurácia. Cada Golpe tem sua 
+Frequência impactada como se tivesse sido usado 
+separadamente. Quaisquer descrições e Efeitos que um 
+Golpe possua se aplicarão ao novo Golpe combinado como 
+se ambos os Golpes fossem um só.
+
+Trabalho em Equipe
+Referência: C,V
+Frequência: Constante.
+Alvo: dois pokémons ativos seus.
+Efeito: adicione metade de seu MA a um dos tipos 
+de Deslocamentos dos alvos. Em cada alvo, o Deslocamento 
+que recebe este bônus é aquele que o outro alvo possui 
+mais alto naturalmente.

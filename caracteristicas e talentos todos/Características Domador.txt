@@ -1,0 +1,128 @@
+Características Domador
+
+Domação
+Referência: L,X
+Frequência: À Vontade.
+Alvo: um pokémon selvagem.
+Efeito: você nomeia o alvo sua Presa. Quando 
+calcular a Chance de Captura de sua Presa, reduza o Nível 
+dela por metade de seu MV. Você só pode possuir uma 
+Presa e só pode declarar um alvo uma Presa no início de sua 
+rodada.
+
+Laçar
+Referência: P,X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional.
+Alvo: um pokémon ou um humano.
+Efeito: role 1d20 + MV. Se o resultado for 12 ou 
+mais, o alvo está Laçado. Um alvo Laçado não pode se 
+mover além de seis metros de você. Ele pode tentar se 
+libertar da Condição se não estiver também Confuso, 
+inconsciente ou dormindo. Para tentar se libertar, ele deve 
+sacrificar a ação dele para fazer uma rolagem. Se ele for um 
+pokémon, ele rola 1d20 + Capacidade Força. Se for um 
+humano, rola 1d20 + metade de seu MA. Em uma rolagem 
+de 14 ou mais, ele se liberta.
+
+
+Talentos Domador
+
+Armadilha Paralisante
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon ou um humano que passe na 
+área onde a armadilha foi posicionada.
+Efeito: você coloca uma armadilha em um espaço 
+adjacente a você. Se um humano ou pokémon se Deslocar 
+através deste espaço, ele ativa a armadilha, que o deixará 
+Paralisado.
+
+Bem Aqui!
+Requisitos: um pokémon com um Golpe com o Descritor Prisão.
+Referência: C,X
+Frequência: Constante.
+Alvo: um pokémon Preso por um dos seus 
+pokémons.
+Efeito: quando tentar capturar o pokémon alvo, 
+subtraia 10 do resultado do Teste de Captura.
+
+Bomba Sonora
+Requisitos: um pokémon com Supersônico.
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon.
+Efeito: usa o Golpe Supersônico.
+
+Derrubar
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon Laçado ou um humano Laçado.
+Efeito: role 1d20 + MV. Quando o alvo é um 
+pokémon, se o resultado exceder 10 + Capacidade Força do 
+pokémon, o alvo está Preso por um número de rodadas 
+igual a seu MV. Quando o alvo é um humano, se o resultado 
+exceder 10 + metade do MA dele, ele está Preso por um 
+número de rodadas igual a seu MV.
+
+Doçura no Ar
+Requisitos: um pokémon com Sedução.
+Referência: P,X
+Frequência: Diária.
+Alvo: um pokémon.
+Efeito: usa o Golpe Aromatizar.
+
+Domação +
+Requisitos: Velocidade 18.
+Referência: L,X
+Frequência: À Vontade.
+Alvo: um pokémon selvagem.
+Efeito: você nomeia o alvo sua Presa. Quando 
+calcular a Chance de Captura de sua Presa, reduza o Nível 
+dela por seu MV. Você só pode possuir uma Presa e só pode 
+declarar um alvo uma Presa no início de sua rodada. Este 
+Talento substitui Domação.
+
+Espalhar Feromônios
+Referência: L,X
+Frequência: Diária. A cada 15 Níveis, receba um 
+uso diário adicional.
+Alvo: um pokémon.
+Efeito: o alvo desenvolve Paixão pelo mais próximo 
+pokémon do sexo oposto.
+
+Falso Ataque
+Referência: L,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: você causa dano à sua Presa.
+Efeito: quando você faz ataques de Armas que 
+reduziriam sua Presa à inconsciência, você pode escolher 
+mantê-la com 1 Ponto de Vida remanescente.
+
+Pronto para Captura
+Referência: P,X
+Frequência: Diária. 
+Alvo: um pokémon Preso por Derrubar.
+Efeito: enquanto o alvo estiver Preso, a Chance de 
+Captura dele é facilitada em 15.
+
+Rodeio
+Referência: P,X
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional.
+Gatilho: um pokémon Laçado tenta usar um Golpe.
+Efeito: role 1d20 + MV. Se o resultado for 16 ou 
+mais, o pokémon Laçado sofre dano igual ao Bônus 
+Elemental dele e não pode usar nenhum Golpe na rodada 
+atual.
+
+Tranquilizante
+Requisitos: um pokémon com Esporos ou Pó Sonífero.
+Referência: P,X
+Frequência: Diária.
+Efeito: usa o Golpe Bocejo em um alvo a até 30 
+metros. Após o alvo dormir devido aos efeitos do 
+Tranquilizante, ele se torna imune ao Tranquilizante por seis 
+horas.

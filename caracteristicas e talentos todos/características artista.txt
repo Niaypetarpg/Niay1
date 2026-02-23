@@ -1,0 +1,173 @@
+Característica Artista
+Fama 
+Frequência: Constante. 
+Referência: C, V
+Efeito: seus pokémons recebem 20% de pontos de 
+experiência adicionais a cada vez que receberem pontos de 
+experiência por Concursos. Se você ganhar um Concurso, 
+receba 15% a mais do prêmio financeiro que receberia.
+
+Postura 
+Frequência: Constante. 
+Referência: C, V
+Efeito: seus pokémons podem possuir uma soma 
+de Aptidões igual a 24. Além disso, eles podem receber os 
+efeitos de quaisquer Temperos até atingirem este máximo. 
+Se um pokémon beneficiado por Postura alcança mais do 
+que 20 pontos somando todas as suas Aptidões e é 
+posteriormente trocado com alguém que não é um Artista, 
+o pokémon mantém suas Aptidões melhoradas, mas o novo 
+dono não poderá acessar mais do que 20 pontos de 
+Aptidões por Concurso, a menos que possua outra 
+característica que permita elevar as Aptidões de seus 
+pokémons.
+
+Talento Artista 
+
+Acha Isso Impressionante? 
+Requisitos: Defesa Especial 17. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: o alvo ganha um dos seguintes efeitos, 
+conforme o Golpe que usará na rodada atual. Se o Golpe 
+possui o Descritor Explosão, aumente em 2 o tamanho da 
+Explosão. Se o Golpe não possui este Descritor e é À 
+Distância, aumente o alcance em 4. Finalmente, se o Golpe 
+não possui este Descritor e é Corpo a Corpo, aumente em 4 
+os Deslocamentos do alvo por esta rodada. 
+Em Concursos, o efeito deste Talento é outro: role 
+1d20 + MDE. Se o resultado for 13 ou mais, adicione o 
+Descritor Perspectiva a um Golpe usado pelo alvo nesta 
+rodada. Este Talento não afeta a Pontuação Basal do Golpe. 
+
+Aplausos
+Requisitos: Defesa Especial 16.  
+Referência: P, V
+Frequência: Diária. 
+Efeito: usa o Golpe Bis. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Originalidade. Enquanto em 
+batalhas, este Talento é ilegal, em Concursos, ele é legal. 
+Este Talento não afeta a Pontuação Basal do Golpe. 
+
+
+
+
+Clímax 
+Requisitos: Defesa Especial 15, 2 prêmios em 
+Concursos. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: o próximo Golpe cuja Frequência seja 
+Batalha usado pelo alvo não terá seu uso consumido. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Abstração ou pelo Descritor 
+Conquista. Só é possível usar este Talento uma vez por 
+Concurso e ele não afeta a Pontuação Basal do Golpe. 
+
+Clímax + 
+Requisitos: Clímax.
+Referência:  P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: o próximo Golpe cuja Frequência seja Diária 
+ou Por Encontro usado pelo alvo não terá seu uso 
+consumido. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Abstração, pelo Descritor 
+Conquista ou por ambos os Descritores Abstração e 
+Conquista. Só é possível usar este Talento uma vez por 
+Concurso e ele não afeta a Pontuação Basal do Golpe. 
+Este Talento substitui Clímax. 
+
+Conquistando o Júri 
+Requisitos: 2 prêmios em Concursos. 
+Referência: P, V
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: o alvo usa imediatamente o Golpe Isca 
+consumindo a Ação de Golpe dele. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Dedicatória. Só é possível usar 
+este Talento uma vez por Concurso e ele não afeta a 
+Pontuação Basal do Golpe. 
+
+Não Fique pra Trás! 
+Frequência: À Vontade. 
+Referência: P, X
+Efeito: usa o Golpe Mão Amiga. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Reviravolta. Enquanto em 
+batalhas, este Talento é ilegal, em Concursos, ele é legal. Só 
+é possível usar este Talento uma vez por Concurso e ele não 
+afeta a Pontuação Basal do Golpe. 
+
+
+
+
+
+Paciência 
+Requisitos: Defesa Especial 16. 
+Referência: P, X
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: usa o Golpe Revogação. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Pausa. Enquanto em batalhas, 
+este Talento é ilegal, em Concursos, ele é legal. Só é possível 
+usar este Talento uma vez por Concurso e ele não afeta a 
+Pontuação Basal do Golpe. 
+
+Perfeccionismo 
+Frequência: Diária. A cada 10 Níveis, receba um 
+uso diário adicional. 
+Referência: P, V
+Alvo: um pokémon seu. 
+Efeito: o alvo ganha 30% de experiência extra pelo 
+Concurso se obtiver o Segundo Lugar ou 80% de experiência 
+extra se obtiver o Primeiro Lugar. 
+
+Performance Eletrizante 
+Requisitos: 3 prêmios em Concursos. 
+Referência: P, V
+Frequência: Semanal. A cada 10 Níveis, receba um 
+uso semanal adicional. 
+Alvo: um pokémon seu. 
+Efeito: o alvo imediatamente usa o Golpe Mira sem 
+consumir qualquer Ação. Ele não pode usar Mira para 
+beneficiar um dos seguintes Golpes: Chifre Broca, Fissura, 
+Guilhotina, Zero Absoluto. Você ainda pode fazer o Teste de 
+Acurácia apenas para determinar se é um Crítico. Este 
+Talento deve ser declarado antes que um Teste de Acurácia 
+seja feito. 
+Em Concursos, o efeito deste Talento é outro: 
+adicione o Descritor Extravagância a um Golpe usado pelo 
+alvo nesta rodada. Este Talento não afeta a Pontuação Basal 
+do Golpe 
+
+Protagonismo 
+Requisitos: Velocidade 16. 
+Referência: P, V
+Frequência: Diária. A cada 5 Níveis, receba um uso 
+diário adicional. 
+Alvo: um pokémon seu. 
+Efeito: o alvo usa imediatamente o Golpe Isca 
+consumindo a Ação de Golpe dele. 
+Em Concursos, o efeito deste Talento é outro: 
+substitua um Descritor de um Golpe usado por um 
+pokémon seu pelo Descritor Dedicatória. Só é possível usar 
+este Talento uma vez por Concurso e ele não afeta a 
+Pontuação Basal do Golpe
