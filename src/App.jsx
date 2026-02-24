@@ -1986,6 +1986,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [sessionBg, setSessionBg] = useState(null)
   const [showPokezapPanel, setShowPokezapPanel] = useState(false)
+  const [showBatalhaChat, setShowBatalhaChat] = useState(false)
   const [pokezapMessages, setPokezapMessages] = useState([])
   const [pokezapInput, setPokezapInput] = useState('')
   const [pokezapRecipients, setPokezapRecipients] = useState([])
@@ -4071,7 +4072,7 @@ function App() {
     const pokemonTypes = activePokemon.types || pokemonData?.tipos || []
     const moveType = moveData.tipo
     if (pokemonTypes.includes(moveType)) {
-      bonusElemental = Math.floor((pokemonData?.statusBasais?.saude || 10) / 2)
+      bonusElemental = calculateElementalBonus(activePokemon)
     }
 
     // Rolar os dados do dano basal (extrair apenas a parte numérica)
@@ -7794,6 +7795,19 @@ function App() {
     }
 
     setMainTeam(updatedTeam)
+
+    // Sincronizar HP com listas de batalha
+    const syncedPkm = updatedTeam[selectedPokemonHPIndex]
+    const newHPDmg = syncedPkm.currentHP
+    const origIdDmg = syncedPkm.id || `team-${syncedPkm.species}`
+    const matchDmg = (bp) => !bp.isNpc && (bp.originalId === origIdDmg || (bp.owner === currentUser?.username && bp.especie === syncedPkm.species && bp.nome === (syncedPkm.nickname || syncedPkm.species)))
+    let updBP = battlePokemon
+    let updBPL = battlePokemonList
+    let changedDmg = false
+    if (battlePokemon.some(matchDmg)) { updBP = battlePokemon.map(bp => matchDmg(bp) ? { ...bp, hp: newHPDmg } : bp); setBattlePokemon(updBP); changedDmg = true }
+    if (battlePokemonList.some(matchDmg)) { updBPL = battlePokemonList.map(bp => matchDmg(bp) ? { ...bp, hp: newHPDmg } : bp); setBattlePokemonList(updBPL); changedDmg = true }
+    if (changedDmg && useFirebase) { saveBattleData({ battleTrainers, battlePokemon: updBP, battleTrainersList, battlePokemonList: updBPL, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, battlePokemonConditions, revealedNpcPokemon, revealedTrainers }) }
+
     setShowPokemonHPModal(false)
     setHpAmount('')
     setDamageMultiplier(null)
@@ -7810,6 +7824,18 @@ function App() {
     pokemon.currentHP = Math.min(maxHP, (pokemon.currentHP || 0) + heal)
 
     setMainTeam(updatedTeam)
+
+    // Sincronizar HP com listas de batalha
+    const newHPHeal = pokemon.currentHP
+    const origIdHeal = pokemon.id || `team-${pokemon.species}`
+    const matchHeal = (bp) => !bp.isNpc && (bp.originalId === origIdHeal || (bp.owner === currentUser?.username && bp.especie === pokemon.species && bp.nome === (pokemon.nickname || pokemon.species)))
+    let updBPH = battlePokemon
+    let updBPLH = battlePokemonList
+    let changedHeal = false
+    if (battlePokemon.some(matchHeal)) { updBPH = battlePokemon.map(bp => matchHeal(bp) ? { ...bp, hp: newHPHeal } : bp); setBattlePokemon(updBPH); changedHeal = true }
+    if (battlePokemonList.some(matchHeal)) { updBPLH = battlePokemonList.map(bp => matchHeal(bp) ? { ...bp, hp: newHPHeal } : bp); setBattlePokemonList(updBPLH); changedHeal = true }
+    if (changedHeal && useFirebase) { saveBattleData({ battleTrainers, battlePokemon: updBPH, battleTrainersList, battlePokemonList: updBPLH, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, battlePokemonConditions, revealedNpcPokemon, revealedTrainers }) }
+
     setShowPokemonHPModal(false)
     setHpAmount('')
   }
@@ -8447,14 +8473,18 @@ function App() {
         updatedTeam[idx] = { ...updatedTeam[idx], currentHP: newHP }
         setMainTeam(updatedTeam)
 
-        // Atualizar na lista de batalha
-        setBattlePokemonList(prev => prev.map(battlePkmn => {
+        // Atualizar na lista de batalha e salvar no Firebase
+        const updatedBPL = battlePokemonList.map(battlePkmn => {
           if (battlePkmn.especie === selectedBattlePokemon.species &&
               battlePkmn.nome === (selectedBattlePokemon.nickname || selectedBattlePokemon.species)) {
             return { ...battlePkmn, hp: newHP }
           }
           return battlePkmn
-        }))
+        })
+        setBattlePokemonList(updatedBPL)
+        if (useFirebase) {
+          saveBattleData({ battleTrainers, battlePokemon, battleTrainersList, battlePokemonList: updatedBPL, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, battlePokemonConditions, revealedNpcPokemon, revealedTrainers })
+        }
       }
 
       setShowBattleHPModal(false)
@@ -11363,6 +11393,7 @@ function App() {
     setSessionBg(null)
     setShowPokezapPanel(false)
     setTriunfosSpoilerConfirmado(false)
+    setShowBatalhaChat(false)
   }
 
   const handleSendPokezap = () => {
@@ -13069,13 +13100,156 @@ function App() {
   ) : []
   const pokezapBtn = currentUser ? (
     <button
-      onClick={() => setShowPokezapPanel(prev => !prev)}
+      onClick={() => { setShowBatalhaChat(false); setShowPokezapPanel(prev => !prev) }}
       className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`}
       title="PokeZap"
     >
       <img src="/logopokezapcerto.png" alt="PokeZap" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
     </button>
   ) : null
+  const batalhaChatBtn = currentUser ? (
+    <button
+      onClick={() => { setShowPokezapPanel(false); setShowBatalhaChat(prev => !prev) }}
+      className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`}
+      title="Chat de Batalha"
+    >
+      <img src="/minilogochatbatalha.png" alt="Chat de Batalha" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
+    </button>
+  ) : null
+
+  const batalhaChatPanel = currentUser && showBatalhaChat ? (
+    <div className="fixed right-0 top-0 h-full w-80 z-50 flex flex-col shadow-2xl" style={{ background: darkMode ? '#1f2937' : '#ffffff', borderLeft: darkMode ? '1px solid #374151' : '1px solid #e5e7eb' }}>
+      {/* Header */}
+      <div className={`flex items-center justify-between p-3 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+        <div className="flex items-center gap-2">
+          <img src="/minilogochatbatalha.png" alt="Chat de Batalha" className="w-6 h-6 object-contain" />
+          <span className={`font-bold text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Chat de Batalha</span>
+        </div>
+        <button onClick={() => setShowBatalhaChat(false)} className={`p-1 rounded-lg text-sm font-bold ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-100 text-gray-500'}`}>✕</button>
+      </div>
+      {/* Mensagens */}
+      <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-2">
+        {chatMessages.length === 0 ? (
+          <p className={`text-xs text-center mt-8 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Nenhuma mensagem ainda...</p>
+        ) : (
+          chatMessages.map((msg, idx) => (
+            <div key={idx} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-2.5 border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+              <div className="flex justify-between items-start mb-1">
+                <span className={`font-bold text-xs ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{msg.username}</span>
+                <span className={`text-[10px] ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>{msg.timestamp}</span>
+              </div>
+              {msg.isDiceRoll ? (
+                <div>
+                  <p className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-700'} whitespace-pre-line`}>{msg.text}</p>
+                  {msg.diceResult !== undefined && typeof msg.diceResult === 'number' && (
+                    <div className={`mt-1.5 p-1.5 rounded ${darkMode ? 'bg-green-900' : 'bg-green-100'}`}>
+                      <p className={`font-bold text-sm ${darkMode ? 'text-green-400' : 'text-green-700'}`}>Resultado: {msg.diceResult}</p>
+                      {msg.diceDetails && <p className={`text-[10px] ${darkMode ? 'text-green-300' : 'text-green-600'}`}>{msg.diceDetails}</p>}
+                    </div>
+                  )}
+                </div>
+              ) : msg.isAction ? (
+                <p className="text-xs font-semibold text-yellow-500 whitespace-pre-line">{msg.text}</p>
+              ) : (
+                <p className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-700'} whitespace-pre-line`}>{msg.text}</p>
+              )}
+            </div>
+          ))
+        )}
+      </div>
+      {/* Perícias (somente treinadores) */}
+      {currentUser.type === 'treinador' && Object.values(skills).some(list => list.length > 0) && (
+        <div className={`px-3 pt-2 pb-1 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+          <p className={`text-[10px] font-semibold mb-1.5 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Perícias:</p>
+          <div className="grid grid-cols-2 gap-1 max-h-28 overflow-y-auto">
+            {Object.entries(skills).map(([attr, skillList]) => {
+              const attrNames = { saude: 'Saúde', ataque: 'Ataque', defesa: 'Defesa', ataqueEspecial: 'Ataque Especial', defesaEspecial: 'Defesa Especial', velocidade: 'Velocidade' }
+              return skillList.map((skill, idx) => {
+                const count = skillList.filter(s => s === skill).length
+                const isFirst = skillList.indexOf(skill) === idx
+                if (!isFirst) return null
+                const modifier = getModifier(attributes[attr])
+                return (
+                  <button
+                    key={`portatil-${attr}-${skill}-${idx}`}
+                    onClick={() => {
+                      const d20Roll = Math.floor(Math.random() * 20) + 1
+                      const baseBonus = count === 1 ? 2 : 4
+                      const modifierMultiplier = count === 1 ? 1 : 2
+                      const modifierBonus = modifierMultiplier * modifier
+                      const total = d20Roll + baseBonus + modifierBonus
+                      const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+                      const message = `🎲 ${skill} (${attrNames[attr]})\n1d20 = ${d20Roll} | ${baseBonus} + ${modifierMultiplier > 1 ? `${modifierMultiplier}x` : ''}Modificador(${modifier}) = ${modifierBonus}\nTotal: ${total}`
+                      addChatMessage({ username: currentUser.username, text: message, timestamp, isDiceRoll: true, diceResult: message })
+                    }}
+                    className={`text-[10px] p-1.5 rounded ${darkMode ? 'bg-gray-800 hover:bg-gray-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-800 border'}`}
+                  >
+                    {skill}{count > 1 && ` (x${count})`}
+                  </button>
+                )
+              })
+            })}
+          </div>
+        </div>
+      )}
+      {/* Rolagem Rápida */}
+      <div className={`px-3 pt-2 pb-1 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+        <p className={`text-[10px] font-semibold mb-1.5 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Rolagem Rápida:</p>
+        <div className="flex flex-wrap gap-1 mb-1.5">
+          {[1,2,3,4,5,6,7,8,9,10].map(num => (
+            <button key={num} onClick={() => setQuickRollNumDice(num)} className={`w-6 h-6 rounded text-xs font-bold transition-colors ${quickRollNumDice === num ? 'bg-blue-600 text-white' : darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>{num}</button>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-1 mb-1.5">
+          {['d4','d6','d8','d10','d12','d20'].map(dice => (
+            <button key={dice} onClick={() => setQuickRollDiceType(dice)} className={`px-1.5 h-6 rounded text-[10px] font-bold transition-colors ${quickRollDiceType === dice ? 'bg-green-600 text-white' : darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>{dice}</button>
+          ))}
+        </div>
+        <button
+          onClick={() => {
+            const diceNotation = `${quickRollNumDice}${quickRollDiceType}`
+            const result = rollDiceExpression(diceNotation)
+            if (result.error) { alert(result.error); return }
+            const newMessage = {
+              username: currentUser?.username || 'Anônimo',
+              text: `🎲 Rolagem Rápida: ${diceNotation}`,
+              timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+              isDiceRoll: true,
+              diceResult: result.total,
+              diceDetails: result.formula
+            }
+            setChatMessages(prev => [...prev, newMessage].slice(-10))
+            if (useFirebase) {
+              (async () => {
+                const currentMessages = await loadChatMessages()
+                await saveChatMessages([...(currentMessages || []), newMessage].slice(-10))
+              })().catch(err => console.error('Erro ao salvar mensagem:', err))
+            }
+          }}
+          className="w-full h-6 bg-purple-600 text-white rounded font-bold hover:bg-purple-700 transition-colors text-[10px]"
+        >
+          🎲 Rolar {quickRollNumDice}{quickRollDiceType}
+        </button>
+      </div>
+      {/* Input de mensagem */}
+      <div className="flex gap-2 p-3 pt-2">
+        <input
+          value={chatInput}
+          onChange={e => setChatInput(e.target.value)}
+          onKeyDown={e => { if (e.key === 'Enter' && chatInput.trim()) handleSendMessage() }}
+          placeholder="Mensagem, 1d20+@MAE..."
+          className={`flex-1 px-3 py-1.5 rounded-lg text-xs border ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-800'}`}
+        />
+        <button
+          onClick={handleSendMessage}
+          className="bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs hover:bg-blue-700 flex-shrink-0"
+        >
+          <Send size={14} />
+        </button>
+      </div>
+    </div>
+  ) : null
+
   const pokezapPanel = currentUser && showPokezapPanel ? (
     <div className="fixed right-0 top-0 h-full w-80 z-50 flex flex-col shadow-2xl" style={{ background: darkMode ? '#1f2937' : '#ffffff', borderLeft: darkMode ? '1px solid #374151' : '1px solid #e5e7eb' }}>
       {/* Header */}
@@ -13254,7 +13428,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -13269,6 +13443,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -13286,7 +13461,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -13399,6 +13574,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -13416,7 +13592,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -13477,6 +13653,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -13494,7 +13671,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -13935,6 +14112,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -13952,7 +14130,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -14766,6 +14944,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -14784,7 +14963,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -15876,6 +16055,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -15893,7 +16073,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -16334,6 +16514,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -16357,7 +16538,7 @@ function App() {
               <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
               </div>
             </div>
           </div>
@@ -19011,6 +19192,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -19028,7 +19210,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -19974,6 +20156,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -20010,7 +20193,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -21123,6 +21306,7 @@ function App() {
 
         {accountDataModal}
         {pokezapPanel}
+        {batalhaChatPanel}
         </div>
       </>
     )
@@ -21182,7 +21366,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -21855,6 +22039,7 @@ function App() {
           {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
           {pokezapPanel}
+        {batalhaChatPanel}
         </div>
       </>
     )
@@ -21873,7 +22058,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -22932,6 +23117,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -22957,7 +23143,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -26074,6 +26260,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -26091,7 +26278,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -28433,6 +28620,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -28450,7 +28638,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -29269,6 +29457,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -29291,7 +29480,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -30767,6 +30956,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -30794,7 +30984,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -31022,6 +31212,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -31043,7 +31234,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -31185,6 +31376,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -31203,7 +31395,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -31955,6 +32147,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -31975,7 +32168,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -33102,6 +33295,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -33156,7 +33350,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -34853,6 +35047,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -34870,7 +35065,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                   {currentClima && <div className="flex items-center gap-1 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-5 h-5 sm:w-7 sm:h-7" /><span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'} hidden xs:inline`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -37802,6 +37997,7 @@ function App() {
                     onClick={() => {
                       const v = parseInt(battleHpValue) || 0;
                       const idx = mainTeam.findIndex(p => p === selectedBattlePokemon);
+                      console.log('[DEBUG HP SYNC] Curar | idx:', idx, '| selectedBattlePokemon:', { species: selectedBattlePokemon?.species, nickname: selectedBattlePokemon?.nickname }, '| battlePokemonList:', battlePokemonList.map(b => ({ especie: b.especie, nome: b.nome, hp: b.hp })));
                       if (idx !== -1) {
                         const updatedTeam = [...mainTeam];
                         const maxHP = calculateMaxHP(updatedTeam[idx]);
@@ -37810,13 +38006,15 @@ function App() {
                         updatedTeam[idx] = { ...updatedTeam[idx], currentHP: newHP };
                         setMainTeam(updatedTeam);
 
-                        setBattlePokemonList(prev => prev.map(battlePkmn => {
+                        const updatedBPLHeal = battlePokemonList.map(battlePkmn => {
                           if (battlePkmn.especie === selectedBattlePokemon.species &&
                               battlePkmn.nome === (selectedBattlePokemon.nickname || selectedBattlePokemon.species)) {
                             return { ...battlePkmn, hp: newHP };
                           }
                           return battlePkmn;
-                        }));
+                        });
+                        setBattlePokemonList(updatedBPLHeal);
+                        if (useFirebase) { saveBattleData({ battleTrainers, battlePokemon, battleTrainersList, battlePokemonList: updatedBPLHeal, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, battlePokemonConditions, revealedNpcPokemon, revealedTrainers }) }
                       }
                       setBattleHpValue('');
                       setShowBattleHPModal(false);
@@ -38033,6 +38231,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -38059,7 +38258,7 @@ function App() {
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -38974,6 +39173,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -38990,7 +39190,7 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns</h2></div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -39240,6 +39440,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -39257,7 +39458,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -39476,6 +39677,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -39499,7 +39701,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -41182,6 +41384,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -41205,7 +41408,7 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari Staff</h2></div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -41948,6 +42151,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -41964,7 +42168,7 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns M</h2></div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -42013,6 +42217,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -42064,7 +42269,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -42882,6 +43087,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -42911,7 +43117,7 @@ function App() {
                     <span className="text-xs px-3 py-1 rounded-full font-bold bg-red-600 text-white animate-pulse">Não toque em nada!</span>
                     <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                     <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                    {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                    {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                   </div>
                 </div>
               </div>
@@ -43001,6 +43207,7 @@ function App() {
           {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
           {pokezapPanel}
+        {batalhaChatPanel}
         </>
       )
     }
@@ -43055,7 +43262,7 @@ function App() {
                   <span className={`text-xs px-2 py-1 rounded-full font-bold ${userTeamColor === 'red' ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`}>Time {userTeamColor === 'red' ? 'Vermelho' : 'Verde'}</span>
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -43362,6 +43569,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -43482,7 +43690,7 @@ function App() {
                 </div>
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -43678,6 +43886,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -43710,7 +43919,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -44083,6 +44292,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -44104,7 +44314,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -44296,6 +44506,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -44329,7 +44540,7 @@ function App() {
                 </div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -44411,6 +44622,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -44440,7 +44652,7 @@ function App() {
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -44630,6 +44842,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -44658,7 +44871,7 @@ function App() {
                 </div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -44810,6 +45023,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
@@ -44928,7 +45142,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -45293,6 +45507,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}
+        {batalhaChatPanel}
       </>
     )
   }
