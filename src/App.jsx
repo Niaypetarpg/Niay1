@@ -36,7 +36,8 @@ import {
   saveSmartPokefoneMessages, loadSmartPokefoneMessages, subscribeToSmartPokefoneMessages,
   saveTriunfosGerais, subscribeToTriunfosGerais,
   saveTriunfosIndividuais, subscribeToTriunfosIndividuais,
-  saveMostrarTriunfos, subscribeToMostrarTriunfos
+  saveMostrarTriunfos, subscribeToMostrarTriunfos,
+  saveAnotacoes, subscribeToAnotacoes
 } from './firebaseService'
 import { database } from './firebase'
 import { ref, set, get } from 'firebase/database'
@@ -2798,6 +2799,17 @@ function App() {
   const [triunfoIndividualTargetUser, setTriunfoIndividualTargetUser] = useState('')
   const [triunfoGeralFields, setTriunfoGeralFields] = useState([{ texto: '', vagas: 1 }])
   const [triunfoIndividualFields, setTriunfoIndividualFields] = useState([{ texto: '' }])
+  const [editingTriunfoGeral, setEditingTriunfoGeral] = useState(null)
+  const [editingTriunfoIndividual, setEditingTriunfoIndividual] = useState(null)
+
+  // ===== POKE AGENDA =====
+  const [anotacoes, setAnotacoes] = useState([])
+  const anotacoesSaveSkipRef = useRef(true)
+  const [showPokeAgendaPanel, setShowPokeAgendaPanel] = useState(false)
+  const [showAddAnotacaoModal, setShowAddAnotacaoModal] = useState(false)
+  const [editingAnotacao, setEditingAnotacao] = useState(null)
+  const [anotacaoForm, setAnotacaoForm] = useState({ titulo: '', descricao: '' })
+  const [expandedAnotacaoId, setExpandedAnotacaoId] = useState(null)
   const [showSelectUserForTriunfo, setShowSelectUserForTriunfo] = useState(false)
   const [selectUserForTriunfoData, setSelectUserForTriunfoData] = useState(null)
   const [tempSelectedUsers, setTempSelectedUsers] = useState([])
@@ -3069,7 +3081,7 @@ function App() {
     { username: 'Pedro', type: 'treinador', gradient: 'linear-gradient(135deg, #0000CD, #4169E1, #00CED1, #32CD32)' }
   ]
 
-  const mestreAreas = ['Gerador Pokémon', 'Árvore de Apricorns M', 'Batalha', 'Batalha Game Boy M', 'Cenários da Sessão', 'Central Niaypeta Rio Corp™ M', 'Clima', 'Enciclopédia M', 'Hub de Troca M', 'Interlúdio M', 'NPCs Arquivados', 'PokeApp', 'Pokémon NPC', 'Safari Staff', 'Times NPC', 'Treinador NPC', 'Triunfos M', 'Visão do Mestre', 'XP & Capturas M']
+  const mestreAreas = ['Gerador Pokémon', 'Árvore de Apricorns M', 'Batalha', 'Batalha Game Boy M', 'Cenários da Sessão', 'Central Niaypeta Rio Corp™ M', 'Clima', 'Enciclopédia M', 'Hub de Troca M', 'Interlúdio M', 'NPCs Arquivados', 'PokeApp', 'Pokémon NPC', 'Safari Staff', 'Times NPC', 'Treinador NPC', 'Objetivos M', 'Visão do Mestre', 'XP & Capturas M']
   const treinadorAreas = ['Treinador', 'Árvore de Apricorns', 'Batalha Game Boy', 'Batalha Pkm', 'Características & Talentos', 'Central Niaypeta Rio Corp™', 'Enciclopédia', 'Hub de Troca', 'Insígnias', 'Interlúdio', 'Mochila', 'PC', 'Pokédex', 'Pokéloja', 'Progressão', 'Safari', 'SmartPokefone']
 
   // ===== CONFIGURACOES SAFARI =====
@@ -11411,6 +11423,41 @@ function App() {
     setPokezapInput('')
   }
 
+  // ==================== POKE AGENDA ====================
+
+  const handleSaveAnotacao = () => {
+    if (!anotacaoForm.titulo.trim() || !currentUser) return
+    if (editingAnotacao) {
+      const updated = anotacoes.map(a => a.id === editingAnotacao.id ? { ...a, titulo: anotacaoForm.titulo.trim(), descricao: anotacaoForm.descricao.trim() } : a)
+      setAnotacoes(updated)
+    } else {
+      const nova = { id: `anot-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`, titulo: anotacaoForm.titulo.trim(), descricao: anotacaoForm.descricao.trim() }
+      setAnotacoes(prev => [...prev, nova])
+    }
+    setShowAddAnotacaoModal(false)
+    setEditingAnotacao(null)
+    setAnotacaoForm({ titulo: '', descricao: '' })
+  }
+
+  const handleDeleteAnotacao = (id) => {
+    setAnotacoes(prev => prev.filter(a => a.id !== id))
+  }
+
+  const handleEnviarAnotacaoPokezap = (anotacao) => {
+    if (!currentUser) return
+    const text = `📋 ${anotacao.titulo}\n${anotacao.descricao}`
+    const msg = {
+      id: `pkzap-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
+      text,
+      sender: currentUser.username,
+      recipients: pokezapRecipients,
+      timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+    }
+    const updated = [...pokezapMessages, msg]
+    setPokezapMessages(updated)
+    if (useFirebase) saveToFirebase('pokezap', updated)
+  }
+
   // ==================== FUNÇÕES DO SAFARI ====================
 
   // Sincronizar Safari em tempo real com Firebase
@@ -12844,7 +12891,7 @@ function App() {
     saveSmartPokefoneMessages(currentUser.username, smartPokefoneMessages)
   }, [smartPokefoneMessages])
 
-  // ===== TRIUNFOS GERAIS: Subscription =====
+  // ===== OBJETIVOS GERAIS: Subscription =====
   useEffect(() => {
     triunfosGeraisSaveSkipRef.current = true
     const unsub = subscribeToTriunfosGerais((data) => {
@@ -12860,7 +12907,7 @@ function App() {
     saveTriunfosGerais(triunfosGerais)
   }, [triunfosGerais])
 
-  // ===== TRIUNFOS INDIVIDUAIS: Subscription =====
+  // ===== OBJETIVOS INDIVIDUAIS: Subscription =====
   useEffect(() => {
     triunfosIndividuaisSaveSkipRef.current = true
     const unsub = subscribeToTriunfosIndividuais((data) => {
@@ -12890,6 +12937,23 @@ function App() {
     })
     return () => unsubscribe()
   }, [currentUser, useFirebase])
+
+  // ===== POKE AGENDA: Subscription =====
+  useEffect(() => {
+    if (!useFirebase || !currentUser) return
+    anotacoesSaveSkipRef.current = true
+    const unsub = subscribeToAnotacoes(currentUser.username, (data) => {
+      if (anotacoesSaveSkipRef.current) { anotacoesSaveSkipRef.current = false; setAnotacoes(Array.isArray(data) ? data : Object.values(data || {})); return }
+      setAnotacoes(Array.isArray(data) ? data : Object.values(data || {}))
+    })
+    return () => unsub()
+  }, [currentUser, useFirebase])
+
+  useEffect(() => {
+    if (anotacoesSaveSkipRef.current) return
+    if (!useFirebase || !currentUser) return
+    saveAnotacoes(currentUser.username, anotacoes)
+  }, [anotacoes])
 
   // Variável do modal de Account Data (reutilizável em todos os returns)
   const accountDataModal = currentUser ? (
@@ -13012,7 +13076,7 @@ function App() {
             className="bg-purple-700 hover:bg-purple-600 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 font-semibold text-sm"
           >
             <Trophy size={16} className="text-yellow-400" />
-            Triunfos
+            Objetivos
           </button>
         </div>
       )
@@ -13029,7 +13093,7 @@ function App() {
             <div className="flex items-center gap-2">
               <Trophy size={20} className="text-yellow-400" />
               <h3 className="text-white text-lg font-bold">
-                {tipo === 'geral' ? 'Triunfos Gerais' : `Triunfos de ${usernameAlvo}`}
+                {tipo === 'geral' ? 'Objetivos Gerais' : `Objetivos de ${usernameAlvo}`}
               </h3>
             </div>
             <div className="flex items-center gap-2">
@@ -13055,7 +13119,7 @@ function App() {
           </div>
           <div className="overflow-y-auto flex-1 p-5">
             {lista.length === 0 ? (
-              <p className="text-gray-400 text-center py-4">Nenhum triunfo.</p>
+              <p className="text-gray-400 text-center py-4">Nenhum objetivo.</p>
             ) : (
               <div className="space-y-3">
                 {lista.map(t => {
@@ -13100,16 +13164,25 @@ function App() {
   ) : []
   const pokezapBtn = currentUser ? (
     <button
-      onClick={() => { setShowBatalhaChat(false); setShowPokezapPanel(prev => !prev) }}
+      onClick={() => { setShowBatalhaChat(false); setShowPokeAgendaPanel(false); setShowPokezapPanel(prev => !prev) }}
       className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`}
       title="PokeZap"
     >
       <img src="/logopokezapcerto.png" alt="PokeZap" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
     </button>
   ) : null
+  const pokeAgendaBtn = currentUser ? (
+    <button
+      onClick={() => { setShowBatalhaChat(false); setShowPokezapPanel(false); setShowPokeAgendaPanel(prev => !prev) }}
+      className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`}
+      title="Poke Agenda"
+    >
+      <img src="/minipokeanotacao.png" alt="Poke Agenda" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
+    </button>
+  ) : null
   const batalhaChatBtn = currentUser ? (
     <button
-      onClick={() => { setShowPokezapPanel(false); setShowBatalhaChat(prev => !prev) }}
+      onClick={() => { setShowPokezapPanel(false); setShowPokeAgendaPanel(false); setShowBatalhaChat(prev => !prev) }}
       className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`}
       title="Chat de Batalha"
     >
@@ -13331,6 +13404,109 @@ function App() {
     </div>
   ) : null
 
+  const pokeAgendaPanel = currentUser && showPokeAgendaPanel ? (
+    <div className="fixed right-0 top-0 h-full w-80 z-50 flex flex-col shadow-2xl" style={{ background: darkMode ? '#1f2937' : '#ffffff', borderLeft: darkMode ? '1px solid #374151' : '1px solid #e5e7eb' }}>
+      {/* Header */}
+      <div className={`flex items-center justify-between p-3 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+        <div className="flex items-center gap-2">
+          <img src="/minipokeanotacao.png" alt="Poke Agenda" className="w-6 h-6 object-contain" />
+          <span className={`font-bold text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Poke Agenda</span>
+        </div>
+        <button onClick={() => setShowPokeAgendaPanel(false)} className={`p-1 rounded-lg text-sm font-bold ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-100 text-gray-500'}`}>✕</button>
+      </div>
+      {/* Botão + Anotação */}
+      <div className={`p-3 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+        <button
+          onClick={() => { setEditingAnotacao(null); setAnotacaoForm({ titulo: '', descricao: '' }); setShowAddAnotacaoModal(true) }}
+          className="w-full flex items-center justify-center gap-2 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition-colors"
+        >
+          <Plus size={15} /> Anotação
+        </button>
+      </div>
+      {/* Lista de anotações */}
+      <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-2">
+        {anotacoes.length === 0 ? (
+          <p className={`text-xs text-center mt-8 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Nenhuma anotação ainda...</p>
+        ) : (
+          anotacoes.map(a => (
+            <div key={a.id} className={`rounded-xl border ${darkMode ? 'border-gray-700 bg-gray-900' : 'border-gray-200 bg-gray-50'}`}>
+              {/* Título clicável */}
+              <button
+                onClick={() => setExpandedAnotacaoId(expandedAnotacaoId === a.id ? null : a.id)}
+                className={`w-full flex items-center justify-between px-3 py-2.5 text-left gap-2`}
+              >
+                <span className={`font-semibold text-xs flex-1 truncate ${darkMode ? 'text-white' : 'text-gray-800'}`}>{a.titulo}</span>
+                {expandedAnotacaoId === a.id ? <ChevronUp size={14} className={darkMode ? 'text-gray-400' : 'text-gray-500'} /> : <ChevronDown size={14} className={darkMode ? 'text-gray-400' : 'text-gray-500'} />}
+              </button>
+              {/* Conteúdo expandido */}
+              {expandedAnotacaoId === a.id && (
+                <div className={`px-3 pb-3 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+                  <p className={`text-xs mt-2 whitespace-pre-wrap ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{a.descricao || <span className="italic opacity-50">Sem descrição.</span>}</p>
+                  <div className="flex gap-1.5 mt-3">
+                    <button
+                      onClick={() => { setEditingAnotacao(a); setAnotacaoForm({ titulo: a.titulo, descricao: a.descricao }); setShowAddAnotacaoModal(true) }}
+                      className="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg bg-yellow-500 hover:bg-yellow-400 text-gray-900 text-xs font-semibold transition-colors"
+                      title="Editar"
+                    >
+                      <Pencil size={12} /> Editar
+                    </button>
+                    <button
+                      onClick={() => handleEnviarAnotacaoPokezap(a)}
+                      className="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg bg-green-600 hover:bg-green-500 text-white text-xs font-semibold transition-colors"
+                      title="Enviar via Pokezap"
+                    >
+                      <Send size={12} /> Pokezap
+                    </button>
+                    <button
+                      onClick={() => { handleDeleteAnotacao(a.id); if (expandedAnotacaoId === a.id) setExpandedAnotacaoId(null) }}
+                      className="w-8 flex items-center justify-center py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white transition-colors"
+                      title="Excluir"
+                    >
+                      <X size={12} />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))
+        )}
+      </div>
+      {/* Modal: Nova / Editar Anotação */}
+      {showAddAnotacaoModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60] p-4" onClick={() => { setShowAddAnotacaoModal(false); setEditingAnotacao(null); setAnotacaoForm({ titulo: '', descricao: '' }) }}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={e => e.stopPropagation()}>
+            <div className="p-5">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{editingAnotacao ? 'Editar Anotação' : 'Nova Anotação'}</h3>
+                <button onClick={() => { setShowAddAnotacaoModal(false); setEditingAnotacao(null); setAnotacaoForm({ titulo: '', descricao: '' }) }} className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`}><X size={20} /></button>
+              </div>
+              <div className="space-y-3">
+                <input
+                  type="text"
+                  value={anotacaoForm.titulo}
+                  onChange={e => setAnotacaoForm(prev => ({ ...prev, titulo: e.target.value }))}
+                  placeholder="Título"
+                  className={`w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`}
+                />
+                <textarea
+                  value={anotacaoForm.descricao}
+                  onChange={e => setAnotacaoForm(prev => ({ ...prev, descricao: e.target.value }))}
+                  placeholder="Descrição"
+                  rows={4}
+                  className={`w-full px-3 py-2 rounded-lg border text-sm resize-none ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`}
+                />
+              </div>
+              <div className="flex gap-3 mt-4">
+                <button onClick={() => { setShowAddAnotacaoModal(false); setEditingAnotacao(null); setAnotacaoForm({ titulo: '', descricao: '' }) }} className={`flex-1 py-2.5 rounded-lg font-semibold text-sm ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>Cancelar</button>
+                <button onClick={handleSaveAnotacao} className="flex-1 py-2.5 rounded-lg font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white">Salvar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  ) : null
+
   // SIDEBAR DE NAVEGAÇÃO
   const mainBgClass = sessionBg ? 'bg-transparent' : (darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900')
   const currentAreas = currentUser?.type === 'mestre' ? mestreAreas : treinadorAreas
@@ -13428,7 +13604,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -13442,7 +13618,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -13461,7 +13637,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -13573,7 +13749,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -13592,7 +13768,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -13652,7 +13828,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -13671,7 +13847,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -14111,7 +14287,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -14130,7 +14306,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -14943,7 +15119,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -14963,7 +15139,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -16054,7 +16230,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -16073,7 +16249,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -16513,7 +16689,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -16538,7 +16714,7 @@ function App() {
               <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
               </div>
             </div>
           </div>
@@ -19191,7 +19367,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -19210,7 +19386,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -20155,7 +20331,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -20193,7 +20369,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -21305,7 +21481,7 @@ function App() {
         )}
 
         {accountDataModal}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
         </div>
       </>
@@ -21366,7 +21542,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -22038,7 +22214,7 @@ function App() {
           {accountDataModal}
           {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-          {pokezapPanel}
+          {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
         </div>
       </>
@@ -22058,7 +22234,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -23116,7 +23292,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -23143,7 +23319,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -26259,7 +26435,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -26278,7 +26454,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -28619,7 +28795,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -28638,7 +28814,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -29456,7 +29632,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -29480,7 +29656,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -30955,7 +31131,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -30984,7 +31160,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -31211,7 +31387,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -31234,7 +31410,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -31375,7 +31551,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -31395,7 +31571,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -32146,7 +32322,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -32168,7 +32344,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -33294,7 +33470,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -33350,7 +33526,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -35046,7 +35222,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -35065,7 +35241,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                   {currentClima && <div className="flex items-center gap-1 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-5 h-5 sm:w-7 sm:h-7" /><span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'} hidden xs:inline`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -38230,7 +38406,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -38258,7 +38434,7 @@ function App() {
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -39172,7 +39348,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -39190,7 +39366,7 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns</h2></div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -39439,7 +39615,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -39458,7 +39634,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -39676,7 +39852,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -39701,7 +39877,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -41383,7 +41559,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -41408,7 +41584,7 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari Staff</h2></div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -42150,7 +42326,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -42168,7 +42344,7 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns M</h2></div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -42216,7 +42392,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -42269,7 +42445,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -43086,7 +43262,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -43117,7 +43293,7 @@ function App() {
                     <span className="text-xs px-3 py-1 rounded-full font-bold bg-red-600 text-white animate-pulse">Não toque em nada!</span>
                     <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                     <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                    {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                    {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                   </div>
                 </div>
               </div>
@@ -43206,7 +43382,7 @@ function App() {
           {accountDataModal}
           {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-          {pokezapPanel}
+          {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
         </>
       )
@@ -43262,7 +43438,7 @@ function App() {
                   <span className={`text-xs px-2 py-1 rounded-full font-bold ${userTeamColor === 'red' ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`}>Time {userTeamColor === 'red' ? 'Vermelho' : 'Verde'}</span>
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -43568,7 +43744,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -43690,7 +43866,7 @@ function App() {
                 </div>
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -43885,7 +44061,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -43919,7 +44095,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -44291,7 +44467,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -44314,7 +44490,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -44505,7 +44681,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -44540,7 +44716,7 @@ function App() {
                 </div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -44621,7 +44797,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -44652,7 +44828,7 @@ function App() {
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -44841,7 +45017,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
@@ -44871,7 +45047,7 @@ function App() {
                 </div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -45022,14 +45198,14 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )
   }
 
   // ===== TRIUNFOS M (MESTRE) =====
-  if (currentUser.type === 'mestre' && currentArea === 'Triunfos M') {
+  if (currentUser.type === 'mestre' && currentArea === 'Objetivos M') {
     const trainerUsers = users.filter(u => u.type === 'treinador')
 
     const handleSalvarTriunfosGerais = () => {
@@ -45092,8 +45268,8 @@ function App() {
           if (!trainerNames.includes(username)) return
           const msg = {
             id: `msg_${Date.now()}_${username}_${t.id}`,
-            assunto: `Triunfo Geral obtido: ${t.texto}`,
-            corpo: `Parabéns, ${username}! Você obteve o triunfo geral:\n\n"${t.texto}"`,
+            assunto: `Objetivo Geral obtido: ${t.texto}`,
+            corpo: `Parabéns, ${username}! Você obteve o objetivo geral:\n\n"${t.texto}"`,
             recebidaEm: Date.now(),
             lida: false
           }
@@ -45110,8 +45286,8 @@ function App() {
         const corpo = concluidos.map(t => `• ${t.texto}`).join('\n')
         const msg = {
           id: `msg_${Date.now()}_${username}_ind`,
-          assunto: `Seus Triunfos Individuais`,
-          corpo: `Parabéns, ${username}! Você obteve os seguintes triunfos individuais:\n\n${corpo}`,
+          assunto: `Seus Objetivos Individuais`,
+          corpo: `Parabéns, ${username}! Você obteve os seguintes objetivos individuais:\n\n${corpo}`,
           recebidaEm: Date.now(),
           lida: false
         }
@@ -45120,7 +45296,7 @@ function App() {
           saveSmartPokefoneMessages(username, [...msgs, msg])
         })
       })
-      alert('Triunfos enviados para o SmartPokefone dos usuários!')
+      alert('Objetivos enviados para o SmartPokefone dos usuários!')
     }
 
     const triunfoGeralSelecionado = selectUserForTriunfoData
@@ -45137,12 +45313,12 @@ function App() {
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Triunfos 👑</h2></div>
+                <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Objetivos 👑</h2></div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -45169,7 +45345,7 @@ function App() {
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 <Trophy size={28} className="text-yellow-400" />
-                <h1 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Triunfos</h1>
+                <h1 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Objetivos</h1>
               </div>
               <button
                 onClick={handleEnviarEmailTriunfos}
@@ -45180,12 +45356,12 @@ function App() {
               </button>
             </div>
 
-            {/* ===== TRIUNFOS GERAIS ===== */}
+            {/* ===== OBJETIVOS GERAIS ===== */}
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-lg p-5 mb-6`}>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <Trophy size={20} className="text-yellow-400" />
-                  <h2 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Triunfos Gerais</h2>
+                  <h2 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Objetivos Gerais</h2>
                 </div>
                 <div className="flex gap-2 flex-wrap justify-end">
                   {triunfosGerais.length > 0 && (
@@ -45194,7 +45370,7 @@ function App() {
                       className="flex items-center gap-1.5 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg font-semibold text-sm transition-colors"
                     >
                       <Users size={14} />
-                      Mostrar Triunfos
+                      Mostrar Objetivos
                     </button>
                   )}
                   <button
@@ -45202,13 +45378,13 @@ function App() {
                     className="flex items-center gap-1.5 bg-yellow-500 hover:bg-yellow-400 text-gray-900 px-3 py-2 rounded-lg font-semibold text-sm transition-colors"
                   >
                     <Trophy size={14} />
-                    Adicionar Triunfos Gerais
+                    Adicionar Objetivos Gerais
                   </button>
                 </div>
               </div>
 
               {triunfosGerais.length === 0 ? (
-                <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'} text-center py-6`}>Nenhum triunfo geral ainda.</p>
+                <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'} text-center py-6`}>Nenhum objetivo geral ainda.</p>
               ) : (
                 <div className="space-y-3">
                   {triunfosGerais.map(t => {
@@ -45225,8 +45401,15 @@ function App() {
                                 {realizadores.map(u => {
                                   const uData = users.find(usr => usr.username === u)
                                   return (
-                                    <span key={u} className="text-xs font-bold text-white px-2 py-0.5 rounded-full" style={{ background: uData?.gradient || '#555' }}>
+                                    <span key={u} className="inline-flex items-center gap-1 text-xs font-bold text-white px-2 py-0.5 rounded-full" style={{ background: uData?.gradient || '#555' }}>
                                       {u}
+                                      <button
+                                        onClick={() => setTriunfosGerais(prev => prev.map(tr => tr.id === t.id ? { ...tr, realizadores: (tr.realizadores || []).filter(r => r !== u) } : tr))}
+                                        className="opacity-80 hover:opacity-100 transition-opacity ml-0.5"
+                                        title={`Remover ${u}`}
+                                      >
+                                        <X size={10} />
+                                      </button>
                                     </span>
                                   )
                                 })}
@@ -45249,6 +45432,13 @@ function App() {
                               </div>
                             )}
                             <button
+                              onClick={() => setEditingTriunfoGeral({ id: t.id, texto: t.texto, vagas: t.vagas })}
+                              className="w-8 h-8 rounded-full bg-yellow-500 hover:bg-yellow-400 flex items-center justify-center transition-colors"
+                              title="Editar"
+                            >
+                              <Pencil size={14} className="text-gray-900" />
+                            </button>
+                            <button
                               onClick={() => setTriunfosGerais(prev => prev.filter(x => x.id !== t.id))}
                               className="w-8 h-8 rounded-full bg-red-600 hover:bg-red-500 flex items-center justify-center transition-colors"
                               title="Remover"
@@ -45264,11 +45454,11 @@ function App() {
               )}
             </div>
 
-            {/* ===== TRIUNFOS INDIVIDUAIS ===== */}
+            {/* ===== OBJETIVOS INDIVIDUAIS ===== */}
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-lg p-5`}>
               <div className="flex items-center gap-2 mb-4">
                 <Award size={20} className="text-red-500" />
-                <h2 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Triunfos Individuais</h2>
+                <h2 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Objetivos Individuais</h2>
               </div>
               <div className="space-y-4">
                 {trainerUsers.map(user => {
@@ -45294,12 +45484,12 @@ function App() {
                             className="flex items-center gap-1 bg-red-600 hover:bg-red-500 text-white px-2 py-1.5 rounded-lg font-semibold text-xs transition-colors"
                           >
                             <Award size={12} />
-                            + Triunfo
+                            + Objetivo
                           </button>
                         </div>
                       </div>
                       {lista.length === 0 ? (
-                        <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'} text-center py-2`}>Nenhum triunfo ainda.</p>
+                        <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'} text-center py-2`}>Nenhum objetivo ainda.</p>
                       ) : (
                         <div className="space-y-2">
                           {lista.map(t => (
@@ -45316,10 +45506,26 @@ function App() {
                                   </button>
                                 )}
                                 {t.realizado && (
-                                  <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center">
+                                  <button
+                                    onClick={() => setTriunfosIndividuais(prev => ({
+                                      ...prev,
+                                      [user.username]: (prev[user.username] || []).map(x =>
+                                        x.id === t.id ? { ...x, realizado: false } : x
+                                      )
+                                    }))}
+                                    className="w-7 h-7 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center transition-colors"
+                                    title="Desmarcar realizado"
+                                  >
                                     <Check size={13} className="text-white" />
-                                  </div>
+                                  </button>
                                 )}
+                                <button
+                                  onClick={() => setEditingTriunfoIndividual({ username: user.username, id: t.id, texto: t.texto })}
+                                  className="w-7 h-7 rounded-full bg-yellow-500 hover:bg-yellow-400 flex items-center justify-center transition-colors"
+                                  title="Editar"
+                                >
+                                  <Pencil size={11} className="text-gray-900" />
+                                </button>
                                 <button
                                   onClick={() => setTriunfosIndividuais(prev => ({
                                     ...prev,
@@ -45344,13 +45550,13 @@ function App() {
           )}
         </div>
 
-        {/* Modal: Adicionar Triunfos Gerais */}
+        {/* Modal: Adicionar Objetivos Gerais */}
         {showAddTriunfoGeralModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAddTriunfoGeralModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto`} onClick={e => e.stopPropagation()}>
               <div className="p-5">
                 <div className="flex justify-between items-center mb-5">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Adicionar Triunfos Gerais</h3>
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Adicionar Objetivos Gerais</h3>
                   <button onClick={() => setShowAddTriunfoGeralModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`}><X size={20} /></button>
                 </div>
                 <div className="space-y-3">
@@ -45361,7 +45567,7 @@ function App() {
                         type="text"
                         value={field.texto}
                         onChange={e => setTriunfoGeralFields(prev => prev.map((f, i) => i === idx ? { ...f, texto: e.target.value } : f))}
-                        placeholder="Descreva o triunfo..."
+                        placeholder="Descreva o objetivo..."
                         className={`flex-1 px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`}
                       />
                       <input
@@ -45394,13 +45600,13 @@ function App() {
           </div>
         )}
 
-        {/* Modal: Adicionar Triunfos Individuais */}
+        {/* Modal: Adicionar Objetivos Individuais */}
         {showAddTriunfoIndividualModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAddTriunfoIndividualModal(false)}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto`} onClick={e => e.stopPropagation()}>
               <div className="p-5">
                 <div className="flex justify-between items-center mb-5">
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Triunfos de {triunfoIndividualTargetUser}</h3>
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Objetivos de {triunfoIndividualTargetUser}</h3>
                   <button onClick={() => setShowAddTriunfoIndividualModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`}><X size={20} /></button>
                 </div>
                 <div className="space-y-3">
@@ -45411,7 +45617,7 @@ function App() {
                         type="text"
                         value={field.texto}
                         onChange={e => setTriunfoIndividualFields(prev => prev.map((f, i) => i === idx ? { texto: e.target.value } : f))}
-                        placeholder="Descreva o triunfo..."
+                        placeholder="Descreva o objetivo..."
                         className={`flex-1 px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`}
                       />
                       {triunfoIndividualFields.length > 1 && (
@@ -45435,7 +45641,89 @@ function App() {
           </div>
         )}
 
-        {/* Modal: Selecionar Usuários para Triunfo Geral */}
+        {/* Modal: Editar Objetivo Geral */}
+        {editingTriunfoGeral && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setEditingTriunfoGeral(null)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={e => e.stopPropagation()}>
+              <div className="p-5">
+                <div className="flex justify-between items-center mb-5">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Editar Objetivo Geral</h3>
+                  <button onClick={() => setEditingTriunfoGeral(null)} className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`}><X size={20} /></button>
+                </div>
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    value={editingTriunfoGeral.texto}
+                    onChange={e => setEditingTriunfoGeral(prev => ({ ...prev, texto: e.target.value }))}
+                    placeholder="Descreva o objetivo..."
+                    className={`w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`}
+                  />
+                  <div className="flex items-center gap-3">
+                    <label className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Vagas:</label>
+                    <input
+                      type="number"
+                      min={1}
+                      max={5}
+                      value={editingTriunfoGeral.vagas}
+                      onChange={e => setEditingTriunfoGeral(prev => ({ ...prev, vagas: Math.min(5, Math.max(1, parseInt(e.target.value) || 1)) }))}
+                      className={`w-20 px-3 py-2 rounded-lg border text-sm text-center ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white'}`}
+                    />
+                  </div>
+                </div>
+                <div className="flex gap-3 mt-5">
+                  <button onClick={() => setEditingTriunfoGeral(null)} className={`flex-1 py-2.5 rounded-lg font-semibold text-sm ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>Cancelar</button>
+                  <button
+                    onClick={() => {
+                      if (!editingTriunfoGeral.texto.trim()) return
+                      setTriunfosGerais(prev => prev.map(t => t.id === editingTriunfoGeral.id ? { ...t, texto: editingTriunfoGeral.texto.trim(), vagas: editingTriunfoGeral.vagas } : t))
+                      setEditingTriunfoGeral(null)
+                    }}
+                    className="flex-1 py-2.5 rounded-lg font-semibold text-sm bg-yellow-500 hover:bg-yellow-400 text-gray-900"
+                  >Salvar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal: Editar Objetivo Individual */}
+        {editingTriunfoIndividual && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setEditingTriunfoIndividual(null)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full`} onClick={e => e.stopPropagation()}>
+              <div className="p-5">
+                <div className="flex justify-between items-center mb-5">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Editar Objetivo de {editingTriunfoIndividual.username}</h3>
+                  <button onClick={() => setEditingTriunfoIndividual(null)} className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`}><X size={20} /></button>
+                </div>
+                <input
+                  type="text"
+                  value={editingTriunfoIndividual.texto}
+                  onChange={e => setEditingTriunfoIndividual(prev => ({ ...prev, texto: e.target.value }))}
+                  placeholder="Descreva o objetivo..."
+                  className={`w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`}
+                />
+                <div className="flex gap-3 mt-5">
+                  <button onClick={() => setEditingTriunfoIndividual(null)} className={`flex-1 py-2.5 rounded-lg font-semibold text-sm ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>Cancelar</button>
+                  <button
+                    onClick={() => {
+                      if (!editingTriunfoIndividual.texto.trim()) return
+                      setTriunfosIndividuais(prev => ({
+                        ...prev,
+                        [editingTriunfoIndividual.username]: (prev[editingTriunfoIndividual.username] || []).map(t =>
+                          t.id === editingTriunfoIndividual.id ? { ...t, texto: editingTriunfoIndividual.texto.trim() } : t
+                        )
+                      }))
+                      setEditingTriunfoIndividual(null)
+                    }}
+                    className="flex-1 py-2.5 rounded-lg font-semibold text-sm bg-yellow-500 hover:bg-yellow-400 text-gray-900"
+                  >Salvar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal: Selecionar Usuários para Objetivo Geral */}
         {showSelectUserForTriunfo && triunfoGeralSelecionado && (
           <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[60] p-4" onClick={() => { setShowSelectUserForTriunfo(false); setTempSelectedUsers([]) }}>
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm w-full`} onClick={e => e.stopPropagation()}>
@@ -45506,7 +45794,7 @@ function App() {
         {accountDataModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
-        {pokezapPanel}
+        {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
       </>
     )

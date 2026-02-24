@@ -840,3 +840,15 @@ export const saveMostrarTriunfos = async (data) => {
 export const subscribeToMostrarTriunfos = (callback) => {
   return subscribeToFirebase('triunfos/mostrar', callback)
 }
+
+// --- POKE AGENDA ---
+
+export const saveAnotacoes = async (username, anotacoes) => {
+  return saveToFirebase(`anotacoes/${username}`, removeUndefined(anotacoes))
+}
+
+export const subscribeToAnotacoes = (username, callback) => {
+  return subscribeToFirebase(`anotacoes/${username}`, (data) => {
+    callback(Array.isArray(data) ? data : Object.values(data || {}))
+  })
+}
