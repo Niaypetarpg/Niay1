@@ -2036,6 +2036,10 @@ function App() {
   const [expandedTradeCards, setExpandedTradeCards] = useState({}) // Cards expandidos no hub de troca
   const [tradeHubAlfaStatus, setTradeHubAlfaStatus] = useState({}) // Alfa status para pokémon do hub
   const [tradeHubConditions, setTradeHubConditions] = useState({}) // Condições dos pokémon do hub
+  const ALL_TRADE_REGIOES = ['Kanto','Johto','Hoenn','Sinnoh','Unova','Kalos','Alola','Galar','Paldea']
+  const [tradeHubRegioesOferecidos, setTradeHubRegioesOferecidos] = useState(['Kanto','Johto','Hoenn','Sinnoh','Unova','Kalos','Alola','Galar','Paldea'])
+  const [tradeHubRegioesExigidos, setTradeHubRegioesExigidos] = useState(['Kanto','Johto','Hoenn','Sinnoh','Unova','Kalos','Alola','Galar','Paldea'])
+  const [showTradeRegioesModal, setShowTradeRegioesModal] = useState(false)
   const [showTradeConfirmModal, setShowTradeConfirmModal] = useState(false)
   const [selectedTradeOffer, setSelectedTradeOffer] = useState(null)
   const [selectedTradeUserPokemon, setSelectedTradeUserPokemon] = useState(null)
@@ -2793,7 +2797,7 @@ function App() {
   const mostrarTriunfosSaveSkipRef = useRef(true)
   const [mostrarTriunfosMinimized, setMostrarTriunfosMinimized] = useState(false)
   const [mostrarTriunfosPlayerOpen, setMostrarTriunfosPlayerOpen] = useState(false)
-  const [triunfosSpoilerConfirmado, setTriunfosSpoilerConfirmado] = useState(false)
+  const [spoilerMestreConfirmado, setSpoilerMestreConfirmado] = useState(false)
   const [showAddTriunfoGeralModal, setShowAddTriunfoGeralModal] = useState(false)
   const [showAddTriunfoIndividualModal, setShowAddTriunfoIndividualModal] = useState(false)
   const [triunfoIndividualTargetUser, setTriunfoIndividualTargetUser] = useState('')
@@ -7987,6 +7991,26 @@ function App() {
     }
   }
 
+  // Determina a região de um pokémon pelo nome/dexNumber (portado do Pokedéx_RPG.html)
+  const pegarRegiao = (pokemon) => {
+    if (pokemon.nome.includes('Alola')) return 'Alola'
+    if (pokemon.nome.includes('Galar')) return 'Galar'
+    if (pokemon.nome.includes('Hisui')) return 'Sinnoh'
+    if (pokemon.nome.includes('Paldea')) return 'Paldea'
+    if (pokemon.nome.includes('Arceus')) return 'Sinnoh'
+    const d = pokemon.dexNumber
+    if (d <= 151) return 'Kanto'
+    if (d <= 251) return 'Johto'
+    if (d <= 386 || [10001,10002,10003].includes(d)) return 'Hoenn'
+    if (d <= 493 || [10004,10005,10006,10007,10008,10009,10010,10011,10012,10229,10230,10231,10232,10233,10234,10235,10236,10237,10238,10239,10240,10241,10242,10243,10244].includes(d)) return 'Sinnoh'
+    if (d <= 649) return 'Unova'
+    if (d <= 721 || [10118,10120,10086].includes(d)) return 'Kalos'
+    if (d <= 809 || [10091,10092,10100,10101,10102,10103,10104,10105,10106,10107,10108,10109,10110,10111,10112,10113,10114,10115].includes(d)) return 'Alola'
+    if (d <= 905 || [10161,10162,10163,10164,10165,10166,10167,10168,10169,10170,10171,10172,10173,10174,10175,10176,10177,10178,10179,10180].includes(d)) return 'Galar'
+    if (d <= 1025 || [10273,10274,10275,10250,10251,10252,10253,10276,10277].includes(d)) return 'Paldea'
+    return 'Desconhecida'
+  }
+
   // Gerar um Pokémon NPC completo para o Hub de Troca
   const TRADE_BANNED_POKEMON = new Set([
     'Arceus','Articuno','Azelf','Blacephalon','Buzzwole','Calyrex','Celebi','Celesteela',
@@ -8001,16 +8025,19 @@ function App() {
     'Solgaleo','Spectrier','Stakataka','Suicune','Tapu Bulu','Tapu Fini','Tapu Koko',
     'Tapu Lele','Terrakion','Thundurus','Tornadus','Type: Null','Urshifu','Uxie',
     'Victini','Virizion','Volcanion','Xerneas','Xurkitree','Yveltal','Zacian',
-    'Zamazenta','Zapdos','Zarude','Zekrom','Zeraora','Zygarde'
+    'Zamazenta','Zapdos','Zarude','Zekrom','Zeraora',
+    'Gouging Fire','Raging Bolt','Walking Wake',
+    'Wyrdeer','Kleavor','Ursaluna','Basculegion','Sneasler','Overqwil'
   ])
 
-  const isTradeBanned = (name) => TRADE_BANNED_POKEMON.has(name) || name.includes('Arceus')
+  const isTradeBanned = (name) => TRADE_BANNED_POKEMON.has(name) || name.includes('Arceus') || name.includes('Deoxys') || name.includes('Genesect') || name.includes('Shaymin') || name.includes('Zygarde') || name.includes('Giratina') || name.includes('Hisui')
 
-  const generateRandomNpcPokemon = (level, filterBanned) => {
-    let species = pokedexData[Math.floor(Math.random() * pokedexData.length)]
+  const generateRandomNpcPokemon = (level, filterBanned, pool = null) => {
+    const src = pool && pool.length > 0 ? pool : pokedexData
+    let species = src[Math.floor(Math.random() * src.length)]
     if (filterBanned) {
       while (isTradeBanned(species.nome)) {
-        species = pokedexData[Math.floor(Math.random() * pokedexData.length)]
+        species = src[Math.floor(Math.random() * src.length)]
       }
     }
     const nature = NATURES[Math.floor(Math.random() * NATURES.length)]
@@ -8066,15 +8093,17 @@ function App() {
 
   // Gerar 20 ofertas de troca
   const generateTradeOffers = () => {
+    const ofPool = (() => { const f = pokedexData.filter(p => tradeHubRegioesOferecidos.length === 0 || tradeHubRegioesOferecidos.includes(pegarRegiao(p))); return f.length > 0 ? f : pokedexData })()
+    const reqPool = (() => { const f = pokedexData.filter(p => tradeHubRegioesExigidos.length === 0 || tradeHubRegioesExigidos.includes(pegarRegiao(p))); return f.length > 0 ? f : pokedexData })()
     const offers = []
     for (let i = 0; i < 20; i++) {
       const level = Math.floor(Math.random() * 20) + 1
-      const offeredPokemon = generateRandomNpcPokemon(level, TRADE_BANNED_POKEMON)
+      const offeredPokemon = generateRandomNpcPokemon(level, TRADE_BANNED_POKEMON, ofPool)
 
       // Pokémon necessário (espécie aleatória diferente, também não banido)
-      let requiredSpecies = pokedexData[Math.floor(Math.random() * pokedexData.length)]
+      let requiredSpecies = reqPool[Math.floor(Math.random() * reqPool.length)]
       while (requiredSpecies.nome === offeredPokemon.species || isTradeBanned(requiredSpecies.nome)) {
-        requiredSpecies = pokedexData[Math.floor(Math.random() * pokedexData.length)]
+        requiredSpecies = reqPool[Math.floor(Math.random() * reqPool.length)]
       }
 
       offers.push({
@@ -8090,6 +8119,26 @@ function App() {
     setExpandedTradeCards({})
     setTradeHubAlfaStatus({})
     setTradeHubConditions({})
+  }
+
+  const resorteioTradeCard = (tradeId) => {
+    const ofPool = (() => { const f = pokedexData.filter(p => tradeHubRegioesOferecidos.length === 0 || tradeHubRegioesOferecidos.includes(pegarRegiao(p))); return f.length > 0 ? f : pokedexData })()
+    const reqPool = (() => { const f = pokedexData.filter(p => tradeHubRegioesExigidos.length === 0 || tradeHubRegioesExigidos.includes(pegarRegiao(p))); return f.length > 0 ? f : pokedexData })()
+    const level = Math.floor(Math.random() * 20) + 1
+    const newOfferedPokemon = generateRandomNpcPokemon(level, TRADE_BANNED_POKEMON, ofPool)
+    let requiredSpecies = reqPool[Math.floor(Math.random() * reqPool.length)]
+    while (requiredSpecies.nome === newOfferedPokemon.species || isTradeBanned(requiredSpecies.nome)) {
+      requiredSpecies = reqPool[Math.floor(Math.random() * reqPool.length)]
+    }
+    setTradeHubOffers(prev => prev.map(t => t.id === tradeId ? {
+      ...t,
+      offeredPokemon: newOfferedPokemon,
+      requiredSpecies: requiredSpecies.nome,
+      requiredImageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${requiredSpecies.dexNumber}.png`,
+      requiredDexNumber: requiredSpecies.dexNumber
+    } : t))
+    setTradeHubCompletedTrades(prev => { const n = {...prev}; delete n[tradeId]; return n })
+    setExpandedTradeCards(prev => { const n = {...prev}; delete n[tradeId]; return n })
   }
 
   // Aceitar uma troca no Hub de Troca (treinador)
@@ -11404,7 +11453,7 @@ function App() {
     setCurrentArea('')
     setSessionBg(null)
     setShowPokezapPanel(false)
-    setTriunfosSpoilerConfirmado(false)
+    setSpoilerMestreConfirmado(false)
     setShowBatalhaChat(false)
   }
 
@@ -13874,7 +13923,92 @@ function App() {
               >
                 Limpar Ofertas
               </button>
+              <button
+                onClick={() => setShowTradeRegioesModal(true)}
+                className={`px-3 py-2 rounded-lg font-semibold text-xs sm:text-sm border-2 ${
+                  tradeHubRegioesOferecidos.length === ALL_TRADE_REGIOES.length && tradeHubRegioesExigidos.length === ALL_TRADE_REGIOES.length
+                    ? darkMode ? 'bg-gray-700 border-gray-500 text-gray-200' : 'bg-gray-100 border-gray-400 text-gray-700'
+                    : 'bg-gradient-to-r from-green-600 to-teal-600 border-transparent text-white'
+                }`}
+              >
+                Regiões {(tradeHubRegioesOferecidos.length < ALL_TRADE_REGIOES.length || tradeHubRegioesExigidos.length < ALL_TRADE_REGIOES.length) ? `(O:${tradeHubRegioesOferecidos.length} E:${tradeHubRegioesExigidos.length})` : ''}
+              </button>
             </div>
+
+            {/* Modal de Regiões */}
+            {showTradeRegioesModal && (
+              <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+                <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'} rounded-2xl shadow-2xl p-6 w-full max-w-lg`}>
+                  <h3 className="text-lg font-bold mb-4 text-center">Filtro de Regiões</h3>
+                  <div className="grid grid-cols-2 gap-4 mb-5">
+                    {/* Coluna Esquerda — Oferecidos */}
+                    <div>
+                      <p className="font-bold text-sm mb-2 text-blue-500">Pokémon Oferecido</p>
+                      <label className="flex items-center gap-2 mb-2 cursor-pointer font-semibold text-sm">
+                        <input
+                          type="checkbox"
+                          checked={tradeHubRegioesOferecidos.length === ALL_TRADE_REGIOES.length}
+                          onChange={(e) => setTradeHubRegioesOferecidos(e.target.checked ? [...ALL_TRADE_REGIOES] : [])}
+                          className="w-4 h-4 accent-blue-500"
+                        />
+                        Marcar Todas
+                      </label>
+                      <div className="border-t border-gray-400 mb-2" />
+                      <div className="flex flex-col gap-1.5">
+                        {ALL_TRADE_REGIOES.map(regiao => (
+                          <label key={regiao} className="flex items-center gap-2 cursor-pointer text-sm">
+                            <input
+                              type="checkbox"
+                              checked={tradeHubRegioesOferecidos.includes(regiao)}
+                              onChange={(e) => setTradeHubRegioesOferecidos(prev =>
+                                e.target.checked ? [...prev, regiao] : prev.filter(r => r !== regiao)
+                              )}
+                              className="w-4 h-4 accent-blue-500"
+                            />
+                            {regiao}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                    {/* Coluna Direita — Exigidos */}
+                    <div>
+                      <p className="font-bold text-sm mb-2 text-orange-500">Pokémon Exigido</p>
+                      <label className="flex items-center gap-2 mb-2 cursor-pointer font-semibold text-sm">
+                        <input
+                          type="checkbox"
+                          checked={tradeHubRegioesExigidos.length === ALL_TRADE_REGIOES.length}
+                          onChange={(e) => setTradeHubRegioesExigidos(e.target.checked ? [...ALL_TRADE_REGIOES] : [])}
+                          className="w-4 h-4 accent-orange-500"
+                        />
+                        Marcar Todas
+                      </label>
+                      <div className="border-t border-gray-400 mb-2" />
+                      <div className="flex flex-col gap-1.5">
+                        {ALL_TRADE_REGIOES.map(regiao => (
+                          <label key={regiao} className="flex items-center gap-2 cursor-pointer text-sm">
+                            <input
+                              type="checkbox"
+                              checked={tradeHubRegioesExigidos.includes(regiao)}
+                              onChange={(e) => setTradeHubRegioesExigidos(prev =>
+                                e.target.checked ? [...prev, regiao] : prev.filter(r => r !== regiao)
+                              )}
+                              className="w-4 h-4 accent-orange-500"
+                            />
+                            {regiao}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setShowTradeRegioesModal(false)}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg"
+                  >
+                    Confirmar
+                  </button>
+                </div>
+              </div>
+            )}
 
             {tradeHubOffers.length === 0 ? (
               <div className="text-center py-8">
@@ -13945,6 +14079,13 @@ function App() {
                             >
                               <ArrowRightCircle size={14} />
                             </button>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); resorteioTradeCard(trade.id) }}
+                              className="bg-purple-500 text-white p-1.5 rounded-lg hover:bg-purple-600"
+                              title="Sortear Novamente"
+                            >
+                              <Shuffle size={14} />
+                            </button>
                           </div>
                         </div>
                       ) : (
@@ -13982,6 +14123,13 @@ function App() {
                                 title="Enviar para Batalha"
                               >
                                 <ArrowRightCircle size={14} />
+                              </button>
+                              <button
+                                onClick={() => resorteioTradeCard(trade.id)}
+                                className="bg-purple-500 text-white p-1.5 rounded-lg hover:bg-purple-600"
+                                title="Sortear Novamente"
+                              >
+                                <Shuffle size={14} />
                               </button>
                             </div>
                           </div>
@@ -14295,6 +14443,38 @@ function App() {
 
   // ÁREA TREINADOR NPC
   if (currentUser.type === 'mestre' && currentArea === 'Treinador NPC') {
+    if (!spoilerMestreConfirmado) return (
+      <>
+        <div className={`min-h-screen ${mainBgClass}`}>
+          {sidebarNav}
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Treinador NPC 👑</h2></div>
+                <div className="flex gap-2">
+                  <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
+                  <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8 flex flex-col items-center justify-center min-h-[60vh] text-center gap-6">
+            <div className="text-6xl">⚠️</div>
+            <h2 className={`text-3xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>Alerta de Spoiler</h2>
+            <p className={`text-base max-w-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+              Esta área contém informações confidenciais do Arco. Prossiga apenas se tiver certeza.
+            </p>
+            <button
+              onClick={() => setSpoilerMestreConfirmado(true)}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 rounded-xl text-lg transition-colors"
+            >
+              Sou o mestre do Arco.
+            </button>
+          </div>
+        </div>
+      </>
+    )
     return (
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
@@ -15128,6 +15308,38 @@ function App() {
 
   // ÁREA POKÉMON NPC (MESTRE)
   if (currentUser.type === 'mestre' && currentArea === 'Pokémon NPC') {
+    if (!spoilerMestreConfirmado) return (
+      <>
+        <div className={`min-h-screen ${mainBgClass}`}>
+          {sidebarNav}
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon NPC 👑</h2></div>
+                <div className="flex gap-2">
+                  <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
+                  <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8 flex flex-col items-center justify-center min-h-[60vh] text-center gap-6">
+            <div className="text-6xl">⚠️</div>
+            <h2 className={`text-3xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>Alerta de Spoiler</h2>
+            <p className={`text-base max-w-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+              Esta área contém informações confidenciais do Arco. Prossiga apenas se tiver certeza.
+            </p>
+            <button
+              onClick={() => setSpoilerMestreConfirmado(true)}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 rounded-xl text-lg transition-colors"
+            >
+              Sou o mestre do Arco.
+            </button>
+          </div>
+        </div>
+      </>
+    )
     return (
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
@@ -43853,6 +44065,41 @@ function App() {
       return npcTeamSelectingSlot?.teamId === teamId && npcTeamSelectingSlot?.slotType === slotType && npcTeamSelectingSlot?.slotIndex === slotIndex
     }
 
+    if (!spoilerMestreConfirmado) return (
+      <>
+        <div className={`min-h-screen ${mainBgClass}`}>
+          {sidebarNav}
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center gap-3">
+                  <button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button>
+                  <h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Times NPC</h2>
+                </div>
+                <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
+                  <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8 flex flex-col items-center justify-center min-h-[60vh] text-center gap-6">
+            <div className="text-6xl">⚠️</div>
+            <h2 className={`text-3xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>Alerta de Spoiler</h2>
+            <p className={`text-base max-w-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+              Esta área contém informações confidenciais do Arco. Prossiga apenas se tiver certeza.
+            </p>
+            <button
+              onClick={() => setSpoilerMestreConfirmado(true)}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 rounded-xl text-lg transition-colors"
+            >
+              Sou o mestre do Arco.
+            </button>
+          </div>
+        </div>
+      </>
+    )
+
     return (
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
@@ -44475,6 +44722,41 @@ function App() {
 
   // ===== ÁREA CENÁRIOS DA SESSÃO =====
   if (currentUser.type === 'mestre' && currentArea === 'Cenários da Sessão') {
+    if (!spoilerMestreConfirmado) return (
+      <>
+        <div className={`min-h-screen ${mainBgClass}`}>
+          {sidebarNav}
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center gap-3">
+                  <button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-500'}`}><Menu size={24} /></button>
+                  <h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Cenários da Sessão</h2>
+                </div>
+                <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
+                  <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
+                  <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8 flex flex-col items-center justify-center min-h-[60vh] text-center gap-6">
+            <div className="text-6xl">⚠️</div>
+            <h2 className={`text-3xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>Alerta de Spoiler</h2>
+            <p className={`text-base max-w-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+              Esta área contém informações confidenciais do Arco. Prossiga apenas se tiver certeza.
+            </p>
+            <button
+              onClick={() => setSpoilerMestreConfirmado(true)}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 rounded-xl text-lg transition-colors"
+            >
+              Sou o mestre do Arco.
+            </button>
+          </div>
+        </div>
+      </>
+    )
     return (
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
@@ -45324,7 +45606,7 @@ function App() {
             </div>
           </div>
 
-          {!triunfosSpoilerConfirmado && (
+          {!spoilerMestreConfirmado && (
             <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8 flex flex-col items-center justify-center min-h-[60vh] text-center gap-6">
               <div className="text-6xl">⚠️</div>
               <h2 className={`text-3xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>Alerta de Spoiler</h2>
@@ -45332,14 +45614,14 @@ function App() {
                 Esta área contém informações confidenciais do Arco. Prossiga apenas se tiver certeza.
               </p>
               <button
-                onClick={() => setTriunfosSpoilerConfirmado(true)}
+                onClick={() => setSpoilerMestreConfirmado(true)}
                 className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 rounded-xl text-lg transition-colors"
               >
                 Sou o mestre do Arco.
               </button>
             </div>
           )}
-          {triunfosSpoilerConfirmado && (
+          {spoilerMestreConfirmado && (
           <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
