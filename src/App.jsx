@@ -1110,6 +1110,17 @@ const KEY_ITEMS_LIST = [
   'Ração Vegetariana',
   'Ração Carnívora',
   'Ração Onívora',
+  // Corredor de Frutas
+  'Persim', 'Wepear', 'Pinap', 'Pamtre', 'Bluk', 'Nanab', 'Durin', 'Razz', 'Oran', 'Nomel',
+  'Magost', 'Watmel', 'Spelon', 'Cornn', 'Belue', 'Rabuta',
+  'Figy', 'Aguav', 'Wiki', 'Iapapa', 'Mago', 'Sitrus',
+  'Chesto', 'Cheri', 'Rawst', 'Aspear', 'Pecha',
+  'Kebia', 'Charti', 'Haban', 'Coba', 'Babiri', 'Occa', 'Shuca', 'Colbur', 'Chople',
+  'Yache', 'Wacan', 'Kasib', 'Passho', 'Payapa', 'Tanga', 'Roseli', 'Chilan', 'Rindo',
+  'Starf', 'Apicot', 'Lansat', 'Liechi', 'Ganlon', 'Petaya', 'Salac',
+  'Kelpsy', 'Hondew', 'Qualot', 'Pomeg', 'Tamato', 'Grepa',
+  'Lum', 'Leppa',
+  'Enigma', 'Micle', 'Kee', 'Jaboca', 'Maranga', 'Rowap', 'Custap',
   // Peças de pokébola quebradas
   'Peças de Pokeball',
   'Peças de Greatball',
@@ -1432,8 +1443,80 @@ const POKELOJA_DATA = {
     { name: 'Ração Vegetariana', price: 150, description: 'Conjunto de 3 refeições diárias, para pokémons vegetarianos.', image: '/pokeballs/racaovegetariana.png' },
     { name: 'Ração Carnívora', price: 200, description: 'Conjunto de 3 refeições diárias, para pokémons carnívoros.', image: '/pokeballs/racaocarnivora.png' },
     { name: 'Ração Onívora', price: 200, description: 'Conjunto de 3 refeições diárias, para pokémon onívoros.', image: '/pokeballs/racaoonivora.png' }
+  ],
+  'Frutas': [
+    { name: 'Persim', realName: 'Caqui', price: 90, description: 'Restaura Confusão.', image: '/frutas/persim.png' },
+    { name: 'Wepear', realName: 'Abacate', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/wepear.png' },
+    { name: 'Pinap', realName: 'Abacaxi', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/pinap.png' },
+    { name: 'Pamtre', realName: 'Açaí', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/pamtre.png' },
+    { name: 'Bluk', realName: 'Amora', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/bluk.png' },
+    { name: 'Nanab', realName: 'Banana', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/nanab.png' },
+    { name: 'Durin', realName: 'Durião', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/durin.png' },
+    { name: 'Razz', realName: 'Framboesa', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/razz.png' },
+    { name: 'Oran', realName: 'Laranja', price: 90, description: 'Recupera 1d8 PV.', image: '/frutas/oran.png' },
+    { name: 'Nomel', realName: 'Limão', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/nomel.png' },
+    { name: 'Magost', realName: 'Mangostão', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/magost.png' },
+    { name: 'Watmel', realName: 'Melancia', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/watmel.png' },
+    { name: 'Spelon', realName: 'Melão', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/spelon.png' },
+    { name: 'Cornn', realName: 'Milho', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/cornn.png' },
+    { name: 'Belue', realName: 'Mirtilo', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/belue.png' },
+    { name: 'Rabuta', realName: 'Rambután', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/rabuta.png' },
+    { name: 'Figy', realName: 'Figo', price: 155, description: 'Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Picante.', image: '/frutas/figy.png' },
+    { name: 'Aguav', realName: 'Goiaba', price: 155, description: 'Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Amargo.', image: '/frutas/aguav.png' },
+    { name: 'Wiki', realName: 'Kiwi', price: 155, description: 'Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Seco.', image: '/frutas/wiki.png' },
+    { name: 'Iapapa', realName: 'Mamão', price: 155, description: 'Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Azedo.', image: '/frutas/iapapa.png' },
+    { name: 'Mago', realName: 'Manga', price: 155, description: 'Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Doce.', image: '/frutas/mago.png' },
+    { name: 'Sitrus', realName: 'Toranja', price: 155, description: 'Recupera 2d8 PV.', image: '/frutas/sitrus.png' },
+    { name: 'Chesto', realName: 'Castanha', price: 225, description: 'Restaura Sono.', image: '/frutas/chesto.png' },
+    { name: 'Cheri', realName: 'Cereja', price: 225, description: 'Restaura Paralisia.', image: '/frutas/cheri.png' },
+    { name: 'Rawst', realName: 'Morango', price: 225, description: 'Restaura Queimadura.', image: '/frutas/rawst.png' },
+    { name: 'Aspear', realName: 'Pera', price: 225, description: 'Restaura Congelamento.', image: '/frutas/aspear.png' },
+    { name: 'Pecha', realName: 'Pêssego', price: 225, description: 'Restaura Veneno.', image: '/frutas/pecha.png' },
+    { name: 'Kebia', realName: 'Akebia', price: 275, description: 'Se sofrer um dano Venenoso que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/kebia.png' },
+    { name: 'Charti', realName: 'Alcachofra', price: 275, description: 'Se sofrer um dano de Pedra que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/charti.png' },
+    { name: 'Haban', realName: 'Araçá', price: 275, description: 'Se sofrer um dano de Dragão que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/haban.png' },
+    { name: 'Coba', realName: 'Babaco', price: 275, description: 'Se sofrer um dano Voador que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/coba.png' },
+    { name: 'Babiri', realName: 'Biribá', price: 275, description: 'Se sofrer um dano Metálico que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/babiri.png' },
+    { name: 'Occa', realName: 'Cacau', price: 275, description: 'Se sofrer um dano de Fogo que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/occa.png' },
+    { name: 'Shuca', realName: 'Caju', price: 275, description: 'Se sofrer um dano de Terra que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/shuca.png' },
+    { name: 'Colbur', realName: 'Cardo', price: 275, description: 'Se sofrer um dano de Trevas que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/colbur.png' },
+    { name: 'Chople', realName: 'Chipotle', price: 275, description: 'Se sofrer um dano Lutador que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/chople.png' },
+    { name: 'Yache', realName: 'Chirimoia', price: 275, description: 'Se sofrer um dano de Gelo que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/yache.png' },
+    { name: 'Wacan', realName: 'Guajilote', price: 275, description: 'Se sofrer um dano Elétrico que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/wacan.png' },
+    { name: 'Kasib', realName: 'Mandioca', price: 275, description: 'Se sofrer um dano Fantasma que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/kasib.png' },
+    { name: 'Passho', realName: 'Maracujá', price: 275, description: 'Se sofrer um dano de Água que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/passho.png' },
+    { name: 'Payapa', realName: 'Papaia', price: 275, description: 'Se sofrer um dano Psíquico que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/payapa.png' },
+    { name: 'Tanga', realName: 'Pitanga', price: 275, description: 'Se sofrer um dano de Inseto que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/tanga.png' },
+    { name: 'Roseli', realName: 'Rosália', price: 275, description: 'Se sofrer um dano de Fada que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/roseli.png' },
+    { name: 'Chilan', realName: 'Sininho', price: 275, description: 'Se sofrer um dano Normal, sofre apenas metade do dano.', image: '/frutas/chilan.png' },
+    { name: 'Rindo', realName: 'Tamarindo', price: 275, description: 'Se sofrer um dano de Planta que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/rindo.png' },
+    { name: 'Starf', realName: 'Carambola', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em um Atributo aleatório (exceto Saúde).', image: '/frutas/starf.png' },
+    { name: 'Apicot', realName: 'Damasco', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em Defesa Especial.', image: '/frutas/apicot.png' },
+    { name: 'Lansat', realName: 'Langsat', price: 365, description: 'Quando abaixo da metade dos PV, os Golpes do pokémon serão Críticos em resultados de Acurácia de 18 a 20 por 3 rodadas.', image: '/frutas/lansat.png' },
+    { name: 'Liechi', realName: 'Lichia', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em Ataque.', image: '/frutas/liechi.png' },
+    { name: 'Ganlon', realName: 'Longana', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em Defesa.', image: '/frutas/ganlon.png' },
+    { name: 'Petaya', realName: 'Pitaia', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em Ataque Especial.', image: '/frutas/petaya.png' },
+    { name: 'Salac', realName: 'Salak', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em Velocidade.', image: '/frutas/salac.png' },
+    { name: 'Kelpsy', realName: 'Alga', price: 375, description: 'Se for do interesse, reduz o Ataque Basal em 1.', image: '/frutas/kelpsy.png' },
+    { name: 'Hondew', realName: 'Cantalupo', price: 375, description: 'Se for do interesse, reduz o Ataque Especial Basal em 1.', image: '/frutas/hondew.png' },
+    { name: 'Qualot', realName: 'Nêspera', price: 375, description: 'Se for do interesse, reduz a Defesa Basal em 1.', image: '/frutas/qualot.png' },
+    { name: 'Pomeg', realName: 'Romã', price: 375, description: 'Se for do interesse, reduz a Saúde Basal em 1.', image: '/frutas/pomeg.png' },
+    { name: 'Tamato', realName: 'Tomate', price: 375, description: 'Se for do interesse, reduz a Velocidade Basal em 1.', image: '/frutas/tamato.png' },
+    { name: 'Grepa', realName: 'Uva', price: 375, description: 'Se for do interesse, reduz a Defesa Especial Basal em 1.', image: '/frutas/grepa.png' },
+    { name: 'Lum', realName: 'Ameixa', price: 555, description: 'Restaura qualquer Condição.', image: '/frutas/lum.png' },
+    { name: 'Leppa', realName: 'Maçã', price: 1375, description: 'Restaura um uso de um Golpe.', image: '/frutas/leppa.png' },
+    { name: 'Enigma', realName: 'Enigma', price: 2555, description: 'Se acertado por um Golpe superefetivo, recupera um quarto dos PV máximos.', image: '/frutas/enigma.png' },
+    { name: 'Micle', realName: 'Fruta Milagrosa', price: 2555, description: 'Quando abaixo da metade dos PV, as Dificuldades de Acurácia dos Golpes são reduzidas em 2 por 3 rodadas.', image: '/frutas/micle.png' },
+    { name: 'Kee', realName: 'Guaraná', price: 2555, description: 'Quando acertado por um Golpe Físico, eleva uma Fase em Defesa.', image: '/frutas/kee.png' },
+    { name: 'Jaboca', realName: 'Jabuticaba', price: 2555, description: 'Quando acertado por um ataque Corpo a Corpo, o atacante sofre metade do dano causado.', image: '/frutas/jaboca.png' },
+    { name: 'Maranga', realName: 'Jaca', price: 2555, description: 'Quando acertado por um Golpe Especial, eleva uma Fase em Defesa Especial.', image: '/frutas/maranga.png' },
+    { name: 'Rowap', realName: 'Jambo', price: 2555, description: 'Quando acertado por um ataque à Distância, o atacante sofre metade do dano causado.', image: '/frutas/rowap.png' },
+    { name: 'Custap', realName: 'Pinha', price: 2555, description: 'Quando abaixo de 10% dos PV, os Golpes causadores de dano adquirem o Descritor Interrupção se puderem ser usados à Vontade por 1 rodada.', image: '/frutas/custap.png' }
   ]
 }
+
+// Corredores que nunca aparecem na Pokéloja (sempre ocultos para treinadores)
+const CORREDORES_SEMPRE_OCULTOS = ['Apricorns e Bonsais']
 
 // Mapa de pesos para sorteio de itens escondidos na Pokéloja
 // Quanto maior o peso, maior a chance de ser escondido
@@ -20512,7 +20595,7 @@ function App() {
                                   />
                                   <div className="flex-1 min-w-0">
                                     <h5 className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                                      {item.name}
+                                      {item.name}{item.realName ? ` (${item.realName})` : ''}
                                     </h5>
                                     {item.price != null && (
                                       <p className={`text-sm ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} font-semibold`}>
@@ -31381,6 +31464,9 @@ function App() {
 
         <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
           {Object.entries(POKELOJA_DATA).map(([corredor, items]) => {
+            // Corredores sempre ocultos nunca aparecem na loja
+            if (CORREDORES_SEMPRE_OCULTOS.includes(corredor)) return null
+
             // Filtrar itens ocultos e itens sem loja
             const visibleItems = items.filter(item => !hiddenItems.includes(item.name) && !item.noShop)
 
@@ -33528,7 +33614,7 @@ function App() {
                                 />
                                 <div className="flex-1 min-w-0">
                                   <h5 className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                                    {item.name}
+                                    {item.name}{item.realName ? ` (${item.realName})` : ''}
                                   </h5>
                                   {item.price != null && (
                                     <p className={`text-sm ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} font-semibold`}>
