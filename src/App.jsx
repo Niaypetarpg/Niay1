@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus, Save, Archive, MoveVertical, Menu, Gamepad2 } from 'lucide-react'
+import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus, Save, Archive, MoveVertical, Menu, Gamepad2, TowerControl } from 'lucide-react'
 import AccountDataModal from './AccountDataModal'
 import pokedexData, { POKEMON_DIET_MAP } from './pokemonData'
 import GOLPES_DATA_IMPORTED from './golpesData'
@@ -1029,7 +1029,9 @@ const NO_HELD_ITEM_PHRASES = [
 
 // Itens Chave disponíveis
 const KEY_ITEMS_LIST = [
-  ...POKEBALLS_LIST,
+  'Custom Pokeball',
+  'Custom Item Chave',
+  ...POKEBALLS_LIST.slice(1),
   'Pokeovo',
   // Corredor de Cura
   'Potion',
@@ -1657,6 +1659,25 @@ const getFruitFlavors = (fruitName) => {
   const match = fruit.description.match(/Sabores: ([^.]+)\./)
   if (!match) return []
   return match[1].split(', ').map(s => s.trim()).filter(Boolean)
+}
+
+// Mapeamento de sabores de puffin para aptidões
+const FLAVOR_LIST = ['Picante', 'Seco', 'Doce', 'Amargo', 'Azedo']
+const FLAVOR_TO_APTIDAO = { Picante: 'estilo', Seco: 'beleza', Doce: 'ternura', Amargo: 'perspicacia', Azedo: 'vigor' }
+
+// Parser de nome de puffin (ex: "Puffin Azedo Amargo (Doce) 4")
+const parsePuffinName = (name) => {
+  let remaining = name.replace(/^Puffin\s+/, '')
+  let aroma = null
+  const aromaMatch = remaining.match(/\(([^)]+)\)/)
+  if (aromaMatch) {
+    aroma = aromaMatch[1].trim()
+    remaining = remaining.replace(/\s*\([^)]+\)/, '').trim()
+  }
+  const tokens = remaining.split(/\s+/)
+  const valor = parseInt(tokens[tokens.length - 1]) || 0
+  const flavors = tokens.slice(0, -1).filter(t => FLAVOR_LIST.includes(t))
+  return { primaryFlavor: flavors[0] || null, secondaryFlavor: flavors[1] || null, aroma, valor }
 }
 
 // Corredores que nunca aparecem na Pokéloja (sempre ocultos para treinadores)
@@ -2572,7 +2593,39 @@ function App() {
   const [showAddCustomItemModal, setShowAddCustomItemModal] = useState(false)
   const [customItemName, setCustomItemName] = useState('')
   const [customItemQuantity, setCustomItemQuantity] = useState(1)
+  const [showCustomKeyItemModal, setShowCustomKeyItemModal] = useState(false)
+  const [customKeyItemName, setCustomKeyItemName] = useState('')
+  const [customKeyItemQty, setCustomKeyItemQty] = useState(1)
+  const [customKeyItemImageUrl, setCustomKeyItemImageUrl] = useState('')
+  const [customKeyItemDescription, setCustomKeyItemDescription] = useState('')
+  const [showMochilaDescModal, setShowMochilaDescModal] = useState(false)
+  const [mochilaDescItem, setMochilaDescItem] = useState(null)
   const [customItemDescription, setCustomItemDescription] = useState('')
+
+  // States para Bugigangas do Mestre
+  const [masterItems, setMasterItems] = useState([]) // {id, name, quantity, quantityFixed, image, description?}
+  const [masterItemsSent, setMasterItemsSent] = useState([]) // items enviados (qty chegou a 0)
+  const [masterItemsPage, setMasterItemsPage] = useState(0)
+  const [masterItemsSentPage, setMasterItemsSentPage] = useState(0)
+  const [showFabricarItemModal, setShowFabricarItemModal] = useState(false)
+  const [fabricarItemName, setFabricarItemName] = useState('')
+  const [fabricarItemQty, setFabricarItemQty] = useState('')
+  const [fabricarItemImage, setFabricarItemImage] = useState('')
+  const [fabricarItemDescription, setFabricarItemDescription] = useState('')
+  const [showEditMasterItemModal, setShowEditMasterItemModal] = useState(false)
+  const [editingMasterItem, setEditingMasterItem] = useState(null)
+  const [editMasterItemName, setEditMasterItemName] = useState('')
+  const [editMasterItemQty, setEditMasterItemQty] = useState('')
+  const [editMasterItemImage, setEditMasterItemImage] = useState('')
+  const [editMasterItemDescription, setEditMasterItemDescription] = useState('')
+  const [showMandarItemModal, setShowMandarItemModal] = useState(false)
+  const [mandarItemTarget, setMandarItemTarget] = useState(null)
+  const [mandarItemSelectedUsers, setMandarItemSelectedUsers] = useState([])
+  const [showMasterItemDescModal, setShowMasterItemDescModal] = useState(false)
+  const [masterItemDescTarget, setMasterItemDescTarget] = useState(null)
+  const [showRenovarItemModal, setShowRenovarItemModal] = useState(false)
+  const [renovarItemTarget, setRenovarItemTarget] = useState(null)
+  const [renovarItemQty, setRenovarItemQty] = useState('')
   const [showGiveItemModal, setShowGiveItemModal] = useState(false)
   const [selectedItemToGive, setSelectedItemToGive] = useState(null)
   const [selectedPokemonToReceiveItem, setSelectedPokemonToReceiveItem] = useState(null)
@@ -2603,6 +2656,12 @@ function App() {
   const [showPokesucoQualidadeModal, setShowPokesucoQualidadeModal] = useState(false)
   const [pokesucoQualidadeSelectedItem, setPokesucoQualidadeSelectedItem] = useState('')
   const [pokesucoQualidadeValue, setPokesucoQualidadeValue] = useState(5)
+
+  // States para modal de valor/aroma ao adicionar Puffin pela mochila
+  const [showPuffinValorModal, setShowPuffinValorModal] = useState(false)
+  const [puffinValorSelectedItem, setPuffinValorSelectedItem] = useState('')
+  const [puffinValorValue, setPuffinValorValue] = useState(5)
+  const [puffinAromaFlavor, setPuffinAromaFlavor] = useState(null)
 
   // States para Puffin
   const [showFazerPuffinModal, setShowFazerPuffinModal] = useState(false)
@@ -2797,6 +2856,15 @@ function App() {
   // Estado para visualização de informações do Pokémon
   const [showPokemonInfoModal, setShowPokemonInfoModal] = useState(false)
   const [viewingPokemon, setViewingPokemon] = useState(null)
+
+  // Estados para modal de edição de Aptidões de Pokémon
+  const [showAptidoesModal, setShowAptidoesModal] = useState(false)
+  const [aptidoesEditingPokemon, setAptidoesEditingPokemon] = useState(null) // { pokemon, location, index }
+  const [aptidoesTempValues, setAptidoesTempValues] = useState({ estilo: 0, beleza: 0, ternura: 0, perspicacia: 0, vigor: 0 })
+
+  // Estados para modal de Snack (puffins → aptidões)
+  const [showSnackModal, setShowSnackModal] = useState(false)
+  const [snackDropdownPokemon, setSnackDropdownPokemon] = useState(null) // índice do pokémon com dropdown aberto
 
   // Estado para modal de Dano/Cura de Pokémon
   const [showPokemonHPModal, setShowPokemonHPModal] = useState(false)
@@ -3368,7 +3436,7 @@ function App() {
     { username: 'Pedro', type: 'treinador', gradient: 'linear-gradient(135deg, #0000CD, #4169E1, #00CED1, #32CD32)' }
   ]
 
-  const mestreAreas = ['Gerador Pokémon', 'Árvore de Apricorns M', 'Batalha', 'Batalha Game Boy M', 'Cenários da Sessão', 'Central Niaypeta Rio Corp™ M', 'Clima', 'Enciclopédia M', 'Hub de Troca M', 'Interlúdio M', 'NPCs Arquivados', 'PokeApp', 'Pokémon NPC', 'Safari Staff', 'Times NPC', 'Treinador NPC', 'Objetivos M', 'Visão do Mestre', 'XP & Capturas M']
+  const mestreAreas = ['Gerador Pokémon', 'Árvore de Apricorns M', 'Batalha', 'Batalha Game Boy M', 'Bugigangas do Mestre', 'Cenários da Sessão', 'Central Niaypeta Rio Corp™ M', 'Clima', 'Enciclopédia M', 'Hub de Troca M', 'Interlúdio M', 'NPCs Arquivados', 'PokeApp', 'Pokémon NPC', 'Safari Staff', 'Times NPC', 'Treinador NPC', 'Objetivos M', 'Visão do Mestre', 'XP & Capturas M']
   const treinadorAreas = ['Treinador', 'Árvore de Apricorns', 'Batalha Game Boy', 'Batalha Pkm', 'Características & Talentos', 'Central Niaypeta Rio Corp™', 'Enciclopédia', 'Hub de Troca', 'Insígnias', 'Interlúdio', 'Mochila', 'PC', 'Pokédex', 'Pokéloja', 'Progressão', 'Safari', 'SmartPokefone']
 
   // ===== CONFIGURACOES SAFARI =====
@@ -6116,6 +6184,24 @@ function App() {
     return 'Descrição não disponível'
   }
 
+  // Função para obter descrição de um item da mochila (suporta custom items e puffins numerados)
+  const getMochilaItemDescription = (item) => {
+    if (item.description) return item.description
+    // Para puffins com valor/aroma: strip e busca nome base
+    if (item.name.startsWith('Puffin ')) {
+      const baseName = item.name.replace(/\s*\([^)]+\)/g, '').replace(/\s+\d+$/, '').trim()
+      const desc = getItemDescription(baseName)
+      if (desc !== 'Descrição não disponível') return desc
+    }
+    // Para Pokesuco com qualidade
+    if (item.name.startsWith('Pokesuco ')) {
+      const baseName = item.name.replace(/\s+\d+$/, '').trim()
+      const desc = getItemDescription(baseName)
+      if (desc !== 'Descrição não disponível') return desc
+    }
+    return getItemDescription(item.name)
+  }
+
   // Função para mostrar descrição do item chave
   const handleShowKeyItemDescription = (itemName) => {
     const description = getItemDescription(itemName)
@@ -6145,6 +6231,26 @@ function App() {
       setPokesucoQualidadeSelectedItem(selectedKeyItem)
       setPokesucoQualidadeValue(5)
       setShowPokesucoQualidadeModal(true)
+      return
+    }
+
+    // Se for Custom Item Chave, abrir modal de nome/quantidade/imagem
+    if (selectedKeyItem === 'Custom Item Chave') {
+      setShowAddKeyItemModal(false)
+      setCustomKeyItemName('')
+      setCustomKeyItemQty(1)
+      setCustomKeyItemImageUrl('')
+      setShowCustomKeyItemModal(true)
+      return
+    }
+
+    // Se for Puffin, abrir modal de valor e aroma
+    if (selectedKeyItem.startsWith('Puffin ')) {
+      setShowAddKeyItemModal(false)
+      setPuffinValorSelectedItem(selectedKeyItem)
+      setPuffinValorValue(5)
+      setPuffinAromaFlavor(null)
+      setShowPuffinValorModal(true)
       return
     }
 
@@ -6191,6 +6297,62 @@ function App() {
     setShowPokesucoQualidadeModal(false)
     setPokesucoQualidadeSelectedItem('')
     setPokesucoQualidadeValue(5)
+    setSelectedKeyItem('')
+    setKeyItemQuantity(1)
+  }
+
+  // Função para confirmar valor e aroma do Puffin ao adicionar pela mochila
+  const handleConfirmPuffinValor = () => {
+    const valor = Math.max(1, parseInt(puffinValorValue) || 1)
+    const nomeFinal = puffinAromaFlavor
+      ? `${puffinValorSelectedItem} (${puffinAromaFlavor}) ${valor}`
+      : `${puffinValorSelectedItem} ${valor}`
+    const existingItem = keyItems.find(item => item.name === nomeFinal)
+    if (existingItem) {
+      setKeyItems(keyItems.map(item => item.name === nomeFinal ? { ...item, quantity: item.quantity + 1 } : item))
+    } else {
+      setKeyItems([...keyItems, { name: nomeFinal, quantity: 1 }])
+    }
+    setShowPuffinValorModal(false)
+    setPuffinValorSelectedItem('')
+    setPuffinValorValue(5)
+    setPuffinAromaFlavor(null)
+    setSelectedKeyItem('')
+    setKeyItemQuantity(1)
+  }
+
+  // Nomes reservados que conflitam com sistemas do jogo
+  const RESERVED_KEY_ITEM_NAMES = ['Pokeovo', 'Shiny Charm', 'Safariball']
+  const RESERVED_KEY_ITEM_PREFIXES = ['Puffin ', 'Pokesuco ']
+
+  const handleConfirmCustomKeyItem = () => {
+    const nome = customKeyItemName.trim()
+    if (!nome) { alert('Digite um nome para o item!'); return }
+
+    const conflictPrefix = RESERVED_KEY_ITEM_PREFIXES.find(p => nome.startsWith(p))
+    if (conflictPrefix) {
+      alert(`O nome não pode começar com "${conflictPrefix.trim()}" — esse prefixo é reservado pelo sistema.`)
+      return
+    }
+    if (RESERVED_KEY_ITEM_NAMES.includes(nome)) {
+      alert(`"${nome}" é um nome reservado pelo sistema. Escolha outro nome.`)
+      return
+    }
+
+    const qty = Math.max(1, parseInt(customKeyItemQty) || 1)
+    const image = customKeyItemImageUrl.trim() || '/pokeballs/placeholderitem.png'
+    const description = customKeyItemDescription.trim()
+    const existingItem = keyItems.find(item => item.name === nome)
+    if (existingItem) {
+      setKeyItems(keyItems.map(item => item.name === nome ? { ...item, quantity: item.quantity + qty } : item))
+    } else {
+      setKeyItems([...keyItems, { name: nome, quantity: qty, image, ...(description && { description }) }])
+    }
+    setShowCustomKeyItemModal(false)
+    setCustomKeyItemName('')
+    setCustomKeyItemQty(1)
+    setCustomKeyItemImageUrl('')
+    setCustomKeyItemDescription('')
     setSelectedKeyItem('')
     setKeyItemQuantity(1)
   }
@@ -7374,6 +7536,96 @@ function App() {
     alert(`🐦 Puffin criado!\n\n${fullName}`)
   }
 
+  // Calcular ganhos de aptidão de um puffin para um pokémon específico
+  const calculateSnackGains = (puffinName, pokemon) => {
+    const { primaryFlavor, secondaryFlavor, aroma, valor } = parsePuffinName(puffinName)
+    if (!primaryFlavor || valor === 0) return {}
+    const nature = natures.find(n => n.nome === pokemon.nature)
+    const favFlavor = pokemon.favoriteFlavor || nature?.gosto || 'Nenhum'
+    const dislikeFlavor = pokemon.dislikedFlavor || nature?.desgosto || 'Nenhum'
+    const isBase = !secondaryFlavor
+    const isAromatized = !!aroma
+    const gains = {}
+
+    const applyGain = (aptKey, amount) => {
+      if (!aptKey || amount <= 0) return
+      gains[aptKey] = (gains[aptKey] || 0) + amount
+    }
+
+    if (isBase) {
+      const apt = FLAVOR_TO_APTIDAO[primaryFlavor]
+      if (isAromatized) {
+        // O aroma domina o sabor: aptidão do sabor base, multiplicador determinado pelo aroma
+        if (aroma === favFlavor && favFlavor !== 'Nenhum') applyGain(apt, valor + 1)
+        else if (aroma === dislikeFlavor && dislikeFlavor !== 'Nenhum') applyGain(apt, Math.floor(valor / 2))
+        else applyGain(apt, valor)
+      } else {
+        if (primaryFlavor === favFlavor && favFlavor !== 'Nenhum') applyGain(apt, valor + 1)
+        else if (primaryFlavor === dislikeFlavor && dislikeFlavor !== 'Nenhum') applyGain(apt, Math.floor(valor / 2))
+        else applyGain(apt, valor)
+      }
+    } else {
+      // Meio a meio
+      const aptP = FLAVOR_TO_APTIDAO[primaryFlavor]
+      const aptS = FLAVOR_TO_APTIDAO[secondaryFlavor]
+      if (isAromatized) {
+        // Aroma determina o multiplicador; ambas aptidões dos sabores aumentam
+        let gainP, gainS
+        if (aroma === favFlavor && favFlavor !== 'Nenhum') {
+          gainP = Math.floor(valor / 2) + 1
+          gainS = Math.floor(valor / 2) + 1
+        } else if (aroma === dislikeFlavor && dislikeFlavor !== 'Nenhum') {
+          gainP = Math.floor(valor / 4)
+          gainS = Math.floor(valor / 4)
+        } else {
+          gainP = Math.floor(valor / 2)
+          gainS = Math.floor(valor / 2)
+        }
+        applyGain(aptP, gainP)
+        applyGain(aptS, gainS)
+      } else {
+        // Sem aroma: cada sabor calculado individualmente
+        const calcGain = (flavor) => {
+          if (flavor === favFlavor && favFlavor !== 'Nenhum') return Math.floor(valor / 2) + 1
+          if (flavor === dislikeFlavor && dislikeFlavor !== 'Nenhum') return Math.floor(valor / 4)
+          return Math.floor(valor / 2)
+        }
+        applyGain(aptP, calcGain(primaryFlavor))
+        applyGain(aptS, calcGain(secondaryFlavor))
+      }
+    }
+    return gains
+  }
+
+  // Alimentar pokémon com puffin (Snack)
+  const handleFeedSnack = (pokemonIndex, puffinName) => {
+    const pokemon = mainTeam[pokemonIndex]
+    const consumed = pokemon.puffinsConsumed || 0
+    if (consumed >= 5) {
+      alert('Este Pokémon já consumiu 5 puffins!')
+      return
+    }
+    const gains = calculateSnackGains(puffinName, pokemon)
+    const currentAptidoes = { estilo: 0, beleza: 0, ternura: 0, perspicacia: 0, vigor: 0, ...(pokemon.aptidoes || {}) }
+    const newAptidoes = { ...currentAptidoes }
+    for (const [key, gain] of Object.entries(gains)) {
+      const cur = newAptidoes[key] || 0
+      const currentTotal = Object.values(newAptidoes).reduce((s, v) => s + (v || 0), 0)
+      const actual = Math.max(0, Math.min(gain, 12 - cur, 20 - currentTotal))
+      newAptidoes[key] = cur + actual
+    }
+    const updatedKeyItems = keyItems.map(item =>
+      item.name === puffinName ? { ...item, quantity: item.quantity - 1 } : item
+    ).filter(item => item.quantity === undefined || item.quantity > 0)
+    const updatedTeam = mainTeam.map((pkm, idx) =>
+      idx === pokemonIndex ? { ...pkm, aptidoes: newAptidoes, puffinsConsumed: consumed + 1 } : pkm
+    )
+    setMainTeam(updatedTeam)
+    setKeyItems(updatedKeyItems)
+    setSnackDropdownPokemon(null)
+  }
+
+
   // Sortear qualidade para todos os Pokesucos na Pokéloja
   const handleSortearQualidadeLoja = () => {
     const novasQualidades = {}
@@ -8459,6 +8711,40 @@ function App() {
   const openPokemonInfoModal = (pokemon) => {
     setViewingPokemon(pokemon)
     setShowPokemonInfoModal(true)
+  }
+
+  // Funções para modal de edição de Aptidões
+  const openAptidoesModal = (pokemon, location, index) => {
+    setAptidoesEditingPokemon({ pokemon, location, index })
+    setAptidoesTempValues(pokemon.aptidoes || { estilo: 0, beleza: 0, ternura: 0, perspicacia: 0, vigor: 0 })
+    setShowAptidoesModal(true)
+  }
+
+  const updateAptidao = (key, delta) => {
+    setAptidoesTempValues(prev => {
+      const current = prev[key] || 0
+      const newVal = Math.max(0, Math.min(12, current + delta))
+      const others = Object.entries(prev).filter(([k]) => k !== key).reduce((s, [, v]) => s + (v || 0), 0)
+      const capped = Math.min(newVal, 20 - others)
+      return { ...prev, [key]: capped }
+    })
+  }
+
+  const saveAptidoes = () => {
+    if (!aptidoesEditingPokemon) return
+    const { pokemon, location, index } = aptidoesEditingPokemon
+    const updatedPokemon = { ...pokemon, aptidoes: aptidoesTempValues }
+    if (location === 'team') {
+      const updatedTeam = [...mainTeam]
+      updatedTeam[index] = updatedPokemon
+      setMainTeam(updatedTeam)
+    } else {
+      const updatedPc = [...pcPokemon]
+      updatedPc[index] = updatedPokemon
+      setPcPokemon(updatedPc)
+    }
+    setShowAptidoesModal(false)
+    setAptidoesEditingPokemon(null)
   }
 
   // Função para abrir modal de Dano/Cura de Pokémon
@@ -10723,6 +11009,8 @@ function App() {
             setPokemonImages(data.pokemonImages || {}) // Carregar imagens de Pokémon NPC
             setArchivedNpcTrainers(data.archivedNpcTrainers || []) // Carregar Treinadores NPC arquivados
             setArchivedNpcPokemon(data.archivedNpcPokemon || []) // Carregar Pokémon NPC arquivados
+            setMasterItems(data.masterItems || []) // Carregar Bugigangas do Mestre
+            setMasterItemsSent(data.masterItemsSent || []) // Carregar Bugigangas enviadas
           }
           // Carregar dados do Hub de Troca
           if (useFirebase) {
@@ -11013,7 +11301,9 @@ function App() {
             return filtered
           })(), // Salvar apenas URLs de imagens de Pokémon NPC
           archivedNpcTrainers, // Treinadores NPC arquivados
-          archivedNpcPokemon // Pokémon NPC arquivados
+          archivedNpcPokemon, // Pokémon NPC arquivados
+          masterItems, // Bugigangas do Mestre
+          masterItemsSent // Bugigangas enviadas
         }
         try {
           if (useFirebase) {
@@ -11030,7 +11320,7 @@ function App() {
     // Debounce para evitar muitas escritas
     const timeoutId = setTimeout(saveData, 500)
     return () => clearTimeout(timeoutId)
-  }, [level, image, classes, attributes, skills, currentHP, mainTeam, pcPokemon, pokedex, pokemonedas, pokecaixinha, keyItems, customItems, pokeovoList, caracteristicasSelected, talentosSelected, pokemonImages, badges, estilizadorBattery, estilizadorPolicialBattery, thunderStoneActive, bolsaTalento, otherCapacities, vivencias, conquistas, ciclos, userBattleModifiers, userActiveModifiers, talentinhos, background, limitesUsoPersonalizados, limitesUsoPersonalizadosUsosAtuais, fotografias, hiddenPokelojaItems, customPrices, npcPokemon, npcPokemonList, battleTrainers, battlePokemon, battleTrainersList, battlePokemonList, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, npcConditions, expandedNpcCards, revealedNpcPokemon, revealedTrainers, battlePokemonConditions, battleTrainerConditions, archivedNpcTrainers, archivedNpcPokemon, currentUser])
+  }, [level, image, classes, attributes, skills, currentHP, mainTeam, pcPokemon, pokedex, pokemonedas, pokecaixinha, keyItems, customItems, pokeovoList, caracteristicasSelected, talentosSelected, pokemonImages, badges, estilizadorBattery, estilizadorPolicialBattery, thunderStoneActive, bolsaTalento, otherCapacities, vivencias, conquistas, ciclos, userBattleModifiers, userActiveModifiers, talentinhos, background, limitesUsoPersonalizados, limitesUsoPersonalizadosUsosAtuais, fotografias, hiddenPokelojaItems, customPrices, npcPokemon, npcPokemonList, battleTrainers, battlePokemon, battleTrainersList, battlePokemonList, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, npcConditions, expandedNpcCards, revealedNpcPokemon, revealedTrainers, battlePokemonConditions, battleTrainerConditions, archivedNpcTrainers, archivedNpcPokemon, masterItems, masterItemsSent, currentUser])
 
   // Salvar Hub de Troca separadamente (mestre)
   const tradeHubSaveSkipRef = useRef(true)
@@ -24756,6 +25046,9 @@ function App() {
                             <button onClick={() => moveToPc(idx)} className="bg-purple-500 text-white px-1.5 py-1.5 sm:px-2 sm:py-2 md:px-3 md:py-2 lg:px-4 rounded hover:bg-purple-600 text-xs sm:text-sm font-semibold" title="Mover para o PC">
                               <span className="hidden sm:inline">⬇️ PC</span><span className="sm:hidden">PC</span>
                             </button>
+                            <button onClick={() => openAptidoesModal(pokemon, 'team', idx)} className="bg-indigo-500 text-white p-1.5 sm:p-2 rounded hover:bg-indigo-600" title="Editar Aptidões">
+                              <TowerControl size={16} className="sm:w-[18px] sm:h-[18px]" />
+                            </button>
                             <button onClick={() => handleDeletePokemon(idx)} className="bg-red-500 text-white p-1.5 sm:p-2 rounded hover:bg-red-600">
                               <Trash2 size={16} className="sm:w-[18px] sm:h-[18px]" />
                             </button>
@@ -24995,35 +25288,56 @@ function App() {
                             </div>
                           </div>
 
-                          {/* Evasões e Bônus Elemental */}
-                          <div className={`pt-4 border-t-2 ${darkMode ? 'border-gray-600' : 'border-blue-200'}`}>
-                            <div className="flex justify-between items-start">
-                              {/* Evasões */}
-                              <div className="flex-1">
-                                <h6 className={`text-xs font-bold mb-2 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>Evasões</h6>
-                                <div className="grid grid-cols-3 gap-2 text-xs">
-                                  <div className={`text-center p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
-                                    <div className={`font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Ev. Física</div>
-                                    <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-blue-600'}`}>{calculatePhysicalEvasion(pokemon)}</div>
+                          {/* Evasões, Bônus Elemental e Aptidões */}
+                          <div className={`pt-3 border-t-2 ${darkMode ? 'border-gray-600' : 'border-blue-200'}`}>
+                            <div className="grid grid-cols-3 gap-2 items-start">
+
+                              {/* ESQUERDA — Evasões */}
+                              <div className="flex flex-col items-center">
+                                <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>Evasões</h6>
+                                <div className="flex gap-1">
+                                  <div className={`text-center px-3 py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
+                                    <div className={`text-base whitespace-nowrap ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>Física</div>
+                                    <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculatePhysicalEvasion(pokemon)}</div>
                                   </div>
-                                  <div className={`text-center p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
-                                    <div className={`font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Ev. Especial</div>
-                                    <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-blue-600'}`}>{calculateSpecialEvasion(pokemon)}</div>
+                                  <div className={`text-center px-3 py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
+                                    <div className={`text-base whitespace-nowrap ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>Especial</div>
+                                    <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculateSpecialEvasion(pokemon)}</div>
                                   </div>
-                                  <div className={`text-center p-2 rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
-                                    <div className={`font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Ev. Veloz</div>
-                                    <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-blue-600'}`}>{calculateSpeedEvasion(pokemon)}</div>
+                                  <div className={`text-center px-3 py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
+                                    <div className={`text-base whitespace-nowrap ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>Veloz</div>
+                                    <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculateSpeedEvasion(pokemon)}</div>
                                   </div>
                                 </div>
                               </div>
 
-                              {/* Bônus Elemental */}
-                              <div className="ml-4">
-                                <h6 className={`text-xs font-bold mb-2 ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>Bônus Elemental</h6>
-                                <div className={`text-center p-3 rounded ${darkMode ? 'bg-gray-600' : 'bg-purple-100'} min-w-[80px]`}>
-                                  <div className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-purple-600'}`}>{calculateElementalBonus(pokemon)}</div>
+                              {/* CENTRO — Bônus Elemental */}
+                              <div className="flex flex-col items-center">
+                                <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>Bônus Elemental</h6>
+                                <div className={`text-center px-[18px] py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-purple-100'}`}>
+                                  <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-purple-700'}`}>{calculateElementalBonus(pokemon)}</div>
                                 </div>
                               </div>
+
+                              {/* DIREITA — Aptidões */}
+                              <div className="flex flex-col items-center">
+                                <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Aptidões</h6>
+                                <div className="flex gap-1 flex-wrap justify-center">
+                                  {[
+                                    { key: 'estilo', label: 'Estilo', bg: darkMode ? 'bg-red-900' : 'bg-red-100', text: darkMode ? 'text-red-300' : 'text-red-600' },
+                                    { key: 'beleza', label: 'Beleza', bg: darkMode ? 'bg-blue-900' : 'bg-blue-100', text: darkMode ? 'text-blue-300' : 'text-blue-600' },
+                                    { key: 'ternura', label: 'Ternura', bg: darkMode ? 'bg-pink-900' : 'bg-pink-100', text: darkMode ? 'text-pink-300' : 'text-pink-600' },
+                                    { key: 'perspicacia', label: 'Perspicácia', bg: darkMode ? 'bg-green-900' : 'bg-green-100', text: darkMode ? 'text-green-300' : 'text-green-600' },
+                                    { key: 'vigor', label: 'Vigor', bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-100', text: darkMode ? 'text-yellow-300' : 'text-yellow-600' }
+                                  ].map(apt => (
+                                    <div key={apt.key} className={`text-center px-3 py-[14px] rounded ${apt.bg}`}>
+                                      <div className={`text-xs font-semibold whitespace-nowrap ${apt.text}`}>{apt.label}</div>
+                                      <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{pokemon.aptidoes?.[apt.key] ?? 0}</div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
                             </div>
                           </div>
                         </div>
@@ -26535,12 +26849,94 @@ function App() {
                     </div>
                   </div>
                 )}
+
+                {/* Aptidões */}
+                <div className="mb-6">
+                  <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Aptidões</h4>
+                  <div className="flex flex-wrap gap-3">
+                    {[
+                      { key: 'estilo', label: 'Estilo', bg: darkMode ? 'bg-red-900' : 'bg-red-100', text: darkMode ? 'text-red-300' : 'text-red-600' },
+                      { key: 'beleza', label: 'Beleza', bg: darkMode ? 'bg-blue-900' : 'bg-blue-100', text: darkMode ? 'text-blue-300' : 'text-blue-600' },
+                      { key: 'ternura', label: 'Ternura', bg: darkMode ? 'bg-pink-900' : 'bg-pink-100', text: darkMode ? 'text-pink-300' : 'text-pink-600' },
+                      { key: 'perspicacia', label: 'Perspicácia', bg: darkMode ? 'bg-green-900' : 'bg-green-100', text: darkMode ? 'text-green-300' : 'text-green-600' },
+                      { key: 'vigor', label: 'Vigor', bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-100', text: darkMode ? 'text-yellow-300' : 'text-yellow-600' }
+                    ].map(apt => (
+                      <div key={apt.key} className={`text-center px-4 py-2 rounded-lg ${apt.bg}`}>
+                        <div className={`text-xs font-semibold ${apt.text}`}>{apt.label}</div>
+                        <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{viewingPokemon.aptidoes?.[apt.key] ?? 0}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-b-2xl flex justify-end`}>
                 <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="bg-gray-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-gray-600 font-semibold">
                   Fechar
                 </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+
+        {/* Modal de Edição de Aptidões */}
+        {showAptidoesModal && aptidoesEditingPokemon && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAptidoesModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm w-full`} onClick={e => e.stopPropagation()}>
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gradient-to-r from-indigo-500 to-purple-600'} p-4 rounded-t-2xl flex justify-between items-center`}>
+                <div>
+                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                    <TowerControl size={20} /> Aptidões
+                  </h3>
+                  <p className="text-indigo-200 text-xs mt-0.5">{aptidoesEditingPokemon.pokemon.nickname || aptidoesEditingPokemon.pokemon.species}</p>
+                </div>
+                <button onClick={() => setShowAptidoesModal(false)} className="text-white hover:text-gray-300"><X size={24} /></button>
+              </div>
+              <div className="p-5 space-y-3">
+                {[
+                  { key: 'estilo', label: 'Estilo', bg: darkMode ? 'bg-red-900' : 'bg-red-50', border: darkMode ? 'border-red-700' : 'border-red-300', text: darkMode ? 'text-red-300' : 'text-red-700' },
+                  { key: 'beleza', label: 'Beleza', bg: darkMode ? 'bg-blue-900' : 'bg-blue-50', border: darkMode ? 'border-blue-700' : 'border-blue-300', text: darkMode ? 'text-blue-300' : 'text-blue-700' },
+                  { key: 'ternura', label: 'Ternura', bg: darkMode ? 'bg-pink-900' : 'bg-pink-50', border: darkMode ? 'border-pink-700' : 'border-pink-300', text: darkMode ? 'text-pink-300' : 'text-pink-700' },
+                  { key: 'perspicacia', label: 'Perspicácia', bg: darkMode ? 'bg-green-900' : 'bg-green-50', border: darkMode ? 'border-green-700' : 'border-green-300', text: darkMode ? 'text-green-300' : 'text-green-700' },
+                  { key: 'vigor', label: 'Vigor', bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-50', border: darkMode ? 'border-yellow-700' : 'border-yellow-300', text: darkMode ? 'text-yellow-300' : 'text-yellow-700' }
+                ].map(apt => (
+                  <div key={apt.key} className={`flex items-center justify-between gap-3 px-3 py-2 rounded-lg border ${apt.bg} ${apt.border}`}>
+                    <span className={`font-semibold text-sm w-24 ${apt.text}`}>{apt.label}</span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => updateAptidao(apt.key, -1)}
+                        className={`w-7 h-7 rounded flex items-center justify-center font-bold ${darkMode ? 'bg-gray-600 hover:bg-gray-500 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}
+                      >−</button>
+                      <input
+                        type="number"
+                        min="0"
+                        max="12"
+                        value={aptidoesTempValues[apt.key] ?? 0}
+                        onChange={e => {
+                          const val = Math.max(0, Math.min(12, parseInt(e.target.value) || 0))
+                          const others = Object.entries(aptidoesTempValues).filter(([k]) => k !== apt.key).reduce((s, [, v]) => s + (v || 0), 0)
+                          const capped = Math.min(val, 20 - others)
+                          setAptidoesTempValues(prev => ({ ...prev, [apt.key]: capped }))
+                        }}
+                        className={`w-12 text-center font-bold text-lg rounded border-2 ${darkMode ? 'bg-gray-700 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
+                      />
+                      <button
+                        onClick={() => updateAptidao(apt.key, 1)}
+                        className={`w-7 h-7 rounded flex items-center justify-center font-bold ${darkMode ? 'bg-gray-600 hover:bg-gray-500 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}
+                      >+</button>
+                    </div>
+                  </div>
+                ))}
+                <div className={`text-center text-xs pt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  Total: <span className={`font-bold ${Object.values(aptidoesTempValues).reduce((s, v) => s + (v || 0), 0) > 20 ? 'text-red-500' : darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    {Object.values(aptidoesTempValues).reduce((s, v) => s + (v || 0), 0)}
+                  </span>/20 — Máx. por aptidão: 12
+                </div>
+              </div>
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-b-2xl flex gap-3 justify-end`}>
+                <button onClick={() => setShowAptidoesModal(false)} className={`px-4 py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-600 text-gray-200 hover:bg-gray-500' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'}`}>Cancelar</button>
+                <button onClick={saveAptidoes} className="px-4 py-2 rounded-lg font-semibold bg-indigo-500 text-white hover:bg-indigo-600">Salvar</button>
               </div>
             </div>
           </div>
@@ -27732,6 +28128,9 @@ function App() {
                           <button onClick={() => openEditPokemonPCModal(pokemon, originalIdx)} className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm font-semibold" title="Editar Pokémon PC">
                             Edit Pkm PC
                           </button>
+                          <button onClick={() => openAptidoesModal(pokemon, 'pc', originalIdx)} className="bg-indigo-500 text-white p-2 rounded hover:bg-indigo-600" title="Editar Aptidões PC">
+                            <TowerControl size={16} />
+                          </button>
                           <button onClick={() => moveToTeam(originalIdx)} className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 text-sm font-semibold" title="Mover para o Time">
                             ⬆️ TP
                           </button>
@@ -27984,6 +28383,25 @@ function App() {
                     </div>
                   </div>
                 )}
+
+                {/* Aptidões */}
+                <div className="mb-6">
+                  <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Aptidões</h4>
+                  <div className="flex flex-wrap gap-3">
+                    {[
+                      { key: 'estilo', label: 'Estilo', bg: darkMode ? 'bg-red-900' : 'bg-red-100', text: darkMode ? 'text-red-300' : 'text-red-600' },
+                      { key: 'beleza', label: 'Beleza', bg: darkMode ? 'bg-blue-900' : 'bg-blue-100', text: darkMode ? 'text-blue-300' : 'text-blue-600' },
+                      { key: 'ternura', label: 'Ternura', bg: darkMode ? 'bg-pink-900' : 'bg-pink-100', text: darkMode ? 'text-pink-300' : 'text-pink-600' },
+                      { key: 'perspicacia', label: 'Perspicácia', bg: darkMode ? 'bg-green-900' : 'bg-green-100', text: darkMode ? 'text-green-300' : 'text-green-600' },
+                      { key: 'vigor', label: 'Vigor', bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-100', text: darkMode ? 'text-yellow-300' : 'text-yellow-600' }
+                    ].map(apt => (
+                      <div key={apt.key} className={`text-center px-4 py-2 rounded-lg ${apt.bg}`}>
+                        <div className={`text-xs font-semibold ${apt.text}`}>{apt.label}</div>
+                        <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{viewingPokemon.aptidoes?.[apt.key] ?? 0}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-b-2xl flex justify-end`}>
@@ -29814,6 +30232,60 @@ function App() {
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
+
+        {/* Modal de Edição de Aptidões — PC */}
+        {showAptidoesModal && aptidoesEditingPokemon && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowAptidoesModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm w-full`} onClick={e => e.stopPropagation()}>
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gradient-to-r from-indigo-500 to-purple-600'} p-4 rounded-t-2xl flex justify-between items-center`}>
+                <div>
+                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                    <TowerControl size={20} /> Aptidões
+                  </h3>
+                  <p className="text-indigo-200 text-xs mt-0.5">{aptidoesEditingPokemon.pokemon.nickname || aptidoesEditingPokemon.pokemon.species}</p>
+                </div>
+                <button onClick={() => setShowAptidoesModal(false)} className="text-white hover:text-gray-300"><X size={24} /></button>
+              </div>
+              <div className="p-5 space-y-3">
+                {[
+                  { key: 'estilo', label: 'Estilo', bg: darkMode ? 'bg-red-900' : 'bg-red-50', border: darkMode ? 'border-red-700' : 'border-red-300', text: darkMode ? 'text-red-300' : 'text-red-700' },
+                  { key: 'beleza', label: 'Beleza', bg: darkMode ? 'bg-blue-900' : 'bg-blue-50', border: darkMode ? 'border-blue-700' : 'border-blue-300', text: darkMode ? 'text-blue-300' : 'text-blue-700' },
+                  { key: 'ternura', label: 'Ternura', bg: darkMode ? 'bg-pink-900' : 'bg-pink-50', border: darkMode ? 'border-pink-700' : 'border-pink-300', text: darkMode ? 'text-pink-300' : 'text-pink-700' },
+                  { key: 'perspicacia', label: 'Perspicácia', bg: darkMode ? 'bg-green-900' : 'bg-green-50', border: darkMode ? 'border-green-700' : 'border-green-300', text: darkMode ? 'text-green-300' : 'text-green-700' },
+                  { key: 'vigor', label: 'Vigor', bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-50', border: darkMode ? 'border-yellow-700' : 'border-yellow-300', text: darkMode ? 'text-yellow-300' : 'text-yellow-700' }
+                ].map(apt => (
+                  <div key={apt.key} className={`flex items-center justify-between gap-3 px-3 py-2 rounded-lg border ${apt.bg} ${apt.border}`}>
+                    <span className={`font-semibold text-sm w-24 ${apt.text}`}>{apt.label}</span>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => updateAptidao(apt.key, -1)} className={`w-7 h-7 rounded flex items-center justify-center font-bold ${darkMode ? 'bg-gray-600 hover:bg-gray-500 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>−</button>
+                      <input
+                        type="number" min="0" max="12"
+                        value={aptidoesTempValues[apt.key] ?? 0}
+                        onChange={e => {
+                          const val = Math.max(0, Math.min(12, parseInt(e.target.value) || 0))
+                          const others = Object.entries(aptidoesTempValues).filter(([k]) => k !== apt.key).reduce((s, [, v]) => s + (v || 0), 0)
+                          const capped = Math.min(val, 20 - others)
+                          setAptidoesTempValues(prev => ({ ...prev, [apt.key]: capped }))
+                        }}
+                        className={`w-12 text-center font-bold text-lg rounded border-2 ${darkMode ? 'bg-gray-700 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
+                      />
+                      <button onClick={() => updateAptidao(apt.key, 1)} className={`w-7 h-7 rounded flex items-center justify-center font-bold ${darkMode ? 'bg-gray-600 hover:bg-gray-500 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>+</button>
+                    </div>
+                  </div>
+                ))}
+                <div className={`text-center text-xs pt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  Total: <span className={`font-bold ${Object.values(aptidoesTempValues).reduce((s, v) => s + (v || 0), 0) > 20 ? 'text-red-500' : darkMode ? 'text-white' : 'text-gray-800'}`}>
+                    {Object.values(aptidoesTempValues).reduce((s, v) => s + (v || 0), 0)}
+                  </span>/20 — Máx. por aptidão: 12
+                </div>
+              </div>
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-b-2xl flex gap-3 justify-end`}>
+                <button onClick={() => setShowAptidoesModal(false)} className={`px-4 py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-600 text-gray-200 hover:bg-gray-500' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'}`}>Cancelar</button>
+                <button onClick={saveAptidoes} className="px-4 py-2 rounded-lg font-semibold bg-indigo-500 text-white hover:bg-indigo-600">Salvar</button>
+              </div>
+            </div>
+          </div>
+        )}
       </>
     )
   }
@@ -30766,6 +31238,13 @@ function App() {
                       <img src="/miniiconefazerpuffin.png" alt="Fazer Puffin" className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain" onError={(e) => { e.target.src = ''; e.target.style.display='none'; e.target.parentElement.innerHTML = '<span style="font-size:1.5rem">🐦</span>' }} />
                     </button>
                     <button
+                      onClick={() => setShowSnackModal(true)}
+                      className="p-0 hover:opacity-80 transition-opacity flex items-center justify-center"
+                      title="Snack"
+                    >
+                      <img src="/minibittenpuffin.png" alt="Snack" className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain" onError={(e) => { e.target.src = ''; e.target.style.display='none'; e.target.parentElement.innerHTML = '<span style="font-size:1.5rem">🍪</span>' }} />
+                    </button>
+                    <button
                       onClick={handleShinyCheck}
                       className="p-0 hover:opacity-80 transition-opacity flex items-center justify-center"
                       title="Será que veio shiny?"
@@ -30900,12 +31379,19 @@ function App() {
                             >
                               <Trash2 size={12} className="sm:w-[14px] sm:h-[14px]" />
                             </button>
+                            <button
+                              onClick={() => { setMochilaDescItem(item); setShowMochilaDescModal(true) }}
+                              className={`absolute top-0.5 left-0.5 sm:top-1 sm:left-1 opacity-0 group-hover:opacity-100 transition-opacity ${darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-500 hover:text-blue-600'}`}
+                              title="Ver descrição"
+                            >
+                              <Info size={12} className="sm:w-[14px] sm:h-[14px]" />
+                            </button>
                             <div className="w-10 h-10 sm:w-12 sm:h-12 mb-1 flex items-center justify-center">
                               <img
-                                src={getItemImage(item.name)}
+                                src={item.image || getItemImage(item.name)}
                                 alt={item.name}
                                 className="max-w-full max-h-full object-contain"
-                                onError={(e) => { e.target.style.display = 'none' }}
+                                onError={(e) => { e.target.src = '/pokeballs/placeholderitem.png' }}
                               />
                             </div>
                             <h4 className={`font-bold text-[10px] sm:text-xs text-center mb-1 ${darkMode ? 'text-white' : 'text-gray-800'} truncate w-full`} title={item.name}>
@@ -31410,6 +31896,173 @@ function App() {
                   Adicionar
                 </button>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Valor e Aroma do Puffin */}
+        {showPuffinValorModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPuffinValorModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-6 max-w-sm w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-800'}`}>🐦 {puffinValorSelectedItem}</h3>
+              <p className={`mb-4 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Defina o valor e o aroma deste puffin.</p>
+
+              <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Valor</label>
+              <input
+                type="number"
+                min="1"
+                value={puffinValorValue}
+                onChange={(e) => setPuffinValorValue(e.target.value)}
+                className={`w-full p-3 rounded-lg mb-4 text-center text-2xl font-bold ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-800'}`}
+              />
+
+              <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Aromatizado com</label>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {['Picante', 'Seco', 'Doce', 'Amargo', 'Azedo'].map(flavor => (
+                  <button
+                    key={flavor}
+                    onClick={() => setPuffinAromaFlavor(puffinAromaFlavor === flavor ? null : flavor)}
+                    className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-colors ${
+                      puffinAromaFlavor === flavor
+                        ? 'bg-purple-600 text-white'
+                        : darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                  >
+                    {flavor}
+                  </button>
+                ))}
+                {puffinAromaFlavor && (
+                  <button
+                    onClick={() => setPuffinAromaFlavor(null)}
+                    className={`px-3 py-1.5 rounded-full text-sm font-semibold ${darkMode ? 'bg-gray-700 text-gray-400 hover:bg-gray-600' : 'bg-gray-200 text-gray-500 hover:bg-gray-300'}`}
+                  >
+                    ✕ Sem aroma
+                  </button>
+                )}
+              </div>
+
+              {puffinAromaFlavor && (
+                <p className={`text-xs mb-4 text-center ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>
+                  Nome final: <strong>{puffinValorSelectedItem} ({puffinAromaFlavor}) {Math.max(1, parseInt(puffinValorValue) || 1)}</strong>
+                </p>
+              )}
+              {!puffinAromaFlavor && (
+                <p className={`text-xs mb-4 text-center ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  Nome final: <strong>{puffinValorSelectedItem} {Math.max(1, parseInt(puffinValorValue) || 1)}</strong>
+                </p>
+              )}
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => { setShowPuffinValorModal(false); setPuffinValorSelectedItem(''); setPuffinAromaFlavor(null) }}
+                  className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleConfirmPuffinValor}
+                  className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold"
+                >
+                  Adicionar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Custom Item Chave */}
+        {showCustomKeyItemModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowCustomKeyItemModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-6 max-w-sm w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>🎒 Custom Item Chave</h3>
+
+              <div className="mb-4">
+                <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Nome do item</label>
+                <input
+                  type="text"
+                  value={customKeyItemName}
+                  onChange={(e) => setCustomKeyItemName(e.target.value)}
+                  placeholder="Ex: Grimório Antigo"
+                  className={`w-full p-3 rounded-lg ${darkMode ? 'bg-gray-700 text-white placeholder-gray-500' : 'bg-gray-100 text-gray-800 placeholder-gray-400'}`}
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Quantidade</label>
+                <input
+                  type="number"
+                  min="1"
+                  value={customKeyItemQty}
+                  onChange={(e) => setCustomKeyItemQty(e.target.value)}
+                  className={`w-full p-3 rounded-lg text-center text-xl font-bold ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-800'}`}
+                />
+              </div>
+
+              <div className="mb-5">
+                <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>URL da imagem <span className={`font-normal ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>(opcional)</span></label>
+                <input
+                  type="text"
+                  value={customKeyItemImageUrl}
+                  onChange={(e) => setCustomKeyItemImageUrl(e.target.value)}
+                  placeholder="https://..."
+                  className={`w-full p-3 rounded-lg text-sm ${darkMode ? 'bg-gray-700 text-white placeholder-gray-500' : 'bg-gray-100 text-gray-800 placeholder-gray-400'}`}
+                />
+                {!customKeyItemImageUrl && (
+                  <p className={`text-xs mt-1 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Sem imagem: será usado o ícone padrão.</p>
+                )}
+              </div>
+
+              <div className="mb-5">
+                <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Descrição <span className={`font-normal ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>(opcional)</span></label>
+                <textarea
+                  value={customKeyItemDescription}
+                  onChange={(e) => setCustomKeyItemDescription(e.target.value)}
+                  placeholder="Descreva o item..."
+                  rows={3}
+                  className={`w-full p-3 rounded-lg text-sm resize-none ${darkMode ? 'bg-gray-700 text-white placeholder-gray-500' : 'bg-gray-100 text-gray-800 placeholder-gray-400'}`}
+                />
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => { setShowCustomKeyItemModal(false); setCustomKeyItemName(''); setCustomKeyItemQty(1); setCustomKeyItemImageUrl(''); setCustomKeyItemDescription('') }}
+                  className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleConfirmCustomKeyItem}
+                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-700 text-white py-3 rounded-lg hover:from-blue-700 hover:to-purple-800 font-semibold"
+                >
+                  Salvar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Descrição Item Mochila */}
+        {showMochilaDescModal && mochilaDescItem && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowMochilaDescModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-6 max-w-sm w-full`} onClick={(e) => e.stopPropagation()}>
+              <div className="w-full h-24 mb-3 flex items-center justify-center">
+                <img
+                  src={mochilaDescItem.image || getItemImage(mochilaDescItem.name)}
+                  alt={mochilaDescItem.name}
+                  className="max-w-full max-h-full object-contain"
+                  onError={(e) => { e.target.src = '/pokeballs/placeholderitem.png' }}
+                />
+              </div>
+              <h3 className={`text-lg font-bold text-center mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>{mochilaDescItem.name}</h3>
+              <p className={`text-sm text-center mb-5 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                {getMochilaItemDescription(mochilaDescItem)}
+              </p>
+              <button
+                onClick={() => setShowMochilaDescModal(false)}
+                className={`w-full py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+              >
+                Fechar
+              </button>
             </div>
           </div>
         )}
@@ -32364,6 +33017,137 @@ function App() {
                   >
                     🐦 Criar Puffin
                   </button>
+                </div>
+              </div>
+            </div>
+          )
+        })()}
+
+        {/* Modal Snack (puffins → aptidões) */}
+        {showSnackModal && (() => {
+          const APTIDAO_INFO = [
+            { key: 'estilo', label: 'Estilo', bg: darkMode ? 'bg-red-900' : 'bg-red-100', text: darkMode ? 'text-red-300' : 'text-red-700' },
+            { key: 'beleza', label: 'Beleza', bg: darkMode ? 'bg-blue-900' : 'bg-blue-100', text: darkMode ? 'text-blue-300' : 'text-blue-700' },
+            { key: 'ternura', label: 'Ternura', bg: darkMode ? 'bg-pink-900' : 'bg-pink-100', text: darkMode ? 'text-pink-300' : 'text-pink-700' },
+            { key: 'perspicacia', label: 'Perspicácia', bg: darkMode ? 'bg-green-900' : 'bg-green-100', text: darkMode ? 'text-green-300' : 'text-green-700' },
+            { key: 'vigor', label: 'Vigor', bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-100', text: darkMode ? 'text-yellow-300' : 'text-yellow-700' },
+          ]
+          const puffinsNaMochila = keyItems.filter(item => item.name.startsWith('Puffin '))
+          return (
+            <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => { setShowSnackModal(false); setSnackDropdownPokemon(null) }}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-6 max-w-5xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+                {/* Header */}
+                <div className="flex items-center gap-3 mb-5">
+                  <img src="/minibittenpuffin.png" alt="Snack" className="w-10 h-10 object-contain" onError={(e) => { e.target.style.display='none' }} />
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-pink-300' : 'text-pink-700'}`}>Snack</h3>
+                  <button onClick={() => { setShowSnackModal(false); setSnackDropdownPokemon(null) }} className={`ml-auto p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-600'}`}>✕</button>
+                </div>
+
+                {puffinsNaMochila.length === 0 && (
+                  <p className={`text-center py-6 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Você não tem nenhum Puffin na mochila.</p>
+                )}
+
+                {mainTeam.filter(p => p && p.species).length === 0 && (
+                  <p className={`text-center py-6 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Nenhum Pokémon no time principal.</p>
+                )}
+
+                {/* Grid de Pokémon */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {mainTeam.map((pokemon, idx) => {
+                    if (!pokemon || !pokemon.species) return null
+                    const consumed = pokemon.puffinsConsumed || 0
+                    const aptidoes = { estilo: 0, beleza: 0, ternura: 0, perspicacia: 0, vigor: 0, ...(pokemon.aptidoes || {}) }
+                    const nature = natures.find(n => n.nome === pokemon.nature)
+                    const favFlavor = pokemon.favoriteFlavor || nature?.gosto || 'Nenhum'
+                    const dislikeFlavor = pokemon.dislikedFlavor || nature?.desgosto || 'Nenhum'
+                    const isDropdownOpen = snackDropdownPokemon === idx
+                    return (
+                      <div key={idx} className={`rounded-xl p-3 border ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'}`}>
+                        {/* Nome do Pokémon */}
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className={`font-bold text-sm truncate ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                            {pokemon.nickname || pokemon.species}
+                          </span>
+                          {pokemon.nickname && <span className={`text-xs truncate ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>({pokemon.species})</span>}
+                        </div>
+
+                        {/* Gostos */}
+                        <div className={`text-xs mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                          {favFlavor !== 'Nenhum' && <span className="mr-2">❤️ {favFlavor}</span>}
+                          {dislikeFlavor !== 'Nenhum' && <span>💔 {dislikeFlavor}</span>}
+                          {favFlavor === 'Nenhum' && dislikeFlavor === 'Nenhum' && <span>Sabores neutros</span>}
+                        </div>
+
+                        {/* Aptidões */}
+                        <div className="flex gap-1 flex-wrap mb-3">
+                          {APTIDAO_INFO.map(apt => (
+                            <div key={apt.key} className={`text-center px-2 py-1 rounded ${apt.bg}`}>
+                              <div className={`text-xs font-semibold ${apt.text}`}>{apt.label}</div>
+                              <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{aptidoes[apt.key]}</div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Contador de puffins consumidos */}
+                        <div className={`text-xs mb-3 flex items-center gap-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                          <img src="/minibittenpuffin.png" alt="" className="w-4 h-4 object-contain" onError={(e) => e.target.style.display='none'} />
+                          <span>{consumed}/5 puffins consumidos</span>
+                        </div>
+
+                        {/* Seletor de Puffin */}
+                        {consumed >= 5 ? (
+                          <div className={`text-xs text-center py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-600 text-gray-400' : 'bg-gray-200 text-gray-500'}`}>Limite atingido</div>
+                        ) : puffinsNaMochila.length === 0 ? (
+                          <div className={`text-xs text-center py-2 rounded-lg ${darkMode ? 'bg-gray-600 text-gray-400' : 'bg-gray-200 text-gray-500'}`}>Sem puffins</div>
+                        ) : (
+                          <div className="relative">
+                            <button
+                              onClick={() => setSnackDropdownPokemon(isDropdownOpen ? null : idx)}
+                              className={`w-full px-3 py-2 rounded-lg text-sm font-semibold text-left flex items-center justify-between ${darkMode ? 'bg-pink-700 hover:bg-pink-600 text-white' : 'bg-pink-100 hover:bg-pink-200 text-pink-800'}`}
+                            >
+                              <span>Dar Puffin</span>
+                              <span>{isDropdownOpen ? '▲' : '▼'}</span>
+                            </button>
+                            {isDropdownOpen && (
+                              <div className={`absolute left-0 right-0 top-full mt-1 rounded-xl shadow-xl border z-20 max-h-64 overflow-y-auto ${darkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'}`}>
+                                {puffinsNaMochila.map((puffin, pIdx) => {
+                                  const gains = calculateSnackGains(puffin.name, pokemon)
+                                  const gainEntries = Object.entries(gains).filter(([, v]) => v > 0)
+                                  return (
+                                    <button
+                                      key={pIdx}
+                                      onClick={() => handleFeedSnack(idx, puffin.name)}
+                                      className={`w-full px-3 py-2 text-left hover:${darkMode ? 'bg-gray-700' : 'bg-pink-50'} transition-colors border-b last:border-b-0 ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}
+                                    >
+                                      <div className={`text-sm font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                                        {puffin.name} <span className={`text-xs font-normal ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>×{puffin.quantity}</span>
+                                      </div>
+                                      <div className="flex gap-1 mt-1 flex-wrap">
+                                        {gainEntries.length === 0 ? (
+                                          <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>+0 aptidões</span>
+                                        ) : gainEntries.map(([key, val]) => {
+                                          const info = APTIDAO_INFO.find(a => a.key === key)
+                                          return (
+                                            <span key={key} className={`text-xs px-1.5 py-0.5 rounded font-bold ${info?.bg} ${info?.text}`}>
+                                              +{val} {info?.label}
+                                            </span>
+                                          )
+                                        })}
+                                      </div>
+                                    </button>
+                                  )
+                                })}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <div className="mt-5 flex justify-end">
+                  <button onClick={() => { setShowSnackModal(false); setSnackDropdownPokemon(null) }} className={`px-6 py-2.5 rounded-xl font-semibold ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>Fechar</button>
                 </div>
               </div>
             </div>
@@ -47307,6 +48091,494 @@ function App() {
                   >
                     Confirmar ({tempSelectedUsers.length})
                   </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {accountDataModal}
+        {scenarioPopupOverlay}
+        {mostrarTriunfosOverlay}
+        {pokezapPanel}{pokeAgendaPanel}
+        {batalhaChatPanel}
+      </>
+    )
+  }
+
+  if (currentUser.type === 'mestre' && currentArea === 'Bugigangas do Mestre') {
+    if (!spoilerMestreConfirmado) return (
+      <>
+        <div className={`min-h-screen ${mainBgClass}`}>
+          {sidebarNav}
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center gap-3">
+                  <button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-500'}`}><Menu size={24} /></button>
+                  <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Bugigangas do Mestre 👑</h2>
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8 flex flex-col items-center justify-center min-h-[60vh] text-center gap-6">
+            <div className="text-6xl">⚠️</div>
+            <h2 className={`text-3xl font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>Alerta de Spoiler</h2>
+            <p className={`text-base max-w-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+              Esta área contém informações confidenciais do Arco. Prossiga apenas se tiver certeza.
+            </p>
+            <button
+              onClick={() => setSpoilerMestreConfirmado(true)}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 rounded-xl text-lg transition-colors"
+            >
+              Sou o mestre do Arco.
+            </button>
+          </div>
+        </div>
+        {accountDataModal}
+        {scenarioPopupOverlay}
+        {mostrarTriunfosOverlay}
+        {pokezapPanel}{pokeAgendaPanel}
+        {batalhaChatPanel}
+      </>
+    )
+
+    const trainerUsers = users.filter(u => u.type === 'treinador')
+    const ITEMS_PER_PAGE = 9
+
+    const handleConfirmFabricarItem = () => {
+      const nome = fabricarItemName.trim()
+      if (!nome) { alert('Digite um nome para o item!'); return }
+      const conflictPrefix = RESERVED_KEY_ITEM_PREFIXES.find(p => nome.startsWith(p))
+      if (conflictPrefix) { alert(`O nome não pode começar com "${conflictPrefix.trim()}" — esse prefixo é reservado pelo sistema.`); return }
+      if (RESERVED_KEY_ITEM_NAMES.includes(nome)) { alert(`"${nome}" é um nome reservado pelo sistema. Escolha outro nome.`); return }
+      const qtyStr = fabricarItemQty.trim()
+      const qty = qtyStr === '' ? 1 : Math.max(1, parseInt(qtyStr) || 1)
+      const quantityFixed = qtyStr === ''
+      const image = fabricarItemImage.trim() || '/pokeballs/placeholderitem.png'
+      const description = fabricarItemDescription.trim()
+      const newItem = { id: Date.now() + Math.random(), name: nome, quantity: qty, quantityFixed, image, ...(description && { description }) }
+      setMasterItems(prev => [...prev, newItem])
+      setShowFabricarItemModal(false)
+      setFabricarItemName('')
+      setFabricarItemQty('')
+      setFabricarItemImage('')
+      setFabricarItemDescription('')
+    }
+
+    const handleConfirmEditMasterItem = () => {
+      if (!editingMasterItem) return
+      const nome = editMasterItemName.trim()
+      if (!nome) { alert('O nome não pode ser vazio!'); return }
+      const qtyStr = editMasterItemQty.trim()
+      const qty = qtyStr === '' ? 1 : Math.max(1, parseInt(qtyStr) || 1)
+      const quantityFixed = qtyStr === ''
+      const image = editMasterItemImage.trim() || '/pokeballs/placeholderitem.png'
+      const description = editMasterItemDescription.trim()
+      setMasterItems(prev => prev.map(item =>
+        item.id === editingMasterItem.id
+          ? { ...item, name: nome, quantity: qty, quantityFixed, image, description: description || undefined }
+          : item
+      ))
+      setShowEditMasterItemModal(false)
+      setEditingMasterItem(null)
+    }
+
+    const handleConfirmMandarItem = async () => {
+      if (!mandarItemTarget || mandarItemSelectedUsers.length === 0) return
+      if (!useFirebase) { alert('Esta função requer Firebase!'); return }
+      try {
+        for (const username of mandarItemSelectedUsers) {
+          const receiverRef = ref(database, `trainers/${username}`)
+          const snapshot = await get(receiverRef)
+          if (!snapshot.exists()) continue
+          const receiverData = snapshot.val()
+          const receiverKeyItems = receiverData.keyItems || []
+          const existingItem = receiverKeyItems.find(item => item.name === mandarItemTarget.name)
+          let updatedReceiverKeyItems
+          if (existingItem) {
+            updatedReceiverKeyItems = receiverKeyItems.map(item =>
+              item.name === mandarItemTarget.name ? { ...item, quantity: item.quantity + 1 } : item
+            )
+          } else {
+            const newKI = { name: mandarItemTarget.name, quantity: 1 }
+            if (mandarItemTarget.image && mandarItemTarget.image !== '/pokeballs/placeholderitem.png') newKI.image = mandarItemTarget.image
+            if (mandarItemTarget.description) newKI.description = mandarItemTarget.description
+            updatedReceiverKeyItems = [...receiverKeyItems, newKI]
+          }
+          await set(ref(database, `trainers/${username}/keyItems`), updatedReceiverKeyItems)
+        }
+        const newQty = mandarItemTarget.quantity - mandarItemSelectedUsers.length
+        if (newQty <= 0) {
+          setMasterItems(prev => prev.filter(item => item.id !== mandarItemTarget.id))
+          setMasterItemsSent(prev => [...prev, { ...mandarItemTarget, quantity: 0 }])
+        } else {
+          setMasterItems(prev => prev.map(item =>
+            item.id === mandarItemTarget.id ? { ...item, quantity: newQty } : item
+          ))
+        }
+        setShowMandarItemModal(false)
+        setMandarItemTarget(null)
+        setMandarItemSelectedUsers([])
+      } catch (err) {
+        console.error('Erro ao enviar item:', err)
+        alert('Erro ao enviar o item!')
+      }
+    }
+
+    const handleConfirmRenovarItem = () => {
+      if (!renovarItemTarget) return
+      const qtyStr = renovarItemQty.trim()
+      const qty = qtyStr === '' ? 1 : Math.max(1, parseInt(qtyStr) || 1)
+      const quantityFixed = qtyStr === ''
+      const renewedItem = { ...renovarItemTarget, quantity: qty, quantityFixed }
+      setMasterItemsSent(prev => prev.filter(item => item.id !== renovarItemTarget.id))
+      setMasterItems(prev => [...prev, renewedItem])
+      setShowRenovarItemModal(false)
+      setRenovarItemTarget(null)
+      setRenovarItemQty('')
+    }
+
+    const notSentTotalPages = Math.max(1, Math.ceil(masterItems.length / ITEMS_PER_PAGE))
+    const notSentPaged = masterItems.slice(masterItemsPage * ITEMS_PER_PAGE, (masterItemsPage + 1) * ITEMS_PER_PAGE)
+    const sentTotalPages = Math.max(1, Math.ceil(masterItemsSent.length / ITEMS_PER_PAGE))
+    const sentPaged = masterItemsSent.slice(masterItemsSentPage * ITEMS_PER_PAGE, (masterItemsSentPage + 1) * ITEMS_PER_PAGE)
+
+    return (
+      <>
+        <div className={`min-h-screen ${mainBgClass}`}>
+          {sidebarNav}
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center gap-3">
+                  <button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-500'}`}><Menu size={24} /></button>
+                  <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Bugigangas do Mestre 👑</h2>
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8 space-y-6">
+            {/* Seção: Itens Não Enviados */}
+            <div className={`rounded-2xl p-4 sm:p-5 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm`}>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Itens Não Enviados</h3>
+                <button
+                  onClick={() => { setFabricarItemName(''); setFabricarItemQty(''); setFabricarItemImage(''); setFabricarItemDescription(''); setShowFabricarItemModal(true) }}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-colors"
+                >
+                  <Package size={16} /> Fabricar Itens
+                </button>
+              </div>
+              {masterItems.length === 0 ? (
+                <p className={`text-center text-sm py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Nenhum item fabricado ainda.</p>
+              ) : (
+                <>
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                    {notSentPaged.map(item => (
+                      <div key={item.id} className={`relative group rounded-xl p-2 border flex flex-col items-center gap-1 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'}`}>
+                        {/* Info */}
+                        <button
+                          onClick={() => { setMasterItemDescTarget(item); setShowMasterItemDescModal(true) }}
+                          className={`absolute top-0.5 left-0.5 opacity-0 group-hover:opacity-100 transition-opacity ${darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-500 hover:text-blue-600'}`}
+                          title="Ver descrição"
+                        >
+                          <Info size={12} className="sm:w-[14px] sm:h-[14px]" />
+                        </button>
+                        {/* Edit + Delete */}
+                        <div className="absolute top-0.5 right-0.5 flex gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button
+                            onClick={() => {
+                              setEditingMasterItem(item)
+                              setEditMasterItemName(item.name)
+                              setEditMasterItemQty(item.quantityFixed ? '' : String(item.quantity))
+                              setEditMasterItemImage(item.image && item.image !== '/pokeballs/placeholderitem.png' ? item.image : '')
+                              setEditMasterItemDescription(item.description || '')
+                              setShowEditMasterItemModal(true)
+                            }}
+                            className={`${darkMode ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-500 hover:text-yellow-600'}`}
+                            title="Editar"
+                          >
+                            <Pencil size={12} className="sm:w-[14px] sm:h-[14px]" />
+                          </button>
+                          <button
+                            onClick={() => setMasterItems(prev => prev.filter(i => i.id !== item.id))}
+                            className={`${darkMode ? 'text-red-400 hover:text-red-300' : 'text-red-500 hover:text-red-600'}`}
+                            title="Excluir"
+                          >
+                            <Trash2 size={12} className="sm:w-[14px] sm:h-[14px]" />
+                          </button>
+                        </div>
+                        {/* Image */}
+                        <div className="w-12 h-12 flex items-center justify-center mt-3">
+                          <img
+                            src={item.image || '/pokeballs/placeholderitem.png'}
+                            alt={item.name}
+                            className="max-w-full max-h-full object-contain"
+                            onError={e => { e.target.src = '/pokeballs/placeholderitem.png' }}
+                          />
+                        </div>
+                        {/* Name */}
+                        <span className={`text-xs font-semibold text-center leading-tight line-clamp-2 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>{item.name}</span>
+                        {/* Qty */}
+                        <span className={`text-xs font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
+                          x{item.quantity}{item.quantityFixed ? ' 🔒' : ''}
+                        </span>
+                        {/* Mandar button */}
+                        <button
+                          onClick={() => { setMandarItemTarget(item); setMandarItemSelectedUsers([]); setShowMandarItemModal(true) }}
+                          className="w-full mt-1 py-1 px-2 rounded-lg text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center gap-1"
+                          title="Mandar Item"
+                        >
+                          <Send size={11} /> Mandar
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                  {notSentTotalPages > 1 && (
+                    <div className="flex items-center justify-center gap-3 mt-4">
+                      <button onClick={() => setMasterItemsPage(p => Math.max(0, p - 1))} disabled={masterItemsPage === 0} className={`p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-600 text-gray-300' : 'hover:bg-gray-200 text-gray-600'} disabled:opacity-40`}><ChevronLeft size={18} /></button>
+                      <span className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{masterItemsPage + 1} / {notSentTotalPages}</span>
+                      <button onClick={() => setMasterItemsPage(p => Math.min(notSentTotalPages - 1, p + 1))} disabled={masterItemsPage >= notSentTotalPages - 1} className={`p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-600 text-gray-300' : 'hover:bg-gray-200 text-gray-600'} disabled:opacity-40`}><ChevronRight size={18} /></button>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+
+            {/* Seção: Itens Enviados */}
+            <div className={`rounded-2xl p-4 sm:p-5 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm`}>
+              <h3 className={`text-base sm:text-lg font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Itens Enviados</h3>
+              {masterItemsSent.length === 0 ? (
+                <p className={`text-center text-sm py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Nenhum item enviado ainda.</p>
+              ) : (
+                <>
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                    {sentPaged.map(item => (
+                      <div key={item.id} className={`relative group rounded-xl p-2 border flex flex-col items-center gap-1 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'}`}>
+                        {/* Info */}
+                        <button
+                          onClick={() => { setMasterItemDescTarget(item); setShowMasterItemDescModal(true) }}
+                          className={`absolute top-0.5 left-0.5 opacity-0 group-hover:opacity-100 transition-opacity ${darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-500 hover:text-blue-600'}`}
+                          title="Ver descrição"
+                        >
+                          <Info size={12} className="sm:w-[14px] sm:h-[14px]" />
+                        </button>
+                        {/* Renew + Delete */}
+                        <div className="absolute top-0.5 right-0.5 flex gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button
+                            onClick={() => { setRenovarItemTarget(item); setRenovarItemQty(''); setShowRenovarItemModal(true) }}
+                            className={`${darkMode ? 'text-green-400 hover:text-green-300' : 'text-green-500 hover:text-green-600'}`}
+                            title="Renovar"
+                          >
+                            <RefreshCcw size={12} className="sm:w-[14px] sm:h-[14px]" />
+                          </button>
+                          <button
+                            onClick={() => setMasterItemsSent(prev => prev.filter(i => i.id !== item.id))}
+                            className={`${darkMode ? 'text-red-400 hover:text-red-300' : 'text-red-500 hover:text-red-600'}`}
+                            title="Excluir"
+                          >
+                            <Trash2 size={12} className="sm:w-[14px] sm:h-[14px]" />
+                          </button>
+                        </div>
+                        {/* Image */}
+                        <div className="w-12 h-12 flex items-center justify-center mt-3 opacity-60">
+                          <img
+                            src={item.image || '/pokeballs/placeholderitem.png'}
+                            alt={item.name}
+                            className="max-w-full max-h-full object-contain"
+                            onError={e => { e.target.src = '/pokeballs/placeholderitem.png' }}
+                          />
+                        </div>
+                        {/* Name */}
+                        <span className={`text-xs font-semibold text-center leading-tight line-clamp-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{item.name}</span>
+                        <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Enviado</span>
+                      </div>
+                    ))}
+                  </div>
+                  {sentTotalPages > 1 && (
+                    <div className="flex items-center justify-center gap-3 mt-4">
+                      <button onClick={() => setMasterItemsSentPage(p => Math.max(0, p - 1))} disabled={masterItemsSentPage === 0} className={`p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-600 text-gray-300' : 'hover:bg-gray-200 text-gray-600'} disabled:opacity-40`}><ChevronLeft size={18} /></button>
+                      <span className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{masterItemsSentPage + 1} / {sentTotalPages}</span>
+                      <button onClick={() => setMasterItemsSentPage(p => Math.min(sentTotalPages - 1, p + 1))} disabled={masterItemsSentPage >= sentTotalPages - 1} className={`p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-600 text-gray-300' : 'hover:bg-gray-200 text-gray-600'} disabled:opacity-40`}><ChevronRight size={18} /></button>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Modal: Fabricar Item */}
+        {showFabricarItemModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowFabricarItemModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto`} onClick={e => e.stopPropagation()}>
+              <div className="p-5">
+                <div className="flex justify-between items-center mb-5">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Fabricar Item</h3>
+                  <button onClick={() => setShowFabricarItemModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`}><X size={20} /></button>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Nome *</label>
+                    <input type="text" value={fabricarItemName} onChange={e => setFabricarItemName(e.target.value)} placeholder="Nome do item" className={`w-full px-3 py-2.5 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`} />
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>URL da Imagem</label>
+                    <input type="text" value={fabricarItemImage} onChange={e => setFabricarItemImage(e.target.value)} placeholder="https://... (opcional)" className={`w-full px-3 py-2.5 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`} />
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Quantidade</label>
+                    <input type="number" min={1} value={fabricarItemQty} onChange={e => setFabricarItemQty(e.target.value)} placeholder="Padrão: 1 (fixo)" className={`w-full px-3 py-2.5 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`} />
+                    {fabricarItemQty === '' && <p className={`text-xs mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Sem valor → quantidade 1 (não editável manualmente)</p>}
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Descrição</label>
+                    <textarea value={fabricarItemDescription} onChange={e => setFabricarItemDescription(e.target.value)} placeholder="Descrição do item (opcional)" rows={3} className={`w-full px-3 py-2.5 rounded-lg border text-sm resize-none ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`} />
+                  </div>
+                </div>
+                <div className="flex gap-3 mt-6">
+                  <button onClick={() => setShowFabricarItemModal(false)} className={`flex-1 py-2.5 rounded-xl font-semibold text-sm ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>Cancelar</button>
+                  <button onClick={handleConfirmFabricarItem} className="flex-1 py-2.5 rounded-xl font-semibold text-sm bg-purple-600 hover:bg-purple-500 text-white">Fabricar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal: Editar Item */}
+        {showEditMasterItemModal && editingMasterItem && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowEditMasterItemModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto`} onClick={e => e.stopPropagation()}>
+              <div className="p-5">
+                <div className="flex justify-between items-center mb-5">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Editar Item</h3>
+                  <button onClick={() => setShowEditMasterItemModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`}><X size={20} /></button>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Nome *</label>
+                    <input type="text" value={editMasterItemName} onChange={e => setEditMasterItemName(e.target.value)} className={`w-full px-3 py-2.5 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white'}`} />
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>URL da Imagem</label>
+                    <input type="text" value={editMasterItemImage} onChange={e => setEditMasterItemImage(e.target.value)} placeholder="https://... (opcional)" className={`w-full px-3 py-2.5 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`} />
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Quantidade</label>
+                    <input type="number" min={1} value={editMasterItemQty} onChange={e => setEditMasterItemQty(e.target.value)} placeholder="Padrão: 1 (fixo)" className={`w-full px-3 py-2.5 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`} />
+                    {editMasterItemQty === '' && <p className={`text-xs mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Sem valor → quantidade 1 (não editável manualmente)</p>}
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Descrição</label>
+                    <textarea value={editMasterItemDescription} onChange={e => setEditMasterItemDescription(e.target.value)} placeholder="Descrição do item (opcional)" rows={3} className={`w-full px-3 py-2.5 rounded-lg border text-sm resize-none ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`} />
+                  </div>
+                </div>
+                <div className="flex gap-3 mt-6">
+                  <button onClick={() => setShowEditMasterItemModal(false)} className={`flex-1 py-2.5 rounded-xl font-semibold text-sm ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>Cancelar</button>
+                  <button onClick={handleConfirmEditMasterItem} className="flex-1 py-2.5 rounded-xl font-semibold text-sm bg-yellow-600 hover:bg-yellow-500 text-white">Salvar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal: Mandar Item */}
+        {showMandarItemModal && mandarItemTarget && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => { setShowMandarItemModal(false); setMandarItemSelectedUsers([]) }}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto`} onClick={e => e.stopPropagation()}>
+              <div className="p-5">
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Enviar Item</h3>
+                  <button onClick={() => { setShowMandarItemModal(false); setMandarItemSelectedUsers([]) }} className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`}><X size={20} /></button>
+                </div>
+                <p className={`text-sm font-semibold mb-1 ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>{mandarItemTarget.name}</p>
+                <p className={`text-xs mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  Selecione até {mandarItemTarget.quantity} treinador{mandarItemTarget.quantity !== 1 ? 'es' : ''} (mínimo 1).
+                </p>
+                <div className="space-y-2 max-h-60 overflow-y-auto mb-4">
+                  {trainerUsers.length === 0 ? (
+                    <p className={`text-sm text-center ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Nenhum treinador disponível.</p>
+                  ) : trainerUsers.map(u => {
+                    const isSelected = mandarItemSelectedUsers.includes(u.username)
+                    const maxReached = mandarItemSelectedUsers.length >= mandarItemTarget.quantity
+                    return (
+                      <button
+                        key={u.username}
+                        onClick={() => {
+                          if (isSelected) {
+                            setMandarItemSelectedUsers(prev => prev.filter(x => x !== u.username))
+                          } else if (!maxReached) {
+                            setMandarItemSelectedUsers(prev => [...prev, u.username])
+                          }
+                        }}
+                        disabled={!isSelected && maxReached}
+                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl border text-left transition-colors ${
+                          isSelected
+                            ? 'border-purple-500 bg-purple-500/20'
+                            : darkMode
+                              ? 'border-gray-600 bg-gray-700 hover:bg-gray-600 disabled:opacity-40'
+                              : 'border-gray-200 bg-gray-50 hover:bg-gray-100 disabled:opacity-40'
+                        }`}
+                      >
+                        <span className="text-sm font-bold px-2 py-0.5 rounded-full text-white" style={{ background: u.gradient }}>{u.username}</span>
+                        {isSelected && <Check size={16} className="text-purple-400 flex-shrink-0" />}
+                      </button>
+                    )
+                  })}
+                </div>
+                <div className="flex gap-3">
+                  <button onClick={() => { setShowMandarItemModal(false); setMandarItemSelectedUsers([]) }} className={`flex-1 py-2.5 rounded-xl font-semibold text-sm ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>Cancelar</button>
+                  <button onClick={handleConfirmMandarItem} disabled={mandarItemSelectedUsers.length === 0} className="flex-1 py-2.5 rounded-xl font-semibold text-sm bg-purple-600 hover:bg-purple-500 text-white disabled:opacity-40">
+                    Enviar ({mandarItemSelectedUsers.length})
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal: Descrição Item */}
+        {showMasterItemDescModal && masterItemDescTarget && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowMasterItemDescModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-6 max-w-sm w-full`} onClick={e => e.stopPropagation()}>
+              <div className="w-full h-24 mb-3 flex items-center justify-center">
+                <img src={masterItemDescTarget.image || '/pokeballs/placeholderitem.png'} alt={masterItemDescTarget.name} className="max-w-full max-h-full object-contain" onError={e => { e.target.src = '/pokeballs/placeholderitem.png' }} />
+              </div>
+              <h3 className={`text-lg font-bold text-center mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>{masterItemDescTarget.name}</h3>
+              <p className={`text-sm text-center mb-5 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{masterItemDescTarget.description || 'Sem descrição.'}</p>
+              <button onClick={() => setShowMasterItemDescModal(false)} className={`w-full py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>Fechar</button>
+            </div>
+          </div>
+        )}
+
+        {/* Modal: Renovar Item */}
+        {showRenovarItemModal && renovarItemTarget && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowRenovarItemModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-sm w-full`} onClick={e => e.stopPropagation()}>
+              <div className="p-5">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Renovar Item</h3>
+                  <button onClick={() => setShowRenovarItemModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`}><X size={20} /></button>
+                </div>
+                <p className={`text-sm font-semibold mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{renovarItemTarget.name}</p>
+                <div>
+                  <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Nova Quantidade</label>
+                  <input type="number" min={1} value={renovarItemQty} onChange={e => setRenovarItemQty(e.target.value)} placeholder="Padrão: 1 (fixo)" className={`w-full px-3 py-2.5 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`} />
+                  {renovarItemQty === '' && <p className={`text-xs mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Sem valor → quantidade 1 (não editável manualmente)</p>}
+                </div>
+                <div className="flex gap-3 mt-6">
+                  <button onClick={() => setShowRenovarItemModal(false)} className={`flex-1 py-2.5 rounded-xl font-semibold text-sm ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>Cancelar</button>
+                  <button onClick={handleConfirmRenovarItem} className="flex-1 py-2.5 rounded-xl font-semibold text-sm bg-green-600 hover:bg-green-500 text-white">Renovar</button>
                 </div>
               </div>
             </div>
