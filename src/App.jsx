@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus, Save, Archive, MoveVertical, Menu, Gamepad2 } from 'lucide-react'
 import AccountDataModal from './AccountDataModal'
-import pokedexData from './pokemonData'
+import pokedexData, { POKEMON_DIET_MAP } from './pokemonData'
 import GOLPES_DATA_IMPORTED from './golpesData'
 import HABILIDADES_DATA_IMPORTED, { HABILIDADES_NAMES as HABILIDADES_NAMES_IMPORTED } from './habilidadesData'
 import CARACTERISTICAS_DATA_IMPORTED, { TALENTOS_DATA as TALENTOS_DATA_IMPORTED, TALENTOS_NAMES as TALENTOS_NAMES_IMPORTED } from './caracteristicasETalentosData'
@@ -1121,6 +1121,20 @@ const KEY_ITEMS_LIST = [
   'Kelpsy', 'Hondew', 'Qualot', 'Pomeg', 'Tamato', 'Grepa',
   'Lum', 'Leppa',
   'Enigma', 'Micle', 'Kee', 'Jaboca', 'Maranga', 'Rowap', 'Custap',
+  // Corredor de Puffins
+  'Puffin Picante', 'Puffin Picante Seco', 'Puffin Picante Doce', 'Puffin Picante Amargo', 'Puffin Picante Azedo',
+  'Puffin Seco', 'Puffin Seco Picante', 'Puffin Seco Doce', 'Puffin Seco Amargo', 'Puffin Seco Azedo',
+  'Puffin Doce', 'Puffin Doce Picante', 'Puffin Doce Seco', 'Puffin Doce Amargo', 'Puffin Doce Azedo',
+  'Puffin Amargo', 'Puffin Amargo Picante', 'Puffin Amargo Seco', 'Puffin Amargo Doce', 'Puffin Amargo Azedo',
+  'Puffin Azedo', 'Puffin Azedo Picante', 'Puffin Azedo Seco', 'Puffin Azedo Doce', 'Puffin Azedo Amargo',
+  // Corredor de Pokesucos
+  'Pokesuco Vermelho',
+  'Pokesuco Verde',
+  'Pokesuco Amarelo',
+  'Pokesuco Azul',
+  'Pokesuco Rosa',
+  'Pokesuco Branco',
+  'Pokesuco Arco-íris',
   // Peças de pokébola quebradas
   'Peças de Pokeball',
   'Peças de Greatball',
@@ -1202,9 +1216,88 @@ const BROKEN_POKEBALL_IMAGES = {
   'Timerball': '/timerballquebrada.png'
 }
 
+// Helper para obter os ícones de dieta de um Pokémon
+const DIET_IMAGE_MAP = {
+  'Autônomo': '/dietas/autonomo.png',
+  'Carnívoro': '/dietas/carnivoro.png',
+  'Eletrizante': '/dietas/eletrizante.png',
+  'Fotossintetizante': '/dietas/fotossintetizante.png',
+  'Herbívoro': '/dietas/herbívoro.png',
+  'Minerávoro': '/dietas/mineravoro.png',
+  'Onívoro': '/dietas/onivoro.png',
+}
+
+const FLAVOR_COLORS = {
+  'Azedo': 'text-yellow-500',
+  'Seco': 'text-blue-400',
+  'Doce': 'text-pink-400',
+  'Amargo': 'text-green-500',
+  'Picante': 'text-red-500',
+}
+
+const FLAVOR_ABBR = {
+  'Amargo': { abbr: 'Am', color: 'text-green-500' },
+  'Seco':   { abbr: 'Sc', color: 'text-blue-400' },
+  'Doce':   { abbr: 'Dc', color: 'text-pink-400' },
+  'Picante':{ abbr: 'Pc', color: 'text-red-500' },
+  'Azedo':  { abbr: 'Az', color: 'text-yellow-500' },
+}
+
+const renderDescriptionWithFlavors = (description) => {
+  const parts = description.split(/(Azedo|Seco|Doce|Amargo|Picante)/g)
+  return parts.map((part, i) =>
+    FLAVOR_COLORS[part]
+      ? <span key={i} className={`font-semibold ${FLAVOR_COLORS[part]}`}>{part}</span>
+      : part
+  )
+}
+
+const getDietComponents = (speciesName) => {
+  if (!speciesName) return []
+  // Buscar pelo nome base (sem sufixos de forma como " de Paldea", " Mega", etc.)
+  const diet = POKEMON_DIET_MAP[speciesName] || null
+  if (!diet) return []
+  // Separar dietas combinadas pelo ' e '
+  return diet.split(' e ').map(d => d.trim()).filter(d => DIET_IMAGE_MAP[d])
+}
+
+const DietIcons = ({ speciesName, dietOverride, size = 20 }) => {
+  const components = dietOverride
+    ? dietOverride.split(' e ').map(d => d.trim()).filter(d => DIET_IMAGE_MAP[d])
+    : getDietComponents(speciesName)
+  if (components.length === 0) return null
+  return (
+    <div className="flex gap-1 items-center">
+      {components.map((d) => (
+        <img
+          key={d}
+          src={DIET_IMAGE_MAP[d]}
+          alt={d}
+          title={d}
+          width={size}
+          height={size}
+          className="object-contain"
+          onError={(e) => { e.target.style.display = 'none' }}
+        />
+      ))}
+    </div>
+  )
+}
+
 // Estrutura da PokéLoja
 // Função helper para obter a imagem do item
 const getItemImage = (itemName) => {
+  // Verificar se é um Pokesuco
+  if (itemName.startsWith('Pokesuco ')) {
+    if (itemName.includes('Arco-íris')) return '/pokesuco/pokesucoarcoiris.png'
+    if (itemName.includes('Fraco')) return '/pokesuco/pokesucobranco.png'
+    if (itemName.includes('Vermelho')) return '/pokesuco/pokesucovermelho.png'
+    if (itemName.includes('Verde')) return '/pokesuco/pokesucoverde.png'
+    if (itemName.includes('Azul')) return '/pokesuco/pokesucoazul.png'
+    if (itemName.includes('Rosa')) return '/pokesuco/pokesucorosa.png'
+    if (itemName.includes('Amarelo')) return '/pokesuco/pokesucoamarelo.png'
+    return '/pokesuco/pokesucobranco.png'
+  }
   // Verificar se é uma peça de pokébola quebrada
   if (itemName.startsWith('Peças de ')) {
     const pokeballType = itemName.replace('Peças de ', '')
@@ -1213,6 +1306,12 @@ const getItemImage = (itemName) => {
     }
   }
 
+  // Verificar se é um Puffin numerado/aromatizado (ex: "Puffin Amargo (Azedo) 3")
+  if (itemName.startsWith('Puffin ')) {
+    const baseName = itemName.replace(/\s*\([^)]+\)/g, '').replace(/\s+\d+$/, '').trim()
+    const puffinItem = POKELOJA_DATA['Puffin']?.find(i => i.name === baseName)
+    if (puffinItem) return puffinItem.image
+  }
   // Procurar em todas as categorias da PokéLoja
   for (const category in POKELOJA_DATA) {
     const item = POKELOJA_DATA[category].find(i => i.name === itemName)
@@ -1421,14 +1520,14 @@ const POKELOJA_DATA = {
     { name: 'Veneno Sintético', price: 200, description: 'O pokémon está envenenado. Todos os ataques corpo a corpo do pokémon infligem a condição Envenenado.', image: '/pokeballs/venenosintetico.png' }
   ],
   'Apricorns e Bonsais': [
-    { name: 'Apricorn Vermelha', price: 50, description: 'Faz um suco Picante. Adicione um quarto do valor do Suco à Força.', image: '/pokeballs/apricornvermelhor.png' },
-    { name: 'Apricorn Verde', price: 50, description: 'Faz um suco Amargo.', image: '/pokeballs/apricornverde.png' },
-    { name: 'Apricorn Preta', price: 50, description: 'Não tem gosto. Cura qualquer veneno.', image: '/pokeballs/apricornpreta.png' },
-    { name: 'Apricorn Rosa', price: 50, description: 'Faz um suco Doce.', image: '/pokeballs/apricornrosa.png' },
-    { name: 'Apricorn Branca', price: 50, description: 'Não tem gosto. Ao ser consumido pelo pokémon que o está segurando, cura 1d20+2 de vida, após sofrer um dano igual ou maior que 20.', image: '/pokeballs/apricornbranca.png' },
-    { name: 'Apricorn Azul', price: 50, description: 'Faz um suco Seco.', image: '/pokeballs/apricornazul.png' },
-    { name: 'Apricorn Amarela', price: 50, description: 'Faz um suco Azedo.', image: '/pokeballs/apricornamarela.png' },
-    { name: 'Apricorn Arco-íris', price: 200, description: '', image: '/pokeballs/apricornarcoiris.png' },
+    { name: 'Apricorn Vermelha', price: 50, description: 'Seu suco é Picante e adiciona 1/4 da qualidade ao Salto.', image: '/pokeballs/apricornvermelhor.png' },
+    { name: 'Apricorn Verde', price: 50, description: 'Seu suco é Amargo e adiciona 1/4 da qualidade à Inteligência.', image: '/pokeballs/apricornverde.png' },
+    { name: 'Apricorn Preta', price: 50, description: 'Não tem gosto. Cura qualquer veneno. Intensifica um dos sabores de outra apricorn.', image: '/pokeballs/apricornpreta.png' },
+    { name: 'Apricorn Rosa', price: 50, description: 'Seu suco é Doce e adiciona 1/2 da qualidade ao deslocamento de terrestre e natação.', image: '/pokeballs/apricornrosa.png' },
+    { name: 'Apricorn Branca', price: 50, description: 'Não tem gosto. Abranda o gosto dos outros apricorns em um suco. Ao ser consumido pelo pokémon que o está segurando, cura 1d20+2 de vida, após sofrer um dano igual ou maior que 20.', image: '/pokeballs/apricornbranca.png' },
+    { name: 'Apricorn Azul', price: 50, description: 'Seu suco é Seco e adiciona 1/2 da qualidade ao deslocamento de escavação, subaquático e voo.', image: '/pokeballs/apricornazul.png' },
+    { name: 'Apricorn Amarela', price: 50, description: 'Seu suco é Azedo e adiciona um quarto da qualidade à Força.', image: '/pokeballs/apricornamarela.png' },
+    { name: 'Apricorn Arco-íris', price: 200, description: 'Seu suco tem sabor único e palatável a todos, sendo dominante em qualquer mistura.', image: '/pokeballs/apricornarcoiris.png' },
     { name: 'Bonsai Vermelho', price: 300, description: 'Gera apricorns Vermelha', image: '/pokeballs/bonsaivermelho.png' },
     { name: 'Bonsai Verde', price: 300, description: 'Gera apricorns Verde', image: '/pokeballs/bonsaiverde.png' },
     { name: 'Bonsai Azul', price: 300, description: 'Gera apricorns Azul', image: '/pokeballs/bonsaiazul.png' },
@@ -1445,78 +1544,160 @@ const POKELOJA_DATA = {
     { name: 'Ração Onívora', price: 200, description: 'Conjunto de 3 refeições diárias, para pokémon onívoros.', image: '/pokeballs/racaoonivora.png' }
   ],
   'Frutas': [
-    { name: 'Persim', realName: 'Caqui', price: 90, description: 'Restaura Confusão.', image: '/frutas/persim.png' },
-    { name: 'Wepear', realName: 'Abacate', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/wepear.png' },
-    { name: 'Pinap', realName: 'Abacaxi', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/pinap.png' },
-    { name: 'Pamtre', realName: 'Açaí', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/pamtre.png' },
-    { name: 'Bluk', realName: 'Amora', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/bluk.png' },
-    { name: 'Nanab', realName: 'Banana', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/nanab.png' },
-    { name: 'Durin', realName: 'Durião', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/durin.png' },
-    { name: 'Razz', realName: 'Framboesa', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/razz.png' },
-    { name: 'Oran', realName: 'Laranja', price: 90, description: 'Recupera 1d8 PV.', image: '/frutas/oran.png' },
-    { name: 'Nomel', realName: 'Limão', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/nomel.png' },
-    { name: 'Magost', realName: 'Mangostão', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/magost.png' },
-    { name: 'Watmel', realName: 'Melancia', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/watmel.png' },
-    { name: 'Spelon', realName: 'Melão', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/spelon.png' },
-    { name: 'Cornn', realName: 'Milho', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/cornn.png' },
-    { name: 'Belue', realName: 'Mirtilo', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/belue.png' },
-    { name: 'Rabuta', realName: 'Rambután', price: 90, description: 'Nenhum efeito de consumo.', image: '/frutas/rabuta.png' },
-    { name: 'Figy', realName: 'Figo', price: 155, description: 'Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Picante.', image: '/frutas/figy.png' },
-    { name: 'Aguav', realName: 'Goiaba', price: 155, description: 'Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Amargo.', image: '/frutas/aguav.png' },
-    { name: 'Wiki', realName: 'Kiwi', price: 155, description: 'Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Seco.', image: '/frutas/wiki.png' },
-    { name: 'Iapapa', realName: 'Mamão', price: 155, description: 'Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Azedo.', image: '/frutas/iapapa.png' },
-    { name: 'Mago', realName: 'Manga', price: 155, description: 'Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Doce.', image: '/frutas/mago.png' },
-    { name: 'Sitrus', realName: 'Toranja', price: 155, description: 'Recupera 2d8 PV.', image: '/frutas/sitrus.png' },
-    { name: 'Chesto', realName: 'Castanha', price: 225, description: 'Restaura Sono.', image: '/frutas/chesto.png' },
-    { name: 'Cheri', realName: 'Cereja', price: 225, description: 'Restaura Paralisia.', image: '/frutas/cheri.png' },
-    { name: 'Rawst', realName: 'Morango', price: 225, description: 'Restaura Queimadura.', image: '/frutas/rawst.png' },
-    { name: 'Aspear', realName: 'Pera', price: 225, description: 'Restaura Congelamento.', image: '/frutas/aspear.png' },
-    { name: 'Pecha', realName: 'Pêssego', price: 225, description: 'Restaura Veneno.', image: '/frutas/pecha.png' },
-    { name: 'Kebia', realName: 'Akebia', price: 275, description: 'Se sofrer um dano Venenoso que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/kebia.png' },
-    { name: 'Charti', realName: 'Alcachofra', price: 275, description: 'Se sofrer um dano de Pedra que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/charti.png' },
-    { name: 'Haban', realName: 'Araçá', price: 275, description: 'Se sofrer um dano de Dragão que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/haban.png' },
-    { name: 'Coba', realName: 'Babaco', price: 275, description: 'Se sofrer um dano Voador que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/coba.png' },
-    { name: 'Babiri', realName: 'Biribá', price: 275, description: 'Se sofrer um dano Metálico que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/babiri.png' },
-    { name: 'Occa', realName: 'Cacau', price: 275, description: 'Se sofrer um dano de Fogo que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/occa.png' },
-    { name: 'Shuca', realName: 'Caju', price: 275, description: 'Se sofrer um dano de Terra que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/shuca.png' },
-    { name: 'Colbur', realName: 'Cardo', price: 275, description: 'Se sofrer um dano de Trevas que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/colbur.png' },
-    { name: 'Chople', realName: 'Chipotle', price: 275, description: 'Se sofrer um dano Lutador que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/chople.png' },
-    { name: 'Yache', realName: 'Chirimoia', price: 275, description: 'Se sofrer um dano de Gelo que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/yache.png' },
-    { name: 'Wacan', realName: 'Guajilote', price: 275, description: 'Se sofrer um dano Elétrico que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/wacan.png' },
-    { name: 'Kasib', realName: 'Mandioca', price: 275, description: 'Se sofrer um dano Fantasma que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/kasib.png' },
-    { name: 'Passho', realName: 'Maracujá', price: 275, description: 'Se sofrer um dano de Água que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/passho.png' },
-    { name: 'Payapa', realName: 'Papaia', price: 275, description: 'Se sofrer um dano Psíquico que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/payapa.png' },
-    { name: 'Tanga', realName: 'Pitanga', price: 275, description: 'Se sofrer um dano de Inseto que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/tanga.png' },
-    { name: 'Roseli', realName: 'Rosália', price: 275, description: 'Se sofrer um dano de Fada que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/roseli.png' },
-    { name: 'Chilan', realName: 'Sininho', price: 275, description: 'Se sofrer um dano Normal, sofre apenas metade do dano.', image: '/frutas/chilan.png' },
-    { name: 'Rindo', realName: 'Tamarindo', price: 275, description: 'Se sofrer um dano de Planta que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/rindo.png' },
-    { name: 'Starf', realName: 'Carambola', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em um Atributo aleatório (exceto Saúde).', image: '/frutas/starf.png' },
-    { name: 'Apicot', realName: 'Damasco', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em Defesa Especial.', image: '/frutas/apicot.png' },
-    { name: 'Lansat', realName: 'Langsat', price: 365, description: 'Quando abaixo da metade dos PV, os Golpes do pokémon serão Críticos em resultados de Acurácia de 18 a 20 por 3 rodadas.', image: '/frutas/lansat.png' },
-    { name: 'Liechi', realName: 'Lichia', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em Ataque.', image: '/frutas/liechi.png' },
-    { name: 'Ganlon', realName: 'Longana', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em Defesa.', image: '/frutas/ganlon.png' },
-    { name: 'Petaya', realName: 'Pitaia', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em Ataque Especial.', image: '/frutas/petaya.png' },
-    { name: 'Salac', realName: 'Salak', price: 365, description: 'Quando abaixo da metade dos PV, eleva uma Fase em Velocidade.', image: '/frutas/salac.png' },
-    { name: 'Kelpsy', realName: 'Alga', price: 375, description: 'Se for do interesse, reduz o Ataque Basal em 1.', image: '/frutas/kelpsy.png' },
-    { name: 'Hondew', realName: 'Cantalupo', price: 375, description: 'Se for do interesse, reduz o Ataque Especial Basal em 1.', image: '/frutas/hondew.png' },
-    { name: 'Qualot', realName: 'Nêspera', price: 375, description: 'Se for do interesse, reduz a Defesa Basal em 1.', image: '/frutas/qualot.png' },
-    { name: 'Pomeg', realName: 'Romã', price: 375, description: 'Se for do interesse, reduz a Saúde Basal em 1.', image: '/frutas/pomeg.png' },
-    { name: 'Tamato', realName: 'Tomate', price: 375, description: 'Se for do interesse, reduz a Velocidade Basal em 1.', image: '/frutas/tamato.png' },
-    { name: 'Grepa', realName: 'Uva', price: 375, description: 'Se for do interesse, reduz a Defesa Especial Basal em 1.', image: '/frutas/grepa.png' },
-    { name: 'Lum', realName: 'Ameixa', price: 555, description: 'Restaura qualquer Condição.', image: '/frutas/lum.png' },
-    { name: 'Leppa', realName: 'Maçã', price: 1375, description: 'Restaura um uso de um Golpe.', image: '/frutas/leppa.png' },
-    { name: 'Enigma', realName: 'Enigma', price: 2555, description: 'Se acertado por um Golpe superefetivo, recupera um quarto dos PV máximos.', image: '/frutas/enigma.png' },
-    { name: 'Micle', realName: 'Fruta Milagrosa', price: 2555, description: 'Quando abaixo da metade dos PV, as Dificuldades de Acurácia dos Golpes são reduzidas em 2 por 3 rodadas.', image: '/frutas/micle.png' },
-    { name: 'Kee', realName: 'Guaraná', price: 2555, description: 'Quando acertado por um Golpe Físico, eleva uma Fase em Defesa.', image: '/frutas/kee.png' },
-    { name: 'Jaboca', realName: 'Jabuticaba', price: 2555, description: 'Quando acertado por um ataque Corpo a Corpo, o atacante sofre metade do dano causado.', image: '/frutas/jaboca.png' },
-    { name: 'Maranga', realName: 'Jaca', price: 2555, description: 'Quando acertado por um Golpe Especial, eleva uma Fase em Defesa Especial.', image: '/frutas/maranga.png' },
-    { name: 'Rowap', realName: 'Jambo', price: 2555, description: 'Quando acertado por um ataque à Distância, o atacante sofre metade do dano causado.', image: '/frutas/rowap.png' },
-    { name: 'Custap', realName: 'Pinha', price: 2555, description: 'Quando abaixo de 10% dos PV, os Golpes causadores de dano adquirem o Descritor Interrupção se puderem ser usados à Vontade por 1 rodada.', image: '/frutas/custap.png' }
+    { name: 'Persim', realName: 'Caqui', price: 90, description: 'Sabores: Azedo, Doce, Picante, Seco. Restaura Confusão.', image: '/frutas/persim.png' },
+    { name: 'Wepear', realName: 'Abacate', price: 90, description: 'Sabores: Amargo, Azedo. Nenhum efeito de consumo.', image: '/frutas/wepear.png' },
+    { name: 'Pinap', realName: 'Abacaxi', price: 90, description: 'Sabores: Azedo, Picante. Nenhum efeito de consumo.', image: '/frutas/pinap.png' },
+    { name: 'Pamtre', realName: 'Açaí', price: 90, description: 'Sabores: Doce, Seco. Nenhum efeito de consumo.', image: '/frutas/pamtre.png' },
+    { name: 'Bluk', realName: 'Amora', price: 90, description: 'Sabores: Doce, Seco. Nenhum efeito de consumo.', image: '/frutas/bluk.png' },
+    { name: 'Nanab', realName: 'Banana', price: 90, description: 'Sabores: Amargo, Doce. Nenhum efeito de consumo.', image: '/frutas/nanab.png' },
+    { name: 'Durin', realName: 'Durião', price: 90, description: 'Sabores: Amargo, Azedo. Nenhum efeito de consumo.', image: '/frutas/durin.png' },
+    { name: 'Razz', realName: 'Framboesa', price: 90, description: 'Sabores: Picante, Seco. Nenhum efeito de consumo.', image: '/frutas/razz.png' },
+    { name: 'Oran', realName: 'Laranja', price: 90, description: 'Sabores: Amargo, Azedo, Picante, Seco. Recupera 1d8 PV.', image: '/frutas/oran.png' },
+    { name: 'Nomel', realName: 'Limão', price: 90, description: 'Sabores: Azedo, Picante. Nenhum efeito de consumo.', image: '/frutas/nomel.png' },
+    { name: 'Magost', realName: 'Mangostão', price: 90, description: 'Sabores: Amargo, Doce. Nenhum efeito de consumo.', image: '/frutas/magost.png' },
+    { name: 'Watmel', realName: 'Melancia', price: 90, description: 'Sabores: Amargo, Doce. Nenhum efeito de consumo.', image: '/frutas/watmel.png' },
+    { name: 'Spelon', realName: 'Melão', price: 90, description: 'Sabores: Picante, Seco. Nenhum efeito de consumo.', image: '/frutas/spelon.png' },
+    { name: 'Cornn', realName: 'Milho', price: 90, description: 'Sabores: Doce, Seco. Nenhum efeito de consumo.', image: '/frutas/cornn.png' },
+    { name: 'Belue', realName: 'Mirtilo', price: 90, description: 'Sabores: Azedo, Picante. Nenhum efeito de consumo.', image: '/frutas/belue.png' },
+    { name: 'Rabuta', realName: 'Rambután', price: 90, description: 'Sabores: Amargo, Azedo. Nenhum efeito de consumo.', image: '/frutas/rabuta.png' },
+    { name: 'Figy', realName: 'Figo', price: 155, description: 'Sabores: Picante. Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Picante.', image: '/frutas/figy.png' },
+    { name: 'Aguav', realName: 'Goiaba', price: 155, description: 'Sabores: Amargo. Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Amargo.', image: '/frutas/aguav.png' },
+    { name: 'Wiki', realName: 'Kiwi', price: 155, description: 'Sabores: Seco. Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Seco.', image: '/frutas/wiki.png' },
+    { name: 'Iapapa', realName: 'Mamão', price: 155, description: 'Sabores: Azedo. Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Azedo.', image: '/frutas/iapapa.png' },
+    { name: 'Mago', realName: 'Manga', price: 155, description: 'Sabores: Doce. Recupera um oitavo dos PV máximos, mas torna Confuso se o pokémon desgosta de Doce.', image: '/frutas/mago.png' },
+    { name: 'Sitrus', realName: 'Toranja', price: 155, description: 'Sabores: Amargo, Azedo, Doce, Seco. Recupera 2d8 PV.', image: '/frutas/sitrus.png' },
+    { name: 'Chesto', realName: 'Castanha', price: 225, description: 'Sabores: Seco. Restaura Sono.', image: '/frutas/chesto.png' },
+    { name: 'Cheri', realName: 'Cereja', price: 225, description: 'Sabores: Picante. Restaura Paralisia.', image: '/frutas/cheri.png' },
+    { name: 'Rawst', realName: 'Morango', price: 225, description: 'Sabores: Amargo. Restaura Queimadura.', image: '/frutas/rawst.png' },
+    { name: 'Aspear', realName: 'Pera', price: 225, description: 'Sabores: Azedo. Restaura Congelamento.', image: '/frutas/aspear.png' },
+    { name: 'Pecha', realName: 'Pêssego', price: 225, description: 'Sabores: Doce. Restaura Veneno.', image: '/frutas/pecha.png' },
+    { name: 'Kebia', realName: 'Akebia', price: 275, description: 'Sabores: Picante, Seco. Se sofrer um dano Venenoso que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/kebia.png' },
+    { name: 'Charti', realName: 'Alcachofra', price: 275, description: 'Sabores: Picante, Seco. Se sofrer um dano de Pedra que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/charti.png' },
+    { name: 'Haban', realName: 'Araçá', price: 275, description: 'Sabores: Amargo, Doce. Se sofrer um dano de Dragão que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/haban.png' },
+    { name: 'Coba', realName: 'Babaco', price: 275, description: 'Sabores: Amargo, Seco. Se sofrer um dano Voador que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/coba.png' },
+    { name: 'Babiri', realName: 'Biribá', price: 275, description: 'Sabores: Picante, Seco. Se sofrer um dano Metálico que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/babiri.png' },
+    { name: 'Occa', realName: 'Cacau', price: 275, description: 'Sabores: Picante, Seco. Se sofrer um dano de Fogo que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/occa.png' },
+    { name: 'Shuca', realName: 'Caju', price: 275, description: 'Sabores: Picante, Seco. Se sofrer um dano de Terra que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/shuca.png' },
+    { name: 'Colbur', realName: 'Cardo', price: 275, description: 'Sabores: Amargo, Azedo. Se sofrer um dano de Trevas que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/colbur.png' },
+    { name: 'Chople', realName: 'Chipotle', price: 275, description: 'Sabores: Amargo, Picante. Se sofrer um dano Lutador que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/chople.png' },
+    { name: 'Yache', realName: 'Chirimoia', price: 275, description: 'Sabores: Azedo, Seco. Se sofrer um dano de Gelo que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/yache.png' },
+    { name: 'Wacan', realName: 'Guajilote', price: 275, description: 'Sabores: Azedo, Doce. Se sofrer um dano Elétrico que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/wacan.png' },
+    { name: 'Kasib', realName: 'Mandioca', price: 275, description: 'Sabores: Doce, Seco. Se sofrer um dano Fantasma que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/kasib.png' },
+    { name: 'Passho', realName: 'Maracujá', price: 275, description: 'Sabores: Amargo, Seco. Se sofrer um dano de Água que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/passho.png' },
+    { name: 'Payapa', realName: 'Papaia', price: 275, description: 'Sabores: Azedo, Doce. Se sofrer um dano Psíquico que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/payapa.png' },
+    { name: 'Tanga', realName: 'Pitanga', price: 275, description: 'Sabores: Azedo, Picante. Se sofrer um dano de Inseto que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/tanga.png' },
+    { name: 'Roseli', realName: 'Rosália', price: 275, description: 'Sabores: Doce, Seco. Se sofrer um dano de Fada que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/roseli.png' },
+    { name: 'Chilan', realName: 'Sininho', price: 275, description: 'Sabores: Doce, Seco. Se sofrer um dano Normal, sofre apenas metade do dano.', image: '/frutas/chilan.png' },
+    { name: 'Rindo', realName: 'Tamarindo', price: 275, description: 'Sabores: Amargo, Picante. Se sofrer um dano de Planta que seria superefetivo, sofre apenas dano neutro.', image: '/frutas/rindo.png' },
+    { name: 'Starf', realName: 'Carambola', price: 365, description: 'Sabores: Amargo, Azedo, Doce, Picante, Seco. Quando abaixo da metade dos PV, eleva uma Fase em um Atributo aleatório (exceto Saúde).', image: '/frutas/starf.png' },
+    { name: 'Apicot', realName: 'Damasco', price: 365, description: 'Sabores: Azedo, Picante, Seco. Quando abaixo da metade dos PV, eleva uma Fase em Defesa Especial.', image: '/frutas/apicot.png' },
+    { name: 'Lansat', realName: 'Langsat', price: 365, description: 'Sabores: Amargo, Azedo, Doce, Picante, Seco. Quando abaixo da metade dos PV, os Golpes do pokémon serão Críticos em resultados de Acurácia de 18 a 20 por 3 rodadas.', image: '/frutas/lansat.png' },
+    { name: 'Liechi', realName: 'Lichia', price: 365, description: 'Sabores: Doce, Picante, Seco. Quando abaixo da metade dos PV, eleva uma Fase em Ataque.', image: '/frutas/liechi.png' },
+    { name: 'Ganlon', realName: 'Longana', price: 365, description: 'Sabores: Amargo, Doce, Seco. Quando abaixo da metade dos PV, eleva uma Fase em Defesa.', image: '/frutas/ganlon.png' },
+    { name: 'Petaya', realName: 'Pitaia', price: 365, description: 'Sabores: Amargo, Azedo, Picante. Quando abaixo da metade dos PV, eleva uma Fase em Ataque Especial.', image: '/frutas/petaya.png' },
+    { name: 'Salac', realName: 'Salak', price: 365, description: 'Sabores: Amargo, Azedo, Doce. Quando abaixo da metade dos PV, eleva uma Fase em Velocidade.', image: '/frutas/salac.png' },
+    { name: 'Kelpsy', realName: 'Alga', price: 375, description: 'Sabores: Amargo, Azedo, Seco. Se for do interesse, reduz o Ataque Basal em 1.', image: '/frutas/kelpsy.png' },
+    { name: 'Hondew', realName: 'Cantalupo', price: 375, description: 'Sabores: Amargo, Picante, Seco. Se for do interesse, reduz o Ataque Especial Basal em 1.', image: '/frutas/hondew.png' },
+    { name: 'Qualot', realName: 'Nêspera', price: 375, description: 'Sabores: Azedo, Doce, Picante. Se for do interesse, reduz a Defesa Basal em 1.', image: '/frutas/qualot.png' },
+    { name: 'Pomeg', realName: 'Romã', price: 375, description: 'Sabores: Amargo, Doce, Picante. Se for do interesse, reduz a Saúde Basal em 1.', image: '/frutas/pomeg.png' },
+    { name: 'Tamato', realName: 'Tomate', price: 375, description: 'Sabores: Picante, Seco. Se for do interesse, reduz a Velocidade Basal em 1.', image: '/frutas/tamato.png' },
+    { name: 'Grepa', realName: 'Uva', price: 375, description: 'Sabores: Azedo, Doce, Seco. Se for do interesse, reduz a Defesa Especial Basal em 1.', image: '/frutas/grepa.png' },
+    { name: 'Lum', realName: 'Ameixa', price: 555, description: 'Sabores: Amargo, Doce, Picante, Seco. Restaura qualquer Condição.', image: '/frutas/lum.png' },
+    { name: 'Leppa', realName: 'Maçã', price: 1375, description: 'Sabores: Amargo, Azedo, Doce, Picante. Restaura um uso de um Golpe.', image: '/frutas/leppa.png' },
+    { name: 'Enigma', realName: 'Enigma', price: 2555, description: 'Sabores: Picante, Seco. Se acertado por um Golpe superefetivo, recupera um quarto dos PV máximos.', image: '/frutas/enigma.png' },
+    { name: 'Micle', realName: 'Fruta Milagrosa', price: 2555, description: 'Sabores: Doce, Seco. Quando abaixo da metade dos PV, as Dificuldades de Acurácia dos Golpes são reduzidas em 2 por 3 rodadas.', image: '/frutas/micle.png' },
+    { name: 'Kee', realName: 'Guaraná', price: 2555, description: 'Sabores: Doce, Seco. Quando acertado por um Golpe Físico, eleva uma Fase em Defesa.', image: '/frutas/kee.png' },
+    { name: 'Jaboca', realName: 'Jabuticaba', price: 2555, description: 'Sabores: Amargo, Azedo. Quando acertado por um ataque Corpo a Corpo, o atacante sofre metade do dano causado.', image: '/frutas/jaboca.png' },
+    { name: 'Maranga', realName: 'Jaca', price: 2555, description: 'Sabores: Amargo, Seco. Quando acertado por um Golpe Especial, eleva uma Fase em Defesa Especial.', image: '/frutas/maranga.png' },
+    { name: 'Rowap', realName: 'Jambo', price: 2555, description: 'Sabores: Azedo, Picante. Quando acertado por um ataque à Distância, o atacante sofre metade do dano causado.', image: '/frutas/rowap.png' },
+    { name: 'Custap', realName: 'Pinha', price: 2555, description: 'Sabores: Amargo, Doce. Quando abaixo de 10% dos PV, os Golpes causadores de dano adquirem o Descritor Interrupção se puderem ser usados à Vontade por 1 rodada.', image: '/frutas/custap.png' }
+  ],
+  'Pokesucos': [
+    { name: 'Pokesuco Vermelho', price: 0, description: 'Adicione 1/4 da qualidade do Suco ao Salto. Pode variar de ₽150 a ₽1.500.', image: '/pokesuco/pokesucovermelho.png', isPokesucoLoja: true, sucoColor: 'Vermelho' },
+    { name: 'Pokesuco Verde', price: 0, description: 'Adicione 1/4 da qualidade do Suco à Inteligência. Pode variar de ₽150 a ₽1.500.', image: '/pokesuco/pokesucoverde.png', isPokesucoLoja: true, sucoColor: 'Verde' },
+    { name: 'Pokesuco Amarelo', price: 0, description: 'Adicione 1/4 do valor do Suco à Força. Pode variar de ₽150 a ₽1.500.', image: '/pokesuco/pokesucoamarelo.png', isPokesucoLoja: true, sucoColor: 'Amarelo' },
+    { name: 'Pokesuco Azul', price: 0, description: 'Adicione 1/2 da qualidade do Suco aos Deslocamentos de Escavação, Subaquático e de Voo. Pode variar de ₽150 a ₽1.500.', image: '/pokesuco/pokesucoazul.png', isPokesucoLoja: true, sucoColor: 'Azul' },
+    { name: 'Pokesuco Rosa', price: 0, description: 'Adicione 1/2 da qualidade do Suco aos Deslocamentos Terrestre e de Natação. Pode variar de ₽150 a ₽1.500.', image: '/pokesuco/pokesucorosa.png', isPokesucoLoja: true, sucoColor: 'Rosa' },
+    { name: 'Pokesuco Branco', price: 0, description: 'Adicione 1/5 da qualidade do Suco ao atributo alvo ou 1/3 aos deslocamentos alvos. Sem gostos fortes, todos os pokémons bebem sem reclamar. Pode variar de ₽150 a ₽1.500.', image: '/pokesuco/pokesucobranco.png', isPokesucoLoja: true, sucoColor: 'Branco' },
+    { name: 'Pokesuco Arco-íris', price: 0, description: 'Adiciona 1/4 da qualidade do suco a todos os atributos e deslocamentos. Sem gostos fortes, todos os pokémons bebem sem reclamar. Pode variar de ₽150 a ₽1.500.', image: '/pokesuco/pokesucoarcoiris.png', isPokesucoLoja: true, sucoColor: 'Arco-íris' }
+  ],
+  'Puffin': [
+    { name: 'Puffin Picante', price: null, description: 'Aumenta estilo.', image: '/puffins/puffinpicante.png' },
+    { name: 'Puffin Picante Seco', price: null, description: 'Aumenta estilo e beleza.', image: '/puffins/puffinpicanteseco.png' },
+    { name: 'Puffin Picante Doce', price: null, description: 'Aumenta estilo e ternura.', image: '/puffins/puffinpicantedoce.png' },
+    { name: 'Puffin Picante Amargo', price: null, description: 'Aumenta estilo e perspicácia.', image: '/puffins/puffinpicanteamargo.png' },
+    { name: 'Puffin Picante Azedo', price: null, description: 'Aumenta estilo e vigor.', image: '/puffins/puffinpicanteazedo.png' },
+    { name: 'Puffin Seco', price: null, description: 'Aumenta beleza.', image: '/puffins/puffinseco.png' },
+    { name: 'Puffin Seco Picante', price: null, description: 'Aumenta beleza e estilo.', image: '/puffins/puffinsecopicante.png' },
+    { name: 'Puffin Seco Doce', price: null, description: 'Aumenta beleza e ternura.', image: '/puffins/puffinsecodoce.png' },
+    { name: 'Puffin Seco Amargo', price: null, description: 'Aumenta beleza e perspicácia.', image: '/puffins/puffinsecoamargo.png' },
+    { name: 'Puffin Seco Azedo', price: null, description: 'Aumenta beleza e vigor.', image: '/puffins/puffinsecoazedo.png' },
+    { name: 'Puffin Doce', price: null, description: 'Aumenta a ternura.', image: '/puffins/puffindoce.png' },
+    { name: 'Puffin Doce Picante', price: null, description: 'Aumenta a ternura e estilo.', image: '/puffins/puffindocepicante.png' },
+    { name: 'Puffin Doce Seco', price: null, description: 'Aumenta a ternura e beleza.', image: '/puffins/puffindoceseco.png' },
+    { name: 'Puffin Doce Amargo', price: null, description: 'Aumenta a ternura e perspicácia.', image: '/puffins/puffindoceamargo.png' },
+    { name: 'Puffin Doce Azedo', price: null, description: 'Aumenta a ternura e vigor.', image: '/puffins/puffindoceazedo.png' },
+    { name: 'Puffin Amargo', price: null, description: 'Aumenta a perspicácia.', image: '/puffins/puffinamargo.png' },
+    { name: 'Puffin Amargo Picante', price: null, description: 'Aumenta a perspicácia e estilo.', image: '/puffins/puffinamargopicante.png' },
+    { name: 'Puffin Amargo Seco', price: null, description: 'Aumenta a perspicácia e beleza.', image: '/puffins/puffinamargoseco.png' },
+    { name: 'Puffin Amargo Doce', price: null, description: 'Aumenta a perspicácia e ternura.', image: '/puffins/puffinamargodoce.png' },
+    { name: 'Puffin Amargo Azedo', price: null, description: 'Aumenta a perspicácia e vigor.', image: '/puffins/puffinamargoazedo.png' },
+    { name: 'Puffin Azedo', price: null, description: 'Aumenta o vigor.', image: '/puffins/puffinazedo.png' },
+    { name: 'Puffin Azedo Picante', price: null, description: 'Aumenta o vigor e estilo.', image: '/puffins/puffinazedopicante.png' },
+    { name: 'Puffin Azedo Seco', price: null, description: 'Aumenta o vigor e beleza.', image: '/puffins/puffinazedoseco.png' },
+    { name: 'Puffin Azedo Doce', price: null, description: 'Aumenta o vigor e ternura.', image: '/puffins/puffinazedodoce.png' },
+    { name: 'Puffin Azedo Amargo', price: null, description: 'Aumenta o vigor e perspicácia.', image: '/puffins/puffinazedoamargo.png' }
   ]
 }
 
+// Função para extrair sabores de uma fruta pelo nome
+const getFruitFlavors = (fruitName) => {
+  const fruit = POKELOJA_DATA['Frutas']?.find(f => f.name === fruitName)
+  if (!fruit) return []
+  const match = fruit.description.match(/Sabores: ([^.]+)\./)
+  if (!match) return []
+  return match[1].split(', ').map(s => s.trim()).filter(Boolean)
+}
+
 // Corredores que nunca aparecem na Pokéloja (sempre ocultos para treinadores)
-const CORREDORES_SEMPRE_OCULTOS = ['Apricorns e Bonsais']
+const CORREDORES_SEMPRE_OCULTOS = ['Apricorns e Bonsais', 'Puffin']
+
+// Mapeamento de Apricorn para cor
+const APRICORN_COLOR_MAP = {
+  'Apricorn Vermelha': 'Vermelho',
+  'Apricorn Verde': 'Verde',
+  'Apricorn Preta': 'Preto',
+  'Apricorn Rosa': 'Rosa',
+  'Apricorn Branca': 'Branco',
+  'Apricorn Azul': 'Azul',
+  'Apricorn Amarela': 'Amarelo',
+  'Apricorn Arco-íris': 'Arco-íris'
+}
+
+// Imagens dos Pokesucos por cor base
+const POKESUCO_IMAGE_MAP = {
+  'Vermelho': '/pokesuco/pokesucovermelho.png',
+  'Verde': '/pokesuco/pokesucoverde.png',
+  'Amarelo': '/pokesuco/pokesucoamarelo.png',
+  'Azul': '/pokesuco/pokesucoazul.png',
+  'Rosa': '/pokesuco/pokesucorosa.png',
+  'Branco': '/pokesuco/pokesucobranco.png',
+  'Arco-íris': '/pokesuco/pokesucoarcoiris.png'
+}
+
+// Efeitos dos Pokesucos
+const POKESUCO_EFEITO_MAP = {
+  'Vermelho': 'Adicione 1/4 da qualidade do Suco ao Salto.',
+  'Verde': 'Adicione 1/4 da qualidade do Suco à Inteligência.',
+  'Amarelo': 'Adicione 1/4 do valor do Suco à Força.',
+  'Azul': 'Adicione 1/2 da qualidade do Suco aos Deslocamentos de Escavação, Subaquático e de Voo.',
+  'Rosa': 'Adicione 1/2 da qualidade do Suco aos Deslocamentos Terrestre e de Natação.',
+  'Fraco': 'Adicione 1/5 da qualidade do Suco ao atributo alvo ou 1/3 aos deslocamentos alvos. Sem gostos fortes, todos os pokémons bebem sem reclamar.',
+  'Arco-íris': 'Adiciona 1/4 da qualidade do suco a todos os atributos e deslocamentos. Sem gostos fortes, todos os pokémons bebem sem reclamar.'
+}
+
+// Tipos de Pokesuco para a Pokéloja
+const POKESUCO_LOJA_TIPOS = ['Vermelho', 'Verde', 'Amarelo', 'Azul', 'Rosa', 'Branco', 'Arco-íris']
 
 // Mapa de pesos para sorteio de itens escondidos na Pokéloja
 // Quanto maior o peso, maior a chance de ser escondido
@@ -2412,6 +2593,22 @@ function App() {
   const [showPokemonedasModal, setShowPokemonedasModal] = useState(false)
   const [pokemonedasValue, setPokemonedasValue] = useState('')
 
+  // States para Pokesuco
+  const [showPokesucoModal, setShowPokesucoModal] = useState(false)
+  const [pokesucoSlots, setPokesucoSlots] = useState([null, null, null])
+  const [pokesucoModificador, setPokesucoModificador] = useState(0)
+  const [pokesucoIntensificar, setPokesucoIntensificar] = useState(null)
+  const [pokesucoDominante, setPokesucoDominante] = useState(null)
+  const [pokesucoLojaQualidades, setPokesucoLojaQualidades] = useState({})
+  const [showPokesucoQualidadeModal, setShowPokesucoQualidadeModal] = useState(false)
+  const [pokesucoQualidadeSelectedItem, setPokesucoQualidadeSelectedItem] = useState('')
+  const [pokesucoQualidadeValue, setPokesucoQualidadeValue] = useState(5)
+
+  // States para Puffin
+  const [showFazerPuffinModal, setShowFazerPuffinModal] = useState(false)
+  const [puffinSlots, setPuffinSlots] = useState([null, null, null, null, null])
+  const [puffinSlotDropdown, setPuffinSlotDropdown] = useState(null)
+
   // States para Sedex Item
   const [showSedexItemModal, setShowSedexItemModal] = useState(false)
   const [sedexItemSearch, setSedexItemSearch] = useState('')
@@ -2574,9 +2771,12 @@ function App() {
       inteligencia: '',
       salto: '',
       others: [] // Array de strings com nomes das capacidades
-    }
+    },
+    dietaSlot1: '',
+    dietaSlot2: ''
   })
   const [natureSearch, setNatureSearch] = useState('')
+  const [showDietSlotDropdown, setShowDietSlotDropdown] = useState(null) // null | 1 | 2
 
   // Estados para modal de edição do PC
   const [showEditPokemonPCModal, setShowEditPokemonPCModal] = useState(false)
@@ -5939,6 +6139,15 @@ function App() {
       return
     }
 
+    // Se for Pokesuco, abrir modal de qualidade
+    if (selectedKeyItem.startsWith('Pokesuco ')) {
+      setShowAddKeyItemModal(false)
+      setPokesucoQualidadeSelectedItem(selectedKeyItem)
+      setPokesucoQualidadeValue(5)
+      setShowPokesucoQualidadeModal(true)
+      return
+    }
+
     // Se for Shiny Charm, abrir modal para inserir número da sorte
     if (selectedKeyItem === 'Shiny Charm') {
       // Verificar se já existe um Shiny Charm
@@ -5965,6 +6174,23 @@ function App() {
     }
 
     setShowAddKeyItemModal(false)
+    setSelectedKeyItem('')
+    setKeyItemQuantity(1)
+  }
+
+  // Função para confirmar qualidade do Pokesuco ao adicionar pela mochila
+  const handleConfirmPokesucoQualidade = () => {
+    const qualidade = Math.max(1, Math.min(10, parseInt(pokesucoQualidadeValue) || 1))
+    const nomeFinal = `${pokesucoQualidadeSelectedItem} ${qualidade}`
+    const existingItem = keyItems.find(item => item.name === nomeFinal)
+    if (existingItem) {
+      setKeyItems(keyItems.map(item => item.name === nomeFinal ? { ...item, quantity: item.quantity + 1 } : item))
+    } else {
+      setKeyItems([...keyItems, { name: nomeFinal, quantity: 1 }])
+    }
+    setShowPokesucoQualidadeModal(false)
+    setPokesucoQualidadeSelectedItem('')
+    setPokesucoQualidadeValue(5)
     setSelectedKeyItem('')
     setKeyItemQuantity(1)
   }
@@ -6816,6 +7042,373 @@ function App() {
     setSelectedItemToBuy(null)
     setBuyItemQuantity(1)
   }
+
+  // ==================== FUNÇÕES DE POKESUCO ====================
+
+  // Calcula informações do suco baseado nos slots, intensificar e dominante
+  const calcPokesucoInfo = (slots, intensificar, dominante) => {
+    const filledSlots = slots.filter(s => s !== null)
+    const colors = filledSlots.map(s => APRICORN_COLOR_MAP[s])
+
+    const hasRainbow = colors.includes('Arco-íris')
+    const hasBlack = colors.includes('Preto')
+    const hasWhite = colors.includes('Branco')
+    const regularColors = colors.filter(c => !['Preto', 'Branco', 'Arco-íris'].includes(c))
+
+    let sucoNome, dominantColor, imagePath, efeito
+
+    if (hasRainbow) {
+      // Prioridade 1: Arco-íris
+      sucoNome = 'Pokesuco Arco-íris'
+      dominantColor = 'Arco-íris'
+      imagePath = POKESUCO_IMAGE_MAP['Arco-íris']
+      efeito = POKESUCO_EFEITO_MAP['Arco-íris']
+    } else if (hasBlack) {
+      // Prioridade 2: Preto → Forte
+      let Y
+      if (intensificar) {
+        Y = intensificar
+      } else {
+        Y = regularColors[0] || 'Vermelho'
+      }
+      sucoNome = `Pokesuco ${Y} Forte`
+      dominantColor = Y
+      imagePath = POKESUCO_IMAGE_MAP[Y] || POKESUCO_IMAGE_MAP['Branco']
+      efeito = POKESUCO_EFEITO_MAP[Y] || POKESUCO_EFEITO_MAP['Fraco']
+    } else if (hasWhite) {
+      // Prioridade 3: Branco → Fraco
+      imagePath = POKESUCO_IMAGE_MAP['Branco']
+      efeito = POKESUCO_EFEITO_MAP['Fraco']
+      const uniqueOrdered = []
+      for (const c of regularColors) {
+        if (!uniqueOrdered.includes(c)) uniqueOrdered.push(c)
+      }
+      if (uniqueOrdered.length >= 2) {
+        const W = uniqueOrdered[0]
+        const Z = uniqueOrdered[1]
+        sucoNome = `Pokesuco ${W}/${Z} Fraco`
+        dominantColor = W
+      } else {
+        const Y = uniqueOrdered[0] || 'Vermelho'
+        sucoNome = `Pokesuco ${Y} Fraco`
+        dominantColor = Y
+      }
+    } else {
+      // Prioridade 4: Cores regulares
+      let Y
+      if (dominante) {
+        Y = dominante
+      } else if (regularColors.length === 1) {
+        Y = regularColors[0]
+      } else if (regularColors.length > 1) {
+        const colorCounts = {}
+        regularColors.forEach(c => { colorCounts[c] = (colorCounts[c] || 0) + 1 })
+        Y = Object.entries(colorCounts).sort((a, b) => b[1] - a[1])[0][0]
+      } else {
+        Y = 'Vermelho'
+      }
+      sucoNome = `Pokesuco ${Y}`
+      dominantColor = Y
+      imagePath = POKESUCO_IMAGE_MAP[Y] || POKESUCO_IMAGE_MAP['Branco']
+      efeito = POKESUCO_EFEITO_MAP[Y] || POKESUCO_EFEITO_MAP['Fraco']
+    }
+
+    return { sucoNome, dominantColor, imagePath, efeito, hasRainbow, hasBlack, hasWhite }
+  }
+
+  // Calcula a qualidade do suco
+  const calcPokesucoQualidade = (roll, slots, dominantColor, hasRainbow) => {
+    const filledSlots = slots.filter(s => s !== null)
+    if (hasRainbow) {
+      return Math.min(10, roll + filledSlots.length)
+    } else {
+      const matchCount = filledSlots.filter(s => APRICORN_COLOR_MAP[s] === dominantColor).length
+      return Math.min(10, roll + matchCount)
+    }
+  }
+
+  // Determina se o campo "Intensificar" deve aparecer
+  const shouldShowIntensificar = (slots) => {
+    const colors = slots.filter(s => s !== null).map(s => APRICORN_COLOR_MAP[s])
+    const hasBlack = colors.includes('Preto')
+    const hasRainbow = colors.includes('Arco-íris')
+    if (!hasBlack || hasRainbow) return false
+    const otherColors = [...new Set(colors.filter(c => c !== 'Preto' && c !== 'Branco'))]
+    return otherColors.length >= 2
+  }
+
+  // Determina se o campo "Dominante" deve aparecer
+  const shouldShowDominante = (slots) => {
+    const colors = slots.filter(s => s !== null).map(s => APRICORN_COLOR_MAP[s])
+    const hasBlack = colors.includes('Preto')
+    const hasWhite = colors.includes('Branco')
+    const hasRainbow = colors.includes('Arco-íris')
+    if (hasBlack || hasWhite || hasRainbow) return false
+    const distinctRegular = [...new Set(colors)]
+    return distinctRegular.length === 2
+  }
+
+  // Retorna as cores disponíveis para Intensificar
+  const getIntensificarColors = (slots) => {
+    const colors = slots.filter(s => s !== null).map(s => APRICORN_COLOR_MAP[s])
+    return [...new Set(colors.filter(c => c !== 'Preto' && c !== 'Branco' && c !== 'Arco-íris'))]
+  }
+
+  // Retorna as cores disponíveis para Dominante
+  const getDominanteColors = (slots) => {
+    const colors = slots.filter(s => s !== null).map(s => APRICORN_COLOR_MAP[s])
+    return [...new Set(colors)]
+  }
+
+  // Verifica se um Apricorn pode ser adicionado a um slot específico
+  const canAddApricorn = (apricornName, slots) => {
+    const filledSlots = slots.filter(s => s !== null)
+    const nextSlotIndex = filledSlots.length
+    const color = APRICORN_COLOR_MAP[apricornName]
+
+    // Verificar limite de slots
+    if (nextSlotIndex >= slots.length) return { ok: false, reason: 'Todos os slots estão preenchidos.' }
+
+    const existingColors = filledSlots.map(s => APRICORN_COLOR_MAP[s])
+    const hasBlack = existingColors.includes('Preto')
+    const hasWhite = existingColors.includes('Branco')
+
+    // Preto e Branco não se misturam
+    if (color === 'Branco' && hasBlack) return { ok: false, reason: 'Apricorn Preto e Branco não podem se misturar.' }
+    if (color === 'Preto' && hasWhite) return { ok: false, reason: 'Apricorn Preto e Branco não podem se misturar.' }
+
+    // Arco-íris só pode ser 3° ou posterior
+    if (color === 'Arco-íris') {
+      if (nextSlotIndex < 2) return { ok: false, reason: 'Arco-íris só pode ser adicionado como 3ª opção ou posterior.' }
+      // Os dois primeiros devem ter cores diferentes
+      if (filledSlots.length >= 2) {
+        const color1 = APRICORN_COLOR_MAP[filledSlots[0]]
+        const color2 = APRICORN_COLOR_MAP[filledSlots[1]]
+        if (color1 === color2) return { ok: false, reason: 'Para usar Arco-íris no 3° slot, os dois primeiros devem ter cores diferentes.' }
+      }
+    }
+
+    return { ok: true }
+  }
+
+  // Adiciona um Apricorn ao próximo slot disponível
+  const handleAddApricornToSlot = (apricornName) => {
+    const check = canAddApricorn(apricornName, pokesucoSlots)
+    if (!check.ok) {
+      alert(check.reason)
+      return
+    }
+    const newSlots = [...pokesucoSlots]
+    const nextEmpty = newSlots.findIndex(s => s === null)
+    newSlots[nextEmpty] = apricornName
+    setPokesucoSlots(newSlots)
+    // Resetar campos dinâmicos quando slots mudam
+    setPokesucoIntensificar(null)
+    setPokesucoDominante(null)
+  }
+
+  // Remove um Apricorn de um slot
+  const handleRemoveApricornFromSlot = (index) => {
+    const newSlots = [...pokesucoSlots]
+    newSlots[index] = null
+    // Compactar: mover não-nulos para o início
+    const compacted = newSlots.filter(s => s !== null)
+    while (compacted.length < newSlots.length) compacted.push(null)
+    setPokesucoSlots(compacted)
+    setPokesucoIntensificar(null)
+    setPokesucoDominante(null)
+  }
+
+  // Mexer o Suco
+  const handleMexerSuco = async () => {
+    const filledSlots = pokesucoSlots.filter(s => s !== null)
+    if (filledSlots.length === 0) {
+      alert('Adicione pelo menos um Apricorn ao suco!')
+      return
+    }
+
+    // Verificar se Dominante deve ser selecionado
+    if (shouldShowDominante(pokesucoSlots) && !pokesucoDominante) {
+      alert('Selecione a cor Dominante antes de mexer o suco!')
+      return
+    }
+
+    // Verificar se Intensificar deve ser selecionado
+    if (shouldShowIntensificar(pokesucoSlots) && !pokesucoIntensificar) {
+      alert('Selecione a cor Intensificar antes de mexer o suco!')
+      return
+    }
+
+    // Calcular informações do suco
+    const { sucoNome, dominantColor, imagePath, hasRainbow } = calcPokesucoInfo(pokesucoSlots, pokesucoIntensificar, pokesucoDominante)
+
+    // Rolar 1d4 + modificador
+    const d4Roll = Math.floor(Math.random() * 4) + 1
+    const rollTotal = d4Roll + pokesucoModificador
+
+    // Calcular qualidade
+    const qualidade = calcPokesucoQualidade(rollTotal, pokesucoSlots, dominantColor, hasRainbow)
+
+    // Nome final do suco
+    const nomeFinal = `${sucoNome} ${qualidade}`
+    const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+
+    // Enviar ao chat geral e de batalha
+    await addChatMessage({
+      username: currentUser.username,
+      text: `🧃 ${currentUser.username} está fazendo um Pokesuco! (1d4+${pokesucoModificador})`,
+      timestamp,
+      isDiceRoll: true,
+      diceResult: rollTotal,
+      diceDetails: `1d4(${d4Roll}) + ${pokesucoModificador} = ${rollTotal} → Qualidade: ${qualidade} → ${nomeFinal}`
+    })
+
+    // Mensagem de sistema para o usuário
+    alert(`🧃 Pokesuco feito!\n\nRolagem: 1d4(${d4Roll}) + ${pokesucoModificador} = ${rollTotal}\nQualidade: ${qualidade}/10\nSuco: ${nomeFinal}`)
+
+    // Descontar Apricorns da mochila
+    const apricornCounts = {}
+    filledSlots.forEach(a => { apricornCounts[a] = (apricornCounts[a] || 0) + 1 })
+
+    let updatedKeyItems = keyItems.map(item => {
+      if (apricornCounts[item.name]) {
+        return { ...item, quantity: item.quantity - apricornCounts[item.name] }
+      }
+      return item
+    }).filter(item => item.quantity === undefined || item.quantity > 0)
+
+    // Adicionar suco à mochila
+    const existingSuco = updatedKeyItems.find(item => item.name === nomeFinal)
+    if (existingSuco) {
+      updatedKeyItems = updatedKeyItems.map(item =>
+        item.name === nomeFinal ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    } else {
+      updatedKeyItems = [...updatedKeyItems, { name: nomeFinal, quantity: 1 }]
+    }
+
+    setKeyItems(updatedKeyItems)
+
+    // Fechar modal e resetar estados
+    setShowPokesucoModal(false)
+    setPokesucoSlots([null, null, null])
+    setPokesucoModificador(0)
+    setPokesucoIntensificar(null)
+    setPokesucoDominante(null)
+  }
+
+  // Criar Puffin
+  const handleCriarPuffin = () => {
+    const filledSlots = puffinSlots.filter(s => s !== null)
+    if (filledSlots.length === 0) {
+      alert('Adicione pelo menos uma fruta!')
+      return
+    }
+
+    // Contar sabores das 5 primeiras frutas
+    const first5 = puffinSlots.slice(0, 5).filter(s => s !== null)
+    const flavorCounts = {}
+    first5.forEach(fruitName => {
+      getFruitFlavors(fruitName).forEach(f => {
+        flavorCounts[f] = (flavorCounts[f] || 0) + 1
+      })
+    })
+
+    if (Object.keys(flavorCounts).length === 0) {
+      alert('As frutas selecionadas não possuem sabores reconhecidos!')
+      return
+    }
+
+    const maxCount = Math.max(...Object.values(flavorCounts))
+    const topFlavors = Object.keys(flavorCounts).filter(f => flavorCounts[f] === maxCount)
+    const shuffled = [...topFlavors].sort(() => Math.random() - 0.5)
+    const primaryFlavor = shuffled[0]
+    const secondaryFlavor = shuffled.length >= 2 ? shuffled[1] : null
+
+    // Verificar aroma das frutas além da 5ª
+    let aroma = null
+    const extraSlots = puffinSlots.slice(5).filter(s => s !== null)
+    if (extraSlots.length > 0) {
+      const totalCounts = { ...flavorCounts }
+      extraSlots.forEach(fruitName => {
+        getFruitFlavors(fruitName).forEach(f => {
+          totalCounts[f] = (totalCounts[f] || 0) + 1
+        })
+      })
+      const totalMax = Math.max(...Object.values(totalCounts))
+      const totalTop = Object.keys(totalCounts).filter(f => totalCounts[f] === totalMax)
+      const newDominant = totalTop[Math.floor(Math.random() * totalTop.length)]
+      if (newDominant !== primaryFlavor) aroma = newDominant
+    }
+
+    // Montar nome do puffin
+    let baseName = `Puffin ${primaryFlavor}`
+    if (secondaryFlavor) baseName += ` ${secondaryFlavor}`
+    let fullName = aroma ? `${baseName} (${aroma})` : baseName
+    fullName = `${fullName} ${maxCount}`
+
+    // Descontar frutas da mochila
+    const fruitCounts = {}
+    filledSlots.forEach(f => { fruitCounts[f] = (fruitCounts[f] || 0) + 1 })
+    let updatedKeyItems = keyItems.map(item => {
+      if (fruitCounts[item.name]) {
+        return { ...item, quantity: item.quantity - fruitCounts[item.name] }
+      }
+      return item
+    }).filter(item => item.quantity === undefined || item.quantity > 0)
+
+    // Adicionar puffin à mochila
+    const existing = updatedKeyItems.find(item => item.name === fullName)
+    if (existing) {
+      updatedKeyItems = updatedKeyItems.map(item =>
+        item.name === fullName ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    } else {
+      updatedKeyItems = [...updatedKeyItems, { name: fullName, quantity: 1 }]
+    }
+
+    setKeyItems(updatedKeyItems)
+    setShowFazerPuffinModal(false)
+    setPuffinSlots([null, null, null, null, null])
+    setPuffinSlotDropdown(null)
+    alert(`🐦 Puffin criado!\n\n${fullName}`)
+  }
+
+  // Sortear qualidade para todos os Pokesucos na Pokéloja
+  const handleSortearQualidadeLoja = () => {
+    const novasQualidades = {}
+    POKESUCO_LOJA_TIPOS.forEach(color => {
+      novasQualidades[color] = Math.floor(Math.random() * 10) + 1
+    })
+    setPokesucoLojaQualidades(novasQualidades)
+  }
+
+  // Comprar Pokesuco da Pokéloja
+  const handleBuyPokesucoLoja = (item, quality) => {
+    if (!quality) {
+      alert('Qualidade não sorteada! Clique em "Sortear Qualidade" primeiro.')
+      return
+    }
+    const price = quality * 150
+    if (pokemonedas < price) {
+      alert(`Pokémoedas insuficientes! Você precisa de ₽${price.toLocaleString()} mas tem apenas ₽${pokemonedas.toLocaleString()}`)
+      return
+    }
+
+    const nomeFinal = `${item.name} ${quality}`
+    setPokemonedas(pokemonedas - price)
+
+    const existingItem = keyItems.find(i => i.name === nomeFinal)
+    if (existingItem) {
+      setKeyItems(keyItems.map(i => i.name === nomeFinal ? { ...i, quantity: i.quantity + 1 } : i))
+    } else {
+      setKeyItems([...keyItems, { name: nomeFinal, quantity: 1 }])
+    }
+
+    alert(`Você comprou ${nomeFinal} por ₽${price.toLocaleString()}!`)
+  }
+
+  // ==================== FIM FUNÇÕES DE POKESUCO ====================
 
   // Adicionar Pokémon
   const handleAddPokemon = () => {
@@ -7677,6 +8270,8 @@ function App() {
     }
 
     // Preencher formulário com dados existentes ou buscar do pokemonData
+    const rawDiet = pokemon.dieta || POKEMON_DIET_MAP[pokemon.species || pokemon.nickname] || ''
+    const dietParts = rawDiet ? rawDiet.split(' e ').map(d => d.trim()) : []
     setPokemonEditForm({
       shiny: pokemon.shiny || false,
       legendary: pokemon.legendary || false,
@@ -7714,9 +8309,12 @@ function App() {
         inteligencia: pokemon.capacities?.inteligencia || '',
         salto: pokemon.capacities?.salto || '',
         others: pokemon.capacities?.others || []
-      }
+      },
+      dietaSlot1: dietParts[0] || '',
+      dietaSlot2: dietParts[1] || ''
     })
     setNatureSearch('')
+    setShowDietSlotDropdown(null)
     setShowEditPokemonModal(true)
   }
 
@@ -7783,6 +8381,8 @@ function App() {
     }
 
     // Preencher formulário com dados existentes ou buscar do pokemonData
+    const rawDiet = pokemon.dieta || POKEMON_DIET_MAP[pokemon.species || pokemon.nickname] || ''
+    const dietParts = rawDiet ? rawDiet.split(' e ').map(d => d.trim()) : []
     setPokemonEditForm({
       shiny: pokemon.shiny || false,
       legendary: pokemon.legendary || false,
@@ -7820,17 +8420,24 @@ function App() {
         inteligencia: pokemon.capacities?.inteligencia || '',
         salto: pokemon.capacities?.salto || '',
         others: pokemon.capacities?.others || []
-      }
+      },
+      dietaSlot1: dietParts[0] || '',
+      dietaSlot2: dietParts[1] || ''
     })
     setNatureSearch('')
+    setShowDietSlotDropdown(null)
     setShowEditPokemonPCModal(true)
   }
 
   // Função para salvar edição de Pokémon
   const handleSaveEditPokemon = () => {
+    const { dietaSlot1, dietaSlot2, ...formData } = pokemonEditForm
+    const slotDiets = [dietaSlot1, dietaSlot2].filter(Boolean)
+    const dieta = slotDiets.length > 0 ? slotDiets.join(' e ') : null
     const updatedPokemon = {
       ...editingPokemon,
-      ...pokemonEditForm
+      ...formData,
+      dieta
     }
 
     if (editingPokemonLocation === 'team') {
@@ -8960,7 +9567,8 @@ function App() {
           dexNumber: pokemonToSend.dexNumber,
           habilidades: habilidadesArray,
           golpes: golpesArray,
-          isAlpha: npcAlfaStatus[pokemonToSend.id] || false
+          isAlpha: npcAlfaStatus[pokemonToSend.id] || false,
+          dieta: POKEMON_DIET_MAP[sendPokemonSpecies] || null
         }
 
         // Verificar se o time principal tem menos de 6 pokémons
@@ -15476,6 +16084,9 @@ function App() {
                           <p className={`text-sm font-bold text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                             {pokemon.species || pokemon.name || 'Pokémon'} {pokemon.shiny && '✨'} {pokemon.legendary && '👑'}
                           </p>
+                          <div className="flex justify-center mt-1">
+                            <DietIcons speciesName={pokemon.species || pokemon.name} size={18} />
+                          </div>
                           <div className="flex items-center gap-1 mt-1">
                             <p className={`text-xs text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                               Nível {pokemon.level}
@@ -15565,6 +16176,9 @@ function App() {
                               <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                                 #{String(pokemon.dexNumber).padStart(4, '0')} • Nível {pokemon.level}
                               </p>
+                              <div className="flex justify-center mt-1">
+                                <DietIcons speciesName={pokemon.species || pokemon.name} size={20} />
+                              </div>
                             </div>
                           </div>
                           <div className="flex gap-2">
@@ -20604,7 +21218,7 @@ function App() {
                                     )}
                                     {item.description && (
                                       <p className={`text-sm mt-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                                        {item.description}
+                                        {renderDescriptionWithFlavors(item.description)}
                                       </p>
                                     )}
                                   </div>
@@ -24161,6 +24775,9 @@ function App() {
                                   title={pokemon.pokeball}
                                 />
                               )}
+                              <div className={`flex justify-center items-center p-1 rounded-md ${darkMode ? 'bg-gray-700' : 'bg-gray-100'} border ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}>
+                                <DietIcons speciesName={pokemon.species} dietOverride={pokemon.dieta} size={27} />
+                              </div>
                             </div>
                             <div className="flex-1">
                               {pokemon.isAlpha && (
@@ -25709,10 +26326,62 @@ function App() {
                   </div>
                 </div>
 
+                {/* 10. DIETA */}
+                <div className="mb-6">
+                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>10. Dieta</label>
+                  <div className="flex gap-3">
+                    {[1, 2].map(slot => {
+                      const slotKey = slot === 1 ? 'dietaSlot1' : 'dietaSlot2'
+                      const selectedDiet = pokemonEditForm[slotKey]
+                      const isOpen = showDietSlotDropdown === slot
+                      return (
+                        <div key={slot} className="relative">
+                          <button
+                            onClick={() => setShowDietSlotDropdown(isOpen ? null : slot)}
+                            className={`flex flex-col items-center gap-1 p-3 rounded-lg border-2 min-w-[90px] transition-colors ${selectedDiet ? darkMode ? 'border-green-500 bg-gray-700' : 'border-green-500 bg-green-50' : darkMode ? 'border-gray-600 bg-gray-700 hover:border-gray-400' : 'border-gray-300 bg-gray-50 hover:border-gray-400'}`}
+                          >
+                            {selectedDiet ? (
+                              <>
+                                <img src={DIET_IMAGE_MAP[selectedDiet]} alt={selectedDiet} width={28} height={28} className="object-contain" onError={(e) => { e.target.style.display = 'none' }} />
+                                <span className={`text-xs font-semibold text-center leading-tight ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{selectedDiet}</span>
+                              </>
+                            ) : (
+                              <>
+                                <span className={`text-2xl ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>+</span>
+                                <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Dieta {slot}</span>
+                              </>
+                            )}
+                          </button>
+                          {isOpen && (
+                            <div className={`absolute top-full left-0 mt-1 rounded-lg shadow-lg border z-10 min-w-[160px] ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'}`}>
+                              <button
+                                onClick={() => { setPokemonEditForm({...pokemonEditForm, [slotKey]: ''}); setShowDietSlotDropdown(null) }}
+                                className={`w-full text-left px-3 py-2 text-sm rounded-t-lg ${darkMode ? 'text-gray-400 hover:bg-gray-600' : 'text-gray-500 hover:bg-gray-100'}`}
+                              >
+                                Nenhuma
+                              </button>
+                              {Object.keys(DIET_IMAGE_MAP).map(diet => (
+                                <button
+                                  key={diet}
+                                  onClick={() => { setPokemonEditForm({...pokemonEditForm, [slotKey]: diet}); setShowDietSlotDropdown(null) }}
+                                  className={`w-full flex items-center gap-2 px-3 py-2 text-sm ${selectedDiet === diet ? darkMode ? 'bg-gray-600' : 'bg-gray-100' : ''} ${darkMode ? 'text-gray-200 hover:bg-gray-600' : 'text-gray-700 hover:bg-gray-100'}`}
+                                >
+                                  <img src={DIET_IMAGE_MAP[diet]} alt={diet} width={20} height={20} className="object-contain" onError={(e) => { e.target.style.display = 'none' }} />
+                                  {diet}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+
                 {/* BOTÕES */}
                 <div className="flex gap-3 pt-4">
                   <button
-                    onClick={() => setShowEditPokemonModal(false)}
+                    onClick={() => { setShowEditPokemonModal(false); setShowDietSlotDropdown(null) }}
                     className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
                   >
                     Cancelar
@@ -26912,6 +27581,7 @@ function App() {
                               title={pokemon.pokeball}
                             />
                           )}
+                          <DietIcons speciesName={pokemon.species} dietOverride={pokemon.dieta} size={18} />
                         </div>
                       )}
                       <div className="flex-1">
@@ -27908,10 +28578,62 @@ function App() {
                   </div>
                 </div>
 
+                {/* 10. DIETA */}
+                <div className="mb-6">
+                  <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>10. Dieta</label>
+                  <div className="flex gap-3">
+                    {[1, 2].map(slot => {
+                      const slotKey = slot === 1 ? 'dietaSlot1' : 'dietaSlot2'
+                      const selectedDiet = pokemonEditForm[slotKey]
+                      const isOpen = showDietSlotDropdown === slot
+                      return (
+                        <div key={slot} className="relative">
+                          <button
+                            onClick={() => setShowDietSlotDropdown(isOpen ? null : slot)}
+                            className={`flex flex-col items-center gap-1 p-3 rounded-lg border-2 min-w-[90px] transition-colors ${selectedDiet ? darkMode ? 'border-green-500 bg-gray-700' : 'border-green-500 bg-green-50' : darkMode ? 'border-gray-600 bg-gray-700 hover:border-gray-400' : 'border-gray-300 bg-gray-50 hover:border-gray-400'}`}
+                          >
+                            {selectedDiet ? (
+                              <>
+                                <img src={DIET_IMAGE_MAP[selectedDiet]} alt={selectedDiet} width={28} height={28} className="object-contain" onError={(e) => { e.target.style.display = 'none' }} />
+                                <span className={`text-xs font-semibold text-center leading-tight ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{selectedDiet}</span>
+                              </>
+                            ) : (
+                              <>
+                                <span className={`text-2xl ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>+</span>
+                                <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Dieta {slot}</span>
+                              </>
+                            )}
+                          </button>
+                          {isOpen && (
+                            <div className={`absolute top-full left-0 mt-1 rounded-lg shadow-lg border z-10 min-w-[160px] ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'}`}>
+                              <button
+                                onClick={() => { setPokemonEditForm({...pokemonEditForm, [slotKey]: ''}); setShowDietSlotDropdown(null) }}
+                                className={`w-full text-left px-3 py-2 text-sm rounded-t-lg ${darkMode ? 'text-gray-400 hover:bg-gray-600' : 'text-gray-500 hover:bg-gray-100'}`}
+                              >
+                                Nenhuma
+                              </button>
+                              {Object.keys(DIET_IMAGE_MAP).map(diet => (
+                                <button
+                                  key={diet}
+                                  onClick={() => { setPokemonEditForm({...pokemonEditForm, [slotKey]: diet}); setShowDietSlotDropdown(null) }}
+                                  className={`w-full flex items-center gap-2 px-3 py-2 text-sm ${selectedDiet === diet ? darkMode ? 'bg-gray-600' : 'bg-gray-100' : ''} ${darkMode ? 'text-gray-200 hover:bg-gray-600' : 'text-gray-700 hover:bg-gray-100'}`}
+                                >
+                                  <img src={DIET_IMAGE_MAP[diet]} alt={diet} width={20} height={20} className="object-contain" onError={(e) => { e.target.style.display = 'none' }} />
+                                  {diet}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+
                 {/* BOTÕES */}
                 <div className="flex gap-3 pt-4">
                   <button
-                    onClick={() => setShowEditPokemonPCModal(false)}
+                    onClick={() => { setShowEditPokemonPCModal(false); setShowDietSlotDropdown(null) }}
                     className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
                   >
                     Cancelar
@@ -30030,6 +30752,20 @@ function App() {
                 {currentUser?.type === 'treinador' && (
                   <>
                     <button
+                      onClick={() => { setShowPokesucoModal(true); setPokesucoSlots([null, null, null]); setPokesucoModificador(0); setPokesucoIntensificar(null); setPokesucoDominante(null) }}
+                      className="p-0 hover:opacity-80 transition-opacity flex items-center justify-center"
+                      title="Fazer Pokesuco"
+                    >
+                      <img src="/pokesuco/miniiconepokesuco.png" alt="Fazer Pokesuco" className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain" />
+                    </button>
+                    <button
+                      onClick={() => { setShowFazerPuffinModal(true); setPuffinSlots([null, null, null, null, null]); setPuffinSlotDropdown(null) }}
+                      className="p-0 hover:opacity-80 transition-opacity flex items-center justify-center"
+                      title="Fazer Puffin"
+                    >
+                      <img src="/miniiconefazerpuffin.png" alt="Fazer Puffin" className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain" onError={(e) => { e.target.src = ''; e.target.style.display='none'; e.target.parentElement.innerHTML = '<span style="font-size:1.5rem">🐦</span>' }} />
+                    </button>
+                    <button
                       onClick={handleShinyCheck}
                       className="p-0 hover:opacity-80 transition-opacity flex items-center justify-center"
                       title="Será que veio shiny?"
@@ -30646,6 +31382,38 @@ function App() {
           </div>
         )}
 
+        {/* Modal Qualidade do Pokesuco */}
+        {showPokesucoQualidadeModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowPokesucoQualidadeModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-3 sm:p-5 md:p-6 max-w-sm w-full`} onClick={(e) => e.stopPropagation()}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>🧃 {pokesucoQualidadeSelectedItem}</h3>
+              <p className={`mb-4 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Qual é a qualidade do suco? (1 a 10)</p>
+              <input
+                type="number"
+                min="1"
+                max="10"
+                value={pokesucoQualidadeValue}
+                onChange={(e) => setPokesucoQualidadeValue(e.target.value)}
+                className={`w-full p-3 rounded-lg mb-4 text-center text-2xl font-bold ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-800'}`}
+              />
+              <div className="flex gap-3">
+                <button
+                  onClick={() => { setShowPokesucoQualidadeModal(false); setPokesucoQualidadeSelectedItem('') }}
+                  className={`flex-1 py-3 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleConfirmPokesucoQualidade}
+                  className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 font-semibold"
+                >
+                  Adicionar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Modal Adicionar Shiny Charm */}
         {showShinyCharmModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowShinyCharmModal(false)}>
@@ -30988,6 +31756,13 @@ function App() {
                   </button>
                 ))}
               </div>
+
+              {selectedHatchSpecies && (
+                <div className="flex items-center gap-2 mb-4 p-2 rounded-lg justify-center">
+                  <span className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Dieta:</span>
+                  <DietIcons speciesName={selectedHatchSpecies} size={20} />
+                </div>
+              )}
 
               <div className="flex gap-3">
                 <button
@@ -31428,6 +32203,322 @@ function App() {
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
+
+        {/* Modal Fazer Puffin */}
+        {showFazerPuffinModal && (() => {
+          const frutasNaMochila = keyItems.filter(item =>
+            POKELOJA_DATA['Frutas']?.find(f => f.name === item.name)
+          )
+          const usedCounts = {}
+          puffinSlots.forEach(s => { if (s) usedCounts[s] = (usedCounts[s] || 0) + 1 })
+          const getAvailableQty = (fruitName) => {
+            const inMochila = frutasNaMochila.find(i => i.name === fruitName)?.quantity || 0
+            return inMochila - (usedCounts[fruitName] || 0)
+          }
+
+          // Preview do puffin em tempo real
+          const first5 = puffinSlots.slice(0, 5).filter(s => s !== null)
+          const flavorCounts = {}
+          first5.forEach(fruitName => {
+            getFruitFlavors(fruitName).forEach(f => { flavorCounts[f] = (flavorCounts[f] || 0) + 1 })
+          })
+          let puffinPreview = null
+          if (Object.keys(flavorCounts).length > 0) {
+            const maxCount = Math.max(...Object.values(flavorCounts))
+            const topFlavors = Object.keys(flavorCounts).filter(f => flavorCounts[f] === maxCount)
+            const primaryFlavor = topFlavors[0]
+            const secondaryFlavor = topFlavors.length >= 2 ? topFlavors[1] : null
+            let baseName = `Puffin ${primaryFlavor}`
+            if (secondaryFlavor) baseName += ` / ${secondaryFlavor}`
+            const extraSlots = puffinSlots.slice(5).filter(s => s !== null)
+            let aromaHint = null
+            if (extraSlots.length > 0) {
+              const totalCounts = { ...flavorCounts }
+              extraSlots.forEach(fn => { getFruitFlavors(fn).forEach(f => { totalCounts[f] = (totalCounts[f] || 0) + 1 }) })
+              const totalMax = Math.max(...Object.values(totalCounts))
+              const totalTop = Object.keys(totalCounts).filter(f => totalCounts[f] === totalMax)
+              if (!totalTop.includes(primaryFlavor)) aromaHint = totalTop.join(' / ')
+            }
+            puffinPreview = `${baseName}${aromaHint ? ` (${aromaHint})` : ''} ${maxCount}`
+          }
+
+          const filledCount = puffinSlots.filter(s => s !== null).length
+          return (
+            <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowFazerPuffinModal(false)}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+                {/* Header */}
+                <div className="flex items-center gap-3 mb-5">
+                  <img src="/miniiconefazerpuffin.png" alt="Puffin" className="w-10 h-10 object-contain" onError={(e) => { e.target.style.display='none' }} />
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-pink-300' : 'text-pink-700'}`}>Fazer Puffin</h3>
+                  <button onClick={() => setShowFazerPuffinModal(false)} className={`ml-auto p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-600'}`}>✕</button>
+                </div>
+
+                {/* Slots de frutas */}
+                <div className="mb-5">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                      Frutas ({filledCount}/{puffinSlots.length})
+                      <span className={`ml-2 text-xs font-normal ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>— 1ª a 5ª definem o sabor · extras definem o aroma</span>
+                    </h4>
+                    <button
+                      onClick={() => setPuffinSlots([...puffinSlots, null])}
+                      className="text-xs bg-pink-600 hover:bg-pink-700 text-white px-2 py-1 rounded-lg font-semibold"
+                    >+ Slot</button>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {puffinSlots.map((slot, idx) => (
+                      <div key={idx} className="relative">
+                        <button
+                          onClick={() => setPuffinSlotDropdown(puffinSlotDropdown === idx ? null : idx)}
+                          className={`flex flex-col items-center px-3 py-2 rounded-lg border-2 text-sm font-semibold min-w-[80px] transition-all ${
+                            slot
+                              ? (darkMode ? 'bg-pink-900 border-pink-600 text-white' : 'bg-pink-100 border-pink-400 text-pink-900')
+                              : (darkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-400')
+                          }`}
+                        >
+                          <span className={`text-[10px] mb-1 ${idx >= 5 ? 'text-purple-400' : 'text-gray-400'}`}>
+                            #{idx + 1}{idx >= 5 ? ' 🌸' : ''}
+                          </span>
+                          {slot ? (
+                            <>
+                              <img src={getItemImage(slot)} alt={slot} className="w-8 h-8 object-contain mb-1" onError={(e) => { e.target.style.display='none' }} />
+                              <span className="text-[10px] text-center leading-tight">{slot}</span>
+                              <div className="flex gap-0.5 mt-1 flex-wrap justify-center">
+                                {getFruitFlavors(slot).map(f => (
+                                  <span key={f} className={`text-[10px] font-bold ${FLAVOR_ABBR[f]?.color || ''}`}>
+                                    {FLAVOR_ABBR[f]?.abbr || f}
+                                  </span>
+                                ))}
+                              </div>
+                            </>
+                          ) : (
+                            <span className="text-xs mt-1">+ Fruta</span>
+                          )}
+                        </button>
+                        {/* Dropdown de frutas */}
+                        {puffinSlotDropdown === idx && (
+                          <div
+                            className={`absolute top-full left-0 mt-1 z-20 rounded-xl shadow-2xl border ${darkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'} max-h-60 overflow-y-auto min-w-[160px]`}
+                            onClick={e => e.stopPropagation()}
+                          >
+                            {slot && (
+                              <button
+                                onClick={() => { setPuffinSlots(puffinSlots.map((s, i) => i === idx ? null : s)); setPuffinSlotDropdown(null) }}
+                                className={`w-full text-left px-3 py-2 text-sm font-semibold text-red-500 ${darkMode ? 'hover:bg-red-900/30' : 'hover:bg-red-50'}`}
+                              >✕ Remover</button>
+                            )}
+                            {frutasNaMochila.length === 0 ? (
+                              <p className={`px-3 py-2 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Nenhuma fruta na mochila</p>
+                            ) : frutasNaMochila.map(item => {
+                              const available = getAvailableQty(item.name)
+                              const flavors = getFruitFlavors(item.name)
+                              return (
+                                <button
+                                  key={item.name}
+                                  onClick={() => {
+                                    if (available > 0) {
+                                      setPuffinSlots(puffinSlots.map((s, i) => i === idx ? item.name : s))
+                                      setPuffinSlotDropdown(null)
+                                    }
+                                  }}
+                                  disabled={available <= 0}
+                                  className={`w-full text-left px-3 py-2 flex items-center gap-2 ${available > 0 ? (darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100') : 'opacity-40 cursor-not-allowed'}`}
+                                >
+                                  <img src={getItemImage(item.name)} alt={item.name} className="w-7 h-7 object-contain flex-shrink-0" onError={(e) => { e.target.style.display='none' }} />
+                                  <div className="flex-1 min-w-0">
+                                    <div className={`text-xs font-semibold truncate ${darkMode ? 'text-white' : 'text-gray-800'}`}>{item.name}</div>
+                                    <div className="flex gap-0.5 flex-wrap">
+                                      {flavors.map(f => (
+                                        <span key={f} className={`text-[10px] font-bold ${FLAVOR_ABBR[f]?.color || ''}`}>{FLAVOR_ABBR[f]?.abbr || f}</span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <span className={`text-xs flex-shrink-0 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>x{available}</span>
+                                </button>
+                              )
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Preview */}
+                {puffinPreview && (
+                  <div className={`mb-4 p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'} border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                    <p className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Puffin previsto: <span className={`font-bold ${darkMode ? 'text-pink-300' : 'text-pink-700'}`}>{puffinPreview}</span>
+                    </p>
+                    <p className={`text-xs mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>* Empates entre sabores são resolvidos aleatoriamente na criação.</p>
+                  </div>
+                )}
+
+                {/* Botões */}
+                <div className="flex gap-3">
+                  <button onClick={() => setShowFazerPuffinModal(false)} className={`flex-1 py-3 rounded-xl font-semibold ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>Cancelar</button>
+                  <button
+                    onClick={handleCriarPuffin}
+                    disabled={filledCount === 0}
+                    className={`flex-1 px-6 py-3 rounded-xl font-bold text-white transition-all ${filledCount > 0 ? 'bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 shadow-lg' : 'bg-gray-400 cursor-not-allowed'}`}
+                  >
+                    🐦 Criar Puffin
+                  </button>
+                </div>
+              </div>
+            </div>
+          )
+        })()}
+
+        {/* Modal Pokesuco */}
+        {showPokesucoModal && (() => {
+          const apricornsNaMochila = keyItems.filter(item => APRICORN_COLOR_MAP[item.name])
+          const showIntensificar = shouldShowIntensificar(pokesucoSlots)
+          const showDominante = shouldShowDominante(pokesucoSlots)
+          const intensificarColors = getIntensificarColors(pokesucoSlots)
+          const dominanteColors = getDominanteColors(pokesucoSlots)
+          const filledSlotsCount = pokesucoSlots.filter(s => s !== null).length
+          const canMixer = filledSlotsCount > 0 &&
+            (!showIntensificar || pokesucoIntensificar) &&
+            (!showDominante || pokesucoDominante)
+
+          return (
+            <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowPokesucoModal(false)}>
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+                {/* Header */}
+                <div className="flex items-center gap-3 mb-5">
+                  <img src="/pokesuco/miniiconepokesuco.png" alt="Pokesuco" className="w-10 h-10 object-contain" onError={(e) => { e.target.style.display='none' }} />
+                  <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>Fazer Pokesuco</h3>
+                  <button onClick={() => setShowPokesucoModal(false)} className={`ml-auto p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-600'}`}>✕</button>
+                </div>
+
+                {/* Slots selecionados */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Ingredientes ({filledSlotsCount}/{pokesucoSlots.length})</h4>
+                    <button
+                      onClick={() => setPokesucoSlots([...pokesucoSlots, null])}
+                      className="text-xs bg-purple-600 hover:bg-purple-700 text-white px-2 py-1 rounded-lg font-semibold"
+                    >+ Slot</button>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {pokesucoSlots.map((slot, idx) => (
+                      <div key={idx} className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border-2 text-sm font-semibold ${slot ? (darkMode ? 'bg-purple-900 border-purple-600 text-white' : 'bg-purple-100 border-purple-400 text-purple-900') : (darkMode ? 'bg-gray-700 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-400')}`}>
+                        <span className="text-xs text-gray-400">#{idx + 1}</span>
+                        {slot ? (
+                          <>
+                            <img src={getItemImage(slot)} alt={slot} className="w-6 h-6 object-contain" onError={(e) => { e.target.style.display='none' }} />
+                            <span>{slot.replace('Apricorn ', '')}</span>
+                            <button onClick={() => handleRemoveApricornFromSlot(idx)} className="text-red-400 hover:text-red-600 ml-1 text-xs">✕</button>
+                          </>
+                        ) : (
+                          <span>Vazio</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Campo Intensificar */}
+                {showIntensificar && (
+                  <div className={`mb-4 p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'} border ${darkMode ? 'border-purple-700' : 'border-purple-200'}`}>
+                    <h4 className={`font-bold mb-2 ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>Intensificar (Apricorn Preto detectado)</h4>
+                    <p className={`text-xs mb-3 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Selecione a cor predominante do suco:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {intensificarColors.map(color => (
+                        <button
+                          key={color}
+                          onClick={() => setPokesucoIntensificar(pokesucoIntensificar === color ? null : color)}
+                          className={`px-3 py-1.5 rounded-lg text-sm font-semibold border-2 transition-all ${pokesucoIntensificar === color ? 'bg-purple-600 border-purple-700 text-white' : (darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-800')}`}
+                        >{color}</button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Campo Dominante */}
+                {showDominante && (
+                  <div className={`mb-4 p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'} border ${darkMode ? 'border-blue-700' : 'border-blue-200'}`}>
+                    <h4 className={`font-bold mb-2 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>Dominante</h4>
+                    <p className={`text-xs mb-3 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Selecione a cor que dará o nome ao suco:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {dominanteColors.map(color => (
+                        <button
+                          key={color}
+                          onClick={() => setPokesucoDominante(pokesucoDominante === color ? null : color)}
+                          className={`px-3 py-1.5 rounded-lg text-sm font-semibold border-2 transition-all ${pokesucoDominante === color ? 'bg-blue-600 border-blue-700 text-white' : (darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-800')}`}
+                        >{color}</button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Modificador de Suco */}
+                <div className="mb-4">
+                  <label className={`block font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Modificador de Suco</label>
+                  <div className="flex items-center gap-3">
+                    <button onClick={() => setPokesucoModificador(Math.max(0, pokesucoModificador - 1))} className={`w-8 h-8 rounded-lg font-bold ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>-</button>
+                    <span className={`text-2xl font-bold w-10 text-center ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>{pokesucoModificador}</span>
+                    <button onClick={() => setPokesucoModificador(Math.min(3, pokesucoModificador + 1))} className={`w-8 h-8 rounded-lg font-bold ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>+</button>
+                    <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>(0–3) • Rola 1d4 + {pokesucoModificador}</span>
+                  </div>
+                </div>
+
+                {/* Apricorns disponíveis */}
+                <div className="mb-5">
+                  <h4 className={`font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Apricorns na Mochila</h4>
+                  {apricornsNaMochila.length === 0 ? (
+                    <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Nenhum Apricorn na mochila.</p>
+                  ) : (
+                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                      {apricornsNaMochila.map((apricorn) => {
+                        const check = canAddApricorn(apricorn.name, pokesucoSlots)
+                        return (
+                          <div key={apricorn.name} className={`flex flex-col items-center p-2 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'}`}>
+                            <span className={`text-xs font-bold mb-1 ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>x{apricorn.quantity}</span>
+                            <img src={getItemImage(apricorn.name)} alt={apricorn.name} className="w-10 h-10 object-contain mb-1" onError={(e) => { e.target.style.display='none' }} />
+                            <span className={`text-[10px] text-center mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{apricorn.name.replace('Apricorn ', '')}</span>
+                            <button
+                              onClick={() => handleAddApricornToSlot(apricorn.name)}
+                              disabled={!check.ok || apricorn.quantity === 0}
+                              className={`w-full py-1 rounded text-xs font-semibold transition-all ${!check.ok || apricorn.quantity === 0 ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-purple-600 hover:bg-purple-700 text-white'}`}
+                              title={!check.ok ? check.reason : 'Adicionar ao suco'}
+                            >
+                              {check.ok ? 'Adicionar' : '✕'}
+                            </button>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                {/* Preview do suco */}
+                {filledSlotsCount > 0 && (
+                  <div className={`mb-4 p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'} border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                    <p className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Suco previsto: <span className={`${darkMode ? 'text-purple-300' : 'text-purple-700'} font-bold`}>
+                        {(() => { try { return calcPokesucoInfo(pokesucoSlots, pokesucoIntensificar, pokesucoDominante).sucoNome + ' [qualidade]' } catch { return '...' } })()}
+                      </span>
+                    </p>
+                  </div>
+                )}
+
+                {/* Botão Mexer o Suco */}
+                <div className="flex gap-3">
+                  <button onClick={() => setShowPokesucoModal(false)} className={`flex-1 py-3 rounded-xl font-semibold ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>Cancelar</button>
+                  <button
+                    onClick={handleMexerSuco}
+                    disabled={!canMixer}
+                    className={`flex-2 px-6 py-3 rounded-xl font-bold text-white transition-all ${canMixer ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg' : 'bg-gray-400 cursor-not-allowed'}`}
+                  >
+                    🧃 Mexer o Suco
+                  </button>
+                </div>
+              </div>
+            </div>
+          )
+        })()}
       </>
     )
   }
@@ -31466,6 +32557,66 @@ function App() {
           {Object.entries(POKELOJA_DATA).map(([corredor, items]) => {
             // Corredores sempre ocultos nunca aparecem na loja
             if (CORREDORES_SEMPRE_OCULTOS.includes(corredor)) return null
+
+            // Corredor de Pokesucos tem renderização especial
+            if (corredor === 'Pokesucos') {
+              return (
+                <div key={corredor} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl mb-6 overflow-hidden`}>
+                  <button
+                    onClick={() => toggleCorredor(corredor)}
+                    className={`w-full p-3 sm:p-5 md:p-6 flex justify-between items-center ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-50'} transition-colors`}
+                  >
+                    <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>🧃 {corredor}</h3>
+                    {expandedCorredores[corredor] ? <ChevronDown size={24} className={darkMode ? 'text-white' : 'text-gray-800'} /> : <ChevronRight size={24} className={darkMode ? 'text-white' : 'text-gray-800'} />}
+                  </button>
+                  {expandedCorredores[corredor] && (
+                    <div className="p-3 sm:p-5 md:p-6 pt-0">
+                      <div className="flex items-center justify-between mb-4">
+                        <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                          {Object.keys(pokesucoLojaQualidades).length > 0 ? 'Qualidades sorteadas!' : 'Clique para sortear as qualidades de hoje.'}
+                        </p>
+                        <button
+                          onClick={handleSortearQualidadeLoja}
+                          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow"
+                        >
+                          🎲 Sortear Qualidade
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                        {items.map((item, idx) => {
+                          const quality = pokesucoLojaQualidades[item.sucoColor] || null
+                          const price = quality ? quality * 150 : null
+                          return (
+                            <div key={idx} className={`p-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'} flex flex-col`}>
+                              <div className="w-full h-20 mb-2 flex items-center justify-center">
+                                <img src={item.image} alt={item.name} className="max-w-full max-h-full object-contain" onError={(e) => { e.target.style.display = 'none' }} />
+                              </div>
+                              <h4 className={`font-bold text-base mb-1 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>{item.name}</h4>
+                              {quality !== null ? (
+                                <>
+                                  <p className={`text-center text-xs mb-1 ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>Qualidade: <span className="font-bold text-lg">{quality}</span></p>
+                                  <p className={`text-center mb-2 text-lg font-bold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>₽{price.toLocaleString()}</p>
+                                </>
+                              ) : (
+                                <p className={`text-center mb-2 text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Qualidade não sorteada</p>
+                              )}
+                              <div className="flex gap-1.5 mt-auto">
+                                <button onClick={() => handleOpenItemDescription(item)} className={`flex-1 py-1.5 rounded-lg ${darkMode ? 'bg-gray-600 hover:bg-gray-500 text-white' : 'bg-gray-300 hover:bg-gray-400 text-gray-800'} font-semibold flex items-center justify-center`} title="Ver descrição"><Info size={14} /></button>
+                                <button
+                                  onClick={() => handleBuyPokesucoLoja(item, quality)}
+                                  disabled={quality === null || pokemonedas < price}
+                                  className={`flex-1 py-1.5 rounded-lg font-semibold text-sm ${quality === null || pokemonedas < price ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-gradient-to-r from-green-600 to-teal-700 hover:from-green-700 hover:to-teal-800 text-white'}`}
+                                >Comprar</button>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )
+            }
 
             // Filtrar itens ocultos e itens sem loja
             const visibleItems = items.filter(item => !hiddenItems.includes(item.name) && !item.noShop)
@@ -33616,14 +34767,14 @@ function App() {
                                   <h5 className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                                     {item.name}{item.realName ? ` (${item.realName})` : ''}
                                   </h5>
-                                  {item.price != null && (
+                                  {item.price != null && corredor !== 'Apricorns e Bonsais' && corredor !== 'Pokesucos' && (
                                     <p className={`text-sm ${darkMode ? 'text-yellow-400' : 'text-yellow-600'} font-semibold`}>
                                       ₽ {(customPrices[item.name] !== undefined ? customPrices[item.name] : item.price).toLocaleString()}
                                     </p>
                                   )}
                                   {item.description && (
                                     <p className={`text-sm mt-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                                      {item.description}
+                                      {renderDescriptionWithFlavors(item.description)}
                                     </p>
                                   )}
                                 </div>
@@ -39076,6 +40227,9 @@ function App() {
                                   {t.charAt(0).toUpperCase() + t.slice(1)}
                                 </span>
                               ))}
+                            </div>
+                            <div className="flex justify-center mt-1">
+                              <DietIcons speciesName={npc.species} size={16} />
                             </div>
                           </div>
                         )
