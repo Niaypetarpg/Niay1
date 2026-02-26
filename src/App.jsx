@@ -2,6 +2,8 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus, Save, Archive, MoveVertical, Menu, Gamepad2, TowerControl } from 'lucide-react'
 import AccountDataModal from './AccountDataModal'
 import pokedexData, { POKEMON_DIET_MAP } from './pokemonData'
+import { POKEMON_DESLOCAMENTO_MAP } from './pokemonDeslocamentos'
+import { POKEMON_CAPACIDADE_MAP } from './pokemonCapacidades'
 import GOLPES_DATA_IMPORTED from './golpesData'
 import HABILIDADES_DATA_IMPORTED, { HABILIDADES_NAMES as HABILIDADES_NAMES_IMPORTED } from './habilidadesData'
 import CARACTERISTICAS_DATA_IMPORTED, { TALENTOS_DATA as TALENTOS_DATA_IMPORTED, TALENTOS_NAMES as TALENTOS_NAMES_IMPORTED } from './caracteristicasETalentosData'
@@ -2340,6 +2342,7 @@ function App() {
   const [showSendXpModal, setShowSendXpModal] = useState(false) // Modal de envio de XP para treinadores
   const [selectedNpcPokemonForXp, setSelectedNpcPokemonForXp] = useState(null) // Pokémon NPC selecionado para enviar XP
   const [selectedTrainersForXp, setSelectedTrainersForXp] = useState({}) // Treinadores selecionados para receber XP
+  const [openPokemonSection, setOpenPokemonSection] = useState(null) // { pokemon, section } — pop-up mobile de seção do card
 
   // ===== BATALHA GAME BOY =====
   const [gbBattleData, setGbBattleData] = useState({
@@ -6619,7 +6622,9 @@ function App() {
       nature: randomNature.nome,
       gender: gender,
       weight: weight,
-      height: height
+      height: height,
+      displacement: POKEMON_DESLOCAMENTO_MAP[species] || null,
+      capacities: (() => { const c = POKEMON_CAPACIDADE_MAP[species]; return c ? { forca: c.forca, inteligencia: c.inteligencia, salto: c.salto, others: [] } : null })()
     }
 
     // Adicionar à Pokédex como escaneado E capturado
@@ -7769,7 +7774,9 @@ function App() {
       totalXP: pokemonForm.isCaptured ? getTotalXPForLevel(pokemonForm.level) : 0,
       isCaptured: pokemonForm.isCaptured,
       isExotic: pokemonForm.isExotic,
-      golpes: []
+      golpes: [],
+      displacement: POKEMON_DESLOCAMENTO_MAP[species] || null,
+      capacities: (() => { const c = POKEMON_CAPACIDADE_MAP[species]; return c ? { forca: c.forca, inteligencia: c.inteligencia, salto: c.salto, others: [] } : null })()
     }
 
     // Adicionar à Pokédex
@@ -8546,7 +8553,7 @@ function App() {
         defesaEspecial: '',
         velocidade: ''
       },
-      displacement: pokemon.displacement || {
+      displacement: pokemon.displacement || POKEMON_DESLOCAMENTO_MAP[pokemon.species || pokemon.nickname] || {
         terrestre: '',
         nadar: '',
         voar: '',
@@ -8557,9 +8564,9 @@ function App() {
       height: pokemon.height || heightFromData,
       loyalty: pokemon.loyalty || '',
       capacities: {
-        forca: pokemon.capacities?.forca || '',
-        inteligencia: pokemon.capacities?.inteligencia || '',
-        salto: pokemon.capacities?.salto || '',
+        forca: pokemon.capacities?.forca || POKEMON_CAPACIDADE_MAP[pokemon.species || pokemon.nickname]?.forca || '',
+        inteligencia: pokemon.capacities?.inteligencia || POKEMON_CAPACIDADE_MAP[pokemon.species || pokemon.nickname]?.inteligencia || '',
+        salto: pokemon.capacities?.salto || POKEMON_CAPACIDADE_MAP[pokemon.species || pokemon.nickname]?.salto || '',
         others: pokemon.capacities?.others || []
       },
       dietaSlot1: dietParts[0] || '',
@@ -8657,7 +8664,7 @@ function App() {
         defesaEspecial: '',
         velocidade: ''
       },
-      displacement: pokemon.displacement || {
+      displacement: pokemon.displacement || POKEMON_DESLOCAMENTO_MAP[pokemon.species || pokemon.nickname] || {
         terrestre: '',
         nadar: '',
         voar: '',
@@ -8668,9 +8675,9 @@ function App() {
       height: pokemon.height || heightFromData,
       loyalty: pokemon.loyalty || '',
       capacities: {
-        forca: pokemon.capacities?.forca || '',
-        inteligencia: pokemon.capacities?.inteligencia || '',
-        salto: pokemon.capacities?.salto || '',
+        forca: pokemon.capacities?.forca || POKEMON_CAPACIDADE_MAP[pokemon.species || pokemon.nickname]?.forca || '',
+        inteligencia: pokemon.capacities?.inteligencia || POKEMON_CAPACIDADE_MAP[pokemon.species || pokemon.nickname]?.inteligencia || '',
+        salto: pokemon.capacities?.salto || POKEMON_CAPACIDADE_MAP[pokemon.species || pokemon.nickname]?.salto || '',
         others: pokemon.capacities?.others || []
       },
       dietaSlot1: dietParts[0] || '',
@@ -9854,7 +9861,9 @@ function App() {
           habilidades: habilidadesArray,
           golpes: golpesArray,
           isAlpha: npcAlfaStatus[pokemonToSend.id] || false,
-          dieta: POKEMON_DIET_MAP[sendPokemonSpecies] || null
+          dieta: POKEMON_DIET_MAP[sendPokemonSpecies] || null,
+          displacement: POKEMON_DESLOCAMENTO_MAP[sendPokemonSpecies] || null,
+          capacities: (() => { const c = POKEMON_CAPACIDADE_MAP[sendPokemonSpecies]; return c ? { forca: c.forca, inteligencia: c.inteligencia, salto: c.salto, others: [] } : null })()
         }
 
         // Verificar se o time principal tem menos de 6 pokémons
@@ -16377,6 +16386,25 @@ function App() {
                           <div className="flex justify-center mt-1">
                             <DietIcons speciesName={pokemon.species || pokemon.name} size={18} />
                           </div>
+                          {(() => {
+                            const d = POKEMON_DESLOCAMENTO_MAP[pokemon.species || pokemon.name]
+                            if (!d) return null
+                            const LABELS = { terrestre: 'Ter', nadar: 'Nat', voar: 'Voo', cavar: 'Esc', submerso: 'Sub' }
+                            const parts = Object.entries(LABELS).filter(([k]) => d[k] !== '' && d[k] != null).map(([k, l]) => `${l} ${d[k]}`)
+                            if (!parts.length) return null
+                            return <p className={`text-[10px] text-center mt-0.5 ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>{parts.join(' · ')}</p>
+                          })()}
+                          {(() => {
+                            const c = POKEMON_CAPACIDADE_MAP[pokemon.species || pokemon.name]
+                            if (!c) return null
+                            const parts = [
+                              c.forca !== '' && c.forca != null ? `For ${c.forca}` : null,
+                              c.inteligencia !== '' && c.inteligencia != null ? `Int ${c.inteligencia}` : null,
+                              c.salto !== '' && c.salto != null ? `Sal ${c.salto}` : null,
+                            ].filter(Boolean)
+                            if (!parts.length) return null
+                            return <p className={`text-[10px] text-center mt-0.5 ${darkMode ? 'text-orange-300' : 'text-orange-600'}`}>{parts.join(' · ')}</p>
+                          })()}
                           <div className="flex items-center gap-1 mt-1">
                             <p className={`text-xs text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                               Nível {pokemon.level}
@@ -16469,6 +16497,25 @@ function App() {
                               <div className="flex justify-center mt-1">
                                 <DietIcons speciesName={pokemon.species || pokemon.name} size={20} />
                               </div>
+                              {(() => {
+                                const d = POKEMON_DESLOCAMENTO_MAP[pokemon.species || pokemon.name]
+                                if (!d) return null
+                                const LABELS = { terrestre: 'Terrestre', nadar: 'Natação', voar: 'Voo', cavar: 'Escavação', submerso: 'Subaquático' }
+                                const parts = Object.entries(LABELS).filter(([k]) => d[k] !== '' && d[k] != null).map(([k, l]) => `${l} ${d[k]}`)
+                                if (!parts.length) return null
+                                return <p className={`text-[10px] text-center mt-1 ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>{parts.join(' · ')}</p>
+                              })()}
+                              {(() => {
+                                const c = POKEMON_CAPACIDADE_MAP[pokemon.species || pokemon.name]
+                                if (!c) return null
+                                const parts = [
+                                  c.forca !== '' && c.forca != null ? `Força ${c.forca}` : null,
+                                  c.inteligencia !== '' && c.inteligencia != null ? `Inteligência ${c.inteligencia}` : null,
+                                  c.salto !== '' && c.salto != null ? `Salto ${c.salto}` : null,
+                                ].filter(Boolean)
+                                if (!parts.length) return null
+                                return <p className={`text-[10px] text-center mt-1 ${darkMode ? 'text-orange-300' : 'text-orange-600'}`}>{parts.join(' · ')}</p>
+                              })()}
                             </div>
                           </div>
                           <div className="flex gap-2">
@@ -25057,6 +25104,10 @@ function App() {
                           {/* Informações principais e barras */}
                           <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4">
                             <div className="flex flex-col items-center gap-2">
+                              <div className={`text-center px-3 py-1 rounded ${darkMode ? 'bg-gray-600' : 'bg-purple-100'}`}>
+                                <div className={`text-[10px] whitespace-nowrap ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>Bônus Ele.</div>
+                                <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-purple-700'}`}>{calculateElementalBonus(pokemon)}</div>
+                              </div>
                               {pokemonImages[sanitizeFirebaseKey(pokemon.id)] && (
                                 <img src={pokemonImages[sanitizeFirebaseKey(pokemon.id)]} alt={pokemon.nickname} className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 object-cover rounded-lg border-2 border-blue-500" />
                               )}
@@ -25288,9 +25339,29 @@ function App() {
                             </div>
                           </div>
 
-                          {/* Evasões, Bônus Elemental e Aptidões */}
+                          {/* Evasões, Deslocamentos, Capacidades e Aptidões */}
                           <div className={`pt-3 border-t-2 ${darkMode ? 'border-gray-600' : 'border-blue-200'}`}>
-                            <div className="grid grid-cols-3 gap-2 items-start">
+
+                            {/* Mobile: botões que abrem pop-ups (< md) */}
+                            <div className="flex md:hidden gap-1 mb-0">
+                              {[
+                                { section: 'evasoes', label: 'Evasões', color: darkMode ? 'bg-blue-700 hover:bg-blue-600' : 'bg-blue-500 hover:bg-blue-600' },
+                                { section: 'deslocamentos', label: 'Desl.', color: darkMode ? 'bg-green-700 hover:bg-green-600' : 'bg-green-500 hover:bg-green-600' },
+                                { section: 'capacidades', label: 'Capac.', color: darkMode ? 'bg-orange-700 hover:bg-orange-600' : 'bg-orange-500 hover:bg-orange-600' },
+                                { section: 'aptidoes', label: 'Aptidões', color: darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-500 hover:bg-gray-600' },
+                              ].map(({ section, label, color }) => (
+                                <button
+                                  key={section}
+                                  onClick={() => setOpenPokemonSection({ pokemon, section })}
+                                  className={`flex-1 py-1.5 rounded text-white text-xs font-semibold transition-colors ${color}`}
+                                >
+                                  {label}
+                                </button>
+                              ))}
+                            </div>
+
+                            {/* Desktop: grid completo (md+) */}
+                            <div className="hidden md:grid grid-cols-4 gap-2 items-start">
 
                               {/* ESQUERDA — Evasões */}
                               <div className="flex flex-col items-center">
@@ -25311,18 +25382,68 @@ function App() {
                                 </div>
                               </div>
 
-                              {/* CENTRO — Bônus Elemental */}
-                              <div className="flex flex-col items-center">
-                                <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>Bônus Elemental</h6>
-                                <div className={`text-center px-[18px] py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-purple-100'}`}>
-                                  <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-purple-700'}`}>{calculateElementalBonus(pokemon)}</div>
-                                </div>
-                              </div>
+                              {/* CENTRO-ESQUERDA — Deslocamentos */}
+                              {(() => {
+                                const d = pokemon.displacement || POKEMON_DESLOCAMENTO_MAP[pokemon.species || pokemon.nickname]
+                                const LABELS = [
+                                  { key: 'terrestre', label: 'Terrestre' },
+                                  { key: 'nadar', label: 'Natação' },
+                                  { key: 'voar', label: 'Voo' },
+                                  { key: 'cavar', label: 'Escavação' },
+                                  { key: 'submerso', label: 'Subaquático' },
+                                ]
+                                const active = d ? LABELS.filter(({ key }) => d[key] !== '' && d[key] != null) : []
+                                return (
+                                  <div className="flex flex-col items-center">
+                                    <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-green-300' : 'text-green-700'}`}>Deslocamentos</h6>
+                                    {active.length > 0 ? (
+                                      <div className="flex gap-1 flex-wrap justify-center">
+                                        {active.map(({ key, label }) => (
+                                          <div key={key} className={`text-center px-2 py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-green-100'}`}>
+                                            <div className={`text-xs whitespace-nowrap ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{label}</div>
+                                            <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-green-700'}`}>{d[key]}</div>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    ) : (
+                                      <div className={`text-xs italic ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>—</div>
+                                    )}
+                                  </div>
+                                )
+                              })()}
+
+                              {/* CENTRO-DIREITA — Capacidades */}
+                              {(() => {
+                                const c = pokemon.capacities || POKEMON_CAPACIDADE_MAP[pokemon.species || pokemon.nickname]
+                                const LABELS = [
+                                  { key: 'forca', label: 'Força' },
+                                  { key: 'inteligencia', label: 'Inteligência' },
+                                  { key: 'salto', label: 'Salto' },
+                                ]
+                                const active = c ? LABELS.filter(({ key }) => c[key] !== '' && c[key] != null) : []
+                                return (
+                                  <div className="flex flex-col items-center">
+                                    <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-orange-300' : 'text-orange-700'}`}>Capacidades</h6>
+                                    {active.length > 0 ? (
+                                      <div className="flex gap-1 flex-wrap justify-center">
+                                        {active.map(({ key, label }) => (
+                                          <div key={key} className={`text-center px-2 py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-orange-100'}`}>
+                                            <div className={`text-xs whitespace-nowrap ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{label}</div>
+                                            <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-orange-700'}`}>{c[key]}</div>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    ) : (
+                                      <div className={`text-xs italic ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>—</div>
+                                    )}
+                                  </div>
+                                )
+                              })()}
 
                               {/* DIREITA — Aptidões */}
                               <div className="flex flex-col items-center">
                                 <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Aptidões</h6>
-                                <div className="flex gap-1 flex-wrap justify-center">
+                                <div className="grid grid-cols-5 gap-1 w-full">
                                   {[
                                     { key: 'estilo', label: 'Estilo', bg: darkMode ? 'bg-red-900' : 'bg-red-100', text: darkMode ? 'text-red-300' : 'text-red-600' },
                                     { key: 'beleza', label: 'Beleza', bg: darkMode ? 'bg-blue-900' : 'bg-blue-100', text: darkMode ? 'text-blue-300' : 'text-blue-600' },
@@ -25330,8 +25451,8 @@ function App() {
                                     { key: 'perspicacia', label: 'Perspicácia', bg: darkMode ? 'bg-green-900' : 'bg-green-100', text: darkMode ? 'text-green-300' : 'text-green-600' },
                                     { key: 'vigor', label: 'Vigor', bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-100', text: darkMode ? 'text-yellow-300' : 'text-yellow-600' }
                                   ].map(apt => (
-                                    <div key={apt.key} className={`text-center px-3 py-[14px] rounded ${apt.bg}`}>
-                                      <div className={`text-xs font-semibold whitespace-nowrap ${apt.text}`}>{apt.label}</div>
+                                    <div key={apt.key} className={`text-center py-[14px] rounded ${apt.bg}`}>
+                                      <div className={`text-xs font-semibold ${apt.text}`} style={{ fontSize: '0.6rem' }}>{apt.label}</div>
                                       <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{pokemon.aptidoes?.[apt.key] ?? 0}</div>
                                     </div>
                                   ))}
@@ -25354,6 +25475,107 @@ function App() {
             </div>
           </div>
         </div>
+
+        {/* Modal de seção do card Pokémon (mobile) */}
+        {openPokemonSection && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setOpenPokemonSection(null)}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-5 rounded-2xl shadow-2xl w-full max-w-sm`} onClick={e => e.stopPropagation()}>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  {openPokemonSection.section === 'evasoes' && 'Evasões'}
+                  {openPokemonSection.section === 'deslocamentos' && 'Deslocamentos'}
+                  {openPokemonSection.section === 'capacidades' && 'Capacidades'}
+                  {openPokemonSection.section === 'aptidoes' && 'Aptidões'}
+                </h3>
+                <button onClick={() => setOpenPokemonSection(null)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
+                  <X size={24} />
+                </button>
+              </div>
+
+              {/* Evasões */}
+              {openPokemonSection.section === 'evasoes' && (
+                <div className="flex gap-3 justify-center">
+                  {[
+                    { label: 'Física', value: calculatePhysicalEvasion(openPokemonSection.pokemon) },
+                    { label: 'Especial', value: calculateSpecialEvasion(openPokemonSection.pokemon) },
+                    { label: 'Veloz', value: calculateSpeedEvasion(openPokemonSection.pokemon) },
+                  ].map(({ label, value }) => (
+                    <div key={label} className={`flex-1 text-center py-4 rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
+                      <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{label}</div>
+                      <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{value}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Deslocamentos */}
+              {openPokemonSection.section === 'deslocamentos' && (() => {
+                const d = openPokemonSection.pokemon.displacement || POKEMON_DESLOCAMENTO_MAP[openPokemonSection.pokemon.species || openPokemonSection.pokemon.nickname]
+                const LABELS = [
+                  { key: 'terrestre', label: 'Terrestre' },
+                  { key: 'nadar', label: 'Natação' },
+                  { key: 'voar', label: 'Voo' },
+                  { key: 'cavar', label: 'Escavação' },
+                  { key: 'submerso', label: 'Subaquático' },
+                ]
+                const active = d ? LABELS.filter(({ key }) => d[key] !== '' && d[key] != null) : []
+                return active.length > 0 ? (
+                  <div className="flex gap-2 flex-wrap justify-center">
+                    {active.map(({ key, label }) => (
+                      <div key={key} className={`text-center px-4 py-4 rounded ${darkMode ? 'bg-gray-600' : 'bg-green-100'}`}>
+                        <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{label}</div>
+                        <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-green-700'}`}>{d[key]}</div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className={`text-center italic ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Sem deslocamentos mapeados</div>
+                )
+              })()}
+
+              {/* Capacidades */}
+              {openPokemonSection.section === 'capacidades' && (() => {
+                const c = openPokemonSection.pokemon.capacities || POKEMON_CAPACIDADE_MAP[openPokemonSection.pokemon.species || openPokemonSection.pokemon.nickname]
+                const LABELS = [
+                  { key: 'forca', label: 'Força' },
+                  { key: 'inteligencia', label: 'Inteligência' },
+                  { key: 'salto', label: 'Salto' },
+                ]
+                const active = c ? LABELS.filter(({ key }) => c[key] !== '' && c[key] != null) : []
+                return active.length > 0 ? (
+                  <div className="flex gap-2 flex-wrap justify-center">
+                    {active.map(({ key, label }) => (
+                      <div key={key} className={`text-center px-4 py-4 rounded ${darkMode ? 'bg-gray-600' : 'bg-orange-100'}`}>
+                        <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{label}</div>
+                        <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-orange-700'}`}>{c[key]}</div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className={`text-center italic ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Sem capacidades mapeadas</div>
+                )
+              })()}
+
+              {/* Aptidões */}
+              {openPokemonSection.section === 'aptidoes' && (
+                <div className="grid grid-cols-5 gap-2">
+                  {[
+                    { key: 'estilo', label: 'Estilo', bg: darkMode ? 'bg-red-900' : 'bg-red-100', text: darkMode ? 'text-red-300' : 'text-red-600' },
+                    { key: 'beleza', label: 'Beleza', bg: darkMode ? 'bg-blue-900' : 'bg-blue-100', text: darkMode ? 'text-blue-300' : 'text-blue-600' },
+                    { key: 'ternura', label: 'Ternura', bg: darkMode ? 'bg-pink-900' : 'bg-pink-100', text: darkMode ? 'text-pink-300' : 'text-pink-600' },
+                    { key: 'perspicacia', label: 'Perspicácia', bg: darkMode ? 'bg-green-900' : 'bg-green-100', text: darkMode ? 'text-green-300' : 'text-green-600' },
+                    { key: 'vigor', label: 'Vigor', bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-100', text: darkMode ? 'text-yellow-300' : 'text-yellow-600' },
+                  ].map(apt => (
+                    <div key={apt.key} className={`text-center py-4 rounded ${apt.bg}`}>
+                      <div className={`font-semibold ${apt.text}`} style={{ fontSize: '0.6rem' }}>{apt.label}</div>
+                      <div className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{openPokemonSection.pokemon.aptidoes?.[apt.key] ?? 0}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* MODAIS (mantidos iguais) */}
         {showLevelModal && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setShowLevelModal(false)}>
