@@ -533,6 +533,20 @@ export const subscribeToHiddenPokelojaItems = (callback) => {
   })
 }
 
+// --- POKÉLOJA (qualidades dos Pokesucos) ---
+
+// Salvar qualidades sorteadas dos Pokesucos
+export const savePokesucoLojaQualidades = async (qualidades) => {
+  return saveToFirebase('pokeloja/sucoQualidades', qualidades)
+}
+
+// Escutar mudanças nas qualidades dos Pokesucos (tempo real)
+export const subscribeToPokesucoLojaQualidades = (callback) => {
+  return subscribeToFirebase('pokeloja/sucoQualidades', (data) => {
+    callback(data || {})
+  })
+}
+
 // --- POKÉLOJA (preços customizados) ---
 
 // Salvar preços customizados da Pokéloja

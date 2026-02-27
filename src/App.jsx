@@ -22,6 +22,7 @@ import {
   saveInterludioData, loadInterludioData, subscribeToInterludio,
   saveHiddenPokelojaItems, loadHiddenPokelojaItems, subscribeToHiddenPokelojaItems,
   saveCustomPrices, loadCustomPrices, subscribeToCustomPrices,
+  savePokesucoLojaQualidades, subscribeToPokesucoLojaQualidades,
   saveVTTData, loadVTTData, subscribeToVTT,
   saveXpCapturas, loadXpCapturas, subscribeToXpCapturas, subscribeToAllXpCapturas,
   saveSafariData, loadSafariData, subscribeToSafari,
@@ -1169,7 +1170,9 @@ const KEY_ITEMS_LIST = [
   'Peças de Repeatball',
   'Peças de Safariball',
   'Peças de Sportball',
-  'Peças de Timerball'
+  'Peças de Timerball',
+  // Corredor de Pokéflautas
+  'Pokéflauta Amarela', 'Pokéflauta Azul', 'Pokéflauta Branca', 'Pokéflauta Preta', 'Pokéflauta Vermelha'
 ]
 
 // Lista de imagens de Pokeovo (será randomizada quando adicionar)
@@ -1651,6 +1654,13 @@ const POKELOJA_DATA = {
     { name: 'Puffin Azedo Seco', price: null, description: 'Aumenta o vigor e beleza.', image: '/puffins/puffinazedoseco.png' },
     { name: 'Puffin Azedo Doce', price: null, description: 'Aumenta o vigor e ternura.', image: '/puffins/puffinazedodoce.png' },
     { name: 'Puffin Azedo Amargo', price: null, description: 'Aumenta o vigor e perspicácia.', image: '/puffins/puffinazedoamargo.png' }
+  ],
+  'Pokéflautas': [
+    { name: 'Pokéflauta Amarela', price: null, description: 'Uma vez diária, quando tocada, restaura todos os pokémons a até 3 metros de Sono.', image: '/pokeflautas/pokeflautaamarela.png' },
+    { name: 'Pokéflauta Azul', price: null, description: 'Uma vez diária, quando tocada, restaura todos os pokémons a até 3 metros de Confusão.', image: '/pokeflautas/pokeflautaazul.png' },
+    { name: 'Pokéflauta Branca', price: null, description: 'Esta flauta pode ser tocada uma vez semanal tendo como alvo um pokémon selvagem a até 10 metros que não possua Cacofonia. Role 1d20. Se o resultado for 16 ou mais e o Nível do pokémon for menor que o Nível do seu pokémon +10, o pokémon selvagem chama por aliados. O Narrador determinará quantos pokémons selvagens se juntarão ao encontro.', image: '/pokeflautas/pokeflautabranca.png' },
+    { name: 'Pokéflauta Preta', price: null, description: 'Esta flauta pode ser tocada uma vez diária tendo como alvo um pokémon selvagem a até 10 metros que não possua Cacofonia. Role 1d20. Se o resultado for 6 ou mais e o Nível do pokémon for menor que o Nível do seu pokémon -10, o pokémon selvagem foge com sucesso instantaneamente.', image: '/pokeflautas/pokeflautapreta.png' },
+    { name: 'Pokéflauta Vermelha', price: null, description: 'Uma vez diária, quando tocada, restaura todos os pokémons a até 3 metros de Paixão.', image: '/pokeflautas/pokeflautavermelha.png' }
   ]
 }
 
@@ -1683,7 +1693,7 @@ const parsePuffinName = (name) => {
 }
 
 // Corredores que nunca aparecem na Pokéloja (sempre ocultos para treinadores)
-const CORREDORES_SEMPRE_OCULTOS = ['Apricorns e Bonsais', 'Puffin']
+const CORREDORES_SEMPRE_OCULTOS = ['Apricorns e Bonsais', 'Puffin', 'Pokéflautas']
 
 // Mapeamento de Apricorn para cor
 const APRICORN_COLOR_MAP = {
@@ -2615,6 +2625,8 @@ function App() {
   const [fabricarItemQty, setFabricarItemQty] = useState('')
   const [fabricarItemImage, setFabricarItemImage] = useState('')
   const [fabricarItemDescription, setFabricarItemDescription] = useState('')
+  const [fabricarItemIsFoto, setFabricarItemIsFoto] = useState(false)
+  const [fabricarItemPreco, setFabricarItemPreco] = useState('')
   const [showEditMasterItemModal, setShowEditMasterItemModal] = useState(false)
   const [editingMasterItem, setEditingMasterItem] = useState(null)
   const [editMasterItemName, setEditMasterItemName] = useState('')
@@ -2868,6 +2880,13 @@ function App() {
   // Estados para modal de Snack (puffins → aptidões)
   const [showSnackModal, setShowSnackModal] = useState(false)
   const [snackDropdownPokemon, setSnackDropdownPokemon] = useState(null) // índice do pokémon com dropdown aberto
+  // Painéis de regras laterais (info)
+  const [puffinInfoOpen, setPuffinInfoOpen] = useState(false)
+  const [puffinChoiceData, setPuffinChoiceData] = useState(null) // { tiedFlavors, maxCount } — empate 3+ com 5+ frutas
+  const [puffinChoicePrimary, setPuffinChoicePrimary] = useState(null)
+  const [puffinChoiceSecondary, setPuffinChoiceSecondary] = useState(null)
+  const [snackInfoOpen, setSnackInfoOpen] = useState(false)
+  const [sucoInfoOpen, setSucoInfoOpen] = useState(false)
 
   // Estado para modal de Dano/Cura de Pokémon
   const [showPokemonHPModal, setShowPokemonHPModal] = useState(false)
@@ -7488,9 +7507,26 @@ function App() {
 
     const maxCount = Math.max(...Object.values(flavorCounts))
     const topFlavors = Object.keys(flavorCounts).filter(f => flavorCounts[f] === maxCount)
-    const shuffled = [...topFlavors].sort(() => Math.random() - 0.5)
-    const primaryFlavor = shuffled[0]
-    const secondaryFlavor = shuffled.length >= 2 ? shuffled[1] : null
+
+    // Empate de 3+ sabores com 5+ frutas → usuário escolhe
+    if (topFlavors.length >= 3 && filledSlots.length >= 5) {
+      setPuffinChoiceData({ tiedFlavors: topFlavors, maxCount })
+      setPuffinChoicePrimary(null)
+      setPuffinChoiceSecondary(null)
+      return
+    }
+
+    // Empate de 3+ sabores com < 5 frutas → sistema sorteia aleatoriamente
+    let primaryFlavor, secondaryFlavor
+    if (topFlavors.length >= 3) {
+      const shuffled = [...topFlavors].sort(() => Math.random() - 0.5)
+      primaryFlavor = shuffled[0]
+      secondaryFlavor = shuffled[1]
+    } else {
+      // 1 ou 2 sabores empatados: comportamento normal
+      primaryFlavor = topFlavors[0]
+      secondaryFlavor = topFlavors.length >= 2 ? topFlavors[1] : null
+    }
 
     // Verificar aroma das frutas além da 5ª
     let aroma = null
@@ -7538,6 +7574,71 @@ function App() {
     setShowFazerPuffinModal(false)
     setPuffinSlots([null, null, null, null, null])
     setPuffinSlotDropdown(null)
+    alert(`🐦 Puffin criado!\n\n${fullName}`)
+  }
+
+  // Confirmar escolha de sabores pelo usuário (empate 3+ com 5+ frutas)
+  const handleConfirmPuffinFlavor = () => {
+    if (!puffinChoicePrimary) {
+      alert('Escolha o sabor primário!')
+      return
+    }
+    const { maxCount } = puffinChoiceData
+    const filledSlots = puffinSlots.filter(s => s !== null)
+    const first5 = puffinSlots.slice(0, 5).filter(s => s !== null)
+    const flavorCounts = {}
+    first5.forEach(fruitName => {
+      getFruitFlavors(fruitName).forEach(f => {
+        flavorCounts[f] = (flavorCounts[f] || 0) + 1
+      })
+    })
+
+    // Verificar aroma
+    let aroma = null
+    const extraSlots = puffinSlots.slice(5).filter(s => s !== null)
+    if (extraSlots.length > 0) {
+      const totalCounts = { ...flavorCounts }
+      extraSlots.forEach(fruitName => {
+        getFruitFlavors(fruitName).forEach(f => {
+          totalCounts[f] = (totalCounts[f] || 0) + 1
+        })
+      })
+      const totalMax = Math.max(...Object.values(totalCounts))
+      const totalTop = Object.keys(totalCounts).filter(f => totalCounts[f] === totalMax)
+      const newDominant = totalTop[Math.floor(Math.random() * totalTop.length)]
+      if (newDominant !== puffinChoicePrimary) aroma = newDominant
+    }
+
+    let baseName = `Puffin ${puffinChoicePrimary}`
+    if (puffinChoiceSecondary) baseName += ` ${puffinChoiceSecondary}`
+    let fullName = aroma ? `${baseName} (${aroma})` : baseName
+    fullName = `${fullName} ${maxCount}`
+
+    const fruitCounts = {}
+    filledSlots.forEach(f => { fruitCounts[f] = (fruitCounts[f] || 0) + 1 })
+    let updatedKeyItems = keyItems.map(item => {
+      if (fruitCounts[item.name]) {
+        return { ...item, quantity: item.quantity - fruitCounts[item.name] }
+      }
+      return item
+    }).filter(item => item.quantity === undefined || item.quantity > 0)
+
+    const existing = updatedKeyItems.find(item => item.name === fullName)
+    if (existing) {
+      updatedKeyItems = updatedKeyItems.map(item =>
+        item.name === fullName ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    } else {
+      updatedKeyItems = [...updatedKeyItems, { name: fullName, quantity: 1 }]
+    }
+
+    setKeyItems(updatedKeyItems)
+    setShowFazerPuffinModal(false)
+    setPuffinSlots([null, null, null, null, null])
+    setPuffinSlotDropdown(null)
+    setPuffinChoiceData(null)
+    setPuffinChoicePrimary(null)
+    setPuffinChoiceSecondary(null)
     alert(`🐦 Puffin criado!\n\n${fullName}`)
   }
 
@@ -7632,12 +7733,23 @@ function App() {
 
 
   // Sortear qualidade para todos os Pokesucos na Pokéloja
-  const handleSortearQualidadeLoja = () => {
+  const handleSortearQualidadeLoja = async () => {
     const novasQualidades = {}
     POKESUCO_LOJA_TIPOS.forEach(color => {
       novasQualidades[color] = Math.floor(Math.random() * 10) + 1
     })
     setPokesucoLojaQualidades(novasQualidades)
+    if (useFirebase) {
+      await savePokesucoLojaQualidades(novasQualidades)
+    }
+  }
+
+  // Resetar qualidade de todos os Pokesucos na Pokéloja
+  const handleResetarQualidadeLoja = async () => {
+    setPokesucoLojaQualidades({})
+    if (useFirebase) {
+      await savePokesucoLojaQualidades({})
+    }
   }
 
   // Comprar Pokesuco da Pokéloja
@@ -13751,6 +13863,15 @@ function App() {
     }
   }, [])
 
+  // Sincronizar qualidades dos Pokesucos da Pokéloja em tempo real com Firebase
+  useEffect(() => {
+    if (!useFirebase) return
+    const unsubscribe = subscribeToPokesucoLojaQualidades((qualidades) => {
+      setPokesucoLojaQualidades(qualidades || {})
+    })
+    return () => { if (unsubscribe) unsubscribe() }
+  }, [])
+
   // Sincronizar dados de XP & Capturas em tempo real com Firebase (treinador)
   useEffect(() => {
     if (!useFirebase || !currentUser || currentUser.type !== 'treinador') return
@@ -14049,12 +14170,42 @@ function App() {
               </button>
             )}
           </div>
-          {/* Imagem */}
-          <div className="flex-1 overflow-hidden flex items-center justify-center p-4 min-h-0">
-            {imageUrl
-              ? <img src={imageUrl} alt={scenarioTitle} className="max-w-full max-h-full object-contain rounded-lg" />
-              : <span className="text-gray-500">Sem imagem</span>
-            }
+          {/* Imagem + Sidebar */}
+          <div className="flex-1 overflow-hidden flex min-h-0">
+            {/* Imagem principal */}
+            <div className="flex-1 overflow-hidden flex items-center justify-center p-4">
+              {imageUrl
+                ? <img src={imageUrl} alt={scenarioTitle} className="max-w-full max-h-full object-contain rounded-lg" />
+                : <span className="text-gray-500">Sem imagem</span>
+              }
+            </div>
+            {/* Sidebar de miniaturas — só para o mestre */}
+            {isMestre && scenarioImageUrls.length > 0 && (
+              <div className="w-28 flex-shrink-0 overflow-y-auto border-l border-gray-700 p-2 flex flex-col gap-2">
+                {scenarioImageUrls.map((url, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleNav(idx)}
+                    className={`relative w-full rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
+                      idx === currentIdx
+                        ? 'border-blue-500 ring-2 ring-blue-500/40'
+                        : 'border-transparent hover:border-gray-500'
+                    }`}
+                    style={{ aspectRatio: '4/3' }}
+                    title={`Imagem ${idx + 1}`}
+                  >
+                    <img
+                      src={url || '/pokeballs/placeholderitem.png'}
+                      alt={`Imagem ${idx + 1}`}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <span className="absolute bottom-0 left-0 right-0 text-center text-xs text-white bg-black/60 py-0.5 leading-tight">
+                      {idx + 1}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
           {/* Navegação */}
           {totalImages > 1 && (
@@ -21705,6 +21856,34 @@ function App() {
                             <RotateCw size={14} className="sm:w-4 sm:h-4" />
                             Resetar
                           </button>
+                          {corredor === 'Pokesucos' && (<>
+                            <button
+                              onClick={handleSortearQualidadeLoja}
+                              className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+                                darkMode
+                                  ? 'bg-pink-700 hover:bg-pink-800 text-white'
+                                  : 'bg-pink-500 hover:bg-pink-600 text-white'
+                              }`}
+                              title="Sortear qualidade dos Pokesucos para todos os usuários"
+                            >
+                              <Dices size={14} className="sm:w-4 sm:h-4" />
+                              <span className="hidden xs:inline">Sortear Qualidade</span>
+                              <span className="xs:hidden">Qualidade</span>
+                            </button>
+                            <button
+                              onClick={handleResetarQualidadeLoja}
+                              className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+                                darkMode
+                                  ? 'bg-red-700 hover:bg-red-800 text-white'
+                                  : 'bg-red-500 hover:bg-red-600 text-white'
+                              }`}
+                              title="Resetar qualidade: remover qualidade de todos os Pokesucos"
+                            >
+                              <RotateCw size={14} className="sm:w-4 sm:h-4" />
+                              <span className="hidden xs:inline">Resetar Qualidade</span>
+                              <span className="xs:hidden">Reset. Qual.</span>
+                            </button>
+                          </>)}
                         </div>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
@@ -21713,6 +21892,8 @@ function App() {
                           const currentPrice = customPrices[item.name] !== undefined ? customPrices[item.name] : item.price
                           const hasCustomPrice = customPrices[item.name] !== undefined
                           const isEditing = editingPriceItem === item.name
+                          const pokesucoQuality = item.isPokesucoLoja ? (pokesucoLojaQualidades[item.sucoColor] || null) : null
+                          const pokesucoPrice = pokesucoQuality ? pokesucoQuality * 150 : null
                           return (
                             <div
                               key={item.name}
@@ -21784,6 +21965,10 @@ function App() {
                                         <X size={12} />
                                       </button>
                                     </div>
+                                  ) : item.isPokesucoLoja ? (
+                                    <p className={`text-xs font-semibold ${pokesucoPrice ? (darkMode ? 'text-pink-300' : 'text-pink-600') : (darkMode ? 'text-gray-500' : 'text-gray-400')}`}>
+                                      {pokesucoPrice ? `₽${pokesucoPrice.toLocaleString()} (Q${pokesucoQuality})` : 'Sem qualidade'}
+                                    </p>
                                   ) : (
                                     <>
                                       <p className={`text-xs ${hasCustomPrice ? 'text-green-500 font-bold' : darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -33119,13 +33304,14 @@ function App() {
 
           const filledCount = puffinSlots.filter(s => s !== null).length
           return (
-            <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowFazerPuffinModal(false)}>
+            <div className="fixed inset-0 bg-black bg-opacity-60 flex flex-col md:flex-row items-center md:items-start justify-center gap-4 z-50 p-2 sm:p-4 overflow-y-auto" onClick={() => { setShowFazerPuffinModal(false); setPuffinInfoOpen(false); setPuffinChoiceData(null); setPuffinChoicePrimary(null); setPuffinChoiceSecondary(null) }}>
               <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-5">
                   <img src="/miniiconefazerpuffin.png" alt="Puffin" className="w-10 h-10 object-contain" onError={(e) => { e.target.style.display='none' }} />
                   <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-pink-300' : 'text-pink-700'}`}>Fazer Puffin</h3>
-                  <button onClick={() => setShowFazerPuffinModal(false)} className={`ml-auto p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-600'}`}>✕</button>
+                  <button onClick={() => setPuffinInfoOpen(v => !v)} className={`ml-auto p-1.5 rounded-lg transition-colors ${puffinInfoOpen ? (darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-600') : (darkMode ? 'hover:bg-gray-700 text-blue-400' : 'hover:bg-gray-200 text-blue-500')}`} title="Regras"><Info size={18} /></button>
+                  <button onClick={() => { setShowFazerPuffinModal(false); setPuffinChoiceData(null); setPuffinChoicePrimary(null); setPuffinChoiceSecondary(null) }} className={`p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-600'}`}>✕</button>
                 </div>
 
                 {/* Slots de frutas */}
@@ -33225,22 +33411,136 @@ function App() {
                     <p className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       Puffin previsto: <span className={`font-bold ${darkMode ? 'text-pink-300' : 'text-pink-700'}`}>{puffinPreview}</span>
                     </p>
-                    <p className={`text-xs mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>* Empates entre sabores são resolvidos aleatoriamente na criação.</p>
+                    <p className={`text-xs mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>* Empate de 2 sabores: puffin meio a meio. Empate de 3+: aleatório (menos de 5 frutas) ou você escolhe (5+ frutas).</p>
+                  </div>
+                )}
+
+                {/* Seleção de sabores — empate 3+ com 5+ frutas */}
+                {puffinChoiceData && (
+                  <div className={`mb-4 p-4 rounded-xl border-2 ${darkMode ? 'bg-purple-900/30 border-purple-600' : 'bg-purple-50 border-purple-300'}`}>
+                    <p className={`text-sm font-bold mb-3 ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>
+                      ⚖️ Empate! Escolha os sabores do Puffin
+                    </p>
+                    <div className="mb-3">
+                      <p className={`text-xs font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Sabor primário:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {puffinChoiceData.tiedFlavors.map(f => (
+                          <button key={f}
+                            onClick={() => { setPuffinChoicePrimary(f); if (puffinChoiceSecondary === f) setPuffinChoiceSecondary(null) }}
+                            className={`px-3 py-1.5 rounded-lg text-sm font-semibold border-2 transition-all ${puffinChoicePrimary === f ? 'bg-pink-600 border-pink-700 text-white' : (darkMode ? 'bg-gray-700 border-gray-500 text-white hover:bg-gray-600' : 'bg-white border-gray-300 text-gray-800 hover:bg-gray-50')}`}
+                          >{f}</button>
+                        ))}
+                      </div>
+                    </div>
+                    {puffinChoicePrimary && (
+                      <div>
+                        <p className={`text-xs font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Sabor secundário <span className="font-normal">(opcional)</span>:</p>
+                        <div className="flex flex-wrap gap-2">
+                          {puffinChoiceData.tiedFlavors.filter(f => f !== puffinChoicePrimary).map(f => (
+                            <button key={f}
+                              onClick={() => setPuffinChoiceSecondary(puffinChoiceSecondary === f ? null : f)}
+                              className={`px-3 py-1.5 rounded-lg text-sm font-semibold border-2 transition-all ${puffinChoiceSecondary === f ? 'bg-purple-600 border-purple-700 text-white' : (darkMode ? 'bg-gray-700 border-gray-500 text-white hover:bg-gray-600' : 'bg-white border-gray-300 text-gray-800 hover:bg-gray-50')}`}
+                            >{f}</button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
 
                 {/* Botões */}
                 <div className="flex gap-3">
-                  <button onClick={() => setShowFazerPuffinModal(false)} className={`flex-1 py-3 rounded-xl font-semibold ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>Cancelar</button>
-                  <button
-                    onClick={handleCriarPuffin}
-                    disabled={filledCount === 0}
-                    className={`flex-1 px-6 py-3 rounded-xl font-bold text-white transition-all ${filledCount > 0 ? 'bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 shadow-lg' : 'bg-gray-400 cursor-not-allowed'}`}
-                  >
-                    🐦 Criar Puffin
-                  </button>
+                  <button onClick={() => { setShowFazerPuffinModal(false); setPuffinChoiceData(null); setPuffinChoicePrimary(null); setPuffinChoiceSecondary(null) }} className={`flex-1 py-3 rounded-xl font-semibold ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>Cancelar</button>
+                  {puffinChoiceData ? (
+                    <button
+                      onClick={handleConfirmPuffinFlavor}
+                      disabled={!puffinChoicePrimary}
+                      className={`flex-1 px-6 py-3 rounded-xl font-bold text-white transition-all ${puffinChoicePrimary ? 'bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 shadow-lg' : 'bg-gray-400 cursor-not-allowed'}`}
+                    >
+                      ✓ Confirmar Puffin
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleCriarPuffin}
+                      disabled={filledCount === 0}
+                      className={`flex-1 px-6 py-3 rounded-xl font-bold text-white transition-all ${filledCount > 0 ? 'bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 shadow-lg' : 'bg-gray-400 cursor-not-allowed'}`}
+                    >
+                      🐦 Criar Puffin
+                    </button>
+                  )}
                 </div>
               </div>
+              {/* Painel de regras — Fazer Puffin */}
+              {puffinInfoOpen && (
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-5 w-full md:w-80 md:flex-shrink-0 max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className={`font-bold text-base ${darkMode ? 'text-pink-300' : 'text-pink-700'}`}>Guia de Puffins</h4>
+                    <button onClick={() => setPuffinInfoOpen(false)} className={`p-1 rounded ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-500'}`}>✕</button>
+                  </div>
+                  {/* O que é */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>O que é um Puffin?</h5>
+                    <p className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Snack feito com frutas que aumenta as aptidões de um Pokémon (Estilo, Beleza, Ternura, Perspicácia, Vigor).</p>
+                  </div>
+                  {/* Sabor → Aptidão */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Sabor → Aptidão</h5>
+                    <div className={`rounded-lg overflow-hidden border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                      {[
+                        { sabor: 'Picante', aptidao: 'Estilo', color: darkMode ? 'text-red-400' : 'text-red-600' },
+                        { sabor: 'Seco', aptidao: 'Beleza', color: darkMode ? 'text-blue-400' : 'text-blue-600' },
+                        { sabor: 'Doce', aptidao: 'Ternura', color: darkMode ? 'text-pink-400' : 'text-pink-600' },
+                        { sabor: 'Amargo', aptidao: 'Perspicácia', color: darkMode ? 'text-green-400' : 'text-green-600' },
+                        { sabor: 'Azedo', aptidao: 'Vigor', color: darkMode ? 'text-yellow-400' : 'text-yellow-600' },
+                      ].map((row, i) => (
+                        <div key={row.sabor} className={`flex justify-between px-3 py-1.5 text-xs ${i % 2 !== 0 ? (darkMode ? 'bg-gray-700' : 'bg-gray-50') : ''}`}>
+                          <span className={`font-semibold ${row.color}`}>{row.sabor}</span>
+                          <span className={darkMode ? 'text-gray-300' : 'text-gray-600'}>{row.aptidao}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Como fazer */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Como fazer</h5>
+                    <ul className={`text-xs space-y-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      <li>• <span className="font-semibold">Slots 1–5</span> definem o sabor.</li>
+                      <li>• Sabor mais frequente = <span className="font-semibold">sabor primário</span>.</li>
+                      <li>• Segundo mais frequente (empate exato de 2) = <span className="font-semibold">sabor secundário</span>.</li>
+                      <li>• <span className="font-semibold">Valor</span> = contagem máxima nos slots 1–5.</li>
+                    </ul>
+                    <p className={`text-xs mt-1.5 italic ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Ex: 3× Picante + 2× Seco → Puffin Picante Seco 3</p>
+                  </div>
+                  {/* Empates */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Empates de sabor</h5>
+                    <ul className={`text-xs space-y-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      <li>• <span className="font-semibold">2 sabores empatados:</span> puffin meio a meio com ambos.</li>
+                      <li>• <span className="font-semibold">3+ empatados, menos de 5 frutas:</span> o sistema sorteia os sabores aleatoriamente.</li>
+                      <li>• <span className="font-semibold">3+ empatados, 5 ou mais frutas:</span> você escolhe os sabores.</li>
+                    </ul>
+                  </div>
+                  {/* Aroma */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Aroma (slots 6+)</h5>
+                    <ul className={`text-xs space-y-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      <li>• Frutas nos slots 6+ criam um <span className="font-semibold">aroma</span>.</li>
+                      <li>• O sistema recalcula o dominante com todos os slots.</li>
+                      <li>• Se o novo dominante ≠ primário, vira o aroma.</li>
+                    </ul>
+                    <p className={`text-xs mt-1.5 italic ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Ex: Puffin Picante Seco (Amargo) 3</p>
+                  </div>
+                  {/* Limites */}
+                  <div>
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Limites de consumo</h5>
+                    <ul className={`text-xs space-y-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      <li>• Máximo de <span className="font-semibold">5 puffins</span> por Pokémon.</li>
+                      <li>• Cada aptidão tem limite de <span className="font-semibold">12</span>.</li>
+                      <li>• Total de todas as aptidões: máximo de <span className="font-semibold">20</span>.</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           )
         })()}
@@ -33256,13 +33556,14 @@ function App() {
           ]
           const puffinsNaMochila = keyItems.filter(item => item.name.startsWith('Puffin '))
           return (
-            <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => { setShowSnackModal(false); setSnackDropdownPokemon(null) }}>
+            <div className="fixed inset-0 bg-black bg-opacity-60 flex flex-col md:flex-row items-center md:items-start justify-center gap-4 z-50 p-2 sm:p-4 overflow-y-auto" onClick={() => { setShowSnackModal(false); setSnackDropdownPokemon(null); setSnackInfoOpen(false) }}>
               <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-6 max-w-5xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-5">
                   <img src="/minibittenpuffin.png" alt="Snack" className="w-10 h-10 object-contain" onError={(e) => { e.target.style.display='none' }} />
                   <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-pink-300' : 'text-pink-700'}`}>Snack</h3>
-                  <button onClick={() => { setShowSnackModal(false); setSnackDropdownPokemon(null) }} className={`ml-auto p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-600'}`}>✕</button>
+                  <button onClick={() => setSnackInfoOpen(v => !v)} className={`ml-auto p-1.5 rounded-lg transition-colors ${snackInfoOpen ? (darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-600') : (darkMode ? 'hover:bg-gray-700 text-blue-400' : 'hover:bg-gray-200 text-blue-500')}`} title="Regras"><Info size={18} /></button>
+                  <button onClick={() => { setShowSnackModal(false); setSnackDropdownPokemon(null) }} className={`p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-600'}`}>✕</button>
                 </div>
 
                 {puffinsNaMochila.length === 0 && (
@@ -33372,6 +33673,82 @@ function App() {
                   <button onClick={() => { setShowSnackModal(false); setSnackDropdownPokemon(null) }} className={`px-6 py-2.5 rounded-xl font-semibold ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>Fechar</button>
                 </div>
               </div>
+              {/* Painel de regras — Snack */}
+              {snackInfoOpen && (
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-5 w-full md:w-80 md:flex-shrink-0 max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className={`font-bold text-base ${darkMode ? 'text-pink-300' : 'text-pink-700'}`}>Ganho de Aptidão</h4>
+                    <button onClick={() => setSnackInfoOpen(false)} className={`p-1 rounded ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-500'}`}>✕</button>
+                  </div>
+                  {/* Sabor simples */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Sabor simples</h5>
+                    <p className={`text-xs mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Ganho vai para uma única aptidão:</p>
+                    <div className={`rounded-lg overflow-hidden border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                      {[
+                        { rel: 'Sabor favorito', ganho: 'valor + 1' },
+                        { rel: 'Sabor detestado', ganho: 'floor(valor / 2)' },
+                        { rel: 'Neutro', ganho: 'valor' },
+                      ].map((row, i) => (
+                        <div key={i} className={`flex justify-between px-3 py-1.5 text-xs ${i % 2 !== 0 ? (darkMode ? 'bg-gray-700' : 'bg-gray-50') : ''}`}>
+                          <span className={darkMode ? 'text-gray-300' : 'text-gray-600'}>{row.rel}</span>
+                          <span className={`font-mono font-semibold ${darkMode ? 'text-yellow-300' : 'text-yellow-700'}`}>{row.ganho}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Dois sabores */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Dois sabores</h5>
+                    <p className={`text-xs mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Base = <span className="font-mono">floor(valor / 2)</span> por aptidão, natureza verificada individualmente:</p>
+                    <div className={`rounded-lg overflow-hidden border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                      {[
+                        { rel: 'Sabor favorito', ganho: 'floor(v/2) + 1' },
+                        { rel: 'Sabor detestado', ganho: 'floor(v/4)' },
+                        { rel: 'Neutro', ganho: 'floor(v/2)' },
+                      ].map((row, i) => (
+                        <div key={i} className={`flex justify-between px-3 py-1.5 text-xs ${i % 2 !== 0 ? (darkMode ? 'bg-gray-700' : 'bg-gray-50') : ''}`}>
+                          <span className={darkMode ? 'text-gray-300' : 'text-gray-600'}>{row.rel}</span>
+                          <span className={`font-mono font-semibold ${darkMode ? 'text-yellow-300' : 'text-yellow-700'}`}>{row.ganho}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className={`text-xs mt-1.5 italic ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Ex: Puffin Picante Seco 4, ama Picante, detesta Seco → Estilo: 3 · Beleza: 1</p>
+                  </div>
+                  {/* Com aroma */}
+                  <div>
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Com aroma</h5>
+                    <p className={`text-xs mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>O aroma substitui o sabor como fonte do multiplicador.</p>
+                    <p className={`text-xs font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Sabor simples + aroma:</p>
+                    <div className={`rounded-lg overflow-hidden border mb-3 ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                      {[
+                        { rel: 'Aroma favorito', ganho: 'valor + 1' },
+                        { rel: 'Aroma detestado', ganho: 'floor(valor / 2)' },
+                        { rel: 'Neutro', ganho: 'valor' },
+                      ].map((row, i) => (
+                        <div key={i} className={`flex justify-between px-3 py-1.5 text-xs ${i % 2 !== 0 ? (darkMode ? 'bg-gray-700' : 'bg-gray-50') : ''}`}>
+                          <span className={darkMode ? 'text-gray-300' : 'text-gray-600'}>{row.rel}</span>
+                          <span className={`font-mono font-semibold ${darkMode ? 'text-yellow-300' : 'text-yellow-700'}`}>{row.ganho}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className={`text-xs font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Dois sabores + aroma (mesmo mult. para ambas):</p>
+                    <div className={`rounded-lg overflow-hidden border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                      {[
+                        { rel: 'Aroma favorito', ganho: 'floor(v/2) + 1' },
+                        { rel: 'Aroma detestado', ganho: 'floor(v/4)' },
+                        { rel: 'Neutro', ganho: 'floor(v/2)' },
+                      ].map((row, i) => (
+                        <div key={i} className={`flex justify-between px-3 py-1.5 text-xs ${i % 2 !== 0 ? (darkMode ? 'bg-gray-700' : 'bg-gray-50') : ''}`}>
+                          <span className={darkMode ? 'text-gray-300' : 'text-gray-600'}>{row.rel}</span>
+                          <span className={`font-mono font-semibold ${darkMode ? 'text-yellow-300' : 'text-yellow-700'}`}>{row.ganho}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className={`text-xs mt-1.5 italic ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Ex: Puffin Picante Seco (Amargo) 4, ama Amargo → Estilo: 3 · Beleza: 3</p>
+                  </div>
+                </div>
+              )}
             </div>
           )
         })()}
@@ -33389,13 +33766,14 @@ function App() {
             (!showDominante || pokesucoDominante)
 
           return (
-            <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowPokesucoModal(false)}>
+            <div className="fixed inset-0 bg-black bg-opacity-60 flex flex-col md:flex-row items-center md:items-start justify-center gap-4 z-50 p-2 sm:p-4 overflow-y-auto" onClick={() => { setShowPokesucoModal(false); setSucoInfoOpen(false) }}>
               <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-5">
                   <img src="/pokesuco/miniiconepokesuco.png" alt="Pokesuco" className="w-10 h-10 object-contain" onError={(e) => { e.target.style.display='none' }} />
                   <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>Fazer Pokesuco</h3>
-                  <button onClick={() => setShowPokesucoModal(false)} className={`ml-auto p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-600'}`}>✕</button>
+                  <button onClick={() => setSucoInfoOpen(v => !v)} className={`ml-auto p-1.5 rounded-lg transition-colors ${sucoInfoOpen ? (darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-600') : (darkMode ? 'hover:bg-gray-700 text-blue-400' : 'hover:bg-gray-200 text-blue-500')}`} title="Regras"><Info size={18} /></button>
+                  <button onClick={() => setShowPokesucoModal(false)} className={`p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-600'}`}>✕</button>
                 </div>
 
                 {/* Slots selecionados */}
@@ -33522,6 +33900,68 @@ function App() {
                   </button>
                 </div>
               </div>
+              {/* Painel de regras — Pokésuco */}
+              {sucoInfoOpen && (
+                <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 sm:p-5 w-full md:w-80 md:flex-shrink-0 max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className={`font-bold text-base ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>Guia de Pokésucos</h4>
+                    <button onClick={() => setSucoInfoOpen(false)} className={`p-1 rounded ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-500'}`}>✕</button>
+                  </div>
+                  {/* O que é */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>O que é um Pokésuco?</h5>
+                    <p className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Bebida feita com Apricorns que aumenta atributos ou deslocamentos de um Pokémon.</p>
+                  </div>
+                  {/* Cores e efeitos */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Cores e Efeitos</h5>
+                    <div className={`rounded-lg overflow-hidden border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                      {[
+                        { cor: 'Vermelho', efeito: '+1/4 ao Salto', color: darkMode ? 'text-red-400' : 'text-red-600' },
+                        { cor: 'Verde', efeito: '+1/4 à Inteligência', color: darkMode ? 'text-green-400' : 'text-green-600' },
+                        { cor: 'Amarelo', efeito: '+1/4 à Força', color: darkMode ? 'text-yellow-400' : 'text-yellow-600' },
+                        { cor: 'Azul', efeito: '+1/2 Escav./Sub./Voo', color: darkMode ? 'text-blue-400' : 'text-blue-600' },
+                        { cor: 'Rosa', efeito: '+1/2 Terrestre/Natação', color: darkMode ? 'text-pink-400' : 'text-pink-600' },
+                        { cor: 'Branco (Fraco)', efeito: '+1/5 atrib. ou +1/3 desl.', color: darkMode ? 'text-gray-300' : 'text-gray-600' },
+                        { cor: 'Arco-íris', efeito: '+1/4 a tudo', color: darkMode ? 'text-purple-400' : 'text-purple-600' },
+                      ].map((row, i) => (
+                        <div key={i} className={`flex justify-between px-3 py-1.5 text-xs gap-2 ${i % 2 !== 0 ? (darkMode ? 'bg-gray-700' : 'bg-gray-50') : ''}`}>
+                          <span className={`font-semibold shrink-0 ${row.color}`}>{row.cor}</span>
+                          <span className={`text-right ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{row.efeito}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Como fazer */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Como fazer</h5>
+                    <ul className={`text-xs space-y-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      <li>• Coloque <span className="font-semibold">Apricorns</span> nos slots.</li>
+                      <li>• Role <span className="font-mono font-semibold">1d4 + modificador (0–3)</span>.</li>
+                      <li>• <span className="font-semibold">Qualidade</span> = rolagem + Apricorns da cor dominante (máx. 10).</li>
+                    </ul>
+                    <p className={`text-xs mt-1.5 italic ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Ex: Pokésuco Vermelho 7</p>
+                  </div>
+                  {/* Regras especiais */}
+                  <div className="mb-4">
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Regras especiais</h5>
+                    <ul className={`text-xs space-y-1.5 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      <li>• <span className={`font-semibold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>Arco-íris:</span> qualquer Apricorn Arco-íris = suco vira Arco-íris. Vai no slot 3+, primeiros 2 slots devem ter cores diferentes.</li>
+                      <li>• <span className={`font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>Preto (Forte):</span> versão "Forte" da cor escolhida. Incompatível com Branco.</li>
+                      <li>• <span className={`font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>Branco (Fraco):</span> versão "Fraco". Incompatível com Preto. Duas cores → <span className="font-mono">Cor1/Cor2 Fraco</span>.</li>
+                      <li>• <span className="font-semibold">Cor dominante:</span> se duas cores empatadas, você escolhe.</li>
+                    </ul>
+                  </div>
+                  {/* Compra na Pokéloja */}
+                  <div>
+                    <h5 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Comprando na Pokéloja</h5>
+                    <ul className={`text-xs space-y-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      <li>• Qualidade de <span className="font-semibold">1 a 10</span>.</li>
+                      <li>• Preço = qualidade × <span className="font-semibold">₽150</span> (₽150 a ₽1.500).</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           )
         })()}
@@ -33572,22 +34012,11 @@ function App() {
                     onClick={() => toggleCorredor(corredor)}
                     className={`w-full p-3 sm:p-5 md:p-6 flex justify-between items-center ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-50'} transition-colors`}
                   >
-                    <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>🧃 {corredor}</h3>
+                    <h3 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{corredor}</h3>
                     {expandedCorredores[corredor] ? <ChevronDown size={24} className={darkMode ? 'text-white' : 'text-gray-800'} /> : <ChevronRight size={24} className={darkMode ? 'text-white' : 'text-gray-800'} />}
                   </button>
                   {expandedCorredores[corredor] && (
                     <div className="p-3 sm:p-5 md:p-6 pt-0">
-                      <div className="flex items-center justify-between mb-4">
-                        <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                          {Object.keys(pokesucoLojaQualidades).length > 0 ? 'Qualidades sorteadas!' : 'Clique para sortear as qualidades de hoje.'}
-                        </p>
-                        <button
-                          onClick={handleSortearQualidadeLoja}
-                          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow"
-                        >
-                          🎲 Sortear Qualidade
-                        </button>
-                      </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                         {items.map((item, idx) => {
                           const quality = pokesucoLojaQualidades[item.sucoColor] || null
@@ -48383,13 +48812,17 @@ function App() {
       const quantityFixed = qtyStr === ''
       const image = fabricarItemImage.trim() || '/pokeballs/placeholderitem.png'
       const description = fabricarItemDescription.trim()
-      const newItem = { id: Date.now() + Math.random(), name: nome, quantity: qty, quantityFixed, image, ...(description && { description }) }
+      const isFoto = fabricarItemIsFoto
+      const preco = isFoto ? (parseInt(fabricarItemPreco) || 0) : undefined
+      const newItem = { id: Date.now() + Math.random(), name: nome, quantity: qty, quantityFixed, image, ...(description && { description }), ...(isFoto && { isFoto: true, preco }) }
       setMasterItems(prev => [...prev, newItem])
       setShowFabricarItemModal(false)
       setFabricarItemName('')
       setFabricarItemQty('')
       setFabricarItemImage('')
       setFabricarItemDescription('')
+      setFabricarItemIsFoto(false)
+      setFabricarItemPreco('')
     }
 
     const handleConfirmEditMasterItem = () => {
@@ -48419,20 +48852,28 @@ function App() {
           const snapshot = await get(receiverRef)
           if (!snapshot.exists()) continue
           const receiverData = snapshot.val()
-          const receiverKeyItems = receiverData.keyItems || []
-          const existingItem = receiverKeyItems.find(item => item.name === mandarItemTarget.name)
-          let updatedReceiverKeyItems
-          if (existingItem) {
-            updatedReceiverKeyItems = receiverKeyItems.map(item =>
-              item.name === mandarItemTarget.name ? { ...item, quantity: item.quantity + 1 } : item
-            )
+          if (mandarItemTarget.isFoto) {
+            // Enviar como fotografia
+            const receiverFotografias = receiverData.fotografias || []
+            const newFoto = { id: Date.now() + Math.random(), nome: mandarItemTarget.name, url: mandarItemTarget.image || '', preco: mandarItemTarget.preco ?? 0 }
+            await set(ref(database, `trainers/${username}/fotografias`), [...receiverFotografias, newFoto])
           } else {
-            const newKI = { name: mandarItemTarget.name, quantity: 1 }
-            if (mandarItemTarget.image && mandarItemTarget.image !== '/pokeballs/placeholderitem.png') newKI.image = mandarItemTarget.image
-            if (mandarItemTarget.description) newKI.description = mandarItemTarget.description
-            updatedReceiverKeyItems = [...receiverKeyItems, newKI]
+            // Enviar como item de mochila normal
+            const receiverKeyItems = receiverData.keyItems || []
+            const existingItem = receiverKeyItems.find(item => item.name === mandarItemTarget.name)
+            let updatedReceiverKeyItems
+            if (existingItem) {
+              updatedReceiverKeyItems = receiverKeyItems.map(item =>
+                item.name === mandarItemTarget.name ? { ...item, quantity: item.quantity + 1 } : item
+              )
+            } else {
+              const newKI = { name: mandarItemTarget.name, quantity: 1 }
+              if (mandarItemTarget.image && mandarItemTarget.image !== '/pokeballs/placeholderitem.png') newKI.image = mandarItemTarget.image
+              if (mandarItemTarget.description) newKI.description = mandarItemTarget.description
+              updatedReceiverKeyItems = [...receiverKeyItems, newKI]
+            }
+            await set(ref(database, `trainers/${username}/keyItems`), updatedReceiverKeyItems)
           }
-          await set(ref(database, `trainers/${username}/keyItems`), updatedReceiverKeyItems)
         }
         const newQty = mandarItemTarget.quantity - mandarItemSelectedUsers.length
         if (newQty <= 0) {
@@ -48495,7 +48936,7 @@ function App() {
               <div className="flex items-center justify-between mb-4">
                 <h3 className={`text-base sm:text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Itens Não Enviados</h3>
                 <button
-                  onClick={() => { setFabricarItemName(''); setFabricarItemQty(''); setFabricarItemImage(''); setFabricarItemDescription(''); setShowFabricarItemModal(true) }}
+                  onClick={() => { setFabricarItemName(''); setFabricarItemQty(''); setFabricarItemImage(''); setFabricarItemDescription(''); setFabricarItemIsFoto(false); setFabricarItemPreco(''); setShowFabricarItemModal(true) }}
                   className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-colors"
                 >
                   <Package size={16} /> Fabricar Itens
@@ -48541,14 +48982,21 @@ function App() {
                           </button>
                         </div>
                         {/* Image */}
-                        <div className="w-12 h-12 flex items-center justify-center mt-3">
-                          <img
-                            src={item.image || '/pokeballs/placeholderitem.png'}
-                            alt={item.name}
-                            className="max-w-full max-h-full object-contain"
-                            onError={e => { e.target.src = '/pokeballs/placeholderitem.png' }}
-                          />
-                        </div>
+                        {item.isFoto ? (
+                          <div className="relative mt-3 flex-shrink-0" style={{ width: '64px', aspectRatio: '4/3' }}>
+                            <img src={item.image || '/pokeballs/placeholderitem.png'} alt={item.name} className="absolute inset-0 w-full h-full object-cover" style={{ padding: '6%', paddingBottom: '18%' }} onError={e => { e.target.src = '/pokeballs/placeholderitem.png' }} />
+                            <img src="/fotografiatemplate.png" alt="" className="absolute inset-0 w-full h-full object-fill pointer-events-none" />
+                          </div>
+                        ) : (
+                          <div className="w-12 h-12 flex items-center justify-center mt-3">
+                            <img
+                              src={item.image || '/pokeballs/placeholderitem.png'}
+                              alt={item.name}
+                              className="max-w-full max-h-full object-contain"
+                              onError={e => { e.target.src = '/pokeballs/placeholderitem.png' }}
+                            />
+                          </div>
+                        )}
                         {/* Name */}
                         <span className={`text-xs font-semibold text-center leading-tight line-clamp-2 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>{item.name}</span>
                         {/* Qty */}
@@ -48667,6 +49115,21 @@ function App() {
                     <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Descrição</label>
                     <textarea value={fabricarItemDescription} onChange={e => setFabricarItemDescription(e.target.value)} placeholder="Descrição do item (opcional)" rows={3} className={`w-full px-3 py-2.5 rounded-lg border text-sm resize-none ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`} />
                   </div>
+                  {/* Checkbox Foto */}
+                  <div>
+                    <label className="flex items-center gap-2 cursor-pointer select-none">
+                      <input type="checkbox" checked={fabricarItemIsFoto} onChange={e => setFabricarItemIsFoto(e.target.checked)} className="w-4 h-4 accent-purple-600" />
+                      <span className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Foto</span>
+                      <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>— item será tratado como fotografia</span>
+                    </label>
+                  </div>
+                  {/* Preço — aparece só quando Foto está marcado */}
+                  {fabricarItemIsFoto && (
+                    <div>
+                      <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Preço (₽)</label>
+                      <input type="number" min={0} value={fabricarItemPreco} onChange={e => setFabricarItemPreco(e.target.value)} placeholder="0" className={`w-full px-3 py-2.5 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`} />
+                    </div>
+                  )}
                 </div>
                 <div className="flex gap-3 mt-6">
                   <button onClick={() => setShowFabricarItemModal(false)} className={`flex-1 py-2.5 rounded-xl font-semibold text-sm ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>Cancelar</button>
