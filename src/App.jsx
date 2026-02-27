@@ -25366,18 +25366,18 @@ function App() {
                               {/* ESQUERDA — Evasões */}
                               <div className="flex flex-col items-center">
                                 <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>Evasões</h6>
-                                <div className="flex gap-1">
-                                  <div className={`text-center px-3 py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
-                                    <div className={`text-base whitespace-nowrap ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>Física</div>
-                                    <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculatePhysicalEvasion(pokemon)}</div>
+                                <div className="grid grid-cols-3 gap-1 w-full">
+                                  <div className={`text-center py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
+                                    <div className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-500'}`} style={{ fontSize: '0.6rem' }}>Física</div>
+                                    <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculatePhysicalEvasion(pokemon)}</div>
                                   </div>
-                                  <div className={`text-center px-3 py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
-                                    <div className={`text-base whitespace-nowrap ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>Especial</div>
-                                    <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculateSpecialEvasion(pokemon)}</div>
+                                  <div className={`text-center py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
+                                    <div className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-500'}`} style={{ fontSize: '0.6rem' }}>Especial</div>
+                                    <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculateSpecialEvasion(pokemon)}</div>
                                   </div>
-                                  <div className={`text-center px-3 py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
-                                    <div className={`text-base whitespace-nowrap ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>Veloz</div>
-                                    <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculateSpeedEvasion(pokemon)}</div>
+                                  <div className={`text-center py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
+                                    <div className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-500'}`} style={{ fontSize: '0.6rem' }}>Veloz</div>
+                                    <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculateSpeedEvasion(pokemon)}</div>
                                   </div>
                                 </div>
                               </div>
@@ -25392,16 +25392,16 @@ function App() {
                                   { key: 'cavar', label: 'Escavação' },
                                   { key: 'submerso', label: 'Subaquático' },
                                 ]
-                                const active = d ? LABELS.filter(({ key }) => d[key] !== '' && d[key] != null) : []
+                                const active = d ? LABELS.filter(({ key }) => d[key] !== '' && d[key] != null && d[key] !== 0 && d[key] !== '0') : []
                                 return (
                                   <div className="flex flex-col items-center">
                                     <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-green-300' : 'text-green-700'}`}>Deslocamentos</h6>
                                     {active.length > 0 ? (
-                                      <div className="flex gap-1 flex-wrap justify-center">
+                                      <div className="grid gap-1 w-full" style={{ gridTemplateColumns: `repeat(${active.length}, 1fr)` }}>
                                         {active.map(({ key, label }) => (
-                                          <div key={key} className={`text-center px-2 py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-green-100'}`}>
-                                            <div className={`text-xs whitespace-nowrap ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{label}</div>
-                                            <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-green-700'}`}>{d[key]}</div>
+                                          <div key={key} className={`text-center py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-green-100'}`}>
+                                            <div className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-500'}`} style={{ fontSize: '0.6rem' }}>{label}</div>
+                                            <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-green-700'}`}>{d[key]}</div>
                                           </div>
                                         ))}
                                       </div>
@@ -25425,11 +25425,11 @@ function App() {
                                   <div className="flex flex-col items-center">
                                     <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-orange-300' : 'text-orange-700'}`}>Capacidades</h6>
                                     {active.length > 0 ? (
-                                      <div className="flex gap-1 flex-wrap justify-center">
+                                      <div className="grid gap-1 w-full" style={{ gridTemplateColumns: `repeat(${active.length}, 1fr)` }}>
                                         {active.map(({ key, label }) => (
-                                          <div key={key} className={`text-center px-2 py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-orange-100'}`}>
-                                            <div className={`text-xs whitespace-nowrap ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{label}</div>
-                                            <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-orange-700'}`}>{c[key]}</div>
+                                          <div key={key} className={`text-center py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-orange-100'}`}>
+                                            <div className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-500'}`} style={{ fontSize: '0.6rem' }}>{label}</div>
+                                            <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-orange-700'}`}>{c[key]}</div>
                                           </div>
                                         ))}
                                       </div>
@@ -25518,7 +25518,7 @@ function App() {
                   { key: 'cavar', label: 'Escavação' },
                   { key: 'submerso', label: 'Subaquático' },
                 ]
-                const active = d ? LABELS.filter(({ key }) => d[key] !== '' && d[key] != null) : []
+                const active = d ? LABELS.filter(({ key }) => d[key] !== '' && d[key] != null && d[key] !== 0 && d[key] !== '0') : []
                 return active.length > 0 ? (
                   <div className="flex gap-2 flex-wrap justify-center">
                     {active.map(({ key, label }) => (
