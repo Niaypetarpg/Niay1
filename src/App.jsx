@@ -14787,7 +14787,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username} {currentUser.type === 'mestre' && '👑'}</h2></div>
@@ -14820,7 +14820,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Gerador Pokémon 👑</h2></div>
@@ -14951,7 +14951,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Clima</h2></div>
@@ -15030,7 +15030,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Hub de Troca M 👑</h2></div>
@@ -15588,7 +15588,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Treinador NPC 👑</h2></div>
@@ -15620,7 +15620,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Treinador NPC 👑</h2></div>
@@ -16453,7 +16453,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon NPC 👑</h2></div>
@@ -16485,7 +16485,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokémon NPC 👑</h2></div>
@@ -17639,7 +17639,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>NPCs Arquivados 👑</h2></div>
@@ -18104,7 +18104,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Batalha 👑</h2></div>
@@ -20776,7 +20776,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Enciclopédia M 👑</h2></div>
@@ -21759,7 +21759,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Visão do Mestre 👑</h2></div>
@@ -22965,7 +22965,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>XP & Capturas M 👑</h2></div>
@@ -23658,7 +23658,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>PokeApp 👑</h2></div>
@@ -24743,7 +24743,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{currentUser.username}</h2></div>
@@ -25552,17 +25552,17 @@ function App() {
                               <div className="flex flex-col items-center">
                                 <h6 className={`text-xs font-bold mb-1 ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>Evasões</h6>
                                 <div className="grid grid-cols-3 gap-1 w-full">
-                                  <div className={`text-center py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
-                                    <div className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-500'}`} style={{ fontSize: '0.6rem' }}>Física</div>
-                                    <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculatePhysicalEvasion(pokemon)}</div>
+                                  <div className={`text-center py-[14px] rounded ${darkMode ? 'bg-blue-300' : 'bg-blue-700'}`}>
+                                    <div className={`text-xs font-semibold ${darkMode ? 'text-blue-800' : 'text-blue-100'}`} style={{ fontSize: '0.6rem' }}>Física</div>
+                                    <div className={`text-sm font-bold ${darkMode ? 'text-blue-900' : 'text-white'}`}>{calculatePhysicalEvasion(pokemon)}</div>
                                   </div>
-                                  <div className={`text-center py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
-                                    <div className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-500'}`} style={{ fontSize: '0.6rem' }}>Especial</div>
-                                    <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculateSpecialEvasion(pokemon)}</div>
+                                  <div className={`text-center py-[14px] rounded ${darkMode ? 'bg-blue-300' : 'bg-blue-700'}`}>
+                                    <div className={`text-xs font-semibold ${darkMode ? 'text-blue-800' : 'text-blue-100'}`} style={{ fontSize: '0.6rem' }}>Especial</div>
+                                    <div className={`text-sm font-bold ${darkMode ? 'text-blue-900' : 'text-white'}`}>{calculateSpecialEvasion(pokemon)}</div>
                                   </div>
-                                  <div className={`text-center py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
-                                    <div className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-500'}`} style={{ fontSize: '0.6rem' }}>Veloz</div>
-                                    <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{calculateSpeedEvasion(pokemon)}</div>
+                                  <div className={`text-center py-[14px] rounded ${darkMode ? 'bg-blue-300' : 'bg-blue-700'}`}>
+                                    <div className={`text-xs font-semibold ${darkMode ? 'text-blue-800' : 'text-blue-100'}`} style={{ fontSize: '0.6rem' }}>Veloz</div>
+                                    <div className={`text-sm font-bold ${darkMode ? 'text-blue-900' : 'text-white'}`}>{calculateSpeedEvasion(pokemon)}</div>
                                   </div>
                                 </div>
                               </div>
@@ -25584,9 +25584,9 @@ function App() {
                                     {active.length > 0 ? (
                                       <div className="grid gap-1 w-full" style={{ gridTemplateColumns: `repeat(${active.length}, 1fr)` }}>
                                         {active.map(({ key, label }) => (
-                                          <div key={key} className={`text-center py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-green-100'}`}>
-                                            <div className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-500'}`} style={{ fontSize: '0.6rem' }}>{label}</div>
-                                            <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-green-700'}`}>{d[key]}</div>
+                                          <div key={key} className={`text-center py-[14px] rounded ${darkMode ? 'bg-green-300' : 'bg-green-700'}`}>
+                                            <div className={`text-xs font-semibold ${darkMode ? 'text-green-800' : 'text-green-100'}`} style={{ fontSize: '0.6rem' }}>{label}</div>
+                                            <div className={`text-sm font-bold ${darkMode ? 'text-green-900' : 'text-white'}`}>{d[key]}</div>
                                           </div>
                                         ))}
                                       </div>
@@ -25612,9 +25612,9 @@ function App() {
                                     {active.length > 0 ? (
                                       <div className="grid gap-1 w-full" style={{ gridTemplateColumns: `repeat(${active.length}, 1fr)` }}>
                                         {active.map(({ key, label }) => (
-                                          <div key={key} className={`text-center py-[14px] rounded ${darkMode ? 'bg-gray-600' : 'bg-orange-100'}`}>
-                                            <div className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-500'}`} style={{ fontSize: '0.6rem' }}>{label}</div>
-                                            <div className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-orange-700'}`}>{c[key]}</div>
+                                          <div key={key} className={`text-center py-[14px] rounded ${darkMode ? 'bg-orange-300' : 'bg-orange-700'}`}>
+                                            <div className={`text-xs font-semibold ${darkMode ? 'text-orange-800' : 'text-orange-100'}`} style={{ fontSize: '0.6rem' }}>{label}</div>
+                                            <div className={`text-sm font-bold ${darkMode ? 'text-orange-900' : 'text-white'}`}>{c[key]}</div>
                                           </div>
                                         ))}
                                       </div>
@@ -25685,9 +25685,9 @@ function App() {
                     { label: 'Especial', value: calculateSpecialEvasion(openPokemonSection.pokemon) },
                     { label: 'Veloz', value: calculateSpeedEvasion(openPokemonSection.pokemon) },
                   ].map(({ label, value }) => (
-                    <div key={label} className={`flex-1 text-center py-4 rounded ${darkMode ? 'bg-gray-600' : 'bg-blue-100'}`}>
-                      <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{label}</div>
-                      <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-blue-700'}`}>{value}</div>
+                    <div key={label} className={`flex-1 text-center py-4 rounded ${darkMode ? 'bg-blue-300' : 'bg-blue-700'}`}>
+                      <div className={`text-sm ${darkMode ? 'text-blue-800' : 'text-blue-100'}`}>{label}</div>
+                      <div className={`text-2xl font-bold ${darkMode ? 'text-blue-900' : 'text-white'}`}>{value}</div>
                     </div>
                   ))}
                 </div>
@@ -25707,9 +25707,9 @@ function App() {
                 return active.length > 0 ? (
                   <div className="flex gap-2 flex-wrap justify-center">
                     {active.map(({ key, label }) => (
-                      <div key={key} className={`text-center px-4 py-4 rounded ${darkMode ? 'bg-gray-600' : 'bg-green-100'}`}>
-                        <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{label}</div>
-                        <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-green-700'}`}>{d[key]}</div>
+                      <div key={key} className={`text-center px-4 py-4 rounded ${darkMode ? 'bg-green-300' : 'bg-green-700'}`}>
+                        <div className={`text-sm ${darkMode ? 'text-green-800' : 'text-green-100'}`}>{label}</div>
+                        <div className={`text-2xl font-bold ${darkMode ? 'text-green-900' : 'text-white'}`}>{d[key]}</div>
                       </div>
                     ))}
                   </div>
@@ -25730,9 +25730,9 @@ function App() {
                 return active.length > 0 ? (
                   <div className="flex gap-2 flex-wrap justify-center">
                     {active.map(({ key, label }) => (
-                      <div key={key} className={`text-center px-4 py-4 rounded ${darkMode ? 'bg-gray-600' : 'bg-orange-100'}`}>
-                        <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>{label}</div>
-                        <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-orange-700'}`}>{c[key]}</div>
+                      <div key={key} className={`text-center px-4 py-4 rounded ${darkMode ? 'bg-orange-300' : 'bg-orange-700'}`}>
+                        <div className={`text-sm ${darkMode ? 'text-orange-800' : 'text-orange-100'}`}>{label}</div>
+                        <div className={`text-2xl font-bold ${darkMode ? 'text-orange-900' : 'text-white'}`}>{c[key]}</div>
                       </div>
                     ))}
                   </div>
@@ -28214,7 +28214,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>PC ({pcPokemon.length}/1000)</h2></div>
@@ -30703,7 +30703,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Pokédex ({pokedex.length})</h2></div>
@@ -31544,7 +31544,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Mochila</h2></div>
@@ -33978,7 +33978,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
@@ -34285,7 +34285,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Insígnias</h2></div>
@@ -34447,7 +34447,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Características & Talentos</h2></div>
@@ -35220,7 +35220,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Enciclopédia</h2></div>
@@ -36402,7 +36402,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Progressão</h2></div>
@@ -38118,7 +38118,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Batalha Pkm</h2></div>
@@ -41311,7 +41311,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari</h2></div>
@@ -42247,7 +42247,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns</h2></div>
@@ -42514,7 +42514,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Hub de Troca</h2></div>
@@ -42751,7 +42751,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -44465,7 +44465,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari Staff</h2></div>
@@ -45225,7 +45225,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns M</h2></div>
@@ -45319,7 +45319,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -46172,7 +46172,7 @@ function App() {
         <>
           <div className={`min-h-screen ${mainBgClass}`}>
             {sidebarNav}
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
               <div className="max-w-7xl mx-auto px-4 py-4">
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Batalha Game Boy</h2></div>
@@ -46317,7 +46317,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Batalha Game Boy</h2></div>
@@ -46744,7 +46744,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3">
@@ -46779,7 +46779,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3">
@@ -47010,7 +47010,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Batalha Game Boy M</h2></div>
@@ -47401,7 +47401,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3">
@@ -47437,7 +47437,7 @@ function App() {
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
           {/* Header */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3">
@@ -47653,7 +47653,7 @@ function App() {
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
           {/* Header */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-4xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-3">
@@ -47775,7 +47775,7 @@ function App() {
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
           {/* Header */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-3">
@@ -47995,7 +47995,7 @@ function App() {
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
           {/* Header */}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-3">
@@ -48267,7 +48267,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Objetivos 👑</h2></div>
@@ -48762,7 +48762,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3">
@@ -48915,7 +48915,7 @@ function App() {
       <>
         <div className={`min-h-screen ${mainBgClass}`}>
           {sidebarNav}
-          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3">
