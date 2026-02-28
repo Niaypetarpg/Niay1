@@ -10186,8 +10186,8 @@ function App() {
     const fakeNames = ['Vulto', 'Sua Mãe', 'Carinha da esquina', 'Agumon', 'Gabumon', 'Mochi', 'Mewtwoo', 'Sua Vó', 'Claúdio', 'Biroliro', 'Flamengo', 'Chrmader', 'Seu Pai', 'Dois Reias']
     const fakeName = fakeNames[Math.floor(Math.random() * fakeNames.length)]
 
-    // Bônus Alfa: +3 em todos os atributos
-    const alfaBonus = npcAlfaStatus[pokemon.id] ? 3 : 0
+    // Bônus Alfa: +8 em todos os atributos
+    const alfaBonus = npcAlfaStatus[pokemon.id] ? 8 : 0
 
     const battleData = {
       id: `npc-pokemon-${Date.now()}-${Math.random()}`,
@@ -10226,7 +10226,7 @@ function App() {
     const availableBalls = POKEBALLS_LIST.filter(b => !excludedBalls.includes(b))
     const randomBall = availableBalls[Math.floor(Math.random() * availableBalls.length)]
 
-    const alfaBonus = npcAlfaStatus[pokemon.id] ? 3 : 0
+    const alfaBonus = npcAlfaStatus[pokemon.id] ? 8 : 0
     const maxHP = (3 * (pokemon.attributes.saude + alfaBonus)) + pokemon.level
 
     const gbPokemon = {
@@ -15233,7 +15233,7 @@ function App() {
                         /* Card expandido */
                         <div className="p-3 sm:p-4">
                           {/* Variavel de bonus Alfa */}
-                          {(() => { pokemon._alfaBonus = tradeHubAlfaStatus[pokemon.id] ? 3 : 0; return null })()}
+                          {(() => { pokemon._alfaBonus = tradeHubAlfaStatus[pokemon.id] ? 8 : 0; return null })()}
                           <div className="flex justify-between items-start mb-3">
                             <div
                               onClick={() => setExpandedTradeCards(prev => ({ ...prev, [trade.id]: false }))}
@@ -15295,7 +15295,7 @@ function App() {
                                 Alfa
                               </span>
                               {tradeHubAlfaStatus[pokemon.id] && (
-                                <span className="text-xs text-red-500 ml-auto font-semibold">ATR +3 | Captura -10 | XP x2</span>
+                                <span className="text-xs text-red-500 ml-auto font-semibold">ATR +8 | Captura -30 | XP x2</span>
                               )}
                             </label>
                           </div>
@@ -16623,7 +16623,7 @@ function App() {
                       // Card expandido - todas as informações
                       <div className="p-3 sm:p-4">
                         {/* Variável de bônus Alfa */}
-                        {(() => { pokemon._alfaBonus = npcAlfaStatus[pokemon.id] ? 3 : 0; return null })()}
+                        {(() => { pokemon._alfaBonus = npcAlfaStatus[pokemon.id] ? 8 : 0; return null })()}
                         <div className="flex justify-between items-start mb-3">
                           <div
                             onClick={() => toggleNpcCard(pokemon.id)}
@@ -16714,7 +16714,7 @@ function App() {
                               Alfa
                             </span>
                             {npcAlfaStatus[pokemon.id] && (
-                              <span className="text-xs text-red-500 ml-auto font-semibold">ATR +3 | Captura -10 | XP x2</span>
+                              <span className="text-xs text-red-500 ml-auto font-semibold">ATR +8 | Captura -30 | XP x2</span>
                             )}
                           </label>
                         </div>
@@ -25293,9 +25293,14 @@ function App() {
                                 <div className={`text-[10px] whitespace-nowrap ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>Bônus Ele.</div>
                                 <div className={`text-base font-bold ${darkMode ? 'text-white' : 'text-purple-700'}`}>{calculateElementalBonus(pokemon)}</div>
                               </div>
-                              {pokemonImages[sanitizeFirebaseKey(pokemon.id)] && (
-                                <img src={pokemonImages[sanitizeFirebaseKey(pokemon.id)]} alt={pokemon.nickname} className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 object-cover rounded-lg border-2 border-blue-500" />
-                              )}
+                              {(() => {
+                                const _src = pokemonImages[sanitizeFirebaseKey(pokemon.id)] || pokemon.imageUrl
+                                const _dexNum = fullPokedexData.find(p => p.nome === pokemon.species)?.dexNumber
+                                const _fallback = _dexNum ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${_dexNum}.png` : null
+                                const _imgSrc = _src || _fallback
+                                if (!_imgSrc) return null
+                                return <img src={_imgSrc} onError={_fallback && _imgSrc !== _fallback ? (e) => { e.currentTarget.onerror = null; e.currentTarget.src = _fallback } : undefined} alt={pokemon.nickname || pokemon.species} className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 object-contain rounded-lg border-2 border-blue-500" />
+                              })()}
                               {pokemon.pokeball && (
                                 <img
                                   src={pokemon.pokeball === 'Custom Pokeball' && pokemon.customPokeballImage ? pokemon.customPokeballImage : `/pokeballs/${pokemon.pokeball.toLowerCase().replace(/\s+/g, '')}.png`}
@@ -27121,25 +27126,27 @@ function App() {
 
         {/* Modal de Visualização de Informações do Pokémon */}
         {showPokemonInfoModal && viewingPokemon && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`}>
-              <div className={`sticky top-0 ${darkMode ? 'bg-gray-700' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-3 sm:p-5 md:p-6 rounded-t-2xl`}>
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    {viewingPokemon.nickname || viewingPokemon.species}
-                  </h3>
-                  <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="text-white hover:text-gray-300">
-                    <X size={28} />
-                  </button>
-                </div>
-              </div>
-
-              <div className={`p-3 sm:p-5 md:p-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                {/* Informações Básicas */}
-                <div className="mb-6">
-                  <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Informações Básicas</h4>
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div><span className="font-semibold">Apelido:</span> {viewingPokemon.nickname || '-'}</div>
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-2" onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }}>
+            <div className="relative" style={{ width: 'min(92vw, 530px)' }} onClick={e => e.stopPropagation()}>
+              <img src="/dexcerta.png" alt="" className="w-full h-auto block relative z-10" style={{ pointerEvents: 'none' }} draggable={false} />
+              <button
+                onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }}
+                className="absolute z-20 rounded-full p-0.5 transition-colors"
+                style={{ top: '3%', right: '3%', background: 'rgba(255,255,255,0.65)' }}
+              >
+                <X size={12} className="text-gray-800" />
+              </button>
+              {/* Painel esquerdo: informações */}
+              <div
+                className="absolute overflow-y-auto overflow-x-hidden"
+                style={{ top: '20%', left: '7%', right: '55%', bottom: '40%', background: '#c0d8f0' }}
+              >
+                <div className="p-1.5 text-xs text-gray-800">
+                  {/* Nome */}
+                  <div className="text-center font-bold text-sm mb-1">{viewingPokemon.nickname || viewingPokemon.species}</div>
+                  {/* Informações Básicas */}
+                  <div className="font-semibold border-b border-gray-300 mb-1">Informações Básicas</div>
+                  <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 mb-2">
                     <div><span className="font-semibold">Espécie:</span> {viewingPokemon.species || '-'}</div>
                     <div><span className="font-semibold">Nível:</span> {viewingPokemon.level || '-'}</div>
                     <div><span className="font-semibold">XP:</span> {getCurrentLevelXP(viewingPokemon)}/{getXPForNextLevel(viewingPokemon.level)}</div>
@@ -27150,63 +27157,59 @@ function App() {
                     <div><span className="font-semibold">Altura:</span> {viewingPokemon.height || '-'} m</div>
                     <div><span className="font-semibold">Lealdade:</span> {viewingPokemon.loyalty || '-'}</div>
                   </div>
-                </div>
-
-                {/* Capacidades */}
-                {viewingPokemon.capacities && (viewingPokemon.capacities.forca || viewingPokemon.capacities.inteligencia || viewingPokemon.capacities.salto) && (
-                  <div className="mb-6">
-                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Capacidades</h4>
-                    <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 text-sm">
-                      {viewingPokemon.capacities.forca && (
-                        <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                          <div className="font-semibold text-blue-600">Força</div>
-                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.forca}</div>
-                        </div>
-                      )}
-                      {viewingPokemon.capacities.inteligencia && (
-                        <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'}`}>
-                          <div className="font-semibold text-purple-600">Inteligência</div>
-                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.inteligencia}</div>
-                        </div>
-                      )}
-                      {viewingPokemon.capacities.salto && (
-                        <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-green-50'}`}>
-                          <div className="font-semibold text-green-600">Salto</div>
-                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.salto}</div>
-                        </div>
-                      )}
+                  {/* Capacidades */}
+                  {viewingPokemon.capacities && (viewingPokemon.capacities.forca || viewingPokemon.capacities.inteligencia || viewingPokemon.capacities.salto) && (
+                    <div className="mb-2">
+                      <div className="font-semibold border-b border-gray-300 mb-1">Capacidades</div>
+                      <div className="grid grid-cols-3 gap-1">
+                        {viewingPokemon.capacities.forca && (
+                          <div className="text-center bg-blue-50 rounded p-1">
+                            <div className="font-semibold text-blue-600" style={{ fontSize: '0.6rem' }}>Força</div>
+                            <div className="font-bold">{viewingPokemon.capacities.forca}</div>
+                          </div>
+                        )}
+                        {viewingPokemon.capacities.inteligencia && (
+                          <div className="text-center bg-purple-50 rounded p-1">
+                            <div className="font-semibold text-purple-600" style={{ fontSize: '0.6rem' }}>Inteligência</div>
+                            <div className="font-bold">{viewingPokemon.capacities.inteligencia}</div>
+                          </div>
+                        )}
+                        {viewingPokemon.capacities.salto && (
+                          <div className="text-center bg-green-50 rounded p-1">
+                            <div className="font-semibold text-green-600" style={{ fontSize: '0.6rem' }}>Salto</div>
+                            <div className="font-bold">{viewingPokemon.capacities.salto}</div>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )}
-
-                {/* Atributos */}
-                {(viewingPokemon.baseAttributes || viewingPokemon.levelPoints) && (
-                  <div className="mb-6">
-                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Atributos</h4>
-                    <div className="overflow-x-auto">
-                      <table className={`w-full border-collapse ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
+                  )}
+                  {/* Atributos */}
+                  {(viewingPokemon.baseAttributes || viewingPokemon.levelPoints) && (
+                    <div className="mb-2">
+                      <div className="font-semibold border-b border-gray-300 mb-1">Atributos</div>
+                      <table className="w-full border-collapse" style={{ fontSize: '0.6rem' }}>
                         <thead>
-                          <tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Atributo</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Basal</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Atributo Bônus</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Basal + Bônus + Nat.</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Pontos Nível</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Total</th>
+                          <tr className="bg-gray-200">
+                            <th className="border border-gray-300 p-0.5">Atr.</th>
+                            <th className="border border-gray-300 p-0.5">Bas.</th>
+                            <th className="border border-gray-300 p-0.5">+Bôn.</th>
+                            <th className="border border-gray-300 p-0.5">+Nat.</th>
+                            <th className="border border-gray-300 p-0.5">+Nív.</th>
+                            <th className="border border-gray-300 p-0.5">Tot.</th>
                           </tr>
                         </thead>
                         <tbody>
                           {[
-                            { label: 'Saúde', key: 'saude' },
-                            { label: 'Ataque', key: 'ataque' },
-                            { label: 'Defesa', key: 'defesa' },
-                            { label: 'Ataque Especial', key: 'ataqueEspecial' },
-                            { label: 'Defesa Especial', key: 'defesaEspecial' },
-                            { label: 'Velocidade', key: 'velocidade' }
+                            { label: 'Saú.', key: 'saude', fullLabel: 'Saúde' },
+                            { label: 'Ata.', key: 'ataque', fullLabel: 'Ataque' },
+                            { label: 'Def.', key: 'defesa', fullLabel: 'Defesa' },
+                            { label: 'A.E.', key: 'ataqueEspecial', fullLabel: 'Ataque Especial' },
+                            { label: 'D.E.', key: 'defesaEspecial', fullLabel: 'Defesa Especial' },
+                            { label: 'Vel.', key: 'velocidade', fullLabel: 'Velocidade' }
                           ].map(attr => {
                             const selectedNature = natures.find(n => n.nome === viewingPokemon.nature)
-                            const isIncreased = selectedNature?.up === attr.label
-                            const isDecreased = selectedNature?.down === attr.label
+                            const isIncreased = selectedNature?.up === attr.fullLabel
+                            const isDecreased = selectedNature?.down === attr.fullLabel
                             const baseVal = parseInt(viewingPokemon.baseAttributes?.[attr.key]) || 0
                             const bonusVal = parseInt(viewingPokemon.bonusPoints?.[attr.key]) || 0
                             const natureBonus = attr.key === 'saude' ? 1 : 2
@@ -27214,73 +27217,75 @@ function App() {
                             const levelVal = parseInt(viewingPokemon.levelPoints?.[attr.key]) || 0
                             const basalBonusNat = baseVal + bonusVal + natureVal
                             const total = basalBonusNat + levelVal
-
                             return (
                               <tr key={attr.key}>
-                                <td className={`border p-2 text-xs font-semibold ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{attr.label}</td>
-                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal || '-'}</td>
-                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{bonusVal || '-'}</td>
-                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal ? basalBonusNat : '-'}</td>
-                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{levelVal || '-'}</td>
-                                <td className={`border p-2 text-xs text-center font-bold ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal ? total : '-'}</td>
+                                <td className="border border-gray-300 p-0.5 font-semibold">{attr.label}</td>
+                                <td className="border border-gray-300 p-0.5 text-center">{baseVal || '-'}</td>
+                                <td className="border border-gray-300 p-0.5 text-center">{bonusVal || '-'}</td>
+                                <td className="border border-gray-300 p-0.5 text-center">{baseVal ? (natureVal !== 0 ? (natureVal > 0 ? `+${natureVal}` : natureVal) : '0') : '-'}</td>
+                                <td className="border border-gray-300 p-0.5 text-center">{levelVal || '-'}</td>
+                                <td className="border border-gray-300 p-0.5 text-center font-bold">{baseVal ? total : '-'}</td>
                               </tr>
                             )
                           })}
                         </tbody>
                       </table>
                     </div>
-                  </div>
-                )}
-
-                {/* Sabores */}
-                {(viewingPokemon.nature) && (
-                  <div className="mb-6">
-                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Preferências</h4>
-                    <div className="grid grid-cols-2 gap-3 text-sm">
-                      <div><span className="font-semibold">Sabor Predileto:</span> {viewingPokemon.favoriteFlavor || natures.find(n => n.nome === viewingPokemon.nature)?.gosto || '-'}</div>
-                      <div><span className="font-semibold">Sabor que Não Gosta:</span> {viewingPokemon.dislikedFlavor || natures.find(n => n.nome === viewingPokemon.nature)?.desgosto || '-'}</div>
+                  )}
+                  {/* Preferências */}
+                  {viewingPokemon.nature && (
+                    <div className="mb-2">
+                      <div className="font-semibold border-b border-gray-300 mb-1">Preferências</div>
+                      <div><span className="font-semibold">Predileto:</span> {viewingPokemon.favoriteFlavor || natures.find(n => n.nome === viewingPokemon.nature)?.gosto || '-'}</div>
+                      <div><span className="font-semibold">Não Gosta:</span> {viewingPokemon.dislikedFlavor || natures.find(n => n.nome === viewingPokemon.nature)?.desgosto || '-'}</div>
                     </div>
-                  </div>
-                )}
-
-                {/* Deslocamento */}
-                {viewingPokemon.displacement && (
-                  <div className="mb-6">
-                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Deslocamento</h4>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-                      <div><span className="font-semibold">Terrestre:</span> {viewingPokemon.displacement.terrestre || '-'}</div>
-                      <div><span className="font-semibold">Nadar:</span> {viewingPokemon.displacement.nadar || '-'}</div>
-                      <div><span className="font-semibold">Voar:</span> {viewingPokemon.displacement.voar || '-'}</div>
-                      <div><span className="font-semibold">Cavar:</span> {viewingPokemon.displacement.cavar || '-'}</div>
-                      <div><span className="font-semibold">Submerso:</span> {viewingPokemon.displacement.submerso || '-'}</div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Aptidões */}
-                <div className="mb-6">
-                  <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Aptidões</h4>
-                  <div className="flex flex-wrap gap-3">
-                    {[
-                      { key: 'estilo', label: 'Estilo', bg: darkMode ? 'bg-red-900' : 'bg-red-100', text: darkMode ? 'text-red-300' : 'text-red-600' },
-                      { key: 'beleza', label: 'Beleza', bg: darkMode ? 'bg-blue-900' : 'bg-blue-100', text: darkMode ? 'text-blue-300' : 'text-blue-600' },
-                      { key: 'ternura', label: 'Ternura', bg: darkMode ? 'bg-pink-900' : 'bg-pink-100', text: darkMode ? 'text-pink-300' : 'text-pink-600' },
-                      { key: 'perspicacia', label: 'Perspicácia', bg: darkMode ? 'bg-green-900' : 'bg-green-100', text: darkMode ? 'text-green-300' : 'text-green-600' },
-                      { key: 'vigor', label: 'Vigor', bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-100', text: darkMode ? 'text-yellow-300' : 'text-yellow-600' }
-                    ].map(apt => (
-                      <div key={apt.key} className={`text-center px-4 py-2 rounded-lg ${apt.bg}`}>
-                        <div className={`text-xs font-semibold ${apt.text}`}>{apt.label}</div>
-                        <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{viewingPokemon.aptidoes?.[apt.key] ?? 0}</div>
+                  )}
+                  {/* Deslocamento */}
+                  {viewingPokemon.displacement && (
+                    <div className="mb-2">
+                      <div className="font-semibold border-b border-gray-300 mb-1">Deslocamento</div>
+                      <div className="grid grid-cols-2 gap-x-2 gap-y-0.5">
+                        <div><span className="font-semibold">Terrestre:</span> {viewingPokemon.displacement.terrestre || '-'}</div>
+                        <div><span className="font-semibold">Nadar:</span> {viewingPokemon.displacement.nadar || '-'}</div>
+                        <div><span className="font-semibold">Voar:</span> {viewingPokemon.displacement.voar || '-'}</div>
+                        <div><span className="font-semibold">Cavar:</span> {viewingPokemon.displacement.cavar || '-'}</div>
+                        <div><span className="font-semibold">Submerso:</span> {viewingPokemon.displacement.submerso || '-'}</div>
                       </div>
-                    ))}
+                    </div>
+                  )}
+                  {/* Aptidões */}
+                  <div className="mb-1">
+                    <div className="font-semibold border-b border-gray-300 mb-1">Aptidões</div>
+                    <div className="grid grid-cols-5 gap-0.5">
+                      {[
+                        { key: 'estilo', label: 'Estilo', color: 'text-red-600', bg: 'bg-red-50' },
+                        { key: 'beleza', label: 'Beleza', color: 'text-blue-600', bg: 'bg-blue-50' },
+                        { key: 'ternura', label: 'Ternura', color: 'text-pink-600', bg: 'bg-pink-50' },
+                        { key: 'perspicacia', label: 'Persp.', color: 'text-green-600', bg: 'bg-green-50' },
+                        { key: 'vigor', label: 'Vigor', color: 'text-yellow-600', bg: 'bg-yellow-50' }
+                      ].map(apt => (
+                        <div key={apt.key} className={`text-center rounded p-0.5 ${apt.bg}`}>
+                          <div className={`font-semibold ${apt.color}`} style={{ fontSize: '0.55rem' }}>{apt.label}</div>
+                          <div className="font-bold">{viewingPokemon.aptidoes?.[apt.key] ?? 0}</div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-b-2xl flex justify-end`}>
-                <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="bg-gray-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-gray-600 font-semibold">
-                  Fechar
-                </button>
+              {/* Painel direito: imagem do Pokémon */}
+              <div
+                className="absolute flex items-center justify-center"
+                style={{ top: '30%', left: '60%', right: '7%', bottom: '49%', background: '#c0d8f0' }}
+              >
+                {(() => {
+                  const _src = pokemonImages[sanitizeFirebaseKey(viewingPokemon.id)] || viewingPokemon.imageUrl
+                  const _dexNum = fullPokedexData.find(p => p.nome === viewingPokemon.species)?.dexNumber
+                  const _fallback = _dexNum ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${_dexNum}.png` : null
+                  const _imgSrc = _src || _fallback
+                  if (!_imgSrc) return null
+                  return <img src={_imgSrc} onError={_fallback && _imgSrc !== _fallback ? (e) => { e.currentTarget.onerror = null; e.currentTarget.src = _fallback } : undefined} alt={viewingPokemon.species} className="max-w-full max-h-full object-contain" />
+                })()}
               </div>
             </div>
           </div>
@@ -28373,20 +28378,27 @@ function App() {
                     }
                   >
                     <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4">
-                      {pokemonImages[sanitizeFirebaseKey(pokemon.id)] && (
-                        <div className="flex flex-col items-center gap-2">
-                          <img src={pokemonImages[sanitizeFirebaseKey(pokemon.id)]} alt={pokemon.nickname} className="w-16 h-16 object-cover rounded-lg border-2 border-purple-500" />
-                          {pokemon.pokeball && (
-                            <img
-                              src={pokemon.pokeball === 'Custom Pokeball' && pokemon.customPokeballImage ? pokemon.customPokeballImage : `/pokeballs/${pokemon.pokeball.toLowerCase().replace(/\s+/g, '')}.png`}
-                              alt={pokemon.pokeball}
-                              className="w-8 h-8 object-contain"
-                              title={pokemon.pokeball}
-                            />
-                          )}
-                          <DietIcons speciesName={pokemon.species} dietOverride={pokemon.dieta} size={18} />
-                        </div>
-                      )}
+                      {(() => {
+                        const _src = pokemonImages[sanitizeFirebaseKey(pokemon.id)] || pokemon.imageUrl
+                        const _dexNum = fullPokedexData.find(p => p.nome === pokemon.species)?.dexNumber
+                        const _fallback = _dexNum ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${_dexNum}.png` : null
+                        const _imgSrc = _src || _fallback
+                        if (!_imgSrc) return null
+                        return (
+                          <div className="flex flex-col items-center gap-2">
+                            <img src={_imgSrc} onError={_fallback && _imgSrc !== _fallback ? (e) => { e.currentTarget.onerror = null; e.currentTarget.src = _fallback } : undefined} alt={pokemon.nickname || pokemon.species} className="w-16 h-16 object-contain rounded-lg border-2 border-purple-500" />
+                            {pokemon.pokeball && (
+                              <img
+                                src={pokemon.pokeball === 'Custom Pokeball' && pokemon.customPokeballImage ? pokemon.customPokeballImage : `/pokeballs/${pokemon.pokeball.toLowerCase().replace(/\s+/g, '')}.png`}
+                                alt={pokemon.pokeball}
+                                className="w-8 h-8 object-contain"
+                                title={pokemon.pokeball}
+                              />
+                            )}
+                            <DietIcons speciesName={pokemon.species} dietOverride={pokemon.dieta} size={18} />
+                          </div>
+                        )
+                      })()}
                       <div className="flex-1">
                         {pokemon.isAlpha && (
                           <span
@@ -28655,25 +28667,27 @@ function App() {
 
         {/* Modal de Visualização de Informações do Pokémon */}
         {showPokemonInfoModal && viewingPokemon && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`}>
-              <div className={`sticky top-0 ${darkMode ? 'bg-gray-700' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-3 sm:p-5 md:p-6 rounded-t-2xl`}>
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    {viewingPokemon.nickname || viewingPokemon.species}
-                  </h3>
-                  <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="text-white hover:text-gray-300">
-                    <X size={28} />
-                  </button>
-                </div>
-              </div>
-
-              <div className={`p-3 sm:p-5 md:p-6 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                {/* Informações Básicas */}
-                <div className="mb-6">
-                  <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Informações Básicas</h4>
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div><span className="font-semibold">Apelido:</span> {viewingPokemon.nickname || '-'}</div>
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-2" onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }}>
+            <div className="relative" style={{ width: 'min(92vw, 530px)' }} onClick={e => e.stopPropagation()}>
+              <img src="/dexcerta.png" alt="" className="w-full h-auto block relative z-10" style={{ pointerEvents: 'none' }} draggable={false} />
+              <button
+                onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }}
+                className="absolute z-20 rounded-full p-0.5 transition-colors"
+                style={{ top: '3%', right: '3%', background: 'rgba(255,255,255,0.65)' }}
+              >
+                <X size={12} className="text-gray-800" />
+              </button>
+              {/* Painel esquerdo: informações */}
+              <div
+                className="absolute overflow-y-auto overflow-x-hidden"
+                style={{ top: '20%', left: '7%', right: '55%', bottom: '40%', background: '#c0d8f0' }}
+              >
+                <div className="p-1.5 text-xs text-gray-800">
+                  {/* Nome */}
+                  <div className="text-center font-bold text-sm mb-1">{viewingPokemon.nickname || viewingPokemon.species}</div>
+                  {/* Informações Básicas */}
+                  <div className="font-semibold border-b border-gray-300 mb-1">Informações Básicas</div>
+                  <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 mb-2">
                     <div><span className="font-semibold">Espécie:</span> {viewingPokemon.species || '-'}</div>
                     <div><span className="font-semibold">Nível:</span> {viewingPokemon.level || '-'}</div>
                     <div><span className="font-semibold">XP:</span> {getCurrentLevelXP(viewingPokemon)}/{getXPForNextLevel(viewingPokemon.level)}</div>
@@ -28684,63 +28698,59 @@ function App() {
                     <div><span className="font-semibold">Altura:</span> {viewingPokemon.height || '-'} m</div>
                     <div><span className="font-semibold">Lealdade:</span> {viewingPokemon.loyalty || '-'}</div>
                   </div>
-                </div>
-
-                {/* Capacidades */}
-                {viewingPokemon.capacities && (viewingPokemon.capacities.forca || viewingPokemon.capacities.inteligencia || viewingPokemon.capacities.salto) && (
-                  <div className="mb-6">
-                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Capacidades</h4>
-                    <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 text-sm">
-                      {viewingPokemon.capacities.forca && (
-                        <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-blue-50'}`}>
-                          <div className="font-semibold text-blue-600">Força</div>
-                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.forca}</div>
-                        </div>
-                      )}
-                      {viewingPokemon.capacities.inteligencia && (
-                        <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-50'}`}>
-                          <div className="font-semibold text-purple-600">Inteligência</div>
-                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.inteligencia}</div>
-                        </div>
-                      )}
-                      {viewingPokemon.capacities.salto && (
-                        <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-green-50'}`}>
-                          <div className="font-semibold text-green-600">Salto</div>
-                          <div className="text-xl sm:text-2xl font-bold">{viewingPokemon.capacities.salto}</div>
-                        </div>
-                      )}
+                  {/* Capacidades */}
+                  {viewingPokemon.capacities && (viewingPokemon.capacities.forca || viewingPokemon.capacities.inteligencia || viewingPokemon.capacities.salto) && (
+                    <div className="mb-2">
+                      <div className="font-semibold border-b border-gray-300 mb-1">Capacidades</div>
+                      <div className="grid grid-cols-3 gap-1">
+                        {viewingPokemon.capacities.forca && (
+                          <div className="text-center bg-blue-50 rounded p-1">
+                            <div className="font-semibold text-blue-600" style={{ fontSize: '0.6rem' }}>Força</div>
+                            <div className="font-bold">{viewingPokemon.capacities.forca}</div>
+                          </div>
+                        )}
+                        {viewingPokemon.capacities.inteligencia && (
+                          <div className="text-center bg-purple-50 rounded p-1">
+                            <div className="font-semibold text-purple-600" style={{ fontSize: '0.6rem' }}>Inteligência</div>
+                            <div className="font-bold">{viewingPokemon.capacities.inteligencia}</div>
+                          </div>
+                        )}
+                        {viewingPokemon.capacities.salto && (
+                          <div className="text-center bg-green-50 rounded p-1">
+                            <div className="font-semibold text-green-600" style={{ fontSize: '0.6rem' }}>Salto</div>
+                            <div className="font-bold">{viewingPokemon.capacities.salto}</div>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )}
-
-                {/* Atributos */}
-                {(viewingPokemon.baseAttributes || viewingPokemon.levelPoints) && (
-                  <div className="mb-6">
-                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Atributos</h4>
-                    <div className="overflow-x-auto">
-                      <table className={`w-full border-collapse ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
+                  )}
+                  {/* Atributos */}
+                  {(viewingPokemon.baseAttributes || viewingPokemon.levelPoints) && (
+                    <div className="mb-2">
+                      <div className="font-semibold border-b border-gray-300 mb-1">Atributos</div>
+                      <table className="w-full border-collapse" style={{ fontSize: '0.6rem' }}>
                         <thead>
-                          <tr className={darkMode ? 'bg-gray-600' : 'bg-gray-200'}>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Atributo</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Basal</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Atributo Bônus</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Basal + Bônus + Nat.</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Pontos Nível</th>
-                            <th className={`border p-2 text-xs ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>Total</th>
+                          <tr className="bg-gray-200">
+                            <th className="border border-gray-300 p-0.5">Atr.</th>
+                            <th className="border border-gray-300 p-0.5">Bas.</th>
+                            <th className="border border-gray-300 p-0.5">+Bôn.</th>
+                            <th className="border border-gray-300 p-0.5">+Nat.</th>
+                            <th className="border border-gray-300 p-0.5">+Nív.</th>
+                            <th className="border border-gray-300 p-0.5">Tot.</th>
                           </tr>
                         </thead>
                         <tbody>
                           {[
-                            { label: 'Saúde', key: 'saude' },
-                            { label: 'Ataque', key: 'ataque' },
-                            { label: 'Defesa', key: 'defesa' },
-                            { label: 'Ataque Especial', key: 'ataqueEspecial' },
-                            { label: 'Defesa Especial', key: 'defesaEspecial' },
-                            { label: 'Velocidade', key: 'velocidade' }
+                            { label: 'Saú.', key: 'saude', fullLabel: 'Saúde' },
+                            { label: 'Ata.', key: 'ataque', fullLabel: 'Ataque' },
+                            { label: 'Def.', key: 'defesa', fullLabel: 'Defesa' },
+                            { label: 'A.E.', key: 'ataqueEspecial', fullLabel: 'Ataque Especial' },
+                            { label: 'D.E.', key: 'defesaEspecial', fullLabel: 'Defesa Especial' },
+                            { label: 'Vel.', key: 'velocidade', fullLabel: 'Velocidade' }
                           ].map(attr => {
                             const selectedNature = natures.find(n => n.nome === viewingPokemon.nature)
-                            const isIncreased = selectedNature?.up === attr.label
-                            const isDecreased = selectedNature?.down === attr.label
+                            const isIncreased = selectedNature?.up === attr.fullLabel
+                            const isDecreased = selectedNature?.down === attr.fullLabel
                             const baseVal = parseInt(viewingPokemon.baseAttributes?.[attr.key]) || 0
                             const bonusVal = parseInt(viewingPokemon.bonusPoints?.[attr.key]) || 0
                             const natureBonus = attr.key === 'saude' ? 1 : 2
@@ -28748,73 +28758,75 @@ function App() {
                             const levelVal = parseInt(viewingPokemon.levelPoints?.[attr.key]) || 0
                             const basalBonusNat = baseVal + bonusVal + natureVal
                             const total = basalBonusNat + levelVal
-
                             return (
                               <tr key={attr.key}>
-                                <td className={`border p-2 text-xs font-semibold ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{attr.label}</td>
-                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal || '-'}</td>
-                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{bonusVal || '-'}</td>
-                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal ? basalBonusNat : '-'}</td>
-                                <td className={`border p-2 text-xs text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{levelVal || '-'}</td>
-                                <td className={`border p-2 text-xs text-center font-bold ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>{baseVal ? total : '-'}</td>
+                                <td className="border border-gray-300 p-0.5 font-semibold">{attr.label}</td>
+                                <td className="border border-gray-300 p-0.5 text-center">{baseVal || '-'}</td>
+                                <td className="border border-gray-300 p-0.5 text-center">{bonusVal || '-'}</td>
+                                <td className="border border-gray-300 p-0.5 text-center">{baseVal ? (natureVal !== 0 ? (natureVal > 0 ? `+${natureVal}` : natureVal) : '0') : '-'}</td>
+                                <td className="border border-gray-300 p-0.5 text-center">{levelVal || '-'}</td>
+                                <td className="border border-gray-300 p-0.5 text-center font-bold">{baseVal ? total : '-'}</td>
                               </tr>
                             )
                           })}
                         </tbody>
                       </table>
                     </div>
-                  </div>
-                )}
-
-                {/* Sabores */}
-                {(viewingPokemon.nature) && (
-                  <div className="mb-6">
-                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Preferências</h4>
-                    <div className="grid grid-cols-2 gap-3 text-sm">
-                      <div><span className="font-semibold">Sabor Predileto:</span> {viewingPokemon.favoriteFlavor || natures.find(n => n.nome === viewingPokemon.nature)?.gosto || '-'}</div>
-                      <div><span className="font-semibold">Sabor que Não Gosta:</span> {viewingPokemon.dislikedFlavor || natures.find(n => n.nome === viewingPokemon.nature)?.desgosto || '-'}</div>
+                  )}
+                  {/* Preferências */}
+                  {viewingPokemon.nature && (
+                    <div className="mb-2">
+                      <div className="font-semibold border-b border-gray-300 mb-1">Preferências</div>
+                      <div><span className="font-semibold">Predileto:</span> {viewingPokemon.favoriteFlavor || natures.find(n => n.nome === viewingPokemon.nature)?.gosto || '-'}</div>
+                      <div><span className="font-semibold">Não Gosta:</span> {viewingPokemon.dislikedFlavor || natures.find(n => n.nome === viewingPokemon.nature)?.desgosto || '-'}</div>
                     </div>
-                  </div>
-                )}
-
-                {/* Deslocamento */}
-                {viewingPokemon.displacement && (
-                  <div className="mb-6">
-                    <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Deslocamento</h4>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-                      <div><span className="font-semibold">Terrestre:</span> {viewingPokemon.displacement.terrestre || '-'}</div>
-                      <div><span className="font-semibold">Nadar:</span> {viewingPokemon.displacement.nadar || '-'}</div>
-                      <div><span className="font-semibold">Voar:</span> {viewingPokemon.displacement.voar || '-'}</div>
-                      <div><span className="font-semibold">Cavar:</span> {viewingPokemon.displacement.cavar || '-'}</div>
-                      <div><span className="font-semibold">Submerso:</span> {viewingPokemon.displacement.submerso || '-'}</div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Aptidões */}
-                <div className="mb-6">
-                  <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Aptidões</h4>
-                  <div className="flex flex-wrap gap-3">
-                    {[
-                      { key: 'estilo', label: 'Estilo', bg: darkMode ? 'bg-red-900' : 'bg-red-100', text: darkMode ? 'text-red-300' : 'text-red-600' },
-                      { key: 'beleza', label: 'Beleza', bg: darkMode ? 'bg-blue-900' : 'bg-blue-100', text: darkMode ? 'text-blue-300' : 'text-blue-600' },
-                      { key: 'ternura', label: 'Ternura', bg: darkMode ? 'bg-pink-900' : 'bg-pink-100', text: darkMode ? 'text-pink-300' : 'text-pink-600' },
-                      { key: 'perspicacia', label: 'Perspicácia', bg: darkMode ? 'bg-green-900' : 'bg-green-100', text: darkMode ? 'text-green-300' : 'text-green-600' },
-                      { key: 'vigor', label: 'Vigor', bg: darkMode ? 'bg-yellow-900' : 'bg-yellow-100', text: darkMode ? 'text-yellow-300' : 'text-yellow-600' }
-                    ].map(apt => (
-                      <div key={apt.key} className={`text-center px-4 py-2 rounded-lg ${apt.bg}`}>
-                        <div className={`text-xs font-semibold ${apt.text}`}>{apt.label}</div>
-                        <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{viewingPokemon.aptidoes?.[apt.key] ?? 0}</div>
+                  )}
+                  {/* Deslocamento */}
+                  {viewingPokemon.displacement && (
+                    <div className="mb-2">
+                      <div className="font-semibold border-b border-gray-300 mb-1">Deslocamento</div>
+                      <div className="grid grid-cols-2 gap-x-2 gap-y-0.5">
+                        <div><span className="font-semibold">Terrestre:</span> {viewingPokemon.displacement.terrestre || '-'}</div>
+                        <div><span className="font-semibold">Nadar:</span> {viewingPokemon.displacement.nadar || '-'}</div>
+                        <div><span className="font-semibold">Voar:</span> {viewingPokemon.displacement.voar || '-'}</div>
+                        <div><span className="font-semibold">Cavar:</span> {viewingPokemon.displacement.cavar || '-'}</div>
+                        <div><span className="font-semibold">Submerso:</span> {viewingPokemon.displacement.submerso || '-'}</div>
                       </div>
-                    ))}
+                    </div>
+                  )}
+                  {/* Aptidões */}
+                  <div className="mb-1">
+                    <div className="font-semibold border-b border-gray-300 mb-1">Aptidões</div>
+                    <div className="grid grid-cols-5 gap-0.5">
+                      {[
+                        { key: 'estilo', label: 'Estilo', color: 'text-red-600', bg: 'bg-red-50' },
+                        { key: 'beleza', label: 'Beleza', color: 'text-blue-600', bg: 'bg-blue-50' },
+                        { key: 'ternura', label: 'Ternura', color: 'text-pink-600', bg: 'bg-pink-50' },
+                        { key: 'perspicacia', label: 'Persp.', color: 'text-green-600', bg: 'bg-green-50' },
+                        { key: 'vigor', label: 'Vigor', color: 'text-yellow-600', bg: 'bg-yellow-50' }
+                      ].map(apt => (
+                        <div key={apt.key} className={`text-center rounded p-0.5 ${apt.bg}`}>
+                          <div className={`font-semibold ${apt.color}`} style={{ fontSize: '0.55rem' }}>{apt.label}</div>
+                          <div className="font-bold">{viewingPokemon.aptidoes?.[apt.key] ?? 0}</div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} p-4 rounded-b-2xl flex justify-end`}>
-                <button onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }} className="bg-gray-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-gray-600 font-semibold">
-                  Fechar
-                </button>
+              {/* Painel direito: imagem do Pokémon */}
+              <div
+                className="absolute flex items-center justify-center"
+                style={{ top: '30%', left: '60%', right: '7%', bottom: '49%', background: '#c0d8f0' }}
+              >
+                {(() => {
+                  const _src = pokemonImages[sanitizeFirebaseKey(viewingPokemon.id)] || viewingPokemon.imageUrl
+                  const _dexNum = fullPokedexData.find(p => p.nome === viewingPokemon.species)?.dexNumber
+                  const _fallback = _dexNum ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${_dexNum}.png` : null
+                  const _imgSrc = _src || _fallback
+                  if (!_imgSrc) return null
+                  return <img src={_imgSrc} onError={_fallback && _imgSrc !== _fallback ? (e) => { e.currentTarget.onerror = null; e.currentTarget.src = _fallback } : undefined} alt={viewingPokemon.species} className="max-w-full max-h-full object-contain" />
+                })()}
               </div>
             </div>
           </div>
@@ -30863,119 +30875,99 @@ function App() {
 
         {/* MODAL DE DETALHES DA POKÉDEX */}
         {showPokedexDetailModal && selectedPokedexEntry && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => setShowPokedexDetailModal(false)}>
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-3 sm:p-5 md:p-6 rounded-2xl shadow-2xl max-w-sm sm:max-w-lg md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`} onClick={(e) => e.stopPropagation()}>
-              <div className="flex justify-between items-center mb-3 sm:mb-4 md:mb-6">
-                <h3 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} truncate pr-2`}>
-                  {selectedPokedexEntry.fullData ? `#${String(selectedPokedexEntry.fullData.dexNumber).padStart(3, '0')} - ` : ''}{selectedPokedexEntry.species}
-                </h3>
-                <button onClick={() => setShowPokedexDetailModal(false)} className={darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}>
-                  <X size={20} className="sm:w-6 sm:h-6" />
-                </button>
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-2" onClick={() => setShowPokedexDetailModal(false)}>
+            <div className="relative" style={{ width: 'min(92vw, 530px)' }} onClick={e => e.stopPropagation()}>
+              <img src="/dexcerta.png" alt="" className="w-full h-auto block relative z-10" style={{ pointerEvents: 'none' }} draggable={false} />
+              <button
+                onClick={() => setShowPokedexDetailModal(false)}
+                className="absolute z-20 rounded-full p-0.5 transition-colors"
+                style={{ top: '3%', right: '3%', background: 'rgba(255,255,255,0.65)' }}
+              >
+                <X size={12} className="text-gray-800" />
+              </button>
+              {/* Painel esquerdo: informações da Pokédex */}
+              <div
+                className="absolute overflow-y-auto overflow-x-hidden"
+                style={{ top: '20%', left: '7%', right: '55%', bottom: '40%', background: '#c0d8f0' }}
+              >
+                <div className="p-1.5 text-xs text-gray-800">
+                  {/* Nome e número */}
+                  <div className="text-center font-bold text-sm mb-1">
+                    {selectedPokedexEntry.fullData ? `#${String(selectedPokedexEntry.fullData.dexNumber).padStart(3, '0')} ` : ''}{selectedPokedexEntry.species}
+                  </div>
+                  {selectedPokedexEntry.fullData ? (
+                    <>
+                      {/* Tipos */}
+                      <div className="flex flex-wrap gap-1 mb-2 justify-center">
+                        {selectedPokedexEntry.fullData.tipos.map((tipo, i) => (
+                          <span key={i} className="px-1.5 py-0.5 rounded-full font-semibold bg-blue-200 text-blue-800" style={{ fontSize: '0.6rem' }}>{tipo}</span>
+                        ))}
+                      </div>
+                      {/* Dados gerais */}
+                      <div className="font-semibold border-b border-gray-300 mb-1">Dados</div>
+                      <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 mb-2">
+                        <div><span className="font-semibold">Altura:</span> {selectedPokedexEntry.fullData.altura}m</div>
+                        <div><span className="font-semibold">Peso:</span> {selectedPokedexEntry.fullData.peso}kg</div>
+                        <div><span className="font-semibold">Catch Rate:</span> {selectedPokedexEntry.fullData.catchRate}</div>
+                        <div><span className="font-semibold">XP Base:</span> {selectedPokedexEntry.fullData.baseExp}</div>
+                      </div>
+                      {/* Habitats */}
+                      <div className="mb-2">
+                        <span className="font-semibold">Habitats: </span>{selectedPokedexEntry.fullData.habitats.join(', ')}
+                      </div>
+                      {/* Status Base */}
+                      <div className="font-semibold border-b border-gray-300 mb-1">Status Base</div>
+                      <div className="grid grid-cols-3 gap-x-1 gap-y-0.5 mb-2">
+                        <div><span className="font-semibold">Saúde:</span> {selectedPokedexEntry.fullData.statusBasais.saude}</div>
+                        <div><span className="font-semibold">Ataque:</span> {selectedPokedexEntry.fullData.statusBasais.ataque}</div>
+                        <div><span className="font-semibold">Defesa:</span> {selectedPokedexEntry.fullData.statusBasais.defesa}</div>
+                        <div><span className="font-semibold">Atq.E.:</span> {selectedPokedexEntry.fullData.statusBasais.ataqueEspecial}</div>
+                        <div><span className="font-semibold">Def.E.:</span> {selectedPokedexEntry.fullData.statusBasais.defesaEspecial}</div>
+                        <div><span className="font-semibold">Vel.:</span> {selectedPokedexEntry.fullData.statusBasais.velocidade}</div>
+                      </div>
+                      {/* Evolução */}
+                      {selectedPokedexEntry.fullData.evolucao && (
+                        <div className="mb-2">
+                          <span className="font-semibold">Evolução: </span>
+                          {fullPokedexData.find(p => p.dexNumber === selectedPokedexEntry.fullData.evolucao)?.nome || '?'}
+                          {selectedPokedexEntry.fullData.evolucaoNivel && ` (nível ${selectedPokedexEntry.fullData.evolucaoNivel})`}
+                          {selectedPokedexEntry.fullData.evolucaoItem && ` (${selectedPokedexEntry.fullData.evolucaoItem})`}
+                        </div>
+                      )}
+                      {/* Status de captura */}
+                      <div className={`mb-2 font-semibold ${selectedPokedexEntry.isCaptured ? 'text-green-600' : 'text-gray-500'}`}>
+                        {selectedPokedexEntry.isCaptured ? '✓ Capturado' : '○ Escaneado'}
+                      </div>
+                      {/* Botão capturar */}
+                      {!selectedPokedexEntry.isCaptured && (
+                        <button
+                          onClick={() => { setShowPokedexDetailModal(false); openCaptureModal(selectedPokedexEntry.species) }}
+                          className="w-full bg-green-500 text-white py-1 rounded font-semibold hover:bg-green-600"
+                          style={{ fontSize: '0.7rem' }}
+                        >
+                          Capturar este Pokémon
+                        </button>
+                      )}
+                    </>
+                  ) : (
+                    <p className="text-center text-gray-500">Carregando informações...</p>
+                  )}
+                </div>
               </div>
-
-              {selectedPokedexEntry.fullData ? (
-                <div className={`p-2 sm:p-4 md:p-6 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                  <div className="grid grid-cols-2 gap-2 mb-3 sm:mb-4">
-                    <div>
-                      <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Altura</h4>
-                      <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedPokedexEntry.fullData.altura}m</p>
-                    </div>
-                    <div>
-                      <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Peso</h4>
-                      <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedPokedexEntry.fullData.peso}kg</p>
-                    </div>
-                  </div>
-
-                  <div className="mb-3 sm:mb-4">
-                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Tipos</h4>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {selectedPokedexEntry.fullData.tipos.map((tipo, i) => (
-                        <span key={i} className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold ${darkMode ? 'bg-blue-600 text-white' : 'bg-blue-200 text-blue-800'}`}>
-                          {tipo}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="mb-3 sm:mb-4">
-                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Habitats</h4>
-                    <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                      {selectedPokedexEntry.fullData.habitats.join(', ')}
-                    </p>
-                  </div>
-
-                  <div className="mb-3 sm:mb-4">
-                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Catch Rate</h4>
-                    <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedPokedexEntry.fullData.catchRate}</p>
-                  </div>
-
-                  <div className="mb-3 sm:mb-4">
-                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Experiência Base</h4>
-                    <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedPokedexEntry.fullData.baseExp}</p>
-                  </div>
-
-                  <div className="mb-3 sm:mb-4">
-                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Status Base</h4>
-                    <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
-                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
-                        <span className="font-semibold">Saúde:</span> {selectedPokedexEntry.fullData.statusBasais.saude}
-                      </div>
-                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
-                        <span className="font-semibold">Ataque:</span> {selectedPokedexEntry.fullData.statusBasais.ataque}
-                      </div>
-                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
-                        <span className="font-semibold">Defesa:</span> {selectedPokedexEntry.fullData.statusBasais.defesa}
-                      </div>
-                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
-                        <span className="font-semibold">Atq. Esp.:</span> {selectedPokedexEntry.fullData.statusBasais.ataqueEspecial}
-                      </div>
-                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
-                        <span className="font-semibold">Def. Esp.:</span> {selectedPokedexEntry.fullData.statusBasais.defesaEspecial}
-                      </div>
-                      <div className={`p-1.5 sm:p-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
-                        <span className="font-semibold">Velocidade:</span> {selectedPokedexEntry.fullData.statusBasais.velocidade}
-                      </div>
-                    </div>
-                  </div>
-
-                  {selectedPokedexEntry.fullData.evolucao && (
-                    <div className="mb-3 sm:mb-4">
-                      <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Evolução</h4>
-                      <p className={`text-xs sm:text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        Evolui para {fullPokedexData.find(p => p.dexNumber === selectedPokedexEntry.fullData.evolucao)?.nome || '?'}
-                        {selectedPokedexEntry.fullData.evolucaoNivel && ` no nível ${selectedPokedexEntry.fullData.evolucaoNivel}`}
-                        {selectedPokedexEntry.fullData.evolucaoItem && ` usando ${selectedPokedexEntry.fullData.evolucaoItem}`}
-                      </p>
-                    </div>
-                  )}
-
-                  <div className="mb-3 sm:mb-4">
-                    <h4 className={`font-bold mb-1 sm:mb-2 text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>Status</h4>
-                    <p className={`font-semibold text-xs sm:text-base ${selectedPokedexEntry.isCaptured ? (darkMode ? 'text-green-400' : 'text-green-600') : (darkMode ? 'text-gray-400' : 'text-gray-500')}`}>
-                      {selectedPokedexEntry.isCaptured ? '✓ Capturado' : '○ Escaneado'}
-                    </p>
-                  </div>
-
-                  {!selectedPokedexEntry.isCaptured && (
-                    <button
-                      onClick={() => {
-                        setShowPokedexDetailModal(false)
-                        openCaptureModal(selectedPokedexEntry.species)
-                      }}
-                      className="w-full bg-green-500 text-white py-2 sm:py-2.5 md:py-3 rounded-lg hover:bg-green-600 font-semibold mt-2 sm:mt-3 md:mt-4 text-sm sm:text-base"
-                    >
-                      Capturar este Pokémon
-                    </button>
-                  )}
-                </div>
-              ) : (
-                <div className={`p-2 sm:p-4 md:p-6 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
-                  <p className={`text-center text-xs sm:text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    Carregando informações...
-                  </p>
-                </div>
-              )}
+              {/* Painel direito: imagem do Pokémon */}
+              <div
+                className="absolute flex items-center justify-center"
+                style={{ top: '30%', left: '60%', right: '7%', bottom: '49%', background: '#c0d8f0' }}
+              >
+                {selectedPokedexEntry.fullData?.dexNumber && (
+                  <img
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokedexEntry.fullData.dexNumber}.png`}
+                    alt={selectedPokedexEntry.species}
+                    className="max-w-full max-h-full object-contain"
+                    style={{ filter: selectedPokedexEntry.isCaptured ? 'none' : 'grayscale(100%)' }}
+                  />
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -46697,7 +46689,7 @@ function App() {
       const availableBalls = POKEBALLS_LIST.filter(b => !excludedBalls.includes(b))
       const newGbPokemon = filledPokemon.map(pokemon => {
         const randomBall = availableBalls[Math.floor(Math.random() * availableBalls.length)]
-        const alfaBonus = npcAlfaStatus[pokemon.id] ? 3 : 0
+        const alfaBonus = npcAlfaStatus[pokemon.id] ? 8 : 0
         const maxHP = (3 * ((pokemon.attributes?.saude || 5) + alfaBonus)) + (pokemon.level || 1)
         return {
           id: `gb-npc-${Date.now()}-${Math.random()}`,
