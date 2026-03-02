@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus, Save, Archive, MoveVertical, Menu, Gamepad2, TowerControl } from 'lucide-react'
+import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus, Save, Archive, MoveVertical, Menu, Gamepad2, TowerControl, MousePointer } from 'lucide-react'
 import AccountDataModal from './AccountDataModal'
 import pokedexData, { POKEMON_DIET_MAP } from './pokemonData'
 import { POKEMON_DESLOCAMENTO_MAP } from './pokemonDeslocamentos'
@@ -40,12 +40,50 @@ import {
   saveTriunfosGerais, subscribeToTriunfosGerais,
   saveTriunfosIndividuais, subscribeToTriunfosIndividuais,
   saveMostrarTriunfos, subscribeToMostrarTriunfos,
-  saveAnotacoes, subscribeToAnotacoes
+  saveAnotacoes, subscribeToAnotacoes,
+  saveCursorConfig, subscribeToCursorConfig,
+  saveUserCursorPref, subscribeToUserCursorPref
 } from './firebaseService'
 import { database } from './firebase'
 import { ref, set, get } from 'firebase/database'
 
 // Helper para sanitizar IDs de Pokemon para uso como chaves do Firebase
+// --- Cursor Config ---
+const ALL_CURSORS = [
+  { name: 'Normal', file: 'normal-select.gif' },
+  { name: 'Pokébola', file: 'PokeBall.gif' },
+  { name: 'Caterpie', file: 'Caterpie.gif' },
+  { name: 'Magikarp', file: 'Magikarp Alt Select.gif' },
+  { name: 'Magikarp Ocupado', file: 'Magikarp Busy.gif' },
+  { name: 'Squirtle', file: 'Squirtle.gif' },
+  { name: 'Charmander', file: 'Charmander.gif' },
+  { name: 'Totodile', file: 'Totodile .gif' },
+  { name: 'Eevee', file: 'eevee normal cursor.gif' },
+  { name: 'Snorlax', file: 'Snorlax - Normal Select.gif' },
+  { name: 'Snorlax Texto', file: 'Snorlax - Text Select.gif' },
+  { name: 'Ditto', file: 'Ditto - Normal.gif' },
+  { name: 'Pikachu', file: 'Pikachu.gif' },
+  { name: 'Mew', file: 'Mew.gif' },
+  { name: 'Dragonite', file: 'Dragonite.cur' },
+  { name: 'Lapras', file: 'Lapras Pokémon normal select.cur' },
+  { name: 'Starter', file: 'starter.gif' },
+]
+const DEFAULT_CURSOR_CYCLE = ALL_CURSORS.map(c => c.file)
+const applyCursor = (file) => {
+  let styleEl = document.getElementById('custom-cursor-style')
+  if (!styleEl) {
+    styleEl = document.createElement('style')
+    styleEl.id = 'custom-cursor-style'
+    document.head.appendChild(styleEl)
+  }
+  if (file) {
+    const url = `/customcursor/${file.replace(/ /g, '%20')}`
+    styleEl.textContent = `* { cursor: url('${url}'), auto !important; }`
+  } else {
+    styleEl.textContent = ''
+  }
+}
+
 // Firebase não permite ".", "#", "$", "/", "[", ou "]" em chaves
 const sanitizeFirebaseKey = (key) => {
   if (!key) return key
@@ -2285,6 +2323,12 @@ function App() {
   const [sessionBg, setSessionBg] = useState(null)
   const [showPokezapPanel, setShowPokezapPanel] = useState(false)
   const [showBatalhaChat, setShowBatalhaChat] = useState(false)
+  const [pokezapNotifGif, setPokezapNotifGif] = useState(null)
+  const [lastPokezapMsgId, setLastPokezapMsgId] = useState(null)
+  const [periciasExpanded, setPericiasExpanded] = useState(false)
+  const [chatCaracSearch, setChatCaracSearch] = useState('')
+  const [chatCaracSelected, setChatCaracSelected] = useState(null)
+  const [chatCaracDropdownOpen, setChatCaracDropdownOpen] = useState(false)
   const [pokezapMessages, setPokezapMessages] = useState([])
   const [pokezapInput, setPokezapInput] = useState('')
   const [pokezapRecipients, setPokezapRecipients] = useState([])
@@ -2301,6 +2345,7 @@ function App() {
   // Estado do treinador
   const [level, setLevel] = useState(1)
   const [image, setImage] = useState('')
+  const [isPrankActive, setIsPrankActive] = useState(false)
   const [classes, setClasses] = useState(['', '', '', ''])
   const [attributes, setAttributes] = useState({
     saude: 10, ataque: 10, defesa: 10, ataqueEspecial: 10, defesaEspecial: 10, velocidade: 10
@@ -2380,6 +2425,7 @@ function App() {
   const [scenarioForm, setScenarioForm] = useState({ title: '', imageUrls: [''] })
   const [scenarioDragIndex, setScenarioDragIndex] = useState(null)
   const [scenarioDisplay, setScenarioDisplay] = useState(null) // { active, scenarioId, currentImageIndex }
+  const [masterPreviewScenario, setMasterPreviewScenario] = useState(null) // preview local do mestre, sem Firebase
   const [playerScenarioPopupOpen, setPlayerScenarioPopupOpen] = useState(false)
   const sessionScenariosSaveSkipRef = useRef(true)
   const scenarioDisplaySaveSkipRef = useRef(true)
@@ -2404,6 +2450,7 @@ function App() {
   const [battlePokemon, setBattlePokemon] = useState([]) // Pokémon enviados para batalha
   const [battleTrainersList, setBattleTrainersList] = useState([]) // Lista ordenada de treinadores em batalha
   const [battlePokemonList, setBattlePokemonList] = useState([]) // Lista ordenada de pokémon em batalha
+  const [selectedBattlePokemonForMoves, setSelectedBattlePokemonForMoves] = useState(null) // Pokémon selecionado para ver golpes no tracker (visordex)
   const [currentTrainerTurn, setCurrentTrainerTurn] = useState(0) // Índice do turno atual dos treinadores
   const [currentPokemonTurn, setCurrentPokemonTurn] = useState(0) // Índice do turno atual dos pokémon
   const [trainerRound, setTrainerRound] = useState(1) // Rodada atual dos treinadores
@@ -2429,6 +2476,19 @@ function App() {
 
   const [showBattleMoveModal, setShowBattleMoveModal] = useState(false) // Modal de golpe na batalha
   const [selectedBattleMove, setSelectedBattleMove] = useState(null) // Golpe selecionado na batalha
+  const [showCaracTalentoModal, setShowCaracTalentoModal] = useState(false) // Modal de característica/talento
+  const [selectedCaracTalento, setSelectedCaracTalento] = useState(null) // Característica/talento selecionado
+  const [showTransformacaoModal, setShowTransformacaoModal] = useState(false) // Modal de Transformação
+  const [transformacaoTransformer, setTransformacaoTransformer] = useState(null) // Pokémon que usou Transformação
+  const [transformacaoTarget, setTransformacaoTarget] = useState(null) // Pokémon alvo selecionado no modal
+  const [metronomeDrawnMoves, setMetronomeDrawnMoves] = useState({}) // Golpe sorteado pelo Metrônomo por Pokémon (id -> nomeDaGolpe)
+  // Cursor Config
+  const [cursorConfig, setCursorConfig] = useState(null) // Config global do mestre
+  const [userCursorPref, setUserCursorPref] = useState(null) // Preferência individual do usuário
+  const [showCursorSettingsModal, setShowCursorSettingsModal] = useState(false) // Modal do mestre
+  const [showUserCursorModal, setShowUserCursorModal] = useState(false) // Modal do treinador
+  const cursorClickCount = useRef(0)
+  const cursorIndexRef = useRef(0)
   const [showBattleAbilityModal, setShowBattleAbilityModal] = useState(false) // Modal de habilidade na batalha
   const [selectedBattleAbility, setSelectedBattleAbility] = useState(null) // Habilidade selecionada na batalha
   const [userBattleModifiers, setUserBattleModifiers] = useState({}) // {username: [...modifiers]} - Modificadores de batalha por usuário
@@ -3022,6 +3082,8 @@ function App() {
   const [safariRunEncounters, setSafariRunEncounters] = useState({})
   const [safariRunPaidUsers, setSafariRunPaidUsers] = useState({})
   const [safariRunLastClicked, setSafariRunLastClicked] = useState({}) // {runKey: {row, col}}
+  const [safariSaltoValues, setSafariSaltoValues] = useState({}) // {runKey: {username: 0|1|2|3}}
+  const [safariRunStartAreas, setSafariRunStartAreas] = useState({}) // {runKey: 'Área Central'}
   const [expandedSafariNpcCards, setExpandedSafariNpcCards] = useState([])
   const [safariStaffEncounterActiveRun, setSafariStaffEncounterActiveRun] = useState(null)
   const [showSafariNpcDamageModal, setShowSafariNpcDamageModal] = useState(false)
@@ -3463,6 +3525,7 @@ function App() {
 
   // ===== CONFIGURACOES SAFARI =====
   const SAFARI_TRAINERS = ['Alocin', 'Lila', 'Ludovic', 'Noryat', 'Pedro']
+  const TRAINER_ICONS = { 'Alocin': '/treinadoresicones/iconealocin.png', 'Lila': '/treinadoresicones/iconelila.png', 'Ludovic': '/treinadoresicones/iconeludovic.png', 'Noryat': '/treinadoresicones/iconenoryat.png', 'Pedro': '/treinadoresicones/iconepedro.png' }
   const SAFARI_ENTRY_COST = 500
 
   const SAFARI_AREA_CONNECTIONS = {
@@ -3471,7 +3534,9 @@ function App() {
     'Área Oeste': ['Área Central', 'Área Noroeste'],
     'Área Nordeste': ['Área Leste', 'Área Norte'],
     'Área Noroeste': ['Área Oeste', 'Área Norte'],
-    'Área Norte': ['Área Nordeste', 'Área Noroeste']
+    'Área Norte': ['Área Nordeste', 'Área Noroeste', 'Caverna 1'],
+    'Caverna 1': ['Área Norte']
+    // Caverna 2 e 3 não têm navegação via botão — apenas via tiles especiais
   }
 
   const SAFARI_AREA_TERRAIN = {
@@ -3480,8 +3545,15 @@ function App() {
     'Área Oeste': { grama: 50, agua: 50 },
     'Área Nordeste': { grama: 100, agua: 0 },
     'Área Noroeste': { grama: 20, agua: 70 },
-    'Área Norte': { grama: 50, agua: 50 }
+    'Área Norte': { grama: 50, agua: 50 },
+    'Caverna 1': { cave: 100 },
+    'Caverna 2': { cave: 100 },
+    'Caverna 3': { cave: 40, lava: 60 }
   }
+
+  const CAVE_AREAS = ['Caverna 1', 'Caverna 2', 'Caverna 3']
+  const CAVE_NEXT_AREA = { 'Caverna 1': 'Caverna 2', 'Caverna 2': 'Caverna 3' }
+  const CAVE_PREVIOUS_AREA = { 'Caverna 2': 'Caverna 1', 'Caverna 3': 'Caverna 2' }
 
   const SAFARI_SOLO_SPECIES = [
     'Scyther', 'Pinsir', 'Golduck', 'Lapras', 'Octillery', 'Froakie', 'Wobbuffet', 'Tympole', 'Tauros', 'Girafarig', 'Gligar', 'Quagsire', 'Miltank',
@@ -3592,7 +3664,36 @@ function App() {
     { pokemon: 'Froakie', chance: 5, level: '20', area: 'Área Norte', terrain: 'Água', isSkittish: true },
     { pokemon: 'Magikarp', chance: 35, level: '20-21', area: 'Área Norte', terrain: 'Água', isSkittish: false },
     { pokemon: 'Goldeen', chance: 25, level: '33-38', area: 'Área Norte', terrain: 'Água', isSkittish: false },
-    { pokemon: null, chance: 25, level: '-', area: 'Área Norte', terrain: 'Água', isSkittish: false }
+    { pokemon: null, chance: 25, level: '-', area: 'Área Norte', terrain: 'Água', isSkittish: false },
+    // Caverna 1 - Cave
+    { pokemon: 'Phanpy', chance: 9, level: '13-18', area: 'Caverna 1', terrain: 'Cave', isSkittish: false },
+    { pokemon: 'Cubone', chance: 40, level: '13-18', area: 'Caverna 1', terrain: 'Cave', isSkittish: false },
+    { pokemon: 'Drilbur', chance: 40, level: '13-18', area: 'Caverna 1', terrain: 'Cave', isSkittish: false },
+    { pokemon: 'Donphan', chance: 1, level: '28-38', area: 'Caverna 1', terrain: 'Cave', isSkittish: true },
+    { pokemon: null, chance: 10, level: '-', area: 'Caverna 1', terrain: 'Cave', isSkittish: false },
+    // Caverna 2 - Cave
+    { pokemon: 'Cubone', chance: 41, level: '16-21', area: 'Caverna 2', terrain: 'Cave', isSkittish: false },
+    { pokemon: 'Drilbur', chance: 41, level: '16-21', area: 'Caverna 2', terrain: 'Cave', isSkittish: false },
+    { pokemon: 'Graveler', chance: 4, level: '25', area: 'Caverna 2', terrain: 'Cave', isSkittish: false },
+    { pokemon: 'Anorith', chance: 1, level: '8-12', area: 'Caverna 2', terrain: 'Cave', isSkittish: true },
+    { pokemon: 'Gible', chance: 1, level: '8-15', area: 'Caverna 2', terrain: 'Cave', isSkittish: true },
+    { pokemon: 'Sandshrew', chance: 1, level: '8-15', area: 'Caverna 2', terrain: 'Cave', isSkittish: true },
+    { pokemon: 'Larvitar', chance: 1, level: '10-20', area: 'Caverna 2', terrain: 'Cave', isSkittish: true },
+    { pokemon: null, chance: 10, level: '-', area: 'Caverna 2', terrain: 'Cave', isSkittish: false },
+    // Caverna 3 - Cave
+    { pokemon: 'Graveler', chance: 60, level: '28-33', area: 'Caverna 3', terrain: 'Cave', isSkittish: false },
+    { pokemon: 'Anorith', chance: 1, level: '10-20', area: 'Caverna 3', terrain: 'Cave', isSkittish: true },
+    { pokemon: 'Marowak', chance: 4, level: '25-37', area: 'Caverna 3', terrain: 'Cave', isSkittish: false },
+    { pokemon: 'Excadrill', chance: 4, level: '28-37', area: 'Caverna 3', terrain: 'Cave', isSkittish: false },
+    { pokemon: 'Golem', chance: 4, level: '28-38', area: 'Caverna 3', terrain: 'Cave', isSkittish: true },
+    { pokemon: 'Armaldo', chance: 1, level: '28-38', area: 'Caverna 3', terrain: 'Cave', isSkittish: true },
+    { pokemon: 'Slugma', chance: 6, level: '10-21', area: 'Caverna 3', terrain: 'Cave', isSkittish: false },
+    { pokemon: 'Magby', chance: 6, level: '10-21', area: 'Caverna 3', terrain: 'Cave', isSkittish: true },
+    { pokemon: 'Magcargo', chance: 1, level: '28-38', area: 'Caverna 3', terrain: 'Cave', isSkittish: true },
+    { pokemon: 'Magmar', chance: 1, level: '28-38', area: 'Caverna 3', terrain: 'Cave', isSkittish: true },
+    { pokemon: 'Litwick', chance: 1, level: '10-20', area: 'Caverna 3', terrain: 'Cave', isSkittish: true },
+    { pokemon: 'Cyndaquil', chance: 1, level: '10-20', area: 'Caverna 3', terrain: 'Cave', isSkittish: true },
+    { pokemon: null, chance: 10, level: '-', area: 'Caverna 3', terrain: 'Cave', isSkittish: false }
   ]
 
   const allClasses = [
@@ -4577,11 +4678,196 @@ function App() {
         timestamp,
         isDiceRoll: true,
         diceResult: finalDamage,
-        diceDetails: detailsParts
+        diceDetails: detailsParts,
+        battleMove: moveName
       })
     }
 
     setShowBattleMoveModal(false)
+  }
+
+  // Rolar dano de golpe copiado por Transformação
+  // transformer = Pokémon que usou Transformação (usa seus atributos e level)
+  // target = Pokémon alvo selecionado no modal (usa seus tipos para STAB)
+  const handleRollTransformacaoDamage = (moveName, transformer, target) => {
+    const moveData = GOLPES_DATA[moveName]
+    if (!moveData) return
+
+    const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+    const transformerName = transformer.nickname || transformer.nome || transformer.species || 'Pokémon'
+
+    const danoBasal = moveData.danoBasal
+    if (!danoBasal || danoBasal === '-' || danoBasal === '') {
+      addChatMessage({ username: 'Sistema', text: `❌ Este golpe não possui dano basal`, timestamp, isDiceRoll: false })
+      return
+    }
+
+    const isFisico = danoBasal.includes('Físico')
+
+    // Ataque do transformer
+    let ataqueTotalRaw = 0
+    if (transformer.totalAttributes) {
+      ataqueTotalRaw = isFisico ? transformer.totalAttributes.ataque : transformer.totalAttributes.ataqueEspecial
+    } else if (transformer.baseAttributes && transformer.nature && transformer.levelPoints) {
+      const attrKey = isFisico ? 'ataque' : 'ataqueEspecial'
+      const attrLabel = isFisico ? 'Ataque' : 'Ataque Especial'
+      ataqueTotalRaw = calculateTotalAttribute(transformer, attrKey, attrLabel)
+    } else {
+      const pokemonSpecies = transformer.species || transformer.especie
+      const pokemonData = fullPokedexData.find(p => p.nome === pokemonSpecies) || globalExoticSpecies.find(e => e.nome === pokemonSpecies)
+      ataqueTotalRaw = isFisico ? (pokemonData?.statusBasais?.ataque || 0) : (pokemonData?.statusBasais?.ataqueEspecial || 0)
+    }
+
+    // Estágios de ataque do transformer
+    let battleId = transformer.id
+    const idString = String(transformer.id || '')
+    if (transformer.id && !idString.startsWith('npc-pokemon-')) {
+      const pokemonInBattle = battlePokemonList.find(p => p.originalId === String(transformer.id))
+      if (pokemonInBattle) battleId = pokemonInBattle.id
+    }
+    const stages = pokemonStages[battleId] || {}
+    const ataqueStage = isFisico ? (stages.ataque || 0) : (stages.ataqueEspecial || 0)
+    const ataqueMultiplier = getStageMultiplier(ataqueStage)
+    const ataqueBase = Math.floor(ataqueTotalRaw * ataqueMultiplier)
+
+    // Bônus elemental: tipo do GOLPE vs tipos do ALVO, mas valor baseado no level do transformer
+    let bonusElemental = 0
+    const targetTypes = target.tipos || []
+    if (targetTypes.includes(moveData.tipo)) {
+      bonusElemental = calculateElementalBonus(transformer)
+    }
+
+    // Rolar dano
+    const diceMatch = danoBasal.match(/(\d+)d(\d+)(?:\+(\d+))?/)
+    if (diceMatch) {
+      const [, numDice, diceSides, bonus] = diceMatch
+      let total = 0
+      let danoBasalText = ''
+
+      if (isCritical) {
+        const rolls1 = [], rolls2 = []
+        let total1 = 0, total2 = 0
+        for (let i = 0; i < parseInt(numDice); i++) { const r = Math.floor(Math.random() * parseInt(diceSides)) + 1; rolls1.push(r); total1 += r }
+        if (bonus) total1 += parseInt(bonus)
+        for (let i = 0; i < parseInt(numDice); i++) { const r = Math.floor(Math.random() * parseInt(diceSides)) + 1; rolls2.push(r); total2 += r }
+        if (bonus) total2 += parseInt(bonus)
+        total = total1 + total2
+        danoBasalText = `CRÍTICO! Dano Basal: ${danoBasal} = [${rolls1.join('+')}${bonus ? `+${bonus}` : ''}] + [${rolls2.join('+')}${bonus ? `+${bonus}` : ''}] = ${total1} + ${total2} = ${total}`
+      } else {
+        const rolls = []
+        for (let i = 0; i < parseInt(numDice); i++) { const r = Math.floor(Math.random() * parseInt(diceSides)) + 1; rolls.push(r); total += r }
+        if (bonus) total += parseInt(bonus)
+        danoBasalText = `Dano Basal: ${danoBasal} = ${rolls.join('+')}${bonus ? `+${bonus}` : ''} = ${total}`
+      }
+
+      let finalDamage = total + ataqueBase + bonusElemental
+
+      // Modificadores ativos do usuário
+      let modifiersTotal = 0
+      const modifierDetails = []
+      const currentUserModifiers = userBattleModifiers[currentUser.username] || []
+      const currentUserActiveIndexes = userActiveModifiers[currentUser.username] || []
+      for (const modIndex of currentUserActiveIndexes) {
+        const modifier = currentUserModifiers[modIndex]
+        if (!modifier || !modifier.aplicarDano) continue
+        const processedMod = processCommandExpression(modifier.mod)
+        if (processedMod) {
+          modifiersTotal += processedMod.finalResult
+          let detail = `${modifier.nome}: ${modifier.mod}`
+          if (processedMod.diceResults.length > 0) detail += ` → ${processedMod.diceResults.map(d => `${d.original}=[${d.rolls.join('+')}]=${d.total}`).join(' ')}`
+          detail += ` = ${processedMod.finalResult}`
+          modifierDetails.push(detail)
+        } else {
+          const numValue = parseInt(modifier.mod)
+          if (!isNaN(numValue)) { modifiersTotal += numValue; modifierDetails.push(`${modifier.nome}: ${numValue >= 0 ? '+' : ''}${numValue}`) }
+        }
+      }
+      finalDamage += modifiersTotal
+
+      let ataqueText = isFisico ? `Ataque Físico: +${ataqueBase}` : `Ataque Especial: +${ataqueBase}`
+      if (ataqueStage !== 0) ataqueText += ` [Fase ${ataqueStage > 0 ? '+' : ''}${ataqueStage} = ${Math.round(ataqueMultiplier * 100)}% de ${ataqueTotalRaw}]`
+
+      const targetName = target.nome || target.especie || 'Alvo'
+      const detailsParts = [
+        danoBasalText,
+        ataqueText,
+        bonusElemental > 0 ? `Bônus Elemental STAB (tipo de ${targetName}): +${bonusElemental}` : null,
+        ...modifierDetails
+      ].filter(Boolean).join(' | ')
+
+      addChatMessage({
+        username: currentUser.username,
+        text: `🎲 ${transformerName} (Transformação→${targetName}) - Dano de ${moveName}${isCritical ? ' ⚡CRÍTICO⚡' : ''}`,
+        timestamp,
+        isDiceRoll: true,
+        diceResult: finalDamage,
+        diceDetails: detailsParts
+      })
+    }
+  }
+
+  // Rolar acurácia de golpe copiado por Transformação
+  const handleRollTransformacaoAccuracy = (moveName, transformer) => {
+    const moveData = GOLPES_DATA[moveName]
+    if (!moveData) return
+
+    const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+    const transformerName = transformer.nickname || transformer.nome || transformer.species || 'Pokémon'
+
+    if (moveData.acuracia === 'Automático' || moveData.acuracia === 'Automática' || moveData.acuracia === '—' || moveData.acuracia === '-') {
+      addChatMessage({ username: currentUser.username, text: `🎯 ${transformerName} (Transformação) - ${moveName}: Acerto Automático`, timestamp, isDiceRoll: false })
+      return
+    }
+
+    const d20Roll = Math.floor(Math.random() * 20) + 1
+    let modifiersTotal = 0
+    const modifierDetails = []
+
+    // Estágios de precisão do transformer
+    let battleId = transformer.id
+    const idStr = String(transformer.id || '')
+    if (transformer.id && !idStr.startsWith('npc-pokemon-')) {
+      const pkInBattle = battlePokemonList.find(p => p.originalId === String(transformer.id))
+      if (pkInBattle) battleId = pkInBattle.id
+    }
+    const stages = pokemonStages[battleId] || {}
+    const precisaoStage = stages.precisao || 0
+    if (precisaoStage !== 0) {
+      modifiersTotal += precisaoStage
+      modifierDetails.push(`Fase Precisão: ${precisaoStage >= 0 ? '+' : ''}${precisaoStage}`)
+    }
+
+    // Modificadores ativos do usuário
+    const currentUserModifiers = userBattleModifiers[currentUser.username] || []
+    const currentUserActiveIndexes = userActiveModifiers[currentUser.username] || []
+    for (const modIndex of currentUserActiveIndexes) {
+      const modifier = currentUserModifiers[modIndex]
+      if (!modifier || !modifier.aplicarAcuracia) continue
+      const processedMod = processCommandExpression(modifier.mod)
+      if (processedMod) {
+        modifiersTotal += processedMod.finalResult
+        let detail = `${modifier.nome}: ${modifier.mod}`
+        if (processedMod.diceResults.length > 0) detail += ` → ${processedMod.diceResults.map(d => `${d.original}=[${d.rolls.join('+')}]=${d.total}`).join(' ')}`
+        detail += ` = ${processedMod.finalResult}`
+        modifierDetails.push(detail)
+      } else {
+        const numValue = parseInt(modifier.mod)
+        if (!isNaN(numValue)) { modifiersTotal += numValue; modifierDetails.push(`${modifier.nome}: ${numValue >= 0 ? '+' : ''}${numValue}`) }
+      }
+    }
+
+    let detailsParts = `1d20 = ${d20Roll}`
+    if (modifierDetails.length > 0) detailsParts += ` | Modificadores: ${modifierDetails.join(', ')} = ${modifiersTotal >= 0 ? '+' : ''}${modifiersTotal}`
+    detailsParts += ` | Acurácia do Golpe: ${moveData.acuracia}`
+
+    addChatMessage({
+      username: currentUser.username,
+      text: `🎯 ${transformerName} (Transformação) - Teste de Acurácia: ${moveName}`,
+      timestamp,
+      isDiceRoll: true,
+      diceResult: d20Roll + modifiersTotal,
+      diceDetails: detailsParts
+    })
   }
 
   // Função para enviar habilidade no chat
@@ -4619,7 +4905,7 @@ function App() {
   }
 
   // Função para rolar teste de acurácia
-  const handleRollAccuracy = (moveName, pokemonIdOverride = null) => {
+  const handleRollAccuracy = (moveName, pokemonIdOverride = null, metronomoMove = null) => {
     const moveData = GOLPES_DATA[moveName]
     if (!moveData) return
 
@@ -4638,7 +4924,8 @@ function App() {
         username: currentUser.username,
         text: `🎯 ${pokemonName} - ${moveName}: Acerto Automático`,
         timestamp,
-        isDiceRoll: false
+        isDiceRoll: false,
+        ...(metronomoMove ? { metronomoMove } : { battleMove: moveName })
       })
       return
     }
@@ -4718,8 +5005,70 @@ function App() {
       timestamp,
       isDiceRoll: true,
       diceResult: finalResult,
-      diceDetails: detailsParts
+      diceDetails: detailsParts,
+      ...(metronomoMove ? { metronomoMove } : { battleMove: moveName })
     })
+  }
+
+  // Funções do Metrônomo — sorteia golpe aleatório e delega para handlers normais
+  const handleMetronomeAccuracy = (pokemonIdOverride = null) => {
+    const activePokemon = selectedTeamPokemon || selectedMasterNpcPokemon
+    if (!activePokemon) return
+
+    const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+    const isNpcPokemon = activePokemon?.isNpc || (selectedMasterNpcPokemon && selectedMasterNpcPokemon.id === activePokemon?.id)
+    const pokemonName = isNpcPokemon && !revealedNpcPokemon[activePokemon?.id]
+      ? (activePokemon?.nomeFalso || activePokemon?.nickname || activePokemon?.nome || activePokemon?.species || '???')
+      : (activePokemon?.nickname || activePokemon?.nome || activePokemon?.species || 'Pokémon')
+
+    // Sortear golpe aleatório excluindo o próprio Metrônomo
+    const allMoves = Object.keys(GOLPES_DATA).filter(name => name !== 'Metrônomo')
+    const drawnMoveName = allMoves[Math.floor(Math.random() * allMoves.length)]
+    const drawnMove = GOLPES_DATA[drawnMoveName]
+
+    // Memorizar golpe sorteado por Pokémon
+    const pkmId = pokemonIdOverride || activePokemon.id || `team-${activePokemon.species}`
+    setMetronomeDrawnMoves(prev => ({ ...prev, [pkmId]: drawnMoveName }))
+
+    // Passar o nome do golpe sorteado para que seja exibido como botão clicável no chat
+    handleRollAccuracy(drawnMoveName, pokemonIdOverride, drawnMoveName)
+  }
+
+  const handleMetromoneDamage = (pokemonIdOverride = null) => {
+    const activePokemon = selectedTeamPokemon || selectedMasterNpcPokemon
+    if (!activePokemon) return
+
+    const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+    const pkmId = pokemonIdOverride || activePokemon.id || `team-${activePokemon.species}`
+    const drawnMoveName = metronomeDrawnMoves[pkmId]
+
+    if (!drawnMoveName) {
+      addChatMessage({
+        username: 'Sistema',
+        text: `⚠️ Metrônomo: role a acurácia primeiro para sortear um golpe.`,
+        timestamp,
+        isDiceRoll: false
+      })
+      return
+    }
+
+    const drawnMove = GOLPES_DATA[drawnMoveName]
+    if (!drawnMove || !drawnMove.danoBasal || drawnMove.danoBasal === '-' || drawnMove.danoBasal === '') {
+      const isNpcPokemon = activePokemon?.isNpc || (selectedMasterNpcPokemon && selectedMasterNpcPokemon.id === activePokemon?.id)
+      const pokemonName = isNpcPokemon && !revealedNpcPokemon[activePokemon?.id]
+        ? (activePokemon?.nomeFalso || activePokemon?.nickname || activePokemon?.nome || activePokemon?.species || '???')
+        : (activePokemon?.nickname || activePokemon?.nome || activePokemon?.species || 'Pokémon')
+      addChatMessage({
+        username: currentUser.username,
+        text: `🎲 ${pokemonName} - Metrônomo → ${drawnMoveName}: sem dano basal.`,
+        timestamp,
+        isDiceRoll: false
+      })
+      return
+    }
+
+    // Delegar a rolagem de dano para o handler normal do golpe sorteado
+    handleRollMoveDamage(drawnMoveName)
   }
 
   // Funções auxiliares para obter modificadores do usuário atual
@@ -10062,6 +10411,28 @@ function App() {
     }
   }
 
+  // Abrir visordex de golpes de um Pokémon no tracker — busca golpes do Firebase se necessário
+  const handleOpenVisordex = async (pokemon) => {
+    if (pokemon.golpes && pokemon.golpes.length > 0) {
+      setSelectedBattlePokemonForMoves(pokemon)
+      return
+    }
+    setSelectedBattlePokemonForMoves(pokemon)
+    if (pokemon.owner) {
+      try {
+        const trainerData = await loadTrainerData(pokemon.owner)
+        const team = trainerData?.mainTeam || []
+        const match = team.find(p =>
+          p.id === pokemon.originalId ||
+          (p.species === pokemon.especie && (p.nickname || p.species) === pokemon.nome)
+        )
+        if (match?.golpes?.length > 0) {
+          setSelectedBattlePokemonForMoves(prev => prev ? { ...prev, golpes: match.golpes } : prev)
+        }
+      } catch (_) {}
+    }
+  }
+
   // Funções para enviar para Batalha
   const sendPokemonToBattle = (pokemon) => {
     const maxHP = calculateMaxHP(pokemon)
@@ -10089,7 +10460,7 @@ function App() {
       evasaoFisica: Math.floor(totalDef / 5),
       evasaoEspecial: Math.floor(totalDefEsp / 5),
       evasaoVeloz: Math.floor(totalVel / 10),
-      golpes: pokemon.moves || [],
+      golpes: pokemon.golpes || pokemon.moves || [],
       habilidades: pokemon.abilities || [],
       isExotic: pokemon.isExotic || false,
       isNpc: false,
@@ -10314,12 +10685,38 @@ function App() {
       id: `${Date.now()}-${Math.random()}`
     }
     if (useFirebase) {
-      const updatedMessages = [...gbChatMessages, newMessage].slice(-20)
+      const updatedMessages = [...gbChatMessages, newMessage].slice(-10)
       await saveGBChatMessages(updatedMessages)
     } else {
-      setGbChatMessages(prev => [...prev, newMessage].slice(-20))
+      setGbChatMessages(prev => [...prev, newMessage].slice(-10))
     }
   }
+
+  // Abrir modal de golpe
+  const handleOpenBattleMove = useCallback((nome) => {
+    setSelectedBattleMove(nome)
+    setShowBattleMoveModal(true)
+  }, [])
+
+  // Abrir modal de característica ou talento a partir do nome
+  const handleOpenCaracTalento = useCallback((nome) => {
+    let found = null
+    for (const [, caracObj] of Object.entries(CARACTERISTICAS_DATA)) {
+      if (Array.isArray(caracObj)) {
+        const f = caracObj.find(c => c.nome === nome)
+        if (f) { found = { ...f, tipo: 'caracteristica' }; break }
+      } else if (caracObj[nome]) {
+        found = { nome, ...caracObj[nome], tipo: 'caracteristica' }; break
+      }
+    }
+    if (!found) {
+      for (const list of Object.values(TALENTOS_DATA)) {
+        const f = list.find(t => t.nome === nome)
+        if (f) { found = { ...f, tipo: 'talento' }; break }
+      }
+    }
+    if (found) { setSelectedCaracTalento(found); setShowCaracTalentoModal(true) }
+  }, [])
 
   // Função principal: usar golpe na Batalha Game Boy
   const gbHandleUseMove = async (attacker, moveName, targets) => {
@@ -12549,6 +12946,42 @@ function App() {
     return () => unsub()
   }, [currentUser, useFirebase])
 
+  // Notificação PokeZap — detectar nova mensagem recebida
+  useEffect(() => {
+    if (!currentUser || pokezapMessages.length === 0) return
+    const last = pokezapMessages[pokezapMessages.length - 1]
+    if (!last || last.id === lastPokezapMsgId) return
+    const isRecipient =
+      (Array.isArray(last.recipients) && last.recipients.includes(currentUser.username)) ||
+      (currentUser.type === 'mestre' && last.sender !== currentUser.username)
+    if (!isRecipient) { setLastPokezapMsgId(last.id); return }
+    const senderUser = users.find(u => u.username === last.sender)
+    let gif = null
+    if (currentUser.type === 'treinador') {
+      gif = senderUser?.type === 'mestre' ? '/pokezapgif/dragonitezap.gif' : '/pokezapgif/pikachuzap.gif'
+    } else if (currentUser.type === 'mestre') {
+      gif = '/pokezapgif/gagonite2pokezap.gif'
+    }
+    if (gif) setPokezapNotifGif(gif)
+    setLastPokezapMsgId(last.id)
+  }, [pokezapMessages, currentUser, lastPokezapMsgId])
+
+  // Limpar notificação ao abrir PokeZap
+  useEffect(() => {
+    if (showPokezapPanel) setPokezapNotifGif(null)
+  }, [showPokezapPanel])
+
+  const handleLogin = () => {
+    if (!selectedUser) return
+    if (password !== 'DnD7MarPkm') { setError('Senha incorreta!'); return }
+    setCurrentUser(selectedUser)
+    setCurrentArea(selectedUser.type === 'treinador' ? 'Treinador' : '')
+    setSessionBg(BG_IMAGES[Math.floor(Math.random() * BG_IMAGES.length)])
+    setSelectedUser(null)
+    setPassword('')
+    setIsPrankActive(selectedUser.username !== 'Ludovic' && Math.random() < 0.5)
+  }
+
   // Função de logout com backup automático em background
   const handleLogout = () => {
     setCurrentUser(null)
@@ -12557,6 +12990,7 @@ function App() {
     setShowPokezapPanel(false)
     setSpoilerMestreConfirmado(false)
     setShowBatalhaChat(false)
+    setIsPrankActive(false)
   }
 
   const handleSendPokezap = () => {
@@ -12620,6 +13054,9 @@ function App() {
         if (data.runPermissions) setSafariRunPermissions(data.runPermissions)
         if (data.runEncounters) setSafariRunEncounters(data.runEncounters)
         if (data.runPaidUsers) setSafariRunPaidUsers(data.runPaidUsers)
+        if (data.saltoValues) setSafariSaltoValues(data.saltoValues)
+        setSafariRunLastClicked(data.runPositions || {})
+        setSafariRunStartAreas(data.runStartAreas || {})
 
         // Auto-cobrar pokemoedas de treinadores com permissão quando um run é iniciado
         if (data.runPaidUsers && currentUser?.username && currentUser.type === 'treinador') {
@@ -12706,6 +13143,9 @@ function App() {
       runPermissions: overrides.runPermissions !== undefined ? overrides.runPermissions : safariRunPermissions,
       runEncounters: overrides.runEncounters !== undefined ? overrides.runEncounters : safariRunEncounters,
       runPaidUsers: overrides.runPaidUsers !== undefined ? overrides.runPaidUsers : safariRunPaidUsers,
+      saltoValues: overrides.saltoValues !== undefined ? overrides.saltoValues : safariSaltoValues,
+      runPositions: overrides.runPositions !== undefined ? overrides.runPositions : safariRunLastClicked,
+      runStartAreas: overrides.runStartAreas !== undefined ? overrides.runStartAreas : safariRunStartAreas,
     }
     await saveSafariData(data)
   }
@@ -12752,6 +13192,7 @@ function App() {
   const getRandomSafariTerrain = (areaName) => {
     const terrain = SAFARI_AREA_TERRAIN[areaName]
     if (!terrain) return 'Grama'
+    if (terrain.cave !== undefined) return 'Cave'
     const total = terrain.grama + terrain.agua
     const roll = Math.floor(Math.random() * total) + 1
     return roll <= terrain.grama ? 'Grama' : 'Água'
@@ -12861,22 +13302,96 @@ function App() {
     return assignAbilitiesToPokemon(pokemon)
   }
 
+  // Encontrar tile especial no grid
+  const findSpecialTile = (grid, type) => {
+    for (let r = 0; r < grid.length; r++) {
+      for (let c = 0; c < grid[r].length; c++) {
+        if (grid[r][c].specialTile === type) return { row: r, col: c }
+      }
+    }
+    return null
+  }
+
+  // Encontrar tile não-lava mais distante do tile de corda (distância Manhattan)
+  const getFarthestTileFromRope = (grid, ropePos) => {
+    let farthest = null
+    let maxDist = -1
+    for (let r = 0; r < grid.length; r++) {
+      for (let c = 0; c < grid[r].length; c++) {
+        const cell = grid[r][c]
+        if (cell.specialTile === 'lava' || cell.specialTile === 'rope') continue
+        const dist = Math.abs(r - ropePos.row) + Math.abs(c - ropePos.col)
+        if (dist > maxDist) {
+          maxDist = dist
+          farthest = { row: r, col: c }
+        }
+      }
+    }
+    return farthest
+  }
+
   // Gerar grid 8x8 do Safari
   const generateSafariGrid = (areaName) => {
+    const isCave = CAVE_AREAS.includes(areaName)
+
+    if (!isCave) {
+      const grid = []
+      for (let row = 0; row < 8; row++) {
+        const gridRow = []
+        for (let col = 0; col < 8; col++) {
+          const terrain = getRandomSafariTerrain(areaName)
+          const encounter = rollSafariEncounter(areaName, terrain)
+          let cell = { terrain, pokemon: null, quantity: 0, isSkittish: false, level: 0, levelRange: '-', revealed: false, specialTile: null }
+          if (encounter && encounter.pokemon) {
+            const isSolo = SAFARI_SOLO_SPECIES.includes(encounter.pokemon)
+            cell.pokemon = encounter.pokemon
+            cell.quantity = isSolo ? 1 : Math.floor(Math.random() * 6) + 1
+            cell.isSkittish = encounter.isSkittish
+            cell.level = parseSafariLevel(encounter.level)
+            cell.levelRange = encounter.level
+          }
+          gridRow.push(cell)
+        }
+        grid.push(gridRow)
+      }
+      return grid
+    }
+
+    // Geração de grid para cavernas
+    const GRID_SIZE = 8
+    const centerCells = [{ row: 3, col: 3 }, { row: 3, col: 4 }, { row: 4, col: 3 }, { row: 4, col: 4 }]
+    const corners = [{ row: 0, col: 0 }, { row: 0, col: 7 }, { row: 7, col: 0 }, { row: 7, col: 7 }]
+
+    const centerCell = centerCells[Math.floor(Math.random() * centerCells.length)]
+    const cornerCell = corners[Math.floor(Math.random() * corners.length)]
+
+    const hasHole = areaName === 'Caverna 1' || areaName === 'Caverna 2'
+    const hasRope = areaName === 'Caverna 2' || areaName === 'Caverna 3'
+    const isLavaCave = areaName === 'Caverna 3'
+
     const grid = []
-    for (let row = 0; row < 8; row++) {
+    for (let row = 0; row < GRID_SIZE; row++) {
       const gridRow = []
-      for (let col = 0; col < 8; col++) {
-        const terrain = getRandomSafariTerrain(areaName)
-        const encounter = rollSafariEncounter(areaName, terrain)
-        let cell = { terrain, pokemon: null, quantity: 0, isSkittish: false, level: 0, levelRange: '-', revealed: false }
-        if (encounter && encounter.pokemon) {
-          const isSolo = SAFARI_SOLO_SPECIES.includes(encounter.pokemon)
-          cell.pokemon = encounter.pokemon
-          cell.quantity = isSolo ? 1 : Math.floor(Math.random() * 6) + 1
-          cell.isSkittish = encounter.isSkittish
-          cell.level = parseSafariLevel(encounter.level)
-          cell.levelRange = encounter.level
+      for (let col = 0; col < GRID_SIZE; col++) {
+        let cell = { terrain: 'Cave', pokemon: null, quantity: 0, isSkittish: false, level: 0, levelRange: '-', revealed: false, specialTile: null }
+
+        if (hasHole && row === centerCell.row && col === centerCell.col) {
+          cell.specialTile = 'hole'
+        } else if (hasRope && row === cornerCell.row && col === cornerCell.col) {
+          cell.specialTile = 'rope'
+        } else if (isLavaCave && Math.random() < 0.6) {
+          cell.specialTile = 'lava'
+        } else {
+          // Célula normal: rolar encontro
+          const encounter = rollSafariEncounter(areaName, 'Cave')
+          if (encounter && encounter.pokemon) {
+            const isSolo = SAFARI_SOLO_SPECIES.includes(encounter.pokemon)
+            cell.pokemon = encounter.pokemon
+            cell.quantity = isSolo ? 1 : Math.floor(Math.random() * 6) + 1
+            cell.isSkittish = encounter.isSkittish
+            cell.level = parseSafariLevel(encounter.level)
+            cell.levelRange = encounter.level
+          }
         }
         gridRow.push(cell)
       }
@@ -12921,11 +13436,14 @@ function App() {
     setSafariRunEncounters({})
     setSafariRunPaidUsers({})
     setSafariRunLastClicked({})
+    setSafariSaltoValues({})
+    setSafariRunStartAreas({})
     setSafariStaffActiveRun(null)
     setSafariActiveRun(null) // Limpar run ativa do jogador
     setSafariGridData(null) // Limpar grid data do jogador
     safariPaidRunsRef.current = new Set()
-    saveSafariToFirebase({ runAreas: {}, runPermissions: {}, runEncounters: {}, runPaidUsers: {} })
+    setSafariRunLastClicked({})
+    saveSafariToFirebase({ runAreas: {}, runPermissions: {}, runEncounters: {}, runPaidUsers: {}, saltoValues: {}, runPositions: {}, runStartAreas: {} })
     saveToFirebase('safariGrids', null)
     saveToFirebase('safariTimers', null)
     const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
@@ -12935,6 +13453,21 @@ function App() {
   const handleEquipeLimpeza = () => {
     setSafariRunEncounters({})
     saveSafariToFirebase({ runEncounters: {} })
+  }
+
+  // Mestre define o valor de Salto de um treinador (só Caverna 3)
+  const handleSetSalto = (runNumber, value) => {
+    const runKey = `run-${runNumber}`
+    const newSaltoValues = { ...safariSaltoValues, [runKey]: value }
+    setSafariSaltoValues(newSaltoValues)
+    saveSafariToFirebase({ saltoValues: newSaltoValues })
+  }
+
+  const handleSetRunStartArea = (runNumber, area) => {
+    const runKey = `run-${runNumber}`
+    const newRunStartAreas = { ...safariRunStartAreas, [runKey]: area }
+    setSafariRunStartAreas(newRunStartAreas)
+    saveSafariToFirebase({ runStartAreas: newRunStartAreas })
   }
 
   const handleSafariChanceFugaRoll = (runNumber, pokemonId) => {
@@ -13099,21 +13632,22 @@ function App() {
       }
     }
 
+    const startArea = safariRunStartAreas[runKey] || 'Área Central'
     safariPaidRunsRef.current.add(runKey)
     setSafariActiveRun(runNumber)
-    setSafariCurrentArea('Área Central')
+    setSafariCurrentArea(startArea)
     setSafariGridClickCount(0)
     setSafariSelectedPokemon(new Set())
 
     // Resetar último clicado ao iniciar nova run
     setSafariRunLastClicked(prev => ({ ...prev, [runKey]: null }))
 
-    const grid = generateSafariGrid('Área Central')
+    const grid = generateSafariGrid(startArea)
     setSafariGridData(grid)
 
     syncGridToRun(grid, runNumber)
     updateSafariTimer(runNumber, 600)
-    const newRunAreas = { ...safariRunAreas, [runKey]: 'Área Central' }
+    const newRunAreas = { ...safariRunAreas, [runKey]: startArea }
     setSafariRunAreas(newRunAreas)
     // Marcar todos os treinadores como pagos
     const newRunPaidUsers = { ...safariRunPaidUsers, [runKey]: trainersInRun }
@@ -13149,14 +13683,15 @@ function App() {
     setSafariGridClickCount(0)
 
     // Resetar último clicado ao mudar de área
-    setSafariRunLastClicked(prev => ({ ...prev, [runKey]: null }))
+    const resetPositions = Object.fromEntries(Object.entries(safariRunLastClicked).filter(([k]) => k !== runKey))
+    setSafariRunLastClicked(resetPositions)
 
     syncGridToRun(grid, safariActiveRun)
     if (currentTimer > 0) updateSafariTimer(safariActiveRun, currentTimer - 60)
 
     const newRunAreas = { ...safariRunAreas, [runKey]: targetArea }
     setSafariRunAreas(newRunAreas)
-    saveSafariToFirebase({ runAreas: newRunAreas })
+    saveSafariToFirebase({ runAreas: newRunAreas, runPositions: resetPositions })
 
     setShowAreaNavigationModal(false)
     setSafariSelectedPokemon(new Set())
@@ -13205,48 +13740,130 @@ function App() {
   const handleSafariCellClick = async (row, col) => {
     if (!safariGridData || !safariActiveRun) return
     const runKey = `run-${safariActiveRun}`
-
-    // Verificar timer
     const currentTimer = safariTimers[runKey] !== undefined ? safariTimers[runKey] : 600
+    const permissions = safariRunPermissions[runKey] || {}
+    if (!permissions[currentUser?.username]) return
+
+    const cell = safariGridData[row][col]
+
+    // Bloquear tiles de lava (sempre)
+    if (cell.specialTile === 'lava') return
+
+    // Tile de corda: navegar para área anterior (sem validação de movimento)
+    if (cell.specialTile === 'rope') {
+      if (currentTimer <= 0) { alert('⏰ Tempo esgotado!'); return }
+      const prevArea = CAVE_PREVIOUS_AREA[safariCurrentArea]
+      if (!prevArea) return
+      const newGrid = generateSafariGrid(prevArea)
+      setSafariCurrentArea(prevArea)
+      setSafariGridData(newGrid)
+      setSafariGridClickCount(0)
+      const resetPositions = Object.fromEntries(Object.entries(safariRunLastClicked).filter(([k]) => k !== runKey))
+      setSafariRunLastClicked(resetPositions)
+      syncGridToRun(newGrid, safariActiveRun)
+      if (currentTimer > 0) updateSafariTimer(safariActiveRun, currentTimer - 60)
+      const newRunAreas = { ...safariRunAreas, [runKey]: prevArea }
+      setSafariRunAreas(newRunAreas)
+      saveSafariToFirebase({ runAreas: newRunAreas, runPositions: resetPositions })
+      const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      addChatMessage({ username: 'Sistema', text: `${currentUser.username} (Run ${safariActiveRun}) subiu pela corda de volta para ${prevArea}!`, timestamp, isDiceRoll: false })
+      return
+    }
+
+    // Tile de buraco: navegar para próxima caverna
+    if (cell.specialTile === 'hole') {
+      if (currentTimer <= 0) { alert('⏰ Tempo esgotado!'); return }
+      const nextArea = CAVE_NEXT_AREA[safariCurrentArea]
+      if (!nextArea) return
+      // Verificar se o tile de buraco está no alcance
+      const lastClicked = safariRunLastClicked[runKey]
+      const revealedCells = safariGridData.flat().filter(c => c.revealed)
+      const isFirstClick = revealedCells.length === 0
+      if (!isFirstClick && lastClicked) {
+        const dist = Math.max(Math.abs(row - lastClicked.row), Math.abs(col - lastClicked.col))
+        if (dist > 1) { alert('⚠️ Você precisa estar adjacente ao buraco para entrar!'); return }
+      } else if (isFirstClick) {
+        if (!isEdgeCell(row, col, safariGridData.length)) { alert('⚠️ O primeiro clique deve ser na borda do grid!'); return }
+      }
+      const newGrid = generateSafariGrid(nextArea)
+      setSafariCurrentArea(nextArea)
+      setSafariGridData(newGrid)
+      setSafariGridClickCount(0)
+      const resetPositions = Object.fromEntries(Object.entries(safariRunLastClicked).filter(([k]) => k !== runKey))
+      setSafariRunLastClicked(resetPositions)
+      syncGridToRun(newGrid, safariActiveRun)
+      if (currentTimer > 0) updateSafariTimer(safariActiveRun, currentTimer - 60)
+      const newRunAreas = { ...safariRunAreas, [runKey]: nextArea }
+      setSafariRunAreas(newRunAreas)
+      saveSafariToFirebase({ runAreas: newRunAreas, runPositions: resetPositions })
+      const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      addChatMessage({ username: 'Sistema', text: `${currentUser.username} (Run ${safariActiveRun}) desceu pelo buraco para ${nextArea}!`, timestamp, isDiceRoll: false })
+      return
+    }
+
+    // Célula já revelada: ignorar
+    if (cell.revealed) return
+
+    // Verificar timer para tiles normais
     if (currentTimer <= 0) {
       alert('⏰ Tempo esgotado! Você não pode mais interagir com o grid.')
       return
     }
 
-    // Verificar permissão
-    const permissions = safariRunPermissions[runKey] || {}
-    if (!permissions[currentUser?.username]) return
-
-    const cell = safariGridData[row][col]
-    if (cell.revealed) return
-
-    // Verificar regras de movimento no grid
+    // Regras de movimento
     const revealedCells = safariGridData.flat().filter(c => c.revealed)
     const isFirstClick = revealedCells.length === 0
     const lastClicked = safariRunLastClicked[runKey]
+    const isCave23 = safariCurrentArea === 'Caverna 2' || safariCurrentArea === 'Caverna 3'
+    const playerSalto = (safariCurrentArea === 'Caverna 3') ? (safariSaltoValues[runKey] || 0) : 0
+    const maxReach = playerSalto + 1
 
-    if (isFirstClick) {
-      // Primeiro clique: deve ser na borda
-      if (!isEdgeCell(row, col, safariGridData.length)) {
-        alert('⚠️ O primeiro clique deve ser em um dos quadrados da borda do grid!')
-        return
+    if (isCave23) {
+      if (isFirstClick) {
+        const ropePos = findSpecialTile(safariGridData, 'rope')
+        const isInitialArea = safariRunStartAreas[runKey] === safariCurrentArea
+        if (isInitialArea && ropePos) {
+          // Área inicial via dropdown: primeiro clique deve ser no tile mais longe da corda
+          const farthest = getFarthestTileFromRope(safariGridData, ropePos)
+          if (!farthest || row !== farthest.row || col !== farthest.col) {
+            alert('⚠️ Você deve começar pelo tile mais distante da corda!')
+            return
+          }
+        } else {
+          // Entrada normal pela corda: deve ser adjacente ao tile de corda
+          if (!ropePos || !isAdjacentToCell(row, col, ropePos.row, ropePos.col)) {
+            alert('⚠️ Ao entrar na caverna, você deve clicar em um tile adjacente à corda!')
+            return
+          }
+        }
+      } else {
+        const dist = lastClicked ? Math.max(Math.abs(row - lastClicked.row), Math.abs(col - lastClicked.col)) : Infinity
+        const withinReach = dist <= maxReach
+        const allLastAdjacentRevealed = lastClicked && allAdjacentRevealed(lastClicked.row, lastClicked.col, safariGridData)
+        const isAdjacentToRevealed = isAdjacentToAnyRevealed(row, col, safariGridData)
+        if (!withinReach) {
+          if (!allLastAdjacentRevealed || !isAdjacentToRevealed) {
+            alert(maxReach > 1 ? `⚠️ Você pode saltar sobre até ${playerSalto} tile(s), mas este tile está fora do alcance!` : '⚠️ Você só pode clicar em quadrados adjacentes ao último clicado!')
+            return
+          }
+        }
       }
     } else {
-      // Cliques subsequentes: deve ser adjacente ao último clicado
-      // OU se todos adjacentes ao último estão revelados, pode ser adjacente a qualquer revelado
-      const isAdjacentToLast = lastClicked && isAdjacentToCell(row, col, lastClicked.row, lastClicked.col)
-      const allLastAdjacentRevealed = lastClicked && allAdjacentRevealed(lastClicked.row, lastClicked.col, safariGridData)
-      const isAdjacentToRevealed = isAdjacentToAnyRevealed(row, col, safariGridData)
-
-      if (!isAdjacentToLast) {
-        // Se não é adjacente ao último, verifica se todos adjacentes do último estão revelados
-        if (!allLastAdjacentRevealed || !isAdjacentToRevealed) {
-          if (!allLastAdjacentRevealed) {
-            alert('⚠️ Você só pode clicar em quadrados adjacentes ao último clicado!')
-          } else {
-            alert('⚠️ Você só pode clicar em quadrados adjacentes aos já revelados!')
-          }
+      // Caverna 1 e áreas normais
+      if (isFirstClick) {
+        if (!isEdgeCell(row, col, safariGridData.length)) {
+          alert('⚠️ O primeiro clique deve ser em um dos quadrados da borda do grid!')
           return
+        }
+      } else {
+        const isAdjacentToLast = lastClicked && isAdjacentToCell(row, col, lastClicked.row, lastClicked.col)
+        const allLastAdjacentRevealed = lastClicked && allAdjacentRevealed(lastClicked.row, lastClicked.col, safariGridData)
+        const isAdjacentToRevealed = isAdjacentToAnyRevealed(row, col, safariGridData)
+        if (!isAdjacentToLast) {
+          if (!allLastAdjacentRevealed || !isAdjacentToRevealed) {
+            alert(!allLastAdjacentRevealed ? '⚠️ Você só pode clicar em quadrados adjacentes ao último clicado!' : '⚠️ Você só pode clicar em quadrados adjacentes aos já revelados!')
+            return
+          }
         }
       }
     }
@@ -13254,37 +13871,39 @@ function App() {
     const newGrid = safariGridData.map((r, ri) =>
       r.map((c, ci) => (ri === row && ci === col ? { ...c, revealed: true } : c))
     )
-
-    // Atualizar último clicado
-    setSafariRunLastClicked(prev => ({ ...prev, [runKey]: { row, col } }))
+    const newRunPositions = { ...safariRunLastClicked, [runKey]: { row, col } }
+    setSafariRunLastClicked(newRunPositions)
     setSafariGridData(newGrid)
     syncGridToRun(newGrid, safariActiveRun)
+    if (currentTimer > 0) updateSafariTimer(safariActiveRun, currentTimer - 10)
 
-    // Timer: decrementar 10 minutos a cada clique
-    if (currentTimer > 0) {
-      updateSafariTimer(safariActiveRun, currentTimer - 10)
+    // Resetar salto após movimento (só Caverna 3)
+    const newSaltoValues = (safariCurrentArea === 'Caverna 3' && playerSalto > 0)
+      ? { ...safariSaltoValues, [runKey]: 0 }
+      : safariSaltoValues
+    if (safariCurrentArea === 'Caverna 3' && playerSalto > 0) {
+      setSafariSaltoValues(newSaltoValues)
     }
+    saveSafariToFirebase({ saltoValues: newSaltoValues, runPositions: newRunPositions })
 
     const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+    const terrenoLabel = cell.terrain === 'Cave' ? 'caverna' : cell.terrain === 'Grama' ? 'grama' : 'água'
 
     if (!cell.pokemon) {
-      addChatMessage({ username: 'Sistema', text: `${currentUser.username} explorou a ${cell.terrain === 'Grama' ? 'grama' : 'água'}, mas não encontrou nenhum pokémon.`, timestamp, isDiceRoll: false })
+      addChatMessage({ username: 'Sistema', text: `${currentUser.username} explorou a ${terrenoLabel}, mas não encontrou nenhum pokémon.`, timestamp, isDiceRoll: false })
       return
     }
 
-    // Buscar dados do pokemon (imagem + tipos)
     const pokemonData = await fetchSafariPokemonData(cell.pokemon)
     const imageUrl = pokemonData.imageUrl
     const types = pokemonData.types
 
-    // Atualizar grid com imagem
     const gridWithImage = newGrid.map((r, ri) =>
       r.map((c, ci) => (ri === row && ci === col ? { ...c, imageUrl } : c))
     )
     setSafariGridData(gridWithImage)
     syncGridToRun(gridWithImage, safariActiveRun)
 
-    // Limpar pokémons anteriores e gerar novos (novo quadrado substitui encontro anterior)
     const newEncounterPokemon = []
     for (let i = 0; i < cell.quantity; i++) {
       const npcPkm = generateSafariNpcPokemon(
@@ -13298,9 +13917,9 @@ function App() {
     }
     const newRunEncounters = { ...safariRunEncounters, [runKey]: newEncounterPokemon }
     setSafariRunEncounters(newRunEncounters)
-    saveSafariToFirebase({ runEncounters: newRunEncounters })
+    saveSafariToFirebase({ runEncounters: newRunEncounters, runPositions: newRunPositions, saltoValues: newSaltoValues })
 
-    addChatMessage({ username: 'Sistema', text: `${currentUser.username} encontrou ${cell.quantity}x ${cell.pokemon} (Nv.${cell.level})${cell.isSkittish ? ' ⚠️ Arisco!' : ''} na ${cell.terrain}!`, timestamp, isDiceRoll: false })
+    addChatMessage({ username: 'Sistema', text: `${currentUser.username} encontrou ${cell.quantity}x ${cell.pokemon} (Nv.${cell.level})${cell.isSkittish ? ' ⚠️ Arisco!' : ''} na ${terrenoLabel}!`, timestamp, isDiceRoll: false })
   }
 
   const handleSafariIsca = () => {
@@ -14115,6 +14734,345 @@ function App() {
     saveAnotacoes(currentUser.username, anotacoes)
   }, [anotacoes])
 
+  // ===== CURSOR CONFIG: Subscription global =====
+  useEffect(() => {
+    if (!useFirebase) return
+    const unsub = subscribeToCursorConfig((data) => setCursorConfig(data))
+    return () => unsub()
+  }, [useFirebase])
+
+  // ===== CURSOR CONFIG: Preferência individual do usuário =====
+  useEffect(() => {
+    if (!useFirebase || !currentUser) return
+    const unsub = subscribeToUserCursorPref(currentUser.username, (data) => setUserCursorPref(data))
+    return () => unsub()
+  }, [currentUser, useFirebase])
+
+  // ===== CURSOR CONFIG: Aplicação do cursor =====
+  useEffect(() => {
+    let effectiveMode = 'ciclar'
+    let effectiveCycle = DEFAULT_CURSOR_CYCLE
+    let effectiveLocked = null
+
+    // Override pessoal do mestre
+    if (currentUser?.type === 'mestre' && userCursorPref?.mode && userCursorPref.mode !== 'global') {
+      if (userCursorPref.mode === 'janela') {
+        applyCursor('')
+        return () => {}
+      } else if (userCursorPref.mode === 'locked' && userCursorPref.lockedCursor) {
+        applyCursor(userCursorPref.lockedCursor)
+        return () => { applyCursor('') }
+      }
+    }
+
+    if (cursorConfig?.mode === 'janela') {
+      applyCursor('')
+      return () => {}
+    } else if (cursorConfig?.mode === 'locked' && cursorConfig?.lockedCursor) {
+      effectiveMode = 'locked'
+      effectiveLocked = cursorConfig.lockedCursor
+    } else if (cursorConfig?.mode === 'ciclar') {
+      effectiveMode = 'ciclar'
+      effectiveCycle = DEFAULT_CURSOR_CYCLE
+    } else if (cursorConfig?.mode === 'personalizado') {
+      const pref = userCursorPref
+      if (pref?.mode === 'locked' && pref?.lockedCursor) {
+        effectiveMode = 'locked'
+        effectiveLocked = pref.lockedCursor
+      } else if (pref?.mode === 'custom' && Array.isArray(pref?.customCycle) && pref.customCycle.length > 0) {
+        effectiveMode = 'ciclar'
+        effectiveCycle = pref.customCycle
+      } else {
+        effectiveMode = 'ciclar'
+        effectiveCycle = DEFAULT_CURSOR_CYCLE
+      }
+    } else {
+      // Sem config ainda: usar ciclar por padrão
+      effectiveMode = 'ciclar'
+      effectiveCycle = DEFAULT_CURSOR_CYCLE
+    }
+
+    if (effectiveMode === 'locked') {
+      applyCursor(effectiveLocked)
+      return () => { applyCursor('') }
+    }
+
+    // Modo ciclar: resetar contador e aplicar primeiro cursor
+    cursorClickCount.current = 0
+    cursorIndexRef.current = 0
+    applyCursor(effectiveCycle[0])
+
+    const handleClick = () => {
+      cursorClickCount.current++
+      if (cursorClickCount.current % 10 === 0) {
+        cursorIndexRef.current = (cursorIndexRef.current + 1) % effectiveCycle.length
+        applyCursor(effectiveCycle[cursorIndexRef.current])
+      }
+    }
+    document.addEventListener('click', handleClick)
+    return () => {
+      document.removeEventListener('click', handleClick)
+      applyCursor('')
+    }
+  }, [cursorConfig, userCursorPref, currentUser])
+
+  // ===== MODAL: Configurações de Cursor (Mestre) =====
+  const cursorSettingsModal = showCursorSettingsModal && (() => {
+    const currentMode = cursorConfig?.mode || 'ciclar'
+    const currentLocked = cursorConfig?.lockedCursor || ''
+    const myMode = userCursorPref?.mode || 'global'
+    const myLocked = userCursorPref?.lockedCursor || ''
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4" onClick={() => setShowCursorSettingsModal(false)}>
+        <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'} rounded-xl p-5 w-full max-w-sm shadow-2xl`} onClick={e => e.stopPropagation()}>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="font-bold text-lg flex items-center gap-2"><Settings2 size={20} /> Configurar Cursor</h2>
+            <button onClick={() => setShowCursorSettingsModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-800'}`}><X size={20} /></button>
+          </div>
+          <div>
+            <label className={`text-xs font-semibold block mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Modo do Cursor</label>
+            <select
+              value={currentMode === 'locked' ? `locked:${currentLocked}` : currentMode}
+              onChange={e => {
+                const val = e.target.value
+                if (val === 'ciclar' || val === 'personalizado' || val === 'janela') {
+                  saveCursorConfig({ mode: val, lockedCursor: null })
+                } else if (val.startsWith('locked:')) {
+                  saveCursorConfig({ mode: 'locked', lockedCursor: val.replace('locked:', '') })
+                }
+              }}
+              className={`w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
+            >
+              <option value="ciclar">🔄 Ciclar (padrão)</option>
+              <option value="janela">🪟 Janela (cursor do Windows)</option>
+              <option value="personalizado">🎨 Personalizado (cada um escolhe)</option>
+              <option disabled>──────────────</option>
+              {ALL_CURSORS.map(c => (
+                <option key={c.file} value={`locked:${c.file}`}>{c.name}</option>
+              ))}
+            </select>
+            <p className={`text-xs mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              {currentMode === 'ciclar' && 'Todos ciclam pelos cursores a cada 10 cliques.'}
+              {currentMode === 'janela' && 'Cursor padrão do Windows para todos.'}
+              {currentMode === 'locked' && `Cursor fixo para todos: ${ALL_CURSORS.find(c => c.file === currentLocked)?.name || currentLocked}`}
+              {currentMode === 'personalizado' && 'Cada usuário pode escolher seu cursor ou ciclo.'}
+            </p>
+          </div>
+          <div className={`mt-4 pt-4 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+            <label className={`text-xs font-semibold block mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Meu Cursor (só para mim)</label>
+            <select
+              value={myMode === 'locked' ? `locked:${myLocked}` : myMode}
+              onChange={e => {
+                const val = e.target.value
+                if (val === 'global' || val === 'janela') {
+                  saveUserCursorPref(currentUser.username, { mode: val, lockedCursor: null })
+                } else if (val.startsWith('locked:')) {
+                  saveUserCursorPref(currentUser.username, { mode: 'locked', lockedCursor: val.replace('locked:', '') })
+                }
+              }}
+              className={`w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
+            >
+              <option value="global">🔄 Seguir configuração global</option>
+              <option value="janela">🪟 Janela (padrão do Windows)</option>
+              <option disabled>──────────────</option>
+              {ALL_CURSORS.map(c => (
+                <option key={c.file} value={`locked:${c.file}`}>{c.name}</option>
+              ))}
+            </select>
+            {myMode === 'locked' && <p className={`text-xs mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Cursor fixo para você: {ALL_CURSORS.find(c => c.file === myLocked)?.name || myLocked}</p>}
+          </div>
+        </div>
+      </div>
+    )
+  })()
+
+  // ===== MODAL: Preferências de Cursor (Treinador) =====
+  const userCursorModal = showUserCursorModal && (() => {
+    const prefMode = userCursorPref?.mode || 'ciclar'
+    const prefLocked = userCursorPref?.lockedCursor || ''
+    const prefCustom = userCursorPref?.customCycle || []
+
+    const toggleCustomCursor = (file) => {
+      const current = userCursorPref?.customCycle || []
+      const exists = current.includes(file)
+      const next = exists ? current.filter(f => f !== file) : [...current, file]
+      saveUserCursorPref(currentUser.username, { ...userCursorPref, customCycle: next })
+    }
+    const moveCustomCursor = (file, dir) => {
+      const current = [...(userCursorPref?.customCycle || [])]
+      const idx = current.indexOf(file)
+      if (idx < 0) return
+      const newIdx = idx + dir
+      if (newIdx < 0 || newIdx >= current.length) return
+      ;[current[idx], current[newIdx]] = [current[newIdx], current[idx]]
+      saveUserCursorPref(currentUser.username, { ...userCursorPref, customCycle: current })
+    }
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4" onClick={() => setShowUserCursorModal(false)}>
+        <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'} rounded-xl p-5 w-full max-w-sm max-h-[85vh] overflow-y-auto shadow-2xl`} onClick={e => e.stopPropagation()}>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="font-bold text-lg flex items-center gap-2"><MousePointer size={20} /> Meu Cursor</h2>
+            <button onClick={() => setShowUserCursorModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-800'}`}><X size={20} /></button>
+          </div>
+
+          {/* Modo */}
+          <div className="mb-4">
+            <label className={`text-xs font-semibold block mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Modo</label>
+            <div className="flex flex-col gap-1">
+              {[{ val: 'ciclar', label: '🔄 Ciclo Padrão' }, { val: 'locked', label: '📌 Cursor Fixo' }, { val: 'custom', label: '✨ Ciclo Personalizado' }].map(opt => (
+                <button
+                  key={opt.val}
+                  onClick={() => saveUserCursorPref(currentUser.username, { ...userCursorPref, mode: opt.val })}
+                  className={`px-3 py-2 rounded-lg text-sm font-semibold text-left transition-colors ${prefMode === opt.val ? 'bg-purple-600 text-white' : darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-300' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'}`}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Cursor Fixo: dropdown */}
+          {prefMode === 'locked' && (
+            <div className="mb-4">
+              <label className={`text-xs font-semibold block mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Escolha o cursor:</label>
+              <select
+                value={prefLocked}
+                onChange={e => saveUserCursorPref(currentUser.username, { ...userCursorPref, lockedCursor: e.target.value })}
+                className={`w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
+              >
+                <option value="">— Selecione —</option>
+                {ALL_CURSORS.map(c => <option key={c.file} value={c.file}>{c.name}</option>)}
+              </select>
+            </div>
+          )}
+
+          {/* Ciclo Personalizado: checkboxes + reordenação */}
+          {prefMode === 'custom' && (
+            <div>
+              <p className={`text-xs mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Marque os cursores e ordene com ↑↓:</p>
+              <div className="space-y-1">
+                {ALL_CURSORS.map(c => {
+                  const checked = prefCustom.includes(c.file)
+                  const pos = prefCustom.indexOf(c.file)
+                  return (
+                    <div key={c.file} className={`flex items-center gap-2 p-2 rounded-lg ${checked ? darkMode ? 'bg-purple-900/40' : 'bg-purple-50' : darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+                      <input type="checkbox" checked={checked} onChange={() => toggleCustomCursor(c.file)} className="w-4 h-4 cursor-pointer accent-purple-600" />
+                      <span className={`flex-1 text-sm ${checked ? 'font-semibold' : darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                        {checked && <span className="text-purple-500 mr-1 text-xs">{pos + 1}.</span>}{c.name}
+                      </span>
+                      {checked && (
+                        <div className="flex gap-0.5">
+                          <button onClick={() => moveCustomCursor(c.file, -1)} disabled={pos === 0} className={`p-0.5 rounded ${pos === 0 ? 'opacity-30' : 'hover:bg-purple-200'}`}><ChevronUp size={14} /></button>
+                          <button onClick={() => moveCustomCursor(c.file, 1)} disabled={pos === prefCustom.length - 1} className={`p-0.5 rounded ${pos === prefCustom.length - 1 ? 'opacity-30' : 'hover:bg-purple-200'}`}><ChevronDown size={14} /></button>
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  })()
+
+  // Modal de Transformação (global — aparece sobre qualquer área que o disparou)
+  const transformacaoModal = showTransformacaoModal && transformacaoTransformer && (() => {
+    const battleList = Array.isArray(battlePokemonList) ? battlePokemonList : []
+    const transformerName = transformacaoTransformer.nickname || transformacaoTransformer.nome || transformacaoTransformer.especie || transformacaoTransformer.species || 'Pokémon'
+    const targetGolpes = (transformacaoTarget?.golpes || []).filter(g => g)
+    return (
+      <div
+        className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4"
+        onClick={() => setShowTransformacaoModal(false)}
+      >
+        <div
+          className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'} rounded-xl p-5 max-w-md w-full max-h-[85vh] overflow-y-auto shadow-2xl`}
+          onClick={e => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="font-bold text-lg">🔄 Transformação — {transformerName}</h2>
+            <button onClick={() => setShowTransformacaoModal(false)} className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-800'}`}>
+              <X size={22} />
+            </button>
+          </div>
+          <div className="mb-4">
+            <label className={`text-xs font-semibold mb-1 block ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              Selecione o Pokémon alvo:
+            </label>
+            <select
+              value={transformacaoTarget ? String(transformacaoTarget.id) : ''}
+              onChange={e => {
+                const chosen = battleList.find(p => String(p.id) === e.target.value) || null
+                setTransformacaoTarget(chosen)
+              }}
+              className={`w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
+            >
+              <option value="">— Escolha um Pokémon —</option>
+              {battleList.map(p => (
+                <option key={p.id} value={String(p.id)}>
+                  {p.nome}{p.especie && p.especie !== p.nome ? ` (${p.especie})` : ''}
+                </option>
+              ))}
+            </select>
+          </div>
+          {transformacaoTarget && (
+            <div>
+              <p className={`text-xs font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                Golpes de {transformacaoTarget.nome || transformacaoTarget.especie}:
+              </p>
+              {targetGolpes.length === 0 ? (
+                <p className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Nenhum golpe registrado</p>
+              ) : (
+                <div className="space-y-2">
+                  {targetGolpes.map((golpe, idx) => {
+                    const golpeNome = typeof golpe === 'string' ? golpe : golpe?.nome
+                    if (!golpeNome) return null
+                    const golpeData = GOLPES_DATA[golpeNome]
+                    return (
+                      <div key={idx} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'} border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex-1 min-w-0">
+                            <span className="font-semibold text-sm">{golpeNome}</span>
+                            {golpeData && (
+                              <span className={`ml-2 text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                {golpeData.tipo} · {golpeData.danoBasal || 'Sem dano'}
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-1 shrink-0">
+                            <button
+                              onClick={() => handleRollTransformacaoAccuracy(golpeNome, transformacaoTransformer)}
+                              className={`p-1.5 rounded transition-colors ${darkMode ? 'bg-gray-600 hover:bg-gray-500 text-blue-400' : 'bg-gray-200 hover:bg-gray-300 text-blue-600'}`}
+                              title="Teste de Acurácia"
+                            >
+                              <Dices size={13} />
+                            </button>
+                            {golpeData?.danoBasal && golpeData.danoBasal !== '-' && golpeData.danoBasal !== '' && (
+                              <button
+                                onClick={() => handleRollTransformacaoDamage(golpeNome, transformacaoTransformer, transformacaoTarget)}
+                                className={`p-1.5 rounded transition-colors ${darkMode ? 'bg-gray-600 hover:bg-gray-500 text-yellow-400' : 'bg-gray-200 hover:bg-gray-300 text-yellow-600'}`}
+                                title="Rolar Dano"
+                              >
+                                <Hand size={13} />
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  })()
+
   // Variável do modal de Account Data (reutilizável em todos os returns)
   const accountDataModal = currentUser ? (
     <AccountDataModal
@@ -14130,22 +15088,25 @@ function App() {
   // Popup de exibição de cenário — aparece para mestre (quando ativo) e jogadores
   const scenarioPopupOverlay = (() => {
     const isMestre = currentUser?.type === 'mestre'
+    const isPreview = isMestre && !!masterPreviewScenario && !scenarioDisplay?.active
     if (isMestre) {
-      if (!scenarioDisplay?.active) return null
+      if (!scenarioDisplay?.active && !masterPreviewScenario) return null
     } else {
       if (!playerScenarioPopupOpen) return null
     }
     // Os dados do cenário são embutidos diretamente no scenarioDisplay para que jogadores
     // também os recebam via Firebase sem precisar assinar sessionScenarios
-    const scenarioTitle = scenarioDisplay?.title || ''
-    const scenarioImageUrls = scenarioDisplay?.imageUrls || []
+    const dataSource = isPreview ? masterPreviewScenario : scenarioDisplay
+    const scenarioTitle = dataSource?.title || ''
+    const scenarioImageUrls = dataSource?.imageUrls || []
     if (!scenarioTitle && scenarioImageUrls.length === 0) return null
     const totalImages = scenarioImageUrls.length
-    const currentIdx = Math.max(0, Math.min(scenarioDisplay?.currentImageIndex || 0, totalImages - 1))
+    const currentIdx = Math.max(0, Math.min(dataSource?.currentImageIndex || 0, totalImages - 1))
     const imageUrl = scenarioImageUrls[currentIdx]
     const canClose = !scenarioDisplay?.active // jogadores só fecham quando mestre fechar
     const handleNav = (newIdx) => {
-      setScenarioDisplay(prev => ({ ...prev, currentImageIndex: newIdx }))
+      if (isPreview) setMasterPreviewScenario(prev => ({ ...prev, currentImageIndex: newIdx }))
+      else setScenarioDisplay(prev => ({ ...prev, currentImageIndex: newIdx }))
     }
     return (
       <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[200] p-4">
@@ -14155,7 +15116,7 @@ function App() {
             <h3 className="text-white text-lg font-bold truncate pr-4">{scenarioTitle}</h3>
             {isMestre && (
               <button
-                onClick={() => setScenarioDisplay(prev => ({ ...prev, active: false }))}
+                onClick={() => isPreview ? setMasterPreviewScenario(null) : setScenarioDisplay(prev => ({ ...prev, active: false }))}
                 className="text-gray-400 hover:text-white flex-shrink-0"
               >
                 <X size={22} />
@@ -14380,7 +15341,14 @@ function App() {
     </button>
   ) : null
 
-  const batalhaChatPanel = currentUser && showBatalhaChat ? (
+  const batalhaChatPanel = (
+    <>
+    {pokezapNotifGif && currentUser && (
+      <div className="fixed top-0 left-0 right-0 h-20 z-[997] flex items-center justify-center pointer-events-none">
+        <img src={pokezapNotifGif} alt="notif" className="h-full object-contain" />
+      </div>
+    )}
+    {currentUser && showBatalhaChat && (
     <div className="fixed right-0 top-0 h-full w-80 z-50 flex flex-col shadow-2xl" style={{ background: darkMode ? '#1f2937' : '#ffffff', borderLeft: darkMode ? '1px solid #374151' : '1px solid #e5e7eb' }}>
       {/* Header */}
       <div className={`flex items-center justify-between p-3 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
@@ -14401,6 +15369,33 @@ function App() {
                 <span className={`font-bold text-xs ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{msg.username}</span>
                 <span className={`text-[10px] ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>{msg.timestamp}</span>
               </div>
+              {msg.metronomoMove && (
+                <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                  <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                  <button
+                    onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                    className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                  >
+                    {msg.metronomoMove}
+                  </button>
+                </div>
+              )}
+              {msg.battleMove && (
+                <button
+                  onClick={() => handleOpenBattleMove(msg.battleMove)}
+                  className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                >
+                  {msg.battleMove}
+                </button>
+              )}
+              {msg.caracTalentoInfo && (
+                <button
+                  onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                  className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                >
+                  {msg.caracTalentoInfo}
+                </button>
+              )}
               {msg.isDiceRoll ? (
                 <div>
                   <p className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-700'} whitespace-pre-line`}>{msg.text}</p>
@@ -14420,39 +15415,122 @@ function App() {
           ))
         )}
       </div>
+      {/* Características/Talentos do Treinador */}
+      {currentUser.type === 'treinador' && (() => {
+        const chatCaracList = []
+        classes.forEach(className => {
+          if (className && CARACTERISTICAS_DATA[className]) {
+            Object.entries(CARACTERISTICAS_DATA[className]).forEach(([nome]) => {
+              chatCaracList.push({ nome, tipo: 'caracteristica' })
+            })
+          }
+        })
+        talentosSelected.forEach(item => {
+          const nome = typeof item === 'string' ? item : item.nome
+          if (nome) chatCaracList.push({ nome, tipo: 'talento' })
+        })
+        if (chatCaracList.length === 0) return null
+        const filtered = chatCaracList.filter(item => item.nome.toLowerCase().includes(chatCaracSearch.toLowerCase()))
+        return (
+          <div className={`px-3 pt-2 pb-1 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+            <div className="flex items-center gap-1">
+              <div className="relative flex-1">
+                <button
+                  onClick={() => { setChatCaracDropdownOpen(v => !v); setChatCaracSearch('') }}
+                  className={`w-full text-left text-[10px] px-2 py-1.5 rounded border flex items-center justify-between gap-1 ${darkMode ? 'bg-gray-800 border-gray-600 text-gray-300' : 'bg-white border-gray-300 text-gray-600'}`}
+                >
+                  <span className={`truncate ${chatCaracSelected ? '' : 'opacity-50'}`}>{chatCaracSelected ? chatCaracSelected.nome : 'Característica/Talento...'}</span>
+                  <span className="flex-shrink-0 text-[8px]">{chatCaracDropdownOpen ? '▲' : '▼'}</span>
+                </button>
+                {chatCaracDropdownOpen && (
+                  <div className={`absolute bottom-full left-0 w-full mb-1 rounded border shadow-lg z-[999] ${darkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'}`}>
+                    <input
+                      type="text"
+                      value={chatCaracSearch}
+                      onChange={e => setChatCaracSearch(e.target.value)}
+                      placeholder="Pesquisar..."
+                      className={`w-full text-[10px] px-2 py-1.5 border-b outline-none ${darkMode ? 'bg-gray-800 border-gray-600 text-gray-200 placeholder-gray-500' : 'bg-white border-gray-200 text-gray-800 placeholder-gray-400'}`}
+                      autoFocus
+                    />
+                    <div className="max-h-36 overflow-y-auto">
+                      {filtered.map((item, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => { setChatCaracSelected(item); setChatCaracDropdownOpen(false); setChatCaracSearch('') }}
+                          className={`w-full text-left text-[10px] px-2 py-1.5 flex items-center justify-between gap-1 ${darkMode ? 'hover:bg-gray-700 text-gray-200' : 'hover:bg-gray-100 text-gray-800'}`}
+                        >
+                          <span className="truncate">{item.nome}</span>
+                          <span className={`flex-shrink-0 text-[9px] px-1 py-0.5 rounded font-semibold ${item.tipo === 'talento' ? 'bg-purple-500 text-white' : 'bg-blue-500 text-white'}`}>
+                            {item.tipo === 'talento' ? 'T' : 'C'}
+                          </span>
+                        </button>
+                      ))}
+                      {filtered.length === 0 && (
+                        <p className={`text-[10px] px-2 py-2 text-center ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Nenhum resultado</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+              <button
+                onClick={() => {
+                  if (!chatCaracSelected) return
+                  const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+                  const label = chatCaracSelected.tipo === 'talento' ? '🌟 Talento' : '📋 Característica'
+                  addChatMessage({ username: currentUser.username, text: `${label}: ${chatCaracSelected.nome}`, timestamp, isDiceRoll: false, caracTalentoInfo: chatCaracSelected.nome })
+                  setChatCaracSelected(null)
+                }}
+                disabled={!chatCaracSelected}
+                className={`flex-shrink-0 p-1.5 rounded transition-colors ${chatCaracSelected ? (darkMode ? 'bg-green-700 hover:bg-green-600 text-white' : 'bg-green-600 hover:bg-green-500 text-white') : (darkMode ? 'bg-gray-700 text-gray-500 cursor-not-allowed' : 'bg-gray-200 text-gray-400 cursor-not-allowed')}`}
+                title="Enviar no chat"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </div>
+        )
+      })()}
       {/* Perícias (somente treinadores) */}
       {currentUser.type === 'treinador' && Object.values(skills).some(list => list.length > 0) && (
         <div className={`px-3 pt-2 pb-1 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-          <p className={`text-[10px] font-semibold mb-1.5 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Perícias:</p>
-          <div className="grid grid-cols-2 gap-1 max-h-28 overflow-y-auto">
-            {Object.entries(skills).map(([attr, skillList]) => {
-              const attrNames = { saude: 'Saúde', ataque: 'Ataque', defesa: 'Defesa', ataqueEspecial: 'Ataque Especial', defesaEspecial: 'Defesa Especial', velocidade: 'Velocidade' }
-              return skillList.map((skill, idx) => {
-                const count = skillList.filter(s => s === skill).length
-                const isFirst = skillList.indexOf(skill) === idx
-                if (!isFirst) return null
-                const modifier = getModifier(attributes[attr])
-                return (
-                  <button
-                    key={`portatil-${attr}-${skill}-${idx}`}
-                    onClick={() => {
-                      const d20Roll = Math.floor(Math.random() * 20) + 1
-                      const baseBonus = count === 1 ? 2 : 4
-                      const modifierMultiplier = count === 1 ? 1 : 2
-                      const modifierBonus = modifierMultiplier * modifier
-                      const total = d20Roll + baseBonus + modifierBonus
-                      const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
-                      const message = `🎲 ${skill} (${attrNames[attr]})\n1d20 = ${d20Roll} | ${baseBonus} + ${modifierMultiplier > 1 ? `${modifierMultiplier}x` : ''}Modificador(${modifier}) = ${modifierBonus}\nTotal: ${total}`
-                      addChatMessage({ username: currentUser.username, text: message, timestamp, isDiceRoll: true, diceResult: message })
-                    }}
-                    className={`text-[10px] p-1.5 rounded ${darkMode ? 'bg-gray-800 hover:bg-gray-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-800 border'}`}
-                  >
-                    {skill}{count > 1 && ` (x${count})`}
-                  </button>
-                )
-              })
-            })}
-          </div>
+          <button
+            onClick={() => setPericiasExpanded(v => !v)}
+            className={`w-full text-left text-[10px] font-semibold flex items-center justify-between ${periciasExpanded ? 'mb-1.5' : ''} ${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`}
+          >
+            <span>Perícias</span>
+            <span className="text-[8px]">{periciasExpanded ? '▲' : '▼'}</span>
+          </button>
+          {periciasExpanded && (
+            <div className="grid grid-cols-2 gap-1 max-h-28 overflow-y-auto">
+              {Object.entries(skills).map(([attr, skillList]) => {
+                const attrNames = { saude: 'Saúde', ataque: 'Ataque', defesa: 'Defesa', ataqueEspecial: 'Ataque Especial', defesaEspecial: 'Defesa Especial', velocidade: 'Velocidade' }
+                return skillList.map((skill, idx) => {
+                  const count = skillList.filter(s => s === skill).length
+                  const isFirst = skillList.indexOf(skill) === idx
+                  if (!isFirst) return null
+                  const modifier = getModifier(attributes[attr])
+                  return (
+                    <button
+                      key={`portatil-${attr}-${skill}-${idx}`}
+                      onClick={() => {
+                        const d20Roll = Math.floor(Math.random() * 20) + 1
+                        const baseBonus = count === 1 ? 2 : 4
+                        const modifierMultiplier = count === 1 ? 1 : 2
+                        const modifierBonus = modifierMultiplier * modifier
+                        const total = d20Roll + baseBonus + modifierBonus
+                        const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+                        const message = `🎲 ${skill} (${attrNames[attr]})\n1d20 = ${d20Roll} | ${baseBonus} + ${modifierMultiplier > 1 ? `${modifierMultiplier}x` : ''}Modificador(${modifier}) = ${modifierBonus}\nTotal: ${total}`
+                        addChatMessage({ username: currentUser.username, text: message, timestamp, isDiceRoll: true, diceResult: message })
+                      }}
+                      className={`text-[10px] p-1.5 rounded ${darkMode ? 'bg-gray-800 hover:bg-gray-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-800 border'}`}
+                    >
+                      {skill}{count > 1 && ` (x${count})`}
+                    </button>
+                  )
+                })
+              })}
+            </div>
+          )}
         </div>
       )}
       {/* Rolagem Rápida */}
@@ -14511,7 +15589,154 @@ function App() {
         </button>
       </div>
     </div>
-  ) : null
+    )}
+    {showBattleMoveModal && selectedBattleMove && (
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[998] p-4"
+        onClick={() => setShowBattleMoveModal(false)}
+      >
+        <div
+          className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-4 max-w-[95vw] sm:max-w-sm w-full max-h-[80vh] overflow-y-auto shadow-2xl`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex justify-between items-center mb-4">
+            <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              {selectedBattleMove}
+            </h3>
+            <button
+              onClick={() => setShowBattleMoveModal(false)}
+              className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-800'}`}
+            >
+              <X size={24} />
+            </button>
+          </div>
+          {(() => {
+            const moveData = GOLPES_DATA[selectedBattleMove]
+            if (!moveData) {
+              return <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Golpe não encontrado</p>
+            }
+            return (
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
+                  <div>
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Tipo:</span>
+                    <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.tipo}</p>
+                  </div>
+                  <div>
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aptidão:</span>
+                    <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.aptidao}</p>
+                  </div>
+                  <div>
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dano Basal:</span>
+                    <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.danoBasal || '-'}</p>
+                  </div>
+                  <div>
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Acurácia:</span>
+                    <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.acuracia}</p>
+                  </div>
+                  <div>
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Alcance:</span>
+                    <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.alcance}</p>
+                  </div>
+                  <div>
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Frequência:</span>
+                    <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.frequencia}</p>
+                  </div>
+                </div>
+                {moveData.descritores && (
+                  <div>
+                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Descritores:</span>
+                    <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.descritores}</p>
+                  </div>
+                )}
+                <div>
+                  <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Efeito:</span>
+                  <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} whitespace-pre-wrap`}>
+                    {moveData.efeito}
+                  </p>
+                </div>
+              </div>
+            )
+          })()}
+        </div>
+      </div>
+    )}
+    {showCaracTalentoModal && selectedCaracTalento && (
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[998] p-4"
+        onClick={() => setShowCaracTalentoModal(false)}
+      >
+        <div
+          className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-4 max-w-[95vw] sm:max-w-md w-full max-h-[80vh] overflow-y-auto shadow-2xl`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex items-center gap-2">
+              <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                {selectedCaracTalento.nome || selectedCaracTalento.name}
+              </h3>
+              <span className={`text-xs px-2 py-1 rounded font-semibold ${selectedCaracTalento.tipo === 'talento' ? (darkMode ? 'bg-purple-900 text-purple-300' : 'bg-purple-100 text-purple-700') : (darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700')}`}>
+                {selectedCaracTalento.tipo === 'talento' ? 'Talento' : 'Característica'}
+              </span>
+            </div>
+            <button
+              onClick={() => setShowCaracTalentoModal(false)}
+              className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-800'}`}
+            >
+              <X size={24} />
+            </button>
+          </div>
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              {selectedCaracTalento.frequencia && (
+                <div>
+                  <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Frequência:</span>
+                  <p className={`text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedCaracTalento.frequencia}</p>
+                </div>
+              )}
+              {selectedCaracTalento.referencia && (
+                <div>
+                  <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Referência:</span>
+                  <p className={`text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedCaracTalento.referencia}</p>
+                </div>
+              )}
+            </div>
+            {selectedCaracTalento.requisitos && (
+              <div>
+                <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Requisitos:</span>
+                <p className={`text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedCaracTalento.requisitos}</p>
+              </div>
+            )}
+            {selectedCaracTalento.alvo && (
+              <div>
+                <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Alvo:</span>
+                <p className={`text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedCaracTalento.alvo}</p>
+              </div>
+            )}
+            {selectedCaracTalento.gatilho && (
+              <div>
+                <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Gatilho:</span>
+                <p className={`text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{selectedCaracTalento.gatilho}</p>
+              </div>
+            )}
+            {selectedCaracTalento.efeito && (
+              <div>
+                <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Efeito:</span>
+                <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'} whitespace-pre-wrap`}>{selectedCaracTalento.efeito}</p>
+              </div>
+            )}
+            {selectedCaracTalento.especial && (
+              <div>
+                <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Especial:</span>
+                <p className={`text-sm italic ${darkMode ? 'text-gray-400' : 'text-gray-600'} whitespace-pre-wrap`}>{selectedCaracTalento.especial}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )}
+    </>
+  )
 
   const pokezapPanel = currentUser && showPokezapPanel ? (
     <div className="fixed right-0 top-0 h-full w-80 z-50 flex flex-col shadow-2xl" style={{ background: darkMode ? '#1f2937' : '#ffffff', borderLeft: darkMode ? '1px solid #374151' : '1px solid #e5e7eb' }}>
@@ -14769,10 +15994,10 @@ function App() {
             <h2 className={`text-center font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-3`}>Senha</h2>
             <div className="relative mb-4">
               <Lock className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} size={20} />
-              <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyPress={e => e.key === 'Enter' && selectedUser && password === 'DnD7MarPkm' && (setCurrentUser(selectedUser), setCurrentArea(selectedUser.type === 'treinador' ? 'Treinador' : ''), setSessionBg(BG_IMAGES[Math.floor(Math.random() * BG_IMAGES.length)]), setSelectedUser(null), setPassword(''))} placeholder="Digite a senha" disabled={!selectedUser} className={`w-full pl-12 pr-4 py-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-800'} ${!selectedUser ? 'opacity-50 cursor-not-allowed' : ''}`} />
+              <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyPress={e => e.key === 'Enter' && handleLogin()} placeholder="Digite a senha" disabled={!selectedUser} className={`w-full pl-12 pr-4 py-3 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-800'} ${!selectedUser ? 'opacity-50 cursor-not-allowed' : ''}`} />
             </div>
             {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-center">{error}</div>}
-            <button onClick={() => password === 'DnD7MarPkm' ? (setCurrentUser(selectedUser), setCurrentArea(selectedUser.type === 'treinador' ? 'Treinador' : ''), setSessionBg(BG_IMAGES[Math.floor(Math.random() * BG_IMAGES.length)]), setSelectedUser(null), setPassword('')) : setError('Senha incorreta!')} disabled={!selectedUser || !password} className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">Entrar</button>
+            <button onClick={handleLogin} disabled={!selectedUser || !password} className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">Entrar</button>
           </div>
           </div>
         </div>
@@ -14794,7 +16019,14 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -14805,7 +16037,9 @@ function App() {
             </div>
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -14827,7 +16061,14 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -14936,7 +16177,9 @@ function App() {
           )}
         </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -14958,7 +16201,14 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -15015,7 +16265,9 @@ function App() {
             </div>
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -15037,7 +16289,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -15573,7 +16825,9 @@ function App() {
           </div>
         </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -15595,7 +16849,14 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -15627,7 +16888,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -16437,7 +17698,9 @@ function App() {
           </div>
         )}
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -16460,7 +17723,14 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -16492,7 +17762,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -17624,7 +18894,9 @@ function App() {
           </div>
         )}
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -17646,7 +18918,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -18057,12 +19329,9 @@ function App() {
                                     return golpeNome ? (
                                       <span
                                         key={idx}
-                                        onClick={() => {
+                                        onClick={(e) => {
                                           const golpeData = GOLPES_DATA_IMPORTED[golpeNome]
-                                          if (golpeData) {
-                                            setSelectedBattleMove(golpeData)
-                                            setShowBattleMoveModal(true)
-                                          }
+                                          if (golpeData) handleOpenBattleMove(golpeNome, e)
                                         }}
                                         className={`px-2 py-0.5 text-[10px] rounded-lg font-semibold cursor-pointer hover:opacity-80 transition-opacity ${darkMode ? 'bg-gray-600 text-gray-200' : 'bg-gray-200 text-gray-700'}`}
                                       >
@@ -18083,7 +19352,9 @@ function App() {
             </div>
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -18111,7 +19382,7 @@ function App() {
               <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
               </div>
             </div>
           </div>
@@ -18857,7 +20128,16 @@ function App() {
                           >
                             <div className="flex items-center justify-between">
                               <div className={`font-semibold ${idx === currentPokemonTurn ? 'text-yellow-600' : darkMode ? 'text-white' : 'text-gray-800'}`}>
-                                {idx === currentPokemonTurn && '▶ '}{pokemon.nome}
+                                {idx === currentPokemonTurn && '▶ '}
+                                {!pokemon.isNpc ? (
+                                  <span
+                                    className="cursor-pointer hover:underline hover:text-yellow-300 transition-colors"
+                                    title="Ver golpes"
+                                    onClick={() => handleOpenVisordex(pokemon)}
+                                  >
+                                    {pokemon.nome}
+                                  </span>
+                                ) : pokemon.nome}
                               </div>
                               <div className="flex items-center gap-2">
                                 <span className={`text-xs px-2 py-1 rounded ${darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-600'}`}>
@@ -19330,23 +20610,40 @@ function App() {
                                   className={`flex items-center gap-2 p-2 rounded ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
                                 >
                                   <button
-                                    onClick={() => {
-                                      setSelectedBattleMove(moveName)
-                                      setShowBattleMoveModal(true)
-                                    }}
+                                    onClick={(e) => handleOpenBattleMove(moveName, e)}
                                     className={`flex-1 text-left text-sm font-semibold ${darkMode ? 'text-green-400 hover:text-green-300' : 'text-green-600 hover:text-green-700'}`}
                                   >
                                     {moveName}
                                   </button>
                                   <button
-                                    onClick={() => handleRollAccuracy(moveName, selectedMasterNpcPokemon?.id)}
+                                    onClick={() => {
+                                      if (moveName === 'Transformação') {
+                                        setTransformacaoTransformer(selectedMasterNpcPokemon)
+                                        setTransformacaoTarget(null)
+                                        setShowTransformacaoModal(true)
+                                      } else if (moveName === 'Metrônomo') {
+                                        handleMetronomeAccuracy(selectedMasterNpcPokemon?.id)
+                                      } else {
+                                        handleRollAccuracy(moveName, selectedMasterNpcPokemon?.id)
+                                      }
+                                    }}
                                     className={`p-1.5 rounded transition-colors ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-blue-400' : 'bg-gray-200 hover:bg-gray-300 text-blue-600'}`}
                                     title="Teste de Acurácia"
                                   >
                                     <Dices size={14} />
                                   </button>
                                   <button
-                                    onClick={() => handleRollMoveDamage(moveName)}
+                                    onClick={() => {
+                                      if (moveName === 'Transformação') {
+                                        setTransformacaoTransformer(selectedMasterNpcPokemon)
+                                        setTransformacaoTarget(null)
+                                        setShowTransformacaoModal(true)
+                                      } else if (moveName === 'Metrônomo') {
+                                        handleMetromoneDamage(selectedMasterNpcPokemon?.id)
+                                      } else {
+                                        handleRollMoveDamage(moveName)
+                                      }
+                                    }}
                                     className={`p-1.5 rounded transition-colors ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400' : 'bg-gray-200 hover:bg-gray-300 text-yellow-600'}`}
                                     title="Rolar dano"
                                   >
@@ -19480,6 +20777,33 @@ function App() {
                             {msg.timestamp}
                           </span>
                         </div>
+                        {msg.battleMove && (
+                          <button
+                            onClick={() => handleOpenBattleMove(msg.battleMove)}
+                            className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                          >
+                            {msg.battleMove}
+                          </button>
+                        )}
+                        {msg.metronomoMove && (
+                          <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                            <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                            <button
+                              onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                              className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                            >
+                              {msg.metronomoMove}
+                            </button>
+                          </div>
+                        )}
+                        {msg.caracTalentoInfo && (
+                          <button
+                            onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                            className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                          >
+                            {msg.caracTalentoInfo}
+                          </button>
+                        )}
                         {msg.isDiceRoll ? (
                           <div>
                             <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -19540,79 +20864,60 @@ function App() {
           )}
 
         </div>
-        {/* Modal de Golpe - Área Batalha Mestre */}
-        {showBattleMoveModal && selectedBattleMove && (
+
+        {/* Modal Visordex - Golpes do Pokémon selecionado no tracker */}
+        {selectedBattlePokemonForMoves && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-            onClick={() => setShowBattleMoveModal(false)}
+            className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-40 p-4"
+            onClick={() => setSelectedBattlePokemonForMoves(null)}
           >
             <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-[95vw] sm:max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`}
-              onClick={(e) => e.stopPropagation()}
+              className="relative select-none"
+              style={{ width: '320px', height: '456px' }}
+              onClick={e => e.stopPropagation()}
             >
-              <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                  {selectedBattleMove}
-                </h3>
-                <button
-                  onClick={() => setShowBattleMoveModal(false)}
-                  className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-800'}`}
-                >
-                  <X size={24} />
-                </button>
+              <img src="/visordex.png" alt="Visordex" className="absolute inset-0 w-full h-full pointer-events-none" draggable={false} />
+              {/* Área branca de conteúdo */}
+              <div
+                className="absolute overflow-y-auto"
+                style={{ top: '18%', left: '8%', width: '84%', height: '52%' }}
+              >
+                <div className="p-2">
+                  <h3 className="text-center font-bold text-gray-800 text-sm mb-2 border-b border-gray-200 pb-1">
+                    {selectedBattlePokemonForMoves.nome}
+                  </h3>
+                  {(selectedBattlePokemonForMoves.golpes || []).filter(g => g).length === 0 ? (
+                    <p className="text-center text-gray-500 text-xs mt-4">Nenhum golpe registrado</p>
+                  ) : (
+                    <div className="space-y-1">
+                      {selectedBattlePokemonForMoves.golpes.filter(g => g).map((golpe, idx) => {
+                        const golpeNome = typeof golpe === 'string' ? golpe : golpe?.nome
+                        if (!golpeNome) return null
+                        const golpeData = GOLPES_DATA[golpeNome]
+                        return (
+                          <button
+                            key={idx}
+                            onClick={(e) => handleOpenBattleMove(golpeNome, e)}
+                            className="w-full text-left px-2 py-1.5 rounded bg-red-50 hover:bg-red-100 border border-red-200 text-gray-800 text-xs font-semibold transition-colors flex justify-between items-center gap-1"
+                          >
+                            <span>{golpeNome}</span>
+                            {golpeData && (
+                              <span className="text-gray-400 text-[10px] shrink-0">{golpeData.tipo}</span>
+                            )}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
               </div>
-
-              {(() => {
-                const moveData = GOLPES_DATA[selectedBattleMove]
-                if (!moveData) {
-                  return <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Golpe não encontrado</p>
-                }
-
-                return (
-                  <div className="space-y-3">
-                    <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Tipo:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.tipo}</p>
-                      </div>
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aptidão:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.aptidao}</p>
-                      </div>
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dano Basal:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.danoBasal || '-'}</p>
-                      </div>
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Acurácia:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.acuracia}</p>
-                      </div>
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Alcance:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.alcance}</p>
-                      </div>
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Frequência:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.frequencia}</p>
-                      </div>
-                    </div>
-
-                    {moveData.descritores && (
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Descritores:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.descritores}</p>
-                      </div>
-                    )}
-
-                    <div>
-                      <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Efeito:</span>
-                      <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} whitespace-pre-wrap`}>
-                        {moveData.efeito}
-                      </p>
-                    </div>
-                  </div>
-                )
-              })()}
+              {/* Botão fechar */}
+              <button
+                onClick={() => setSelectedBattlePokemonForMoves(null)}
+                className="absolute top-2 right-2 text-white bg-red-700 hover:bg-red-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold z-10"
+              >
+                ×
+              </button>
             </div>
           </div>
         )}
@@ -20761,7 +22066,9 @@ function App() {
             </div>
           )}
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -20783,7 +22090,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -21725,7 +23032,9 @@ function App() {
         </div>
         </div>
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -21766,7 +23075,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -22911,7 +24220,7 @@ function App() {
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
         {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
         </div>
@@ -22973,7 +24282,14 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -23250,6 +24566,33 @@ function App() {
                             {msg.timestamp}
                           </span>
                         </div>
+                        {msg.battleMove && (
+                          <button
+                            onClick={() => handleOpenBattleMove(msg.battleMove)}
+                            className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                          >
+                            {msg.battleMove}
+                          </button>
+                        )}
+                        {msg.metronomoMove && (
+                          <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                            <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                            <button
+                              onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                              className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                            >
+                              {msg.metronomoMove}
+                            </button>
+                          </div>
+                        )}
+                        {msg.caracTalentoInfo && (
+                          <button
+                            onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                            className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                          >
+                            {msg.caracTalentoInfo}
+                          </button>
+                        )}
                         {msg.isDiceRoll ? (
                           <div>
                             <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -23642,7 +24985,7 @@ function App() {
             </div>
           )}
 
-          {accountDataModal}
+          {accountDataModal}{transformacaoModal}
           {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
           {pokezapPanel}{pokeAgendaPanel}
@@ -23665,7 +25008,14 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -24720,7 +26070,9 @@ function App() {
             )}
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -24750,7 +26102,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -24763,7 +26115,7 @@ function App() {
             {/* CABEÇALHO COM IMAGEM E INFO */}
             <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 sm:p-5 md:p-6 mb-8">
               <div className="relative flex-shrink-0 mx-auto sm:mx-0">
-                {image ? <img src={image} alt="T" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-cover rounded-lg border-4 border-blue-500" /> : <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gray-300 rounded-lg flex items-center justify-center border-4 border-gray-400"><Camera size={48} className="text-gray-500" /></div>}
+                {(() => { const src = isPrankActive ? '/treinadoresicones/prankimg.png' : (image || TRAINER_ICONS[currentUser?.username] || ''); const fallback = TRAINER_ICONS[currentUser?.username] || ''; return src ? <img src={src} alt="T" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-cover rounded-lg border-4 border-blue-500" onError={e => { if (!isPrankActive && fallback && e.target.src !== fallback) e.target.src = fallback }} /> : <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gray-300 rounded-lg flex items-center justify-center border-4 border-gray-400"><Camera size={48} className="text-gray-500" /></div> })()}
                 <button onClick={() => setShowTrainerImageModal(true)} className="absolute -bottom-2 -right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600"><Camera size={20} /></button>
                 {/* TIPOS DO ELEMENTALISTA - embaixo da imagem */}
                 {classes.includes('Elementalista') && elementalistaTypes.length > 0 && (
@@ -28204,7 +29556,9 @@ function App() {
         )}
 
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -28226,7 +29580,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -30646,7 +32000,9 @@ function App() {
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -30722,7 +32078,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -31517,7 +32873,9 @@ function App() {
           </div>
         )}
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -31544,7 +32902,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -33250,7 +34608,9 @@ function App() {
         )}
 
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -33984,7 +35344,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -34260,7 +35620,9 @@ function App() {
           )
         })()}
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -34286,7 +35648,14 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -34424,7 +35793,9 @@ function App() {
             </div>
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -34447,7 +35818,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -34567,6 +35938,16 @@ function App() {
                               <span className={`text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'}`}>{carac.className}</span>
                             </div>
                             <span className={`text-xs sm:text-sm font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{carac.frequencia}</span>
+                          </button>
+                          <button
+                            onClick={() => {
+                              const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+                              addChatMessage({ username: currentUser.username, text: `📋 Característica: ${carac.name}`, timestamp, isDiceRoll: false, caracTalentoInfo: carac.name })
+                            }}
+                            className={`flex-shrink-0 p-2 hover:opacity-70 ${darkMode ? 'text-green-400' : 'text-green-600'}`}
+                            title="Enviar Info no chat"
+                          >
+                            <Send size={14} className="sm:w-4 sm:h-4" />
                           </button>
                         </div>
                         {isExpanded && (
@@ -34719,7 +36100,21 @@ function App() {
                             )}
                           </button>
                           <button
-                            onClick={() => setTalentosSelected(talentosSelected.filter((_, i) => i !== idx))}
+                            onClick={() => {
+                              const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+                              addChatMessage({ username: currentUser.username, text: `🌟 Talento: ${talentoNome}`, timestamp, isDiceRoll: false, caracTalentoInfo: talentoNome })
+                            }}
+                            className={`flex-shrink-0 hover:opacity-70 ${darkMode ? 'text-green-400' : 'text-green-600'}`}
+                            title="Enviar Info no chat"
+                          >
+                            <Send size={14} className="sm:w-4 sm:h-4" />
+                          </button>
+                          <button
+                            onClick={() => {
+                              if (window.confirm(`Remover o talento "${talentoNome}"?`)) {
+                                setTalentosSelected(talentosSelected.filter((_, i) => i !== idx))
+                              }
+                            }}
                             className={`flex-shrink-0 hover:opacity-70 ${darkMode ? 'text-red-400' : 'text-red-600'}`}
                           >
                             <X size={14} className="sm:w-4 sm:h-4" />
@@ -35195,7 +36590,9 @@ function App() {
         )}
 
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -35220,7 +36617,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -36343,7 +37740,9 @@ function App() {
           )}
         </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -36402,7 +37801,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -37389,6 +38788,33 @@ function App() {
                               {msg.timestamp}
                             </span>
                           </div>
+                          {msg.battleMove && (
+                            <button
+                              onClick={() => handleOpenBattleMove(msg.battleMove)}
+                              className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                            >
+                              {msg.battleMove}
+                            </button>
+                          )}
+                          {msg.metronomoMove && (
+                            <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                              <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                              <button
+                                onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                                className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                              >
+                                {msg.metronomoMove}
+                              </button>
+                            </div>
+                          )}
+                          {msg.caracTalentoInfo && (
+                            <button
+                              onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                              className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                            >
+                              {msg.caracTalentoInfo}
+                            </button>
+                          )}
                           {msg.isDiceRoll ? (
                             <div>
                               <p className={`text-xs sm:text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -38095,7 +39521,9 @@ function App() {
         )}
         </div>
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -38117,7 +39545,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                   {currentClima && <div className="flex items-center gap-1 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-5 h-5 sm:w-7 sm:h-7" /><span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'} hidden xs:inline`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -38515,7 +39943,17 @@ function App() {
                               <div className={`font-semibold ${idx === currentPokemonTurn ? 'text-yellow-600' : darkMode ? 'text-white' : 'text-gray-800'}`}>
                                 {idx === currentPokemonTurn && '▶ '}
                                 {/* Mostrar nome real se não for NPC, se for o dono, ou se revelar estiver ativo */}
-                                {(!pokemon.isNpc || pokemon.owner === currentUser?.username || revealedNpcPokemon[pokemon.id]) ? pokemon.nome : (pokemon.nomeFalso || pokemon.nome)}
+                                {(!pokemon.isNpc || pokemon.owner === currentUser?.username || revealedNpcPokemon[pokemon.id]) ? (
+                                  (!pokemon.isNpc && currentUser?.type === 'mestre') ? (
+                                    <span
+                                      className="cursor-pointer hover:underline hover:text-yellow-300 transition-colors"
+                                      title="Ver golpes"
+                                      onClick={() => setSelectedBattlePokemonForMoves(pokemon)}
+                                    >
+                                      {pokemon.nome}
+                                    </span>
+                                  ) : pokemon.nome
+                                ) : (pokemon.nomeFalso || pokemon.nome)}
                               </div>
                               <span className={`text-xs px-2 py-1 rounded ${darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-600'}`}>
                                 Vel: {pokemon.velocidade}
@@ -39171,10 +40609,7 @@ function App() {
                                 <div key={idx} className={`p-2 rounded ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
                                   <div className="flex items-center justify-between">
                                     <button
-                                      onClick={() => {
-                                        setSelectedBattleMove(moveName)
-                                        setShowBattleMoveModal(true)
-                                      }}
+                                      onClick={(e) => handleOpenBattleMove(moveName, e)}
                                       className={`text-sm font-semibold ${darkMode ? 'text-white hover:text-blue-400' : 'text-gray-800 hover:text-blue-600'} cursor-pointer hover:underline transition-colors`}
                                     >
                                       {moveName}
@@ -39186,14 +40621,34 @@ function App() {
                                         </span>
                                       )}
                                       <button
-                                        onClick={() => handleRollAccuracy(moveName)}
+                                        onClick={() => {
+                                          if (moveName === 'Transformação') {
+                                            setTransformacaoTransformer(selectedTeamPokemon)
+                                            setTransformacaoTarget(null)
+                                            setShowTransformacaoModal(true)
+                                          } else if (moveName === 'Metrônomo') {
+                                            handleMetronomeAccuracy(null)
+                                          } else {
+                                            handleRollAccuracy(moveName)
+                                          }
+                                        }}
                                         className={`p-1 rounded transition-colors ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-blue-400' : 'bg-gray-200 hover:bg-gray-300 text-blue-600'}`}
                                         title="Teste de Acurácia"
                                       >
                                         <Dices size={14} />
                                       </button>
                                       <button
-                                        onClick={() => handleRollMoveDamage(moveName)}
+                                        onClick={() => {
+                                          if (moveName === 'Transformação') {
+                                            setTransformacaoTransformer(selectedTeamPokemon)
+                                            setTransformacaoTarget(null)
+                                            setShowTransformacaoModal(true)
+                                          } else if (moveName === 'Metrônomo') {
+                                            handleMetromoneDamage(null)
+                                          } else {
+                                            handleRollMoveDamage(moveName)
+                                          }
+                                        }}
                                         className={`p-1 rounded transition-colors ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400' : 'bg-gray-200 hover:bg-gray-300 text-yellow-600'}`}
                                         title="Rolar Dano"
                                       >
@@ -39420,20 +40875,7 @@ function App() {
                     )}
                     {/* Imagem do Treinador */}
                     <div className="flex flex-col items-center">
-                      {image ? (
-                        <img
-                          src={image}
-                          alt={currentUser?.username || 'Treinador'}
-                          className="w-20 h-20 sm:w-32 sm:h-32 object-cover rounded-lg"
-                          onError={(e) => {
-                            e.target.style.display = 'none'
-                            e.target.nextSibling.style.display = 'flex'
-                          }}
-                        />
-                      ) : null}
-                      <div className={`w-20 h-20 sm:w-32 sm:h-32 ${image ? 'hidden' : 'flex'} items-center justify-center rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
-                        <User size={36} className={`sm:w-12 sm:h-12 ${darkMode ? 'text-gray-600' : 'text-gray-400'}`} />
-                      </div>
+                      {(() => { const src = isPrankActive ? '/treinadoresicones/prankimg.png' : (image || TRAINER_ICONS[currentUser?.username] || ''); const fallback = TRAINER_ICONS[currentUser?.username] || ''; return src ? (<img src={src} alt={currentUser?.username || 'Treinador'} className="w-20 h-20 sm:w-32 sm:h-32 object-cover rounded-lg" onError={e => { if (!isPrankActive && fallback && e.target.src !== fallback) e.target.src = fallback }} />) : (<div className={`w-20 h-20 sm:w-32 sm:h-32 flex items-center justify-center rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-200'}`}><User size={36} className={`sm:w-12 sm:h-12 ${darkMode ? 'text-gray-600' : 'text-gray-400'}`} /></div>) })()}
                     </div>
                   </div>
                   <p className={`text-sm font-semibold mt-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -40053,6 +41495,33 @@ function App() {
                             {msg.timestamp}
                           </span>
                         </div>
+                        {msg.battleMove && (
+                          <button
+                            onClick={() => handleOpenBattleMove(msg.battleMove)}
+                            className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                          >
+                            {msg.battleMove}
+                          </button>
+                        )}
+                        {msg.metronomoMove && (
+                          <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                            <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                            <button
+                              onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                              className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                            >
+                              {msg.metronomoMove}
+                            </button>
+                          </div>
+                        )}
+                        {msg.caracTalentoInfo && (
+                          <button
+                            onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                            className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                          >
+                            {msg.caracTalentoInfo}
+                          </button>
+                        )}
                         {msg.isDiceRoll ? (
                           <div>
                             <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -40111,83 +41580,6 @@ function App() {
             )}
           </div>
         </div>
-
-        {/* Modal de Golpe */}
-        {showBattleMoveModal && selectedBattleMove && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-            onClick={() => setShowBattleMoveModal(false)}
-          >
-            <div
-              className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-3 sm:p-5 md:p-6 max-w-[95vw] sm:max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex justify-between items-center mb-4">
-                <h3 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                  {selectedBattleMove}
-                </h3>
-                <button
-                  onClick={() => setShowBattleMoveModal(false)}
-                  className={`${darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-800'}`}
-                >
-                  <X size={24} />
-                </button>
-              </div>
-
-              {(() => {
-                const moveData = GOLPES_DATA[selectedBattleMove]
-                if (!moveData) {
-                  return <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Golpe não encontrado</p>
-                }
-
-                return (
-                  <div className="space-y-3">
-                    <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Tipo:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.tipo}</p>
-                      </div>
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Aptidão:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.aptidao}</p>
-                      </div>
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Dano Basal:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.danoBasal || '-'}</p>
-                      </div>
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Acurácia:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.acuracia}</p>
-                      </div>
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Alcance:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.alcance}</p>
-                      </div>
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Frequência:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.frequencia}</p>
-                      </div>
-                    </div>
-
-                    {moveData.descritores && (
-                      <div>
-                        <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Descritores:</span>
-                        <p className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveData.descritores}</p>
-                      </div>
-                    )}
-
-                    <div>
-                      <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Efeito:</span>
-                      <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} whitespace-pre-wrap`}>
-                        {moveData.efeito}
-                      </p>
-                    </div>
-                  </div>
-                )
-              })()}
-            </div>
-          </div>
-        )}
 
         {/* Modal de Habilidade */}
         {showBattleAbilityModal && selectedBattleAbility && (
@@ -41279,7 +42671,9 @@ function App() {
           </div>
             )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -41310,7 +42704,14 @@ function App() {
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -41385,7 +42786,7 @@ function App() {
                         </div>
                         <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                           <span className={`font-bold text-lg ${myTimer <= 0 ? 'text-red-500' : darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>⏰ {formatSafariTimer(myTimer)}</span>
-                          {myRunPermission && (
+                          {myRunPermission && connections.length > 0 && (
                             <button
                               onClick={() => setShowAreaNavigationModal(true)}
                               disabled={myTimer <= 0}
@@ -41405,35 +42806,61 @@ function App() {
                       {/* Grid 8x8 */}
                       <div className="grid grid-cols-8 gap-1 max-w-xl mx-auto">
                         {safariGridData.map((row, ri) => row.map((cell, ci) => {
-                          // Determinar se esta célula pode ser clicada
                           const revealedCells = safariGridData.flat().filter(c => c.revealed)
                           const isFirstClick = revealedCells.length === 0
                           const activeRunKey = safariActiveRun ? `run-${safariActiveRun}` : null
                           const lastClicked = activeRunKey ? safariRunLastClicked[activeRunKey] : null
+                          const isCave23 = safariCurrentArea === 'Caverna 2' || safariCurrentArea === 'Caverna 3'
+                          const playerSalto = (safariCurrentArea === 'Caverna 3') ? (safariSaltoValues[activeRunKey] || 0) : 0
+                          const maxReach = playerSalto + 1
 
                           let isClickable = false
-                          if (!cell.revealed && myRunPermission && myTimer > 0) {
-                            if (isFirstClick) {
-                              isClickable = isEdgeCell(ri, ci, safariGridData.length)
-                            } else {
-                              const isAdjacentToLast = lastClicked && isAdjacentToCell(ri, ci, lastClicked.row, lastClicked.col)
-                              const allLastAdjacentRevealed = lastClicked && allAdjacentRevealed(lastClicked.row, lastClicked.col, safariGridData)
-                              const isAdjacentToRevealed = isAdjacentToAnyRevealed(ri, ci, safariGridData)
-
-                              if (isAdjacentToLast) {
-                                isClickable = true
-                              } else if (allLastAdjacentRevealed && isAdjacentToRevealed) {
-                                isClickable = true
+                          if (myRunPermission) {
+                            if (cell.specialTile === 'lava') {
+                              isClickable = false
+                            } else if (cell.specialTile === 'rope' && myTimer > 0) {
+                              isClickable = true // corda sempre clicável
+                            } else if (!cell.revealed && myTimer > 0) {
+                              if (isFirstClick) {
+                                if (isCave23) {
+                                  const ropePos = findSpecialTile(safariGridData, 'rope')
+                                  const isInitialArea = activeRunKey && safariRunStartAreas[activeRunKey] === safariCurrentArea
+                                  if (isInitialArea && ropePos) {
+                                    const farthest = getFarthestTileFromRope(safariGridData, ropePos)
+                                    isClickable = farthest ? (ri === farthest.row && ci === farthest.col) : false
+                                  } else {
+                                    isClickable = ropePos ? isAdjacentToCell(ri, ci, ropePos.row, ropePos.col) : false
+                                  }
+                                } else {
+                                  isClickable = isEdgeCell(ri, ci, safariGridData.length)
+                                }
+                              } else {
+                                const dist = lastClicked ? Math.max(Math.abs(ri - lastClicked.row), Math.abs(ci - lastClicked.col)) : Infinity
+                                const withinReach = dist <= maxReach
+                                const allLastAdjacentRevealed = lastClicked && allAdjacentRevealed(lastClicked.row, lastClicked.col, safariGridData)
+                                const isAdjacentToRevealed = isAdjacentToAnyRevealed(ri, ci, safariGridData)
+                                if (withinReach) {
+                                  isClickable = true
+                                } else if (allLastAdjacentRevealed && isAdjacentToRevealed) {
+                                  isClickable = true
+                                }
                               }
                             }
                           }
 
+                          const isSpecialVisible = cell.specialTile === 'hole' || cell.specialTile === 'rope' || cell.specialTile === 'lava'
+                          const isSharedPosition = lastClicked && lastClicked.row === ri && lastClicked.col === ci
+                          const runTrainers = activeRunKey ? Object.keys(safariRunPermissions[activeRunKey] || {}).filter(t => safariRunPermissions[activeRunKey][t]) : []
+
                           return (
                             <div key={`${ri}-${ci}`}
-                              onClick={() => !cell.revealed && myRunPermission && myTimer > 0 && handleSafariCellClick(ri, ci)}
+                              onClick={() => myRunPermission && cell.specialTile !== 'lava' && handleSafariCellClick(ri, ci)}
                               className={`aspect-square rounded border-2 relative flex flex-col items-center justify-center overflow-hidden ${
+                                cell.specialTile === 'lava' ? 'cursor-not-allowed' :
                                 isClickable ? 'cursor-pointer' : cell.revealed ? '' : 'cursor-not-allowed opacity-50'
                               } ${
+                                cell.specialTile === 'rope' ? 'border-yellow-500' :
+                                cell.specialTile === 'hole' ? 'border-orange-500' :
                                 cell.revealed
                                   ? (cell.pokemon
                                     ? (darkMode ? 'bg-yellow-900 border-yellow-600' : 'bg-yellow-100 border-yellow-400')
@@ -41442,11 +42869,28 @@ function App() {
                                     ? (darkMode ? 'border-green-500' : 'border-green-400')
                                     : 'border-transparent'
                               }`}>
-                            {!cell.revealed && (
-                              <img src={cell.terrain === 'Grama' ? '/gramasafari.png' : '/aguasafari.png'} alt={cell.terrain}
+                            {/* Imagem de fundo do tile */}
+                            {cell.specialTile === 'lava' && (
+                              <img src="/lavasafari.png" alt="lava" className="absolute inset-0 w-full h-full object-cover" />
+                            )}
+                            {cell.specialTile === 'hole' && (
+                              <img src="/holesafari.png" alt="buraco" className="absolute inset-0 w-full h-full object-cover" />
+                            )}
+                            {cell.specialTile === 'rope' && (
+                              <img src="/holesafarirope.png" alt="corda" className="absolute inset-0 w-full h-full object-cover" />
+                            )}
+                            {!isSpecialVisible && !cell.revealed && (
+                              <img src={cell.terrain === 'Cave' ? '/cavesafari.png' : cell.terrain === 'Grama' ? '/gramasafari.png' : '/aguasafari.png'} alt={cell.terrain}
                                 className="absolute inset-0 w-full h-full object-cover" />
                             )}
-                            {cell.revealed && cell.pokemon && (
+                            {isSharedPosition && runTrainers.length > 0 && (
+                              <div className="absolute top-0 right-0 flex flex-wrap justify-end gap-0.5 p-0.5 z-10">
+                                {runTrainers.map(t => TRAINER_ICONS[t] && (
+                                  <img key={t} src={TRAINER_ICONS[t]} alt={t} title={t} className="w-4 h-4 rounded-full border border-white shadow" />
+                                ))}
+                              </div>
+                            )}
+                            {cell.revealed && !isSpecialVisible && cell.pokemon && (
                               <div className="text-center">
                                 {cell.imageUrl && <img src={cell.imageUrl} alt={cell.pokemon} className="w-10 h-10 mx-auto" />}
                                 <div className={`text-[8px] font-bold truncate w-full ${darkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -41457,7 +42901,7 @@ function App() {
                                 </div>
                               </div>
                             )}
-                            {cell.revealed && !cell.pokemon && (
+                            {cell.revealed && !isSpecialVisible && !cell.pokemon && (
                               <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Vazio</span>
                             )}
                           </div>
@@ -41567,6 +43011,33 @@ function App() {
                                   <span className={`font-bold text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{msg.username}</span>
                                   <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>{msg.timestamp}</span>
                                 </div>
+                                {msg.battleMove && (
+                                  <button
+                                    onClick={() => handleOpenBattleMove(msg.battleMove)}
+                                    className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                                  >
+                                    {msg.battleMove}
+                                  </button>
+                                )}
+                                {msg.metronomoMove && (
+                                  <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                                    <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                                    <button
+                                      onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                                      className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                                    >
+                                      {msg.metronomoMove}
+                                    </button>
+                                  </div>
+                                )}
+                                {msg.caracTalentoInfo && (
+                                  <button
+                                    onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                                    className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                                  >
+                                    {msg.caracTalentoInfo}
+                                  </button>
+                                )}
                                 {msg.isDiceRoll ? (
                                   <div>
                                     <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{msg.text}</p>
@@ -41865,6 +43336,33 @@ function App() {
                               <span className={`font-bold text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{msg.username}</span>
                               <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>{msg.timestamp}</span>
                             </div>
+                            {msg.battleMove && (
+                              <button
+                                onClick={() => handleOpenBattleMove(msg.battleMove)}
+                                className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                              >
+                                {msg.battleMove}
+                              </button>
+                            )}
+                            {msg.metronomoMove && (
+                              <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                                <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                                <button
+                                  onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                                  className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                                >
+                                  {msg.metronomoMove}
+                                </button>
+                              </div>
+                            )}
+                            {msg.caracTalentoInfo && (
+                              <button
+                                onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                                className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                              >
+                                {msg.caracTalentoInfo}
+                              </button>
+                            )}
                             {msg.isDiceRoll ? (
                               <div>
                                 <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{msg.text}</p>
@@ -42090,6 +43588,33 @@ function App() {
                                 {msg.timestamp}
                               </span>
                             </div>
+                            {msg.battleMove && (
+                              <button
+                                onClick={() => handleOpenBattleMove(msg.battleMove)}
+                                className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                              >
+                                {msg.battleMove}
+                              </button>
+                            )}
+                            {msg.metronomoMove && (
+                              <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                                <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                                <button
+                                  onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                                  className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                                >
+                                  {msg.metronomoMove}
+                                </button>
+                              </div>
+                            )}
+                            {msg.caracTalentoInfo && (
+                              <button
+                                onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                                className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                              >
+                                {msg.caracTalentoInfo}
+                              </button>
+                            )}
                             {msg.isDiceRoll ? (
                               <div>
                                 <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -42196,35 +43721,68 @@ function App() {
                     title={area}
                   />
                 ))}
+                <button
+                  onClick={() => setSafariMapSelectedArea(safariMapSelectedArea === 'Cavernas' ? null : 'Cavernas')}
+                  className="absolute cursor-pointer"
+                  style={{ top: '30%', left: '48%', width: '20%', height: '4%', background: 'transparent', border: 'none', outline: 'none', transform: 'translate(-50%, -50%)' }}
+                  title="Cavernas"
+                />
               </div>
               {safariMapSelectedArea && (
                 <div className={`w-full md:w-72 flex-shrink-0 overflow-y-auto max-h-[40vh] md:max-h-[80vh] rounded-xl p-3 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                   <h4 className={`text-base sm:text-lg font-bold mb-3 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>{safariMapSelectedArea}</h4>
-                  {['Grama', 'Água'].map(terrain => {
-                    const encounters = SAFARI_ENCOUNTERS.filter(e => e.area === safariMapSelectedArea && e.terrain === terrain)
-                    if (encounters.length === 0) return null
-                    return (
-                      <div key={terrain} className="mb-3">
-                        <h5 className={`text-xs sm:text-sm font-bold mb-2 px-2 py-1 rounded ${terrain === 'Grama' ? 'bg-green-600 text-white' : 'bg-blue-600 text-white'}`}>
-                          {terrain === 'Grama' ? '🌿' : '🌊'} {terrain}
-                        </h5>
-                        <div className="space-y-1">
-                          {encounters.map((enc, i) => (
-                            <div key={i} className={`px-2 py-1.5 rounded text-xs font-semibold ${darkMode ? 'bg-gray-600 text-white' : 'bg-white text-gray-800'}`}>
-                              {enc.pokemon}
-                            </div>
-                          ))}
+                  {safariMapSelectedArea === 'Cavernas' ? (
+                    ['Caverna 1', 'Caverna 2', 'Caverna 3'].map(cave => {
+                      const encounters = SAFARI_ENCOUNTERS.filter(e => e.area === cave && e.pokemon)
+                      if (encounters.length === 0) return null
+                      return (
+                        <div key={cave} className="mb-3">
+                          <h5 className={`text-xs sm:text-sm font-bold mb-2 px-2 py-1 rounded bg-stone-600 text-white`}>
+                            🪨 {cave}
+                          </h5>
+                          <div className="space-y-1">
+                            {encounters.map((enc, i) => (
+                              <div key={i} className={`px-2 py-1.5 rounded text-xs font-semibold flex justify-between gap-2 ${darkMode ? 'bg-gray-600 text-white' : 'bg-white text-gray-800'}`}>
+                                <span>{enc.pokemon}{enc.isSkittish ? ' *' : ''}</span>
+                                {currentUser?.type === 'mestre' && <span className="opacity-60">{enc.chance}%</span>}
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )
-                  })}
+                      )
+                    })
+                  ) : (
+                    ['Grama', 'Água', 'Cave'].map(terrain => {
+                      const encounters = SAFARI_ENCOUNTERS.filter(e => e.area === safariMapSelectedArea && e.terrain === terrain && e.pokemon)
+                      if (encounters.length === 0) return null
+                      const terrainLabel = terrain === 'Grama' ? '🌿 Grama' : terrain === 'Água' ? '🌊 Água' : '🪨 Caverna'
+                      const terrainBg = terrain === 'Grama' ? 'bg-green-600' : terrain === 'Água' ? 'bg-blue-600' : 'bg-stone-600'
+                      return (
+                        <div key={terrain} className="mb-3">
+                          <h5 className={`text-xs sm:text-sm font-bold mb-2 px-2 py-1 rounded ${terrainBg} text-white`}>
+                            {terrainLabel}
+                          </h5>
+                          <div className="space-y-1">
+                            {encounters.map((enc, i) => (
+                              <div key={i} className={`px-2 py-1.5 rounded text-xs font-semibold flex justify-between gap-2 ${darkMode ? 'bg-gray-600 text-white' : 'bg-white text-gray-800'}`}>
+                                <span>{enc.pokemon}{enc.isSkittish ? ' *' : ''}</span>
+                                {currentUser?.type === 'mestre' && <span className="opacity-60">{enc.chance}%</span>}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    })
+                  )}
                 </div>
               )}
             </div>
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -42245,7 +43803,14 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns</h2></div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -42491,7 +44056,9 @@ function App() {
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -42513,7 +44080,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -42728,7 +44295,9 @@ function App() {
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -42756,7 +44325,14 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                   {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -43531,6 +45107,33 @@ function App() {
                             {msg.timestamp}
                           </span>
                         </div>
+                        {msg.battleMove && (
+                          <button
+                            onClick={() => handleOpenBattleMove(msg.battleMove)}
+                            className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                          >
+                            {msg.battleMove}
+                          </button>
+                        )}
+                        {msg.metronomoMove && (
+                          <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                            <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                            <button
+                              onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                              className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                            >
+                              {msg.metronomoMove}
+                            </button>
+                          </div>
+                        )}
+                        {msg.caracTalentoInfo && (
+                          <button
+                            onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                            className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                          >
+                            {msg.caracTalentoInfo}
+                          </button>
+                        )}
                         {msg.isDiceRoll ? (
                           <div>
                             <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -44435,7 +46038,9 @@ function App() {
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -44463,7 +46068,14 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari Staff</h2></div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -44471,13 +46083,18 @@ function App() {
 
           <div className="max-w-7xl mx-auto px-4 py-3 sm:py-5 md:py-8">
             {/* Subáreas */}
-            <div className="flex gap-2 mb-6">
+            <div className="flex gap-2 mb-6 items-center">
               {['Mapa Safari Staff', 'Encontro Safari Staff'].map(sub => (
                 <button key={sub} onClick={() => setSafariStaffSubarea(sub)}
                   className={`px-4 py-2 rounded-lg font-semibold ${safariStaffSubarea === sub ? 'bg-green-600 text-white' : darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>
                   {sub}
                 </button>
               ))}
+              <button onClick={() => setShowMapaSafariCompletoModal(true)}
+                className="px-4 py-2 rounded-lg font-semibold bg-blue-900 hover:bg-blue-800 text-white"
+                title="Staff Map">
+                🗺️
+              </button>
             </div>
 
             {/* MAPA SAFARI STAFF */}
@@ -44501,16 +46118,28 @@ function App() {
                       const perms = safariRunPermissions[rKey] || {}
                       return (
                         <div key={num} className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-xl p-4`}>
-                          <button onClick={() => setSafariStaffActiveRun(safariStaffActiveRun === num ? null : num)}
-                            className={`px-4 py-2 rounded-lg font-semibold transition-all mb-3 ${
-                              safariStaffActiveRun === num
-                                ? 'bg-green-600 text-white ring-2 ring-green-400'
-                                : hasGrid
-                                  ? (darkMode ? 'bg-green-800 text-green-300 hover:bg-green-700' : 'bg-green-100 text-green-800 hover:bg-green-200')
-                                  : (darkMode ? 'bg-gray-600 text-gray-300' : 'bg-gray-200 text-gray-500')
-                            }`}>
-                            Run Safari {num} Staff {hasGrid ? `(${safariRunAreas[rKey] || 'Central'})` : '(vazio)'}
-                          </button>
+                          <div className="flex items-center gap-3 mb-3">
+                            <button onClick={() => setSafariStaffActiveRun(safariStaffActiveRun === num ? null : num)}
+                              className={`px-4 py-2 rounded-lg font-semibold transition-all ${
+                                safariStaffActiveRun === num
+                                  ? 'bg-green-600 text-white ring-2 ring-green-400'
+                                  : hasGrid
+                                    ? (darkMode ? 'bg-green-800 text-green-300 hover:bg-green-700' : 'bg-green-100 text-green-800 hover:bg-green-200')
+                                    : (darkMode ? 'bg-gray-600 text-gray-300' : 'bg-gray-200 text-gray-500')
+                              }`}>
+                              Run Safari {num} Staff {hasGrid ? `(${safariRunAreas[rKey] || 'Central'})` : '(vazio)'}
+                            </button>
+                            {!hasGrid && (
+                              <select
+                                value={safariRunStartAreas[rKey] || 'Área Central'}
+                                onChange={e => handleSetRunStartArea(num, e.target.value)}
+                                className={`px-3 py-2 rounded-lg text-sm font-semibold border ${darkMode ? 'bg-gray-600 text-white border-gray-500' : 'bg-white text-gray-800 border-gray-300'}`}>
+                                {['Área Central', 'Área Leste', 'Área Oeste', 'Área Nordeste', 'Área Noroeste', 'Área Norte', 'Caverna 1', 'Caverna 2', 'Caverna 3'].map(area => (
+                                  <option key={area} value={area}>{area}</option>
+                                ))}
+                              </select>
+                            )}
+                          </div>
                           <div className="flex flex-wrap gap-3">
                             {SAFARI_TRAINERS.map(trainer => (
                               <label key={trainer} className={`flex items-center gap-1.5 text-sm cursor-pointer ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -44556,27 +46185,64 @@ function App() {
                       <h4 className={`text-lg font-bold mb-2 ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
                         Run Safari {safariStaffActiveRun} - {staffRunArea} <span className={`text-sm ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>⏰ {formatSafariTimer(staffRunTimer)}</span>
                       </h4>
-                      <div className="grid grid-cols-8 gap-1 max-w-lg mx-auto">
-                        {staffRunGrid.map((row, ri) => row.map((cell, ci) => (
-                          <div key={`${ri}-${ci}`}
-                            className={`aspect-square rounded border relative flex flex-col items-center justify-center text-xs overflow-hidden`}>
-                            <img src={cell.terrain === 'Grama' ? '/gramasafari.png' : '/aguasafari.png'} alt={cell.terrain}
-                              className="absolute inset-0 w-full h-full object-cover opacity-40" />
-                            <div className="relative z-10">
-                              {cell.pokemon && (
-                                <div className="text-center">
-                                  {cell.imageUrl && <img src={cell.imageUrl} alt={cell.pokemon} className="w-8 h-8 mx-auto" />}
-                                  <div className="text-[8px] font-bold truncate w-full text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                                    {cell.pokemon}{cell.isSkittish ? '*' : ''}
-                                  </div>
-                                  <div className="text-[8px] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                                    x{cell.quantity} Nv{cell.level}
-                                  </div>
-                                </div>
+                      <div className={staffRunArea === 'Caverna 3' ? 'flex gap-4 items-start flex-wrap' : ''}>
+                        <div className="grid grid-cols-8 gap-1 max-w-lg">
+                          {staffRunGrid.map((row, ri) => row.map((cell, ci) => (
+                            <div key={`${ri}-${ci}`}
+                              className={`aspect-square rounded border relative flex flex-col items-center justify-center text-xs overflow-hidden`}>
+                              {cell.specialTile === 'lava' && (
+                                <img src="/lavasafari.png" alt="lava" className="absolute inset-0 w-full h-full object-cover" />
                               )}
+                              {cell.specialTile === 'hole' && (
+                                <img src="/holesafari.png" alt="buraco" className="absolute inset-0 w-full h-full object-cover" />
+                              )}
+                              {cell.specialTile === 'rope' && (
+                                <img src="/holesafarirope.png" alt="corda" className="absolute inset-0 w-full h-full object-cover" />
+                              )}
+                              {!cell.specialTile && (
+                                <img src={cell.terrain === 'Cave' ? '/cavesafari.png' : cell.terrain === 'Grama' ? '/gramasafari.png' : '/aguasafari.png'} alt={cell.terrain}
+                                  className="absolute inset-0 w-full h-full object-cover opacity-40" />
+                              )}
+                              <div className="relative z-10">
+                                {cell.pokemon && !cell.specialTile && (
+                                  <div className="text-center">
+                                    {cell.imageUrl && <img src={cell.imageUrl} alt={cell.pokemon} className="w-8 h-8 mx-auto" />}
+                                    <div className="text-[8px] font-bold truncate w-full text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                                      {cell.pokemon}{cell.isSkittish ? '*' : ''}
+                                    </div>
+                                    <div className="text-[8px] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                                      x{cell.quantity} Nv{cell.level}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          )))}
+                        </div>
+
+                        {/* Painel de Salto (só Caverna 3) */}
+                        {staffRunArea === 'Caverna 3' && (
+                          <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-xl p-3 min-w-[120px]`}>
+                            <h5 className={`text-sm font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>⬆️ Salto</h5>
+                            <div className="flex gap-1">
+                              {[0, 1, 2, 3].map(val => {
+                                const currentVal = safariSaltoValues[staffRunKey] || 0
+                                const isSelected = currentVal === val
+                                return (
+                                  <button key={val}
+                                    onClick={() => handleSetSalto(safariStaffActiveRun, val)}
+                                    className={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+                                      isSelected
+                                        ? 'bg-orange-500 text-white ring-2 ring-orange-300'
+                                        : darkMode ? 'bg-gray-500 text-gray-300 hover:bg-gray-400' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                                    }`}>
+                                    {val}
+                                  </button>
+                                )
+                              })}
                             </div>
                           </div>
-                        )))}
+                        )}
                       </div>
                     </div>
                   )}
@@ -44682,6 +46348,33 @@ function App() {
                               <span className={`font-bold text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{msg.username}</span>
                               <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>{msg.timestamp}</span>
                             </div>
+                            {msg.battleMove && (
+                              <button
+                                onClick={() => handleOpenBattleMove(msg.battleMove)}
+                                className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                              >
+                                {msg.battleMove}
+                              </button>
+                            )}
+                            {msg.metronomoMove && (
+                              <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                                <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                                <button
+                                  onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                                  className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                                >
+                                  {msg.metronomoMove}
+                                </button>
+                              </div>
+                            )}
+                            {msg.caracTalentoInfo && (
+                              <button
+                                onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                                className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                              >
+                                {msg.caracTalentoInfo}
+                              </button>
+                            )}
                             {msg.isDiceRoll ? (
                               <div>
                                 <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{msg.text}</p>
@@ -45075,6 +46768,33 @@ function App() {
                               <span className={`font-bold text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{msg.username}</span>
                               <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>{msg.timestamp}</span>
                             </div>
+                            {msg.battleMove && (
+                              <button
+                                onClick={() => handleOpenBattleMove(msg.battleMove)}
+                                className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                              >
+                                {msg.battleMove}
+                              </button>
+                            )}
+                            {msg.metronomoMove && (
+                              <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                                <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                                <button
+                                  onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                                  className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                                >
+                                  {msg.metronomoMove}
+                                </button>
+                              </div>
+                            )}
+                            {msg.caracTalentoInfo && (
+                              <button
+                                onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                                className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                              >
+                                {msg.caracTalentoInfo}
+                              </button>
+                            )}
                             {msg.isDiceRoll ? (
                               <div>
                                 <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{msg.text}</p>
@@ -45202,7 +46922,86 @@ function App() {
           </div>
         </div>
 
-        {accountDataModal}
+        {showMapaSafariCompletoModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-2 sm:p-4" onClick={() => { setShowMapaSafariCompletoModal(false); setSafariMapSelectedArea(null) }}>
+            <div className={`relative ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-4 flex flex-col md:flex-row gap-2 sm:gap-3 md:gap-4 max-w-[95vw] sm:max-w-3xl md:max-w-4xl lg:max-w-6xl max-h-[90vh] overflow-y-auto md:overflow-y-visible`} onClick={e => e.stopPropagation()}>
+              <button onClick={() => { setShowMapaSafariCompletoModal(false); setSafariMapSelectedArea(null) }}
+                className={`absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center font-bold z-10 ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>
+                X
+              </button>
+              <div className="relative flex-shrink-0 w-full md:w-auto">
+                <img src="/mapasafaricompleto.png" alt="Mapa Safari Completo" className="w-full md:max-h-[80vh] rounded-lg object-contain" />
+                {[
+                  { area: 'Área Norte', top: '5%', left: '49%', w: '18%', h: '4%' },
+                  { area: 'Área Noroeste', top: '36%', left: '16%', w: '20%', h: '5%' },
+                  { area: 'Área Nordeste', top: '34%', left: '77%', w: '20%', h: '4%' },
+                  { area: 'Área Oeste', top: '60%', left: '23%', w: '18%', h: '4%' },
+                  { area: 'Área Leste', top: '60%', left: '85%', w: '18%', h: '4%' },
+                  { area: 'Área Central', top: '86%', left: '52%', w: '20%', h: '4%' },
+                ].map(({ area, top, left, w, h }) => (
+                  <button key={area} onClick={() => setSafariMapSelectedArea(safariMapSelectedArea === area ? null : area)}
+                    className="absolute cursor-pointer"
+                    style={{ top, left, width: w, height: h, background: 'transparent', border: 'none', outline: 'none', transform: 'translate(-50%, -50%)' }}
+                    title={area}
+                  />
+                ))}
+                <button
+                  onClick={() => setSafariMapSelectedArea(safariMapSelectedArea === 'Cavernas' ? null : 'Cavernas')}
+                  className="absolute cursor-pointer"
+                  style={{ top: '30%', left: '48%', width: '20%', height: '4%', background: 'transparent', border: 'none', outline: 'none', transform: 'translate(-50%, -50%)' }}
+                  title="Cavernas"
+                />
+              </div>
+              {safariMapSelectedArea && (
+                <div className={`w-full md:w-72 flex-shrink-0 overflow-y-auto max-h-[40vh] md:max-h-[80vh] rounded-xl p-3 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                  <h4 className={`text-base sm:text-lg font-bold mb-3 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>{safariMapSelectedArea}</h4>
+                  {safariMapSelectedArea === 'Cavernas' ? (
+                    ['Caverna 1', 'Caverna 2', 'Caverna 3'].map(cave => {
+                      const encounters = SAFARI_ENCOUNTERS.filter(e => e.area === cave && e.pokemon)
+                      if (encounters.length === 0) return null
+                      return (
+                        <div key={cave} className="mb-3">
+                          <h5 className={`text-xs sm:text-sm font-bold mb-2 px-2 py-1 rounded bg-stone-600 text-white`}>🪨 {cave}</h5>
+                          <div className="space-y-1">
+                            {encounters.map((enc, i) => (
+                              <div key={i} className={`px-2 py-1.5 rounded text-xs font-semibold flex justify-between gap-2 ${darkMode ? 'bg-gray-600 text-white' : 'bg-white text-gray-800'}`}>
+                                <span>{enc.pokemon}{enc.isSkittish ? ' *' : ''}</span>
+                                <span className="opacity-60">{enc.chance}%</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    })
+                  ) : (
+                    ['Grama', 'Água', 'Cave'].map(terrain => {
+                      const encounters = SAFARI_ENCOUNTERS.filter(e => e.area === safariMapSelectedArea && e.terrain === terrain && e.pokemon)
+                      if (encounters.length === 0) return null
+                      const terrainLabel = terrain === 'Grama' ? '🌿 Grama' : terrain === 'Água' ? '🌊 Água' : '🪨 Caverna'
+                      const terrainBg = terrain === 'Grama' ? 'bg-green-600' : terrain === 'Água' ? 'bg-blue-600' : 'bg-stone-600'
+                      return (
+                        <div key={terrain} className="mb-3">
+                          <h5 className={`text-xs sm:text-sm font-bold mb-2 px-2 py-1 rounded ${terrainBg} text-white`}>{terrainLabel}</h5>
+                          <div className="space-y-1">
+                            {encounters.map((enc, i) => (
+                              <div key={i} className={`px-2 py-1.5 rounded text-xs font-semibold flex justify-between gap-2 ${darkMode ? 'bg-gray-600 text-white' : 'bg-white text-gray-800'}`}>
+                                <span>{enc.pokemon}{enc.isSkittish ? ' *' : ''}</span>
+                                <span className="opacity-60">{enc.chance}%</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    })
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -45223,7 +47022,14 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns M</h2></div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -45268,7 +47074,9 @@ function App() {
           </div>
         </div>
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -45324,7 +47132,14 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -45902,6 +47717,33 @@ function App() {
                             {msg.timestamp}
                           </span>
                         </div>
+                        {msg.battleMove && (
+                          <button
+                            onClick={() => handleOpenBattleMove(msg.battleMove)}
+                            className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-blue-300 hover:text-blue-100' : 'text-blue-600 hover:text-blue-800'}`}
+                          >
+                            {msg.battleMove}
+                          </button>
+                        )}
+                        {msg.metronomoMove && (
+                          <div className={`flex items-center gap-1 text-xs mb-1 flex-wrap p-1 rounded ${darkMode ? 'bg-purple-900/40' : 'bg-purple-50'}`}>
+                            <span className={darkMode ? 'text-purple-300' : 'text-purple-700'}>🎲 Metrônomo! Sorteado:</span>
+                            <button
+                              onClick={() => handleOpenBattleMove(msg.metronomoMove)}
+                              className={`font-bold underline ${darkMode ? 'text-purple-400 hover:text-purple-200' : 'text-purple-600 hover:text-purple-800'}`}
+                            >
+                              {msg.metronomoMove}
+                            </button>
+                          </div>
+                        )}
+                        {msg.caracTalentoInfo && (
+                          <button
+                            onClick={() => handleOpenCaracTalento(msg.caracTalentoInfo)}
+                            className={`text-xs font-bold underline mb-1 block ${darkMode ? 'text-green-300 hover:text-green-100' : 'text-green-600 hover:text-green-800'}`}
+                          >
+                            {msg.caracTalentoInfo}
+                          </button>
+                        )}
                         {msg.isDiceRoll ? (
                           <div>
                             <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -46138,7 +47980,9 @@ function App() {
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -46172,7 +48016,7 @@ function App() {
                     <span className="text-xs px-3 py-1 rounded-full font-bold bg-red-600 text-white animate-pulse">Não toque em nada!</span>
                     <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                     <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                    {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                    {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                   </div>
                 </div>
               </div>
@@ -46258,7 +48102,7 @@ function App() {
               </div>
             </div>
           </div>
-          {accountDataModal}
+          {accountDataModal}{transformacaoModal}
           {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
           {pokezapPanel}{pokeAgendaPanel}
@@ -46317,7 +48161,7 @@ function App() {
                   <span className={`text-xs px-2 py-1 rounded-full font-bold ${userTeamColor === 'red' ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`}>Time {userTeamColor === 'red' ? 'Vermelho' : 'Verde'}</span>
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -46620,7 +48464,9 @@ function App() {
             </div>
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -46745,7 +48591,7 @@ function App() {
                 </div>
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -46780,7 +48626,7 @@ function App() {
                 </div>
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -46972,7 +48818,9 @@ function App() {
             ))}
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -47009,7 +48857,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -47378,7 +49226,9 @@ function App() {
             </div>
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -47403,7 +49253,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -47439,7 +49289,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -47478,12 +49328,20 @@ function App() {
                       <p className={`text-xs mb-3 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                         {scenario.imageUrls?.length || 0} imagem{(scenario.imageUrls?.length || 0) !== 1 ? 's' : ''}
                       </p>
-                      <button
-                        onClick={() => setScenarioDisplay({ active: true, scenarioId: scenario.id, currentImageIndex: 0, title: scenario.title, imageUrls: scenario.imageUrls })}
-                        className="w-full mb-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition-colors"
-                      >
-                        Mostrar para os Jogadores
-                      </button>
+                      <div className="flex gap-2 mb-2">
+                        <button
+                          onClick={() => setScenarioDisplay({ active: true, scenarioId: scenario.id, currentImageIndex: 0, title: scenario.title, imageUrls: scenario.imageUrls })}
+                          className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition-colors"
+                        >
+                          Mostrar para os Jogadores
+                        </button>
+                        <button
+                          onClick={() => setMasterPreviewScenario({ title: scenario.title, imageUrls: scenario.imageUrls, currentImageIndex: 0 })}
+                          className={`px-3 py-2 rounded-lg text-xs font-bold transition-colors ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-700'}`}
+                        >
+                          Ver Cenário
+                        </button>
+                      </div>
                       <div className="flex gap-2">
                         <button
                           onClick={() => {
@@ -47627,7 +49485,9 @@ function App() {
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -47665,7 +49525,7 @@ function App() {
                 </div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -47743,7 +49603,9 @@ function App() {
             )}
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -47777,7 +49639,7 @@ function App() {
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -47963,7 +49825,9 @@ function App() {
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -47996,7 +49860,7 @@ function App() {
                 </div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -48107,7 +49971,7 @@ function App() {
                                 // Salva diretamente no Firebase para o treinador atual
                                 loadSmartPokefoneMessages(currentUser.username).then(existing => {
                                   const msgs = Array.isArray(existing) ? existing : Object.values(existing || {})
-                                  saveSmartPokefoneMessages(currentUser.username, [...msgs, novaMensagem])
+                                  saveSmartPokefoneMessages(currentUser.username, [...msgs, novaMensagem].slice(-10))
                                 })
                                 setSmartPokefoneMessages(prev => [...prev, novaMensagem])
                               }}
@@ -48144,7 +50008,9 @@ function App() {
             )}
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -48224,7 +50090,7 @@ function App() {
           }
           loadSmartPokefoneMessages(username).then(existing => {
             const msgs = Array.isArray(existing) ? existing : Object.values(existing || {})
-            saveSmartPokefoneMessages(username, [...msgs, msg])
+            saveSmartPokefoneMessages(username, [...msgs, msg].slice(-10))
           })
         })
       })
@@ -48267,7 +50133,14 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -48740,7 +50613,9 @@ function App() {
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -48763,7 +50638,14 @@ function App() {
                 </div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -48782,7 +50664,9 @@ function App() {
             </button>
           </div>
         </div>
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
@@ -48916,7 +50800,14 @@ function App() {
                 </div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {currentUser?.type === 'mestre' && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 </div>
               </div>
             </div>
@@ -49262,7 +51153,9 @@ function App() {
           </div>
         )}
 
-        {accountDataModal}
+        {accountDataModal}{transformacaoModal}
+        {cursorSettingsModal}
+        {userCursorModal}
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}

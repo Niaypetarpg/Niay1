@@ -866,3 +866,25 @@ export const subscribeToAnotacoes = (username, callback) => {
     callback(Array.isArray(data) ? data : Object.values(data || {}))
   })
 }
+
+// --- CURSOR CONFIG ---
+
+export const saveCursorConfig = async (data) => {
+  return saveToFirebase('cursorConfig/global', removeUndefined(data))
+}
+
+export const subscribeToCursorConfig = (callback) => {
+  return subscribeToFirebase('cursorConfig/global', (data) => {
+    callback(data || null)
+  })
+}
+
+export const saveUserCursorPref = async (username, data) => {
+  return saveToFirebase(`cursorConfig/users/${username}`, removeUndefined(data))
+}
+
+export const subscribeToUserCursorPref = (username, callback) => {
+  return subscribeToFirebase(`cursorConfig/users/${username}`, (data) => {
+    callback(data || null)
+  })
+}
