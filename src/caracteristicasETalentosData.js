@@ -2036,14 +2036,14 @@ export const TALENTOS_DATA = {
       requisitos: 'ter comprado um livro pelo menos uma vez.',
       referencia: 'C, V',
       frequencia: 'Constante',
-      efeito: 'você deve comprar um livro em uma loja a cada cidade que visite. Se você não tiver pelo menos 70 créditos para comprar um livro quando chegar numa cidade, você perde os benefícios deste Talento até ser capaz de comprar o livro. Este Talento aumenta em um seu Ataque Especial ou sua Defesa Especial.'
+      efeito: 'você deve comprar um livro em uma loja a cada cidade que visite. Se você não tiver pelo menos 70 créditos para comprar um livro quando chegar numa cidade, você perde os benefícios deste Talento até ser capaz de comprar o livro. Este Talento aumenta em um seu Ataque Especial ou sua Defesa Especial. Este Talento pode ser escolhido diversas vezes. Seus efeitos se acumulam. Você não precisa aumentar sua quantidade de exercícios para manter funcional este Talento mesmo que o possua várias vezes.'
     },
     {
       nome: 'Rotina de Exercícios',
       requisitos: 'ter se exercitado pelo menos uma vez.',
       referencia: 'C, V',
       frequencia: 'Constante',
-      efeito: 'você deve se exercitar pelo menos uma vez a cada três dias. Uma prática de exercícios deve consumir pelo menos 30 minutos e ela lhe faz perder 10 PV. Se você não se exercitar pelo menos a cada três dias, você perde os benefícios deste Talento até ser capaz de retomar sua rotina de exercícios, fazendo exercício (neste caso)  por dois dias consecutivos. Este Talento aumenta em um sua Saúde, seu Ataque, sua Defesa ou sua Velocidade.'
+      efeito: 'você deve se exercitar pelo menos uma vez a cada três dias. Uma prática de exercícios deve consumir pelo menos 30 minutos e ela lhe faz perder 10 PV. Se você não se exercitar pelo menos a cada três dias, você perde os benefícios deste Talento até ser capaz de retomar sua rotina de exercícios, fazendo exercício (neste caso)  por dois dias consecutivos. Este Talento aumenta em um sua Saúde, seu Ataque, sua Defesa ou sua Velocidade. Este Talento pode ser escolhido diversas vezes. Seus efeitos se acumulam. Você não precisa aumentar sua quantidade de exercícios para manter funcional este Talento mesmo que o possua várias vezes.'
     },
     {
       nome: 'Socorrista',

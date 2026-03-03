@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus, Save, Archive, MoveVertical, Menu, Gamepad2, TowerControl, MousePointer } from 'lucide-react'
+import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus, Save, Archive, MoveVertical, Menu, Gamepad2, TowerControl, MousePointer, Star } from 'lucide-react'
 import AccountDataModal from './AccountDataModal'
 import pokedexData, { POKEMON_DIET_MAP } from './pokemonData'
 import { POKEMON_DESLOCAMENTO_MAP } from './pokemonDeslocamentos'
@@ -3172,7 +3172,14 @@ function App() {
   ]
 
   // Estados para Visão do Mestre
-  const [visaoMestreSection, setVisaoMestreSection] = useState('Perfis') // 'Perfis', 'Pokéloja Config'
+  const [visaoMestreSection, setVisaoMestreSection] = useState('Perfis') // 'Perfis', 'Pokéloja Config', 'Talento Config'
+  const [talentoInfinitoList, setTalentoInfinitoList] = useState([]) // Talentos com contador ativo
+  const [showTalentoInfinitoModal, setShowTalentoInfinitoModal] = useState(false)
+  const [talentoInfinitoSearch, setTalentoInfinitoSearch] = useState('')
+  const [talentoContadores, setTalentoContadores] = useState({}) // { talentName: count } por treinador
+  const [showTalentoContadorPopup, setShowTalentoContadorPopup] = useState(false)
+  const [talentoContadorEditing, setTalentoContadorEditing] = useState(null)
+  const [talentoContadorValue, setTalentoContadorValue] = useState('')
   const [selectedTrainer, setSelectedTrainer] = useState(null) // Username do treinador selecionado ou null
   const [selectedTrainerData, setSelectedTrainerData] = useState(null) // Dados do treinador selecionado carregados do Firebase
   const [expandedTeamPokemon, setExpandedTeamPokemon] = useState(null) // Index do pokémon do time expandido ou null
@@ -5612,14 +5619,22 @@ function App() {
     // Rolar 1d100
     const d100Roll = Math.floor(Math.random() * 100) + 1
 
+    // Canhão de Pokébolas: -12 na rolagem de captura
+    const hasCanhao = talentosSelected.some(t => t.nome === 'Canhão de Pokébolas')
+
     // Calcular resultado final (modificadores de captura são SUBTRAÍDOS)
-    const finalResult = d100Roll + modifierValue - battleModifiersTotal
+    let finalResult = d100Roll + modifierValue - battleModifiersTotal
+    if (hasCanhao) finalResult -= 12
 
     // Construir mensagem
     let message = `🎯 Lançou ${selectedPokeball}!\n1d100 = ${d100Roll}`
     message += ` | Mod: ${modifier}${modifierDetails} = ${modifierValue}`
     if (battleModifierDetails.length > 0) {
       message += ` | Captura: -${battleModifierDetails.join(', -')} = -${battleModifiersTotal}`
+    }
+    if (hasCanhao) {
+      const d8Damage = Math.floor(Math.random() * 8) + 1
+      message += `\n💥 Canhão de Pokébolas: -12 captura | Dano: 1d8 = ${d8Damage}`
     }
     message += `\n\nTotal: ${finalResult}`
 
@@ -10587,7 +10602,23 @@ function App() {
         velocidade: pokemon.attributes.velocidade + alfaBonus
       }
     }
-    setBattlePokemon(prev => [...prev, battleData])
+    const newBattlePokemon = [...battlePokemon, battleData]
+    setBattlePokemon(newBattlePokemon)
+    if (useFirebase) {
+      saveBattleData({
+        battleTrainers,
+        battlePokemon: newBattlePokemon,
+        battleTrainersList,
+        battlePokemonList,
+        currentTrainerTurn,
+        currentPokemonTurn,
+        trainerRound,
+        pokemonRound,
+        battlePokemonConditions,
+        revealedNpcPokemon,
+        revealedTrainers
+      })
+    }
     alert(`${battleData.nome} enviado para a Batalha!`)
   }
 
@@ -11033,7 +11064,23 @@ function App() {
         ataqueEspecial: trainer.attributes.ataqueEspecial
       }
     }
-    setBattleTrainers(prev => [...prev, battleData])
+    const newBattleTrainers = [...battleTrainers, battleData]
+    setBattleTrainers(newBattleTrainers)
+    if (useFirebase) {
+      saveBattleData({
+        battleTrainers: newBattleTrainers,
+        battlePokemon,
+        battleTrainersList,
+        battlePokemonList,
+        currentTrainerTurn,
+        currentPokemonTurn,
+        trainerRound,
+        pokemonRound,
+        battlePokemonConditions,
+        revealedNpcPokemon,
+        revealedTrainers
+      })
+    }
     alert(`${battleData.nome} enviado para a Batalha!`)
   }
 
@@ -11446,6 +11493,7 @@ function App() {
             setBackground(data.background || '')
             setLimitesUsoPersonalizados(data.limitesUsoPersonalizados || [])
             setLimitesUsoPersonalizadosUsosAtuais(data.limitesUsoPersonalizadosUsosAtuais || {})
+            setTalentoContadores(data.talentoContadores || {})
           }
           // Marcar dados como carregados após carregar tudo
           setDataLoaded(true)
@@ -11467,6 +11515,13 @@ function App() {
             setCustomPrices(prices || {})
           } catch (e) {
             console.error('Erro ao carregar preços customizados:', e)
+          }
+          // Carregar lista de talentos com contador
+          try {
+            const mestreConfigData = await loadMestreConfig()
+            setTalentoInfinitoList(mestreConfigData?.talentoInfinitoList || [])
+          } catch (e) {
+            console.error('Erro ao carregar talentoInfinitoList:', e)
           }
         }
         // Definir área inicial como Treinador
@@ -11529,6 +11584,7 @@ function App() {
             setArchivedNpcPokemon(data.archivedNpcPokemon || []) // Carregar Pokémon NPC arquivados
             setMasterItems(data.masterItems || []) // Carregar Bugigangas do Mestre
             setMasterItemsSent(data.masterItemsSent || []) // Carregar Bugigangas enviadas
+            setTalentoInfinitoList(data.talentoInfinitoList || []) // Carregar talentos com contador
           }
           // Carregar dados do Hub de Troca
           if (useFirebase) {
@@ -11770,7 +11826,8 @@ function App() {
           background,
           limitesUsoPersonalizados,
           limitesUsoPersonalizadosUsosAtuais,
-          fotografias
+          fotografias,
+          talentoContadores
         }
         try {
           if (useFirebase) {
@@ -11821,7 +11878,8 @@ function App() {
           archivedNpcTrainers, // Treinadores NPC arquivados
           archivedNpcPokemon, // Pokémon NPC arquivados
           masterItems, // Bugigangas do Mestre
-          masterItemsSent // Bugigangas enviadas
+          masterItemsSent, // Bugigangas enviadas
+          talentoInfinitoList // Talentos com contador ativo
         }
         try {
           if (useFirebase) {
@@ -11838,7 +11896,7 @@ function App() {
     // Debounce para evitar muitas escritas
     const timeoutId = setTimeout(saveData, 500)
     return () => clearTimeout(timeoutId)
-  }, [level, image, classes, attributes, skills, currentHP, mainTeam, pcPokemon, pokedex, pokemonedas, pokecaixinha, keyItems, customItems, pokeovoList, caracteristicasSelected, talentosSelected, pokemonImages, badges, estilizadorBattery, estilizadorPolicialBattery, thunderStoneActive, bolsaTalento, otherCapacities, vivencias, conquistas, ciclos, userBattleModifiers, userActiveModifiers, talentinhos, background, limitesUsoPersonalizados, limitesUsoPersonalizadosUsosAtuais, fotografias, hiddenPokelojaItems, customPrices, npcPokemon, npcPokemonList, battleTrainers, battlePokemon, battleTrainersList, battlePokemonList, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, npcConditions, expandedNpcCards, revealedNpcPokemon, revealedTrainers, battlePokemonConditions, battleTrainerConditions, archivedNpcTrainers, archivedNpcPokemon, masterItems, masterItemsSent, currentUser])
+  }, [level, image, classes, attributes, skills, currentHP, mainTeam, pcPokemon, pokedex, pokemonedas, pokecaixinha, keyItems, customItems, pokeovoList, caracteristicasSelected, talentosSelected, pokemonImages, badges, estilizadorBattery, estilizadorPolicialBattery, thunderStoneActive, bolsaTalento, otherCapacities, vivencias, conquistas, ciclos, userBattleModifiers, userActiveModifiers, talentinhos, background, limitesUsoPersonalizados, limitesUsoPersonalizadosUsosAtuais, fotografias, talentoContadores, hiddenPokelojaItems, customPrices, npcPokemon, npcPokemonList, battleTrainers, battlePokemon, battleTrainersList, battlePokemonList, currentTrainerTurn, currentPokemonTurn, trainerRound, pokemonRound, npcConditions, expandedNpcCards, revealedNpcPokemon, revealedTrainers, battlePokemonConditions, battleTrainerConditions, archivedNpcTrainers, archivedNpcPokemon, masterItems, masterItemsSent, talentoInfinitoList, currentUser])
 
   // Salvar Hub de Troca separadamente (mestre)
   const tradeHubSaveSkipRef = useRef(true)
@@ -12979,7 +13037,7 @@ function App() {
     setSessionBg(BG_IMAGES[Math.floor(Math.random() * BG_IMAGES.length)])
     setSelectedUser(null)
     setPassword('')
-    setIsPrankActive(selectedUser.username !== 'Ludovic' && Math.random() < 0.5)
+    setIsPrankActive(false)
   }
 
   // Função de logout com backup automático em background
@@ -15661,6 +15719,135 @@ function App() {
         </div>
       </div>
     )}
+    {/* MODAL TALENTO INFINITO — seleção de talentos para mestre */}
+    {showTalentoInfinitoModal && (
+      <div
+        className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[998] p-4"
+        onClick={() => setShowTalentoInfinitoModal(false)}
+      >
+        <div
+          className={`w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className={`flex items-center justify-between px-5 py-4 border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+            <h3 className={`text-lg font-bold flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+              <Star size={18} className="text-purple-500" />
+              Selecionar Talento Infinito
+            </h3>
+            <button onClick={() => setShowTalentoInfinitoModal(false)} className={`hover:opacity-70 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <X size={20} />
+            </button>
+          </div>
+          <div className="px-4 pt-3 pb-2">
+            <input
+              type="text"
+              value={talentoInfinitoSearch}
+              onChange={(e) => setTalentoInfinitoSearch(e.target.value)}
+              placeholder="Pesquisar talento..."
+              autoFocus
+              className={`w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-400'} focus:outline-none`}
+            />
+          </div>
+          <div className="px-4 pb-4 max-h-80 overflow-y-auto space-y-1">
+            {(() => {
+              const allTalentos = []
+              Object.entries(TALENTOS_DATA).forEach(([classe, lista]) => {
+                lista.forEach(t => allTalentos.push({ nome: t.nome, classe }))
+              })
+              const filtered = allTalentos.filter(t =>
+                t.nome.toLowerCase().includes(talentoInfinitoSearch.toLowerCase()) ||
+                t.classe.toLowerCase().includes(talentoInfinitoSearch.toLowerCase())
+              )
+              if (filtered.length === 0) return (
+                <p className={`text-center text-sm py-4 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Nenhum resultado.</p>
+              )
+              return filtered.map((t, i) => {
+                const jaAdicionado = talentoInfinitoList.includes(t.nome)
+                return (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      if (!jaAdicionado) setTalentoInfinitoList([...talentoInfinitoList, t.nome])
+                      setShowTalentoInfinitoModal(false)
+                    }}
+                    disabled={jaAdicionado}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-left transition-colors ${
+                      jaAdicionado
+                        ? darkMode ? 'bg-gray-700 text-gray-500 cursor-not-allowed' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        : darkMode ? 'hover:bg-gray-700 text-white' : 'hover:bg-purple-50 text-gray-800'
+                    }`}
+                  >
+                    <span className="font-medium">{t.nome}</span>
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded ${darkMode ? 'bg-gray-600 text-gray-300' : 'bg-gray-200 text-gray-500'}`}>
+                      {jaAdicionado ? '✓ Adicionado' : t.classe}
+                    </span>
+                  </button>
+                )
+              })
+            })()}
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* POPUP EDITAR CONTADOR DE TALENTO — somente para treinadores */}
+    {showTalentoContadorPopup && talentoContadorEditing && (
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[999] p-4"
+        onClick={() => setShowTalentoContadorPopup(false)}
+      >
+        <div
+          className={`w-72 rounded-2xl shadow-2xl p-5 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h4 className={`font-bold text-base mb-1 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            Contador — {talentoContadorEditing}
+          </h4>
+          <p className={`text-xs mb-3 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+            Insira o valor do contador para este talento.
+          </p>
+          <input
+            type="number"
+            value={talentoContadorValue}
+            onChange={(e) => setTalentoContadorValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                const val = parseInt(talentoContadorValue)
+                if (!isNaN(val)) {
+                  setTalentoContadores({ ...talentoContadores, [talentoContadorEditing]: val })
+                  setShowTalentoContadorPopup(false)
+                  setTalentoContadorEditing(null)
+                }
+              }
+            }}
+            autoFocus
+            className={`w-full px-3 py-2 rounded-lg border text-center text-lg font-bold mb-4 ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-gray-50 border-gray-300 text-gray-800'} focus:outline-none`}
+          />
+          <div className="flex gap-2">
+            <button
+              onClick={() => {
+                const val = parseInt(talentoContadorValue)
+                if (!isNaN(val)) {
+                  setTalentoContadores({ ...talentoContadores, [talentoContadorEditing]: val })
+                  setShowTalentoContadorPopup(false)
+                  setTalentoContadorEditing(null)
+                }
+              }}
+              className="flex-1 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-white font-semibold text-sm transition-colors"
+            >
+              Salvar
+            </button>
+            <button
+              onClick={() => { setShowTalentoContadorPopup(false); setTalentoContadorEditing(null) }}
+              className={`flex-1 py-2 rounded-xl font-semibold text-sm transition-colors ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+
     {showCaracTalentoModal && selectedCaracTalento && (
       <div
         className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[998] p-4"
@@ -23118,6 +23305,22 @@ function App() {
                   <ShoppingBag size={20} />
                   Pokéloja Config
                 </button>
+                <button
+                  onClick={() => {
+                    setVisaoMestreSection('Talento Config')
+                    setSelectedTrainer(null)
+                  }}
+                  className={`px-3 sm:px-5 md:px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
+                    visaoMestreSection === 'Talento Config'
+                      ? 'bg-gradient-to-r from-purple-600 to-violet-600 text-white shadow-lg transform scale-105'
+                      : darkMode
+                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  <Star size={20} />
+                  Talento Config
+                </button>
               </div>
             </div>
 
@@ -23354,6 +23557,57 @@ function App() {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {/* TALENTO CONFIG */}
+            {visaoMestreSection === 'Talento Config' && (
+              <div>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-4 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  Configuração de Talentos
+                </h3>
+                <p className={`text-center mb-6 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  Talentos marcados como "Talento Infinito" exibem um contador editável na ficha de cada treinador que os possui.
+                </p>
+
+                {/* Botão Talento Infinito */}
+                <div className="flex justify-center mb-6">
+                  <button
+                    onClick={() => { setShowTalentoInfinitoModal(true); setTalentoInfinitoSearch('') }}
+                    className="flex items-center gap-2 px-5 py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-600 to-violet-600 text-white shadow-lg hover:opacity-90 transition-all"
+                  >
+                    <Star size={18} />
+                    Talento Infinito
+                  </button>
+                </div>
+
+                {/* Lista de talentos adicionados */}
+                {talentoInfinitoList.length === 0 ? (
+                  <p className={`text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                    Nenhum talento com contador ativo.
+                  </p>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    {talentoInfinitoList.map((nome, idx) => (
+                      <div
+                        key={idx}
+                        className={`flex items-center justify-between gap-2 px-4 py-3 rounded-xl border-2 ${darkMode ? 'bg-gray-700 border-purple-600' : 'bg-purple-50 border-purple-300'}`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <Star size={14} className={darkMode ? 'text-purple-400' : 'text-purple-600'} />
+                          <span className={`font-semibold text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{nome}</span>
+                        </div>
+                        <button
+                          onClick={() => setTalentoInfinitoList(talentoInfinitoList.filter((_, i) => i !== idx))}
+                          className={`flex-shrink-0 hover:opacity-70 ${darkMode ? 'text-red-400' : 'text-red-500'}`}
+                          title="Remover talento da lista"
+                        >
+                          <X size={16} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
@@ -26426,6 +26680,55 @@ function App() {
               </div>
             )}
 
+            {/* ENGENHEIRO - para Engenheiros */}
+            {classes.includes('Engenheiro') && (
+              <div className="mb-8">
+                <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4 text-center`}>Engenheiro</h4>
+                <div className={`p-3 sm:p-5 md:p-6 rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}>
+                  <div className="flex items-center justify-center gap-4">
+                    <div className="flex-shrink-0">
+                      <img
+                        src="/coisasengenheiro/dexeng.png"
+                        alt="Dex Engenheiro"
+                        className="w-24 h-24 object-contain"
+                        onError={(e) => { e.target.style.display = 'none' }}
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="flex-shrink-0">
+                        <img
+                          src="/coisasengenheiro/maoenge.png"
+                          alt="Mão Engenheiro"
+                          className="w-24 h-24 object-contain"
+                          onError={(e) => { e.target.style.display = 'none' }}
+                        />
+                      </div>
+                      {talentosSelected.some(t => t.nome === 'Arma Acoplada') && (
+                        <div className="flex-shrink-0">
+                          <img
+                            src="/coisasengenheiro/pearmaenge.png"
+                            alt="Arma Acoplada"
+                            className="w-24 h-24 object-contain"
+                            onError={(e) => { e.target.style.display = 'none' }}
+                          />
+                        </div>
+                      )}
+                      {talentosSelected.some(t => t.nome === 'Canhão de Pokébolas') && (
+                        <div className="flex-shrink-0">
+                          <img
+                            src="/coisasengenheiro/canhaodepokebola.png"
+                            alt="Canhão de Pokébolas"
+                            className="w-24 h-24 object-contain"
+                            onError={(e) => { e.target.style.display = 'none' }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* TABELA DE ATRIBUTOS */}
             <div className="mb-8">
               <h4 className={`text-lg sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'} mb-4`}>Atributos</h4>
@@ -26445,12 +26748,19 @@ function App() {
                   <tbody>
                     {['saude', 'ataque', 'defesa', 'ataqueEspecial', 'defesaEspecial', 'velocidade'].map((key) => {
                       const value = attributes[key]
-                      const mod = getModifier(value)
+                      const isEngenheiroAtaque = key === 'ataque' && classes.includes('Engenheiro')
+                      const effectiveValue = isEngenheiroAtaque ? value + 2 : value
+                      const mod = getModifier(effectiveValue)
                       const names = { saude: 'Saúde', ataque: 'Ataque', defesa: 'Defesa', ataqueEspecial: 'Ataque Especial', defesaEspecial: 'Defesa Especial', velocidade: 'Velocidade' }
                       return <tr key={key}>
                         <td className={`border p-2 font-semibold ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>{names[key]}</td>
                         <td className={`border p-2 text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
-                          <input type="number" min="1" max="40" value={value} onChange={e => setAttributes({ ...attributes, [key]: Math.max(1, Math.min(40, parseInt(e.target.value) || 1)) })} className={`w-20 px-2 py-1 text-center border rounded ${darkMode ? 'bg-gray-600 text-white border-gray-500' : 'border-gray-300'}`} style={{ textAlign: 'center' }} />
+                          <div className="flex items-center justify-center gap-1">
+                            <input type="number" min="1" max="40" value={value} onChange={e => setAttributes({ ...attributes, [key]: Math.max(1, Math.min(40, parseInt(e.target.value) || 1)) })} className={`w-20 px-2 py-1 text-center border rounded ${darkMode ? 'bg-gray-600 text-white border-gray-500' : 'border-gray-300'}`} style={{ textAlign: 'center' }} />
+                            {isEngenheiroAtaque && (
+                              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-red-500 text-red-500 text-xs font-bold flex-shrink-0">+2</span>
+                            )}
+                          </div>
                         </td>
                         <td className={`border p-2 text-center font-bold ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>{mod >= 0 ? '+' : ''}{mod}</td>
                         <td className={`border p-2 ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
@@ -35992,6 +36302,15 @@ function App() {
                 <Plus size={18} className="sm:w-5 sm:h-5" />
                 <span>Talento</span>
               </button>
+              {(() => {
+                const totalTalentos = talentosSelected.length + caracteristicasSelected.length
+                const expectedTalentos = ((LEVEL_PROGRESSION.find(l => l.nivel === level) || {}).totalTalento || 0) - classes.filter(c => c).length
+                return (
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full border-2 border-blue-500 text-blue-500 text-xs font-bold flex-shrink-0">
+                    {totalTalentos}/{expectedTalentos}
+                  </span>
+                )
+              })()}
               <div className="flex gap-2 items-center w-full sm:w-auto">
                 <button
                   onClick={() => setShowBolsaTalentoModal(true)}
@@ -36092,6 +36411,20 @@ function App() {
                             <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
                               {isExpanded ? <ChevronDown size={14} className={`sm:w-4 sm:h-4 ${darkMode ? 'text-green-400' : 'text-green-600'}`} /> : <ChevronRight size={14} className={`sm:w-4 sm:h-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`} />}
                               <span className={`font-bold text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{talentoNome}</span>
+                              {talentoInfinitoList.includes(talentoNome) && (
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    setTalentoContadorEditing(talentoNome)
+                                    setTalentoContadorValue(String(talentoContadores[talentoNome] ?? 1))
+                                    setShowTalentoContadorPopup(true)
+                                  }}
+                                  className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1 rounded-full border-2 border-yellow-400 hover:border-yellow-300 text-[10px] font-bold transition-colors ${darkMode ? 'text-yellow-300' : 'text-yellow-600'}`}
+                                  title="Editar contador"
+                                >
+                                  {talentoContadores[talentoNome] ?? 1}
+                                </button>
+                              )}
                             </div>
                             {talentoClasse && (
                               <span className={`text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded ml-5 sm:ml-6 ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'}`}>
@@ -40249,7 +40582,7 @@ function App() {
                             const precisaoStage = stages.precisao || 0
 
                             // Acurácia do ataque: 4 com Arma de Escolha, 6 sem
-                            const acuraciaAtaque = armaDeEscolha ? 4 : 6
+                            const acuraciaAtaque = (armaDeEscolha || talentosSelected.some(t => t.nome === 'Arma Acoplada')) ? 4 : 6
 
                             // Calcular resultado final com modificador de precisão
                             const finalResult = d20Roll + precisaoStage
@@ -40272,7 +40605,7 @@ function App() {
                           title="Ataque Treinador"
                         >
                           <Dices size={20} />
-                          <span className="text-xs">({armaDeEscolha ? 4 : 6})</span>
+                          <span className="text-xs">({(armaDeEscolha || talentosSelected.some(t => t.nome === 'Arma Acoplada')) ? 4 : 6})</span>
                         </button>
                         <button
                           onClick={() => {
@@ -40289,7 +40622,7 @@ function App() {
                             let damageRoll, damageBonus, diceType
 
                             // Determinar dano baseado no nível e se usa Arma de Escolha
-                            if (armaDeEscolha) {
+                            if (armaDeEscolha || talentosSelected.some(t => t.nome === 'Arma Acoplada')) {
                               // Tabela de dano com Arma de Escolha
                               if (level >= 1 && level <= 6) {
                                 diceType = '1d12+6'
@@ -40379,18 +40712,25 @@ function App() {
                       </div>
 
                       {/* Checkbox Arma de Escolha */}
-                      <div className="flex items-center gap-2 mt-2">
-                        <input
-                          type="checkbox"
-                          id="armaDeEscolha"
-                          checked={armaDeEscolha}
-                          onChange={(e) => setArmaDeEscolha(e.target.checked)}
-                          className="w-4 h-4 rounded"
-                        />
-                        <label htmlFor="armaDeEscolha" className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                          Arma de escolha
-                        </label>
-                      </div>
+                      {(() => {
+                        const hasArmaAcoplada = talentosSelected.some(t => t.nome === 'Arma Acoplada')
+                        const effectiveArmaDeEscolha = armaDeEscolha || hasArmaAcoplada
+                        return (
+                          <div className="flex items-center gap-2 mt-2">
+                            <input
+                              type="checkbox"
+                              id="armaDeEscolha"
+                              checked={effectiveArmaDeEscolha}
+                              onChange={(e) => { if (!hasArmaAcoplada) setArmaDeEscolha(e.target.checked) }}
+                              disabled={hasArmaAcoplada}
+                              className="w-4 h-4 rounded"
+                            />
+                            <label htmlFor="armaDeEscolha" className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                              Arma de escolha{hasArmaAcoplada && <span className="ml-1 text-xs text-yellow-500">(Arma Acoplada)</span>}
+                            </label>
+                          </div>
+                        )
+                      })()}
 
                       {/* Fases do Treinador (controles interativos) */}
                       {(() => {
@@ -50076,41 +50416,50 @@ function App() {
       }))
     }
 
-    const handleEnviarEmailTriunfos = () => {
+    const handleEnviarEmailTriunfos = async () => {
       const trainerNames = trainerUsers.map(u => u.username)
+      const msgsPorTrainer = {}
+      const now = Date.now()
+
+      // Gerais: uma mensagem por objetivo por treinador
       triunfosGerais.forEach(t => {
         ;(t.realizadores || []).forEach(username => {
           if (!trainerNames.includes(username)) return
-          const msg = {
-            id: `msg_${Date.now()}_${username}_${t.id}`,
+          if (!msgsPorTrainer[username]) msgsPorTrainer[username] = []
+          msgsPorTrainer[username].push({
+            id: `msg_${now}_${username}_${t.id}`,
             assunto: `Objetivo Geral obtido: ${t.texto}`,
             corpo: `Parabéns, ${username}! Você obteve o objetivo geral:\n\n"${t.texto}"`,
-            recebidaEm: Date.now(),
+            recebidaEm: now,
             lida: false
-          }
-          loadSmartPokefoneMessages(username).then(existing => {
-            const msgs = Array.isArray(existing) ? existing : Object.values(existing || {})
-            saveSmartPokefoneMessages(username, [...msgs, msg].slice(-10))
           })
         })
       })
+
+      // Individuais: uma mensagem por objetivo concluído
       Object.entries(triunfosIndividuais).forEach(([username, lista]) => {
         if (!trainerNames.includes(username)) return
-        const concluidos = (lista || []).filter(t => t.realizado)
-        if (concluidos.length === 0) return
-        const corpo = concluidos.map(t => `• ${t.texto}`).join('\n')
-        const msg = {
-          id: `msg_${Date.now()}_${username}_ind`,
-          assunto: `Seus Objetivos Individuais`,
-          corpo: `Parabéns, ${username}! Você obteve os seguintes objetivos individuais:\n\n${corpo}`,
-          recebidaEm: Date.now(),
-          lida: false
-        }
-        loadSmartPokefoneMessages(username).then(existing => {
-          const msgs = Array.isArray(existing) ? existing : Object.values(existing || {})
-          saveSmartPokefoneMessages(username, [...msgs, msg])
+        ;(lista || []).filter(t => t.realizado).forEach(t => {
+          if (!msgsPorTrainer[username]) msgsPorTrainer[username] = []
+          msgsPorTrainer[username].push({
+            id: `msg_${now}_${username}_${t.id}`,
+            assunto: `Objetivo Individual obtido: ${t.texto}`,
+            corpo: `Parabéns, ${username}! Você obteve o objetivo individual:\n\n"${t.texto}"`,
+            recebidaEm: now,
+            lida: false
+          })
         })
       })
+
+      // Um único load+save por treinador, sem race condition
+      await Promise.all(
+        Object.entries(msgsPorTrainer).map(async ([username, novas]) => {
+          const existing = await loadSmartPokefoneMessages(username)
+          const msgs = Array.isArray(existing) ? existing : Object.values(existing || {})
+          await saveSmartPokefoneMessages(username, [...msgs, ...novas])
+        })
+      )
+
       alert('Objetivos enviados para o SmartPokefone dos usuários!')
     }
 
