@@ -3843,8 +3843,10 @@ function App() {
 
   const getMaxHP = () => (level + attributes.saude) * 4
 
+  const ataqueEfetivo = classes.includes('Engenheiro') ? attributes.ataque + 2 : attributes.ataque
+
   const getDisplacement = () => {
-    const modAtk = getModifier(attributes.ataque)
+    const modAtk = getModifier(ataqueEfetivo)
     const modDef = getModifier(attributes.defesa)
     const modSpd = getModifier(attributes.velocidade)
     return {
@@ -5724,14 +5726,14 @@ function App() {
     expression = expression.trim()
 
     // Obter modificadores e atributos do treinador
-    const MA = getModifier(attributes.ataque)
+    const MA = getModifier(ataqueEfetivo)
     const MD = getModifier(attributes.defesa)
     const MAE = getModifier(attributes.ataqueEspecial)
     const MDE = getModifier(attributes.defesaEspecial)
     const MV = getModifier(attributes.velocidade)
     const MS = getModifier(attributes.saude)
 
-    const At = attributes.ataque
+    const At = ataqueEfetivo
     const Dt = attributes.defesa
     const AEt = attributes.ataqueEspecial
     const DEt = attributes.defesaEspecial
@@ -10530,13 +10532,13 @@ function App() {
       evasaoEspecial: evasion.especial,
       evasaoVeloz: evasion.veloz,
       level: level,
-      ataque: attributes.ataque || 0,
+      ataque: ataqueEfetivo || 0,
       ataqueEspecial: attributes.ataqueEspecial || 0,
       baseAttributes: {
         defesa: attributes.defesa,
         defesaEspecial: attributes.defesaEspecial,
         velocidade: attributes.velocidade,
-        ataque: attributes.ataque,
+        ataque: ataqueEfetivo,
         ataqueEspecial: attributes.ataqueEspecial
       }
     }
@@ -14086,7 +14088,7 @@ function App() {
     if (hasCorreria) {
       // Usar fórmula de perícia Corrida
       const count = skills.ataque.filter(s => s === 'Corrida').length
-      const modAtaque = getModifier(attributes.ataque)
+      const modAtaque = getModifier(ataqueEfetivo)
 
       let baseBonus, modifierMultiplier
       if (count === 1) {
@@ -26755,10 +26757,10 @@ function App() {
                       return <tr key={key}>
                         <td className={`border p-2 font-semibold ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>{names[key]}</td>
                         <td className={`border p-2 text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
-                          <div className="flex items-center justify-center gap-1">
+                          <div className="relative inline-flex items-center justify-center">
                             <input type="number" min="1" max="40" value={value} onChange={e => setAttributes({ ...attributes, [key]: Math.max(1, Math.min(40, parseInt(e.target.value) || 1)) })} className={`w-20 px-2 py-1 text-center border rounded ${darkMode ? 'bg-gray-600 text-white border-gray-500' : 'border-gray-300'}`} style={{ textAlign: 'center' }} />
                             {isEngenheiroAtaque && (
-                              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-red-500 text-red-500 text-xs font-bold flex-shrink-0">+2</span>
+                              <span className="absolute left-full ml-1 inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-red-500 text-red-500 text-xs font-bold">+2</span>
                             )}
                           </div>
                         </td>
@@ -40609,7 +40611,7 @@ function App() {
                         </button>
                         <button
                           onClick={() => {
-                            const ataqueBase = attributes?.ataque || 0
+                            const ataqueBase = ataqueEfetivo || 0
 
                             // Buscar o treinador na lista de batalha para pegar o ID e aplicar fases
                             const trainerInBattle = battleTrainersList.find(t => t.nome === currentUser?.username)
