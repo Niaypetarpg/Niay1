@@ -3043,6 +3043,12 @@ function App() {
   const [dragPokemonIndex, setDragPokemonIndex] = useState(null)
   const [dragOverPokemonIndex, setDragOverPokemonIndex] = useState(null)
 
+  // Estados para Drag and Drop de Talentos e Características
+  const [dragTalentoIdx, setDragTalentoIdx] = useState(null)
+  const [dragOverTalentoIdx, setDragOverTalentoIdx] = useState(null)
+  const [dragCaracIdx, setDragCaracIdx] = useState(null)
+  const [dragOverCaracIdx, setDragOverCaracIdx] = useState(null)
+
   // Estados para Interlúdio
   const [interludioPlayers, setInterludioPlayers] = useState([
     { username: 'Alocin', jnChecked: false, rtChecked: false, jnPoints: 5, rtPoints: 5 },
@@ -3180,6 +3186,10 @@ function App() {
   const [showTalentoContadorPopup, setShowTalentoContadorPopup] = useState(false)
   const [talentoContadorEditing, setTalentoContadorEditing] = useState(null)
   const [talentoContadorValue, setTalentoContadorValue] = useState('')
+  const [rotinaExercicioValues, setRotinaExercicioValues] = useState({ saude: 0, ataque: 0, defesa: 0, velocidade: 0 })
+  const [rotinaEstudosValues, setRotinaEstudosValues] = useState({ ataqueEspecial: 0, defesaEspecial: 0 })
+  const [showRotinaPopup, setShowRotinaPopup] = useState(false)
+  const [rotinaPopupType, setRotinaPopupType] = useState(null) // 'exercicio' | 'estudos'
   const [selectedTrainer, setSelectedTrainer] = useState(null) // Username do treinador selecionado ou null
   const [selectedTrainerData, setSelectedTrainerData] = useState(null) // Dados do treinador selecionado carregados do Firebase
   const [expandedTeamPokemon, setExpandedTeamPokemon] = useState(null) // Index do pokémon do time expandido ou null
@@ -3841,14 +3851,20 @@ function App() {
     return map[value] || 0
   }
 
-  const getMaxHP = () => (level + attributes.saude) * 4
+  const saudeEfetiva = attributes.saude + (rotinaExercicioValues.saude || 0)
+  const defesaEfetiva = attributes.defesa + (rotinaExercicioValues.defesa || 0)
+  const velocidadeEfetiva = attributes.velocidade + (rotinaExercicioValues.velocidade || 0)
+  const ataqueEspecialEfetivo = attributes.ataqueEspecial + (rotinaEstudosValues.ataqueEspecial || 0)
+  const defesaEspecialEfetiva = attributes.defesaEspecial + (rotinaEstudosValues.defesaEspecial || 0)
 
-  const ataqueEfetivo = classes.includes('Engenheiro') ? attributes.ataque + 2 : attributes.ataque
+  const getMaxHP = () => (level + saudeEfetiva) * 4
+
+  const ataqueEfetivo = (classes.includes('Engenheiro') ? attributes.ataque + 2 : attributes.ataque) + (rotinaExercicioValues.ataque || 0)
 
   const getDisplacement = () => {
     const modAtk = getModifier(ataqueEfetivo)
-    const modDef = getModifier(attributes.defesa)
-    const modSpd = getModifier(attributes.velocidade)
+    const modDef = getModifier(defesaEfetiva)
+    const modSpd = getModifier(velocidadeEfetiva)
     return {
       terrestre: Math.max(5, 3 + Math.floor(Math.max(modAtk, modSpd) / 2)),
       natacao: Math.max(4, 2 + Math.floor(modDef / 2)),
@@ -3857,9 +3873,9 @@ function App() {
   }
 
   const getEvasion = () => ({
-    fisica: Math.floor(attributes.defesa / 5),
-    especial: Math.floor(attributes.defesaEspecial / 5),
-    veloz: Math.floor(attributes.velocidade / 5)
+    fisica: Math.floor(defesaEfetiva / 5),
+    especial: Math.floor(defesaEspecialEfetiva / 5),
+    veloz: Math.floor(velocidadeEfetiva / 5)
   })
 
   const getSkillCount = (attr, skill) => {
@@ -5692,7 +5708,7 @@ function App() {
   // Função para calcular a estatística Contagem (para Colecionador)
   // Contagem = MV + Grupos de 8 (com pontuação: shiny=8, lendário=8, normal=1)
   const calcularContagem = () => {
-    const MV = getModifier(attributes.velocidade)
+    const MV = getModifier(velocidadeEfetiva)
 
     // Combinar todos os pokémons capturados (time + PC)
     const todosPokemon = [...mainTeam, ...pcPokemon]
@@ -5727,18 +5743,18 @@ function App() {
 
     // Obter modificadores e atributos do treinador
     const MA = getModifier(ataqueEfetivo)
-    const MD = getModifier(attributes.defesa)
-    const MAE = getModifier(attributes.ataqueEspecial)
-    const MDE = getModifier(attributes.defesaEspecial)
-    const MV = getModifier(attributes.velocidade)
-    const MS = getModifier(attributes.saude)
+    const MD = getModifier(defesaEfetiva)
+    const MAE = getModifier(ataqueEspecialEfetivo)
+    const MDE = getModifier(defesaEspecialEfetiva)
+    const MV = getModifier(velocidadeEfetiva)
+    const MS = getModifier(saudeEfetiva)
 
     const At = ataqueEfetivo
-    const Dt = attributes.defesa
-    const AEt = attributes.ataqueEspecial
-    const DEt = attributes.defesaEspecial
-    const Vt = attributes.velocidade
-    const St = attributes.saude
+    const Dt = defesaEfetiva
+    const AEt = ataqueEspecialEfetivo
+    const DEt = defesaEspecialEfetiva
+    const Vt = velocidadeEfetiva
+    const St = saudeEfetiva
 
     // Calcular Contagem para o comando @Cont
     const Cont = calcularContagem()
@@ -6825,7 +6841,7 @@ function App() {
 
   // Função para Criar Pokébola (talento Captor)
   const handleCriarPokebola = async () => {
-    const modVelocidade = getModifier(attributes.velocidade)
+    const modVelocidade = getModifier(velocidadeEfetiva)
     const roll = Math.floor(Math.random() * 20) + 1
     const total = roll + modVelocidade
 
@@ -6884,7 +6900,7 @@ function App() {
       return
     }
 
-    const modVelocidade = getModifier(attributes.velocidade)
+    const modVelocidade = getModifier(velocidadeEfetiva)
     const roll = Math.floor(Math.random() * 20) + 1
     const total = roll + modVelocidade
 
@@ -10016,8 +10032,8 @@ function App() {
       // Treinador próprio (modal HP simples)
       if (damageType !== 'puro') {
         defense = damageType === 'fisico'
-          ? (attributes.defesa || 0)
-          : (attributes.defesaEspecial || 0)
+          ? (defesaEfetiva || 0)
+          : (defesaEspecialEfetiva || 0)
       }
 
       finalDamage = Math.max(0, pendingDamageValue - defense)
@@ -10035,8 +10051,8 @@ function App() {
       // Treinador em batalha
       if (damageType !== 'puro') {
         defense = damageType === 'fisico'
-          ? (attributes.defesa || 0)
-          : (attributes.defesaEspecial || 0)
+          ? (defesaEfetiva || 0)
+          : (defesaEspecialEfetiva || 0)
       }
 
       finalDamage = Math.max(0, pendingDamageValue - defense)
@@ -10527,19 +10543,19 @@ function App() {
       nomeFalso: fakeTrainerName,
       hp: currentHP,
       maxHP: maxHP,
-      velocidade: attributes.velocidade,
+      velocidade: velocidadeEfetiva,
       evasaoFisica: evasion.fisica,
       evasaoEspecial: evasion.especial,
       evasaoVeloz: evasion.veloz,
       level: level,
       ataque: ataqueEfetivo || 0,
-      ataqueEspecial: attributes.ataqueEspecial || 0,
+      ataqueEspecial: ataqueEspecialEfetivo || 0,
       baseAttributes: {
-        defesa: attributes.defesa,
-        defesaEspecial: attributes.defesaEspecial,
-        velocidade: attributes.velocidade,
+        defesa: defesaEfetiva,
+        defesaEspecial: defesaEspecialEfetiva,
+        velocidade: velocidadeEfetiva,
         ataque: ataqueEfetivo,
-        ataqueEspecial: attributes.ataqueEspecial
+        ataqueEspecial: ataqueEspecialEfetivo
       }
     }
     const newBattleTrainers = [...battleTrainers, battleData]
@@ -11496,6 +11512,8 @@ function App() {
             setLimitesUsoPersonalizados(data.limitesUsoPersonalizados || [])
             setLimitesUsoPersonalizadosUsosAtuais(data.limitesUsoPersonalizadosUsosAtuais || {})
             setTalentoContadores(data.talentoContadores || {})
+            setRotinaExercicioValues(data.rotinaExercicioValues || { saude: 0, ataque: 0, defesa: 0, velocidade: 0 })
+            setRotinaEstudosValues(data.rotinaEstudosValues || { ataqueEspecial: 0, defesaEspecial: 0 })
           }
           // Marcar dados como carregados após carregar tudo
           setDataLoaded(true)
@@ -11829,7 +11847,9 @@ function App() {
           limitesUsoPersonalizados,
           limitesUsoPersonalizadosUsosAtuais,
           fotografias,
-          talentoContadores
+          talentoContadores,
+          rotinaExercicioValues,
+          rotinaEstudosValues
         }
         try {
           if (useFirebase) {
@@ -14104,7 +14124,7 @@ function App() {
       diceDetails = `1d20 = ${roll} | ${baseBonus} + ${modifierMultiplier > 1 ? `${modifierMultiplier}x` : ''}Modificador(${modAtaque}) = ${modifierBonus} | Total: ${total} vs DC ${dc} (${numPokemon} pkm + 8) → ${total > dc ? '✅ Escapou!' : '❌ Falhou!'}`
     } else {
       // Fuga normal (sem perícia)
-      const modVel = getModifier(attributes.velocidade)
+      const modVel = getModifier(velocidadeEfetiva)
       total = roll + modVel
       diceDetails = `1d20(${roll})+${modVel} = ${total} vs DC ${dc} (${numPokemon} pkm + 8) → ${total > dc ? '✅ Escapou!' : '❌ Falhou!'}`
     }
@@ -15788,6 +15808,52 @@ function App() {
               })
             })()}
           </div>
+        </div>
+      </div>
+    )}
+
+    {/* POPUP ROTINA DE EXERCÍCIOS / ESTUDOS */}
+    {showRotinaPopup && (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[999] p-4" onClick={() => setShowRotinaPopup(false)}>
+        <div className={`w-80 rounded-2xl shadow-2xl p-5 ${darkMode ? 'bg-gray-800' : 'bg-white'}`} onClick={e => e.stopPropagation()}>
+          <h4 className={`font-bold text-base mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            {rotinaPopupType === 'exercicio' ? 'Rotina de Exercícios' : 'Rotina de Estudos'}
+          </h4>
+          <div className="space-y-3">
+            {(rotinaPopupType === 'exercicio'
+              ? [
+                  { key: 'saude', label: 'Saúde', colors: 'border-green-500 text-green-600' },
+                  { key: 'ataque', label: 'Ataque', colors: 'border-red-500 text-red-600' },
+                  { key: 'defesa', label: 'Defesa', colors: 'border-blue-500 text-blue-600' },
+                  { key: 'velocidade', label: 'Velocidade', colors: 'border-purple-500 text-purple-600' },
+                ]
+              : [
+                  { key: 'ataqueEspecial', label: 'Atq. Especial', colors: 'border-red-500 text-red-600' },
+                  { key: 'defesaEspecial', label: 'Def. Especial', colors: 'border-blue-500 text-blue-600' },
+                ]
+            ).map(({ key, label, colors }) => {
+              const vals = rotinaPopupType === 'exercicio' ? rotinaExercicioValues : rotinaEstudosValues
+              const setter = rotinaPopupType === 'exercicio' ? setRotinaExercicioValues : setRotinaEstudosValues
+              const [borderColor, textColor] = colors.split(' ')
+              return (
+                <div key={key} className="flex items-center gap-3">
+                  <label className={`w-32 flex-shrink-0 text-sm font-semibold ${textColor}`}>{label}</label>
+                  <input
+                    type="number" min="0"
+                    value={vals[key]}
+                    onChange={e => setter(prev => ({ ...prev, [key]: Math.max(0, parseInt(e.target.value) || 0) }))}
+                    className={`w-16 flex-shrink-0 px-2 py-2 rounded-lg border-2 ${borderColor} text-center font-bold ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-800'} focus:outline-none`}
+                  />
+                </div>
+              )
+            })}
+          </div>
+          <button
+            onClick={() => setShowRotinaPopup(false)}
+            className="mt-4 w-full py-2 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-white font-semibold text-sm transition-colors"
+          >
+            Confirmar
+          </button>
         </div>
       </div>
     )}
@@ -26750,17 +26816,19 @@ function App() {
                   <tbody>
                     {['saude', 'ataque', 'defesa', 'ataqueEspecial', 'defesaEspecial', 'velocidade'].map((key) => {
                       const value = attributes[key]
-                      const isEngenheiroAtaque = key === 'ataque' && classes.includes('Engenheiro')
-                      const effectiveValue = isEngenheiroAtaque ? value + 2 : value
+                      const effectiveMap = { saude: saudeEfetiva, ataque: ataqueEfetivo, defesa: defesaEfetiva, ataqueEspecial: ataqueEspecialEfetivo, defesaEspecial: defesaEspecialEfetiva, velocidade: velocidadeEfetiva }
+                      const effectiveValue = effectiveMap[key]
+                      const bonus = effectiveValue - value
                       const mod = getModifier(effectiveValue)
                       const names = { saude: 'Saúde', ataque: 'Ataque', defesa: 'Defesa', ataqueEspecial: 'Ataque Especial', defesaEspecial: 'Defesa Especial', velocidade: 'Velocidade' }
+                      const bonusBadgeColor = { saude: 'border-green-500 text-green-600', ataque: 'border-red-500 text-red-500', defesa: 'border-blue-500 text-blue-600', ataqueEspecial: 'border-red-500 text-red-600', defesaEspecial: 'border-blue-500 text-blue-600', velocidade: 'border-purple-500 text-purple-600' }
                       return <tr key={key}>
                         <td className={`border p-2 font-semibold ${darkMode ? 'border-gray-500 text-white' : 'border-gray-300'}`}>{names[key]}</td>
                         <td className={`border p-2 text-center ${darkMode ? 'border-gray-500' : 'border-gray-300'}`}>
                           <div className="relative inline-flex items-center justify-center">
                             <input type="number" min="1" max="40" value={value} onChange={e => setAttributes({ ...attributes, [key]: Math.max(1, Math.min(40, parseInt(e.target.value) || 1)) })} className={`w-20 px-2 py-1 text-center border rounded ${darkMode ? 'bg-gray-600 text-white border-gray-500' : 'border-gray-300'}`} style={{ textAlign: 'center' }} />
-                            {isEngenheiroAtaque && (
-                              <span className="absolute left-full ml-1 inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-red-500 text-red-500 text-xs font-bold">+2</span>
+                            {bonus > 0 && (
+                              <span className={`absolute left-full ml-1 inline-flex items-center justify-center w-6 h-6 rounded border-2 text-xs font-bold ${bonusBadgeColor[key]}`}>+{bonus}</span>
                             )}
                           </div>
                         </td>
@@ -28791,7 +28859,7 @@ function App() {
         {/* Modal de Visualização de Informações do Pokémon */}
         {showPokemonInfoModal && viewingPokemon && (
           <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-2" onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }}>
-            <div className="relative" style={{ width: 'min(92vw, 530px)' }} onClick={e => e.stopPropagation()}>
+            <div className="relative" style={{ width: 'min(92vw, 1060px)' }} onClick={e => e.stopPropagation()}>
               <img src="/dexcerta.png" alt="" className="w-full h-auto block relative z-10" style={{ pointerEvents: 'none' }} draggable={false} />
               <button
                 onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }}
@@ -28803,7 +28871,7 @@ function App() {
               {/* Painel esquerdo: informações */}
               <div
                 className="absolute overflow-y-auto overflow-x-hidden"
-                style={{ top: '20%', left: '7%', right: '55%', bottom: '40%', background: '#c0d8f0' }}
+                style={{ top: '22%', left: '7%', right: '55%', bottom: '40%', background: '#c0d8f0' }}
               >
                 <div className="p-1.5 text-xs text-gray-800">
                   {/* Nome */}
@@ -30334,7 +30402,7 @@ function App() {
         {/* Modal de Visualização de Informações do Pokémon */}
         {showPokemonInfoModal && viewingPokemon && (
           <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-2" onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }}>
-            <div className="relative" style={{ width: 'min(92vw, 530px)' }} onClick={e => e.stopPropagation()}>
+            <div className="relative" style={{ width: 'min(92vw, 1060px)' }} onClick={e => e.stopPropagation()}>
               <img src="/dexcerta.png" alt="" className="w-full h-auto block relative z-10" style={{ pointerEvents: 'none' }} draggable={false} />
               <button
                 onClick={() => { setShowPokemonInfoModal(false); setViewingPokemon(null) }}
@@ -30346,7 +30414,7 @@ function App() {
               {/* Painel esquerdo: informações */}
               <div
                 className="absolute overflow-y-auto overflow-x-hidden"
-                style={{ top: '20%', left: '7%', right: '55%', bottom: '40%', background: '#c0d8f0' }}
+                style={{ top: '22%', left: '7%', right: '55%', bottom: '40%', background: '#c0d8f0' }}
               >
                 <div className="p-1.5 text-xs text-gray-800">
                   {/* Nome */}
@@ -32544,7 +32612,7 @@ function App() {
         {/* MODAL DE DETALHES DA POKÉDEX */}
         {showPokedexDetailModal && selectedPokedexEntry && (
           <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-2" onClick={() => setShowPokedexDetailModal(false)}>
-            <div className="relative" style={{ width: 'min(92vw, 530px)' }} onClick={e => e.stopPropagation()}>
+            <div className="relative" style={{ width: 'min(92vw, 1060px)' }} onClick={e => e.stopPropagation()}>
               <img src="/dexcerta.png" alt="" className="w-full h-auto block relative z-10" style={{ pointerEvents: 'none' }} draggable={false} />
               <button
                 onClick={() => setShowPokedexDetailModal(false)}
@@ -32556,7 +32624,7 @@ function App() {
               {/* Painel esquerdo: informações da Pokédex */}
               <div
                 className="absolute overflow-y-auto overflow-x-hidden"
-                style={{ top: '20%', left: '7%', right: '55%', bottom: '40%', background: '#c0d8f0' }}
+                style={{ top: '28%', left: '7%', right: '55%', bottom: '40%', background: '#c0d8f0' }}
               >
                 <div className="p-1.5 text-xs text-gray-800">
                   {/* Nome e número */}
@@ -36187,7 +36255,28 @@ function App() {
                   </label>
                   <div className={`p-3 sm:p-4 rounded-lg flex flex-wrap gap-2 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                     {caracteristicasSelected.map((carac, idx) => (
-                      <div key={idx} className={`flex items-center gap-2 px-2 py-1.5 sm:px-3 sm:py-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-purple-600 text-white' : 'bg-purple-500 text-white'}`}>
+                      <div
+                        key={idx}
+                        draggable={true}
+                        onDragStart={(e) => { setDragCaracIdx(idx); e.dataTransfer.effectAllowed = 'move' }}
+                        onDragOver={(e) => { e.preventDefault(); if (idx !== dragCaracIdx) setDragOverCaracIdx(idx) }}
+                        onDragLeave={() => setDragOverCaracIdx(null)}
+                        onDrop={(e) => {
+                          e.preventDefault()
+                          if (dragCaracIdx !== null && idx !== dragCaracIdx) {
+                            const arr = [...caracteristicasSelected]
+                            const [dragged] = arr.splice(dragCaracIdx, 1)
+                            arr.splice(idx, 0, dragged)
+                            setCaracteristicasSelected(arr)
+                          }
+                          setDragCaracIdx(null); setDragOverCaracIdx(null)
+                        }}
+                        onDragEnd={() => { setDragCaracIdx(null); setDragOverCaracIdx(null) }}
+                        className={`flex items-center gap-2 px-2 py-1.5 sm:px-3 sm:py-2 rounded text-xs sm:text-sm cursor-grab active:cursor-grabbing transition-all
+                          ${dragCaracIdx === idx ? 'opacity-50' : ''}
+                          ${dragOverCaracIdx === idx ? 'ring-2 ring-white ring-offset-1' : ''}
+                          ${darkMode ? 'bg-purple-600 text-white' : 'bg-purple-500 text-white'}`}
+                      >
                         <span className="font-semibold">{typeof carac === 'string' ? carac : (carac.nome || 'Sem nome')}</span>
                         <button
                           onClick={() => setCaracteristicasSelected(caracteristicasSelected.filter((_, i) => i !== idx))}
@@ -36305,7 +36394,20 @@ function App() {
                 <span>Talento</span>
               </button>
               {(() => {
-                const totalTalentos = talentosSelected.length + caracteristicasSelected.length
+                const extraContadores = talentosSelected.reduce((acc, t) => {
+                  const nome = typeof t === 'string' ? t : t.nome
+                  if (nome === 'Rotina de Exercícios') {
+                    const sum = rotinaExercicioValues.saude + rotinaExercicioValues.ataque + rotinaExercicioValues.defesa + rotinaExercicioValues.velocidade
+                    return acc + Math.max(0, sum - 1)
+                  }
+                  if (nome === 'Rotina de Estudos') {
+                    const sum = rotinaEstudosValues.ataqueEspecial + rotinaEstudosValues.defesaEspecial
+                    return acc + Math.max(0, sum - 1)
+                  }
+                  if (talentoInfinitoList.includes(nome)) return acc + Math.max(0, (talentoContadores[nome] ?? 1) - 1)
+                  return acc
+                }, 0)
+                const totalTalentos = talentosSelected.length + caracteristicasSelected.length + extraContadores
                 const expectedTalentos = ((LEVEL_PROGRESSION.find(l => l.nivel === level) || {}).totalTalento || 0) - classes.filter(c => c).length
                 return (
                   <span className="inline-flex items-center justify-center w-10 h-10 rounded-full border-2 border-blue-500 text-blue-500 text-xs font-bold flex-shrink-0">
@@ -36354,7 +36456,7 @@ function App() {
             {talentosSelected.length > 0 && (
               <div className="mb-6">
                 <h3 className={`text-base sm:text-lg md:text-xl font-bold mb-3 sm:mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Talentos Selecionados</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 items-start">
                   {talentosSelected.map((talentoItem, idx) => {
                     const isExpanded = expandedTalentos.includes(idx)
 
@@ -36390,7 +36492,26 @@ function App() {
                     return (
                       <div
                         key={idx}
-                        className={`rounded-lg border-2 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}
+                        draggable={true}
+                        onDragStart={(e) => { setDragTalentoIdx(idx); e.dataTransfer.effectAllowed = 'move' }}
+                        onDragOver={(e) => { e.preventDefault(); if (idx !== dragTalentoIdx) setDragOverTalentoIdx(idx) }}
+                        onDragLeave={() => setDragOverTalentoIdx(null)}
+                        onDrop={(e) => {
+                          e.preventDefault()
+                          if (dragTalentoIdx !== null && idx !== dragTalentoIdx) {
+                            const arr = [...talentosSelected]
+                            const [dragged] = arr.splice(dragTalentoIdx, 1)
+                            arr.splice(idx, 0, dragged)
+                            setTalentosSelected(arr)
+                            setExpandedTalentos([])
+                          }
+                          setDragTalentoIdx(null); setDragOverTalentoIdx(null)
+                        }}
+                        onDragEnd={() => { setDragTalentoIdx(null); setDragOverTalentoIdx(null) }}
+                        className={`rounded-lg border-2 cursor-grab active:cursor-grabbing transition-all
+                          ${dragTalentoIdx === idx ? 'opacity-50' : ''}
+                          ${dragOverTalentoIdx === idx ? 'border-dashed !border-green-400 scale-[1.02]' : ''}
+                          ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}
                       >
                         <div className={`p-2 sm:p-3 flex items-start justify-between gap-2`}>
                           <button
@@ -36398,14 +36519,7 @@ function App() {
                               if (isExpanded) {
                                 setExpandedTalentos(expandedTalentos.filter(i => i !== idx))
                               } else {
-                                // Calcular qual linha este item está (4 colunas em telas grandes)
-                                const row = Math.floor(idx / 4)
-                                // Remover outros itens expandidos da mesma linha
-                                const newExpanded = expandedTalentos.filter(i => {
-                                  const itemRow = Math.floor(i / 4)
-                                  return itemRow !== row
-                                })
-                                setExpandedTalentos([...newExpanded, idx])
+                                setExpandedTalentos([...expandedTalentos, idx])
                               }
                             }}
                             className="flex-1 text-left"
@@ -36413,20 +36527,49 @@ function App() {
                             <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
                               {isExpanded ? <ChevronDown size={14} className={`sm:w-4 sm:h-4 ${darkMode ? 'text-green-400' : 'text-green-600'}`} /> : <ChevronRight size={14} className={`sm:w-4 sm:h-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`} />}
                               <span className={`font-bold text-xs sm:text-sm ${darkMode ? 'text-white' : 'text-gray-800'}`}>{talentoNome}</span>
-                              {talentoInfinitoList.includes(talentoNome) && (
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation()
-                                    setTalentoContadorEditing(talentoNome)
-                                    setTalentoContadorValue(String(talentoContadores[talentoNome] ?? 1))
-                                    setShowTalentoContadorPopup(true)
-                                  }}
-                                  className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1 rounded-full border-2 border-yellow-400 hover:border-yellow-300 text-[10px] font-bold transition-colors ${darkMode ? 'text-yellow-300' : 'text-yellow-600'}`}
-                                  title="Editar contador"
-                                >
-                                  {talentoContadores[talentoNome] ?? 1}
-                                </button>
-                              )}
+                              {talentoInfinitoList.includes(talentoNome) && (() => {
+                                if (talentoNome === 'Rotina de Exercícios') {
+                                  const v = rotinaExercicioValues
+                                  const hasVals = v.saude > 0 || v.ataque > 0 || v.defesa > 0 || v.velocidade > 0
+                                  return (
+                                    <button onClick={e => { e.stopPropagation(); setRotinaPopupType('exercicio'); setShowRotinaPopup(true) }} className="inline-flex items-center gap-0.5" title="Editar Rotina de Exercícios">
+                                      {!hasVals
+                                        ? <span className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1 rounded border-2 border-yellow-400 text-[10px] font-bold ${darkMode ? 'text-yellow-300' : 'text-yellow-600'}`}>?</span>
+                                        : <>
+                                            {v.saude > 0 && <span className="inline-flex items-center justify-center min-w-[18px] h-5 px-1 rounded border-2 border-green-500 text-[10px] font-bold text-green-600">{v.saude}</span>}
+                                            {v.ataque > 0 && <span className="inline-flex items-center justify-center min-w-[18px] h-5 px-1 rounded border-2 border-red-500 text-[10px] font-bold text-red-600">{v.ataque}</span>}
+                                            {v.defesa > 0 && <span className="inline-flex items-center justify-center min-w-[18px] h-5 px-1 rounded border-2 border-blue-500 text-[10px] font-bold text-blue-600">{v.defesa}</span>}
+                                            {v.velocidade > 0 && <span className="inline-flex items-center justify-center min-w-[18px] h-5 px-1 rounded border-2 border-purple-500 text-[10px] font-bold text-purple-600">{v.velocidade}</span>}
+                                          </>
+                                      }
+                                    </button>
+                                  )
+                                }
+                                if (talentoNome === 'Rotina de Estudos') {
+                                  const v = rotinaEstudosValues
+                                  const hasVals = v.ataqueEspecial > 0 || v.defesaEspecial > 0
+                                  return (
+                                    <button onClick={e => { e.stopPropagation(); setRotinaPopupType('estudos'); setShowRotinaPopup(true) }} className="inline-flex items-center gap-0.5" title="Editar Rotina de Estudos">
+                                      {!hasVals
+                                        ? <span className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1 rounded border-2 border-yellow-400 text-[10px] font-bold ${darkMode ? 'text-yellow-300' : 'text-yellow-600'}`}>?</span>
+                                        : <>
+                                            {v.ataqueEspecial > 0 && <span className="inline-flex items-center justify-center min-w-[18px] h-5 px-1 rounded border-2 border-red-500 text-[10px] font-bold text-red-600">{v.ataqueEspecial}</span>}
+                                            {v.defesaEspecial > 0 && <span className="inline-flex items-center justify-center min-w-[18px] h-5 px-1 rounded border-2 border-blue-500 text-[10px] font-bold text-blue-600">{v.defesaEspecial}</span>}
+                                          </>
+                                      }
+                                    </button>
+                                  )
+                                }
+                                return (
+                                  <button
+                                    onClick={(e) => { e.stopPropagation(); setTalentoContadorEditing(talentoNome); setTalentoContadorValue(String(talentoContadores[talentoNome] ?? 1)); setShowTalentoContadorPopup(true) }}
+                                    className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1 rounded border-2 border-yellow-400 hover:border-yellow-300 text-[10px] font-bold transition-colors ${darkMode ? 'text-yellow-300' : 'text-yellow-600'}`}
+                                    title="Editar contador"
+                                  >
+                                    {talentoContadores[talentoNome] ?? 1}
+                                  </button>
+                                )
+                              })()}
                             </div>
                             {talentoClasse && (
                               <span className={`text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded ml-5 sm:ml-6 ${darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-100 text-blue-700'}`}>
@@ -36528,7 +36671,28 @@ function App() {
                   ) : (
                     <div className={`p-3 sm:p-4 rounded-lg flex flex-wrap gap-2 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
                       {talentosSelected.map((talento, idx) => (
-                        <div key={idx} className={`flex items-center gap-2 px-2 py-1.5 sm:px-3 sm:py-2 rounded text-xs sm:text-sm ${darkMode ? 'bg-green-600 text-white' : 'bg-green-500 text-white'}`}>
+                        <div
+                          key={idx}
+                          draggable={true}
+                          onDragStart={(e) => { setDragTalentoIdx(idx); e.dataTransfer.effectAllowed = 'move' }}
+                          onDragOver={(e) => { e.preventDefault(); if (idx !== dragTalentoIdx) setDragOverTalentoIdx(idx) }}
+                          onDragLeave={() => setDragOverTalentoIdx(null)}
+                          onDrop={(e) => {
+                            e.preventDefault()
+                            if (dragTalentoIdx !== null && idx !== dragTalentoIdx) {
+                              const arr = [...talentosSelected]
+                              const [dragged] = arr.splice(dragTalentoIdx, 1)
+                              arr.splice(idx, 0, dragged)
+                              setTalentosSelected(arr)
+                            }
+                            setDragTalentoIdx(null); setDragOverTalentoIdx(null)
+                          }}
+                          onDragEnd={() => { setDragTalentoIdx(null); setDragOverTalentoIdx(null) }}
+                          className={`flex items-center gap-2 px-2 py-1.5 sm:px-3 sm:py-2 rounded text-xs sm:text-sm cursor-grab active:cursor-grabbing transition-all
+                            ${dragTalentoIdx === idx ? 'opacity-50' : ''}
+                            ${dragOverTalentoIdx === idx ? 'ring-2 ring-white ring-offset-1' : ''}
+                            ${darkMode ? 'bg-green-600 text-white' : 'bg-green-500 text-white'}`}
+                        >
                           <span className="font-semibold">{typeof talento === 'string' ? talento : talento.nome}</span>
                           <button
                             onClick={() => setTalentosSelected(talentosSelected.filter((_, i) => i !== idx))}
