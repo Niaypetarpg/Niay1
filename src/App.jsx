@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { Camera, Plus, Minus, Crown, X, Moon, Sun, User, Lock, Sword, Heart, Search, Trash2, Smile, BookOpenText, Zap, BookA, CircleDot, Webhook, Coins, Backpack, ArrowBigRightDash, ArrowBigLeftDash, Info, ChevronDown, ChevronUp, ChevronRight, Wrench, Sparkles, CornerLeftDown, CornerRightUp, LifeBuoy, BatteryCharging, ShieldPlus, Users, ShoppingBag, Package, BarChart3, ChevronLeft, BadgeHelp, Clover, Shell, Snowflake, Flame, Droplet, Edit, ArrowRightCircle, PlusCircle, HandMetal, MapPin, ArrowDownUp, Award, BookOpen, ListTree, RefreshCcw, RotateCw, RotateCcw, Settings2, Hand, Sigma, Dices, Check, Send, BookType, FileText, ClipboardCheck, Trophy, Target, Shuffle, Pencil, ListPlus, Save, Archive, MoveVertical, Menu, Gamepad2, TowerControl, MousePointer, Star } from 'lucide-react'
 import AccountDataModal from './AccountDataModal'
 import pokedexData, { POKEMON_DIET_MAP } from './pokemonData'
@@ -44,7 +44,8 @@ import {
   saveAnotacoes, subscribeToAnotacoes,
   saveCursorConfig, subscribeToCursorConfig,
   saveUserCursorPref, subscribeToUserCursorPref,
-  saveMundoKnowledge, subscribeToMundoKnowledge
+  saveMundoKnowledge, subscribeToMundoKnowledge,
+  saveMapaPin, deleteMapaPin, subscribeToMapaPins
 } from './firebaseService'
 import { database } from './firebase'
 import { ref, set, get } from 'firebase/database'
@@ -2320,6 +2321,526 @@ function ConcursoInterludioApp({ darkMode }) {
   )
 }
 
+function RPSModal({ onClose, darkMode }) {
+  const DISPLAY_NAMES = { 'Terrestre': 'Terra', 'Venenoso': 'Veneno', 'Sombrio': 'Noturno' }
+  const dn = (t) => DISPLAY_NAMES[t] || t
+
+  const TYPES_ORDER = [
+    'Água', 'Dragão', 'Elétrico', 'Fada', 'Fantasma', 'Fogo', 'Gelo',
+    'Inseto', 'Lutador', 'Metal', 'Normal', 'Pedra', 'Planta',
+    'Psíquico', 'Terrestre', 'Sombrio', 'Venenoso', 'Voador',
+  ]
+
+  const [selectedRow, setSelectedRow] = useState(null)
+  const [showCalc, setShowCalc] = useState(false)
+  const [calcType1, setCalcType1] = useState(null)
+  const [calcType2, setCalcType2] = useState(null)
+
+  const getCellValue = (atk, def) => {
+    const eff = TYPE_EFFECTIVENESS[atk]
+    if (!eff) return ''
+    if (eff.immune.includes(def)) return '0'
+    if (eff.strong.includes(def)) return 'x2'
+    if (eff.weak.includes(def)) return '/2'
+    return ''
+  }
+
+  // Calcula resultado defensivo da combinação de tipos escolhida
+  const calcResults = useMemo(() => {
+    if (!calcType1) return null
+    const defTypes = calcType2 ? [calcType1, calcType2] : [calcType1]
+    const groups = { 4: [], 2: [], 0.5: [], 0.25: [], 0: [] }
+    TYPES_ORDER.forEach(atk => {
+      const mult = calcTypeMultiplier(atk, defTypes)
+      if (groups[mult] !== undefined) groups[mult].push(atk)
+    })
+    return groups
+  }, [calcType1, calcType2])
+
+  const bg = darkMode ? '#1f2937' : '#ffffff'
+  const borderColor = darkMode ? '#374151' : '#e5e7eb'
+  const cellBorder = darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.1)'
+  const emptyBg = darkMode ? '#111827' : '#f9fafb'
+  const panelBg = darkMode ? '#111827' : '#f3f4f6'
+
+  const TypeBtn = ({ type, selected, onSelect, disabled }) => (
+    <button
+      onClick={() => !disabled && onSelect(selected ? null : type)}
+      style={{
+        background: 'none', border: 'none', cursor: disabled ? 'not-allowed' : 'pointer', padding: '2px',
+        outline: selected ? `2px solid ${darkMode ? '#fde047' : '#ca8a04'}` : 'none',
+        borderRadius: '4px', opacity: disabled ? 0.3 : 1,
+      }}
+    >
+      <span className="px-1.5 py-0.5 rounded text-white text-xs font-bold" style={{ backgroundColor: TYPE_COLORS[type] || '#888', display: 'block', textAlign: 'center' }}>
+        {dn(type)}
+      </span>
+    </button>
+  )
+
+  return (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60" onClick={onClose}>
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{ background: bg, border: `1px solid ${borderColor}`, borderRadius: '12px', display: 'flex', flexDirection: 'column', width: '92vw', maxWidth: showCalc ? '1300px' : '1100px', height: '88vh', transition: 'max-width 0.2s' }}
+      >
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', borderBottom: `1px solid ${borderColor}`, flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <img src="/rps/minirpsicon.png" alt="RPS" style={{ width: '24px', height: '24px', objectFit: 'contain' }} />
+            <span style={{ fontWeight: 'bold', fontSize: '15px', color: darkMode ? '#fff' : '#111' }}>Tabela de Tipos</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <button
+              onClick={() => setShowCalc(p => !p)}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '6px', padding: '5px 10px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold',
+                background: showCalc ? (darkMode ? '#4f46e5' : '#6366f1') : (darkMode ? '#374151' : '#e5e7eb'),
+                color: showCalc ? 'white' : (darkMode ? '#d1d5db' : '#374151'),
+              }}
+              title="Calculadora de Tipo"
+            >
+              🧮 Calculadora
+            </button>
+            <button
+              onClick={onClose}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '18px', color: darkMode ? '#9ca3af' : '#6b7280', padding: '4px 8px', borderRadius: '6px' }}
+            >✕</button>
+          </div>
+        </div>
+
+        {/* Body: table + optional calc panel */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'row', overflow: 'hidden' }}>
+
+          {/* Scrollable table container */}
+          <div style={{ flex: 1, overflow: 'auto', padding: '12px' }}>
+            <div style={{ width: '100%', height: '100%' }}>
+              <table style={{ borderCollapse: 'collapse', fontSize: '11px', width: '100%', height: '100%', tableLayout: 'fixed' }}>
+                <thead>
+                  <tr>
+                    <th style={{
+                      padding: '4px 8px', fontSize: '10px', textAlign: 'center',
+                      background: darkMode ? '#374151' : '#f3f4f6',
+                      color: darkMode ? '#d1d5db' : '#374151',
+                      border: `1px solid ${cellBorder}`,
+                      whiteSpace: 'nowrap', width: '80px',
+                    }}>
+                      ATK ↓ / DEF →
+                    </th>
+                    {TYPES_ORDER.map(def => (
+                      <th key={def} style={{
+                        border: `1px solid ${cellBorder}`,
+                        height: '80px',
+                        verticalAlign: 'bottom',
+                        padding: '4px 3px',
+                        background: darkMode ? '#374151' : '#f3f4f6',
+                      }}>
+                        <span className="px-1 py-0.5 rounded text-white text-xs font-bold" style={{
+                          backgroundColor: TYPE_COLORS[def] || '#888',
+                          writingMode: 'vertical-rl',
+                          display: 'block',
+                          textAlign: 'center',
+                        }}>
+                          {dn(def)}
+                        </span>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {TYPES_ORDER.map(atk => {
+                    const isSelected = selectedRow === atk
+                    const rowBg = isSelected ? (darkMode ? 'rgba(253,224,71,0.22)' : 'rgba(253,224,71,0.45)') : emptyBg
+                    return (
+                      <tr
+                        key={atk}
+                        onClick={() => setSelectedRow(prev => prev === atk ? null : atk)}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <td style={{ padding: '3px 6px', border: `1px solid ${cellBorder}`, background: rowBg }}>
+                          <span className="px-2 py-0.5 rounded text-white text-xs font-bold whitespace-nowrap" style={{ backgroundColor: TYPE_COLORS[atk] || '#888' }}>
+                            {dn(atk)}
+                          </span>
+                        </td>
+                        {TYPES_ORDER.map(def => {
+                          const val = getCellValue(atk, def)
+                          const cellBg = val === 'x2' ? '#14532d' : val === '/2' ? '#7f1d1d' : val === '0' ? '#6b7280' : rowBg
+                          return (
+                            <td key={def} style={{
+                              textAlign: 'center', padding: '3px 2px', backgroundColor: cellBg,
+                              color: val ? 'white' : 'transparent', fontWeight: 'bold', fontSize: '11px',
+                              border: `1px solid ${cellBorder}`,
+                            }}>
+                              {val}
+                            </td>
+                          )
+                        })}
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Calculadora panel */}
+          {showCalc && (
+            <div style={{ width: '260px', flexShrink: 0, borderLeft: `1px solid ${borderColor}`, background: panelBg, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+              <div style={{ padding: '10px 12px', overflowY: 'auto', flex: 1 }}>
+                {/* Tipo 1 */}
+                <div style={{ marginBottom: '12px' }}>
+                  <div style={{ fontSize: '11px', fontWeight: 'bold', color: darkMode ? '#9ca3af' : '#6b7280', marginBottom: '6px' }}>TIPO 1</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3px' }}>
+                    {TYPES_ORDER.map(t => (
+                      <TypeBtn key={t} type={t} selected={calcType1 === t} onSelect={v => { setCalcType1(v); if (v === calcType2) setCalcType2(null) }} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tipo 2 */}
+                <div style={{ marginBottom: '14px' }}>
+                  <div style={{ fontSize: '11px', fontWeight: 'bold', color: darkMode ? '#9ca3af' : '#6b7280', marginBottom: '6px' }}>TIPO 2 <span style={{ fontWeight: 'normal', opacity: 0.6 }}>(opcional)</span></div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3px' }}>
+                    {TYPES_ORDER.map(t => (
+                      <TypeBtn key={t} type={t} selected={calcType2 === t} onSelect={t === calcType1 ? () => {} : setCalcType2} disabled={t === calcType1} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Resultados */}
+                {calcResults ? (
+                  <div style={{ borderTop: `1px solid ${borderColor}`, paddingTop: '12px' }}>
+                    <div style={{ fontSize: '12px', fontWeight: 'bold', color: darkMode ? '#fff' : '#111', marginBottom: '10px' }}>
+                      Análise Defensiva
+                      <div style={{ display: 'flex', gap: '4px', marginTop: '4px', flexWrap: 'wrap' }}>
+                        <span className="px-2 py-0.5 rounded text-white text-xs font-bold" style={{ backgroundColor: TYPE_COLORS[calcType1] }}>{dn(calcType1)}</span>
+                        {calcType2 && <span className="px-2 py-0.5 rounded text-white text-xs font-bold" style={{ backgroundColor: TYPE_COLORS[calcType2] }}>{dn(calcType2)}</span>}
+                      </div>
+                    </div>
+
+                    {/* Fraquezas */}
+                    {(calcResults[4]?.length > 0 || calcResults[2]?.length > 0) && (
+                      <div style={{ border: '1px solid #ef4444', borderRadius: '6px', padding: '8px', marginBottom: '8px' }}>
+                        {[
+                          { mult: 4, label: '×4 Fraqueza' },
+                          { mult: 2, label: '×2 Fraqueza' },
+                        ].map(({ mult, label }) => {
+                          const types = calcResults[mult]
+                          if (!types || types.length === 0) return null
+                          return (
+                            <div key={mult} style={{ marginBottom: '6px' }}>
+                              <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#ef4444', marginBottom: '3px' }}>{label}</div>
+                              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px' }}>
+                                {types.map(t => (
+                                  <span key={t} className="px-1.5 py-0.5 rounded text-white text-xs font-bold" style={{ backgroundColor: TYPE_COLORS[t] || '#888' }}>{dn(t)}</span>
+                                ))}
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )}
+
+                    {/* Resistências */}
+                    {(calcResults[0.5]?.length > 0 || calcResults[0.25]?.length > 0) && (
+                      <div style={{ border: '1px solid #22c55e', borderRadius: '6px', padding: '8px', marginBottom: '8px' }}>
+                        {[
+                          { mult: 0.5,  label: '×½ Resistência' },
+                          { mult: 0.25, label: '×¼ Resistência' },
+                        ].map(({ mult, label }) => {
+                          const types = calcResults[mult]
+                          if (!types || types.length === 0) return null
+                          return (
+                            <div key={mult} style={{ marginBottom: '6px' }}>
+                              <div style={{ fontSize: '10px', fontWeight: 'bold', color: '#22c55e', marginBottom: '3px' }}>{label}</div>
+                              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px' }}>
+                                {types.map(t => (
+                                  <span key={t} className="px-1.5 py-0.5 rounded text-white text-xs font-bold" style={{ backgroundColor: TYPE_COLORS[t] || '#888' }}>{dn(t)}</span>
+                                ))}
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )}
+
+                    {/* Imunidades */}
+                    {calcResults[0]?.length > 0 && (
+                      <div style={{ border: '1px solid #000', borderRadius: '6px', padding: '8px', marginBottom: '8px' }}>
+                        <div style={{ fontSize: '10px', fontWeight: 'bold', color: darkMode ? '#9ca3af' : '#374151', marginBottom: '3px' }}>×0 Imunidade</div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px' }}>
+                          {calcResults[0].map(t => (
+                            <span key={t} className="px-1.5 py-0.5 rounded text-white text-xs font-bold" style={{ backgroundColor: TYPE_COLORS[t] || '#888' }}>{dn(t)}</span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div style={{ fontSize: '12px', color: darkMode ? '#6b7280' : '#9ca3af', textAlign: 'center', marginTop: '8px' }}>
+                    Selecione pelo menos um tipo para ver a análise.
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div style={{ padding: '6px 14px', borderTop: `1px solid ${borderColor}`, fontSize: '11px', color: darkMode ? '#6b7280' : '#9ca3af', textAlign: 'center', flexShrink: 0 }}>
+          Clique em uma linha para realçar
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function MapaContinentalModal({ onClose, mapaContinentalPins, darkMode, onSavePin, onDeletePin }) {
+  const REGIONS = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos']
+  const REGION_MAPS = {
+    Kanto:  '/mapasregionais/kantomap.png',
+    Johto:  '/mapasregionais/johtomap.png',
+    Hoenn:  '/mapasregionais/hoennmap.png',
+    Sinnoh: '/mapasregionais/sinnohmap.png',
+    Unova:  '/mapasregionais/unovamap.png',
+    Kalos:  '/mapasregionais/kalosmap.png',
+  }
+  const PINS = [
+    { nome: 'Alocin',  src: '/treinadoresicones/pinalocin2.png' },
+    { nome: 'Lila',    src: '/treinadoresicones/pinlila2.png' },
+    { nome: 'Ludovic', src: '/treinadoresicones/pinludovic2.png' },
+    { nome: 'Noryat',  src: '/treinadoresicones/pinnoryat2.png' },
+    { nome: 'Pedro',   src: '/treinadoresicones/pinpedro2.png' },
+    { nome: 'Grupo',   src: '/iconeworldbuilder/localmundov2.png' },
+  ]
+  const PIN_SIZE = 44
+
+  const [region, setRegion] = useState('Kanto')
+  const [transform, setTransform] = useState({ scale: 1, tx: 0, ty: 0 })
+  const outerRef = useRef(null)  // overflow:hidden clipping container
+  const innerRef = useRef(null)  // transformed div (image + placed pins)
+  const interactionRef = useRef(null) // { type: 'pin'|'pan', nome?, panStartTx, panStartTy, startX, startY }
+  const [ghostPos, setGhostPos] = useState(null) // { nome, screenX, screenY } while dragging
+
+  const getSavedPos = (nome) => mapaContinentalPins?.[region]?.pins?.[nome] ?? null
+
+  const handlePinDoubleClick = (e, nome) => {
+    e.preventDefault()
+    e.stopPropagation()
+    onDeletePin(region, nome)
+  }
+
+  // Convert screen coords → map fraction using innerRef rect (includes CSS transform)
+  const screenToFrac = (sx, sy) => {
+    const r = innerRef.current?.getBoundingClientRect()
+    if (!r || r.width === 0 || r.height === 0) return { x: 0.5, y: 0.5 }
+    return {
+      x: Math.min(1, Math.max(0, (sx - r.left) / r.width)),
+      y: Math.min(1, Math.max(0, (sy - r.top) / r.height)),
+    }
+  }
+
+  const isOverMap = (sx, sy) => {
+    const r = innerRef.current?.getBoundingClientRect()
+    return r && sx >= r.left && sx <= r.right && sy >= r.top && sy <= r.bottom
+  }
+
+  // Ctrl+wheel → zoom toward cursor
+  const handleWheel = useCallback((e) => {
+    if (!e.ctrlKey) return
+    e.preventDefault()
+    const outer = outerRef.current
+    if (!outer) return
+    const rect = outer.getBoundingClientRect()
+    const mx = e.clientX - rect.left
+    const my = e.clientY - rect.top
+    setTransform(prev => {
+      const factor = e.deltaY < 0 ? 1.12 : 0.9
+      const newScale = Math.min(5, Math.max(0.4, prev.scale * factor))
+      const ratio = newScale / prev.scale
+      return { scale: newScale, tx: mx - (mx - prev.tx) * ratio, ty: my - (my - prev.ty) * ratio }
+    })
+  }, [])
+
+  useEffect(() => {
+    const el = outerRef.current
+    if (!el) return
+    el.addEventListener('wheel', handleWheel, { passive: false })
+    return () => el.removeEventListener('wheel', handleWheel)
+  }, [handleWheel])
+
+  // Pin mousedown (from map)
+  const handlePinMouseDown = (e, nome) => {
+    e.preventDefault()
+    e.stopPropagation()
+    interactionRef.current = { type: 'pin', nome, startX: e.clientX, startY: e.clientY, moved: false }
+    setGhostPos({ nome, screenX: e.clientX, screenY: e.clientY })
+  }
+
+  // Pin mousedown (from panel)
+  const handlePanelPinMouseDown = (e, nome) => {
+    e.preventDefault()
+    interactionRef.current = { type: 'pin', nome, fromPanel: true }
+    setGhostPos({ nome, screenX: e.clientX, screenY: e.clientY })
+  }
+
+  // Map background mousedown → pan
+  const handleMapMouseDown = (e) => {
+    if (interactionRef.current) return
+    interactionRef.current = {
+      type: 'pan',
+      startX: e.clientX, startY: e.clientY,
+      panStartTx: transform.tx, panStartTy: transform.ty,
+    }
+  }
+
+  const handleMouseMove = useCallback((e) => {
+    const inter = interactionRef.current
+    if (!inter) return
+    if (inter.type === 'pin') {
+      const dx = e.clientX - (inter.startX ?? e.clientX)
+      const dy = e.clientY - (inter.startY ?? e.clientY)
+      if (Math.sqrt(dx * dx + dy * dy) > 4) inter.moved = true
+      setGhostPos({ nome: inter.nome, screenX: e.clientX, screenY: e.clientY })
+    } else if (inter.type === 'pan') {
+      const dx = e.clientX - inter.startX
+      const dy = e.clientY - inter.startY
+      setTransform(prev => ({ ...prev, tx: inter.panStartTx + dx, ty: inter.panStartTy + dy }))
+    }
+  }, [])
+
+  const handleMouseUp = useCallback((e) => {
+    const inter = interactionRef.current
+    if (!inter) { setGhostPos(null); return }
+    if (inter.type === 'pin' && (inter.moved || inter.fromPanel) && ghostPos && isOverMap(e.clientX, e.clientY)) {
+      onSavePin(region, inter.nome, screenToFrac(e.clientX, e.clientY))
+    }
+    interactionRef.current = null
+    setGhostPos(null)
+  }, [ghostPos, region, onSavePin])
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mouseup', handleMouseUp)
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseup', handleMouseUp)
+    }
+  }, [handleMouseMove, handleMouseUp])
+
+  const changeRegion = (r) => {
+    setRegion(r)
+    setTransform({ scale: 1, tx: 0, ty: 0 })
+    setGhostPos(null)
+    interactionRef.current = null
+  }
+
+  const { scale, tx, ty } = transform
+  const isPanning = interactionRef.current?.type === 'pan'
+
+  return (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70" onClick={onClose}>
+      <div
+        className={`relative rounded-2xl shadow-2xl flex flex-col ${darkMode ? 'bg-gray-900' : 'bg-white'}`}
+        style={{ width: 'min(95vw, 1060px)', maxHeight: '95vh' }}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className={`flex items-center gap-3 px-5 py-3 border-b flex-shrink-0 ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+          <img src="/iconeworldbuilder/globopokeball.png" alt="" className="w-7 h-7 object-contain" />
+          <h2 className={`text-lg font-bold flex-1 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Mapa Continental</h2>
+          <span className={`text-xs mr-2 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Ctrl+scroll para zoom</span>
+          <button onClick={onClose} className={`p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-100 text-gray-500'}`}><X size={18} /></button>
+        </div>
+        {/* Tabs */}
+        <div className="flex gap-1.5 px-4 pt-3 pb-2 flex-wrap flex-shrink-0">
+          {REGIONS.map(r => (
+            <button key={r} onClick={() => changeRegion(r)}
+              className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors ${region === r ? 'bg-blue-600 text-white' : darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+            >{r}</button>
+          ))}
+        </div>
+        {/* Body */}
+        <div className="flex flex-1 overflow-hidden gap-3 px-4 pb-4 min-h-0">
+          {/* Map viewport */}
+          <div
+            ref={outerRef}
+            className="flex-1 overflow-hidden rounded-xl relative"
+            style={{ cursor: isPanning ? 'grabbing' : 'grab', userSelect: 'none' }}
+            onMouseDown={handleMapMouseDown}
+          >
+            <div
+              ref={innerRef}
+              style={{ transform: `translate(${tx}px,${ty}px) scale(${scale})`, transformOrigin: '0 0', width: '100%', position: 'relative' }}
+            >
+              <img src={REGION_MAPS[region]} alt={region} className="w-full h-auto block" draggable={false} />
+              {/* Placed pins */}
+              {PINS.map(pin => {
+                const pos = getSavedPos(pin.nome)
+                if (!pos) return null
+                const isGhost = ghostPos?.nome === pin.nome
+                return (
+                  <img key={pin.nome} src={pin.src} alt={pin.nome} draggable={false}
+                    onMouseDown={e => handlePinMouseDown(e, pin.nome)}
+                    onDoubleClick={e => handlePinDoubleClick(e, pin.nome)}
+                    style={{
+                      position: 'absolute',
+                      left: `${pos.x * 100}%`, top: `${pos.y * 100}%`,
+                      transform: 'translate(-50%, -100%)',
+                      width: PIN_SIZE + 'px', height: PIN_SIZE + 'px', objectFit: 'contain',
+                      cursor: 'grab',
+                      filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.6))',
+                      opacity: isGhost ? 0.3 : 1,
+                      zIndex: isGhost ? 0 : 2,
+                    }}
+                  />
+                )
+              })}
+            </div>
+          </div>
+          {/* Pins panel */}
+          <div className={`flex flex-col gap-3 w-24 flex-shrink-0 overflow-y-auto rounded-xl p-2 ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+            <p className={`text-xs font-bold text-center ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Pins</p>
+            {PINS.map(pin => {
+              const isPlaced = !!getSavedPos(pin.nome)
+              return (
+                <div key={pin.nome} className="flex flex-col items-center gap-1">
+                  <img src={pin.src} alt={pin.nome} draggable={false}
+                    onMouseDown={e => handlePanelPinMouseDown(e, pin.nome)}
+                    style={{
+                      width: PIN_SIZE + 'px', height: PIN_SIZE + 'px', objectFit: 'contain',
+                      cursor: 'grab',
+                      opacity: isPlaced ? 0.35 : 1,
+                      filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.4))',
+                    }}
+                  />
+                  <span className={`text-xs text-center leading-tight ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{pin.nome}</span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Drag ghost — rendered outside modal to follow cursor globally */}
+      {ghostPos && (() => {
+        const pin = PINS.find(p => p.nome === ghostPos.nome)
+        return pin ? (
+          <img src={pin.src} alt="" draggable={false} style={{
+            position: 'fixed',
+            left: ghostPos.screenX - PIN_SIZE / 2,
+            top: ghostPos.screenY - PIN_SIZE,
+            width: PIN_SIZE + 'px', height: PIN_SIZE + 'px', objectFit: 'contain',
+            pointerEvents: 'none',
+            filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.7))',
+            opacity: 0.9, zIndex: 9999,
+          }} />
+        ) : null
+      })()}
+    </div>
+  )
+}
+
 function TeiaCanvas({ allTeiaNodes, teiaConnections, trainerNodes, TYPE_ICONS, TRAINER_ICONS, mundoTeiaSelected, setMundoTeiaSelected, setShowMundoInfoPopup, darkMode }) {
   const CX = 600, CY = 400
   const TEIA_TRAINER_POSITIONS = {
@@ -2330,6 +2851,14 @@ function TeiaCanvas({ allTeiaNodes, teiaConnections, trainerNodes, TYPE_ICONS, T
     'Ludovic': { x: CX - 124, y: CY - 40  },
   }
   const TEIA_TYPE_SECTORS = { 'Conceito/Lenda': -90, 'Evento': -30, 'Item': 30, 'Local': 90, 'NPC': 150, 'Organização': -150 }
+  const TEIA_TYPE_ICONS = {
+    'Conceito/Lenda': '/iconeworldbuilder/miniconceitolendasmundo.png',
+    'Evento':         '/iconeworldbuilder/minieventomundo.png',
+    'Item':           '/iconeworldbuilder/miniitemmundo.png',
+    'Local':          '/iconeworldbuilder/minilocalmundo.png',
+    'NPC':            '/iconeworldbuilder/mininpcmundo.png',
+    'Organização':    '/iconeworldbuilder/miniorgmundo.png',
+  }
   const toRad = deg => deg * Math.PI / 180
 
   const canvasRef = useRef(null)
@@ -2381,6 +2910,15 @@ function TeiaCanvas({ allTeiaNodes, teiaConnections, trainerNodes, TYPE_ICONS, T
     ctx.clearRect(0, 0, W, H)
     ctx.fillStyle = darkMode ? '#0f172a' : '#f1f5f9'
     ctx.fillRect(0, 0, W, H)
+
+    // bgteia.png — fixo, cobre todo o canvas, 10% opacidade
+    const bgteiasImg = loadImg('/treinadoresicones/bgteia.png')
+    if (bgteiasImg?.complete && bgteiasImg.naturalWidth > 0) {
+      ctx.save()
+      ctx.globalAlpha = 0.1
+      ctx.drawImage(bgteiasImg, 0, 0, W, H)
+      ctx.restore()
+    }
 
     ctx.save()
     ctx.translate(tx, ty)
@@ -2440,8 +2978,14 @@ function TeiaCanvas({ allTeiaNodes, teiaConnections, trainerNodes, TYPE_ICONS, T
       ctx.strokeStyle = isSel ? '#60a5fa' : (isConn && mundoTeiaSelected ? '#93c5fd' : (darkMode ? '#334155' : '#94a3b8'))
       ctx.lineWidth = isSel ? 2.5 : 1.5
       ctx.stroke()
-      const icon = loadImg(TYPE_ICONS[node.type])
-      if (icon?.complete && icon.naturalWidth > 0) ctx.drawImage(icon, -15, -15, 30, 30)
+      const icon = loadImg(TEIA_TYPE_ICONS[node.type])
+      if (icon?.complete && icon.naturalWidth > 0) {
+        const maxSize = 30
+        const ar = icon.naturalWidth / icon.naturalHeight
+        const w = ar >= 1 ? maxSize : maxSize * ar
+        const h = ar >= 1 ? maxSize / ar : maxSize
+        ctx.drawImage(icon, -w / 2, -h / 2, w, h)
+      }
       ctx.fillStyle = '#64748b'
       ctx.font = '9px sans-serif'
       ctx.textAlign = 'center'
@@ -2485,7 +3029,11 @@ function TeiaCanvas({ allTeiaNodes, teiaConnections, trainerNodes, TYPE_ICONS, T
         ctx.beginPath()
         ctx.arc(0, 0, 22, 0, Math.PI * 2)
         ctx.clip()
-        ctx.drawImage(icon, -22, -22, 44, 44)
+        const maxSize = 44
+        const ar = icon.naturalWidth / icon.naturalHeight
+        const w = ar >= 1 ? maxSize : maxSize * ar
+        const h = ar >= 1 ? maxSize / ar : maxSize
+        ctx.drawImage(icon, -w / 2, -h / 2, w, h)
         ctx.restore()
       }
       ctx.globalAlpha = op
@@ -2613,7 +3161,7 @@ function TeiaCanvas({ allTeiaNodes, teiaConnections, trainerNodes, TYPE_ICONS, T
       </div>
       <div
         className={`rounded-xl overflow-hidden border-2 ${darkMode ? 'border-gray-700' : 'border-gray-300'}`}
-        style={{ width: '100%', height: 'min(80vh, 600px)', cursor }}
+        style={{ width: '100%', height: 'min(90vh, 900px)', cursor }}
       >
         <canvas
           ref={canvasRef}
@@ -2635,6 +3183,10 @@ function App() {
   const [showPokezapPanel, setShowPokezapPanel] = useState(false)
   const [showBatalhaChat, setShowBatalhaChat] = useState(false)
   const [pokezapNotifGif, setPokezapNotifGif] = useState(null)
+  const [showMapaContinentalModal, setShowMapaContinentalModal] = useState(false)
+  const [showRPSModal, setShowRPSModal] = useState(false)
+  const [mapaContinentalRegion, setMapaContinentalRegion] = useState('Kanto')
+  const [mapaContinentalPins, setMapaContinentalPins] = useState({})
   const [lastPokezapMsgId, setLastPokezapMsgId] = useState(null)
   const [periciasExpanded, setPericiasExpanded] = useState(false)
   const [chatCaracSearch, setChatCaracSearch] = useState('')
@@ -15066,6 +15618,14 @@ function App() {
     return () => unsub()
   }, [])
 
+  // ===== MAPAS CONTINENTAIS: Subscription (tempo real para todos) =====
+  useEffect(() => {
+    const unsub = subscribeToMapaPins((data) => {
+      setMapaContinentalPins(data || {})
+    })
+    return () => unsub()
+  }, [])
+
   // ===== SMART POKEFONE: Subscription (somente treinador) =====
   useEffect(() => {
     if (!currentUser || currentUser.type !== 'treinador') return
@@ -15753,6 +16313,40 @@ function App() {
     >
       <img src="/minilogochatbatalha.png" alt="Chat de Batalha" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
     </button>
+  ) : null
+
+  const mapaContinentalBtn = currentUser ? (
+    <button
+      onClick={() => setShowMapaContinentalModal(true)}
+      className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`}
+      title="Mapa Continental"
+    >
+      <img src="/iconeworldbuilder/globopokeball.png" alt="Mapa Continental" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
+    </button>
+  ) : null
+
+  const mapaContinentalModal = currentUser && showMapaContinentalModal ? (
+    <MapaContinentalModal
+      onClose={() => setShowMapaContinentalModal(false)}
+      mapaContinentalPins={mapaContinentalPins}
+      darkMode={darkMode}
+      onSavePin={saveMapaPin}
+      onDeletePin={deleteMapaPin}
+    />
+  ) : null
+
+  const rpsBtn = currentUser ? (
+    <button
+      onClick={() => setShowRPSModal(true)}
+      className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`}
+      title="RPS Pkm"
+    >
+      <img src="/rps/minirpsicon.png" alt="RPS Pkm" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
+    </button>
+  ) : null
+
+  const rpsModal = showRPSModal ? (
+    <RPSModal onClose={() => setShowRPSModal(false)} darkMode={darkMode} />
   ) : null
 
   const batalhaChatPanel = (
@@ -16608,7 +17202,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -16632,7 +17226,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -16650,7 +17244,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -16772,7 +17366,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -16790,7 +17384,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -16860,7 +17454,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -16878,7 +17472,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -17420,7 +18014,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -17438,7 +18032,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -17477,7 +18071,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -18293,7 +18887,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -18312,7 +18906,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -18351,7 +18945,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -19489,7 +20083,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -19507,7 +20101,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -19947,7 +20541,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -19971,7 +20565,7 @@ function App() {
               <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
               </div>
             </div>
           </div>
@@ -22661,7 +23255,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -22679,7 +23273,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -23627,7 +24221,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -23664,7 +24258,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -24878,7 +25472,7 @@ function App() {
 
         {accountDataModal}{transformacaoModal}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
         </div>
       </>
     )
@@ -24938,7 +25532,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -25645,7 +26239,7 @@ function App() {
           {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
           {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
         </div>
       </>
     )
@@ -25664,7 +26258,7 @@ function App() {
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -26732,7 +27326,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -26758,7 +27352,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -30276,7 +30870,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -30294,7 +30888,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -32720,7 +33314,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
 
         {/* Modal de Edição de Aptidões — PC */}
         {showAptidoesModal && aptidoesEditingPokemon && (
@@ -32792,7 +33386,7 @@ function App() {
               <div className="flex gap-2 items-center">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -33593,7 +34187,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -33616,7 +34210,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -35328,7 +35922,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
 
         {/* Modal Fazer Puffin */}
         {showFazerPuffinModal && (() => {
@@ -36058,7 +36652,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -36340,7 +36934,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -36362,7 +36956,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -36513,7 +37107,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -36532,7 +37126,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -37429,7 +38023,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -37450,7 +38044,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -38579,7 +39173,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -38634,7 +39228,7 @@ function App() {
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
                 {currentClima && <div className="flex items-center gap-1.5 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-7 h-7" /><span className={`text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{currentClima.name}</span></div>}
               </div>
             </div>
@@ -40360,7 +40954,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -40378,7 +40972,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                   {currentClima && <div className="flex items-center gap-1 ml-1"><img src={`/pokeballs/${currentClima.image}`} alt={currentClima.name} className="w-5 h-5 sm:w-7 sm:h-7" /><span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-600'} hidden xs:inline`}>{currentClima.name}</span></div>}
                 </div>
               </div>
@@ -43517,7 +44111,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -43544,7 +44138,7 @@ function App() {
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -44626,7 +45220,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -44643,7 +45237,7 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns</h2></div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -44902,7 +45496,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -44920,7 +45514,7 @@ function App() {
               <div className="flex gap-2">
                 <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                 <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
               </div>
             </div>
           </div>
@@ -45141,7 +45735,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -45165,7 +45759,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -46884,7 +47478,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -46908,7 +47502,7 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Safari Staff</h2></div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -47857,7 +48451,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -47874,7 +48468,7 @@ function App() {
                 <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? "hover:bg-gray-700 text-gray-400" : "hover:bg-gray-200 text-gray-500"}`}><Menu size={24} /></button><h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Árvore de Apricorns M</h2></div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -47932,7 +48526,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -47984,7 +48578,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -48838,7 +49432,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -48868,7 +49462,7 @@ function App() {
                     <span className="text-xs px-3 py-1 rounded-full font-bold bg-red-600 text-white animate-pulse">Não toque em nada!</span>
                     <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                     <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                    {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                    {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                   </div>
                 </div>
               </div>
@@ -48958,7 +49552,7 @@ function App() {
           {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
           {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
         </>
       )
     }
@@ -49013,7 +49607,7 @@ function App() {
                   <span className={`text-xs px-2 py-1 rounded-full font-bold ${userTeamColor === 'red' ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`}>Time {userTeamColor === 'red' ? 'Vermelho' : 'Verde'}</span>
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -49322,7 +49916,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -49443,7 +50037,7 @@ function App() {
                 </div>
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -49478,7 +50072,7 @@ function App() {
                 </div>
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -49676,7 +50270,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -49709,7 +50303,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -50084,7 +50678,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -50105,7 +50699,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -50141,7 +50735,7 @@ function App() {
                 <div className="flex gap-1.5 sm:gap-2 items-center flex-shrink-0">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} className="sm:w-5 sm:h-5" /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-1.5 sm:p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-2 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-lg hover:bg-red-600 text-sm sm:text-base">Sair</button>
                 </div>
               </div>
             </div>
@@ -50343,7 +50937,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -50377,7 +50971,7 @@ function App() {
                 </div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -50461,7 +51055,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -50491,7 +51085,7 @@ function App() {
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={18} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -50683,7 +51277,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -50712,7 +51306,7 @@ function App() {
                 </div>
                 <div className="flex gap-2 items-center">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}{currentUser?.type === 'mestre' && (<button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>)}{currentUser?.type === 'treinador' && cursorConfig?.mode === 'personalizado' && (<button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>)}<button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-sm">Sair</button>
                 </div>
               </div>
             </div>
@@ -50866,7 +51460,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -50994,7 +51588,7 @@ function App() {
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -51480,7 +52074,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -51499,7 +52093,7 @@ function App() {
                 </div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -51531,7 +52125,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
 
@@ -51661,7 +52255,7 @@ function App() {
                 </div>
                 <div className="flex gap-2">
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {currentUser?.type === 'mestre' && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -52020,7 +52614,7 @@ function App() {
         {scenarioPopupOverlay}
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
-        {batalhaChatPanel}
+        {batalhaChatPanel}{mapaContinentalModal}{rpsModal}
       </>
     )
   }
@@ -52312,13 +52906,12 @@ function App() {
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-3">
                   <button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-500'}`}><Menu size={24} /></button>
-                  <img src="/iconeworldbuilder/globopokeball.png" alt="Mundo" className="w-8 h-8 object-contain" onError={e => { e.target.style.display = 'none' }} />
                   <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Mundo</h2>
                 </div>
                 <div className="flex gap-2">
                   <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
                   <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
-                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {rpsBtn}{mapaContinentalBtn}{pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
                   {isMestre && (
                     <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
                   )}
@@ -52337,7 +52930,6 @@ function App() {
             <div className="flex justify-end mb-4" onClick={e => e.stopPropagation()}>
               <div className="relative">
                 <button onClick={() => setShowAddKnowledgeMenu(prev => !prev)} className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg transition-colors">
-                  <img src="/iconeworldbuilder/globopokeball.png" alt="" className="w-5 h-5 object-contain" onError={e => { e.target.style.display = 'none' }} />
                   Adicionar Conhecimento
                 </button>
                 {showAddKnowledgeMenu && (

@@ -1,6 +1,6 @@
 // Firebase Service - Funções de persistência para o PokeApp RPG
 import { database } from './firebase'
-import { ref, set, get, onValue, off } from 'firebase/database'
+import { ref, set, get, remove, onValue, off } from 'firebase/database'
 
 // ==================== FUNÇÕES AUXILIARES ====================
 
@@ -908,6 +908,33 @@ export const subscribeToMundoKnowledge = (callback) => {
     (error) => {
       console.warn('[Mundo] Firebase sem permissão ou erro:', error.message)
       callback([])
+    }
+  )
+  return () => off(dbRef)
+}
+
+// --- MAPAS CONTINENTAIS ---
+
+export const saveMapaPin = async (regiao, nome, pos) => {
+  const dbRef = ref(database, `mapasContinentais/${regiao}/pins/${nome}`)
+  await set(dbRef, pos)
+}
+
+export const deleteMapaPin = async (regiao, nome) => {
+  const dbRef = ref(database, `mapasContinentais/${regiao}/pins/${nome}`)
+  await remove(dbRef)
+}
+
+export const subscribeToMapaPins = (callback) => {
+  const dbRef = ref(database, 'mapasContinentais')
+  onValue(
+    dbRef,
+    (snapshot) => {
+      callback(snapshot.exists() ? snapshot.val() : {})
+    },
+    (error) => {
+      console.warn('[MapaContinental] Firebase erro:', error.message)
+      callback({})
     }
   )
   return () => off(dbRef)
