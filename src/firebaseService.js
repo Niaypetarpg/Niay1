@@ -888,3 +888,27 @@ export const subscribeToUserCursorPref = (username, callback) => {
     callback(data || null)
   })
 }
+
+// --- MUNDO (World Building) ---
+
+export const saveMundoKnowledge = async (knowledge) => {
+  return saveToFirebase('mundo', removeUndefined(knowledge))
+}
+
+export const subscribeToMundoKnowledge = (callback) => {
+  const dbRef = ref(database, 'mundo')
+  onValue(
+    dbRef,
+    (snapshot) => {
+      const raw = snapshot.exists() ? snapshot.val() : null
+      if (!raw) { callback([]); return }
+      const arr = Array.isArray(raw) ? raw : Object.values(raw)
+      callback(arr.filter(Boolean))
+    },
+    (error) => {
+      console.warn('[Mundo] Firebase sem permissão ou erro:', error.message)
+      callback([])
+    }
+  )
+  return () => off(dbRef)
+}

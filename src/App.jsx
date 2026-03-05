@@ -4,6 +4,7 @@ import AccountDataModal from './AccountDataModal'
 import pokedexData, { POKEMON_DIET_MAP } from './pokemonData'
 import { POKEMON_DESLOCAMENTO_MAP } from './pokemonDeslocamentos'
 import { POKEMON_CAPACIDADE_MAP } from './pokemonCapacidades'
+import { getOutrasCapacidadesArray } from './outrasCapacidadesData'
 import GOLPES_DATA_IMPORTED from './golpesData'
 import HABILIDADES_DATA_IMPORTED, { HABILIDADES_NAMES as HABILIDADES_NAMES_IMPORTED } from './habilidadesData'
 import CARACTERISTICAS_DATA_IMPORTED, { TALENTOS_DATA as TALENTOS_DATA_IMPORTED, TALENTOS_NAMES as TALENTOS_NAMES_IMPORTED } from './caracteristicasETalentosData'
@@ -42,7 +43,8 @@ import {
   saveMostrarTriunfos, subscribeToMostrarTriunfos,
   saveAnotacoes, subscribeToAnotacoes,
   saveCursorConfig, subscribeToCursorConfig,
-  saveUserCursorPref, subscribeToUserCursorPref
+  saveUserCursorPref, subscribeToUserCursorPref,
+  saveMundoKnowledge, subscribeToMundoKnowledge
 } from './firebaseService'
 import { database } from './firebase'
 import { ref, set, get } from 'firebase/database'
@@ -2318,6 +2320,315 @@ function ConcursoInterludioApp({ darkMode }) {
   )
 }
 
+function TeiaCanvas({ allTeiaNodes, teiaConnections, trainerNodes, TYPE_ICONS, TRAINER_ICONS, mundoTeiaSelected, setMundoTeiaSelected, setShowMundoInfoPopup, darkMode }) {
+  const CX = 600, CY = 400
+  const TEIA_TRAINER_POSITIONS = {
+    'Alocin':  { x: CX,       y: CY - 130 },
+    'Lila':    { x: CX + 124, y: CY - 40  },
+    'Pedro':   { x: CX + 76,  y: CY + 104 },
+    'Noryat':  { x: CX - 76,  y: CY + 104 },
+    'Ludovic': { x: CX - 124, y: CY - 40  },
+  }
+  const TEIA_TYPE_SECTORS = { 'Conceito/Lenda': -90, 'Evento': -30, 'Item': 30, 'Local': 90, 'NPC': 150, 'Organização': -150 }
+  const toRad = deg => deg * Math.PI / 180
+
+  const canvasRef = useRef(null)
+  const transformRef = useRef({ scale: 1, tx: 0, ty: 0 })
+  const isDraggingRef = useRef(false)
+  const dragStartRef = useRef({ x: 0, y: 0, tx: 0, ty: 0 })
+  const imgCacheRef = useRef({})
+  const rafRef = useRef(null)
+  const drawRef = useRef(null)
+  const [cursor, setCursor] = useState('grab')
+
+  const scheduleRedraw = useCallback(() => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    rafRef.current = requestAnimationFrame(() => { drawRef.current?.() })
+  }, [])
+
+  const loadImg = useCallback((src) => {
+    if (!src) return null
+    if (!imgCacheRef.current[src]) {
+      const img = new Image()
+      img.src = src
+      img.onload = () => scheduleRedraw()
+      imgCacheRef.current[src] = img
+    }
+    return imgCacheRef.current[src]
+  }, [scheduleRedraw])
+
+  const getNodePos = useCallback((node) => {
+    if (node.isTrainer) return TEIA_TRAINER_POSITIONS[node.nome] || { x: CX, y: CY }
+    const sectorAngle = TEIA_TYPE_SECTORS[node.type] ?? 0
+    const typeNodes = allTeiaNodes.filter(n => n.type === node.type)
+    const idx = typeNodes.findIndex(n => n.id === node.id)
+    const col = idx % 3; const row = Math.floor(idx / 3)
+    const angle = toRad(sectorAngle + (col - 1) * 22)
+    const radius = 280 + row * 80
+    return { x: CX + radius * Math.cos(angle), y: CY + radius * Math.sin(angle) }
+  }, [allTeiaNodes])
+
+  const draw = useCallback(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    const W = canvas.width, H = canvas.height
+    const { scale, tx, ty } = transformRef.current
+    const connectedIds = mundoTeiaSelected
+      ? new Set(teiaConnections.filter(([a, b]) => a === mundoTeiaSelected || b === mundoTeiaSelected).flatMap(([a, b]) => [a, b]))
+      : new Set()
+
+    ctx.clearRect(0, 0, W, H)
+    ctx.fillStyle = darkMode ? '#0f172a' : '#f1f5f9'
+    ctx.fillRect(0, 0, W, H)
+
+    ctx.save()
+    ctx.translate(tx, ty)
+    ctx.scale(scale, scale)
+
+    // globopokeball.png atrás da teia
+    const bgImg = loadImg('/iconeworldbuilder/globopokeball.png')
+    if (bgImg?.complete && bgImg.naturalWidth > 0) {
+      ctx.save()
+      ctx.globalAlpha = 0.5
+      ctx.drawImage(bgImg, CX - 150, CY - 150, 300, 300)
+      ctx.restore()
+    }
+
+    // Labels de zona
+    Object.entries(TEIA_TYPE_SECTORS).forEach(([type, ang]) => {
+      const r = 230, a = toRad(ang)
+      ctx.fillStyle = darkMode ? '#1e3a5f' : '#c7d2fe'
+      ctx.font = 'bold 13px sans-serif'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText(type, CX + r * Math.cos(a), CY + r * Math.sin(a))
+    })
+
+    // Linhas de conexão
+    ctx.globalAlpha = 1
+    teiaConnections.forEach(([aId, bId]) => {
+      const nA = allTeiaNodes.find(n => n.id === aId)
+      const nB = allTeiaNodes.find(n => n.id === bId)
+      if (!nA || !nB) return
+      const pA = nA.isTrainer ? (TEIA_TRAINER_POSITIONS[nA.nome] || { x: CX, y: CY }) : getNodePos(nA)
+      const pB = nB.isTrainer ? (TEIA_TRAINER_POSITIONS[nB.nome] || { x: CX, y: CY }) : getNodePos(nB)
+      const highlighted = mundoTeiaSelected && connectedIds.has(aId) && connectedIds.has(bId)
+      ctx.strokeStyle = highlighted ? '#60a5fa' : (darkMode ? '#1e3a5f' : '#bfdbfe')
+      ctx.lineWidth = highlighted ? 2.5 : 1.5
+      ctx.globalAlpha = mundoTeiaSelected && !highlighted ? 0.15 : 0.8
+      ctx.beginPath()
+      ctx.moveTo(pA.x, pA.y)
+      ctx.lineTo(pB.x, pB.y)
+      ctx.stroke()
+    })
+    ctx.globalAlpha = 1
+
+    // Nós de conhecimento
+    allTeiaNodes.filter(n => !n.isTrainer).forEach(node => {
+      const pos = getNodePos(node)
+      const isSel = mundoTeiaSelected === node.id
+      const isConn = connectedIds.has(node.id)
+      const op = mundoTeiaSelected && !isSel && !isConn ? 0.2 : 1
+      ctx.save()
+      ctx.translate(pos.x, pos.y)
+      ctx.globalAlpha = op
+      ctx.beginPath()
+      ctx.arc(0, 0, 22, 0, Math.PI * 2)
+      ctx.fillStyle = darkMode ? '#1e293b' : '#ffffff'
+      ctx.fill()
+      ctx.strokeStyle = isSel ? '#60a5fa' : (isConn && mundoTeiaSelected ? '#93c5fd' : (darkMode ? '#334155' : '#94a3b8'))
+      ctx.lineWidth = isSel ? 2.5 : 1.5
+      ctx.stroke()
+      const icon = loadImg(TYPE_ICONS[node.type])
+      if (icon?.complete && icon.naturalWidth > 0) ctx.drawImage(icon, -15, -15, 30, 30)
+      ctx.fillStyle = '#64748b'
+      ctx.font = '9px sans-serif'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'top'
+      ctx.fillText(node.nome?.length > 14 ? node.nome.slice(0, 14) + '…' : (node.nome || ''), 0, 26)
+      if (isSel) {
+        ctx.globalAlpha = 1
+        ctx.beginPath()
+        ctx.arc(17, -17, 10, 0, Math.PI * 2)
+        ctx.fillStyle = '#3b82f6'
+        ctx.fill()
+        ctx.fillStyle = 'white'
+        ctx.font = 'bold 12px sans-serif'
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        ctx.fillText('i', 17, -17)
+      }
+      ctx.restore()
+    })
+
+    // Nós de treinador
+    trainerNodes.forEach(node => {
+      const pos = TEIA_TRAINER_POSITIONS[node.nome]
+      if (!pos) return
+      const isSel = mundoTeiaSelected === node.id
+      const isConn = connectedIds.has(node.id)
+      const op = mundoTeiaSelected && !isSel && !isConn ? 0.2 : 1
+      ctx.save()
+      ctx.translate(pos.x, pos.y)
+      ctx.globalAlpha = op
+      ctx.beginPath()
+      ctx.arc(0, 0, 28, 0, Math.PI * 2)
+      ctx.fillStyle = darkMode ? '#1e293b' : '#ffffff'
+      ctx.fill()
+      ctx.strokeStyle = '#f59e0b'
+      ctx.lineWidth = isSel ? 3 : 2
+      ctx.stroke()
+      const icon = loadImg(TRAINER_ICONS[node.nome])
+      if (icon?.complete && icon.naturalWidth > 0) {
+        ctx.save()
+        ctx.beginPath()
+        ctx.arc(0, 0, 22, 0, Math.PI * 2)
+        ctx.clip()
+        ctx.drawImage(icon, -22, -22, 44, 44)
+        ctx.restore()
+      }
+      ctx.globalAlpha = op
+      ctx.fillStyle = darkMode ? '#fbbf24' : '#b45309'
+      ctx.font = 'bold 11px sans-serif'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'top'
+      ctx.fillText(node.nome || '', 0, 32)
+      if (isSel) {
+        ctx.globalAlpha = 1
+        ctx.beginPath()
+        ctx.arc(22, -22, 10, 0, Math.PI * 2)
+        ctx.fillStyle = '#3b82f6'
+        ctx.fill()
+        ctx.fillStyle = 'white'
+        ctx.font = 'bold 12px sans-serif'
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        ctx.fillText('i', 22, -22)
+      }
+      ctx.restore()
+    })
+
+    ctx.restore()
+  }, [allTeiaNodes, teiaConnections, trainerNodes, mundoTeiaSelected, darkMode, loadImg, getNodePos])
+
+  drawRef.current = draw
+
+  useEffect(() => { scheduleRedraw() }, [draw, scheduleRedraw])
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ro = new ResizeObserver(() => {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+      scheduleRedraw()
+    })
+    ro.observe(canvas)
+    return () => ro.disconnect()
+  }, [scheduleRedraw])
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const onWheel = (e) => {
+      if (!e.ctrlKey) return
+      e.preventDefault()
+      const rect = canvas.getBoundingClientRect()
+      const mx = e.clientX - rect.left
+      const my = e.clientY - rect.top
+      const { scale, tx, ty } = transformRef.current
+      const factor = e.deltaY > 0 ? 0.9 : 1.1
+      const newScale = Math.min(Math.max(scale * factor, 0.15), 6)
+      transformRef.current = {
+        scale: newScale,
+        tx: mx - (mx - tx) * (newScale / scale),
+        ty: my - (my - ty) * (newScale / scale),
+      }
+      scheduleRedraw()
+    }
+    canvas.addEventListener('wheel', onWheel, { passive: false })
+    return () => canvas.removeEventListener('wheel', onWheel)
+  }, [scheduleRedraw])
+
+  const getWorldPos = (e) => {
+    const canvas = canvasRef.current
+    const rect = canvas.getBoundingClientRect()
+    const { scale, tx, ty } = transformRef.current
+    return { x: (e.clientX - rect.left - tx) / scale, y: (e.clientY - rect.top - ty) / scale }
+  }
+
+  const hitTest = (wx, wy) => {
+    for (const node of trainerNodes) {
+      const pos = TEIA_TRAINER_POSITIONS[node.nome]
+      if (!pos) continue
+      if (mundoTeiaSelected === node.id && (wx - (pos.x + 22)) ** 2 + (wy - (pos.y - 22)) ** 2 <= 100) return { node, isInfo: true }
+      if ((wx - pos.x) ** 2 + (wy - pos.y) ** 2 <= 784) return { node, isInfo: false }
+    }
+    for (const node of allTeiaNodes.filter(n => !n.isTrainer)) {
+      const pos = getNodePos(node)
+      if (mundoTeiaSelected === node.id && (wx - (pos.x + 17)) ** 2 + (wy - (pos.y - 17)) ** 2 <= 100) return { node, isInfo: true }
+      if ((wx - pos.x) ** 2 + (wy - pos.y) ** 2 <= 484) return { node, isInfo: false }
+    }
+    return null
+  }
+
+  const onMouseDown = (e) => {
+    if (e.button !== 0) return
+    isDraggingRef.current = false
+    dragStartRef.current = { x: e.clientX, y: e.clientY, tx: transformRef.current.tx, ty: transformRef.current.ty }
+    setCursor('grabbing')
+  }
+
+  const onMouseMove = (e) => {
+    if (e.buttons !== 1) return
+    const dx = e.clientX - dragStartRef.current.x
+    const dy = e.clientY - dragStartRef.current.y
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+      isDraggingRef.current = true
+      transformRef.current = { ...transformRef.current, tx: dragStartRef.current.tx + dx, ty: dragStartRef.current.ty + dy }
+      scheduleRedraw()
+    }
+  }
+
+  const onMouseUp = () => setCursor('grab')
+
+  const onClick = (e) => {
+    if (isDraggingRef.current) { isDraggingRef.current = false; return }
+    const { x: wx, y: wy } = getWorldPos(e)
+    const hit = hitTest(wx, wy)
+    if (hit) {
+      if (hit.isInfo) setShowMundoInfoPopup(hit.node)
+      else { setMundoTeiaSelected(mundoTeiaSelected === hit.node.id ? null : hit.node.id); setShowMundoInfoPopup(null) }
+    } else {
+      setMundoTeiaSelected(null)
+      setShowMundoInfoPopup(null)
+    }
+  }
+
+  return (
+    <div>
+      <div className="mb-2 p-2 rounded-lg md:hidden bg-yellow-900/40 border border-yellow-700 text-yellow-300 text-xs text-center">
+        ⚠️ A teia funciona melhor em telas maiores. Use Ctrl + roda do mouse para zoom e arraste para navegar.
+      </div>
+      <div
+        className={`rounded-xl overflow-hidden border-2 ${darkMode ? 'border-gray-700' : 'border-gray-300'}`}
+        style={{ width: '100%', height: 'min(80vh, 600px)', cursor }}
+      >
+        <canvas
+          ref={canvasRef}
+          style={{ display: 'block', width: '100%', height: '100%' }}
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onMouseUp={onMouseUp}
+          onClick={onClick}
+        />
+      </div>
+      <p className={`text-center text-xs mt-2 ${darkMode ? 'text-gray-600' : 'text-gray-400'}`}>Ctrl + roda do mouse para zoom · Arraste para mover</p>
+    </div>
+  )
+}
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [sessionBg, setSessionBg] = useState(null)
@@ -2976,6 +3287,20 @@ function App() {
   const [expandedCondicoesM, setExpandedCondicoesM] = useState([]) // Array de nomes de condições expandidas
   const [expandedItendexCorredoresM, setExpandedItendexCorredoresM] = useState([]) // Array de corredores expandidos no Itendex M
 
+  // ===== ESTADOS MUNDO (World Building) =====
+  const [mundoKnowledge, setMundoKnowledge] = useState([])
+  const [mundoSubarea, setMundoSubarea] = useState('Conceito/Lenda')
+  const [showAddKnowledgeMenu, setShowAddKnowledgeMenu] = useState(false)
+  const [showAddKnowledgeModal, setShowAddKnowledgeModal] = useState(false)
+  const [addKnowledgeType, setAddKnowledgeType] = useState(null)
+  const [mundoForm, setMundoForm] = useState({})
+  const [showKnowledgePopup, setShowKnowledgePopup] = useState(null)
+  const [editingKnowledge, setEditingKnowledge] = useState(null)
+  const [mundoPage, setMundoPage] = useState({})
+  const [mundoTeiaSelected, setMundoTeiaSelected] = useState(null)
+  const [showMundoInfoPopup, setShowMundoInfoPopup] = useState(null)
+  const mundoInitializedRef = useRef(false)
+
   // Estados para Progressão (Treinador)
   const [progressaoSection, setProgressaoSection] = useState('Vivências') // 'Vivências', 'Diário da Jornada', 'Background'
   const [background, setBackground] = useState('') // Texto do background do personagem (máx 2000 caracteres)
@@ -3537,8 +3862,8 @@ function App() {
     { username: 'Pedro', type: 'treinador', gradient: 'linear-gradient(135deg, #0000CD, #4169E1, #00CED1, #32CD32)' }
   ]
 
-  const mestreAreas = ['Gerador Pokémon', 'Árvore de Apricorns M', 'Batalha', 'Batalha Game Boy M', 'Bugigangas do Mestre', 'Cenários da Sessão', 'Central Niaypeta Rio Corp™ M', 'Clima', 'Enciclopédia M', 'Hub de Troca M', 'Interlúdio M', 'NPCs Arquivados', 'PokeApp', 'Pokémon NPC', 'Safari Staff', 'Times NPC', 'Treinador NPC', 'Objetivos M', 'Visão do Mestre', 'XP & Capturas M']
-  const treinadorAreas = ['Treinador', 'Árvore de Apricorns', 'Batalha Game Boy', 'Batalha Pkm', 'Características & Talentos', 'Central Niaypeta Rio Corp™', 'Enciclopédia', 'Hub de Troca', 'Insígnias', 'Interlúdio', 'Mochila', 'PC', 'Pokédex', 'Pokéloja', 'Progressão', 'Safari', 'SmartPokefone']
+  const mestreAreas = ['Gerador Pokémon', 'Árvore de Apricorns M', 'Batalha', 'Batalha Game Boy M', 'Bugigangas do Mestre', 'Cenários da Sessão', 'Central Niaypeta Rio Corp™ M', 'Clima', 'Enciclopédia M', 'Hub de Troca M', 'Interlúdio M', 'Mundo M', 'NPCs Arquivados', 'PokeApp', 'Pokémon NPC', 'Safari Staff', 'Times NPC', 'Treinador NPC', 'Objetivos M', 'Visão do Mestre', 'XP & Capturas M']
+  const treinadorAreas = ['Treinador', 'Árvore de Apricorns', 'Batalha Game Boy', 'Batalha Pkm', 'Características & Talentos', 'Central Niaypeta Rio Corp™', 'Enciclopédia', 'Hub de Troca', 'Insígnias', 'Interlúdio', 'Mochila', 'Mundo', 'PC', 'Pokédex', 'Pokéloja', 'Progressão', 'Safari', 'SmartPokefone']
 
   // ===== CONFIGURACOES SAFARI =====
   const SAFARI_TRAINERS = ['Alocin', 'Lila', 'Ludovic', 'Noryat', 'Pedro']
@@ -7025,7 +7350,7 @@ function App() {
       weight: weight,
       height: height,
       displacement: POKEMON_DESLOCAMENTO_MAP[species] || null,
-      capacities: (() => { const c = POKEMON_CAPACIDADE_MAP[species]; return c ? { forca: c.forca, inteligencia: c.inteligencia, salto: c.salto, others: [] } : null })()
+      capacities: (() => { const c = POKEMON_CAPACIDADE_MAP[species]; const outros = getOutrasCapacidadesArray(species); return c ? { forca: c.forca, inteligencia: c.inteligencia, salto: c.salto, others: outros } : (outros.length > 0 ? { forca: null, inteligencia: null, salto: null, others: outros } : null) })()
     }
 
     // Adicionar à Pokédex como escaneado E capturado
@@ -8270,7 +8595,7 @@ function App() {
       isExotic: pokemonForm.isExotic,
       golpes: [],
       displacement: POKEMON_DESLOCAMENTO_MAP[species] || null,
-      capacities: (() => { const c = POKEMON_CAPACIDADE_MAP[species]; return c ? { forca: c.forca, inteligencia: c.inteligencia, salto: c.salto, others: [] } : null })()
+      capacities: (() => { const c = POKEMON_CAPACIDADE_MAP[species]; const outros = getOutrasCapacidadesArray(species); return c ? { forca: c.forca, inteligencia: c.inteligencia, salto: c.salto, others: outros } : (outros.length > 0 ? { forca: null, inteligencia: null, salto: null, others: outros } : null) })()
     }
 
     // Adicionar à Pokédex
@@ -10357,7 +10682,7 @@ function App() {
           isAlpha: npcAlfaStatus[pokemonToSend.id] || false,
           dieta: POKEMON_DIET_MAP[sendPokemonSpecies] || null,
           displacement: POKEMON_DESLOCAMENTO_MAP[sendPokemonSpecies] || null,
-          capacities: (() => { const c = POKEMON_CAPACIDADE_MAP[sendPokemonSpecies]; return c ? { forca: c.forca, inteligencia: c.inteligencia, salto: c.salto, others: [] } : null })()
+          capacities: (() => { const c = POKEMON_CAPACIDADE_MAP[sendPokemonSpecies]; const outros = getOutrasCapacidadesArray(sendPokemonSpecies); return c ? { forca: c.forca, inteligencia: c.inteligencia, salto: c.salto, others: outros } : (outros.length > 0 ? { forca: null, inteligencia: null, salto: null, others: outros } : null) })()
         }
 
         // Verificar se o time principal tem menos de 6 pokémons
@@ -13376,7 +13701,8 @@ function App() {
       currentHP: (3 * attributes.saude) + level,
       chanceFuga: isSkittish ? 70 : 90,
       chanceCaptura: 0,
-      conditions: {}
+      conditions: {},
+      outrasCapacidades: getOutrasCapacidadesArray(speciesName)
     }
 
     return assignAbilitiesToPokemon(pokemon)
@@ -14731,6 +15057,14 @@ function App() {
     if (!currentUser || currentUser.type !== 'mestre') return
     saveQuests(quests)
   }, [quests])
+
+  // ===== MUNDO: Subscription (tempo real para todos) =====
+  useEffect(() => {
+    const unsub = subscribeToMundoKnowledge((data) => {
+      setMundoKnowledge(data)
+    })
+    return () => unsub()
+  }, [])
 
   // ===== SMART POKEFONE: Subscription (somente treinador) =====
   useEffect(() => {
@@ -47151,6 +47485,18 @@ function App() {
                                         </div>
                                       )}
 
+                                      {/* Outras Capacidades */}
+                                      {pokemon.outrasCapacidades && pokemon.outrasCapacidades.length > 0 && (
+                                        <div className="mt-2">
+                                          <h4 className={`text-xs font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Outras Capacidades</h4>
+                                          <div className="flex flex-wrap gap-1">
+                                            {pokemon.outrasCapacidades.map((cap, idx) => (
+                                              <span key={idx} className={`px-2 py-0.5 text-xs rounded font-medium ${darkMode ? 'bg-indigo-700 text-indigo-200' : 'bg-indigo-100 text-indigo-800'}`}>{cap}</span>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      )}
+
                                       {/* Botão Enviar para... */}
                                       <button onClick={() => {
                                         setPokemonToSend(pokemon)
@@ -51675,6 +52021,379 @@ function App() {
         {mostrarTriunfosOverlay}
         {pokezapPanel}{pokeAgendaPanel}
         {batalhaChatPanel}
+      </>
+    )
+  }
+
+  // ===== MUNDO (World Building) =====
+  if ((currentUser.type === 'treinador' || currentUser.type === 'mestre') && (currentArea === 'Mundo' || currentArea === 'Mundo M')) {
+    const KNOWLEDGE_TYPES = ['Conceito/Lenda', 'Evento', 'Item', 'Local', 'NPC', 'Organização']
+    const SUBAREAS_TABS = ['Conceito/Lenda', 'Evento', 'Item', 'Local', 'NPC', 'Organização', 'Teias do Mundo']
+    const TYPE_ICONS = {
+      'Conceito/Lenda': '/iconeworldbuilder/conceitolendasmundov2.png',
+      'Evento': '/iconeworldbuilder/eventomundov2.png',
+      'Item': '/iconeworldbuilder/itemmundov2.png',
+      'Local': '/iconeworldbuilder/localmundov2.png',
+      'NPC': '/iconeworldbuilder/npcmundov2.png',
+      'Organização': '/iconeworldbuilder/orgmundov2.png',
+    }
+    const TRAINER_NAMES_LIST = ['Alocin', 'Lila', 'Ludovic', 'Noryat', 'Pedro']
+    const ITEMS_PER_PAGE = 8
+    const isMestre = currentUser.type === 'mestre'
+
+    const visibleKnowledge = mundoKnowledge.filter(k => !k.isTrainer && (isMestre || !k.hidden))
+    const trainerNodes = TRAINER_NAMES_LIST.map(name => mundoKnowledge.find(k => k.isTrainer && k.nome === name) || { id: `trainer_${name}`, type: 'Treinador', nome: name, descricao: '', isTrainer: true, hidden: false })
+    const allTeiaNodes = [...trainerNodes, ...mundoKnowledge.filter(k => !k.isTrainer && (isMestre || !k.hidden))]
+
+    const escMundoRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const nodeConnectsTo = (a, b) => {
+      if (!a.nome || !b.nome) return false
+      const fieldsOf = (k) => [k.descricao, k.continente, k.nomeContinente, k.nomeLocal, k.localOrigem, k.vistoUltimaVez, k.localSede, k.lider].filter(Boolean).join(' ')
+      const rA = new RegExp(`\\b${escMundoRegex(a.nome)}\\b`, 'i')
+      const rB = new RegExp(`\\b${escMundoRegex(b.nome)}\\b`, 'i')
+      return rA.test(fieldsOf(b)) || rB.test(fieldsOf(a))
+    }
+    const teiaConnections = []
+    for (let i = 0; i < allTeiaNodes.length; i++) {
+      for (let j = i + 1; j < allTeiaNodes.length; j++) {
+        if (nodeConnectsTo(allTeiaNodes[i], allTeiaNodes[j])) teiaConnections.push([allTeiaNodes[i].id, allTeiaNodes[j].id])
+      }
+    }
+
+    const CX = 600, CY = 400
+    const TRAINER_POSITIONS = {
+      'Alocin':  { x: CX,       y: CY - 130 },
+      'Lila':    { x: CX + 124, y: CY - 40  },
+      'Pedro':   { x: CX + 76,  y: CY + 104 },
+      'Noryat':  { x: CX - 76,  y: CY + 104 },
+      'Ludovic': { x: CX - 124, y: CY - 40  },
+    }
+    const TYPE_SECTORS = { 'Conceito/Lenda': -90, 'Evento': -30, 'Item': 30, 'Local': 90, 'NPC': 150, 'Organização': -150 }
+    const toRad = deg => deg * Math.PI / 180
+    const getNodePosition = (node) => {
+      if (node.isTrainer) return TRAINER_POSITIONS[node.nome] || { x: CX, y: CY }
+      const sectorAngle = TYPE_SECTORS[node.type] ?? 0
+      const typeNodes = allTeiaNodes.filter(n => n.type === node.type)
+      const idx = typeNodes.findIndex(n => n.id === node.id)
+      const col = idx % 3; const row = Math.floor(idx / 3)
+      const angle = toRad(sectorAngle + (col - 1) * 22)
+      const radius = 280 + row * 80
+      return { x: CX + radius * Math.cos(angle), y: CY + radius * Math.sin(angle) }
+    }
+
+    const allKwMap = {}
+    allTeiaNodes.forEach(k => { if (k.nome) allKwMap[k.nome.toLowerCase()] = k })
+    const sortedKws = Object.keys(allKwMap).sort((a, b) => b.length - a.length)
+    const renderWithKeywords = (text) => {
+      if (!text) return null
+      let parts = [{ text, isKw: false }]
+      for (const kw of sortedKws) {
+        const newParts = []
+        for (const part of parts) {
+          if (part.isKw) { newParts.push(part); continue }
+          const regex = new RegExp(`(\\b${escMundoRegex(kw)}\\b)`, 'gi')
+          const splits = part.text.split(regex)
+          splits.forEach(s => {
+            if (!s) return
+            if (s.toLowerCase() === kw) newParts.push({ text: s, isKw: true, knowledge: allKwMap[kw] })
+            else newParts.push({ text: s, isKw: false })
+          })
+        }
+        parts = newParts
+      }
+      return parts.map((part, i) =>
+        part.isKw
+          ? <span key={i} className="text-blue-400 cursor-pointer underline font-semibold hover:text-blue-300" onClick={(e) => { e.stopPropagation(); setShowKnowledgePopup(part.knowledge) }}>{part.text}</span>
+          : <span key={i}>{part.text}</span>
+      )
+    }
+
+    // Inicializar trainer nodes se ainda não existirem no mundo
+    const initTrainerNodes = async () => {
+      const TRAINER_NAMES_M = ['Alocin', 'Lila', 'Ludovic', 'Noryat', 'Pedro']
+      const missing = TRAINER_NAMES_M.filter(name => !mundoKnowledge.find(k => k.isTrainer && k.nome === name))
+      if (missing.length === 0 || mundoInitializedRef.current) return
+      mundoInitializedRef.current = true
+      const nodes = await Promise.all(missing.map(async name => {
+        try {
+          const snap = await get(ref(database, `trainers/${name}`))
+          const td = snap.val()
+          return { id: `trainer_${name}`, type: 'Treinador', nome: name, descricao: td?.background || '', isTrainer: true, hidden: false }
+        } catch { return { id: `trainer_${name}`, type: 'Treinador', nome: name, descricao: '', isTrainer: true, hidden: false } }
+      }))
+      const merged = [...mundoKnowledge, ...nodes]
+      setMundoKnowledge(merged)
+      saveMundoKnowledge(merged)
+    }
+    if (!mundoInitializedRef.current) initTrainerNodes()
+
+    const handleOpenAddModal = (type) => { setAddKnowledgeType(type); setMundoForm({}); setEditingKnowledge(null); setShowAddKnowledgeModal(true); setShowAddKnowledgeMenu(false) }
+    const handleOpenEditModal = (k) => { setAddKnowledgeType(k.type); setMundoForm({ ...k }); setEditingKnowledge(k); setShowAddKnowledgeModal(true) }
+    const handleSaveKnowledge = () => {
+      const nome = mundoForm.nome?.trim()
+      if (!nome) { alert('Nome é obrigatório!'); return }
+      let updated
+      if (editingKnowledge) {
+        updated = mundoKnowledge.map(k => k.id === editingKnowledge.id ? { ...k, ...mundoForm, nome } : k)
+      } else {
+        const newEntry = {
+          id: `${Date.now()}_${Math.random().toString(36).slice(2)}`,
+          type: addKnowledgeType, hidden: false, ...mundoForm, nome,
+          localOrigem: mundoForm.localOrigem?.trim() || '?',
+          vistoUltimaVez: mundoForm.vistoUltimaVez?.trim() || '?',
+          localSede: mundoForm.localSede?.trim() || '?',
+          lider: mundoForm.lider?.trim() || '?',
+        }
+        updated = [...mundoKnowledge, newEntry]
+      }
+      setMundoKnowledge(updated)
+      saveMundoKnowledge(updated)
+      setShowAddKnowledgeModal(false); setMundoForm({}); setEditingKnowledge(null)
+    }
+    const handleDeleteKnowledge = (id) => {
+      if (!window.confirm('Apagar este conhecimento?')) return
+      const updated = mundoKnowledge.filter(k => k.id !== id)
+      setMundoKnowledge(updated)
+      saveMundoKnowledge(updated)
+    }
+    const handleToggleHidden = (id) => {
+      const updated = mundoKnowledge.map(k => k.id === id ? { ...k, hidden: !k.hidden } : k)
+      setMundoKnowledge(updated)
+      saveMundoKnowledge(updated)
+    }
+    const getMundoPage = (type) => mundoPage[type] || 1
+    const setMundoPageFor = (type, page) => setMundoPage(prev => ({ ...prev, [type]: page }))
+
+    const renderKnowledgeCard = (k) => {
+      const isHidden = k.hidden
+      return (
+        <div key={k.id} className={`relative rounded-xl p-4 border-2 ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} ${isHidden ? 'opacity-60' : ''} shadow-sm flex flex-col gap-1`}>
+          <div className="flex items-center gap-2 mb-1">
+            <img src={TYPE_ICONS[k.type] || '/iconeworldbuilder/globopokeball.png'} alt={k.type} className="w-6 h-6 object-contain flex-shrink-0" />
+            <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{k.type}</span>
+            {isHidden && <span className="text-xs bg-red-800 text-red-200 px-1.5 py-0.5 rounded-full ml-auto">Escondido</span>}
+          </div>
+          <h3 className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{k.nome}</h3>
+          {(k.type === 'Conceito/Lenda' || k.type === 'Evento') && k.continente && (
+            <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}><span className="font-semibold">Continente/Local:</span> {k.continente}</p>
+          )}
+          {k.type === 'Local' && (<>
+            {k.nomeContinente && <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}><span className="font-semibold">Continente:</span> {k.nomeContinente}</p>}
+            {k.nomeLocal && <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}><span className="font-semibold">Local:</span> {k.nomeLocal}</p>}
+          </>)}
+          {k.type === 'NPC' && (<>
+            <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}><span className="font-semibold">Origem:</span> {k.localOrigem || '?'}</p>
+            <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}><span className="font-semibold">Visto em:</span> {k.vistoUltimaVez || '?'}</p>
+          </>)}
+          {k.type === 'Organização' && (<>
+            <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}><span className="font-semibold">Sede:</span> {k.localSede || '?'}</p>
+            <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}><span className="font-semibold">Líder:</span> {k.lider || '?'}</p>
+          </>)}
+          {k.descricao && <p className={`text-xs leading-relaxed mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{renderWithKeywords(k.descricao)}</p>}
+          <div className={`flex items-center gap-1 mt-2 pt-2 border-t ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
+            <button onClick={() => handleOpenEditModal(k)} className={`p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400 hover:text-blue-400' : 'hover:bg-gray-100 text-gray-500 hover:text-blue-600'}`} title="Editar"><Pencil size={13} /></button>
+            {isMestre && <button onClick={() => handleDeleteKnowledge(k.id)} className={`p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400 hover:text-red-400' : 'hover:bg-gray-100 text-gray-500 hover:text-red-600'}`} title="Apagar"><Trash2 size={13} /></button>}
+            {isMestre && <button onClick={() => handleToggleHidden(k.id)} className={`ml-auto text-xs px-2 py-1 rounded-lg font-semibold ${isHidden ? 'bg-green-700 hover:bg-green-600 text-green-100' : `${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-300' : 'bg-gray-200 hover:bg-gray-300 text-gray-700'}`}`}>{isHidden ? 'Mostrar' : 'Esconder'}</button>}
+          </div>
+        </div>
+      )
+    }
+
+    const renderFormFields = () => {
+      const f = mundoForm
+      const setF = (key, val) => setMundoForm(prev => ({ ...prev, [key]: val }))
+      const ic = `w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900'}`
+      const lc = `block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`
+      const tc = `w-full px-3 py-2 rounded-lg border text-sm resize-none ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900'}`
+      const isTrainerEdit = editingKnowledge?.isTrainer
+      return (
+        <div className="space-y-3">
+          {isTrainerEdit
+            ? <div><label className={lc}>Nome</label><input value={f.nome || ''} readOnly className={`${ic} opacity-60 cursor-not-allowed`} /></div>
+            : <div><label className={lc}>Nome *</label><input value={f.nome || ''} onChange={e => setF('nome', e.target.value)} className={ic} placeholder="Nome do conhecimento" /></div>
+          }
+          {(addKnowledgeType === 'Conceito/Lenda' || addKnowledgeType === 'Evento') && (
+            <div><label className={lc}>Continente/Local</label><input value={f.continente || ''} onChange={e => setF('continente', e.target.value)} className={ic} placeholder={addKnowledgeType === 'Conceito/Lenda' ? 'Onde a lenda é contada' : 'Onde ocorre o evento'} /></div>
+          )}
+          {addKnowledgeType === 'Local' && (<>
+            <div><label className={lc}>Nome do Continente</label><input value={f.nomeContinente || ''} onChange={e => setF('nomeContinente', e.target.value)} className={ic} placeholder="Nome do continente" /></div>
+            <div><label className={lc}>Nome do Local</label><input value={f.nomeLocal || ''} onChange={e => setF('nomeLocal', e.target.value)} className={ic} placeholder="Nome do local" /></div>
+          </>)}
+          {addKnowledgeType === 'NPC' && (<>
+            <div><label className={lc}>Local de Origem</label><input value={f.localOrigem || ''} onChange={e => setF('localOrigem', e.target.value)} className={ic} placeholder="Deixe em branco para '?'" /></div>
+            <div><label className={lc}>Visto pela última vez</label><input value={f.vistoUltimaVez || ''} onChange={e => setF('vistoUltimaVez', e.target.value)} className={ic} placeholder="Deixe em branco para '?'" /></div>
+          </>)}
+          {addKnowledgeType === 'Organização' && (<>
+            <div><label className={lc}>Local da Sede</label><input value={f.localSede || ''} onChange={e => setF('localSede', e.target.value)} className={ic} placeholder="Deixe em branco para '?'" /></div>
+            <div><label className={lc}>Líder</label><input value={f.lider || ''} onChange={e => setF('lider', e.target.value)} className={ic} placeholder="Deixe em branco para '?'" /></div>
+          </>)}
+          <div><label className={lc}>Descrição</label><textarea value={f.descricao || ''} onChange={e => setF('descricao', e.target.value)} className={tc} rows={4} placeholder="Descreva o conhecimento..." /></div>
+          {isMestre && !editingKnowledge && (
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked={f.hidden || false} onChange={e => setF('hidden', e.target.checked)} className="w-4 h-4" />
+              <span className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Esconder Conhecimento (oculto para treinadores)</span>
+            </label>
+          )}
+        </div>
+      )
+    }
+
+    const renderTeia = () => (
+      <TeiaCanvas
+        allTeiaNodes={allTeiaNodes}
+        teiaConnections={teiaConnections}
+        trainerNodes={trainerNodes}
+        TYPE_ICONS={TYPE_ICONS}
+        TRAINER_ICONS={TRAINER_ICONS}
+        mundoTeiaSelected={mundoTeiaSelected}
+        setMundoTeiaSelected={setMundoTeiaSelected}
+        setShowMundoInfoPopup={setShowMundoInfoPopup}
+        darkMode={darkMode}
+      />
+    )
+
+    const renderSubareaContent = () => {
+      if (mundoSubarea === 'Teias do Mundo') return renderTeia()
+      const typeKey = mundoSubarea
+      const typeItems = visibleKnowledge.filter(k => k.type === typeKey)
+      const totalPages = Math.max(1, Math.ceil(typeItems.length / ITEMS_PER_PAGE))
+      const curPage = getMundoPage(typeKey)
+      const paged = typeItems.slice((curPage - 1) * ITEMS_PER_PAGE, curPage * ITEMS_PER_PAGE)
+      return (
+        <div>
+          {typeItems.length === 0 ? (
+            <div className={`text-center py-16 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+              <img src={TYPE_ICONS[typeKey] || '/iconeworldbuilder/globopokeball.png'} alt="" className="w-16 h-16 object-contain mx-auto mb-3 opacity-20" />
+              <p className="text-sm">Nenhum conhecimento adicionado ainda.</p>
+            </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-4">
+                {paged.map(k => renderKnowledgeCard(k))}
+              </div>
+              {totalPages > 1 && (
+                <div className="flex justify-center gap-2 mt-4">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+                    <button key={p} onClick={() => setMundoPageFor(typeKey, p)} className={`w-8 h-8 rounded-lg text-sm font-bold transition-colors ${p === curPage ? 'bg-blue-600 text-white' : `${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}`}>{p}</button>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      )
+    }
+
+    const KnowledgeDetailModal = ({ target, onClose }) => target ? (
+      <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4" onClick={onClose}>
+        <div className={`${darkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'} border-2 rounded-2xl shadow-2xl max-w-md w-full p-6 max-h-[85vh] overflow-y-auto`} onClick={e => e.stopPropagation()}>
+          <div className="flex items-center gap-3 mb-4">
+            {target.isTrainer ? <img src={TRAINER_ICONS[target.nome]} alt={target.nome} className="w-12 h-12 rounded-full object-cover" onError={e => { e.target.style.display = 'none' }} /> : <img src={TYPE_ICONS[target.type]} alt={target.type} className="w-10 h-10 object-contain" />}
+            <div><h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{target.nome}</h3><span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{target.isTrainer ? 'Treinador' : target.type}</span></div>
+            <button onClick={onClose} className={`ml-auto p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-100 text-gray-500'}`}><X size={18} /></button>
+          </div>
+          {(target.type === 'Conceito/Lenda' || target.type === 'Evento') && target.continente && <p className={`text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}><span className="font-semibold">Continente/Local:</span> {target.continente}</p>}
+          {target.type === 'Local' && (<>{target.nomeContinente && <p className={`text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}><span className="font-semibold">Continente:</span> {target.nomeContinente}</p>}{target.nomeLocal && <p className={`text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}><span className="font-semibold">Local:</span> {target.nomeLocal}</p>}</>)}
+          {target.type === 'NPC' && (<><p className={`text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}><span className="font-semibold">Origem:</span> {target.localOrigem || '?'}</p><p className={`text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}><span className="font-semibold">Visto em:</span> {target.vistoUltimaVez || '?'}</p></>)}
+          {target.type === 'Organização' && (<><p className={`text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}><span className="font-semibold">Sede:</span> {target.localSede || '?'}</p><p className={`text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}><span className="font-semibold">Líder:</span> {target.lider || '?'}</p></>)}
+          {target.descricao && <div className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}><span className="font-semibold block mb-1">Descrição:</span>{renderWithKeywords(target.descricao)}</div>}
+        </div>
+      </div>
+    ) : null
+
+    return (
+      <>
+        <div className={`min-h-screen ${mainBgClass} relative`} onClick={() => setShowAddKnowledgeMenu(false)}>
+          <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: 'url(/iconeworldbuilder/globopokeball.png)', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: '520px', opacity: 1, zIndex: 0 }} />
+          {sidebarNav}
+          {/* Header */}
+          <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center gap-3">
+                  <button onClick={() => setSidebarOpen(true)} className={`p-2 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-200 text-gray-500'}`}><Menu size={24} /></button>
+                  <img src="/iconeworldbuilder/globopokeball.png" alt="Mundo" className="w-8 h-8 object-contain" onError={e => { e.target.style.display = 'none' }} />
+                  <h2 className={`text-xl sm:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Mundo</h2>
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={() => setShowAccountDataModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-700'}`} title="Dados da Conta"><ArrowDownUp size={20} /></button>
+                  <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-700'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
+                  {pokezapBtn}{pokeAgendaBtn}{batalhaChatBtn}
+                  {isMestre && (
+                    <button onClick={() => setShowCursorSettingsModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`} title="Configurações de Cursor"><Settings2 size={20} /></button>
+                  )}
+                  {!isMestre && cursorConfig?.mode === 'personalizado' && (
+                    <button onClick={() => setShowUserCursorModal(true)} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' : 'bg-gray-200 text-purple-600 hover:bg-gray-300'}`} title="Configurar Cursor"><MousePointer size={20} /></button>
+                  )}
+                  <button onClick={handleLogout} className="bg-red-500 text-white px-3 sm:px-5 md:px-6 py-2 rounded-lg hover:bg-red-600">Sair</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="max-w-7xl mx-auto px-4 py-6 relative z-10">
+            {/* Botão Adicionar Conhecimento */}
+            <div className="flex justify-end mb-4" onClick={e => e.stopPropagation()}>
+              <div className="relative">
+                <button onClick={() => setShowAddKnowledgeMenu(prev => !prev)} className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg transition-colors">
+                  <img src="/iconeworldbuilder/globopokeball.png" alt="" className="w-5 h-5 object-contain" onError={e => { e.target.style.display = 'none' }} />
+                  Adicionar Conhecimento
+                </button>
+                {showAddKnowledgeMenu && (
+                  <div className={`absolute right-0 top-full mt-2 z-50 ${darkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'} border-2 rounded-2xl shadow-2xl p-3 grid grid-cols-2 gap-2 w-72`}>
+                    {KNOWLEDGE_TYPES.map(type => (
+                      <button key={type} onClick={() => handleOpenAddModal(type)} className={`flex flex-col items-center gap-2 p-3 rounded-xl transition-colors ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}>
+                        <img src={TYPE_ICONS[type]} alt={type} className="w-10 h-10 object-contain" />
+                        <span className={`text-xs font-semibold text-center ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{type}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+            {/* Subarea tabs */}
+            <div className="flex gap-2 flex-wrap mb-6">
+              {SUBAREAS_TABS.map(tab => (
+                <button key={tab} onClick={() => setMundoSubarea(tab)} className={`px-4 py-2 rounded-xl text-sm font-semibold transition-colors flex items-center gap-1.5 ${mundoSubarea === tab ? 'bg-blue-600 text-white shadow-lg' : `${darkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'}`}`}>
+                  {tab !== 'Teias do Mundo' && <img src={TYPE_ICONS[tab]} alt="" className="w-4 h-4 object-contain" onError={e => { e.target.style.display = 'none' }} />}
+                  {tab === 'Teias do Mundo' ? '🕸 Teias do Mundo' : tab}
+                  {tab !== 'Teias do Mundo' && (
+                    <span className={`text-xs px-1.5 py-0.5 rounded-full ${mundoSubarea === tab ? 'bg-blue-500' : (darkMode ? 'bg-gray-700' : 'bg-gray-200')}`}>
+                      {visibleKnowledge.filter(k => k.type === tab).length}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+            {renderSubareaContent()}
+          </div>
+        </div>
+
+        {/* Add/Edit modal */}
+        {showAddKnowledgeModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4" onClick={() => setShowAddKnowledgeModal(false)}>
+            <div className={`${darkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'} border-2 rounded-2xl shadow-2xl max-w-md w-full max-h-[92vh] overflow-y-auto`} onClick={e => e.stopPropagation()}>
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-5">
+                  <img src={addKnowledgeType === 'Treinador' ? (TRAINER_ICONS[editingKnowledge?.nome] || '/iconeworldbuilder/globopokeball.png') : (TYPE_ICONS[addKnowledgeType] || '/iconeworldbuilder/globopokeball.png')} alt={addKnowledgeType} className="w-9 h-9 object-contain rounded-full" />
+                  <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{editingKnowledge ? `Editar ${addKnowledgeType}` : `Novo ${addKnowledgeType}`}</h3>
+                  <button onClick={() => setShowAddKnowledgeModal(false)} className={`ml-auto p-1.5 rounded-lg ${darkMode ? 'hover:bg-gray-700 text-gray-400' : 'hover:bg-gray-100 text-gray-500'}`}><X size={18} /></button>
+                </div>
+                {renderFormFields()}
+                <div className="flex gap-3 mt-5">
+                  <button onClick={() => setShowAddKnowledgeModal(false)} className={`flex-1 py-2.5 rounded-xl font-semibold text-sm ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>Cancelar</button>
+                  <button onClick={handleSaveKnowledge} className="flex-1 py-2.5 rounded-xl font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white">{editingKnowledge ? 'Salvar' : 'Adicionar'}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Info popup from Teia click */}
+        <KnowledgeDetailModal target={showMundoInfoPopup} onClose={() => setShowMundoInfoPopup(null)} />
+        {/* Keyword popup */}
+        <KnowledgeDetailModal target={showKnowledgePopup} onClose={() => setShowKnowledgePopup(null)} />
       </>
     )
   }
