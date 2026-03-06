@@ -4164,10 +4164,14 @@ function App() {
   const [showAddLocationModal, setShowAddLocationModal] = useState(false) // Modal para adicionar localidade
   const [newLocationName, setNewLocationName] = useState('') // Nome da nova localidade
   const [newLocationMapUrl, setNewLocationMapUrl] = useState('') // URL do mapa da nova localidade
-  const [vttMapScale, setVttMapScale] = useState(100) // Escala da imagem do mapa (%)
-  const [vttMapPosition, setVttMapPosition] = useState({ x: 0, y: 0 }) // Posição do mapa (offset do centro)
+  const [vttMapScale, setVttMapScale] = useState(100) // Escala legada (usada só no onLoad para init inicial)
+  const [vttMapPosition, setVttMapPosition] = useState({ x: 0, y: 0 }) // Posição do mapa (offset do centro, em coords de canvas)
+  const [vttMapWidth, setVttMapWidth] = useState(null) // Largura explícita da imagem (px, null = não inicializado)
+  const [vttMapHeight, setVttMapHeight] = useState(null) // Altura explícita da imagem (px, null = não inicializado)
+  const [vttMapResizingHandle, setVttMapResizingHandle] = useState(null) // Handle sendo arrastado: 'nw'|'n'|'ne'|'e'|'se'|'s'|'sw'|'w'
+  const [vttMapResizeStart, setVttMapResizeStart] = useState(null) // { clientX, clientY, origW, origH, origPos }
   const [vttDraggingMap, setVttDraggingMap] = useState(false) // Se está arrastando o mapa
-  const [vttMapDragStart, setVttMapDragStart] = useState({ x: 0, y: 0 }) // Posição inicial do arrasto do mapa
+  const [vttMapDragStart, setVttMapDragStart] = useState({ clientX: 0, clientY: 0, origPos: { x: 0, y: 0 } }) // Posição inicial do arrasto do mapa
   const [vttGridColumns, setVttGridColumns] = useState(16) // Número de quadrados na largura
   const [vttGridRows, setVttGridRows] = useState(16) // Número de quadrados na altura
   const [vttCanvasWidth, setVttCanvasWidth] = useState(800) // Largura do canvas em pixels
@@ -4180,6 +4184,34 @@ function App() {
   const [vttRulerStart, setVttRulerStart] = useState({ x: 0, y: 0 }) // Posição inicial da régua
   const [vttRulerEnd, setVttRulerEnd] = useState({ x: 0, y: 0 }) // Posição atual/final da régua
   const [vttSettingsOpen, setVttSettingsOpen] = useState(false) // Menu de configurações do canvas aberto/fechado
+  const [vttTokenPanelOpen, setVttTokenPanelOpen] = useState(true) // Painel lateral de tokens aberto/fechado
+  const [vttEditingToken, setVttEditingToken] = useState(null) // { id, layer } token sendo editado
+  const [vttTokenEditUrl, setVttTokenEditUrl] = useState('') // URL da imagem no modal de edição
+  const [vttTokenEditOffsetY, setVttTokenEditOffsetY] = useState(0) // Offset vertical da imagem (0-100)
+  const [vttTokenEditScale, setVttTokenEditScale] = useState(100) // Escala da imagem no token (%)
+  const [vttSelectedPokemonToken, setVttSelectedPokemonToken] = useState(null) // Pokémon cujo token foi selecionado no canvas (para painel de golpes)
+
+  // VTT Drawing Tools
+  const [vttActiveTool, setVttActiveTool] = useState(null) // null|'pincel'|'regua'|'coluna'|'explosao'
+  const [vttToolDropdownOpen, setVttToolDropdownOpen] = useState(false)
+  const [vttDrawingStrokes, setVttDrawingStrokes] = useState([]) // traços permanentes [{id, owner, layer, points, color, width}]
+  const [vttCurrentStroke, setVttCurrentStroke] = useState(null) // traço sendo desenhado
+  const [vttSelectedStroke, setVttSelectedStroke] = useState(null) // id do stroke selecionado
+  const [vttDraggingStroke, setVttDraggingStroke] = useState(null) // {id, startX, startY, curDx, curDy}
+  const [vttLiveTools, setVttLiveTools] = useState({}) // {username: toolData} ferramentas ao vivo de outros usuários
+  const [vttToolDrawing, setVttToolDrawing] = useState(false) // se está ativamente medindo/desenhando
+  const [vttToolStart, setVttToolStart] = useState(null) // {x, y} ponto inicial da medição
+  const [vttToolEnd, setVttToolEnd] = useState(null) // {x, y} ponto atual da medição
+  const [vttPincelColor, setVttPincelColor] = useState('#ff4444') // cor do pincel
+  const [vttPincelWidth, setVttPincelWidth] = useState(3) // espessura do pincel em pixels
+  const [vttCanvasDraft, setVttCanvasDraft] = useState(null) // rascunho dos campos de dimensão antes de aplicar
+  const [vttCanvasDraftError, setVttCanvasDraftError] = useState(false) // pisca vermelho se inválido
+  const [vttColunaPopupOpen, setVttColunaPopupOpen] = useState(false)
+  const [vttColunaThickness, setVttColunaThickness] = useState(1) // espessura da coluna em metros
+  const [vttColunaInputVal, setVttColunaInputVal] = useState('')
+  const [vttExplosaoPopupOpen, setVttExplosaoPopupOpen] = useState(false)
+  const [vttExplosaoRadius, setVttExplosaoRadius] = useState(3) // raio da explosão em metros
+  const [vttExplosaoInputVal, setVttExplosaoInputVal] = useState('')
 
   // Estados para Insígnias
   const [selectedRegion, setSelectedRegion] = useState(null) // Região selecionada: 'Kanto', 'Johto', etc.
@@ -5381,9 +5413,9 @@ function App() {
   }
 
   // Função para rolar dano do golpe
-  const handleRollMoveDamage = (moveName) => {
+  const handleRollMoveDamage = (moveName, overridePokemon = null) => {
     // Determinar qual Pokémon está selecionado (treinador ou mestre)
-    const activePokemon = selectedTeamPokemon || selectedMasterNpcPokemon
+    const activePokemon = overridePokemon || selectedTeamPokemon || selectedMasterNpcPokemon
     if (!activePokemon) return
 
     const moveData = GOLPES_DATA[moveName]
@@ -5807,12 +5839,12 @@ function App() {
   }
 
   // Função para rolar teste de acurácia
-  const handleRollAccuracy = (moveName, pokemonIdOverride = null, metronomoMove = null) => {
+  const handleRollAccuracy = (moveName, pokemonIdOverride = null, metronomoMove = null, overridePokemon = null) => {
     const moveData = GOLPES_DATA[moveName]
     if (!moveData) return
 
     const timestamp = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
-    const activePokemon = selectedTeamPokemon || selectedMasterNpcPokemon
+    const activePokemon = overridePokemon || selectedTeamPokemon || selectedMasterNpcPokemon
 
     // Usar nome mascarado se o Pokémon NPC não estiver revelado
     const isNpcPokemon = activePokemon?.isNpc || (selectedMasterNpcPokemon && selectedMasterNpcPokemon.id === activePokemon?.id)
@@ -15048,8 +15080,9 @@ function App() {
     const rect = canvas ? canvas.getBoundingClientRect() : { left: 0, top: 0 }
 
     // Calcular posição do mouse relativa ao canvas, considerando zoom e offset
-    const mouseX = (event.clientX - rect.left - vttViewportOffset.x) / vttViewportZoom
-    const mouseY = (event.clientY - rect.top - vttViewportOffset.y) / vttViewportZoom
+    const z = vttViewportZoom, W = vttCanvasWidth, H = vttCanvasHeight
+    const mouseX = (event.clientX - rect.left - vttViewportOffset.x - W / 2) / z + W / 2
+    const mouseY = (event.clientY - rect.top - vttViewportOffset.y - H / 2) / z + H / 2
 
     // Offset é a diferença entre posição do mouse e posição do token
     const offsetX = mouseX - token.x
@@ -15096,8 +15129,9 @@ function App() {
     const rect = canvas.getBoundingClientRect()
 
     // Calcular posição do mouse relativa ao canvas, considerando zoom e offset
-    let newX = (event.clientX - rect.left - vttViewportOffset.x) / vttViewportZoom - draggingToken.offsetX
-    let newY = (event.clientY - rect.top - vttViewportOffset.y) / vttViewportZoom - draggingToken.offsetY
+    const z2 = vttViewportZoom, W2 = vttCanvasWidth, H2 = vttCanvasHeight
+    let newX = (event.clientX - rect.left - vttViewportOffset.x - W2 / 2) / z2 + W2 / 2 - draggingToken.offsetX
+    let newY = (event.clientY - rect.top - vttViewportOffset.y - H2 / 2) / z2 + H2 / 2 - draggingToken.offsetY
 
     // Aplicar snap to grid se ativo
     if (vttSnapToGrid) {
@@ -15140,29 +15174,308 @@ function App() {
     setVttRulerActive(false)
   }
 
-  // Funções para arrastar o mapa (quando na camada 'map')
+  // Abrir modal de edição de token
+  const handleVttEditToken = (token, layer, e) => {
+    e.stopPropagation()
+    setVttEditingToken({ id: token.id, layer })
+    setVttTokenEditUrl(token.image || '')
+    setVttTokenEditOffsetY(token.offsetY || 0)
+    setVttTokenEditScale(token.imageScale || 100)
+  }
+
+  // Salvar edição de token
+  const handleVttSaveTokenEdit = () => {
+    if (!vttEditingToken) return
+    const { id, layer } = vttEditingToken
+    const updater = prev => prev.map(t => t.id === id ? {
+      ...t,
+      image: vttTokenEditUrl,
+      offsetY: vttTokenEditOffsetY,
+      imageScale: vttTokenEditScale
+    } : t)
+    if (layer === 'gm') setVttGMTokens(updater)
+    else if (layer === 'map') setVttMapTokens(updater)
+    else setVttTokens(updater)
+    setVttEditingToken(null)
+  }
+
+  // Remover token do canvas
+  const handleVttRemoveToken = (tokenId, layer) => {
+    if (layer === 'gm') setVttGMTokens(prev => prev.filter(t => t.id !== tokenId))
+    else if (layer === 'map') setVttMapTokens(prev => prev.filter(t => t.id !== tokenId))
+    else setVttTokens(prev => prev.filter(t => t.id !== tokenId))
+    if (selectedToken === tokenId) {
+      setSelectedToken(null)
+      setVttSelectedPokemonToken(null)
+    }
+    setVttEditingToken(null)
+  }
+
+  // Gerar token de treinador não-NPC e colocar na camada de jogadores
+  const handleAddTrainerToken = (username, layer = 'tokens') => {
+    const icon = TRAINER_ICONS[username] || null
+    const cellWidth = vttCanvasWidth / vttGridColumns
+    const cellHeight = vttCanvasHeight / vttGridRows
+    const tokenSize = Math.min(cellWidth, cellHeight)
+    const centerX = (vttCanvasWidth / 2) - (tokenSize / 2)
+    const centerY = (vttCanvasHeight / 2) - (tokenSize / 2)
+    const newToken = {
+      id: `token-trainer-${username}-${Date.now()}`,
+      name: username,
+      x: centerX,
+      y: centerY,
+      size: tokenSize,
+      rotation: 0,
+      image: icon,
+      owner: username,
+      npcType: 'trainer',
+      trainerUsername: username
+    }
+    if (layer === 'gm') setVttGMTokens(prev => [...prev, newToken])
+    else if (layer === 'map') setVttMapTokens(prev => [...prev, newToken])
+    else setVttTokens(prev => [...prev, newToken])
+  }
+
+  // Gerar token de Pokémon do time e colocar na camada de jogadores
+  const handleAddPokemonToken = (pokemon, username) => {
+    const imageKey = sanitizeFirebaseKey(pokemon.id)
+    const image = pokemonImages[imageKey] || null
+    const cellWidth = vttCanvasWidth / vttGridColumns
+    const cellHeight = vttCanvasHeight / vttGridRows
+    const tokenSize = Math.min(cellWidth, cellHeight)
+    const centerX = (vttCanvasWidth / 2) - (tokenSize / 2)
+    const centerY = (vttCanvasHeight / 2) - (tokenSize / 2)
+    const newToken = {
+      id: `token-pokemon-${pokemon.id}-${Date.now()}`,
+      name: pokemon.nickname || pokemon.species || 'Pokémon',
+      x: centerX,
+      y: centerY,
+      size: tokenSize,
+      rotation: 0,
+      image,
+      owner: username,
+      npcType: 'pokemon',
+      pokemonId: pokemon.id
+    }
+    setVttTokens(prev => [...prev, newToken])
+  }
+
+  // Selecionar token no canvas e, se for Pokémon, exibir no painel de golpes
+  const handleVttTokenClick = (tokenId, layer) => {
+    setSelectedToken(tokenId)
+    const tokens = layer === 'gm' ? vttGMTokens : layer === 'map' ? vttMapTokens : vttTokens
+    const token = tokens.find(t => t.id === tokenId)
+    if (token && token.pokemonId) {
+      const pokemon = mainTeam.find(p => p.id === token.pokemonId)
+      setVttSelectedPokemonToken(pokemon || null)
+    } else if (token && token.npcId) {
+      const pokemon = npcPokemon.find(p => p.id === token.npcId)
+      setVttSelectedPokemonToken(pokemon || null)
+    } else {
+      setVttSelectedPokemonToken(null)
+    }
+  }
+
+  // Desselecionar token ao pressionar Escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && selectedToken) {
+        setSelectedToken(null)
+        setVttSelectedPokemonToken(null)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedToken])
+
+  // ---- VTT Drawing Tools ----
+
+  // Posição do mouse relativa ao canvas virtual (descontando pan e zoom)
+  const getVttCanvasMousePos = (event) => {
+    const canvas = vttCanvasRef.current
+    if (!canvas) return { x: 0, y: 0 }
+    const rect = canvas.getBoundingClientRect()
+    const z = vttViewportZoom
+    const W = vttCanvasWidth
+    const H = vttCanvasHeight
+    return {
+      x: (event.clientX - rect.left - vttViewportOffset.x - W / 2) / z + W / 2,
+      y: (event.clientY - rect.top - vttViewportOffset.y - H / 2) / z + H / 2
+    }
+  }
+
+  // Publicar ferramenta ativa no Firebase para outros usuários verem
+  const broadcastLiveTool = (data) => {
+    if (!useFirebase || !currentUser) return
+    const key = currentUser.username.replace(/[.#$[\]/]/g, '_')
+    saveToFirebase(`vtt/liveTools/${key}`, data)
+  }
+
+  const clearLiveTool = () => {
+    if (!useFirebase || !currentUser) return
+    const key = currentUser.username.replace(/[.#$[\]/]/g, '_')
+    set(ref(database, `vtt/liveTools/${key}`), null)
+  }
+
+  // Salvar stroke no Firebase
+  const saveVttStroke = (stroke) => {
+    if (!useFirebase) return
+    const key = stroke.id.replace(/[.#$[\]/]/g, '_')
+    saveToFirebase(`vtt/drawingStrokes/${key}`, stroke)
+  }
+
+  // Deletar stroke do Firebase
+  const deleteVttStroke = (strokeId) => {
+    if (!useFirebase) return
+    const key = strokeId.replace(/[.#$[\]/]/g, '_')
+    set(ref(database, `vtt/drawingStrokes/${key}`), null)
+  }
+
+  // MouseDown no canvas quando uma ferramenta está ativa
+  const distToSegment = (p, a, b) => {
+    const dx = b.x - a.x, dy = b.y - a.y
+    const lenSq = dx * dx + dy * dy
+    if (lenSq === 0) return Math.hypot(p.x - a.x, p.y - a.y)
+    const t = Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.y - a.y) * dy) / lenSq))
+    return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy))
+  }
+
+  // Iniciar régua/coluna/explosão a partir do centro de um token
+  const startToolFromToken = (token, event) => {
+    if (!vttActiveTool || vttActiveTool === 'pincel') return false
+    event.stopPropagation()
+    const center = { x: token.x + token.size / 2, y: token.y + token.size / 2 }
+    setVttToolStart(center)
+    setVttToolEnd(center)
+    setVttToolDrawing(true)
+    setVttSelectedStroke(null)
+    return true
+  }
+
+  const handleVttToolMouseDown = (event) => {
+    if (!vttActiveTool || event.button !== 0) return false
+    event.preventDefault()
+    const pos = getVttCanvasMousePos(event)
+    if (vttActiveTool === 'pincel') {
+      // Verificar se clicou em algum traço existente (seleção/arraste)
+      const visibleStrokes = vttDrawingStrokes.filter(s => s.layer !== 'gm' || currentUser.type === 'mestre')
+      for (let i = visibleStrokes.length - 1; i >= 0; i--) {
+        const stroke = visibleStrokes[i]
+        const hitRadius = Math.max((stroke.width || 3) / 2 + 6, 8) / vttViewportZoom
+        const pts = stroke.points
+        let hit = false
+        for (let j = 0; j < pts.length - 1; j++) {
+          if (distToSegment(pos, pts[j], pts[j + 1]) <= hitRadius) { hit = true; break }
+        }
+        if (hit) {
+          setVttSelectedStroke(stroke.id)
+          const canMove = currentUser.type === 'mestre' || stroke.owner === currentUser.username
+          if (canMove) setVttDraggingStroke({ id: stroke.id, startX: pos.x, startY: pos.y, curDx: 0, curDy: 0 })
+          return true
+        }
+      }
+      // Nenhum traço clicado — iniciar novo traço
+      const layer = currentUser.type === 'mestre' ? vttCurrentLayer : 'players'
+      const strokeId = `stroke-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`
+      setVttCurrentStroke({ id: strokeId, owner: currentUser.username, layer, points: [pos], color: vttPincelColor, width: vttPincelWidth })
+      setVttToolDrawing(true)
+      setVttSelectedStroke(null)
+    } else {
+      setVttToolStart(pos)
+      setVttToolEnd(pos)
+      setVttToolDrawing(true)
+      setVttSelectedStroke(null)
+    }
+    return true
+  }
+
+  // MouseMove no canvas quando uma ferramenta está ativa
+  const handleVttToolMouseMove = (event) => {
+    if (vttDraggingStroke) {
+      const pos = getVttCanvasMousePos(event)
+      setVttDraggingStroke(prev => prev ? { ...prev, curDx: pos.x - prev.startX, curDy: pos.y - prev.startY } : null)
+      return true
+    }
+    if (!vttActiveTool || !vttToolDrawing) return false
+    const pos = getVttCanvasMousePos(event)
+    const layer = currentUser.type === 'mestre' ? vttCurrentLayer : 'players'
+    if (vttActiveTool === 'pincel' && vttCurrentStroke) {
+      const updated = { ...vttCurrentStroke, points: [...vttCurrentStroke.points, pos] }
+      setVttCurrentStroke(updated)
+      broadcastLiveTool({ type: 'pincel', layer, points: updated.points, color: vttPincelColor, width: vttPincelWidth })
+    } else if (vttActiveTool !== 'pincel' && vttToolStart) {
+      setVttToolEnd(pos)
+      broadcastLiveTool({ type: vttActiveTool, layer, start: vttToolStart, end: pos, thickness: vttColunaThickness, radius: vttExplosaoRadius })
+    }
+    return true
+  }
+
+  // MouseUp no canvas quando uma ferramenta está ativa
+  const handleVttToolMouseUp = () => {
+    if (vttDraggingStroke) {
+      const { id, curDx, curDy } = vttDraggingStroke
+      if (curDx !== 0 || curDy !== 0) {
+        setVttDrawingStrokes(prev => prev.map(s => {
+          if (s.id !== id) return s
+          const moved = { ...s, points: s.points.map(p => ({ x: p.x + curDx, y: p.y + curDy })) }
+          saveVttStroke(moved)
+          return moved
+        }))
+      }
+      setVttDraggingStroke(null)
+      return true
+    }
+    if (!vttActiveTool) return false
+    if (vttActiveTool === 'pincel') {
+      if (vttCurrentStroke && vttCurrentStroke.points.length > 1) {
+        setVttDrawingStrokes(prev => [...prev, vttCurrentStroke])
+        saveVttStroke(vttCurrentStroke)
+      }
+      setVttCurrentStroke(null)
+      clearLiveTool()
+    } else if (vttToolDrawing) {
+      clearLiveTool()
+    }
+    setVttToolDrawing(false)
+    setVttToolStart(null)
+    setVttToolEnd(null)
+    return true
+  }
+
+  // Funções para arrastar o mapa (quando na camada 'map') — zoom-aware
   const handleMapImageMouseDown = (event) => {
     if (vttCurrentLayer !== 'map' || currentUser.type !== 'mestre') return
     event.preventDefault()
     event.stopPropagation()
     setVttDraggingMap(true)
     setVttMapDragStart({
-      x: event.clientX - vttMapPosition.x,
-      y: event.clientY - vttMapPosition.y
+      clientX: event.clientX,
+      clientY: event.clientY,
+      origPos: { ...vttMapPosition }
     })
   }
 
   const handleMapImageMouseMove = (event) => {
     if (!vttDraggingMap) return
     event.preventDefault()
+    const dx = (event.clientX - vttMapDragStart.clientX) / vttViewportZoom
+    const dy = (event.clientY - vttMapDragStart.clientY) / vttViewportZoom
     setVttMapPosition({
-      x: event.clientX - vttMapDragStart.x,
-      y: event.clientY - vttMapDragStart.y
+      x: vttMapDragStart.origPos.x + dx,
+      y: vttMapDragStart.origPos.y + dy
     })
   }
 
   const handleMapImageMouseUp = () => {
     setVttDraggingMap(false)
+  }
+
+  // Inicializar dimensões da imagem ao carregar (onLoad)
+  const handleMapImageLoad = (e) => {
+    if (!vttMapWidth && !vttMapHeight) {
+      setVttMapWidth(Math.round(e.target.naturalWidth * vttMapScale / 100))
+      setVttMapHeight(Math.round(e.target.naturalHeight * vttMapScale / 100))
+    }
   }
 
   // Callback ref para adicionar listener de wheel com passive: false (bloqueia scroll da página)
@@ -15245,6 +15558,22 @@ function App() {
     }
   }, [draggingToken])
 
+  // Deletar stroke selecionado com tecla Del/Delete
+  useEffect(() => {
+    const handleDelKey = (e) => {
+      if ((e.key === 'Delete' || e.key === 'Del') && vttSelectedStroke) {
+        const stroke = vttDrawingStrokes.find(s => s.id === vttSelectedStroke)
+        if (!stroke) return
+        if (currentUser.type !== 'mestre' && stroke.owner !== currentUser.username) return
+        setVttDrawingStrokes(prev => prev.filter(s => s.id !== vttSelectedStroke))
+        deleteVttStroke(vttSelectedStroke)
+        setVttSelectedStroke(null)
+      }
+    }
+    window.addEventListener('keydown', handleDelKey)
+    return () => window.removeEventListener('keydown', handleDelKey)
+  }, [vttSelectedStroke, vttDrawingStrokes, currentUser])
+
   // Scroll automático para última mensagem do chat (apenas dentro do container)
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -15264,13 +15593,33 @@ function App() {
       setVttSnapToGrid(data.snapToGrid !== undefined ? data.snapToGrid : true)
       setVttGridColumns(data.gridColumns || 16)
       setVttGridRows(data.gridRows || 16)
-      setVttCanvasWidth(data.canvasWidth || 800)
-      setVttCanvasHeight(data.canvasHeight || 800)
+      // canvasWidth/Height agora são derivados (gridColumns × gridSize), não mais carregados do Firebase
     })
 
     return () => {
       if (unsubscribe) unsubscribe()
     }
+  }, [])
+
+  // Sincronizar strokes de desenho em tempo real
+  useEffect(() => {
+    if (!useFirebase) return
+    const unsub = subscribeToFirebase('vtt/drawingStrokes', (data) => {
+      setVttDrawingStrokes(data ? Object.values(data).map(s => ({
+        ...s,
+        points: Array.isArray(s.points) ? s.points : Object.values(s.points || {})
+      })) : [])
+    })
+    return unsub
+  }, [])
+
+  // Sincronizar ferramentas ao vivo de outros usuários em tempo real
+  useEffect(() => {
+    if (!useFirebase) return
+    const unsub = subscribeToFirebase('vtt/liveTools', (data) => {
+      setVttLiveTools(data || {})
+    })
+    return unsub
   }, [])
 
   // Carregar tokens e mapa da localidade atual (apenas quando a localidade selecionada muda)
@@ -15294,6 +15643,8 @@ function App() {
       setVttGMTokens(location.gmTokens || [])
       setVttMapTokens(location.mapTokens || [])
       setVttMapPosition(location.mapPosition || { x: 0, y: 0 })
+      setVttMapWidth(location.mapWidth || null)
+      setVttMapHeight(location.mapHeight || null)
 
       // Resetar o flag após um pequeno delay para permitir que os states sejam atualizados
       setTimeout(() => {
@@ -15316,6 +15667,8 @@ function App() {
     const currentGmTokensStr = JSON.stringify(currentLocation.gmTokens || [])
     const currentMapTokensStr = JSON.stringify(currentLocation.mapTokens || [])
     const currentMapPosStr = JSON.stringify(currentLocation.mapPosition || { x: 0, y: 0 })
+    const currentMapW = currentLocation.mapWidth || null
+    const currentMapH = currentLocation.mapHeight || null
 
     const newTokensStr = JSON.stringify(vttTokens)
     const newGmTokensStr = JSON.stringify(vttGMTokens)
@@ -15325,7 +15678,9 @@ function App() {
     if (currentTokensStr === newTokensStr &&
         currentGmTokensStr === newGmTokensStr &&
         currentMapTokensStr === newMapTokensStr &&
-        currentMapPosStr === newMapPosStr) {
+        currentMapPosStr === newMapPosStr &&
+        currentMapW === vttMapWidth &&
+        currentMapH === vttMapHeight) {
       return // Nenhuma mudança real
     }
 
@@ -15336,14 +15691,16 @@ function App() {
           tokens: vttTokens,
           gmTokens: vttGMTokens,
           mapTokens: vttMapTokens,
-          mapPosition: vttMapPosition
+          mapPosition: vttMapPosition,
+          mapWidth: vttMapWidth,
+          mapHeight: vttMapHeight
         }
       }
       return loc
     })
 
     setVttLocations(updatedLocations)
-  }, [vttTokens, vttGMTokens, vttMapTokens, vttMapPosition])
+  }, [vttTokens, vttGMTokens, vttMapTokens, vttMapPosition, vttMapWidth, vttMapHeight])
 
   // Salvar dados do VTT no Firebase quando mudarem (com debounce)
   useEffect(() => {
@@ -15366,6 +15723,50 @@ function App() {
 
     return () => clearTimeout(timer)
   }, [vttLocations, currentVttLocation, vttGridSize, vttShowGrid, vttSnapToGrid, vttGridColumns, vttGridRows, vttCanvasWidth, vttCanvasHeight])
+
+  // Drag dos handles de redimensionamento da imagem do mapa
+  useEffect(() => {
+    if (!vttMapResizingHandle || !vttMapResizeStart) return
+    const { clientX: sx, clientY: sy, origW, origH, origPos } = vttMapResizeStart
+    const h = vttMapResizingHandle
+    const onMove = (e) => {
+      const dx = (e.clientX - sx) / vttViewportZoom
+      const dy = (e.clientY - sy) / vttViewportZoom
+      const wFactor = h.includes('e') ? 1 : h.includes('w') ? -1 : 0
+      const hFactor = h.includes('s') ? 1 : h.includes('n') ? -1 : 0
+      const newW = Math.max(50, origW + dx * wFactor)
+      const newH = Math.max(50, origH + dy * hFactor)
+      const dw = newW - origW
+      const dh = newH - origH
+      setVttMapWidth(newW)
+      setVttMapHeight(newH)
+      setVttMapPosition({ x: origPos.x + dw / 2 * wFactor, y: origPos.y + dh / 2 * hFactor })
+    }
+    const onUp = () => { setVttMapResizingHandle(null); setVttMapResizeStart(null) }
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseup', onUp)
+    return () => { window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp) }
+  }, [vttMapResizingHandle, vttMapResizeStart, vttViewportZoom])
+
+  // Canvas derivado: largura e altura = células × tamanho da célula (modelo Roll20)
+  useEffect(() => {
+    setVttCanvasWidth(vttGridColumns * vttGridSize)
+    setVttCanvasHeight(vttGridRows * vttGridSize)
+  }, [vttGridSize, vttGridColumns, vttGridRows])
+
+  // Inicializar draft quando painel de configurações abre
+  useEffect(() => {
+    if (vttSettingsOpen) {
+      setVttCanvasDraft({
+        cols: String(vttGridColumns),
+        cellSize: String(vttGridSize),
+        totalW: String(vttGridColumns * vttGridSize),
+        rows: String(vttGridRows),
+        totalH: String(vttGridRows * vttGridSize),
+      })
+      setVttCanvasDraftError(false)
+    }
+  }, [vttSettingsOpen])
 
   // Sincronizar itens ocultos da Pokéloja em tempo real com Firebase
   useEffect(() => {
@@ -17107,6 +17508,7 @@ function App() {
 
   // SIDEBAR DE NAVEGAÇÃO
   const mainBgClass = sessionBg ? 'bg-transparent' : (darkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-900 via-purple-900 to-red-900')
+  const mainPageClass = `min-h-screen ${mainBgClass}${sidebarPinned ? ' pl-64' : ''}${showBatalhaChat ? ' pr-80' : ''}`
   const currentAreas = currentUser?.type === 'mestre' ? mestreAreas : treinadorAreas
   const LETTER_COLORS = {
     'A': { light: 'text-emerald-600', dark: 'text-emerald-400' },
@@ -17193,7 +17595,7 @@ function App() {
     const areas = mestreAreas
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -17235,7 +17637,7 @@ function App() {
   if (currentUser.type === 'mestre' && currentArea === 'Gerador Pokémon') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -17375,7 +17777,7 @@ function App() {
   if (currentUser.type === 'mestre' && currentArea === 'Clima') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -17463,7 +17865,7 @@ function App() {
   if (currentUser.type === 'mestre' && currentArea === 'Hub de Troca M') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -18023,7 +18425,7 @@ function App() {
   if (currentUser.type === 'mestre' && currentArea === 'Treinador NPC') {
     if (!spoilerMestreConfirmado) return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -18062,7 +18464,7 @@ function App() {
     )
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -18897,7 +19299,7 @@ function App() {
   if (currentUser.type === 'mestre' && currentArea === 'Pokémon NPC') {
     if (!spoilerMestreConfirmado) return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -18936,7 +19338,7 @@ function App() {
     )
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -20092,7 +20494,7 @@ function App() {
   if (currentUser.type === 'mestre' && currentArea === 'NPCs Arquivados') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -20556,7 +20958,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -22427,9 +22829,68 @@ function App() {
           {battleView === 'mapa' && (
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-2">
-                <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
-                  Mapa de Batalha 👑
-                </h3>
+                <div className="flex items-center gap-2">
+                  <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
+                    Mapa de Batalha 👑
+                  </h3>
+                  {/* Dropdown de Ferramentas */}
+                  <div className="relative">
+                    <button
+                      onClick={() => setVttToolDropdownOpen(prev => !prev)}
+                      className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-sm font-semibold transition-all ${vttActiveTool ? 'bg-blue-600 text-white' : darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                      title="Ferramentas de Desenho"
+                    >
+                      <Wrench size={16} />
+                      {vttActiveTool && <span className="text-xs">{vttActiveTool === 'pincel' ? 'Pincel' : vttActiveTool === 'regua' ? 'Régua' : vttActiveTool === 'coluna' ? 'Coluna' : 'Explosão'}</span>}
+                    </button>
+                    {vttToolDropdownOpen && (
+                      <div className={`absolute left-0 top-full mt-1 z-[200] rounded-xl shadow-2xl border p-2 min-w-[180px] ${darkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'}`}>
+                        <p className={`text-xs font-bold mb-2 px-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>FERRAMENTAS</p>
+                        {/* Pincel */}
+                        <button onClick={() => { setVttActiveTool(vttActiveTool === 'pincel' ? null : 'pincel'); setVttToolDropdownOpen(false) }}
+                          className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold mb-1 transition-all ${vttActiveTool === 'pincel' ? 'bg-blue-600 text-white' : darkMode ? 'hover:bg-gray-700 text-gray-200' : 'hover:bg-gray-100 text-gray-700'}`}>
+                          <Pencil size={15} /> Pincel
+                        </button>
+                        {vttActiveTool === 'pincel' && (
+                          <div className="flex items-center gap-2 px-3 py-1 mb-1">
+                            <input type="color" value={vttPincelColor} onChange={e => setVttPincelColor(e.target.value)} className="w-7 h-7 rounded cursor-pointer border-0 p-0" title="Cor" />
+                            <input type="range" min="1" max="20" value={vttPincelWidth} onChange={e => setVttPincelWidth(Number(e.target.value))} className="flex-1" title="Espessura" />
+                            <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{vttPincelWidth}px</span>
+                          </div>
+                        )}
+                        <div className={`border-t my-1 ${darkMode ? 'border-gray-700' : 'border-gray-200'}`} />
+                        <p className={`text-xs font-bold mb-1 px-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>MEDIÇÃO</p>
+                        {/* Régua */}
+                        <button onClick={() => { setVttActiveTool(vttActiveTool === 'regua' ? null : 'regua'); setVttToolDropdownOpen(false) }}
+                          className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold mb-1 transition-all ${vttActiveTool === 'regua' ? 'bg-yellow-500 text-white' : darkMode ? 'hover:bg-gray-700 text-gray-200' : 'hover:bg-gray-100 text-gray-700'}`}>
+                          <Sigma size={15} /> Régua
+                        </button>
+                        <div className={`border-t my-1 ${darkMode ? 'border-gray-700' : 'border-gray-200'}`} />
+                        <p className={`text-xs font-bold mb-1 px-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>MARCADORES</p>
+                        {/* Coluna */}
+                        <button onClick={() => { setVttColunaInputVal(String(vttColunaThickness)); setVttColunaPopupOpen(true); setVttToolDropdownOpen(false) }}
+                          className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold mb-1 transition-all ${vttActiveTool === 'coluna' ? 'bg-orange-500 text-white' : darkMode ? 'hover:bg-gray-700 text-gray-200' : 'hover:bg-gray-100 text-gray-700'}`}>
+                          <Target size={15} /> Coluna {vttActiveTool === 'coluna' && `(${vttColunaThickness}m)`}
+                        </button>
+                        {/* Explosão */}
+                        <button onClick={() => { setVttExplosaoInputVal(String(vttExplosaoRadius)); setVttExplosaoPopupOpen(true); setVttToolDropdownOpen(false) }}
+                          className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${vttActiveTool === 'explosao' ? 'bg-red-500 text-white' : darkMode ? 'hover:bg-gray-700 text-gray-200' : 'hover:bg-gray-100 text-gray-700'}`}>
+                          <Zap size={15} /> Explosão {vttActiveTool === 'explosao' && `(${vttExplosaoRadius}m)`}
+                        </button>
+                        {vttActiveTool && (
+                          <>
+                            <div className={`border-t my-1 ${darkMode ? 'border-gray-700' : 'border-gray-200'}`} />
+                            <button onClick={() => { setVttActiveTool(null); setVttToolDropdownOpen(false) }}
+                              className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all text-red-400 ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}>
+                              <X size={15} /> Desativar ferramenta
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    )}
+                    {vttToolDropdownOpen && <div className="fixed inset-0 z-[199]" onClick={() => setVttToolDropdownOpen(false)} />}
+                  </div>
+                </div>
                 <div className="flex gap-1.5 sm:gap-3">
                   <button
                     onClick={() => setVttShowGrid(!vttShowGrid)}
@@ -22564,148 +23025,86 @@ function App() {
                       </div>
                     )}
 
-                    {/* Controle de Escala da Imagem */}
-                    {currentVttLocation && vttMapImage && (
-                      <div className="mb-4">
-                        <label className={`block text-sm font-bold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                          Escala da Imagem: {vttMapScale}%
-                        </label>
-                        <input
-                          type="range"
-                          min="10"
-                          max="200"
-                          value={vttMapScale}
-                          onChange={(e) => setVttMapScale(parseInt(e.target.value))}
-                          className="w-full"
-                        />
+                    {/* Dimensões da imagem (info) */}
+                    {currentVttLocation && vttMapImage && vttMapWidth && vttMapHeight && (
+                      <div className={`mb-4 text-xs px-3 py-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
+                        Imagem: {Math.round(vttMapWidth)}×{Math.round(vttMapHeight)}px — arraste os handles para redimensionar
                       </div>
                     )}
 
-                    {/* Dimensões do Canvas */}
-                    {currentVttLocation && (
-                      <>
-                      <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        Dimensões do Canvas
-                      </h4>
-                      <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-3">
-                        <div>
-                          <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            Largura (px)
-                          </label>
-                          <div className="flex gap-2 items-center">
-                            <input
-                              type="range"
-                              min="400"
-                              max="15000"
-                              step="50"
-                              value={vttCanvasWidth}
-                              onChange={(e) => setVttCanvasWidth(parseInt(e.target.value))}
-                              className="flex-1"
-                            />
-                            <input
-                              type="number"
-                              min="400"
-                              max="15000"
-                              step="50"
-                              value={vttCanvasWidth}
-                              onChange={(e) => {
-                                const val = parseInt(e.target.value) || 400
-                                setVttCanvasWidth(Math.min(Math.max(val, 400), 15000))
-                              }}
-                              className={`w-20 px-2 py-1 rounded border text-center ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
-                            />
+                    {/* Dimensões do Canvas (estilo Roll20) */}
+                    {currentVttLocation && vttCanvasDraft && (() => {
+                      const inputCls = (err) => `px-2 py-1 rounded border text-center text-sm ${err ? 'border-red-500 bg-red-50 text-red-800' : darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-800'}`
+                      const setDraft = (key, val, recompute) => {
+                        const next = { ...vttCanvasDraft, [key]: val }
+                        const cs = parseInt(next.cellSize)
+                        if (recompute === 'totalW' && cs > 0) next.totalW = String(parseInt(next.cols || 0) * cs)
+                        if (recompute === 'totalH' && cs > 0) next.totalH = String(parseInt(next.rows || 0) * cs)
+                        if (recompute === 'cols' && cs > 0) next.cols = String(Math.max(1, Math.round(parseInt(next.totalW || 0) / cs)))
+                        if (recompute === 'rows' && cs > 0) next.rows = String(Math.max(1, Math.round(parseInt(next.totalH || 0) / cs)))
+                        if (recompute === 'both') {
+                          if (cs > 0) {
+                            next.totalW = String(parseInt(next.cols || 0) * cs)
+                            next.totalH = String(parseInt(next.rows || 0) * cs)
+                          }
+                        }
+                        setVttCanvasDraft(next)
+                        setVttCanvasDraftError(false)
+                      }
+                      const applyDimensions = () => {
+                        const cols = parseInt(vttCanvasDraft.cols)
+                        const cellSize = parseInt(vttCanvasDraft.cellSize)
+                        const rows = parseInt(vttCanvasDraft.rows)
+                        const valid = Number.isInteger(cols) && cols >= 1 &&
+                                      Number.isInteger(cellSize) && cellSize >= 10 &&
+                                      Number.isInteger(rows) && rows >= 1
+                        if (!valid) {
+                          setVttCanvasDraftError(true)
+                          setVttCanvasDraft({ cols: String(vttGridColumns), cellSize: String(vttGridSize), totalW: String(vttCanvasWidth), rows: String(vttGridRows), totalH: String(vttCanvasHeight) })
+                          return
+                        }
+                        setVttGridColumns(cols)
+                        setVttGridSize(cellSize)
+                        setVttGridRows(rows)
+                        setVttCanvasDraftError(false)
+                      }
+                      return (
+                        <>
+                        <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                          Dimensões do Canvas
+                        </h4>
+                        {/* Largura */}
+                        <div className="mb-3">
+                          <label className={`block text-xs font-semibold mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Largura</label>
+                          <div className="flex items-center gap-1 flex-wrap">
+                            <input type="text" value={vttCanvasDraft.cols} onChange={(e) => setDraft('cols', e.target.value, 'totalW')} className={`w-14 ${inputCls(false)}`} />
+                            <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>células ×</span>
+                            <input type="text" value={vttCanvasDraft.cellSize} onChange={(e) => setDraft('cellSize', e.target.value, 'both')} className={`w-14 ${inputCls(false)}`} />
+                            <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>px =</span>
+                            <input type="text" value={vttCanvasDraft.totalW} onChange={(e) => setDraft('totalW', e.target.value, 'cols')} className={`w-20 ${inputCls(false)}`} />
+                            <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>px</span>
                           </div>
                         </div>
-                        <div>
-                          <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            Altura (px)
-                          </label>
-                          <div className="flex gap-2 items-center">
-                            <input
-                              type="range"
-                              min="400"
-                              max="15000"
-                              step="50"
-                              value={vttCanvasHeight}
-                              onChange={(e) => setVttCanvasHeight(parseInt(e.target.value))}
-                              className="flex-1"
-                            />
-                            <input
-                              type="number"
-                              min="400"
-                              max="15000"
-                              step="50"
-                              value={vttCanvasHeight}
-                              onChange={(e) => {
-                                const val = parseInt(e.target.value) || 400
-                                setVttCanvasHeight(Math.min(Math.max(val, 400), 15000))
-                              }}
-                              className={`w-20 px-2 py-1 rounded border text-center ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
-                            />
+                        {/* Altura */}
+                        <div className="mb-3">
+                          <label className={`block text-xs font-semibold mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Altura</label>
+                          <div className="flex items-center gap-1 flex-wrap">
+                            <input type="text" value={vttCanvasDraft.rows} onChange={(e) => setDraft('rows', e.target.value, 'totalH')} className={`w-14 ${inputCls(false)}`} />
+                            <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>células ×</span>
+                            <input type="text" value={vttCanvasDraft.cellSize} onChange={(e) => setDraft('cellSize', e.target.value, 'both')} className={`w-14 ${inputCls(false)}`} />
+                            <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>px =</span>
+                            <input type="text" value={vttCanvasDraft.totalH} onChange={(e) => setDraft('totalH', e.target.value, 'rows')} className={`w-20 ${inputCls(false)}`} />
+                            <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>px</span>
                           </div>
                         </div>
-                      </div>
-
-                      {/* Número de Quadrados */}
-                      <h4 className={`text-sm font-bold mb-3 mt-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        Número de Quadrados
-                      </h4>
-                      <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
-                        <div>
-                          <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            Colunas
-                          </label>
-                          <div className="flex gap-2 items-center">
-                            <input
-                              type="range"
-                              min="5"
-                              max="100"
-                              value={vttGridColumns}
-                              onChange={(e) => setVttGridColumns(parseInt(e.target.value))}
-                              className="flex-1"
-                            />
-                            <input
-                              type="number"
-                              min="5"
-                              max="100"
-                              value={vttGridColumns}
-                              onChange={(e) => {
-                                const val = parseInt(e.target.value) || 5
-                                setVttGridColumns(Math.min(Math.max(val, 5), 100))
-                              }}
-                              className={`w-16 px-2 py-1 rounded border text-center ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
-                            />
-                          </div>
+                        {vttCanvasDraftError && <p className="text-xs text-red-400 mb-2">Valor inválido — revertido para os valores anteriores.</p>}
+                        <div className="flex items-center justify-between">
+                          <p className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Precisos com zoom em 100%.</p>
+                          <button onClick={applyDimensions} className="px-3 py-1 rounded-lg text-sm font-semibold bg-blue-600 text-white hover:bg-blue-500">Aplicar</button>
                         </div>
-                        <div>
-                          <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            Linhas
-                          </label>
-                          <div className="flex gap-2 items-center">
-                            <input
-                              type="range"
-                              min="5"
-                              max="100"
-                              value={vttGridRows}
-                              onChange={(e) => setVttGridRows(parseInt(e.target.value))}
-                              className="flex-1"
-                            />
-                            <input
-                              type="number"
-                              min="5"
-                              max="100"
-                              value={vttGridRows}
-                              onChange={(e) => {
-                                const val = parseInt(e.target.value) || 5
-                                setVttGridRows(Math.min(Math.max(val, 5), 100))
-                              }}
-                              className={`w-16 px-2 py-1 rounded border text-center ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      </>
-                    )}
+                        </>
+                      )
+                    })()}
                   </div>
                 )}
               </div>
@@ -22726,7 +23125,7 @@ function App() {
                 className={`overflow-auto mb-4 rounded-lg border-2 ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}
                 style={{
                   width: '100%',
-                  height: 'min(80vh, 600px)',
+                  height: 'min(95vh, 1000px)',
                   maxWidth: '100%'
                 }}
               >
@@ -22738,18 +23137,20 @@ function App() {
                   style={{
                     width: `${vttCanvasWidth}px`,
                     height: `${vttCanvasHeight}px`,
-                    cursor: vttIsPanning ? 'grabbing' : 'default'
+                    cursor: vttIsPanning ? 'grabbing' : vttActiveTool ? 'crosshair' : 'default'
                   }}
-                  onMouseDown={handlePanStart}
+                  onMouseDown={(e) => { if (!handleVttToolMouseDown(e)) handlePanStart(e) }}
                   onMouseMove={(e) => {
+                    handleVttToolMouseMove(e)
                     handlePanMove(e)
-                    if (!vttIsPanning) handleTokenMouseMove(e)
+                    if (!vttIsPanning && !vttActiveTool) handleTokenMouseMove(e)
                   }}
                   onMouseUp={(e) => {
+                    handleVttToolMouseUp(e)
                     handlePanEnd()
-                    handleTokenMouseUp(e)
+                    if (!vttActiveTool) handleTokenMouseUp(e)
                   }}
-                  onMouseLeave={handlePanEnd}
+                  onMouseLeave={(e) => { handlePanEnd(); if (vttToolDrawing) { handleVttToolMouseUp(e) } }}
                   onContextMenu={(e) => e.preventDefault()}
                 >
                 {/* Viewport com zoom e pan */}
@@ -22762,30 +23163,76 @@ function App() {
                     transformOrigin: 'center center'
                   }}
                 >
-                  {vttMapImage && (
-                    <img
-                      src={vttMapImage}
-                      alt="Mapa"
-                      className="absolute"
-                      onMouseDown={handleMapImageMouseDown}
-                      onMouseMove={handleMapImageMouseMove}
-                      onMouseUp={handleMapImageMouseUp}
-                      onMouseLeave={handleMapImageMouseUp}
-                      style={{
-                        left: '50%',
-                        top: '50%',
-                        transform: `translate(calc(-50% + ${vttMapPosition.x}px), calc(-50% + ${vttMapPosition.y}px)) scale(${vttMapScale / 100})`,
-                        transformOrigin: 'center center',
-                        maxWidth: 'none',
-                        maxHeight: 'none',
-                        cursor: vttCurrentLayer === 'map' ? (vttDraggingMap ? 'grabbing' : 'grab') : 'default',
-                        opacity: vttCurrentLayer === 'map' ? 1 : 0.6,
-                        outline: vttCurrentLayer === 'map' ? '3px dashed #f59e0b' : 'none',
-                        outlineOffset: '2px',
-                        zIndex: 0
-                      }}
-                    />
-                  )}
+                  {vttMapImage && (() => {
+                    const imgLeft = vttMapWidth ? vttCanvasWidth / 2 + vttMapPosition.x - vttMapWidth / 2 : vttCanvasWidth / 2 + vttMapPosition.x
+                    const imgTop = vttMapHeight ? vttCanvasHeight / 2 + vttMapPosition.y - vttMapHeight / 2 : vttCanvasHeight / 2 + vttMapPosition.y
+                    const HANDLES = [
+                      { h: 'nw', style: { top: -6, left: -6, cursor: 'nwse-resize' } },
+                      { h: 'n',  style: { top: -6, left: '50%', transform: 'translateX(-50%)', cursor: 'ns-resize' } },
+                      { h: 'ne', style: { top: -6, right: -6, cursor: 'nesw-resize' } },
+                      { h: 'e',  style: { top: '50%', right: -6, transform: 'translateY(-50%)', cursor: 'ew-resize' } },
+                      { h: 'se', style: { bottom: -6, right: -6, cursor: 'nwse-resize' } },
+                      { h: 's',  style: { bottom: -6, left: '50%', transform: 'translateX(-50%)', cursor: 'ns-resize' } },
+                      { h: 'sw', style: { bottom: -6, left: -6, cursor: 'nesw-resize' } },
+                      { h: 'w',  style: { top: '50%', left: -6, transform: 'translateY(-50%)', cursor: 'ew-resize' } },
+                    ]
+                    return (
+                      <div
+                        className="absolute"
+                        style={{
+                          left: `${imgLeft}px`,
+                          top: `${imgTop}px`,
+                          width: vttMapWidth ? `${vttMapWidth}px` : 'auto',
+                          height: vttMapHeight ? `${vttMapHeight}px` : 'auto',
+                          opacity: vttCurrentLayer === 'map' ? 1 : 0.6,
+                          outline: vttCurrentLayer === 'map' ? '2px dashed #f59e0b' : 'none',
+                          outlineOffset: '1px',
+                          zIndex: 0,
+                          userSelect: 'none'
+                        }}
+                      >
+                        <img
+                          src={vttMapImage}
+                          alt="Mapa"
+                          draggable={false}
+                          onDragStart={(e) => e.preventDefault()}
+                          onMouseDown={handleMapImageMouseDown}
+                          onMouseMove={handleMapImageMouseMove}
+                          onMouseUp={handleMapImageMouseUp}
+                          onMouseLeave={handleMapImageMouseUp}
+                          onLoad={handleMapImageLoad}
+                          style={{
+                            display: 'block',
+                            width: '100%',
+                            height: '100%',
+                            maxWidth: 'none',
+                            maxHeight: 'none',
+                            cursor: vttCurrentLayer === 'map' ? (vttDraggingMap ? 'grabbing' : 'grab') : 'default',
+                          }}
+                        />
+                        {vttCurrentLayer === 'map' && HANDLES.map(({ h, style }) => (
+                          <div
+                            key={h}
+                            onMouseDown={(e) => {
+                              e.stopPropagation()
+                              e.preventDefault()
+                              setVttMapResizingHandle(h)
+                              setVttMapResizeStart({ clientX: e.clientX, clientY: e.clientY, origW: vttMapWidth || 100, origH: vttMapHeight || 100, origPos: { ...vttMapPosition } })
+                            }}
+                            style={{
+                              position: 'absolute',
+                              width: 10, height: 10,
+                              background: 'white',
+                              border: '2px solid #333',
+                              borderRadius: 2,
+                              zIndex: 10,
+                              ...style
+                            }}
+                          />
+                        ))}
+                      </div>
+                    )
+                  })()}
                   {!vttMapImage && (
                     <div className={`flex items-center justify-center h-full ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
                       <p className="text-lg sm:text-xl">Cole a URL de um mapa acima para começar</p>
@@ -22885,21 +23332,161 @@ function App() {
                     )
                   })()}
 
+                  {/* Traços de Desenho (Pincel) */}
+                  {(() => {
+                    const cellW = vttCanvasWidth / vttGridColumns
+                    const cellH = vttCanvasHeight / vttGridRows
+                    const avgCell = (cellW + cellH) / 2
+                    const visibleStrokes = vttDrawingStrokes.filter(s => s.layer !== 'gm' || currentUser.type === 'mestre')
+                    const allLiveTools = Object.entries(vttLiveTools).filter(([uname]) => uname !== currentUser.username)
+                    return (
+                      <svg className="absolute inset-0" style={{ width: vttCanvasWidth, height: vttCanvasHeight, zIndex: 5, pointerEvents: 'none' }}>
+                        {/* Strokes permanentes */}
+                        {visibleStrokes.map(stroke => {
+                          const dx = vttDraggingStroke?.id === stroke.id ? (vttDraggingStroke.curDx || 0) : 0
+                          const dy = vttDraggingStroke?.id === stroke.id ? (vttDraggingStroke.curDy || 0) : 0
+                          const pts = stroke.points.map(p => `${p.x + dx},${p.y + dy}`).join(' ')
+                          const isSelected = vttSelectedStroke === stroke.id
+                          return (
+                            <g key={stroke.id}>
+                              <polyline points={pts} fill="none" stroke={stroke.color || '#ff4444'} strokeWidth={stroke.width || 3}
+                                strokeLinecap="round" strokeLinejoin="round" style={{ pointerEvents: 'none' }}
+                              />
+                              {isSelected && (
+                                <polyline points={pts} fill="none" stroke="white" strokeWidth={(stroke.width || 3) + 4}
+                                  strokeLinecap="round" strokeLinejoin="round" strokeDasharray="6,4"
+                                  style={{ pointerEvents: 'none', opacity: 0.6 }}
+                                />
+                              )}
+                            </g>
+                          )
+                        })}
+                        {/* Stroke sendo desenhado agora */}
+                        {vttCurrentStroke && vttCurrentStroke.points.length > 1 && (
+                          <polyline
+                            points={vttCurrentStroke.points.map(p => `${p.x},${p.y}`).join(' ')}
+                            fill="none" stroke={vttCurrentStroke.color} strokeWidth={vttCurrentStroke.width}
+                            strokeLinecap="round" strokeLinejoin="round" style={{ pointerEvents: 'none' }}
+                          />
+                        )}
+                        {/* Ferramenta ativa do usuário atual (régua, coluna, explosão) */}
+                        {vttActiveTool && vttActiveTool !== 'pincel' && vttToolDrawing && vttToolStart && vttToolEnd && (() => {
+                          if (vttActiveTool === 'regua') {
+                            const dx2 = vttToolEnd.x - vttToolStart.x
+                            const dy2 = vttToolEnd.y - vttToolStart.y
+                            const dist = Math.sqrt(dx2 * dx2 + dy2 * dy2)
+                            const meters = (dist / avgCell).toFixed(1)
+                            const mx = (vttToolStart.x + vttToolEnd.x) / 2
+                            const my = (vttToolStart.y + vttToolEnd.y) / 2
+                            return (<>
+                              <line x1={vttToolStart.x} y1={vttToolStart.y} x2={vttToolEnd.x} y2={vttToolEnd.y} stroke="#ffcc00" strokeWidth="3" strokeDasharray="8,4" />
+                              <circle cx={vttToolStart.x} cy={vttToolStart.y} r="6" fill="#ffcc00" stroke="#000" strokeWidth="2" />
+                              <circle cx={vttToolEnd.x} cy={vttToolEnd.y} r="6" fill="#ffcc00" stroke="#000" strokeWidth="2" />
+                              <rect x={mx - 35} y={my - 14} width="70" height="28" rx="4" fill="rgba(0,0,0,0.8)" />
+                              <text x={mx} y={my + 5} textAnchor="middle" fill="#ffcc00" fontSize="16" fontWeight="bold" style={{ userSelect: 'none' }}>{meters}m</text>
+                            </>)
+                          }
+                          if (vttActiveTool === 'coluna') {
+                            const dx2 = vttToolEnd.x - vttToolStart.x
+                            const dy2 = vttToolEnd.y - vttToolStart.y
+                            const dist = Math.sqrt(dx2 * dx2 + dy2 * dy2)
+                            const len = (dist / avgCell).toFixed(1)
+                            const halfW = vttColunaThickness * avgCell
+                            const angle = Math.atan2(dy2, dx2)
+                            const px = Math.sin(angle) * halfW
+                            const py = -Math.cos(angle) * halfW
+                            const pts2 = [
+                              `${vttToolStart.x + px},${vttToolStart.y + py}`,
+                              `${vttToolEnd.x + px},${vttToolEnd.y + py}`,
+                              `${vttToolEnd.x - px},${vttToolEnd.y - py}`,
+                              `${vttToolStart.x - px},${vttToolStart.y - py}`
+                            ].join(' ')
+                            const mx = (vttToolStart.x + vttToolEnd.x) / 2
+                            const my = (vttToolStart.y + vttToolEnd.y) / 2
+                            return (<>
+                              <polygon points={pts2} fill="rgba(255,100,0,0.25)" stroke="#ff6400" strokeWidth="2" />
+                              <rect x={mx - 60} y={my - 14} width="120" height="28" rx="4" fill="rgba(0,0,0,0.8)" />
+                              <text x={mx} y={my + 5} textAnchor="middle" fill="#ff9900" fontSize="14" fontWeight="bold" style={{ userSelect: 'none' }}>{vttColunaThickness * 2}m × {len}m</text>
+                            </>)
+                          }
+                          if (vttActiveTool === 'explosao') {
+                            const r = vttExplosaoRadius * avgCell
+                            return (<>
+                              <circle cx={vttToolStart.x} cy={vttToolStart.y} r={r} fill="rgba(255,50,50,0.2)" stroke="#ff3232" strokeWidth="2" strokeDasharray="8,4" />
+                              <circle cx={vttToolStart.x} cy={vttToolStart.y} r="6" fill="#ff3232" stroke="#000" strokeWidth="2" />
+                              <rect x={vttToolStart.x - 30} y={vttToolStart.y - r - 22} width="60" height="22" rx="4" fill="rgba(0,0,0,0.8)" />
+                              <text x={vttToolStart.x} y={vttToolStart.y - r - 6} textAnchor="middle" fill="#ff6666" fontSize="14" fontWeight="bold" style={{ userSelect: 'none' }}>{vttExplosaoRadius}m</text>
+                            </>)
+                          }
+                          return null
+                        })()}
+                        {/* Ferramentas ao vivo de outros usuários */}
+                        {allLiveTools.map(([uname, toolData]) => {
+                          if (!toolData || !toolData.type) return null
+                          if (toolData.layer === 'gm' && currentUser.type !== 'mestre') return null
+                          const color = '#00ccff'
+                          if (toolData.type === 'pincel' && toolData.points?.length > 1) {
+                            const pts = toolData.points.map(p => `${p.x},${p.y}`).join(' ')
+                            return <polyline key={uname} points={pts} fill="none" stroke={toolData.color || color} strokeWidth={toolData.width || 3} strokeLinecap="round" strokeLinejoin="round" style={{ pointerEvents: 'none' }} />
+                          }
+                          if (toolData.type === 'regua' && toolData.start && toolData.end) {
+                            const dx2 = toolData.end.x - toolData.start.x
+                            const dy2 = toolData.end.y - toolData.start.y
+                            const dist = Math.sqrt(dx2 * dx2 + dy2 * dy2)
+                            const meters = (dist / avgCell).toFixed(1)
+                            const mx = (toolData.start.x + toolData.end.x) / 2
+                            const my = (toolData.start.y + toolData.end.y) / 2
+                            return (<g key={uname}>
+                              <line x1={toolData.start.x} y1={toolData.start.y} x2={toolData.end.x} y2={toolData.end.y} stroke={color} strokeWidth="3" strokeDasharray="8,4" />
+                              <circle cx={toolData.start.x} cy={toolData.start.y} r="6" fill={color} stroke="#000" strokeWidth="2" />
+                              <circle cx={toolData.end.x} cy={toolData.end.y} r="6" fill={color} stroke="#000" strokeWidth="2" />
+                              <rect x={mx - 50} y={my - 22} width="100" height="28" rx="4" fill="rgba(0,0,0,0.8)" />
+                              <text x={mx} y={my - 3} textAnchor="middle" fill={color} fontSize="13" fontWeight="bold" style={{ userSelect: 'none' }}>{uname}: {meters}m</text>
+                            </g>)
+                          }
+                          if (toolData.type === 'coluna' && toolData.start && toolData.end) {
+                            const dx2 = toolData.end.x - toolData.start.x
+                            const dy2 = toolData.end.y - toolData.start.y
+                            const dist = Math.sqrt(dx2 * dx2 + dy2 * dy2)
+                            const len = (dist / avgCell).toFixed(1)
+                            const halfW = (toolData.thickness || 1) * avgCell
+                            const angle = Math.atan2(dy2, dx2)
+                            const px = Math.sin(angle) * halfW
+                            const py = -Math.cos(angle) * halfW
+                            const pts2 = [`${toolData.start.x + px},${toolData.start.y + py}`, `${toolData.end.x + px},${toolData.end.y + py}`, `${toolData.end.x - px},${toolData.end.y - py}`, `${toolData.start.x - px},${toolData.start.y - py}`].join(' ')
+                            const mx = (toolData.start.x + toolData.end.x) / 2
+                            const my = (toolData.start.y + toolData.end.y) / 2
+                            return (<g key={uname}>
+                              <polygon points={pts2} fill="rgba(0,200,255,0.2)" stroke={color} strokeWidth="2" />
+                              <rect x={mx - 70} y={my - 14} width="140" height="28" rx="4" fill="rgba(0,0,0,0.8)" />
+                              <text x={mx} y={my + 5} textAnchor="middle" fill={color} fontSize="13" fontWeight="bold" style={{ userSelect: 'none' }}>{uname}: {(toolData.thickness || 1) * 2}m × {len}m</text>
+                            </g>)
+                          }
+                          if (toolData.type === 'explosao' && toolData.start) {
+                            const r = (toolData.radius || 3) * avgCell
+                            return (<g key={uname}>
+                              <circle cx={toolData.start.x} cy={toolData.start.y} r={r} fill="rgba(0,200,255,0.15)" stroke={color} strokeWidth="2" strokeDasharray="8,4" />
+                              <circle cx={toolData.start.x} cy={toolData.start.y} r="6" fill={color} stroke="#000" strokeWidth="2" />
+                              <rect x={toolData.start.x - 55} y={toolData.start.y - r - 22} width="110" height="22" rx="4" fill="rgba(0,0,0,0.8)" />
+                              <text x={toolData.start.x} y={toolData.start.y - r - 6} textAnchor="middle" fill={color} fontSize="13" fontWeight="bold" style={{ userSelect: 'none' }}>{uname}: {toolData.radius || 3}m</text>
+                            </g>)
+                          }
+                          return null
+                        })}
+                      </svg>
+                    )
+                  })()}
+
                   {/* Tokens da camada MAPA (embaixo de tudo, visível para todos) */}
                   {vttMapTokens.map(token => (
                     <div
                       key={token.id}
                       className="absolute"
-                      onMouseDown={(e) => vttCurrentLayer === 'map' && handleTokenMouseDown(token.id, 'map', e)}
                       style={{
                         left: `${token.x}px`,
                         top: `${token.y}px`,
                         width: `${token.size}px`,
                         height: `${token.size}px`,
-                        cursor: vttCurrentLayer === 'map' ? 'move' : 'default',
-                        border: selectedToken === token.id ? '3px solid yellow' : '2px solid #b45309',
-                        borderRadius: '50%',
-                        overflow: 'hidden',
                         opacity: vttCurrentLayer === 'map' ? 1 : 0.4,
                         transform: `rotate(${token.rotation || 0}deg)`,
                         userSelect: 'none',
@@ -22907,22 +23494,29 @@ function App() {
                         zIndex: 1
                       }}
                     >
-                      {token.image && (
-                        <img
-                          src={token.image}
-                          alt={token.name}
-                          className="w-full h-full object-cover"
-                          style={token.npcType === 'trainer' ? { objectPosition: 'center 20%' } : {}}
-                        />
-                      )}
-                      {!token.image && (
-                        <div className="w-full h-full bg-amber-600 flex items-center justify-center text-white font-bold">
-                          {token.name?.charAt(0) || 'M'}
+                      <div
+                        onMouseDown={(e) => { if (startToolFromToken(token, e)) return; if (vttCurrentLayer === 'map') { handleVttTokenClick(token.id, 'map'); handleTokenMouseDown(token.id, 'map', e) } }}
+                        style={{
+                          width: '100%', height: '100%',
+                          cursor: vttCurrentLayer === 'map' ? 'move' : 'default',
+                          border: selectedToken === token.id ? '3px solid yellow' : '2px solid #b45309',
+                          borderRadius: '50%', overflow: 'hidden', position: 'relative'
+                        }}
+                      >
+                        {token.image ? (
+                          <img src={token.image} alt={token.name} className="w-full h-full object-cover"
+                            style={{ objectPosition: `center ${token.offsetY || (token.npcType === 'trainer' ? 20 : 50)}%`, transform: `scale(${(token.imageScale || 100) / 100})`, transformOrigin: 'center' }} />
+                        ) : (
+                          <div className="w-full h-full bg-amber-600 flex items-center justify-center text-white font-bold">{token.name?.charAt(0) || 'M'}</div>
+                        )}
+                        <div className="absolute bottom-0 left-0 right-0 bg-amber-900 bg-opacity-90 text-white text-xs text-center px-1 truncate">{token.name}</div>
+                      </div>
+                      {selectedToken === token.id && (
+                        <div className="absolute -top-2 -right-2 flex gap-0.5" style={{ zIndex: 10 }}>
+                          <button onMouseDown={(e) => e.stopPropagation()} onClick={(e) => handleVttEditToken(token, 'map', e)} className="w-5 h-5 bg-blue-600 rounded-full text-white flex items-center justify-center text-xs hover:bg-blue-500" title="Editar">✎</button>
+                          <button onMouseDown={(e) => e.stopPropagation()} onClick={() => handleVttRemoveToken(token.id, 'map')} className="w-5 h-5 bg-red-600 rounded-full text-white flex items-center justify-center text-xs hover:bg-red-500" title="Remover">×</button>
                         </div>
                       )}
-                      <div className="absolute bottom-0 left-0 right-0 bg-amber-900 bg-opacity-90 text-white text-xs text-center px-1 truncate">
-                        {token.name}
-                      </div>
                     </div>
                   ))}
 
@@ -22931,16 +23525,11 @@ function App() {
                     <div
                       key={token.id}
                       className="absolute"
-                      onMouseDown={(e) => vttCurrentLayer === 'gm' && handleTokenMouseDown(token.id, 'gm', e)}
                       style={{
                         left: `${token.x}px`,
                         top: `${token.y}px`,
                         width: `${token.size}px`,
                         height: `${token.size}px`,
-                        cursor: vttCurrentLayer === 'gm' ? 'move' : 'default',
-                        border: selectedToken === token.id ? '3px solid yellow' : '2px solid purple',
-                        borderRadius: '50%',
-                        overflow: 'hidden',
                         opacity: vttCurrentLayer === 'gm' ? 0.8 : 0.3,
                         transform: `rotate(${token.rotation || 0}deg)`,
                         userSelect: 'none',
@@ -22948,22 +23537,84 @@ function App() {
                         zIndex: 2
                       }}
                     >
-                      {token.image && (
-                        <img
-                          src={token.image}
-                          alt={token.name}
-                          className="w-full h-full object-cover"
-                          style={token.npcType === 'trainer' ? { objectPosition: 'center 20%' } : {}}
-                        />
-                      )}
-                      {!token.image && (
-                        <div className="w-full h-full bg-purple-500 flex items-center justify-center text-white font-bold">
-                          {token.name?.charAt(0) || 'G'}
+                      <div
+                        onMouseDown={(e) => { if (startToolFromToken(token, e)) return; if (vttCurrentLayer === 'gm') { handleVttTokenClick(token.id, 'gm'); handleTokenMouseDown(token.id, 'gm', e) } }}
+                        style={{
+                          width: '100%', height: '100%',
+                          cursor: vttCurrentLayer === 'gm' ? 'move' : 'default',
+                          border: selectedToken === token.id ? '3px solid yellow' : '2px solid purple',
+                          borderRadius: '50%', overflow: 'hidden', position: 'relative'
+                        }}
+                      >
+                        {token.image ? (
+                          <img src={token.image} alt={token.name} className="w-full h-full object-cover"
+                            style={{ objectPosition: `center ${token.offsetY || (token.npcType === 'trainer' ? 20 : 50)}%`, transform: `scale(${(token.imageScale || 100) / 100})`, transformOrigin: 'center' }} />
+                        ) : (
+                          <div className="w-full h-full bg-purple-500 flex items-center justify-center text-white font-bold">{token.name?.charAt(0) || 'G'}</div>
+                        )}
+                        <div className="absolute bottom-0 left-0 right-0 bg-purple-900 bg-opacity-90 text-white text-xs text-center px-1 truncate">{token.name}</div>
+                      </div>
+                      {selectedToken === token.id && (
+                        <div className="absolute -top-2 -right-2 flex gap-0.5" style={{ zIndex: 10 }}>
+                          <button onMouseDown={(e) => e.stopPropagation()} onClick={(e) => handleVttEditToken(token, 'gm', e)} className="w-5 h-5 bg-blue-600 rounded-full text-white flex items-center justify-center text-xs hover:bg-blue-500" title="Editar">✎</button>
+                          <button onMouseDown={(e) => e.stopPropagation()} onClick={() => handleVttRemoveToken(token.id, 'gm')} className="w-5 h-5 bg-red-600 rounded-full text-white flex items-center justify-center text-xs hover:bg-red-500" title="Remover">×</button>
                         </div>
                       )}
-                      <div className="absolute bottom-0 left-0 right-0 bg-purple-900 bg-opacity-90 text-white text-xs text-center px-1 truncate">
-                        {token.name}
-                      </div>
+                      {selectedToken === token.id && token.npcType === 'pokemon' && (() => {
+                        const pkm = token.pokemonId ? mainTeam.find(p => p.id === token.pokemonId) : npcPokemon.find(p => p.id === token.npcId)
+                        const moves = (token.pokemonId ? pkm?.golpes : pkm?.golpesAprendidos) || []
+                        const validMoves = moves.filter(m => (typeof m === 'string' ? m : (m?.nome || m?.name || '')).trim() !== '')
+                        if (!pkm || !validMoves.length) return null
+                        return (
+                          <div onMouseDown={(e) => e.stopPropagation()} className="absolute" style={{ left: `${token.size + 6}px`, top: '0px', minWidth: '150px', maxWidth: '190px', background: 'rgba(15,15,30,0.93)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', padding: '6px 7px', zIndex: 20, boxShadow: '0 4px 14px rgba(0,0,0,0.7)' }}>
+                            <div style={{ color: '#facc15', fontWeight: 'bold', fontSize: '11px', marginBottom: '4px', paddingBottom: '3px', borderBottom: '1px solid rgba(255,255,255,0.15)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{token.name}</div>
+                            {validMoves.map((move, idx) => {
+                              const moveName = typeof move === 'string' ? move : (move.nome || move.name || '')
+                              if (!moveName) return null
+                              return (
+                                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '3px', marginBottom: '2px' }}>
+                                  <span style={{ color: '#e5e7eb', fontSize: '10px', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{moveName}</span>
+                                  <button onClick={() => handleRollAccuracy(moveName, null, null, pkm)} style={{ background: '#2563eb', color: 'white', border: 'none', borderRadius: '3px', padding: '1px 5px', fontSize: '9px', cursor: 'pointer', flexShrink: 0 }}>Acu</button>
+                                  <button onClick={() => handleRollMoveDamage(moveName, pkm)} style={{ background: '#dc2626', color: 'white', border: 'none', borderRadius: '3px', padding: '1px 5px', fontSize: '9px', cursor: 'pointer', flexShrink: 0 }}>Dano</button>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        )
+                      })()}
+                      {selectedToken === token.id && token.npcType === 'pokemon' && (() => {
+                        const pkm = token.pokemonId ? mainTeam.find(p => p.id === token.pokemonId) : npcPokemon.find(p => p.id === token.npcId)
+                        if (!pkm) return null
+                        let baseDef, baseDefEsp, baseVel
+                        if (token.pokemonId) {
+                          baseDef = calculateTotalAttribute(pkm, 'defesa', 'Defesa')
+                          baseDefEsp = calculateTotalAttribute(pkm, 'defesaEspecial', 'Defesa Especial')
+                          baseVel = calculateTotalAttribute(pkm, 'velocidade', 'Velocidade')
+                        } else {
+                          const alfaBonus = npcAlfaStatus?.[token.npcId] ? 8 : 0
+                          baseDef = (pkm.attributes?.defesa || 0) + alfaBonus
+                          baseDefEsp = (pkm.attributes?.defesaEspecial || 0) + alfaBonus
+                          baseVel = (pkm.attributes?.velocidade || 0) + alfaBonus
+                        }
+                        const battleEntry = token.pokemonId ? battlePokemon.find(b => b.originalId === token.pokemonId) : battlePokemon.find(b => b.npcId === token.npcId)
+                        const stages = battleEntry ? (pokemonStages[battleEntry.id] || {}) : {}
+                        const evasoes = calcularEvasoes(baseDef, baseDefEsp, baseVel, stages, false)
+                        const inBattle = !!battleEntry
+                        return (
+                          <div onMouseDown={(e) => e.stopPropagation()} style={{ position: 'absolute', left: '-34px', top: '0px', display: 'flex', flexDirection: 'column', gap: '3px', zIndex: 20 }}>
+                            {[
+                              { label: 'F', value: evasoes.evasaoFisica, color: '#3b82f6', title: 'Evasão Física' },
+                              { label: 'E', value: evasoes.evasaoEspecial, color: '#7c3aed', title: 'Evasão Especial' },
+                              { label: 'V', value: evasoes.evasaoVeloz, color: '#059669', title: 'Evasão Veloz' },
+                            ].map(({ label, value, color, title }) => (
+                              <div key={label} title={`${title}${inBattle ? ' (fases aplicadas)' : ''}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: color, borderRadius: '50%', width: '28px', height: '28px', boxShadow: '0 2px 8px rgba(0,0,0,0.7)', border: inBattle ? '2px solid #facc15' : '2px solid rgba(255,255,255,0.25)' }}>
+                                <span style={{ color: 'white', fontSize: '7px', fontWeight: 'bold', lineHeight: 1.1 }}>{label}</span>
+                                <span style={{ color: 'white', fontSize: '10px', fontWeight: 'bold', lineHeight: 1.1 }}>{value}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )
+                      })()}
                     </div>
                   ))}
 
@@ -22972,16 +23623,11 @@ function App() {
                     <div
                       key={token.id}
                       className="absolute"
-                      onMouseDown={(e) => vttCurrentLayer === 'players' && handleTokenMouseDown(token.id, 'tokens', e)}
                       style={{
                         left: `${token.x}px`,
                         top: `${token.y}px`,
                         width: `${token.size}px`,
                         height: `${token.size}px`,
-                        cursor: vttCurrentLayer === 'players' ? 'move' : 'default',
-                        border: selectedToken === token.id ? '3px solid yellow' : '2px solid black',
-                        borderRadius: '50%',
-                        overflow: 'hidden',
                         opacity: vttCurrentLayer === 'players' ? 1 : 0.4,
                         transform: `rotate(${token.rotation || 0}deg)`,
                         userSelect: 'none',
@@ -22989,27 +23635,153 @@ function App() {
                         zIndex: 3
                       }}
                     >
-                      {token.image && (
-                        <img
-                          src={token.image}
-                          alt={token.name}
-                          className="w-full h-full object-cover"
-                          style={token.npcType === 'trainer' ? { objectPosition: 'center 20%' } : {}}
-                        />
-                      )}
-                      {!token.image && (
-                        <div className="w-full h-full bg-blue-500 flex items-center justify-center text-white font-bold">
-                          {token.name?.charAt(0) || 'T'}
+                      <div
+                        onMouseDown={(e) => { if (startToolFromToken(token, e)) return; if (vttCurrentLayer === 'players') { handleVttTokenClick(token.id, 'tokens'); handleTokenMouseDown(token.id, 'tokens', e) } }}
+                        style={{
+                          width: '100%', height: '100%',
+                          cursor: vttCurrentLayer === 'players' ? 'move' : 'default',
+                          border: selectedToken === token.id ? '3px solid yellow' : '2px solid black',
+                          borderRadius: '50%', overflow: 'hidden', position: 'relative'
+                        }}
+                      >
+                        {token.image ? (
+                          <img src={token.image} alt={token.name} className="w-full h-full object-cover"
+                            style={{ objectPosition: `center ${token.offsetY || (token.npcType === 'trainer' ? 20 : 50)}%`, transform: `scale(${(token.imageScale || 100) / 100})`, transformOrigin: 'center' }} />
+                        ) : (
+                          <div className="w-full h-full bg-blue-500 flex items-center justify-center text-white font-bold">{token.name?.charAt(0) || 'T'}</div>
+                        )}
+                        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-xs text-center px-1 truncate">{token.name}</div>
+                      </div>
+                      {selectedToken === token.id && (
+                        <div className="absolute -top-2 -right-2 flex gap-0.5" style={{ zIndex: 10 }}>
+                          <button onMouseDown={(e) => e.stopPropagation()} onClick={(e) => handleVttEditToken(token, 'tokens', e)} className="w-5 h-5 bg-blue-600 rounded-full text-white flex items-center justify-center text-xs hover:bg-blue-500" title="Editar">✎</button>
+                          <button onMouseDown={(e) => e.stopPropagation()} onClick={() => handleVttRemoveToken(token.id, 'tokens')} className="w-5 h-5 bg-red-600 rounded-full text-white flex items-center justify-center text-xs hover:bg-red-500" title="Remover">×</button>
                         </div>
                       )}
-                      <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-xs text-center px-1 truncate">
-                        {token.name}
-                      </div>
+                      {selectedToken === token.id && token.npcType === 'pokemon' && (() => {
+                        const pkm = token.pokemonId ? mainTeam.find(p => p.id === token.pokemonId) : npcPokemon.find(p => p.id === token.npcId)
+                        const moves = (token.pokemonId ? pkm?.golpes : pkm?.golpesAprendidos) || []
+                        const validMoves = moves.filter(m => (typeof m === 'string' ? m : (m?.nome || m?.name || '')).trim() !== '')
+                        if (!pkm || !validMoves.length) return null
+                        return (
+                          <div onMouseDown={(e) => e.stopPropagation()} className="absolute" style={{ left: `${token.size + 6}px`, top: '0px', minWidth: '150px', maxWidth: '190px', background: 'rgba(15,15,30,0.93)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', padding: '6px 7px', zIndex: 20, boxShadow: '0 4px 14px rgba(0,0,0,0.7)' }}>
+                            <div style={{ color: '#facc15', fontWeight: 'bold', fontSize: '11px', marginBottom: '4px', paddingBottom: '3px', borderBottom: '1px solid rgba(255,255,255,0.15)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{token.name}</div>
+                            {validMoves.map((move, idx) => {
+                              const moveName = typeof move === 'string' ? move : (move.nome || move.name || '')
+                              if (!moveName) return null
+                              return (
+                                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '3px', marginBottom: '2px' }}>
+                                  <span style={{ color: '#e5e7eb', fontSize: '10px', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{moveName}</span>
+                                  <button onClick={() => handleRollAccuracy(moveName, null, null, pkm)} style={{ background: '#2563eb', color: 'white', border: 'none', borderRadius: '3px', padding: '1px 5px', fontSize: '9px', cursor: 'pointer', flexShrink: 0 }}>Acu</button>
+                                  <button onClick={() => handleRollMoveDamage(moveName, pkm)} style={{ background: '#dc2626', color: 'white', border: 'none', borderRadius: '3px', padding: '1px 5px', fontSize: '9px', cursor: 'pointer', flexShrink: 0 }}>Dano</button>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        )
+                      })()}
+                      {selectedToken === token.id && token.npcType === 'pokemon' && (() => {
+                        const pkm = token.pokemonId ? mainTeam.find(p => p.id === token.pokemonId) : npcPokemon.find(p => p.id === token.npcId)
+                        if (!pkm) return null
+                        let baseDef, baseDefEsp, baseVel
+                        if (token.pokemonId) {
+                          baseDef = calculateTotalAttribute(pkm, 'defesa', 'Defesa')
+                          baseDefEsp = calculateTotalAttribute(pkm, 'defesaEspecial', 'Defesa Especial')
+                          baseVel = calculateTotalAttribute(pkm, 'velocidade', 'Velocidade')
+                        } else {
+                          const alfaBonus = npcAlfaStatus?.[token.npcId] ? 8 : 0
+                          baseDef = (pkm.attributes?.defesa || 0) + alfaBonus
+                          baseDefEsp = (pkm.attributes?.defesaEspecial || 0) + alfaBonus
+                          baseVel = (pkm.attributes?.velocidade || 0) + alfaBonus
+                        }
+                        const battleEntry = token.pokemonId ? battlePokemon.find(b => b.originalId === token.pokemonId) : battlePokemon.find(b => b.npcId === token.npcId)
+                        const stages = battleEntry ? (pokemonStages[battleEntry.id] || {}) : {}
+                        const evasoes = calcularEvasoes(baseDef, baseDefEsp, baseVel, stages, false)
+                        const inBattle = !!battleEntry
+                        return (
+                          <div onMouseDown={(e) => e.stopPropagation()} style={{ position: 'absolute', left: '-34px', top: '0px', display: 'flex', flexDirection: 'column', gap: '3px', zIndex: 20 }}>
+                            {[
+                              { label: 'F', value: evasoes.evasaoFisica, color: '#3b82f6', title: 'Evasão Física' },
+                              { label: 'E', value: evasoes.evasaoEspecial, color: '#7c3aed', title: 'Evasão Especial' },
+                              { label: 'V', value: evasoes.evasaoVeloz, color: '#059669', title: 'Evasão Veloz' },
+                            ].map(({ label, value, color, title }) => (
+                              <div key={label} title={`${title}${inBattle ? ' (fases aplicadas)' : ''}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: color, borderRadius: '50%', width: '28px', height: '28px', boxShadow: '0 2px 8px rgba(0,0,0,0.7)', border: inBattle ? '2px solid #facc15' : '2px solid rgba(255,255,255,0.25)' }}>
+                                <span style={{ color: 'white', fontSize: '7px', fontWeight: 'bold', lineHeight: 1.1 }}>{label}</span>
+                                <span style={{ color: 'white', fontSize: '10px', fontWeight: 'bold', lineHeight: 1.1 }}>{value}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )
+                      })()}
                     </div>
                   ))}
                   </div>
                 </div>
               </div>
+
+              {/* Toggle do Painel de Tokens */}
+              <div className="flex items-center justify-between mb-3 mt-2">
+                <button
+                  onClick={() => setVttTokenPanelOpen(prev => !prev)}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg font-semibold text-sm transition-all ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-300' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'}`}
+                >
+                  {vttTokenPanelOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  {vttTokenPanelOpen ? 'Ocultar Painel' : 'Mostrar Painel'}
+                </button>
+                {selectedToken && (
+                  <button
+                    onClick={() => { setSelectedToken(null); setVttSelectedPokemonToken(null) }}
+                    className="text-xs px-2 py-1 rounded bg-yellow-600 text-white hover:bg-yellow-700"
+                  >
+                    Desselecionar Token
+                  </button>
+                )}
+              </div>
+
+              {/* Painel de Golpes do Pokémon Selecionado */}
+              {vttSelectedPokemonToken && (
+                <div className={`${darkMode ? 'bg-gray-700 border-blue-600' : 'bg-blue-50 border-blue-300'} rounded-lg p-4 mb-4 border-2`}>
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className={`text-base font-bold ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                      {vttSelectedPokemonToken.nickname || vttSelectedPokemonToken.species} — Golpes
+                    </h4>
+                    <button onClick={() => setVttSelectedPokemonToken(null)} className="text-gray-400 hover:text-gray-200 text-lg font-bold">×</button>
+                  </div>
+                  <div className="space-y-1">
+                    {(vttSelectedPokemonToken.golpes || []).filter(Boolean).length > 0 ? (
+                      (vttSelectedPokemonToken.golpes || []).filter(Boolean).map((move, idx) => {
+                        const moveName = typeof move === 'string' ? move : (move.nome || move.name || '')
+                        if (!moveName) return null
+                        return (
+                          <div key={idx} className={`flex items-center justify-between p-2 rounded ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+                            <span className={`text-sm font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveName}</span>
+                            <div className="flex gap-1">
+                              <button
+                                onClick={() => handleRollAccuracy(moveName, null, null, vttSelectedPokemonToken)}
+                                className={`p-1 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-blue-400' : 'bg-gray-200 hover:bg-gray-300 text-blue-600'}`}
+                                title="Teste de Acurácia"
+                              >
+                                <Dices size={13} />
+                              </button>
+                              <button
+                                onClick={() => handleRollMoveDamage(moveName, vttSelectedPokemonToken)}
+                                className={`p-1 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400' : 'bg-gray-200 hover:bg-gray-300 text-yellow-600'}`}
+                                title="Rolar Dano"
+                              >
+                                <Hand size={13} />
+                              </button>
+                            </div>
+                          </div>
+                        )
+                      })
+                    ) : (
+                      <p className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Nenhum golpe registrado</p>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {vttTokenPanelOpen && (<>
 
               {/* Seleção de Camada */}
               <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-4 mb-4`}>
@@ -23061,6 +23833,33 @@ function App() {
                 </p>
               </div>
 
+              {/* Token Treinadores (não-NPC) */}
+              <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-4 mb-4`}>
+                <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                  Treinadores
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {users.filter(u => u.type === 'treinador').map(trainer => (
+                    <div key={trainer.username} className="flex flex-col items-center gap-1">
+                      <button
+                        onClick={() => handleAddTrainerToken(trainer.username, vttCurrentLayer === 'gm' ? 'gm' : vttCurrentLayer === 'map' ? 'map' : 'tokens')}
+                        className={`w-12 h-12 rounded-full border-2 transition-all hover:scale-110 overflow-hidden ${darkMode ? 'border-blue-500 bg-gray-600' : 'border-blue-400 bg-white'}`}
+                        title={`Adicionar token de ${trainer.username}`}
+                      >
+                        {TRAINER_ICONS[trainer.username] ? (
+                          <img src={TRAINER_ICONS[trainer.username]} alt={trainer.username} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-lg font-bold" style={{ background: trainer.gradient }}>
+                            {trainer.username.charAt(0)}
+                          </div>
+                        )}
+                      </button>
+                      <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{trainer.username}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Token Treinador NPC */}
               <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-4 mb-4`}>
                 <h4 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
@@ -23090,7 +23889,9 @@ function App() {
                             npcType: 'trainer',
                             npcId: trainer.id
                           }
-                          setVttGMTokens([...vttGMTokens, newToken])
+                          if (vttCurrentLayer === 'gm') setVttGMTokens(prev => [...prev, newToken])
+                          else if (vttCurrentLayer === 'map') setVttMapTokens(prev => [...prev, newToken])
+                          else setVttTokens(prev => [...prev, newToken])
                         }}
                         className={`w-12 h-12 rounded-full border-2 transition-all hover:scale-110 overflow-hidden ${darkMode ? 'border-purple-500 bg-gray-600' : 'border-purple-400 bg-white'}`}
                         title={trainer.name}
@@ -23123,7 +23924,7 @@ function App() {
                     Nenhum Pokémon NPC criado. Crie pokémons na área "Pokémon NPC".
                   </p>
                 ) : (
-                  <div className="grid grid-cols-4 gap-2 max-h-40 overflow-y-auto">
+                  <div className="flex flex-wrap gap-2 max-h-40 overflow-y-auto">
                     {npcPokemon.map(pokemon => (
                       <button
                         key={pokemon.id}
@@ -23132,37 +23933,159 @@ function App() {
                           const centerY = (vttCanvasHeight / 2) - (vttGridSize / 2)
                           const newToken = {
                             id: `gm-token-pokemon-${pokemon.id}-${Date.now()}`,
-                            name: pokemon.pokemonName || pokemon.name,
+                            name: pokemon.species || pokemon.name,
                             x: centerX,
                             y: centerY,
                             size: vttGridSize,
                             rotation: 0,
-                            image: pokemon.image || null,
+                            image: pokemon.imageUrl || null,
                             owner: null,
                             npcType: 'pokemon',
                             npcId: pokemon.id
                           }
-                          setVttGMTokens([...vttGMTokens, newToken])
+                          if (vttCurrentLayer === 'gm') setVttGMTokens(prev => [...prev, newToken])
+                          else if (vttCurrentLayer === 'map') setVttMapTokens(prev => [...prev, newToken])
+                          else setVttTokens(prev => [...prev, newToken])
                         }}
-                        className={`p-1 rounded-lg border-2 transition-all hover:scale-105 ${darkMode ? 'border-gray-600 hover:border-blue-500 bg-gray-600' : 'border-gray-300 hover:border-blue-500 bg-white'}`}
-                        title={`Adicionar ${pokemon.pokemonName || pokemon.name} ao mapa`}
+                        className={`w-12 h-12 rounded-full border-2 transition-all hover:scale-110 overflow-hidden ${darkMode ? 'border-blue-500 bg-gray-600' : 'border-blue-400 bg-white'}`}
+                        title={`Adicionar ${pokemon.species || pokemon.name} ao mapa`}
                       >
-                        <div className="w-full aspect-square rounded overflow-hidden">
-                          {pokemon.image ? (
-                            <img src={pokemon.image} alt={pokemon.pokemonName || pokemon.name} className="w-full h-full object-cover" />
-                          ) : (
-                            <div className={`w-full h-full flex items-center justify-center text-lg font-bold ${darkMode ? 'bg-blue-700 text-white' : 'bg-blue-200 text-blue-800'}`}>
-                              {(pokemon.pokemonName || pokemon.name)?.charAt(0) || 'P'}
-                            </div>
-                          )}
-                        </div>
-                        <p className={`text-xs mt-1 truncate text-center ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                          {pokemon.pokemonName || pokemon.name}
-                        </p>
+                        {pokemon.imageUrl ? (
+                          <img src={pokemon.imageUrl} alt={pokemon.species || pokemon.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className={`w-full h-full flex items-center justify-center text-lg font-bold ${darkMode ? 'bg-blue-700 text-white' : 'bg-blue-200 text-blue-800'}`}>
+                            {(pokemon.species || pokemon.name)?.charAt(0) || 'P'}
+                          </div>
+                        )}
                       </button>
                     ))}
                   </div>
                 )}
+              </div>
+
+              </>)}
+            </div>
+          )}
+
+          {/* Pop-up Coluna */}
+          {vttColunaPopupOpen && (
+            <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black bg-opacity-60">
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-2xl w-full max-w-xs mx-4`}>
+                <h3 className={`text-lg font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Coluna — Espessura</h3>
+                <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Informe a espessura em metros (1 metro = 1 quadrado do grid).</p>
+                <input
+                  type="number" min="0.5" step="0.5" value={vttColunaInputVal}
+                  onChange={e => setVttColunaInputVal(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter') { const v = parseFloat(vttColunaInputVal); if (v > 0) { setVttColunaThickness(v); setVttActiveTool('coluna'); } setVttColunaPopupOpen(false) } }}
+                  className={`w-full px-3 py-2 rounded-lg border text-lg font-bold mb-4 ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 text-gray-800 border-gray-300'}`}
+                  autoFocus
+                  placeholder="Ex: 1.5"
+                />
+                <div className="flex gap-2">
+                  <button onClick={() => setVttColunaPopupOpen(false)} className={`flex-1 py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>Cancelar</button>
+                  <button onClick={() => { const v = parseFloat(vttColunaInputVal); if (v > 0) { setVttColunaThickness(v); setVttActiveTool('coluna'); } setVttColunaPopupOpen(false) }} className="flex-1 py-2 rounded-lg font-semibold bg-orange-500 text-white hover:bg-orange-600">Confirmar</button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Pop-up Explosão */}
+          {vttExplosaoPopupOpen && (
+            <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black bg-opacity-60">
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-2xl w-full max-w-xs mx-4`}>
+                <h3 className={`text-lg font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Explosão — Raio</h3>
+                <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Informe o raio em metros (1 metro = 1 quadrado do grid).</p>
+                <input
+                  type="number" min="0.5" step="0.5" value={vttExplosaoInputVal}
+                  onChange={e => setVttExplosaoInputVal(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter') { const v = parseFloat(vttExplosaoInputVal); if (v > 0) { setVttExplosaoRadius(v); setVttActiveTool('explosao'); } setVttExplosaoPopupOpen(false) } }}
+                  className={`w-full px-3 py-2 rounded-lg border text-lg font-bold mb-4 ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 text-gray-800 border-gray-300'}`}
+                  autoFocus
+                  placeholder="Ex: 3"
+                />
+                <div className="flex gap-2">
+                  <button onClick={() => setVttExplosaoPopupOpen(false)} className={`flex-1 py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>Cancelar</button>
+                  <button onClick={() => { const v = parseFloat(vttExplosaoInputVal); if (v > 0) { setVttExplosaoRadius(v); setVttActiveTool('explosao'); } setVttExplosaoPopupOpen(false) }} className="flex-1 py-2 rounded-lg font-semibold bg-red-500 text-white hover:bg-red-600">Confirmar</button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Modal de Edição de Token VTT */}
+          {vttEditingToken && (
+            <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black bg-opacity-70">
+              <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-2xl w-full max-w-sm mx-4`}>
+                <h3 className={`text-lg font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Editar Token</h3>
+
+                {/* Preview circular */}
+                <div className="flex justify-center mb-4">
+                  <div style={{ width: 80, height: 80, borderRadius: '50%', overflow: 'hidden', border: '2px solid #6366f1', background: '#374151', position: 'relative' }}>
+                    {vttTokenEditUrl ? (
+                      <img src={vttTokenEditUrl} alt="preview"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: `center ${vttTokenEditOffsetY}%`, transform: `scale(${vttTokenEditScale / 100})`, transformOrigin: 'center' }}
+                        onError={(e) => { e.target.style.display = 'none' }}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">Sem imagem</div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>URL da Imagem</label>
+                    <input
+                      type="text"
+                      value={vttTokenEditUrl}
+                      onChange={(e) => setVttTokenEditUrl(e.target.value)}
+                      placeholder="Cole a URL da imagem"
+                      className={`w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white text-gray-800'}`}
+                    />
+                  </div>
+
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Posição vertical: {vttTokenEditOffsetY}%
+                    </label>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={vttTokenEditOffsetY}
+                      onChange={(e) => setVttTokenEditOffsetY(parseInt(e.target.value))}
+                      className="w-full"
+                    />
+                  </div>
+
+                  <div>
+                    <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Zoom: {vttTokenEditScale}%
+                    </label>
+                    <input
+                      type="range"
+                      min="50"
+                      max="300"
+                      value={vttTokenEditScale}
+                      onChange={(e) => setVttTokenEditScale(parseInt(e.target.value))}
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-3 mt-6">
+                  <button
+                    onClick={() => setVttEditingToken(null)}
+                    className={`flex-1 px-4 py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    onClick={handleVttSaveTokenEdit}
+                    className="flex-1 px-4 py-2 rounded-lg font-semibold bg-indigo-600 text-white hover:bg-indigo-700"
+                  >
+                    Salvar
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -23264,7 +24187,7 @@ function App() {
   if (currentUser.type === 'mestre' && currentArea === 'Enciclopédia M') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -24249,7 +25172,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -25522,7 +26445,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -26249,7 +27172,7 @@ function App() {
   if (currentUser.type === 'mestre' && currentArea === 'PokeApp') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -27343,7 +28266,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -30879,7 +31802,7 @@ function App() {
   if (currentUser.type === 'treinador' && currentArea === 'PC') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -33377,7 +34300,7 @@ function App() {
   if (currentUser.type === 'treinador' && currentArea === 'Pokédex') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -34200,7 +35123,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -36636,7 +37559,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -36945,7 +37868,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -37116,7 +38039,7 @@ function App() {
   if (currentUser.type === 'treinador' && currentArea === 'Características & Talentos') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -38034,7 +38957,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -39218,7 +40141,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -40963,7 +41886,7 @@ function App() {
   if (currentUser.type === 'treinador' && currentArea === 'Batalha Pkm') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -41011,9 +41934,64 @@ function App() {
             {/* ÁREA DO MAPA (VTT) - TREINADOR */}
             {battleView === 'mapa' && (
               <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl p-3 sm:p-5 md:p-8`}>
-                <h3 className={`text-2xl sm:text-3xl font-bold mb-6 text-center ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
-                  Mapa de Batalha
-                </h3>
+                <div className="flex items-center justify-center gap-2 mb-6">
+                  <h3 className={`text-2xl sm:text-3xl font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>
+                    Mapa de Batalha
+                  </h3>
+                  {/* Dropdown de Ferramentas - Treinador */}
+                  <div className="relative">
+                    <button
+                      onClick={() => setVttToolDropdownOpen(prev => !prev)}
+                      className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-sm font-semibold transition-all ${vttActiveTool ? 'bg-blue-600 text-white' : darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                      title="Ferramentas de Desenho"
+                    >
+                      <Wrench size={16} />
+                      {vttActiveTool && <span className="text-xs">{vttActiveTool === 'pincel' ? 'Pincel' : vttActiveTool === 'regua' ? 'Régua' : vttActiveTool === 'coluna' ? 'Coluna' : 'Explosão'}</span>}
+                    </button>
+                    {vttToolDropdownOpen && (
+                      <div className={`absolute left-0 top-full mt-1 z-[200] rounded-xl shadow-2xl border p-2 min-w-[180px] ${darkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'}`}>
+                        <p className={`text-xs font-bold mb-2 px-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>FERRAMENTAS</p>
+                        <button onClick={() => { setVttActiveTool(vttActiveTool === 'pincel' ? null : 'pincel'); setVttToolDropdownOpen(false) }}
+                          className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold mb-1 transition-all ${vttActiveTool === 'pincel' ? 'bg-blue-600 text-white' : darkMode ? 'hover:bg-gray-700 text-gray-200' : 'hover:bg-gray-100 text-gray-700'}`}>
+                          <Pencil size={15} /> Pincel
+                        </button>
+                        {vttActiveTool === 'pincel' && (
+                          <div className="flex items-center gap-2 px-3 py-1 mb-1">
+                            <input type="color" value={vttPincelColor} onChange={e => setVttPincelColor(e.target.value)} className="w-7 h-7 rounded cursor-pointer border-0 p-0" title="Cor" />
+                            <input type="range" min="1" max="20" value={vttPincelWidth} onChange={e => setVttPincelWidth(Number(e.target.value))} className="flex-1" title="Espessura" />
+                            <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{vttPincelWidth}px</span>
+                          </div>
+                        )}
+                        <div className={`border-t my-1 ${darkMode ? 'border-gray-700' : 'border-gray-200'}`} />
+                        <p className={`text-xs font-bold mb-1 px-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>MEDIÇÃO</p>
+                        <button onClick={() => { setVttActiveTool(vttActiveTool === 'regua' ? null : 'regua'); setVttToolDropdownOpen(false) }}
+                          className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold mb-1 transition-all ${vttActiveTool === 'regua' ? 'bg-yellow-500 text-white' : darkMode ? 'hover:bg-gray-700 text-gray-200' : 'hover:bg-gray-100 text-gray-700'}`}>
+                          <Sigma size={15} /> Régua
+                        </button>
+                        <div className={`border-t my-1 ${darkMode ? 'border-gray-700' : 'border-gray-200'}`} />
+                        <p className={`text-xs font-bold mb-1 px-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>MARCADORES</p>
+                        <button onClick={() => { setVttColunaInputVal(String(vttColunaThickness)); setVttColunaPopupOpen(true); setVttToolDropdownOpen(false) }}
+                          className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold mb-1 transition-all ${vttActiveTool === 'coluna' ? 'bg-orange-500 text-white' : darkMode ? 'hover:bg-gray-700 text-gray-200' : 'hover:bg-gray-100 text-gray-700'}`}>
+                          <Target size={15} /> Coluna {vttActiveTool === 'coluna' && `(${vttColunaThickness}m)`}
+                        </button>
+                        <button onClick={() => { setVttExplosaoInputVal(String(vttExplosaoRadius)); setVttExplosaoPopupOpen(true); setVttToolDropdownOpen(false) }}
+                          className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${vttActiveTool === 'explosao' ? 'bg-red-500 text-white' : darkMode ? 'hover:bg-gray-700 text-gray-200' : 'hover:bg-gray-100 text-gray-700'}`}>
+                          <Zap size={15} /> Explosão {vttActiveTool === 'explosao' && `(${vttExplosaoRadius}m)`}
+                        </button>
+                        {vttActiveTool && (
+                          <>
+                            <div className={`border-t my-1 ${darkMode ? 'border-gray-700' : 'border-gray-200'}`} />
+                            <button onClick={() => { setVttActiveTool(null); setVttToolDropdownOpen(false) }}
+                              className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all text-red-400 ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}>
+                              <X size={15} /> Desativar ferramenta
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    )}
+                    {vttToolDropdownOpen && <div className="fixed inset-0 z-[199]" onClick={() => setVttToolDropdownOpen(false)} />}
+                  </div>
+                </div>
 
                 {/* Mostrar localidade atual */}
                 {currentVttLocation && vttLocations.length > 0 && (
@@ -41036,7 +42014,7 @@ function App() {
                   className={`overflow-auto rounded-lg border-2 ${darkMode ? 'border-gray-600' : 'border-gray-300'}`}
                   style={{
                     width: '100%',
-                    height: 'min(80vh, 600px)',
+                    height: 'min(95vh, 1000px)',
                     maxWidth: '100%'
                   }}
                 >
@@ -41048,18 +42026,20 @@ function App() {
                     style={{
                       width: `${vttCanvasWidth}px`,
                       height: `${vttCanvasHeight}px`,
-                      cursor: vttIsPanning ? 'grabbing' : 'default'
+                      cursor: vttIsPanning ? 'grabbing' : vttActiveTool ? 'crosshair' : 'default'
                     }}
-                    onMouseDown={handlePanStart}
+                    onMouseDown={(e) => { if (!handleVttToolMouseDown(e)) handlePanStart(e) }}
                     onMouseMove={(e) => {
+                      handleVttToolMouseMove(e)
                       handlePanMove(e)
-                      if (!vttIsPanning) handleTokenMouseMove(e)
+                      if (!vttIsPanning && !vttActiveTool) handleTokenMouseMove(e)
                     }}
                     onMouseUp={(e) => {
+                      handleVttToolMouseUp(e)
                       handlePanEnd()
-                      handleTokenMouseUp(e)
+                      if (!vttActiveTool) handleTokenMouseUp(e)
                     }}
-                    onMouseLeave={handlePanEnd}
+                    onMouseLeave={(e) => { handlePanEnd(); if (vttToolDrawing) { handleVttToolMouseUp(e) } }}
                     onContextMenu={(e) => e.preventDefault()}
                   >
                     <div
@@ -41076,11 +42056,14 @@ function App() {
                         src={vttMapImage}
                         alt="Mapa"
                         className="absolute"
+                        draggable={false}
+                        onDragStart={(e) => e.preventDefault()}
+                        onLoad={handleMapImageLoad}
                         style={{
-                          left: '50%',
-                          top: '50%',
-                          transform: `translate(calc(-50% + ${vttMapPosition.x}px), calc(-50% + ${vttMapPosition.y}px)) scale(${vttMapScale / 100})`,
-                          transformOrigin: 'center center',
+                          left: vttMapWidth ? `${vttCanvasWidth / 2 + vttMapPosition.x - vttMapWidth / 2}px` : '50%',
+                          top: vttMapHeight ? `${vttCanvasHeight / 2 + vttMapPosition.y - vttMapHeight / 2}px` : '50%',
+                          width: vttMapWidth ? `${vttMapWidth}px` : 'auto',
+                          height: vttMapHeight ? `${vttMapHeight}px` : 'auto',
                           maxWidth: 'none',
                           maxHeight: 'none',
                           zIndex: 0
@@ -41186,80 +42169,194 @@ function App() {
                       )
                     })()}
 
+                    {/* Traços de Desenho e Ferramentas (Treinador) */}
+                    {(() => {
+                      const cellW = vttCanvasWidth / vttGridColumns
+                      const cellH = vttCanvasHeight / vttGridRows
+                      const avgCell = (cellW + cellH) / 2
+                      const visibleStrokes = vttDrawingStrokes.filter(s => s.layer !== 'gm')
+                      const allLiveTools = Object.entries(vttLiveTools).filter(([uname]) => uname !== currentUser.username)
+                      return (
+                        <svg className="absolute inset-0" style={{ width: vttCanvasWidth, height: vttCanvasHeight, zIndex: 5, pointerEvents: 'none' }}>
+                          {visibleStrokes.map(stroke => {
+                            const dx = vttDraggingStroke?.id === stroke.id ? (vttDraggingStroke.curDx || 0) : 0
+                            const dy = vttDraggingStroke?.id === stroke.id ? (vttDraggingStroke.curDy || 0) : 0
+                            const pts = stroke.points.map(p => `${p.x + dx},${p.y + dy}`).join(' ')
+                            const isSelected = vttSelectedStroke === stroke.id
+                            return (
+                              <g key={stroke.id}>
+                                <polyline points={pts} fill="none" stroke={stroke.color || '#ff4444'} strokeWidth={stroke.width || 3} strokeLinecap="round" strokeLinejoin="round" style={{ pointerEvents: 'none' }} />
+                                {isSelected && <polyline points={pts} fill="none" stroke="white" strokeWidth={(stroke.width || 3) + 4} strokeLinecap="round" strokeLinejoin="round" strokeDasharray="6,4" style={{ pointerEvents: 'none', opacity: 0.6 }} />}
+                              </g>
+                            )
+                          })}
+                          {vttCurrentStroke && vttCurrentStroke.points.length > 1 && (
+                            <polyline points={vttCurrentStroke.points.map(p => `${p.x},${p.y}`).join(' ')} fill="none" stroke={vttCurrentStroke.color} strokeWidth={vttCurrentStroke.width} strokeLinecap="round" strokeLinejoin="round" style={{ pointerEvents: 'none' }} />
+                          )}
+                          {vttActiveTool && vttActiveTool !== 'pincel' && vttToolDrawing && vttToolStart && vttToolEnd && (() => {
+                            if (vttActiveTool === 'regua') {
+                              const dx2 = vttToolEnd.x - vttToolStart.x, dy2 = vttToolEnd.y - vttToolStart.y
+                              const meters = (Math.sqrt(dx2*dx2+dy2*dy2)/avgCell).toFixed(1)
+                              const mx = (vttToolStart.x+vttToolEnd.x)/2, my = (vttToolStart.y+vttToolEnd.y)/2
+                              return (<>
+                                <line x1={vttToolStart.x} y1={vttToolStart.y} x2={vttToolEnd.x} y2={vttToolEnd.y} stroke="#ffcc00" strokeWidth="3" strokeDasharray="8,4" />
+                                <circle cx={vttToolStart.x} cy={vttToolStart.y} r="6" fill="#ffcc00" stroke="#000" strokeWidth="2" />
+                                <circle cx={vttToolEnd.x} cy={vttToolEnd.y} r="6" fill="#ffcc00" stroke="#000" strokeWidth="2" />
+                                <rect x={mx-35} y={my-14} width="70" height="28" rx="4" fill="rgba(0,0,0,0.8)" />
+                                <text x={mx} y={my+5} textAnchor="middle" fill="#ffcc00" fontSize="16" fontWeight="bold" style={{userSelect:'none'}}>{meters}m</text>
+                              </>)
+                            }
+                            if (vttActiveTool === 'coluna') {
+                              const dx2 = vttToolEnd.x-vttToolStart.x, dy2 = vttToolEnd.y-vttToolStart.y
+                              const len = (Math.sqrt(dx2*dx2+dy2*dy2)/avgCell).toFixed(1)
+                              const halfW = vttColunaThickness*avgCell, angle = Math.atan2(dy2,dx2)
+                              const px2 = Math.sin(angle)*halfW, py2 = -Math.cos(angle)*halfW
+                              const pts2 = [`${vttToolStart.x+px2},${vttToolStart.y+py2}`,`${vttToolEnd.x+px2},${vttToolEnd.y+py2}`,`${vttToolEnd.x-px2},${vttToolEnd.y-py2}`,`${vttToolStart.x-px2},${vttToolStart.y-py2}`].join(' ')
+                              const mx = (vttToolStart.x+vttToolEnd.x)/2, my = (vttToolStart.y+vttToolEnd.y)/2
+                              return (<>
+                                <polygon points={pts2} fill="rgba(255,100,0,0.25)" stroke="#ff6400" strokeWidth="2" />
+                                <rect x={mx-60} y={my-14} width="120" height="28" rx="4" fill="rgba(0,0,0,0.8)" />
+                                <text x={mx} y={my+5} textAnchor="middle" fill="#ff9900" fontSize="14" fontWeight="bold" style={{userSelect:'none'}}>{vttColunaThickness * 2}m × {len}m</text>
+                              </>)
+                            }
+                            if (vttActiveTool === 'explosao') {
+                              const r = vttExplosaoRadius*avgCell
+                              return (<>
+                                <circle cx={vttToolStart.x} cy={vttToolStart.y} r={r} fill="rgba(255,50,50,0.2)" stroke="#ff3232" strokeWidth="2" strokeDasharray="8,4" />
+                                <circle cx={vttToolStart.x} cy={vttToolStart.y} r="6" fill="#ff3232" stroke="#000" strokeWidth="2" />
+                                <rect x={vttToolStart.x-30} y={vttToolStart.y-r-22} width="60" height="22" rx="4" fill="rgba(0,0,0,0.8)" />
+                                <text x={vttToolStart.x} y={vttToolStart.y-r-6} textAnchor="middle" fill="#ff6666" fontSize="14" fontWeight="bold" style={{userSelect:'none'}}>{vttExplosaoRadius}m</text>
+                              </>)
+                            }
+                            return null
+                          })()}
+                          {allLiveTools.map(([uname, toolData]) => {
+                            if (!toolData?.type) return null
+                            if (toolData.layer === 'gm') return null
+                            const color = '#00ccff'
+                            if (toolData.type === 'pincel' && toolData.points?.length > 1)
+                              return <polyline key={uname} points={toolData.points.map(p=>`${p.x},${p.y}`).join(' ')} fill="none" stroke={toolData.color||color} strokeWidth={toolData.width||3} strokeLinecap="round" strokeLinejoin="round" style={{pointerEvents:'none'}} />
+                            if (toolData.type === 'regua' && toolData.start && toolData.end) {
+                              const dx2=toolData.end.x-toolData.start.x, dy2=toolData.end.y-toolData.start.y
+                              const meters=(Math.sqrt(dx2*dx2+dy2*dy2)/avgCell).toFixed(1)
+                              const mx=(toolData.start.x+toolData.end.x)/2, my=(toolData.start.y+toolData.end.y)/2
+                              return (<g key={uname}><line x1={toolData.start.x} y1={toolData.start.y} x2={toolData.end.x} y2={toolData.end.y} stroke={color} strokeWidth="3" strokeDasharray="8,4"/><circle cx={toolData.start.x} cy={toolData.start.y} r="6" fill={color} stroke="#000" strokeWidth="2"/><circle cx={toolData.end.x} cy={toolData.end.y} r="6" fill={color} stroke="#000" strokeWidth="2"/><rect x={mx-50} y={my-22} width="100" height="28" rx="4" fill="rgba(0,0,0,0.8)"/><text x={mx} y={my-3} textAnchor="middle" fill={color} fontSize="13" fontWeight="bold" style={{userSelect:'none'}}>{uname}: {meters}m</text></g>)
+                            }
+                            if (toolData.type === 'coluna' && toolData.start && toolData.end) {
+                              const dx2=toolData.end.x-toolData.start.x, dy2=toolData.end.y-toolData.start.y
+                              const len=(Math.sqrt(dx2*dx2+dy2*dy2)/avgCell).toFixed(1)
+                              const halfW=(toolData.thickness||1)*avgCell, angle=Math.atan2(dy2,dx2)
+                              const px2=Math.sin(angle)*halfW, py2=-Math.cos(angle)*halfW
+                              const pts2=[`${toolData.start.x+px2},${toolData.start.y+py2}`,`${toolData.end.x+px2},${toolData.end.y+py2}`,`${toolData.end.x-px2},${toolData.end.y-py2}`,`${toolData.start.x-px2},${toolData.start.y-py2}`].join(' ')
+                              const mx=(toolData.start.x+toolData.end.x)/2, my=(toolData.start.y+toolData.end.y)/2
+                              return (<g key={uname}><polygon points={pts2} fill="rgba(0,200,255,0.2)" stroke={color} strokeWidth="2"/><rect x={mx-70} y={my-14} width="140" height="28" rx="4" fill="rgba(0,0,0,0.8)"/><text x={mx} y={my+5} textAnchor="middle" fill={color} fontSize="13" fontWeight="bold" style={{userSelect:'none'}}>{uname}: {(toolData.thickness||1)*2}m × {len}m</text></g>)
+                            }
+                            if (toolData.type === 'explosao' && toolData.start) {
+                              const r=(toolData.radius||3)*avgCell
+                              return (<g key={uname}><circle cx={toolData.start.x} cy={toolData.start.y} r={r} fill="rgba(0,200,255,0.15)" stroke={color} strokeWidth="2" strokeDasharray="8,4"/><circle cx={toolData.start.x} cy={toolData.start.y} r="6" fill={color} stroke="#000" strokeWidth="2"/><rect x={toolData.start.x-55} y={toolData.start.y-r-22} width="110" height="22" rx="4" fill="rgba(0,0,0,0.8)"/><text x={toolData.start.x} y={toolData.start.y-r-6} textAnchor="middle" fill={color} fontSize="13" fontWeight="bold" style={{userSelect:'none'}}>{uname}: {toolData.radius||3}m</text></g>)
+                            }
+                            return null
+                          })}
+                        </svg>
+                      )
+                    })()}
+
                     {/* Tokens da camada MAPA (visível para todos, embaixo de tudo) */}
                     {vttMapTokens.map(token => (
-                      <div
-                        key={token.id}
-                        className="absolute"
-                        style={{
-                          left: `${token.x}px`,
-                          top: `${token.y}px`,
-                          width: `${token.size}px`,
-                          height: `${token.size}px`,
-                          cursor: 'default',
-                          border: '2px solid #b45309',
-                          borderRadius: '50%',
-                          overflow: 'hidden',
-                          transform: `rotate(${token.rotation || 0}deg)`,
-                          userSelect: 'none',
-                          zIndex: 1
-                        }}
-                      >
-                        {token.image && (
-                          <img
-                            src={token.image}
-                            alt={token.name}
-                            className="w-full h-full object-cover"
-                            style={token.npcType === 'trainer' ? { objectPosition: 'center 20%' } : {}}
-                          />
-                        )}
-                        {!token.image && (
-                          <div className="w-full h-full bg-amber-600 flex items-center justify-center text-white font-bold">
-                            {token.name?.charAt(0) || 'M'}
-                          </div>
-                        )}
-                        <div className="absolute bottom-0 left-0 right-0 bg-amber-900 bg-opacity-90 text-white text-xs text-center px-1 truncate">
-                          {token.name}
+                      <div key={token.id} className="absolute" style={{ left: `${token.x}px`, top: `${token.y}px`, width: `${token.size}px`, height: `${token.size}px`, transform: `rotate(${token.rotation || 0}deg)`, userSelect: 'none', zIndex: 1 }}>
+                        <div style={{ width: '100%', height: '100%', cursor: 'default', border: '2px solid #b45309', borderRadius: '50%', overflow: 'hidden', position: 'relative' }}>
+                          {token.image ? (
+                            <img src={token.image} alt={token.name} className="w-full h-full object-cover"
+                              style={{ objectPosition: `center ${token.offsetY || (token.npcType === 'trainer' ? 20 : 50)}%`, transform: `scale(${(token.imageScale || 100) / 100})`, transformOrigin: 'center' }} />
+                          ) : (
+                            <div className="w-full h-full bg-amber-600 flex items-center justify-center text-white font-bold">{token.name?.charAt(0) || 'M'}</div>
+                          )}
+                          <div className="absolute bottom-0 left-0 right-0 bg-amber-900 bg-opacity-90 text-white text-xs text-center px-1 truncate">{token.name}</div>
                         </div>
                       </div>
                     ))}
 
                     {/* Tokens da camada de JOGADORES (visível para todos) */}
                     {vttTokens.map(token => (
-                      <div
-                        key={token.id}
-                        className="absolute"
-                        onMouseDown={(e) => handleTokenMouseDown(token.id, 'tokens', e)}
-                        style={{
-                          left: `${token.x}px`,
-                          top: `${token.y}px`,
-                          width: `${token.size}px`,
-                          height: `${token.size}px`,
-                          cursor: token.owner === currentUser.username ? 'move' : 'default',
-                          border: selectedToken === token.id ? '3px solid yellow' : '2px solid black',
-                          borderRadius: '50%',
-                          overflow: 'hidden',
-                          transform: `rotate(${token.rotation || 0}deg)`,
-                          userSelect: 'none',
-                          zIndex: 3
-                        }}
-                      >
-                        {token.image && (
-                          <img
-                            src={token.image}
-                            alt={token.name}
-                            className="w-full h-full object-cover"
-                            style={token.npcType === 'trainer' ? { objectPosition: 'center 20%' } : {}}
-                          />
-                        )}
-                        {!token.image && (
-                          <div className="w-full h-full bg-blue-500 flex items-center justify-center text-white font-bold">
-                            {token.name?.charAt(0) || 'T'}
+                      <div key={token.id} className="absolute" style={{ left: `${token.x}px`, top: `${token.y}px`, width: `${token.size}px`, height: `${token.size}px`, transform: `rotate(${token.rotation || 0}deg)`, userSelect: 'none', zIndex: 3 }}>
+                        <div
+                          onMouseDown={(e) => { if (startToolFromToken(token, e)) return; handleVttTokenClick(token.id, 'tokens'); handleTokenMouseDown(token.id, 'tokens', e) }}
+                          style={{
+                            width: '100%', height: '100%',
+                            cursor: token.owner === currentUser.username ? 'move' : 'default',
+                            border: selectedToken === token.id ? '3px solid yellow' : '2px solid black',
+                            borderRadius: '50%', overflow: 'hidden', position: 'relative'
+                          }}
+                        >
+                          {token.image ? (
+                            <img src={token.image} alt={token.name} className="w-full h-full object-cover"
+                              style={{ objectPosition: `center ${token.offsetY || (token.npcType === 'trainer' ? 20 : 50)}%`, transform: `scale(${(token.imageScale || 100) / 100})`, transformOrigin: 'center' }} />
+                          ) : (
+                            <div className="w-full h-full bg-blue-500 flex items-center justify-center text-white font-bold">{token.name?.charAt(0) || 'T'}</div>
+                          )}
+                          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-xs text-center px-1 truncate">{token.name}</div>
+                        </div>
+                        {selectedToken === token.id && token.owner === currentUser.username && (
+                          <div className="absolute -top-2 -right-2 flex gap-0.5" style={{ zIndex: 10 }}>
+                            <button onMouseDown={(e) => e.stopPropagation()} onClick={(e) => handleVttEditToken(token, 'tokens', e)} className="w-5 h-5 bg-blue-600 rounded-full text-white flex items-center justify-center text-xs hover:bg-blue-500" title="Editar">✎</button>
+                            <button onMouseDown={(e) => e.stopPropagation()} onClick={() => handleVttRemoveToken(token.id, 'tokens')} className="w-5 h-5 bg-red-600 rounded-full text-white flex items-center justify-center text-xs hover:bg-red-500" title="Remover">×</button>
                           </div>
                         )}
-                        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-xs text-center px-1 truncate">
-                          {token.name}
-                        </div>
+                        {selectedToken === token.id && token.npcType === 'pokemon' && (() => {
+                          const pkm = token.pokemonId ? mainTeam.find(p => p.id === token.pokemonId) : npcPokemon.find(p => p.id === token.npcId)
+                          const moves = (token.pokemonId ? pkm?.golpes : pkm?.golpesAprendidos) || []
+                          const validMoves = moves.filter(m => (typeof m === 'string' ? m : (m?.nome || m?.name || '')).trim() !== '')
+                          if (!pkm || !validMoves.length) return null
+                          return (
+                            <div onMouseDown={(e) => e.stopPropagation()} className="absolute" style={{ left: `${token.size + 6}px`, top: '0px', minWidth: '150px', maxWidth: '190px', background: 'rgba(15,15,30,0.93)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', padding: '6px 7px', zIndex: 20, boxShadow: '0 4px 14px rgba(0,0,0,0.7)' }}>
+                              <div style={{ color: '#facc15', fontWeight: 'bold', fontSize: '11px', marginBottom: '4px', paddingBottom: '3px', borderBottom: '1px solid rgba(255,255,255,0.15)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{token.name}</div>
+                              {validMoves.map((move, idx) => {
+                                const moveName = typeof move === 'string' ? move : (move.nome || move.name || '')
+                                if (!moveName) return null
+                                return (
+                                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '3px', marginBottom: '2px' }}>
+                                    <span style={{ color: '#e5e7eb', fontSize: '10px', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{moveName}</span>
+                                    <button onClick={() => handleRollAccuracy(moveName, null, null, pkm)} style={{ background: '#2563eb', color: 'white', border: 'none', borderRadius: '3px', padding: '1px 5px', fontSize: '9px', cursor: 'pointer', flexShrink: 0 }}>Acu</button>
+                                    <button onClick={() => handleRollMoveDamage(moveName, pkm)} style={{ background: '#dc2626', color: 'white', border: 'none', borderRadius: '3px', padding: '1px 5px', fontSize: '9px', cursor: 'pointer', flexShrink: 0 }}>Dano</button>
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          )
+                        })()}
+                        {selectedToken === token.id && token.npcType === 'pokemon' && (() => {
+                          const pkm = token.pokemonId ? mainTeam.find(p => p.id === token.pokemonId) : npcPokemon.find(p => p.id === token.npcId)
+                          if (!pkm) return null
+                          let baseDef, baseDefEsp, baseVel
+                          if (token.pokemonId) {
+                            baseDef = calculateTotalAttribute(pkm, 'defesa', 'Defesa')
+                            baseDefEsp = calculateTotalAttribute(pkm, 'defesaEspecial', 'Defesa Especial')
+                            baseVel = calculateTotalAttribute(pkm, 'velocidade', 'Velocidade')
+                          } else {
+                            const alfaBonus = npcAlfaStatus?.[token.npcId] ? 8 : 0
+                            baseDef = (pkm.attributes?.defesa || 0) + alfaBonus
+                            baseDefEsp = (pkm.attributes?.defesaEspecial || 0) + alfaBonus
+                            baseVel = (pkm.attributes?.velocidade || 0) + alfaBonus
+                          }
+                          const battleEntry = token.pokemonId ? battlePokemon.find(b => b.originalId === token.pokemonId) : battlePokemon.find(b => b.npcId === token.npcId)
+                          const stages = battleEntry ? (pokemonStages[battleEntry.id] || {}) : {}
+                          const evasoes = calcularEvasoes(baseDef, baseDefEsp, baseVel, stages, false)
+                          const inBattle = !!battleEntry
+                          return (
+                            <div onMouseDown={(e) => e.stopPropagation()} style={{ position: 'absolute', left: '-34px', top: '0px', display: 'flex', flexDirection: 'column', gap: '3px', zIndex: 20 }}>
+                              {[
+                                { label: 'F', value: evasoes.evasaoFisica, color: '#3b82f6', title: 'Evasão Física' },
+                                { label: 'E', value: evasoes.evasaoEspecial, color: '#7c3aed', title: 'Evasão Especial' },
+                                { label: 'V', value: evasoes.evasaoVeloz, color: '#059669', title: 'Evasão Veloz' },
+                              ].map(({ label, value, color, title }) => (
+                                <div key={label} title={`${title}${inBattle ? ' (fases aplicadas)' : ''}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: color, borderRadius: '50%', width: '28px', height: '28px', boxShadow: '0 2px 8px rgba(0,0,0,0.7)', border: inBattle ? '2px solid #facc15' : '2px solid rgba(255,255,255,0.25)' }}>
+                                  <span style={{ color: 'white', fontSize: '7px', fontWeight: 'bold', lineHeight: 1.1 }}>{label}</span>
+                                  <span style={{ color: 'white', fontSize: '10px', fontWeight: 'bold', lineHeight: 1.1 }}>{value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          )
+                        })()}
                       </div>
                     ))}
                     </div>
@@ -41268,6 +42365,103 @@ function App() {
 
                 <div className={`mt-4 text-center text-xs sm:text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                   <p>Arraste seus tokens para movê-los no mapa. Clique e segure com o botão direito para arrastar a visualização.</p>
+                </div>
+
+                {/* Painel de Tokens do Jogador */}
+                <div className={`mt-4 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg`}>
+                  <button
+                    onClick={() => setVttTokenPanelOpen(prev => !prev)}
+                    className={`w-full flex items-center justify-between p-3 rounded-lg font-semibold text-sm transition-all ${darkMode ? 'hover:bg-gray-600 text-gray-300' : 'hover:bg-gray-200 text-gray-700'}`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <Users size={16} />
+                      Meus Tokens
+                    </span>
+                    {vttTokenPanelOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  </button>
+
+                  {vttTokenPanelOpen && (
+                    <div className="px-3 pb-3 space-y-3">
+
+                      {/* Token do Treinador */}
+                      <div>
+                        <p className={`text-xs font-bold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Treinador</p>
+                        <button
+                          onClick={() => handleAddTrainerToken(currentUser.username)}
+                          className={`w-12 h-12 rounded-full border-2 transition-all hover:scale-110 overflow-hidden ${darkMode ? 'border-blue-500 bg-gray-600' : 'border-blue-400 bg-white'}`}
+                          title={`Adicionar token de ${currentUser.username}`}
+                        >
+                          {TRAINER_ICONS[currentUser.username] ? (
+                            <img src={TRAINER_ICONS[currentUser.username]} alt={currentUser.username} className="w-full h-full object-cover" />
+                          ) : (
+                            <div className={`w-full h-full flex items-center justify-center text-lg font-bold ${darkMode ? 'bg-blue-700 text-white' : 'bg-blue-200 text-blue-800'}`}>
+                              {currentUser.username?.charAt(0) || 'T'}
+                            </div>
+                          )}
+                        </button>
+                      </div>
+
+                      {/* Tokens dos Pokémon do Time */}
+                      {mainTeam.length > 0 && (
+                        <div>
+                          <p className={`text-xs font-bold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Time ({mainTeam.length}/6)</p>
+                          <div className="flex flex-wrap gap-2">
+                            {mainTeam.map((pokemon, idx) => {
+                              const imageKey = sanitizeFirebaseKey(pokemon.id)
+                              const img = pokemonImages[imageKey] || null
+                              return (
+                                <button
+                                  key={idx}
+                                  onClick={() => handleAddPokemonToken(pokemon, currentUser.username)}
+                                  className={`w-11 h-11 rounded-full border-2 overflow-hidden transition-all hover:scale-110 ${darkMode ? 'border-green-500 bg-gray-600' : 'border-green-400 bg-white'}`}
+                                  title={`Adicionar ${pokemon.nickname || pokemon.species}`}
+                                >
+                                  {img ? (
+                                    <img src={img} alt={pokemon.species} className="w-full h-full object-contain" />
+                                  ) : (
+                                    <div className={`w-full h-full flex items-center justify-center text-xs font-bold ${darkMode ? 'bg-green-700 text-white' : 'bg-green-200 text-green-800'}`}>
+                                      {(pokemon.nickname || pokemon.species || '?').charAt(0)}
+                                    </div>
+                                  )}
+                                </button>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Painel de Golpes do Pokémon Selecionado (jogador) */}
+                      {vttSelectedPokemonToken && (
+                        <div className={`${darkMode ? 'bg-gray-800 border-blue-600' : 'bg-blue-50 border-blue-300'} rounded-lg p-3 border-2`}>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className={`text-sm font-bold ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                              {vttSelectedPokemonToken.nickname || vttSelectedPokemonToken.species} — Golpes
+                            </span>
+                            <button onClick={() => setVttSelectedPokemonToken(null)} className="text-gray-400 hover:text-gray-200 font-bold">×</button>
+                          </div>
+                          <div className="space-y-1">
+                            {(vttSelectedPokemonToken.golpes || []).filter(Boolean).length > 0 ? (
+                              (vttSelectedPokemonToken.golpes || []).filter(Boolean).map((move, idx) => {
+                                const moveName = typeof move === 'string' ? move : (move.nome || move.name || '')
+                                if (!moveName) return null
+                                return (
+                                  <div key={idx} className={`flex items-center justify-between p-1.5 rounded ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
+                                    <span className={`text-xs font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{moveName}</span>
+                                    <div className="flex gap-1">
+                                      <button onClick={() => handleRollAccuracy(moveName, null, null, vttSelectedPokemonToken)} className={`p-1 rounded ${darkMode ? 'bg-gray-600 text-blue-400' : 'bg-gray-200 text-blue-600'}`} title="Acurácia"><Dices size={12} /></button>
+                                      <button onClick={() => handleRollMoveDamage(moveName, vttSelectedPokemonToken)} className={`p-1 rounded ${darkMode ? 'bg-gray-600 text-yellow-400' : 'bg-gray-200 text-yellow-600'}`} title="Dano"><Hand size={12} /></button>
+                                    </div>
+                                  </div>
+                                )
+                              })
+                            ) : (
+                              <p className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Nenhum golpe</p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -44105,6 +45299,86 @@ function App() {
           </div>
             )}
 
+        {/* Pop-up Coluna (jogador) */}
+        {vttColunaPopupOpen && (
+          <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black bg-opacity-60">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-2xl w-full max-w-xs mx-4`}>
+              <h3 className={`text-lg font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Coluna — Espessura</h3>
+              <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Informe a espessura em metros (1 metro = 1 quadrado do grid).</p>
+              <input
+                type="number" min="0.5" step="0.5" value={vttColunaInputVal}
+                onChange={e => setVttColunaInputVal(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') { const v = parseFloat(vttColunaInputVal); if (v > 0) { setVttColunaThickness(v); setVttActiveTool('coluna'); } setVttColunaPopupOpen(false) } }}
+                className={`w-full px-3 py-2 rounded-lg border text-lg font-bold mb-4 ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 text-gray-800 border-gray-300'}`}
+                autoFocus
+                placeholder="Ex: 1.5"
+              />
+              <div className="flex gap-2">
+                <button onClick={() => setVttColunaPopupOpen(false)} className={`flex-1 py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>Cancelar</button>
+                <button onClick={() => { const v = parseFloat(vttColunaInputVal); if (v > 0) { setVttColunaThickness(v); setVttActiveTool('coluna'); } setVttColunaPopupOpen(false) }} className="flex-1 py-2 rounded-lg font-semibold bg-orange-500 text-white hover:bg-orange-600">Confirmar</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Pop-up Explosão (jogador) */}
+        {vttExplosaoPopupOpen && (
+          <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black bg-opacity-60">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-2xl w-full max-w-xs mx-4`}>
+              <h3 className={`text-lg font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Explosão — Raio</h3>
+              <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Informe o raio em metros (1 metro = 1 quadrado do grid).</p>
+              <input
+                type="number" min="0.5" step="0.5" value={vttExplosaoInputVal}
+                onChange={e => setVttExplosaoInputVal(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') { const v = parseFloat(vttExplosaoInputVal); if (v > 0) { setVttExplosaoRadius(v); setVttActiveTool('explosao'); } setVttExplosaoPopupOpen(false) } }}
+                className={`w-full px-3 py-2 rounded-lg border text-lg font-bold mb-4 ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 text-gray-800 border-gray-300'}`}
+                autoFocus
+                placeholder="Ex: 3"
+              />
+              <div className="flex gap-2">
+                <button onClick={() => setVttExplosaoPopupOpen(false)} className={`flex-1 py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>Cancelar</button>
+                <button onClick={() => { const v = parseFloat(vttExplosaoInputVal); if (v > 0) { setVttExplosaoRadius(v); setVttActiveTool('explosao'); } setVttExplosaoPopupOpen(false) }} className="flex-1 py-2 rounded-lg font-semibold bg-red-500 text-white hover:bg-red-600">Confirmar</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal de Edição de Token VTT (jogador) */}
+        {vttEditingToken && (
+          <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black bg-opacity-70">
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-2xl w-full max-w-sm mx-4`}>
+              <h3 className={`text-lg font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Editar Token</h3>
+              <div className="flex justify-center mb-4">
+                <div style={{ width: 80, height: 80, borderRadius: '50%', overflow: 'hidden', border: '2px solid #6366f1', background: '#374151' }}>
+                  {vttTokenEditUrl ? (
+                    <img src={vttTokenEditUrl} alt="preview" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: `center ${vttTokenEditOffsetY}%`, transform: `scale(${vttTokenEditScale / 100})`, transformOrigin: 'center' }} onError={(e) => { e.target.style.display = 'none' }} />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">Sem imagem</div>
+                  )}
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>URL da Imagem</label>
+                  <input type="text" value={vttTokenEditUrl} onChange={(e) => setVttTokenEditUrl(e.target.value)} placeholder="Cole a URL da imagem" className={`w-full px-3 py-2 rounded-lg border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300 bg-white text-gray-800'}`} />
+                </div>
+                <div>
+                  <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Posição vertical: {vttTokenEditOffsetY}%</label>
+                  <input type="range" min="0" max="100" value={vttTokenEditOffsetY} onChange={(e) => setVttTokenEditOffsetY(parseInt(e.target.value))} className="w-full" />
+                </div>
+                <div>
+                  <label className={`block text-sm font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Zoom: {vttTokenEditScale}%</label>
+                  <input type="range" min="50" max="300" value={vttTokenEditScale} onChange={(e) => setVttTokenEditScale(parseInt(e.target.value))} className="w-full" />
+                </div>
+              </div>
+              <div className="flex gap-3 mt-6">
+                <button onClick={() => setVttEditingToken(null)} className={`flex-1 px-4 py-2 rounded-lg font-semibold ${darkMode ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>Cancelar</button>
+                <button onClick={handleVttSaveTokenEdit} className="flex-1 px-4 py-2 rounded-lg font-semibold bg-indigo-600 text-white hover:bg-indigo-700">Salvar</button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {accountDataModal}{transformacaoModal}
         {cursorSettingsModal}
         {userCursorModal}
@@ -44129,7 +45403,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -45229,7 +46503,7 @@ function App() {
   if (currentArea === 'Árvore de Apricorns' && currentUser.type === 'treinador') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -45505,7 +46779,7 @@ function App() {
   if (currentUser.type === 'treinador' && currentArea === 'Hub de Troca') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
           <div className="max-w-7xl mx-auto px-4 py-4">
@@ -45744,7 +47018,7 @@ function App() {
   if (currentArea === 'Interlúdio' && currentUser.type === 'treinador') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -47494,7 +48768,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -48460,7 +49734,7 @@ function App() {
   if (currentArea === 'Árvore de Apricorns M' && currentUser.type === 'mestre') {
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -48563,7 +49837,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -49452,7 +50726,7 @@ function App() {
       const allOpponents_spec = [...blueActivePokemon, ...npcActivePokemon_spec]
       return (
         <>
-          <div className={`min-h-screen ${mainBgClass}`}>
+          <div className={`${mainPageClass}`}>
             {sidebarNav}
             <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
               <div className="max-w-7xl mx-auto px-4 py-4">
@@ -49597,7 +50871,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -50026,7 +51300,7 @@ function App() {
 
     if (!spoilerMestreConfirmado) return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -50061,7 +51335,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -50294,7 +51568,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -50687,7 +51961,7 @@ function App() {
   if (currentUser.type === 'mestre' && currentArea === 'Cenários da Sessão') {
     if (!spoilerMestreConfirmado) return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -50722,7 +51996,7 @@ function App() {
     )
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           {/* Header */}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
@@ -50948,7 +52222,7 @@ function App() {
     const unreadCount = smartPokefoneMessages.filter(m => !m.lida).length
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           {/* Header */}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
@@ -51072,7 +52346,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           {/* Header */}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
@@ -51294,7 +52568,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           {/* Header */}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
@@ -51578,7 +52852,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -52082,7 +53356,7 @@ function App() {
   if (currentUser.type === 'mestre' && currentArea === 'Bugigangas do Mestre') {
     if (!spoilerMestreConfirmado) return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -52244,7 +53518,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass}`}>
+        <div className={`${mainPageClass}`}>
           {sidebarNav}
           <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg sticky top-0 z-30`}>
             <div className="max-w-7xl mx-auto px-4 py-4">
@@ -52897,7 +54171,7 @@ function App() {
 
     return (
       <>
-        <div className={`min-h-screen ${mainBgClass} relative`} onClick={() => setShowAddKnowledgeMenu(false)}>
+        <div className={`${mainPageClass} relative`} onClick={() => setShowAddKnowledgeMenu(false)}>
           <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: 'url(/iconeworldbuilder/globopokeball.png)', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: '520px', opacity: 1, zIndex: 0 }} />
           {sidebarNav}
           {/* Header */}
